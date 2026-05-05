@@ -7,6 +7,130 @@ local _N = "com.amazonaws.wafv2"
 
 local M = {}
 
+M.DisallowedFeatures = schema.new({ type = "list", list_member = M.DisallowedFeature })
+
+M.Rules = schema.new({ type = "list", list_member = M.Rule })
+
+M.APIKeyTokenDomains = schema.new({ type = "list", list_member = prelude.String })
+
+M.IPAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.RegularExpressionList = schema.new({ type = "list", list_member = M.Regex })
+
+M.CustomResponseBodies = schema.new({ type = "map", map_key = prelude.String, map_value = M.CustomResponseBody })
+
+M.TokenDomains = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManagedProductDescriptors = schema.new({ type = "list", list_member = M.ManagedProductDescriptor })
+
+M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.LabelSummaries = schema.new({ type = "list", list_member = M.LabelSummary })
+
+M.SampledHTTPRequests = schema.new({ type = "list", list_member = M.SampledHTTPRequest })
+
+M.PathStatisticsList = schema.new({ type = "list", list_member = M.PathStatistics })
+
+M.APIKeySummaries = schema.new({ type = "list", list_member = M.APIKeySummary })
+
+M.ManagedRuleGroupSummaries = schema.new({ type = "list", list_member = M.ManagedRuleGroupSummary })
+
+M.ManagedRuleGroupVersions = schema.new({ type = "list", list_member = M.ManagedRuleGroupVersion })
+
+M.IPSetSummaries = schema.new({ type = "list", list_member = M.IPSetSummary })
+
+M.LoggingConfigurations = schema.new({ type = "list", list_member = M.LoggingConfiguration })
+
+M.ManagedRuleSetSummaries = schema.new({ type = "list", list_member = M.ManagedRuleSetSummary })
+
+M.ReleaseSummaries = schema.new({ type = "list", list_member = M.ReleaseSummary })
+
+M.RegexPatternSetSummaries = schema.new({ type = "list", list_member = M.RegexPatternSetSummary })
+
+M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleGroupSummaries = schema.new({ type = "list", list_member = M.RuleGroupSummary })
+
+M.WebACLSummaries = schema.new({ type = "list", list_member = M.WebACLSummary })
+
+M.VersionsToPublish = schema.new({ type = "map", map_key = prelude.String, map_value = M.VersionToPublish })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataProtections = schema.new({ type = "list", list_member = M.DataProtection })
+
+M.RequestBody = schema.new({ type = "map", map_key = prelude.String, map_value = M.RequestBodyAssociatedResourceTypeConfig })
+
+M.ApplicationAttributes = schema.new({ type = "list", list_member = M.ApplicationAttribute })
+
+M.LogDestinationConfigs = schema.new({ type = "list", list_member = prelude.String })
+
+M.RedactedFields = schema.new({ type = "list", list_member = M.FieldToMatch })
+
+M.PublishedVersions = schema.new({ type = "map", map_key = prelude.String, map_value = M.ManagedRuleSetVersion })
+
+M.FirewallManagerRuleGroups = schema.new({ type = "list", list_member = M.FirewallManagerRuleGroup })
+
+M.Labels = schema.new({ type = "list", list_member = M.Label })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.HTTPHeaders = schema.new({ type = "list", list_member = M.HTTPHeader })
+
+M.BotStatisticsList = schema.new({ type = "list", list_member = M.BotStatistics })
+
+M.CustomHTTPHeaders = schema.new({ type = "list", list_member = M.CustomHTTPHeader })
+
+M.AttributeValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.TextTransformations = schema.new({ type = "list", list_member = M.TextTransformation })
+
+M.CountryCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedRules = schema.new({ type = "list", list_member = M.ExcludedRule })
+
+M.RuleActionOverrides = schema.new({ type = "list", list_member = M.RuleActionOverride })
+
+M.RateBasedStatementCustomKeys = schema.new({ type = "list", list_member = M.RateBasedStatementCustomKey })
+
+M.Statements = schema.new({ type = "list", list_member = M.Statement })
+
+M.ManagedRuleGroupConfigs = schema.new({ type = "list", list_member = M.ManagedRuleGroupConfig })
+
+M.AsnList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.FieldToProtectKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Conditions = schema.new({ type = "list", list_member = M.Condition })
+
+M.JsonPointerPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.HeaderNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CookieNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberFields = schema.new({ type = "list", list_member = M.PhoneNumberField })
+
+M.AddressFields = schema.new({ type = "list", list_member = M.AddressField })
+
+M.ResponseInspectionStatusCodeSuccessCodes = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ResponseInspectionStatusCodeFailureCodes = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ResponseInspectionHeaderSuccessValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseInspectionHeaderFailureValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseInspectionBodyContainsSuccessStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseInspectionBodyContainsFailureStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseInspectionJsonSuccessValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseInspectionJsonFailureValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActionCondition = schema.new({
     id = id.from(_N, "ActionCondition"),
     type = "structure",

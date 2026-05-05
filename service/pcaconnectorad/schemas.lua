@@ -7,6 +7,28 @@ local _N = "com.amazonaws.pcaconnectorad"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorList = schema.new({ type = "list", list_member = M.ConnectorSummary })
+
+M.DirectoryRegistrationList = schema.new({ type = "list", list_member = M.DirectoryRegistrationSummary })
+
+M.ServicePrincipalNameList = schema.new({ type = "list", list_member = M.ServicePrincipalNameSummary })
+
+M.AccessControlEntryList = schema.new({ type = "list", list_member = M.AccessControlEntrySummary })
+
+M.TemplateList = schema.new({ type = "list", list_member = M.TemplateSummary })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TemplateNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CryptoProvidersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationPolicyList = schema.new({ type = "list", list_member = M.ApplicationPolicy })
+
 M.AccessRights = schema.new({
     id = id.from(_N, "AccessRights"),
     type = "structure",
@@ -660,10 +682,7 @@ M.DeleteConnectorInput = schema.new({
     },
 })
 
-M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectorOutput = prelude.Unit
 
 M.GetConnectorInput = schema.new({
     id = id.from(_N, "GetConnectorRequest"),
@@ -823,10 +842,7 @@ M.CreateServicePrincipalNameInput = schema.new({
     },
 })
 
-M.CreateServicePrincipalNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateServicePrincipalNameOutput = prelude.Unit
 
 M.EnrollmentFlagsV2 = schema.new({
     id = id.from(_N, "EnrollmentFlagsV2"),
@@ -2024,10 +2040,7 @@ M.CreateTemplateGroupAccessControlEntryInput = schema.new({
     },
 })
 
-M.CreateTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTemplateGroupAccessControlEntryOutput = prelude.Unit
 
 M.DeleteDirectoryRegistrationInput = schema.new({
     id = id.from(_N, "DeleteDirectoryRegistrationRequest"),
@@ -2046,10 +2059,7 @@ M.DeleteDirectoryRegistrationInput = schema.new({
     },
 })
 
-M.DeleteDirectoryRegistrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDirectoryRegistrationOutput = prelude.Unit
 
 M.DeleteServicePrincipalNameInput = schema.new({
     id = id.from(_N, "DeleteServicePrincipalNameRequest"),
@@ -2078,10 +2088,7 @@ M.DeleteServicePrincipalNameInput = schema.new({
     },
 })
 
-M.DeleteServicePrincipalNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteServicePrincipalNameOutput = prelude.Unit
 
 M.DeleteTemplateInput = schema.new({
     id = id.from(_N, "DeleteTemplateRequest"),
@@ -2100,10 +2107,7 @@ M.DeleteTemplateInput = schema.new({
     },
 })
 
-M.DeleteTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTemplateOutput = prelude.Unit
 
 M.DeleteTemplateGroupAccessControlEntryInput = schema.new({
     id = id.from(_N, "DeleteTemplateGroupAccessControlEntryRequest"),
@@ -2132,10 +2136,7 @@ M.DeleteTemplateGroupAccessControlEntryInput = schema.new({
     },
 })
 
-M.DeleteTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTemplateGroupAccessControlEntryOutput = prelude.Unit
 
 M.DirectoryRegistration = schema.new({
     id = id.from(_N, "DirectoryRegistration"),
@@ -2886,10 +2887,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UpdateTemplateGroupAccessControlEntryInput = schema.new({
     id = id.from(_N, "UpdateTemplateGroupAccessControlEntryRequest"),
@@ -2931,10 +2929,7 @@ M.UpdateTemplateGroupAccessControlEntryInput = schema.new({
     },
 })
 
-M.UpdateTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateTemplateGroupAccessControlEntryOutput = prelude.Unit
 
 M.UpdateTemplateInput = schema.new({
     id = id.from(_N, "UpdateTemplateRequest"),
@@ -2966,10 +2961,7 @@ M.UpdateTemplateInput = schema.new({
     },
 })
 
-M.UpdateTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateTemplateOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -2999,10 +2991,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

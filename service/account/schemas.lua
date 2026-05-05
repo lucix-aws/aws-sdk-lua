@@ -7,6 +7,12 @@ local _N = "com.amazonaws.account"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.RegionOptStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionOptList = schema.new({ type = "list", list_member = M.Region })
+
 M.AcceptPrimaryEmailUpdateInput = schema.new({
     id = id.from(_N, "AcceptPrimaryEmailUpdateRequest"),
     type = "structure",
@@ -320,10 +326,7 @@ M.PutAccountNameInput = schema.new({
     },
 })
 
-M.PutAccountNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAccountNameOutput = prelude.Unit
 
 M.DeleteAlternateContactInput = schema.new({
     id = id.from(_N, "DeleteAlternateContactRequest"),
@@ -347,10 +350,7 @@ M.DeleteAlternateContactInput = schema.new({
     },
 })
 
-M.DeleteAlternateContactOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAlternateContactOutput = prelude.Unit
 
 M.GetAlternateContactInput = schema.new({
     id = id.from(_N, "GetAlternateContactRequest"),
@@ -483,10 +483,7 @@ M.PutAlternateContactInput = schema.new({
     },
 })
 
-M.PutAlternateContactOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAlternateContactOutput = prelude.Unit
 
 M.GetGovCloudAccountInformationInput = schema.new({
     id = id.from(_N, "GetGovCloudAccountInformationRequest"),
@@ -701,10 +698,7 @@ M.PutContactInformationInput = schema.new({
     },
 })
 
-M.PutContactInformationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutContactInformationOutput = prelude.Unit
 
 M.GetPrimaryEmailInput = schema.new({
     id = id.from(_N, "GetPrimaryEmailRequest"),
@@ -795,10 +789,7 @@ M.DisableRegionInput = schema.new({
     },
 })
 
-M.DisableRegionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableRegionOutput = prelude.Unit
 
 M.EnableRegionInput = schema.new({
     id = id.from(_N, "EnableRegionRequest"),
@@ -822,10 +813,7 @@ M.EnableRegionInput = schema.new({
     },
 })
 
-M.EnableRegionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableRegionOutput = prelude.Unit
 
 M.GetRegionOptStatusInput = schema.new({
     id = id.from(_N, "GetRegionOptStatusRequest"),

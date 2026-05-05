@@ -7,6 +7,36 @@ local _N = "com.amazonaws.rdsdata"
 
 local M = {}
 
+M.SqlParameterSets = schema.new({ type = "list", list_member = M.SqlParametersList })
+
+M.UpdateResults = schema.new({ type = "list", list_member = M.UpdateResult })
+
+M.SqlStatementResults = schema.new({ type = "list", list_member = M.SqlStatementResult })
+
+M.SqlParametersList = schema.new({ type = "list", list_member = M.SqlParameter })
+
+M.SqlRecords = schema.new({ type = "list", list_member = M.FieldList })
+
+M.Metadata = schema.new({ type = "list", list_member = M.ColumnMetadata })
+
+M.FieldList = schema.new({ type = "list", list_member = M.Field })
+
+M.Records = schema.new({ type = "list", list_member = M.Record })
+
+M.BooleanArray = schema.new({ type = "list", list_member = prelude.Boolean })
+
+M.LongArray = schema.new({ type = "list", list_member = prelude.Long })
+
+M.DoubleArray = schema.new({ type = "list", list_member = prelude.Double })
+
+M.StringArray = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArrayOfArray = schema.new({ type = "list", list_member = M.ArrayValue })
+
+M.Row = schema.new({ type = "list", list_member = M.Value })
+
+M.ArrayValueList = schema.new({ type = "list", list_member = M.Value })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

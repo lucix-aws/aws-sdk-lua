@@ -7,6 +7,46 @@ local _N = "com.amazonaws.transcribestreaming"
 
 local M = {}
 
+M.MedicalScribeChannelDefinitions = schema.new({ type = "list", list_member = M.MedicalScribeChannelDefinition })
+
+M.KMSEncryptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ChannelDefinitions = schema.new({ type = "list", list_member = M.ChannelDefinition })
+
+M.CallAnalyticsItemList = schema.new({ type = "list", list_member = M.CallAnalyticsItem })
+
+M.CallAnalyticsEntityList = schema.new({ type = "list", list_member = M.CallAnalyticsEntity })
+
+M.IssuesDetected = schema.new({ type = "list", list_member = M.IssueDetected })
+
+M.CallAnalyticsLanguageIdentification = schema.new({ type = "list", list_member = M.CallAnalyticsLanguageWithScore })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchedCategoryDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.PointsOfInterest })
+
+M.MedicalScribeTranscriptItemList = schema.new({ type = "list", list_member = M.MedicalScribeTranscriptItem })
+
+M.MedicalResultList = schema.new({ type = "list", list_member = M.MedicalResult })
+
+M.ResultList = schema.new({ type = "list", list_member = M.Result })
+
+M.TimestampRanges = schema.new({ type = "list", list_member = M.TimestampRange })
+
+M.MedicalAlternativeList = schema.new({ type = "list", list_member = M.MedicalAlternative })
+
+M.AlternativeList = schema.new({ type = "list", list_member = M.Alternative })
+
+M.LanguageIdentification = schema.new({ type = "list", list_member = M.LanguageWithScore })
+
+M.MedicalItemList = schema.new({ type = "list", list_member = M.MedicalItem })
+
+M.MedicalEntityList = schema.new({ type = "list", list_member = M.MedicalEntity })
+
+M.ItemList = schema.new({ type = "list", list_member = M.Item })
+
+M.EntityList = schema.new({ type = "list", list_member = M.Entity })
+
 M.Entity = schema.new({
     id = id.from(_N, "Entity"),
     type = "structure",

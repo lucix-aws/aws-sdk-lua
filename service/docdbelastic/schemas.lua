@@ -7,6 +7,24 @@ local _N = "com.amazonaws.docdbelastic"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterList = schema.new({ type = "list", list_member = M.ClusterInList })
+
+M.ClusterSnapshotList = schema.new({ type = "list", list_member = M.ClusterSnapshotInList })
+
+M.ResourcePendingMaintenanceActionList = schema.new({ type = "list", list_member = M.ResourcePendingMaintenanceAction })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PendingMaintenanceActionDetailsList = schema.new({ type = "list", list_member = M.PendingMaintenanceActionDetails })
+
+M.ShardList = schema.new({ type = "list", list_member = M.Shard })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

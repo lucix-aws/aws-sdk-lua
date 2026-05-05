@@ -7,6 +7,104 @@ local _N = "com.amazonaws.lambda"
 
 local M = {}
 
+M.OperationUpdates = schema.new({ type = "list", list_member = M.OperationUpdate })
+
+M.Events = schema.new({ type = "list", list_member = M.Event })
+
+M.Operations = schema.new({ type = "list", list_member = M.Operation })
+
+M.ExecutionStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DurableExecutions = schema.new({ type = "list", list_member = M.Execution })
+
+M.FunctionEventInvokeConfigList = schema.new({ type = "list", list_member = M.FunctionEventInvokeConfig })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityProvidersList = schema.new({ type = "list", list_member = M.CapacityProvider })
+
+M.FunctionVersionsByCapacityProviderList = schema.new({ type = "list", list_member = M.FunctionVersionsByCapacityProviderListItem })
+
+M.CodeSigningConfigList = schema.new({ type = "list", list_member = M.CodeSigningConfig })
+
+M.FunctionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventSourceMappingsList = schema.new({ type = "list", list_member = M.EventSourceMappingConfiguration })
+
+M.Topics = schema.new({ type = "list", list_member = prelude.String })
+
+M.Queues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceAccessConfigurations = schema.new({ type = "list", list_member = M.SourceAccessConfiguration })
+
+M.FunctionResponseTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FunctionList = schema.new({ type = "list", list_member = M.FunctionConfiguration })
+
+M.LayerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileSystemConfigList = schema.new({ type = "list", list_member = M.FileSystemConfig })
+
+M.ArchitecturesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LayersReferenceList = schema.new({ type = "list", list_member = M.Layer })
+
+M.FunctionUrlConfigList = schema.new({ type = "list", list_member = M.FunctionUrlConfig })
+
+M.ProvisionedConcurrencyConfigList = schema.new({ type = "list", list_member = M.ProvisionedConcurrencyConfigListItem })
+
+M.AliasList = schema.new({ type = "list", list_member = M.AliasConfiguration })
+
+M.LayersList = schema.new({ type = "list", list_member = M.LayersListItem })
+
+M.LayerVersionsList = schema.new({ type = "list", list_member = M.LayerVersionsListItem })
+
+M.CompatibleRuntimes = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompatibleArchitectures = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackTraceEntries = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityProviderSubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityProviderSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityProviderScalingPoliciesList = schema.new({ type = "list", list_member = M.TargetTrackingScalingPolicy })
+
+M.SigningProfileVersionArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.Endpoints = schema.new({ type = "map", map_key = prelude.String, map_value = M.EndpointLists })
+
+M.EventSourceMappingMetricList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HeadersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowMethodsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowOriginsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalVersionWeights = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.EndpointLists = schema.new({ type = "list", list_member = prelude.String })
+
+M.KafkaSchemaRegistryAccessConfigList = schema.new({ type = "list", list_member = M.KafkaSchemaRegistryAccessConfig })
+
+M.KafkaSchemaValidationConfigList = schema.new({ type = "list", list_member = M.KafkaSchemaValidationConfig })
+
 M.AccountLimit = schema.new({
     id = id.from(_N, "AccountLimit"),
     type = "structure",
@@ -2114,10 +2212,7 @@ M.DeleteFunctionEventInvokeConfigInput = schema.new({
     },
 })
 
-M.DeleteFunctionEventInvokeConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFunctionEventInvokeConfigOutput = prelude.Unit
 
 M.OnFailure = schema.new({
     id = id.from(_N, "OnFailure"),
@@ -5192,10 +5287,7 @@ M.DeleteFunctionCodeSigningConfigInput = schema.new({
     },
 })
 
-M.DeleteFunctionCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFunctionCodeSigningConfigOutput = prelude.Unit
 
 M.DeleteFunctionConcurrencyInput = schema.new({
     id = id.from(_N, "DeleteFunctionConcurrencyRequest"),
@@ -5214,10 +5306,7 @@ M.DeleteFunctionConcurrencyInput = schema.new({
     },
 })
 
-M.DeleteFunctionConcurrencyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFunctionConcurrencyOutput = prelude.Unit
 
 M.DeleteFunctionUrlConfigInput = schema.new({
     id = id.from(_N, "DeleteFunctionUrlConfigRequest"),
@@ -5245,10 +5334,7 @@ M.DeleteFunctionUrlConfigInput = schema.new({
     },
 })
 
-M.DeleteFunctionUrlConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFunctionUrlConfigOutput = prelude.Unit
 
 M.GetFunctionInput = schema.new({
     id = id.from(_N, "GetFunctionRequest"),
@@ -8900,10 +8986,7 @@ M.DeleteAliasInput = schema.new({
     },
 })
 
-M.DeleteAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAliasOutput = prelude.Unit
 
 M.GetAliasInput = schema.new({
     id = id.from(_N, "GetAliasRequest"),
@@ -10794,10 +10877,7 @@ M.DeleteLayerVersionInput = schema.new({
     },
 })
 
-M.DeleteLayerVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLayerVersionOutput = prelude.Unit
 
 M.GetLayerVersionInput = schema.new({
     id = id.from(_N, "GetLayerVersionRequest"),
@@ -11336,10 +11416,7 @@ M.RemoveLayerVersionPermissionInput = schema.new({
     },
 })
 
-M.RemoveLayerVersionPermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveLayerVersionPermissionOutput = prelude.Unit
 
 M.ListDurableExecutionsByFunctionInput = schema.new({
     id = id.from(_N, "ListDurableExecutionsByFunctionRequest"),
@@ -11680,10 +11757,7 @@ M.RemovePermissionInput = schema.new({
     },
 })
 
-M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemovePermissionOutput = prelude.Unit
 
 M.DeleteProvisionedConcurrencyConfigInput = schema.new({
     id = id.from(_N, "DeleteProvisionedConcurrencyConfigRequest"),
@@ -11712,10 +11786,7 @@ M.DeleteProvisionedConcurrencyConfigInput = schema.new({
     },
 })
 
-M.DeleteProvisionedConcurrencyConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProvisionedConcurrencyConfigOutput = prelude.Unit
 
 M.GetProvisionedConcurrencyConfigInput = schema.new({
     id = id.from(_N, "GetProvisionedConcurrencyConfigRequest"),
@@ -12149,10 +12220,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -12182,10 +12250,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateFunctionEventInvokeConfigInput = schema.new({
     id = id.from(_N, "UpdateFunctionEventInvokeConfigRequest"),

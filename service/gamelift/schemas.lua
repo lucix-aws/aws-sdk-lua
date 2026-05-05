@@ -7,6 +7,174 @@ local _N = "com.amazonaws.gamelift"
 
 local M = {}
 
+M.PlayerIdsForAcceptMatch = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.IpPermissionsList = schema.new({ type = "list", list_member = M.IpPermission })
+
+M.LocationConfigurationList = schema.new({ type = "list", list_member = M.LocationConfiguration })
+
+M.MetricGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportContainerDefinitionInputList = schema.new({ type = "list", list_member = M.SupportContainerDefinitionInput })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocationStateList = schema.new({ type = "list", list_member = M.LocationState })
+
+M.InstanceDefinitions = schema.new({ type = "list", list_member = M.InstanceDefinition })
+
+M.VpcSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.GamePropertyList = schema.new({ type = "list", list_member = M.GameProperty })
+
+M.PlayerLatencyPolicyList = schema.new({ type = "list", list_member = M.PlayerLatencyPolicy })
+
+M.GameSessionQueueDestinationList = schema.new({ type = "list", list_member = M.GameSessionQueueDestination })
+
+M.QueueArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlayerIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlayerDataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PlayerSessionList = schema.new({ type = "list", list_member = M.PlayerSession })
+
+M.LocationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerGroupPortMappingList = schema.new({ type = "list", list_member = M.ContainerGroupPortMapping })
+
+M.EC2InstanceLimitList = schema.new({ type = "list", list_member = M.EC2InstanceLimit })
+
+M.FleetIdOrArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FleetAttributesList = schema.new({ type = "list", list_member = M.FleetAttributes })
+
+M.FleetCapacityList = schema.new({ type = "list", list_member = M.FleetCapacity })
+
+M.LocationalDeployments = schema.new({ type = "map", map_key = prelude.String, map_value = M.LocationalDeployment })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.LocationAttributesList = schema.new({ type = "list", list_member = M.LocationAttributes })
+
+M.FleetUtilizationList = schema.new({ type = "list", list_member = M.FleetUtilization })
+
+M.GameServerInstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.GameServerInstances = schema.new({ type = "list", list_member = M.GameServerInstance })
+
+M.GameSessionDetailList = schema.new({ type = "list", list_member = M.GameSessionDetail })
+
+M.GameSessionQueueNameOrArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GameSessionQueueList = schema.new({ type = "list", list_member = M.GameSessionQueue })
+
+M.GameSessionList = schema.new({ type = "list", list_member = M.GameSession })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.MatchmakingIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchmakingTicketList = schema.new({ type = "list", list_member = M.MatchmakingTicket })
+
+M.MatchmakingConfigurationNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchmakingConfigurationList = schema.new({ type = "list", list_member = M.MatchmakingConfiguration })
+
+M.MatchmakingRuleSetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchmakingRuleSetList = schema.new({ type = "list", list_member = M.MatchmakingRuleSet })
+
+M.ScalingPolicyList = schema.new({ type = "list", list_member = M.ScalingPolicy })
+
+M.VpcPeeringAuthorizationList = schema.new({ type = "list", list_member = M.VpcPeeringAuthorization })
+
+M.VpcPeeringConnectionList = schema.new({ type = "list", list_member = M.VpcPeeringConnection })
+
+M.ContainerIdentifierList = schema.new({ type = "list", list_member = M.ContainerIdentifier })
+
+M.PlayerConnectionDetailList = schema.new({ type = "list", list_member = M.PlayerConnectionDetail })
+
+M.AliasList = schema.new({ type = "list", list_member = M.Alias })
+
+M.BuildList = schema.new({ type = "list", list_member = M.Build })
+
+M.ComputeList = schema.new({ type = "list", list_member = M.Compute })
+
+M.ContainerFleetList = schema.new({ type = "list", list_member = M.ContainerFleet })
+
+M.ContainerGroupDefinitionList = schema.new({ type = "list", list_member = M.ContainerGroupDefinition })
+
+M.FleetDeployments = schema.new({ type = "list", list_member = M.FleetDeployment })
+
+M.FleetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GameServerGroups = schema.new({ type = "list", list_member = M.GameServerGroup })
+
+M.GameServers = schema.new({ type = "list", list_member = M.GameServer })
+
+M.LocationFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocationModelList = schema.new({ type = "list", list_member = M.LocationModel })
+
+M.ScriptList = schema.new({ type = "list", list_member = M.Script })
+
+M.GameServerGroupActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.FleetActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlayerLatencyList = schema.new({ type = "list", list_member = M.PlayerLatency })
+
+M.DesiredPlayerSessionList = schema.new({ type = "list", list_member = M.DesiredPlayerSession })
+
+M.PlayerList = schema.new({ type = "list", list_member = M.Player })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerFleetRemoveAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterInstanceStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerFleetLocationAttributesList = schema.new({ type = "list", list_member = M.ContainerFleetLocationAttributes })
+
+M.ContainerDependencyList = schema.new({ type = "list", list_member = M.ContainerDependency })
+
+M.ContainerMountPointList = schema.new({ type = "list", list_member = M.ContainerMountPoint })
+
+M.ContainerEnvironmentList = schema.new({ type = "list", list_member = M.ContainerEnvironment })
+
+M.SupportContainerDefinitionList = schema.new({ type = "list", list_member = M.SupportContainerDefinition })
+
+M.ServerProcessList = schema.new({ type = "list", list_member = M.ServerProcess })
+
+M.PriorityTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerAttributes = schema.new({ type = "list", list_member = M.ContainerAttribute })
+
+M.PlacedPlayerSessionList = schema.new({ type = "list", list_member = M.PlacedPlayerSession })
+
+M.LocationOrderOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerPortRangeList = schema.new({ type = "list", list_member = M.ContainerPortRange })
+
+M.ContainerPortMappingList = schema.new({ type = "list", list_member = M.ContainerPortMapping })
+
+M.PlayerConnectionEndpointList = schema.new({ type = "list", list_member = M.PlayerConnectionEndpoint })
+
+M.PlayerAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.LatencyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.MatchedPlayerSessionList = schema.new({ type = "list", list_member = M.MatchedPlayerSession })
+
+M.ContainerCommandStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlayerAttributeStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlayerAttributeStringDoubleMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
 M.AcceptMatchInput = schema.new({
     id = id.from(_N, "AcceptMatchInput"),
     type = "structure",
@@ -4225,10 +4393,7 @@ M.DeleteAliasInput = schema.new({
     },
 })
 
-M.DeleteAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAliasOutput = prelude.Unit
 
 M.DeleteBuildInput = schema.new({
     id = id.from(_N, "DeleteBuildInput"),
@@ -4246,10 +4411,7 @@ M.DeleteBuildInput = schema.new({
     },
 })
 
-M.DeleteBuildOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBuildOutput = prelude.Unit
 
 M.DeleteContainerFleetInput = schema.new({
     id = id.from(_N, "DeleteContainerFleetInput"),
@@ -4321,10 +4483,7 @@ M.DeleteFleetInput = schema.new({
     },
 })
 
-M.DeleteFleetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFleetOutput = prelude.Unit
 
 M.DeleteFleetLocationsInput = schema.new({
     id = id.from(_N, "DeleteFleetLocationsInput"),
@@ -4523,10 +4682,7 @@ M.DeleteScalingPolicyInput = schema.new({
     },
 })
 
-M.DeleteScalingPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteScalingPolicyOutput = prelude.Unit
 
 M.DeleteScriptInput = schema.new({
     id = id.from(_N, "DeleteScriptInput"),
@@ -4544,10 +4700,7 @@ M.DeleteScriptInput = schema.new({
     },
 })
 
-M.DeleteScriptOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteScriptOutput = prelude.Unit
 
 M.DeleteVpcPeeringAuthorizationInput = schema.new({
     id = id.from(_N, "DeleteVpcPeeringAuthorizationInput"),
@@ -4689,10 +4842,7 @@ M.DeregisterGameServerInput = schema.new({
     },
 })
 
-M.DeregisterGameServerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterGameServerOutput = prelude.Unit
 
 M.DescribeAliasInput = schema.new({
     id = id.from(_N, "DescribeAliasInput"),

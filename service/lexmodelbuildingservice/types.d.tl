@@ -1434,37 +1434,37 @@ local record NotFoundException
     message: string
 end
 
-local type ExportType = "ALEXA_SKILLS_KIT" | "LEX"
+local type StatusType = "Detected" | "Missed"
 
 local type Locale = "de-DE" | "en-AU" | "en-GB" | "en-IN" | "en-US" | "es-419" | "es-ES" | "es-US" | "fr-FR" | "fr-CA" | "it-IT" | "ja-JP" | "ko-KR"
 
-local type StatusType = "Detected" | "Missed"
+local type ExportStatus = "IN_PROGRESS" | "READY" | "FAILED"
+
+local type ProcessBehavior = "SAVE" | "BUILD"
+
+local type MigrationStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local type ChannelStatus = "IN_PROGRESS" | "CREATED" | "FAILED"
+
+local type MergeStrategy = "OVERWRITE_LATEST" | "FAIL_ON_CONFLICT"
+
+local type ExportType = "ALEXA_SKILLS_KIT" | "LEX"
+
+local type ImportStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
+
+local type MigrationSortAttribute = "V1_BOT_NAME" | "MIGRATION_DATE_TIME"
+
+local type ChannelType = "Facebook" | "Slack" | "Twilio-Sms" | "Kik"
+
+local type SlotValueSelectionStrategy = "ORIGINAL_VALUE" | "TOP_RESOLUTION"
 
 local type MigrationStrategy = "CREATE_NEW" | "UPDATE_EXISTING"
 
 local type Status = "BUILDING" | "READY" | "READY_BASIC_TESTING" | "FAILED" | "NOT_BUILT"
 
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type ChannelType = "Facebook" | "Slack" | "Twilio-Sms" | "Kik"
-
-local type MigrationSortAttribute = "V1_BOT_NAME" | "MIGRATION_DATE_TIME"
-
-local type ExportStatus = "IN_PROGRESS" | "READY" | "FAILED"
-
-local type MigrationStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED"
-
-local type SlotValueSelectionStrategy = "ORIGINAL_VALUE" | "TOP_RESOLUTION"
-
 local type ResourceType = "BOT" | "INTENT" | "SLOT_TYPE"
-
-local type ImportStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
-
-local type ProcessBehavior = "SAVE" | "BUILD"
-
-local type MergeStrategy = "OVERWRITE_LATEST" | "FAIL_ON_CONFLICT"
 
 local record M
     CreateBotVersionInput: CreateBotVersionInput

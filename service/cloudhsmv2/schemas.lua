@@ -7,6 +7,24 @@ local _N = "com.amazonaws.cloudhsmv2"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "map", map_key = prelude.String, map_value = M.Strings })
+
+M.Backups = schema.new({ type = "list", list_member = M.Backup })
+
+M.Clusters = schema.new({ type = "list", list_member = M.Cluster })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Hsms = schema.new({ type = "list", list_member = M.Hsm })
+
+M.ExternalSubnetMapping = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Strings = schema.new({ type = "list", list_member = prelude.String })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",

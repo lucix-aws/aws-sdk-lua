@@ -7,6 +7,48 @@ local _N = "com.amazonaws.iotthingsgraph"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Urns = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityDescriptions = schema.new({ type = "list", list_member = M.EntityDescription })
+
+M.FlowTemplateSummaries = schema.new({ type = "list", list_member = M.FlowTemplateSummary })
+
+M.SystemTemplateSummaries = schema.new({ type = "list", list_member = M.SystemTemplateSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlowExecutionMessages = schema.new({ type = "list", list_member = M.FlowExecutionMessage })
+
+M.EntityTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityFilters = schema.new({ type = "list", list_member = M.EntityFilter })
+
+M.FlowExecutionSummaries = schema.new({ type = "list", list_member = M.FlowExecutionSummary })
+
+M.FlowTemplateFilters = schema.new({ type = "list", list_member = M.FlowTemplateFilter })
+
+M.SystemInstanceFilters = schema.new({ type = "list", list_member = M.SystemInstanceFilter })
+
+M.SystemInstanceSummaries = schema.new({ type = "list", list_member = M.SystemInstanceSummary })
+
+M.SystemTemplateFilters = schema.new({ type = "list", list_member = M.SystemTemplateFilter })
+
+M.Things = schema.new({ type = "list", list_member = M.Thing })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DependencyRevisions = schema.new({ type = "list", list_member = M.DependencyRevision })
+
+M.EntityFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlowTemplateFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SystemInstanceFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SystemTemplateFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AssociateEntityToThingInput = schema.new({
     id = id.from(_N, "AssociateEntityToThingRequest"),
     type = "structure",

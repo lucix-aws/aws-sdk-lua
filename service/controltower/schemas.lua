@@ -7,6 +7,64 @@ local _N = "com.amazonaws.controltower"
 
 local M = {}
 
+M.Baselines = schema.new({ type = "list", list_member = M.BaselineSummary })
+
+M.ControlOperations = schema.new({ type = "list", list_member = M.ControlOperationSummary })
+
+M.EnabledBaselines = schema.new({ type = "list", list_member = M.EnabledBaselineSummary })
+
+M.EnabledBaselineParameters = schema.new({ type = "list", list_member = M.EnabledBaselineParameter })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EnabledControls = schema.new({ type = "list", list_member = M.EnabledControlSummary })
+
+M.EnabledControlParameters = schema.new({ type = "list", list_member = M.EnabledControlParameter })
+
+M.LandingZoneOperations = schema.new({ type = "list", list_member = M.LandingZoneOperationSummary })
+
+M.LandingZoneSummaries = schema.new({ type = "list", list_member = M.LandingZoneSummary })
+
+M.RemediationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ControlIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledControlIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ControlOperationStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.ControlOperationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledBaselineTargetIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledBaselineBaselineIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledBaselineParentIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledBaselineEnablementStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledBaselineDriftStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledBaselineParameterSummaries = schema.new({ type = "list", list_member = M.EnabledBaselineParameterSummary })
+
+M.EnablementStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.DriftStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParentIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetRegions = schema.new({ type = "list", list_member = M.Region })
+
+M.EnabledControlParameterSummaries = schema.new({ type = "list", list_member = M.EnabledControlParameterSummary })
+
+M.LandingZoneOperationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.LandingZoneOperationStatuses = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

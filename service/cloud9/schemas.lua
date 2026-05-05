@@ -7,6 +7,20 @@ local _N = "com.amazonaws.cloud9"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.PermissionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentMembersList = schema.new({ type = "list", list_member = M.EnvironmentMember })
+
+M.BoundedEnvironmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentList = schema.new({ type = "list", list_member = M.Environment })
+
+M.EnvironmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.BadRequestException = schema.new({
     id = id.from(_N, "BadRequestException"),
     type = "structure",

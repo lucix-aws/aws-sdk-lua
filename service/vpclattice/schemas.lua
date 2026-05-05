@@ -7,6 +7,66 @@ local _N = "com.amazonaws.vpclattice"
 
 local M = {}
 
+M.RuleUpdateList = schema.new({ type = "list", list_member = M.RuleUpdate })
+
+M.RuleUpdateSuccessList = schema.new({ type = "list", list_member = M.RuleUpdateSuccess })
+
+M.RuleUpdateFailureList = schema.new({ type = "list", list_member = M.RuleUpdateFailure })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ServiceNetworkVpcEndpointAssociationList = schema.new({ type = "list", list_member = M.ServiceNetworkEndpointAssociation })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessLogSubscriptionList = schema.new({ type = "list", list_member = M.AccessLogSubscriptionSummary })
+
+M.DomainVerificationList = schema.new({ type = "list", list_member = M.DomainVerificationSummary })
+
+M.ListenerSummaryList = schema.new({ type = "list", list_member = M.ListenerSummary })
+
+M.ResourceConfigurationSummaryList = schema.new({ type = "list", list_member = M.ResourceConfigurationSummary })
+
+M.PortRangeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceEndpointAssociationList = schema.new({ type = "list", list_member = M.ResourceEndpointAssociationSummary })
+
+M.ResourceGatewayList = schema.new({ type = "list", list_member = M.ResourceGatewaySummary })
+
+M.SubnetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleSummaryList = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.ServiceList = schema.new({ type = "list", list_member = M.ServiceSummary })
+
+M.ServiceNetworkList = schema.new({ type = "list", list_member = M.ServiceNetworkSummary })
+
+M.ServiceNetworkResourceAssociationList = schema.new({ type = "list", list_member = M.ServiceNetworkResourceAssociationSummary })
+
+M.ServiceNetworkServiceAssociationList = schema.new({ type = "list", list_member = M.ServiceNetworkServiceAssociationSummary })
+
+M.ServiceNetworkVpcAssociationList = schema.new({ type = "list", list_member = M.ServiceNetworkVpcAssociationSummary })
+
+M.TargetGroupList = schema.new({ type = "list", list_member = M.TargetGroupSummary })
+
+M.ServiceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetList = schema.new({ type = "list", list_member = M.Target })
+
+M.TargetFailureList = schema.new({ type = "list", list_member = M.TargetFailure })
+
+M.TargetSummaryList = schema.new({ type = "list", list_member = M.TargetSummary })
+
+M.PrivateDnsSpecifiedDomainsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WeightedTargetGroupList = schema.new({ type = "list", list_member = M.WeightedTargetGroup })
+
+M.HeaderMatchList = schema.new({ type = "list", list_member = M.HeaderMatch })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

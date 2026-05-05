@@ -7,6 +7,34 @@ local _N = "com.amazonaws.backupsearch"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SearchJobBackupsResults = schema.new({ type = "list", list_member = M.SearchJobBackupsResult })
+
+M.Results = schema.new({ type = "list", list_member = M.ResultItem })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryPointArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3ItemFilters = schema.new({ type = "list", list_member = M.S3ItemFilter })
+
+M.EBSItemFilters = schema.new({ type = "list", list_member = M.EBSItemFilter })
+
+M.SearchJobs = schema.new({ type = "list", list_member = M.SearchJobSummary })
+
+M.ExportJobSummaries = schema.new({ type = "list", list_member = M.ExportJobSummary })
+
+M.StringConditionList = schema.new({ type = "list", list_member = M.StringCondition })
+
+M.LongConditionList = schema.new({ type = "list", list_member = M.LongCondition })
+
+M.TimeConditionList = schema.new({ type = "list", list_member = M.TimeCondition })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

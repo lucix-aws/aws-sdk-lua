@@ -7,6 +7,82 @@ local _N = "com.amazonaws.personalize"
 
 local M = {}
 
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.MetricAttributes = schema.new({ type = "list", list_member = M.MetricAttribute })
+
+M.Metrics = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.BatchInferenceJobs = schema.new({ type = "list", list_member = M.BatchInferenceJobSummary })
+
+M.BatchSegmentJobs = schema.new({ type = "list", list_member = M.BatchSegmentJobSummary })
+
+M.Campaigns = schema.new({ type = "list", list_member = M.CampaignSummary })
+
+M.DataDeletionJobs = schema.new({ type = "list", list_member = M.DataDeletionJobSummary })
+
+M.DatasetExportJobs = schema.new({ type = "list", list_member = M.DatasetExportJobSummary })
+
+M.DatasetGroups = schema.new({ type = "list", list_member = M.DatasetGroupSummary })
+
+M.DatasetImportJobs = schema.new({ type = "list", list_member = M.DatasetImportJobSummary })
+
+M.Datasets = schema.new({ type = "list", list_member = M.DatasetSummary })
+
+M.EventTrackers = schema.new({ type = "list", list_member = M.EventTrackerSummary })
+
+M.Filters = schema.new({ type = "list", list_member = M.FilterSummary })
+
+M.MetricAttributions = schema.new({ type = "list", list_member = M.MetricAttributionSummary })
+
+M.Recipes = schema.new({ type = "list", list_member = M.RecipeSummary })
+
+M.Recommenders = schema.new({ type = "list", list_member = M.RecommenderSummary })
+
+M.Schemas = schema.new({ type = "list", list_member = M.DatasetSchemaSummary })
+
+M.Solutions = schema.new({ type = "list", list_member = M.SolutionSummary })
+
+M.SolutionVersions = schema.new({ type = "list", list_member = M.SolutionVersionSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricAttributesNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HyperParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RankingInfluence = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.FeatureTransformationParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceConfig = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FeaturizationParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExcludedDatasetColumns = schema.new({ type = "map", map_key = prelude.String, map_value = M.ColumnNamesList })
+
+M.IncludedDatasetColumns = schema.new({ type = "map", map_key = prelude.String, map_value = M.ColumnNamesList })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventParametersList = schema.new({ type = "list", list_member = M.EventParameters })
+
+M.DefaultIntegerHyperParameterRanges = schema.new({ type = "list", list_member = M.DefaultIntegerHyperParameterRange })
+
+M.DefaultContinuousHyperParameterRanges = schema.new({ type = "list", list_member = M.DefaultContinuousHyperParameterRange })
+
+M.DefaultCategoricalHyperParameterRanges = schema.new({ type = "list", list_member = M.DefaultCategoricalHyperParameterRange })
+
+M.ColumnNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerHyperParameterRanges = schema.new({ type = "list", list_member = M.IntegerHyperParameterRange })
+
+M.ContinuousHyperParameterRanges = schema.new({ type = "list", list_member = M.ContinuousHyperParameterRange })
+
+M.CategoricalHyperParameterRanges = schema.new({ type = "list", list_member = M.CategoricalHyperParameterRange })
+
+M.CategoricalValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AlgorithmImage = schema.new({
     id = id.from(_N, "AlgorithmImage"),
     type = "structure",
@@ -2032,10 +2108,7 @@ M.DeleteCampaignInput = schema.new({
     },
 })
 
-M.DeleteCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignOutput = prelude.Unit
 
 M.DeleteDatasetInput = schema.new({
     id = id.from(_N, "DeleteDatasetRequest"),
@@ -2053,10 +2126,7 @@ M.DeleteDatasetInput = schema.new({
     },
 })
 
-M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatasetOutput = prelude.Unit
 
 M.DeleteDatasetGroupInput = schema.new({
     id = id.from(_N, "DeleteDatasetGroupRequest"),
@@ -2074,10 +2144,7 @@ M.DeleteDatasetGroupInput = schema.new({
     },
 })
 
-M.DeleteDatasetGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatasetGroupOutput = prelude.Unit
 
 M.DeleteEventTrackerInput = schema.new({
     id = id.from(_N, "DeleteEventTrackerRequest"),
@@ -2095,10 +2162,7 @@ M.DeleteEventTrackerInput = schema.new({
     },
 })
 
-M.DeleteEventTrackerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventTrackerOutput = prelude.Unit
 
 M.DeleteFilterInput = schema.new({
     id = id.from(_N, "DeleteFilterRequest"),
@@ -2116,10 +2180,7 @@ M.DeleteFilterInput = schema.new({
     },
 })
 
-M.DeleteFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFilterOutput = prelude.Unit
 
 M.DeleteMetricAttributionInput = schema.new({
     id = id.from(_N, "DeleteMetricAttributionRequest"),
@@ -2137,10 +2198,7 @@ M.DeleteMetricAttributionInput = schema.new({
     },
 })
 
-M.DeleteMetricAttributionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMetricAttributionOutput = prelude.Unit
 
 M.DeleteRecommenderInput = schema.new({
     id = id.from(_N, "DeleteRecommenderRequest"),
@@ -2158,10 +2216,7 @@ M.DeleteRecommenderInput = schema.new({
     },
 })
 
-M.DeleteRecommenderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRecommenderOutput = prelude.Unit
 
 M.DeleteSchemaInput = schema.new({
     id = id.from(_N, "DeleteSchemaRequest"),
@@ -2179,10 +2234,7 @@ M.DeleteSchemaInput = schema.new({
     },
 })
 
-M.DeleteSchemaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSchemaOutput = prelude.Unit
 
 M.DeleteSolutionInput = schema.new({
     id = id.from(_N, "DeleteSolutionRequest"),
@@ -2200,10 +2252,7 @@ M.DeleteSolutionInput = schema.new({
     },
 })
 
-M.DeleteSolutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSolutionOutput = prelude.Unit
 
 M.DescribeAlgorithmInput = schema.new({
     id = id.from(_N, "DescribeAlgorithmRequest"),
@@ -5840,10 +5889,7 @@ M.StopSolutionVersionCreationInput = schema.new({
     },
 })
 
-M.StopSolutionVersionCreationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopSolutionVersionCreationOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),

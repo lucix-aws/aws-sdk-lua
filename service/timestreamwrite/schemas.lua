@@ -7,6 +7,34 @@ local _N = "com.amazonaws.timestreamwrite"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.BatchLoadTaskList = schema.new({ type = "list", list_member = M.BatchLoadTask })
+
+M.DatabaseList = schema.new({ type = "list", list_member = M.Database })
+
+M.TableList = schema.new({ type = "list", list_member = M.Table })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Records = schema.new({ type = "list", list_member = M.Record })
+
+M.RejectedRecords = schema.new({ type = "list", list_member = M.RejectedRecord })
+
+M.PartitionKeyList = schema.new({ type = "list", list_member = M.PartitionKey })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
+M.MeasureValues = schema.new({ type = "list", list_member = M.MeasureValue })
+
+M.DimensionMappings = schema.new({ type = "list", list_member = M.DimensionMapping })
+
+M.MixedMeasureMappingList = schema.new({ type = "list", list_member = M.MixedMeasureMapping })
+
+M.MultiMeasureAttributeMappingList = schema.new({ type = "list", list_member = M.MultiMeasureAttributeMapping })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1174,10 +1202,7 @@ M.DeleteDatabaseInput = schema.new({
     },
 })
 
-M.DeleteDatabaseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatabaseOutput = prelude.Unit
 
 M.DeleteTableInput = schema.new({
     id = id.from(_N, "DeleteTableRequest"),
@@ -1204,10 +1229,7 @@ M.DeleteTableInput = schema.new({
     },
 })
 
-M.DeleteTableOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableOutput = prelude.Unit
 
 M.DescribeBatchLoadTaskInput = schema.new({
     id = id.from(_N, "DescribeBatchLoadTaskRequest"),

@@ -7,6 +7,66 @@ local _N = "com.amazonaws.kafka"
 
 local M = {}
 
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfUnprocessedScramSecret = schema.new({ type = "list", list_member = M.UnprocessedScramSecret })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfKafkaCluster = schema.new({ type = "list", list_member = M.KafkaCluster })
+
+M.__listOfReplicationInfo = schema.new({ type = "list", list_member = M.ReplicationInfo })
+
+M.__listOfKafkaClusterDescription = schema.new({ type = "list", list_member = M.KafkaClusterDescription })
+
+M.__listOfReplicationInfoDescription = schema.new({ type = "list", list_member = M.ReplicationInfoDescription })
+
+M.__listOfTopicPartitionInfo = schema.new({ type = "list", list_member = M.TopicPartitionInfo })
+
+M.__listOfCompatibleKafkaVersion = schema.new({ type = "list", list_member = M.CompatibleKafkaVersion })
+
+M.__listOfClientVpcConnection = schema.new({ type = "list", list_member = M.ClientVpcConnection })
+
+M.__listOfClusterOperationInfo = schema.new({ type = "list", list_member = M.ClusterOperationInfo })
+
+M.__listOfClusterOperationV2Summary = schema.new({ type = "list", list_member = M.ClusterOperationV2Summary })
+
+M.__listOfClusterInfo = schema.new({ type = "list", list_member = M.ClusterInfo })
+
+M.__listOfCluster = schema.new({ type = "list", list_member = M.Cluster })
+
+M.__listOfConfigurationRevision = schema.new({ type = "list", list_member = M.ConfigurationRevision })
+
+M.__listOfConfiguration = schema.new({ type = "list", list_member = M.Configuration })
+
+M.__listOfKafkaVersion = schema.new({ type = "list", list_member = M.KafkaVersion })
+
+M.__listOfNodeInfo = schema.new({ type = "list", list_member = M.NodeInfo })
+
+M.__listOfReplicatorSummary = schema.new({ type = "list", list_member = M.ReplicatorSummary })
+
+M.__listOfTopicInfo = schema.new({ type = "list", list_member = M.TopicInfo })
+
+M.__listOfVpcConnection = schema.new({ type = "list", list_member = M.VpcConnection })
+
+M.__listOfBrokerEBSVolumeInfo = schema.new({ type = "list", list_member = M.BrokerEBSVolumeInfo })
+
+M.__listOfVpcConfig = schema.new({ type = "list", list_member = M.VpcConfig })
+
+M.__listOfClusterOperationStep = schema.new({ type = "list", list_member = M.ClusterOperationStep })
+
+M.__listOf__stringMax256 = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__stringMax249 = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__integer = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOfKafkaClusterSummary = schema.new({ type = "list", list_member = M.KafkaClusterSummary })
+
+M.__listOfReplicationInfoSummary = schema.new({ type = "list", list_member = M.ReplicationInfoSummary })
+
+M.__listOf__double = schema.new({ type = "list", list_member = prelude.Double })
+
 M.ProvisionedThroughput = schema.new({
     id = id.from(_N, "ProvisionedThroughput"),
     type = "structure",
@@ -7557,10 +7617,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -7590,10 +7647,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateBrokerCountInput = schema.new({
     id = id.from(_N, "UpdateBrokerCountRequest"),

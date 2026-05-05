@@ -7,6 +7,96 @@ local _N = "com.amazonaws.directoryservice"
 
 local M = {}
 
+M.IpRoutes = schema.new({ type = "list", list_member = M.IpRoute })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.Attributes = schema.new({ type = "list", list_member = M.Attribute })
+
+M.DnsIpAddrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsIpv6Addrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentReports = schema.new({ type = "list", list_member = M.AssessmentReport })
+
+M.ClientAuthenticationSettingsInfo = schema.new({ type = "list", list_member = M.ClientAuthenticationSettingInfo })
+
+M.RemoteDomainNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConditionalForwarders = schema.new({ type = "list", list_member = M.ConditionalForwarder })
+
+M.DirectoryIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DirectoryDescriptions = schema.new({ type = "list", list_member = M.DirectoryDescription })
+
+M.DomainControllerIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainControllers = schema.new({ type = "list", list_member = M.DomainController })
+
+M.TopicNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTopics = schema.new({ type = "list", list_member = M.EventTopic })
+
+M.LDAPSSettingsInfo = schema.new({ type = "list", list_member = M.LDAPSSettingInfo })
+
+M.RegionsDescription = schema.new({ type = "list", list_member = M.RegionDescription })
+
+M.SettingEntries = schema.new({ type = "list", list_member = M.SettingEntry })
+
+M.SharedDirectories = schema.new({ type = "list", list_member = M.SharedDirectory })
+
+M.SnapshotIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Snapshots = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.TrustIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Trusts = schema.new({ type = "list", list_member = M.Trust })
+
+M.UpdateActivities = schema.new({ type = "list", list_member = M.UpdateInfoEntry })
+
+M.Assessments = schema.new({ type = "list", list_member = M.AssessmentSummary })
+
+M.CertificatesInfo = schema.new({ type = "list", list_member = M.CertificateInfo })
+
+M.IpRoutesInfo = schema.new({ type = "list", list_member = M.IpRouteInfo })
+
+M.LogSubscriptions = schema.new({ type = "list", list_member = M.LogSubscription })
+
+M.SchemaExtensionsInfo = schema.new({ type = "list", list_member = M.SchemaExtensionInfo })
+
+M.CidrIps = schema.new({ type = "list", list_member = prelude.String })
+
+M.CidrIpv6s = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Settings = schema.new({ type = "list", list_member = M.Setting })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomerDnsIps = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentInstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.HybridUpdateInfoEntries = schema.new({ type = "list", list_member = M.HybridUpdateInfoEntry })
+
+M.Servers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentValidations = schema.new({ type = "list", list_member = M.AssessmentValidation })
+
+M.DirectoryConfigurationSettingRequestDetailedStatus = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpAddrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpV6Addrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalRegions = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptSharedDirectoryInput = schema.new({
     id = id.from(_N, "AcceptSharedDirectoryRequest"),
     type = "structure",

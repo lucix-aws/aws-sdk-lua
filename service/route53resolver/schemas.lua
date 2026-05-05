@@ -7,6 +7,54 @@ local _N = "com.amazonaws.route53resolver"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpAddressesRequest = schema.new({ type = "list", list_member = M.IpAddressRequest })
+
+M.ProtocolList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetList = schema.new({ type = "list", list_member = M.TargetAddress })
+
+M.FirewallConfigList = schema.new({ type = "list", list_member = M.FirewallConfig })
+
+M.FirewallDomainListMetadataList = schema.new({ type = "list", list_member = M.FirewallDomainListMetadata })
+
+M.FirewallDomains = schema.new({ type = "list", list_member = prelude.String })
+
+M.FirewallRuleGroupAssociations = schema.new({ type = "list", list_member = M.FirewallRuleGroupAssociation })
+
+M.FirewallRuleGroupMetadataList = schema.new({ type = "list", list_member = M.FirewallRuleGroupMetadata })
+
+M.FirewallRules = schema.new({ type = "list", list_member = M.FirewallRule })
+
+M.OutpostResolverList = schema.new({ type = "list", list_member = M.OutpostResolver })
+
+M.ResolverConfigList = schema.new({ type = "list", list_member = M.ResolverConfig })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.ResolverDnssecConfigList = schema.new({ type = "list", list_member = M.ResolverDnssecConfig })
+
+M.IpAddressesResponse = schema.new({ type = "list", list_member = M.IpAddressResponse })
+
+M.ResolverEndpoints = schema.new({ type = "list", list_member = M.ResolverEndpoint })
+
+M.ResolverQueryLogConfigAssociationList = schema.new({ type = "list", list_member = M.ResolverQueryLogConfigAssociation })
+
+M.ResolverQueryLogConfigList = schema.new({ type = "list", list_member = M.ResolverQueryLogConfig })
+
+M.ResolverRuleAssociations = schema.new({ type = "list", list_member = M.ResolverRuleAssociation })
+
+M.ResolverRules = schema.new({ type = "list", list_member = M.ResolverRule })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateIpAddresses = schema.new({ type = "list", list_member = M.UpdateIpAddress })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

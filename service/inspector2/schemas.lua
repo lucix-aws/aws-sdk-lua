@@ -7,6 +7,258 @@ local _N = "com.amazonaws.inspector2"
 
 local M = {}
 
+M.ValidationExceptionFields = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AssociateConfigurationRequestList = schema.new({ type = "list", list_member = M.AssociateConfigurationRequest })
+
+M.FailedAssociationResultList = schema.new({ type = "list", list_member = M.FailedAssociationResult })
+
+M.SuccessfulAssociationResultList = schema.new({ type = "list", list_member = M.SuccessfulAssociationResult })
+
+M.DisassociateConfigurationRequestList = schema.new({ type = "list", list_member = M.DisassociateConfigurationRequest })
+
+M.AccountIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountStateList = schema.new({ type = "list", list_member = M.AccountState })
+
+M.FailedAccountList = schema.new({ type = "list", list_member = M.FailedAccount })
+
+M.FindingArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeSnippetResultList = schema.new({ type = "list", list_member = M.CodeSnippetResult })
+
+M.CodeSnippetErrorList = schema.new({ type = "list", list_member = M.CodeSnippetError })
+
+M.FindingArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingDetails = schema.new({ type = "list", list_member = M.FindingDetail })
+
+M.FindingDetailsErrorList = schema.new({ type = "list", list_member = M.FindingDetailsError })
+
+M.MeteringAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FreeTrialAccountInfoList = schema.new({ type = "list", list_member = M.FreeTrialAccountInfo })
+
+M.FreeTrialInfoErrorList = schema.new({ type = "list", list_member = M.FreeTrialInfoError })
+
+M.MemberAccountEc2DeepInspectionStatusStateList = schema.new({ type = "list", list_member = M.MemberAccountEc2DeepInspectionStatusState })
+
+M.FailedMemberAccountEc2DeepInspectionStatusStateList = schema.new({ type = "list", list_member = M.FailedMemberAccountEc2DeepInspectionStatusState })
+
+M.MemberAccountEc2DeepInspectionStatusList = schema.new({ type = "list", list_member = M.MemberAccountEc2DeepInspectionStatus })
+
+M.CisTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DisableResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountList = schema.new({ type = "list", list_member = M.Account })
+
+M.EnableResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReportTargetAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.CisScanResultDetailsList = schema.new({ type = "list", list_member = M.CisScanResultDetails })
+
+M.ClusterInformationList = schema.new({ type = "list", list_member = M.ClusterInformation })
+
+M.PathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Permissions = schema.new({ type = "list", list_member = M.Permission })
+
+M.CisScanConfigurationList = schema.new({ type = "list", list_member = M.CisScanConfiguration })
+
+M.CisCheckAggregationList = schema.new({ type = "list", list_member = M.CisCheckAggregation })
+
+M.CisTargetResourceAggregationList = schema.new({ type = "list", list_member = M.CisTargetResourceAggregation })
+
+M.CisScanList = schema.new({ type = "list", list_member = M.CisScan })
+
+M.IntegrationSummaries = schema.new({ type = "list", list_member = M.CodeSecurityIntegrationSummary })
+
+M.CodeSecurityScanConfigurationAssociationSummaries = schema.new({ type = "list", list_member = M.CodeSecurityScanConfigurationAssociationSummary })
+
+M.CodeSecurityScanConfigurationSummaries = schema.new({ type = "list", list_member = M.CodeSecurityScanConfigurationSummary })
+
+M.CoveredResources = schema.new({ type = "list", list_member = M.CoveredResource })
+
+M.CountsList = schema.new({ type = "list", list_member = M.Counts })
+
+M.DelegatedAdminAccountList = schema.new({ type = "list", list_member = M.DelegatedAdminAccount })
+
+M.FilterArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.StringFilterList = schema.new({ type = "list", list_member = M.StringFilter })
+
+M.AggregationResponseList = schema.new({ type = "list", list_member = M.AggregationResponse })
+
+M.FindingList = schema.new({ type = "list", list_member = M.Finding })
+
+M.MemberList = schema.new({ type = "list", list_member = M.Member })
+
+M.UsageAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageTotalList = schema.new({ type = "list", list_member = M.UsageTotal })
+
+M.Vulnerabilities = schema.new({ type = "list", list_member = M.Vulnerability })
+
+M.CisSessionMessages = schema.new({ type = "list", list_member = M.CisSessionMessage })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetAccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetResourceTags = schema.new({ type = "map", map_key = prelude.String, map_value = M.TagValueList })
+
+M.RuleSetCategories = schema.new({ type = "list", list_member = prelude.String })
+
+M.DateFilterList = schema.new({ type = "list", list_member = M.DateFilter })
+
+M.NumberFilterList = schema.new({ type = "list", list_member = M.NumberFilter })
+
+M.MapFilterList = schema.new({ type = "list", list_member = M.MapFilter })
+
+M.PortRangeFilterList = schema.new({ type = "list", list_member = M.PortRangeFilter })
+
+M.PackageFilterList = schema.new({ type = "list", list_member = M.PackageFilter })
+
+M.ResourceStringFilterList = schema.new({ type = "list", list_member = M.ResourceStringFilter })
+
+M.ResourceMapFilterList = schema.new({ type = "list", list_member = M.ResourceMapFilter })
+
+M.CisFindingStatusFilterList = schema.new({ type = "list", list_member = M.CisFindingStatusFilter })
+
+M.CheckIdFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.TitleFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.CisSecurityLevelFilterList = schema.new({ type = "list", list_member = M.CisSecurityLevelFilter })
+
+M.CisFindingArnFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.CisScanNameFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.ResourceTagFilterList = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.CisScanConfigurationArnFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.OneAccountIdFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.PlatformFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.CisNumberFilterList = schema.new({ type = "list", list_member = M.CisNumberFilter })
+
+M.AccountIdFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.CisResultStatusFilterList = schema.new({ type = "list", list_member = M.CisResultStatusFilter })
+
+M.ResourceIdFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.TargetStatusFilterList = schema.new({ type = "list", list_member = M.CisTargetStatusFilter })
+
+M.TargetStatusReasonFilterList = schema.new({ type = "list", list_member = M.CisTargetStatusReasonFilter })
+
+M.CisScanStatusFilterList = schema.new({ type = "list", list_member = M.CisScanStatusFilter })
+
+M.CisScanDateFilterList = schema.new({ type = "list", list_member = M.CisDateFilter })
+
+M.CisScanArnFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.CisScheduledByFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
+
+M.CoverageStringFilterList = schema.new({ type = "list", list_member = M.CoverageStringFilter })
+
+M.CoverageMapFilterList = schema.new({ type = "list", list_member = M.CoverageMapFilter })
+
+M.CoverageDateFilterList = schema.new({ type = "list", list_member = M.CoverageDateFilter })
+
+M.CoverageNumberFilterList = schema.new({ type = "list", list_member = M.CoverageNumberFilter })
+
+M.VulnIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeLineList = schema.new({ type = "list", list_member = M.CodeLine })
+
+M.SuggestedFixes = schema.new({ type = "list", list_member = M.SuggestedFix })
+
+M.EvidenceList = schema.new({ type = "list", list_member = M.Evidence })
+
+M.Ttps = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tools = schema.new({ type = "list", list_member = prelude.String })
+
+M.VulnerabilityReferenceUrls = schema.new({ type = "list", list_member = prelude.String })
+
+M.Cwes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FreeTrialInfoList = schema.new({ type = "list", list_member = M.FreeTrialInfo })
+
+M.DaysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContinuousIntegrationScanSupportedEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterDetailsList = schema.new({ type = "list", list_member = M.ClusterDetails })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.UsageList = schema.new({ type = "list", list_member = M.Usage })
+
+M.RelatedVulnerabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectionPlatforms = schema.new({ type = "list", list_member = prelude.String })
+
+M.CisAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VulnerablePackageList = schema.new({ type = "list", list_member = M.VulnerablePackage })
+
+M.CvssScoreList = schema.new({ type = "list", list_member = M.CvssScore })
+
+M.VulnerabilityIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectorTagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReferenceUrls = schema.new({ type = "list", list_member = prelude.String })
+
+M.CweList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Targets = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaLayerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CvssScoreAdjustmentList = schema.new({ type = "list", list_member = M.CvssScoreAdjustment })
+
+M.StepList = schema.new({ type = "list", list_member = M.Step })
+
+M.ProjectPeriodicScanConfigurationList = schema.new({ type = "list", list_member = M.ProjectPeriodicScanConfiguration })
+
+M.ProjectContinuousIntegrationScanConfigurationList = schema.new({ type = "list", list_member = M.ProjectContinuousIntegrationScanConfiguration })
+
+M.AwsEksWorkloadInfoList = schema.new({ type = "list", list_member = M.AwsEksWorkloadInfo })
+
+M.IpV4AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpV6AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageTagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LayerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArchitectureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

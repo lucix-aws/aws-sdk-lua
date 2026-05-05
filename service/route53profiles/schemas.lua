@@ -7,6 +7,18 @@ local _N = "com.amazonaws.route53profiles"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ProfileAssociations = schema.new({ type = "list", list_member = M.ProfileAssociation })
+
+M.ProfileResourceAssociations = schema.new({ type = "list", list_member = M.ProfileResourceAssociation })
+
+M.ProfileSummaryList = schema.new({ type = "list", list_member = M.ProfileSummary })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

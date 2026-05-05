@@ -7,6 +7,44 @@ local _N = "com.amazonaws.sagemakergeospatial"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EarthObservationJobList = schema.new({ type = "list", list_member = M.ListEarthObservationJobOutputConfig })
+
+M.EarthObservationJobOutputBands = schema.new({ type = "list", list_member = M.OutputBand })
+
+M.StringListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataCollectionsList = schema.new({ type = "list", list_member = M.RasterDataCollectionMetadata })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ImageSourceBandList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ItemSourceList = schema.new({ type = "list", list_member = M.ItemSource })
+
+M.VectorEnrichmentJobList = schema.new({ type = "list", list_member = M.ListVectorEnrichmentJobOutputConfig })
+
+M.TemporalStatisticsListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.ZonalStatisticsListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.PropertyFiltersList = schema.new({ type = "list", list_member = M.PropertyFilter })
+
+M.AssetsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AssetValue })
+
+M.OperationsListInput = schema.new({ type = "list", list_member = M.Operation })
+
+M.LinearRings = schema.new({ type = "list", list_member = M.LinearRing })
+
+M.LinearRingsList = schema.new({ type = "list", list_member = M.LinearRings })
+
+M.LinearRing = schema.new({ type = "list", list_member = M.Position })
+
+M.Position = schema.new({ type = "list", list_member = prelude.Double })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -35,7 +73,7 @@ M.MultiPolygonGeometryInput = schema.new({
             type = "list",
             name = "Coordinates",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.LinearRing }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -52,7 +90,7 @@ M.PolygonGeometryInput = schema.new({
             type = "list",
             name = "Coordinates",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2175,7 +2213,7 @@ M.Geometry = schema.new({
             type = "list",
             name = "Coordinates",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
             traits = {
                 [traits.REQUIRED] = {},
             },

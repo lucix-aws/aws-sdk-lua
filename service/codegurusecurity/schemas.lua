@@ -7,6 +7,40 @@ local _N = "com.amazonaws.codegurusecurity"
 
 local M = {}
 
+M.FindingIdentifiers = schema.new({ type = "list", list_member = M.FindingIdentifier })
+
+M.Findings = schema.new({ type = "list", list_member = M.Finding })
+
+M.BatchGetFindingsErrors = schema.new({ type = "list", list_member = M.BatchGetFindingsError })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestHeaderMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FindingsMetricList = schema.new({ type = "list", list_member = M.AccountFindingsMetric })
+
+M.ScanSummaries = schema.new({ type = "list", list_member = M.ScanSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoriesWithMostFindings = schema.new({ type = "list", list_member = M.CategoryWithFindingNum })
+
+M.ScansWithMostOpenFindings = schema.new({ type = "list", list_member = M.ScanNameWithFindingNum })
+
+M.ScansWithMostOpenCriticalFindings = schema.new({ type = "list", list_member = M.ScanNameWithFindingNum })
+
+M.DetectorTags = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReferenceUrls = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelatedVulnerabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuggestedFixes = schema.new({ type = "list", list_member = M.SuggestedFix })
+
+M.CodeSnippet = schema.new({ type = "list", list_member = M.CodeLine })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

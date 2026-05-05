@@ -7,6 +7,134 @@ local _N = "com.amazonaws.bedrockagent"
 
 local M = {}
 
+M.FlowValidations = schema.new({ type = "list", list_member = M.FlowValidation })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ActionGroupSignatureParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ActionGroupSummaries = schema.new({ type = "list", list_member = M.ActionGroupSummary })
+
+M.AgentCollaboratorSummaries = schema.new({ type = "list", list_member = M.AgentCollaboratorSummary })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AgentSummaries = schema.new({ type = "list", list_member = M.AgentSummary })
+
+M.AgentAliasRoutingConfiguration = schema.new({ type = "list", list_member = M.AgentAliasRoutingConfigurationListItem })
+
+M.AgentAliasSummaries = schema.new({ type = "list", list_member = M.AgentAliasSummary })
+
+M.DataSourceSummaries = schema.new({ type = "list", list_member = M.DataSourceSummary })
+
+M.FlowSummaries = schema.new({ type = "list", list_member = M.FlowSummary })
+
+M.IngestionJobFilters = schema.new({ type = "list", list_member = M.IngestionJobFilter })
+
+M.IngestionJobSummaries = schema.new({ type = "list", list_member = M.IngestionJobSummary })
+
+M.DocumentIdentifiers = schema.new({ type = "list", list_member = M.DocumentIdentifier })
+
+M.KnowledgeBaseDocumentDetails = schema.new({ type = "list", list_member = M.KnowledgeBaseDocumentDetail })
+
+M.KnowledgeBaseDocuments = schema.new({ type = "list", list_member = M.KnowledgeBaseDocument })
+
+M.AgentKnowledgeBaseSummaries = schema.new({ type = "list", list_member = M.AgentKnowledgeBaseSummary })
+
+M.KnowledgeBaseSummaries = schema.new({ type = "list", list_member = M.KnowledgeBaseSummary })
+
+M.PromptSummaries = schema.new({ type = "list", list_member = M.PromptSummary })
+
+M.PromptVariantList = schema.new({ type = "list", list_member = M.PromptVariant })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentVersionSummaries = schema.new({ type = "list", list_member = M.AgentVersionSummary })
+
+M.FlowNodes = schema.new({ type = "list", list_member = M.FlowNode })
+
+M.FlowConnections = schema.new({ type = "list", list_member = M.FlowConnection })
+
+M.FlowAliasSummaries = schema.new({ type = "list", list_member = M.FlowAliasSummary })
+
+M.FlowAliasRoutingConfiguration = schema.new({ type = "list", list_member = M.FlowAliasRoutingConfigurationListItem })
+
+M.FlowVersionSummaries = schema.new({ type = "list", list_member = M.FlowVersionSummary })
+
+M.Functions = schema.new({ type = "list", list_member = M.Function })
+
+M.PromptConfigurations = schema.new({ type = "list", list_member = M.PromptConfiguration })
+
+M.EnabledMemoryTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailureReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendedActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentAliasHistoryEvents = schema.new({ type = "list", list_member = M.AgentAliasHistoryEvent })
+
+M.S3Prefixes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Transformations = schema.new({ type = "list", list_member = M.Transformation })
+
+M.IngestionJobFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.PromptMetadataList = schema.new({ type = "list", list_member = M.PromptMetadataEntry })
+
+M.FlowNodeInputs = schema.new({ type = "list", list_member = M.FlowNodeInput })
+
+M.FlowNodeOutputs = schema.new({ type = "list", list_member = M.FlowNodeOutput })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterDetail })
+
+M.FilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SharePointSiteUrls = schema.new({ type = "list", list_member = prelude.String })
+
+M.HierarchicalChunkingLevelConfigurations = schema.new({ type = "list", list_member = M.HierarchicalChunkingLevelConfiguration })
+
+M.MetadataAttributes = schema.new({ type = "list", list_member = M.MetadataAttribute })
+
+M.SupplementalDataStorageLocations = schema.new({ type = "list", list_member = M.SupplementalDataStorageLocation })
+
+M.RedshiftQueryEngineStorageConfigurations = schema.new({ type = "list", list_member = M.RedshiftQueryEngineStorageConfiguration })
+
+M.StopSequences = schema.new({ type = "list", list_member = prelude.String })
+
+M.SeedUrls = schema.new({ type = "list", list_member = M.SeedUrl })
+
+M.AudioConfigurations = schema.new({ type = "list", list_member = M.AudioConfiguration })
+
+M.VideoConfigurations = schema.new({ type = "list", list_member = M.VideoConfiguration })
+
+M.PromptInputVariablesList = schema.new({ type = "list", list_member = M.PromptInputVariable })
+
+M.Messages = schema.new({ type = "list", list_member = M.Message })
+
+M.SystemContentBlocks = schema.new({ type = "list", list_member = M.SystemContentBlock })
+
+M.FlowConditions = schema.new({ type = "list", list_member = M.FlowCondition })
+
+M.PatternObjectFilterList = schema.new({ type = "list", list_member = M.PatternObjectFilter })
+
+M.QueryGenerationTables = schema.new({ type = "list", list_member = M.QueryGenerationTable })
+
+M.CuratedQueries = schema.new({ type = "list", list_member = M.CuratedQuery })
+
+M.Tools = schema.new({ type = "list", list_member = M.Tool })
+
+M.AdditionalModelRequestFields = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.StringListValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsDataCatalogTableNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContentBlocks = schema.new({ type = "list", list_member = M.ContentBlock })
+
+M.QueryGenerationColumns = schema.new({ type = "list", list_member = M.QueryGenerationColumn })
+
+M.FieldsForReranking = schema.new({ type = "list", list_member = M.FieldForReranking })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

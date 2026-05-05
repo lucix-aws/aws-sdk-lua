@@ -7,6 +7,50 @@ local _N = "com.amazonaws.neptunegraph"
 
 local M = {}
 
+M.DocumentValuedMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.QuerySummaryList = schema.new({ type = "list", list_member = M.QuerySummary })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GraphSummaryList = schema.new({ type = "list", list_member = M.GraphSummary })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrivateGraphEndpointSummaryList = schema.new({ type = "list", list_member = M.PrivateGraphEndpointSummary })
+
+M.GraphSnapshotSummaryList = schema.new({ type = "list", list_member = M.GraphSnapshotSummary })
+
+M.ExportTaskSummaryList = schema.new({ type = "list", list_member = M.ExportTaskSummary })
+
+M.ImportTaskSummaryList = schema.new({ type = "list", list_member = M.ImportTaskSummary })
+
+M.NodeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.EdgeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.LongValuedMapList = schema.new({ type = "list", list_member = M.LongValuedMap })
+
+M.NodeStructures = schema.new({ type = "list", list_member = M.NodeStructure })
+
+M.EdgeStructures = schema.new({ type = "list", list_member = M.EdgeStructure })
+
+M.ExportFilterPerLabelMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExportFilterElement })
+
+M.LongValuedMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.NodeProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutgoingEdgeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.EdgeProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportFilterPropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExportFilterPropertyAttributes })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -53,10 +97,7 @@ M.CancelQueryInput = schema.new({
     },
 })
 
-M.CancelQueryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelQueryOutput = prelude.Unit
 
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
@@ -407,14 +448,14 @@ M.GraphDataSummary = schema.new({
             type = "list",
             name = "nodeProperties",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.LongValuedMap,
         }),
         edgeProperties = schema.new({
             id = id.from(_N, "GraphDataSummary", "edgeProperties"),
             type = "list",
             name = "edgeProperties",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.LongValuedMap,
         }),
         totalNodePropertyValues = schema.new({
             id = id.from(_N, "GraphDataSummary", "totalNodePropertyValues"),

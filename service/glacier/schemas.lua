@@ -7,6 +7,28 @@ local _N = "com.amazonaws.glacier"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.JobList = schema.new({ type = "list", list_member = M.GlacierJobDescription })
+
+M.UploadsList = schema.new({ type = "list", list_member = M.UploadListElement })
+
+M.PartList = schema.new({ type = "list", list_member = M.PartListElement })
+
+M.ProvisionedCapacityList = schema.new({ type = "list", list_member = M.ProvisionedCapacityDescription })
+
+M.VaultList = schema.new({ type = "list", list_member = M.DescribeVaultOutput })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataRetrievalRulesList = schema.new({ type = "list", list_member = M.DataRetrievalRule })
+
+M.NotificationEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessControlPolicyList = schema.new({ type = "list", list_member = M.Grant })
+
+M.hashmap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AbortMultipartUploadInput = schema.new({
     id = id.from(_N, "AbortMultipartUploadInput"),
     type = "structure",
@@ -44,10 +66,7 @@ M.AbortMultipartUploadInput = schema.new({
     },
 })
 
-M.AbortMultipartUploadOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AbortMultipartUploadOutput = prelude.Unit
 
 M.InvalidParameterValueException = schema.new({
     id = id.from(_N, "InvalidParameterValueException"),
@@ -216,10 +235,7 @@ M.AbortVaultLockInput = schema.new({
     },
 })
 
-M.AbortVaultLockOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AbortVaultLockOutput = prelude.Unit
 
 M.Grantee = schema.new({
     id = id.from(_N, "Grantee"),
@@ -316,10 +332,7 @@ M.AddTagsToVaultInput = schema.new({
     },
 })
 
-M.AddTagsToVaultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsToVaultOutput = prelude.Unit
 
 M.LimitExceededException = schema.new({
     id = id.from(_N, "LimitExceededException"),
@@ -475,10 +488,7 @@ M.CompleteVaultLockInput = schema.new({
     },
 })
 
-M.CompleteVaultLockOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CompleteVaultLockOutput = prelude.Unit
 
 M.CreateVaultInput = schema.new({
     id = id.from(_N, "CreateVaultInput"),
@@ -673,10 +683,7 @@ M.DeleteArchiveInput = schema.new({
     },
 })
 
-M.DeleteArchiveOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteArchiveOutput = prelude.Unit
 
 M.DeleteVaultInput = schema.new({
     id = id.from(_N, "DeleteVaultInput"),
@@ -705,10 +712,7 @@ M.DeleteVaultInput = schema.new({
     },
 })
 
-M.DeleteVaultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVaultOutput = prelude.Unit
 
 M.DeleteVaultAccessPolicyInput = schema.new({
     id = id.from(_N, "DeleteVaultAccessPolicyInput"),
@@ -737,10 +741,7 @@ M.DeleteVaultAccessPolicyInput = schema.new({
     },
 })
 
-M.DeleteVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVaultAccessPolicyOutput = prelude.Unit
 
 M.DeleteVaultNotificationsInput = schema.new({
     id = id.from(_N, "DeleteVaultNotificationsInput"),
@@ -769,10 +770,7 @@ M.DeleteVaultNotificationsInput = schema.new({
     },
 })
 
-M.DeleteVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVaultNotificationsOutput = prelude.Unit
 
 M.DescribeJobInput = schema.new({
     id = id.from(_N, "DescribeJobInput"),
@@ -2639,10 +2637,7 @@ M.RemoveTagsFromVaultInput = schema.new({
     },
 })
 
-M.RemoveTagsFromVaultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsFromVaultOutput = prelude.Unit
 
 M.SetDataRetrievalPolicyInput = schema.new({
     id = id.from(_N, "SetDataRetrievalPolicyInput"),
@@ -2668,10 +2663,7 @@ M.SetDataRetrievalPolicyInput = schema.new({
     },
 })
 
-M.SetDataRetrievalPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetDataRetrievalPolicyOutput = prelude.Unit
 
 M.SetVaultAccessPolicyInput = schema.new({
     id = id.from(_N, "SetVaultAccessPolicyInput"),
@@ -2710,10 +2702,7 @@ M.SetVaultAccessPolicyInput = schema.new({
     },
 })
 
-M.SetVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetVaultAccessPolicyOutput = prelude.Unit
 
 M.SetVaultNotificationsInput = schema.new({
     id = id.from(_N, "SetVaultNotificationsInput"),
@@ -2752,10 +2741,7 @@ M.SetVaultNotificationsInput = schema.new({
     },
 })
 
-M.SetVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetVaultNotificationsOutput = prelude.Unit
 
 M.RequestTimeoutException = schema.new({
     id = id.from(_N, "RequestTimeoutException"),

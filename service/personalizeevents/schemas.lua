@@ -7,6 +7,20 @@ local _N = "com.amazonaws.personalizeevents"
 
 local M = {}
 
+M.ActionInteractionsList = schema.new({ type = "list", list_member = M.ActionInteraction })
+
+M.ActionList = schema.new({ type = "list", list_member = M.Action })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.ItemList = schema.new({ type = "list", list_member = M.Item })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.ActionImpression = schema.new({ type = "list", list_member = prelude.String })
+
+M.Impression = schema.new({ type = "list", list_member = prelude.String })
+
 M.Action = schema.new({
     id = id.from(_N, "Action"),
     type = "structure",
@@ -151,10 +165,7 @@ M.PutActionInteractionsInput = schema.new({
     },
 })
 
-M.PutActionInteractionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutActionInteractionsOutput = prelude.Unit
 
 M.ResourceInUseException = schema.new({
     id = id.from(_N, "ResourceInUseException"),
@@ -214,10 +225,7 @@ M.PutActionsInput = schema.new({
     },
 })
 
-M.PutActionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutActionsOutput = prelude.Unit
 
 M.MetricAttribution = schema.new({
     id = id.from(_N, "MetricAttribution"),
@@ -348,10 +356,7 @@ M.PutEventsInput = schema.new({
     },
 })
 
-M.PutEventsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutEventsOutput = prelude.Unit
 
 M.Item = schema.new({
     id = id.from(_N, "Item"),
@@ -404,10 +409,7 @@ M.PutItemsInput = schema.new({
     },
 })
 
-M.PutItemsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutItemsOutput = prelude.Unit
 
 M.User = schema.new({
     id = id.from(_N, "User"),
@@ -460,10 +462,7 @@ M.PutUsersInput = schema.new({
     },
 })
 
-M.PutUsersOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutUsersOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

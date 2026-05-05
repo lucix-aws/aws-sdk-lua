@@ -7,6 +7,16 @@ local _N = "com.amazonaws.dsql"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterList = schema.new({ type = "list", list_member = M.ClusterSummary })
+
+M.ClusterArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1049,10 +1059,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -1082,10 +1089,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

@@ -7,6 +7,8 @@ local _N = "com.amazonaws.marketplacereporting"
 
 local M = {}
 
+M.EmbeddingDomains = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

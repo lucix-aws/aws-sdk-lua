@@ -7,6 +7,48 @@ local _N = "com.amazonaws.mturk"
 
 local M = {}
 
+M.QualificationRequirementList = schema.new({ type = "list", list_member = M.QualificationRequirement })
+
+M.HITLayoutParameterList = schema.new({ type = "list", list_member = M.HITLayoutParameter })
+
+M.AssignmentStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssignmentList = schema.new({ type = "list", list_member = M.Assignment })
+
+M.BonusPaymentList = schema.new({ type = "list", list_member = M.BonusPayment })
+
+M.HITList = schema.new({ type = "list", list_member = M.HIT })
+
+M.QualificationRequestList = schema.new({ type = "list", list_member = M.QualificationRequest })
+
+M.QualificationTypeList = schema.new({ type = "list", list_member = M.QualificationType })
+
+M.ReviewPolicyLevelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkerBlockList = schema.new({ type = "list", list_member = M.WorkerBlock })
+
+M.QualificationList = schema.new({ type = "list", list_member = M.Qualification })
+
+M.CustomerIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyWorkersFailureStatusList = schema.new({ type = "list", list_member = M.NotifyWorkersFailureStatus })
+
+M.PolicyParameterList = schema.new({ type = "list", list_member = M.PolicyParameter })
+
+M.ReviewResultDetailList = schema.new({ type = "list", list_member = M.ReviewResultDetail })
+
+M.ReviewActionDetailList = schema.new({ type = "list", list_member = M.ReviewActionDetail })
+
+M.EventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.LocaleList = schema.new({ type = "list", list_member = M.Locale })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterMapEntryList = schema.new({ type = "list", list_member = M.ParameterMapEntry })
+
 M.AcceptQualificationRequestInput = schema.new({
     id = id.from(_N, "AcceptQualificationRequestRequest"),
     type = "structure",

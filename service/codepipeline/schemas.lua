@@ -7,6 +7,126 @@ local _N = "com.amazonaws.codepipeline"
 
 local M = {}
 
+M.ActionConfigurationPropertyList = schema.new({ type = "list", list_member = M.ActionConfigurationProperty })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.StageStateList = schema.new({ type = "list", list_member = M.StageState })
+
+M.ActionExecutionDetailList = schema.new({ type = "list", list_member = M.ActionExecutionDetail })
+
+M.ActionTypeList = schema.new({ type = "list", list_member = M.ActionType })
+
+M.TargetFilterList = schema.new({ type = "list", list_member = M.TargetFilter })
+
+M.DeployActionExecutionTargetList = schema.new({ type = "list", list_member = M.DeployActionExecutionTarget })
+
+M.PipelineExecutionSummaryList = schema.new({ type = "list", list_member = M.PipelineExecutionSummary })
+
+M.PipelineList = schema.new({ type = "list", list_member = M.PipelineSummary })
+
+M.RuleExecutionDetailList = schema.new({ type = "list", list_member = M.RuleExecutionDetail })
+
+M.RuleTypeList = schema.new({ type = "list", list_member = M.RuleType })
+
+M.WebhookList = schema.new({ type = "list", list_member = M.ListWebhookItem })
+
+M.QueryParamMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.JobList = schema.new({ type = "list", list_member = M.Job })
+
+M.ThirdPartyJobList = schema.new({ type = "list", list_member = M.ThirdPartyJob })
+
+M.OutputVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PipelineVariableList = schema.new({ type = "list", list_member = M.PipelineVariable })
+
+M.SourceRevisionOverrideList = schema.new({ type = "list", list_member = M.SourceRevisionOverride })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArtifactStoreMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ArtifactStore })
+
+M.PipelineStageDeclarationList = schema.new({ type = "list", list_member = M.StageDeclaration })
+
+M.PipelineVariableDeclarationList = schema.new({ type = "list", list_member = M.PipelineVariableDeclaration })
+
+M.PipelineTriggerDeclarationList = schema.new({ type = "list", list_member = M.PipelineTriggerDeclaration })
+
+M.ActionTypeProperties = schema.new({ type = "list", list_member = M.ActionTypeProperty })
+
+M.ArtifactRevisionList = schema.new({ type = "list", list_member = M.ArtifactRevision })
+
+M.ResolvedPipelineVariableList = schema.new({ type = "list", list_member = M.ResolvedPipelineVariable })
+
+M.WebhookFilters = schema.new({ type = "list", list_member = M.WebhookFilterRule })
+
+M.AllowedAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArtifactList = schema.new({ type = "list", list_member = M.Artifact })
+
+M.StageExecutionList = schema.new({ type = "list", list_member = M.StageExecution })
+
+M.ActionStateList = schema.new({ type = "list", list_member = M.ActionState })
+
+M.TargetFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeployTargetEventList = schema.new({ type = "list", list_member = M.DeployTargetEvent })
+
+M.SourceRevisionList = schema.new({ type = "list", list_member = M.SourceRevision })
+
+M.RuleConfigurationPropertyList = schema.new({ type = "list", list_member = M.RuleConfigurationProperty })
+
+M.StageBlockerDeclarationList = schema.new({ type = "list", list_member = M.BlockerDeclaration })
+
+M.StageActionDeclarationList = schema.new({ type = "list", list_member = M.ActionDeclaration })
+
+M.ActionConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConditionStateList = schema.new({ type = "list", list_member = M.ConditionState })
+
+M.ResolvedActionConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ArtifactDetailList = schema.new({ type = "list", list_member = M.ArtifactDetail })
+
+M.RuleConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResolvedRuleConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConditionList = schema.new({ type = "list", list_member = M.Condition })
+
+M.GitPushFilterList = schema.new({ type = "list", list_member = M.GitPushFilter })
+
+M.GitPullRequestFilterList = schema.new({ type = "list", list_member = M.GitPullRequestFilter })
+
+M.PollingAccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PollingServicePrincipalList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommandList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutputArtifactList = schema.new({ type = "list", list_member = M.OutputArtifact })
+
+M.InputArtifactList = schema.new({ type = "list", list_member = M.InputArtifact })
+
+M.OutputVariableList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentVariableList = schema.new({ type = "list", list_member = M.EnvironmentVariable })
+
+M.RuleStateList = schema.new({ type = "list", list_member = M.RuleState })
+
+M.RuleDeclarationList = schema.new({ type = "list", list_member = M.RuleDeclaration })
+
+M.GitPullRequestEventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilePathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GitTagPatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GitBranchPatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GitFilePathPatternList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcknowledgeJobInput = schema.new({
     id = id.from(_N, "AcknowledgeJobInput"),
     type = "structure",
@@ -2576,10 +2696,7 @@ M.DeleteCustomActionTypeInput = schema.new({
     },
 })
 
-M.DeleteCustomActionTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomActionTypeOutput = prelude.Unit
 
 M.DeletePipelineInput = schema.new({
     id = id.from(_N, "DeletePipelineInput"),
@@ -2597,10 +2714,7 @@ M.DeletePipelineInput = schema.new({
     },
 })
 
-M.DeletePipelineOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePipelineOutput = prelude.Unit
 
 M.DeleteWebhookInput = schema.new({
     id = id.from(_N, "DeleteWebhookInput"),
@@ -2692,10 +2806,7 @@ M.DisableStageTransitionInput = schema.new({
     },
 })
 
-M.DisableStageTransitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableStageTransitionOutput = prelude.Unit
 
 M.PipelineNotFoundException = schema.new({
     id = id.from(_N, "PipelineNotFoundException"),
@@ -2763,10 +2874,7 @@ M.EnableStageTransitionInput = schema.new({
     },
 })
 
-M.EnableStageTransitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableStageTransitionOutput = prelude.Unit
 
 M.GetActionTypeInput = schema.new({
     id = id.from(_N, "GetActionTypeInput"),
@@ -5248,10 +5356,7 @@ M.OverrideStageConditionInput = schema.new({
     },
 })
 
-M.OverrideStageConditionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.OverrideStageConditionOutput = prelude.Unit
 
 M.PollForJobsInput = schema.new({
     id = id.from(_N, "PollForJobsInput"),
@@ -5607,10 +5712,7 @@ M.PutJobFailureResultInput = schema.new({
     },
 })
 
-M.PutJobFailureResultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutJobFailureResultOutput = prelude.Unit
 
 M.OutputVariablesSizeExceededException = schema.new({
     id = id.from(_N, "OutputVariablesSizeExceededException"),
@@ -5734,10 +5836,7 @@ M.PutJobSuccessResultInput = schema.new({
     },
 })
 
-M.PutJobSuccessResultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutJobSuccessResultOutput = prelude.Unit
 
 M.PutThirdPartyJobFailureResultInput = schema.new({
     id = id.from(_N, "PutThirdPartyJobFailureResultInput"),
@@ -5774,10 +5873,7 @@ M.PutThirdPartyJobFailureResultInput = schema.new({
     },
 })
 
-M.PutThirdPartyJobFailureResultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutThirdPartyJobFailureResultOutput = prelude.Unit
 
 M.PutThirdPartyJobSuccessResultInput = schema.new({
     id = id.from(_N, "PutThirdPartyJobSuccessResultInput"),
@@ -5824,10 +5920,7 @@ M.PutThirdPartyJobSuccessResultInput = schema.new({
     },
 })
 
-M.PutThirdPartyJobSuccessResultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutThirdPartyJobSuccessResultOutput = prelude.Unit
 
 M.InvalidWebhookAuthenticationParametersException = schema.new({
     id = id.from(_N, "InvalidWebhookAuthenticationParametersException"),
@@ -6362,10 +6455,7 @@ M.UpdateActionTypeInput = schema.new({
     },
 })
 
-M.UpdateActionTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateActionTypeOutput = prelude.Unit
 
 M.UpdatePipelineInput = schema.new({
     id = id.from(_N, "UpdatePipelineInput"),

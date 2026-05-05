@@ -7,6 +7,58 @@ local _N = "com.amazonaws.m2"
 
 local M = {}
 
+M.EngineVersionsSummaryList = schema.new({ type = "list", list_member = M.EngineVersionsSummary })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationSummaryList = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.LogGroupSummaries = schema.new({ type = "list", list_member = M.LogGroupSummary })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PortList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ApplicationVersionSummaryList = schema.new({ type = "list", list_member = M.ApplicationVersionSummary })
+
+M.BatchJobDefinitions = schema.new({ type = "list", list_member = M.BatchJobDefinition })
+
+M.IdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchJobExecutionSummaryList = schema.new({ type = "list", list_member = M.BatchJobExecutionSummary })
+
+M.BatchJobStepList = schema.new({ type = "list", list_member = M.JobStep })
+
+M.DataSetExportTaskList = schema.new({ type = "list", list_member = M.DataSetExportTask })
+
+M.DataSetImportTaskList = schema.new({ type = "list", list_member = M.DataSetImportTask })
+
+M.DataSetsSummaryList = schema.new({ type = "list", list_member = M.DataSetSummary })
+
+M.DeploymentList = schema.new({ type = "list", list_member = M.DeploymentSummary })
+
+M.BatchJobParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EnvironmentSummaryList = schema.new({ type = "list", list_member = M.EnvironmentSummary })
+
+M.String50List = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageConfigurationList = schema.new({ type = "list", list_member = M.StorageConfiguration })
+
+M.DataSetExportList = schema.new({ type = "list", list_member = M.DataSetExportItem })
+
+M.DataSetImportList = schema.new({ type = "list", list_member = M.DataSetImportItem })
+
+M.AlternateKeyList = schema.new({ type = "list", list_member = M.AlternateKey })
+
+M.String20List = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4382,10 +4434,7 @@ M.UpdateEnvironmentOutput = schema.new({
     },
 })
 
-M.GetSignedBluinsightsUrlInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetSignedBluinsightsUrlInput = prelude.Unit
 
 M.GetSignedBluinsightsUrlOutput = schema.new({
     id = id.from(_N, "GetSignedBluinsightsUrlResponse"),

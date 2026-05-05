@@ -7,6 +7,24 @@ local _N = "com.amazonaws.mediastore"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.CorsPolicy = schema.new({ type = "list", list_member = M.CorsRule })
+
+M.ContainerList = schema.new({ type = "list", list_member = M.Container })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricPolicyRules = schema.new({ type = "list", list_member = M.MetricPolicyRule })
+
+M.AllowedOrigins = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedMethods = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExposeHeaders = schema.new({ type = "list", list_member = prelude.String })
+
 M.Container = schema.new({
     id = id.from(_N, "Container"),
     type = "structure",

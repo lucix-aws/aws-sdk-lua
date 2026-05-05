@@ -7,6 +7,14 @@ local _N = "com.amazonaws.iotsecuretunneling"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TunnelSummaryList = schema.new({ type = "list", list_member = M.TunnelSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceList = schema.new({ type = "list", list_member = prelude.String })
+
 M.CloseTunnelInput = schema.new({
     id = id.from(_N, "CloseTunnelRequest"),
     type = "structure",

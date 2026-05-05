@@ -7,6 +7,38 @@ local _N = "com.amazonaws.finspacedata"
 
 local M = {}
 
+M.SourceParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FormatParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SortColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartitionColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationPermissionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChangesetList = schema.new({ type = "list", list_member = M.ChangesetSummary })
+
+M.DatasetList = schema.new({ type = "list", list_member = M.Dataset })
+
+M.DataViewList = schema.new({ type = "list", list_member = M.DataViewSummary })
+
+M.PermissionGroupList = schema.new({ type = "list", list_member = M.PermissionGroup })
+
+M.PermissionGroupByUserList = schema.new({ type = "list", list_member = M.PermissionGroupByUser })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.UserByPermissionGroupList = schema.new({ type = "list", list_member = M.UserByPermissionGroup })
+
+M.ResourcePermissionsList = schema.new({ type = "list", list_member = M.ResourcePermission })
+
+M.S3DestinationFormatOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ColumnList = schema.new({ type = "list", list_member = M.ColumnDefinition })
+
+M.ColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

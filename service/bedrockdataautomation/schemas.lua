@@ -7,6 +7,60 @@ local _N = "com.amazonaws.bedrockdataautomation"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.DataAutomationLibraryEntitySummaries = schema.new({ type = "list", list_member = M.DataAutomationLibraryEntitySummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlueprintOptimizationSamples = schema.new({ type = "list", list_member = M.BlueprintOptimizationSample })
+
+M.Blueprints = schema.new({ type = "list", list_member = M.BlueprintSummary })
+
+M.DataAutomationLibraryIngestionJobSummaries = schema.new({ type = "list", list_member = M.DataAutomationLibraryIngestionJobSummary })
+
+M.DataAutomationLibrarySummaries = schema.new({ type = "list", list_member = M.DataAutomationLibrarySummary })
+
+M.DataAutomationProjectSummaries = schema.new({ type = "list", list_member = M.DataAutomationProjectSummary })
+
+M.KmsEncryptionContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EntityTypeInfoList = schema.new({ type = "list", list_member = M.EntityTypeInfo })
+
+M.BlueprintItems = schema.new({ type = "list", list_member = M.BlueprintItem })
+
+M.DataAutomationLibraryItems = schema.new({ type = "list", list_member = M.DataAutomationLibraryItem })
+
+M.PhraseList = schema.new({ type = "list", list_member = M.Phrase })
+
+M.UpsertEntitiesInfo = schema.new({ type = "list", list_member = M.UpsertEntityInfo })
+
+M.EntityIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageStandardGenerativeFieldTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.VideoStandardGenerativeFieldTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AudioStandardGenerativeFieldTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SensitiveDataDetectionScope = schema.new({ type = "list", list_member = prelude.String })
+
+M.AudioInputLanguages = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentExtractionGranularityTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentOutputTextFormatTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageExtractionCategoryTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.VideoExtractionCategoryTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AudioExtractionCategoryTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.PIIEntityTypes = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,174 @@ local _N = "com.amazonaws.rekognition"
 
 local M = {}
 
+M.UserFaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedFacesList = schema.new({ type = "list", list_member = M.AssociatedFace })
+
+M.UnsuccessfulFaceAssociationList = schema.new({ type = "list", list_member = M.UnsuccessfulFaceAssociation })
+
+M.CompareFacesMatchList = schema.new({ type = "list", list_member = M.CompareFacesMatch })
+
+M.CompareFacesUnmatchList = schema.new({ type = "list", list_member = M.ComparedFace })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RegionsOfInterest = schema.new({ type = "list", list_member = M.RegionOfInterest })
+
+M.FaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnsuccessfulFaceDeletionsList = schema.new({ type = "list", list_member = M.UnsuccessfulFaceDeletion })
+
+M.ProjectNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomizationFeatures = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProjectDescriptions = schema.new({ type = "list", list_member = M.ProjectDescription })
+
+M.VersionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProjectVersionDescriptions = schema.new({ type = "list", list_member = M.ProjectVersionDescription })
+
+M.CustomLabels = schema.new({ type = "list", list_member = M.CustomLabel })
+
+M.Attributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FaceDetailList = schema.new({ type = "list", list_member = M.FaceDetail })
+
+M.DetectLabelsFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Labels = schema.new({ type = "list", list_member = M.Label })
+
+M.ModerationLabels = schema.new({ type = "list", list_member = M.ModerationLabel })
+
+M.ContentTypes = schema.new({ type = "list", list_member = M.ContentType })
+
+M.ProtectiveEquipmentPersons = schema.new({ type = "list", list_member = M.ProtectiveEquipmentPerson })
+
+M.TextDetectionList = schema.new({ type = "list", list_member = M.TextDetection })
+
+M.DisassociatedFacesList = schema.new({ type = "list", list_member = M.DisassociatedFace })
+
+M.UnsuccessfulFaceDisassociationList = schema.new({ type = "list", list_member = M.UnsuccessfulFaceDisassociation })
+
+M.DistributeDatasetMetadataList = schema.new({ type = "list", list_member = M.DistributeDataset })
+
+M.Urls = schema.new({ type = "list", list_member = prelude.String })
+
+M.CelebrityRecognitions = schema.new({ type = "list", list_member = M.CelebrityRecognition })
+
+M.ContentModerationDetections = schema.new({ type = "list", list_member = M.ContentModerationDetection })
+
+M.FaceDetections = schema.new({ type = "list", list_member = M.FaceDetection })
+
+M.AuditImages = schema.new({ type = "list", list_member = M.AuditImage })
+
+M.PersonMatches = schema.new({ type = "list", list_member = M.PersonMatch })
+
+M.LabelDetections = schema.new({ type = "list", list_member = M.LabelDetection })
+
+M.PersonDetections = schema.new({ type = "list", list_member = M.PersonDetection })
+
+M.VideoMetadataList = schema.new({ type = "list", list_member = M.VideoMetadata })
+
+M.AudioMetadataList = schema.new({ type = "list", list_member = M.AudioMetadata })
+
+M.SegmentDetections = schema.new({ type = "list", list_member = M.SegmentDetection })
+
+M.SegmentTypesInfo = schema.new({ type = "list", list_member = M.SegmentTypeInfo })
+
+M.TextDetectionResults = schema.new({ type = "list", list_member = M.TextDetectionResult })
+
+M.FaceRecordList = schema.new({ type = "list", list_member = M.FaceRecord })
+
+M.UnindexedFaces = schema.new({ type = "list", list_member = M.UnindexedFace })
+
+M.CollectionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FaceModelVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasetLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasetEntries = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasetLabelDescriptions = schema.new({ type = "list", list_member = M.DatasetLabelDescription })
+
+M.FaceList = schema.new({ type = "list", list_member = M.Face })
+
+M.MediaAnalysisJobDescriptions = schema.new({ type = "list", list_member = M.MediaAnalysisJobDescription })
+
+M.ProjectPolicies = schema.new({ type = "list", list_member = M.ProjectPolicy })
+
+M.StreamProcessorList = schema.new({ type = "list", list_member = M.StreamProcessor })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.CelebrityList = schema.new({ type = "list", list_member = M.Celebrity })
+
+M.ComparedFaceList = schema.new({ type = "list", list_member = M.ComparedFace })
+
+M.FaceMatchList = schema.new({ type = "list", list_member = M.FaceMatch })
+
+M.UserMatchList = schema.new({ type = "list", list_member = M.UserMatch })
+
+M.UnsearchedFacesList = schema.new({ type = "list", list_member = M.UnsearchedFace })
+
+M.LabelDetectionFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SegmentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamProcessorParametersToDelete = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChallengePreferences = schema.new({ type = "list", list_member = M.ChallengePreference })
+
+M.Assets = schema.new({ type = "list", list_member = M.Asset })
+
+M.DominantColors = schema.new({ type = "list", list_member = M.DominantColor })
+
+M.HumanLoopActivationReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectiveEquipmentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectiveEquipmentPersonIds = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.UnsuccessfulFaceAssociationReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.Landmarks = schema.new({ type = "list", list_member = M.Landmark })
+
+M.Emotions = schema.new({ type = "list", list_member = M.Emotion })
+
+M.ConnectedHomeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.Polygon = schema.new({ type = "list", list_member = M.Point })
+
+M.UnsuccessfulFaceDeletionReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasetMetadataList = schema.new({ type = "list", list_member = M.DatasetMetadata })
+
+M.GeneralLabelsFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Instances = schema.new({ type = "list", list_member = M.Instance })
+
+M.Parents = schema.new({ type = "list", list_member = M.Parent })
+
+M.LabelAliases = schema.new({ type = "list", list_member = M.LabelAlias })
+
+M.LabelCategories = schema.new({ type = "list", list_member = M.LabelCategory })
+
+M.ContentClassifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.BodyParts = schema.new({ type = "list", list_member = M.ProtectiveEquipmentBodyPart })
+
+M.UnsuccessfulFaceDisassociationReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.Reasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnsearchedFaceReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.EquipmentDetections = schema.new({ type = "list", list_member = M.EquipmentDetection })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

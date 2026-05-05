@@ -7,6 +7,60 @@ local _N = "com.amazonaws.transcribe"
 
 local M = {}
 
+M.RuleList = schema.new({ type = "list", list_member = M.Rule })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Phrases = schema.new({ type = "list", list_member = prelude.String })
+
+M.Words = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoryPropertiesList = schema.new({ type = "list", list_member = M.CategoryProperties })
+
+M.CallAnalyticsJobSummaries = schema.new({ type = "list", list_member = M.CallAnalyticsJobSummary })
+
+M.Models = schema.new({ type = "list", list_member = M.LanguageModel })
+
+M.MedicalScribeJobSummaries = schema.new({ type = "list", list_member = M.MedicalScribeJobSummary })
+
+M.MedicalTranscriptionJobSummaries = schema.new({ type = "list", list_member = M.MedicalTranscriptionJobSummary })
+
+M.Vocabularies = schema.new({ type = "list", list_member = M.VocabularyInfo })
+
+M.TranscriptionJobSummaries = schema.new({ type = "list", list_member = M.TranscriptionJobSummary })
+
+M.VocabularyFilters = schema.new({ type = "list", list_member = M.VocabularyFilterInfo })
+
+M.ChannelDefinitions = schema.new({ type = "list", list_member = M.ChannelDefinition })
+
+M.KMSEncryptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MedicalScribeChannelDefinitions = schema.new({ type = "list", list_member = M.MedicalScribeChannelDefinition })
+
+M.LanguageOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.LanguageIdSettingsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.LanguageIdSettings })
+
+M.ToxicityDetection = schema.new({ type = "list", list_member = M.ToxicityDetectionSettings })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LanguageCodeList = schema.new({ type = "list", list_member = M.LanguageCodeItem })
+
+M.PiiEntityTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubtitleFormats = schema.new({ type = "list", list_member = prelude.String })
+
+M.CallAnalyticsSkippedFeatureList = schema.new({ type = "list", list_member = M.CallAnalyticsSkippedFeature })
+
+M.SubtitleFileUris = schema.new({ type = "list", list_member = prelude.String })
+
+M.ToxicityCategories = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringTargetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SentimentValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AbsoluteTimeRange = schema.new({
     id = id.from(_N, "AbsoluteTimeRange"),
     type = "structure",
@@ -1318,10 +1372,7 @@ M.DeleteLanguageModelInput = schema.new({
     },
 })
 
-M.DeleteLanguageModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLanguageModelOutput = prelude.Unit
 
 M.DeleteMedicalScribeJobInput = schema.new({
     id = id.from(_N, "DeleteMedicalScribeJobRequest"),
@@ -1340,10 +1391,7 @@ M.DeleteMedicalScribeJobInput = schema.new({
     },
 })
 
-M.DeleteMedicalScribeJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMedicalScribeJobOutput = prelude.Unit
 
 M.DeleteMedicalTranscriptionJobInput = schema.new({
     id = id.from(_N, "DeleteMedicalTranscriptionJobRequest"),
@@ -1362,10 +1410,7 @@ M.DeleteMedicalTranscriptionJobInput = schema.new({
     },
 })
 
-M.DeleteMedicalTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMedicalTranscriptionJobOutput = prelude.Unit
 
 M.DeleteMedicalVocabularyInput = schema.new({
     id = id.from(_N, "DeleteMedicalVocabularyRequest"),
@@ -1384,10 +1429,7 @@ M.DeleteMedicalVocabularyInput = schema.new({
     },
 })
 
-M.DeleteMedicalVocabularyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMedicalVocabularyOutput = prelude.Unit
 
 M.DeleteTranscriptionJobInput = schema.new({
     id = id.from(_N, "DeleteTranscriptionJobRequest"),
@@ -1406,10 +1448,7 @@ M.DeleteTranscriptionJobInput = schema.new({
     },
 })
 
-M.DeleteTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTranscriptionJobOutput = prelude.Unit
 
 M.DeleteVocabularyInput = schema.new({
     id = id.from(_N, "DeleteVocabularyRequest"),
@@ -1428,10 +1467,7 @@ M.DeleteVocabularyInput = schema.new({
     },
 })
 
-M.DeleteVocabularyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVocabularyOutput = prelude.Unit
 
 M.DeleteVocabularyFilterInput = schema.new({
     id = id.from(_N, "DeleteVocabularyFilterRequest"),
@@ -1450,10 +1486,7 @@ M.DeleteVocabularyFilterInput = schema.new({
     },
 })
 
-M.DeleteVocabularyFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVocabularyFilterOutput = prelude.Unit
 
 M.DescribeLanguageModelInput = schema.new({
     id = id.from(_N, "DescribeLanguageModelRequest"),

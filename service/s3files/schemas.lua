@@ -7,6 +7,24 @@ local _N = "com.amazonaws.s3files"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportDataRuleList = schema.new({ type = "list", list_member = M.ImportDataRule })
+
+M.ExpirationDataRuleList = schema.new({ type = "list", list_member = M.ExpirationDataRule })
+
+M.AccessPoints = schema.new({ type = "list", list_member = M.ListAccessPointsDescription })
+
+M.FileSystems = schema.new({ type = "list", list_member = M.ListFileSystemsDescription })
+
+M.MountTargets = schema.new({ type = "list", list_member = M.ListMountTargetsDescription })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecondaryGids = schema.new({ type = "list", list_member = prelude.Long })
+
 M.PosixUser = schema.new({
     id = id.from(_N, "PosixUser"),
     type = "structure",
@@ -790,10 +808,7 @@ M.DeleteAccessPointInput = schema.new({
     },
 })
 
-M.DeleteAccessPointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointOutput = prelude.Unit
 
 M.DeleteFileSystemInput = schema.new({
     id = id.from(_N, "DeleteFileSystemRequest"),
@@ -821,10 +836,7 @@ M.DeleteFileSystemInput = schema.new({
     },
 })
 
-M.DeleteFileSystemOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFileSystemOutput = prelude.Unit
 
 M.DeleteFileSystemPolicyInput = schema.new({
     id = id.from(_N, "DeleteFileSystemPolicyRequest"),
@@ -843,10 +855,7 @@ M.DeleteFileSystemPolicyInput = schema.new({
     },
 })
 
-M.DeleteFileSystemPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFileSystemPolicyOutput = prelude.Unit
 
 M.DeleteMountTargetInput = schema.new({
     id = id.from(_N, "DeleteMountTargetRequest"),
@@ -865,10 +874,7 @@ M.DeleteMountTargetInput = schema.new({
     },
 })
 
-M.DeleteMountTargetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMountTargetOutput = prelude.Unit
 
 M.ExpirationDataRule = schema.new({
     id = id.from(_N, "ExpirationDataRule"),
@@ -1854,10 +1860,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -1887,10 +1890,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateMountTargetInput = schema.new({
     id = id.from(_N, "UpdateMountTargetRequest"),

@@ -7,6 +7,26 @@ local _N = "com.amazonaws.migrationhub"
 
 local M = {}
 
+M.ApplicationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationStateList = schema.new({ type = "list", list_member = M.ApplicationState })
+
+M.CreatedArtifactList = schema.new({ type = "list", list_member = M.CreatedArtifact })
+
+M.DiscoveredResourceList = schema.new({ type = "list", list_member = M.DiscoveredResource })
+
+M.MigrationTaskSummaryList = schema.new({ type = "list", list_member = M.MigrationTaskSummary })
+
+M.MigrationTaskUpdateList = schema.new({ type = "list", list_member = M.MigrationTaskUpdate })
+
+M.ProgressUpdateStreamSummaryList = schema.new({ type = "list", list_member = M.ProgressUpdateStreamSummary })
+
+M.SourceResourceList = schema.new({ type = "list", list_member = M.SourceResource })
+
+M.ResourceAttributeList = schema.new({ type = "list", list_member = M.ResourceAttribute })
+
+M.LatestResourceAttributeList = schema.new({ type = "list", list_member = M.ResourceAttribute })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

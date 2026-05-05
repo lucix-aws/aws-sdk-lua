@@ -7,6 +7,84 @@ local _N = "com.amazonaws.athena"
 
 local M = {}
 
+M.NamedQueryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NamedQueryList = schema.new({ type = "list", list_member = M.NamedQuery })
+
+M.UnprocessedNamedQueryIdList = schema.new({ type = "list", list_member = M.UnprocessedNamedQueryId })
+
+M.PreparedStatementNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PreparedStatementDetailsList = schema.new({ type = "list", list_member = M.PreparedStatement })
+
+M.UnprocessedPreparedStatementNameList = schema.new({ type = "list", list_member = M.UnprocessedPreparedStatementName })
+
+M.QueryExecutionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryExecutionList = schema.new({ type = "list", list_member = M.QueryExecution })
+
+M.UnprocessedQueryExecutionIdList = schema.new({ type = "list", list_member = M.UnprocessedQueryExecutionId })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ApplicationDPUSizesList = schema.new({ type = "list", list_member = M.ApplicationDPUSizes })
+
+M.CalculationsList = schema.new({ type = "list", list_member = M.CalculationSummary })
+
+M.CapacityReservationsList = schema.new({ type = "list", list_member = M.CapacityReservation })
+
+M.DatabaseList = schema.new({ type = "list", list_member = M.Database })
+
+M.DataCatalogSummaryList = schema.new({ type = "list", list_member = M.DataCatalogSummary })
+
+M.EngineVersionsList = schema.new({ type = "list", list_member = M.EngineVersion })
+
+M.ExecutorsSummaryList = schema.new({ type = "list", list_member = M.ExecutorsSummary })
+
+M.NotebookMetadataArray = schema.new({ type = "list", list_member = M.NotebookMetadata })
+
+M.NotebookSessionsList = schema.new({ type = "list", list_member = M.NotebookSessionSummary })
+
+M.PreparedStatementsList = schema.new({ type = "list", list_member = M.PreparedStatementSummary })
+
+M.SessionsList = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.TableMetadataList = schema.new({ type = "list", list_member = M.TableMetadata })
+
+M.WorkGroupsList = schema.new({ type = "list", list_member = M.WorkGroupSummary })
+
+M.CapacityAssignmentsList = schema.new({ type = "list", list_member = M.CapacityAssignment })
+
+M.ExecutionParameters = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RowList = schema.new({ type = "list", list_member = M.Row })
+
+M.ClassificationList = schema.new({ type = "list", list_member = M.Classification })
+
+M.ColumnList = schema.new({ type = "list", list_member = M.Column })
+
+M.ColumnInfoList = schema.new({ type = "list", list_member = M.ColumnInfo })
+
+M.QueryStages = schema.new({ type = "list", list_member = M.QueryStage })
+
+M.LogTypesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.LogTypeValuesList })
+
+M.SupportedDPUSizeList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.WorkGroupNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.datumList = schema.new({ type = "list", list_member = M.Datum })
+
+M.QueryStagePlanNodes = schema.new({ type = "list", list_member = M.QueryStagePlanNode })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogTypeValuesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AclConfiguration = schema.new({
     id = id.from(_N, "AclConfiguration"),
     type = "structure",

@@ -7,6 +7,136 @@ local _N = "com.amazonaws.wellarchitected"
 
 local M = {}
 
+M.LensAliases = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ProfileArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileQuestionUpdates = schema.new({ type = "list", list_member = M.ProfileQuestionUpdate })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReviewTemplateLenses = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadAwsRegions = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadNonAwsRegions = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadPillarPriorities = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadLenses = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadApplications = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadProfileArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReviewTemplateArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConsolidatedReportMetrics = schema.new({ type = "list", list_member = M.ConsolidatedReportMetric })
+
+M.AnswerSummaries = schema.new({ type = "list", list_member = M.AnswerSummary })
+
+M.CheckDetails = schema.new({ type = "list", list_member = M.CheckDetail })
+
+M.CheckSummaries = schema.new({ type = "list", list_member = M.CheckSummary })
+
+M.LensSummaries = schema.new({ type = "list", list_member = M.LensSummary })
+
+M.ImprovementSummaries = schema.new({ type = "list", list_member = M.ImprovementSummary })
+
+M.LensReviewSummaries = schema.new({ type = "list", list_member = M.LensReviewSummary })
+
+M.LensShareSummaries = schema.new({ type = "list", list_member = M.LensShareSummary })
+
+M.MilestoneSummaries = schema.new({ type = "list", list_member = M.MilestoneSummary })
+
+M.NotificationSummaries = schema.new({ type = "list", list_member = M.NotificationSummary })
+
+M.ProfileNotificationSummaries = schema.new({ type = "list", list_member = M.ProfileNotificationSummary })
+
+M.ProfileSummaries = schema.new({ type = "list", list_member = M.ProfileSummary })
+
+M.ProfileShareSummaries = schema.new({ type = "list", list_member = M.ProfileShareSummary })
+
+M.ReviewTemplateAnswerSummaries = schema.new({ type = "list", list_member = M.ReviewTemplateAnswerSummary })
+
+M.ReviewTemplates = schema.new({ type = "list", list_member = M.ReviewTemplateSummary })
+
+M.ShareInvitationSummaries = schema.new({ type = "list", list_member = M.ShareInvitationSummary })
+
+M.TemplateShareSummaries = schema.new({ type = "list", list_member = M.TemplateShareSummary })
+
+M.WorkloadSummaries = schema.new({ type = "list", list_member = M.WorkloadSummary })
+
+M.WorkloadShareSummaries = schema.new({ type = "list", list_member = M.WorkloadShareSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SelectedChoices = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChoiceUpdates = schema.new({ type = "map", map_key = prelude.String, map_value = M.ChoiceUpdate })
+
+M.PillarNotes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReviewTemplateLensAliases = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkloadResourceDefinition = schema.new({ type = "list", list_member = prelude.String })
+
+M.Choices = schema.new({ type = "list", list_member = M.Choice })
+
+M.ChoiceAnswers = schema.new({ type = "list", list_member = M.ChoiceAnswer })
+
+M.PillarReviewSummaries = schema.new({ type = "list", list_member = M.PillarReviewSummary })
+
+M.RiskCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.WorkloadProfiles = schema.new({ type = "list", list_member = M.WorkloadProfile })
+
+M.PillarDifferences = schema.new({ type = "list", list_member = M.PillarDifference })
+
+M.ProfileQuestions = schema.new({ type = "list", list_member = M.ProfileQuestion })
+
+M.TemplateQuestions = schema.new({ type = "list", list_member = M.ProfileTemplateQuestion })
+
+M.QuestionCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ReviewTemplatePillarReviewSummaries = schema.new({ type = "list", list_member = M.ReviewTemplatePillarReviewSummary })
+
+M.SelectedPillars = schema.new({ type = "list", list_member = M.SelectedPillar })
+
+M.SelectedProfileChoiceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.LensMetrics = schema.new({ type = "list", list_member = M.LensMetric })
+
+M.ChoiceAnswerSummaries = schema.new({ type = "list", list_member = M.ChoiceAnswerSummary })
+
+M.AccountSummary = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ChoiceImprovementPlans = schema.new({ type = "list", list_member = M.ChoiceImprovementPlan })
+
+M.AdditionalResourcesList = schema.new({ type = "list", list_member = M.AdditionalResources })
+
+M.QuestionDifferences = schema.new({ type = "list", list_member = M.QuestionDifference })
+
+M.ProfileQuestionChoices = schema.new({ type = "list", list_member = M.ProfileChoice })
+
+M.SelectedChoiceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileTemplateQuestionChoices = schema.new({ type = "list", list_member = M.ProfileTemplateChoice })
+
+M.SelectedQuestionIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PillarMetrics = schema.new({ type = "list", list_member = M.PillarMetric })
+
+M.Urls = schema.new({ type = "list", list_member = M.ChoiceContent })
+
+M.QuestionMetrics = schema.new({ type = "list", list_member = M.QuestionMetric })
+
+M.BestPractices = schema.new({ type = "list", list_member = M.BestPractice })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -465,10 +595,7 @@ M.AssociateLensesInput = schema.new({
     },
 })
 
-M.AssociateLensesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateLensesOutput = prelude.Unit
 
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
@@ -678,10 +805,7 @@ M.AssociateProfilesInput = schema.new({
     },
 })
 
-M.AssociateProfilesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateProfilesOutput = prelude.Unit
 
 M.BestPractice = schema.new({
     id = id.from(_N, "BestPractice"),
@@ -1864,10 +1988,7 @@ M.DeleteLensInput = schema.new({
     },
 })
 
-M.DeleteLensOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLensOutput = prelude.Unit
 
 M.DeleteLensShareInput = schema.new({
     id = id.from(_N, "DeleteLensShareInput"),
@@ -1907,10 +2028,7 @@ M.DeleteLensShareInput = schema.new({
     },
 })
 
-M.DeleteLensShareOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLensShareOutput = prelude.Unit
 
 M.DeleteProfileInput = schema.new({
     id = id.from(_N, "DeleteProfileInput"),
@@ -1940,10 +2058,7 @@ M.DeleteProfileInput = schema.new({
     },
 })
 
-M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProfileOutput = prelude.Unit
 
 M.DeleteProfileShareInput = schema.new({
     id = id.from(_N, "DeleteProfileShareInput"),
@@ -1983,10 +2098,7 @@ M.DeleteProfileShareInput = schema.new({
     },
 })
 
-M.DeleteProfileShareOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProfileShareOutput = prelude.Unit
 
 M.DeleteReviewTemplateInput = schema.new({
     id = id.from(_N, "DeleteReviewTemplateInput"),
@@ -2016,10 +2128,7 @@ M.DeleteReviewTemplateInput = schema.new({
     },
 })
 
-M.DeleteReviewTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteReviewTemplateOutput = prelude.Unit
 
 M.DeleteTemplateShareInput = schema.new({
     id = id.from(_N, "DeleteTemplateShareInput"),
@@ -2059,10 +2168,7 @@ M.DeleteTemplateShareInput = schema.new({
     },
 })
 
-M.DeleteTemplateShareOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTemplateShareOutput = prelude.Unit
 
 M.DeleteWorkloadInput = schema.new({
     id = id.from(_N, "DeleteWorkloadInput"),
@@ -2092,10 +2198,7 @@ M.DeleteWorkloadInput = schema.new({
     },
 })
 
-M.DeleteWorkloadOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkloadOutput = prelude.Unit
 
 M.DeleteWorkloadShareInput = schema.new({
     id = id.from(_N, "DeleteWorkloadShareInput"),
@@ -2135,10 +2238,7 @@ M.DeleteWorkloadShareInput = schema.new({
     },
 })
 
-M.DeleteWorkloadShareOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkloadShareOutput = prelude.Unit
 
 M.DisassociateLensesInput = schema.new({
     id = id.from(_N, "DisassociateLensesInput"),
@@ -2167,10 +2267,7 @@ M.DisassociateLensesInput = schema.new({
     },
 })
 
-M.DisassociateLensesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateLensesOutput = prelude.Unit
 
 M.DisassociateProfilesInput = schema.new({
     id = id.from(_N, "DisassociateProfilesInput"),
@@ -2199,10 +2296,7 @@ M.DisassociateProfilesInput = schema.new({
     },
 })
 
-M.DisassociateProfilesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateProfilesOutput = prelude.Unit
 
 M.ExportLensInput = schema.new({
     id = id.from(_N, "ExportLensInput"),
@@ -2397,10 +2491,7 @@ M.GetConsolidatedReportOutput = schema.new({
     },
 })
 
-M.GetGlobalSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetGlobalSettingsInput = prelude.Unit
 
 M.GetGlobalSettingsOutput = schema.new({
     id = id.from(_N, "GetGlobalSettingsOutput"),
@@ -6531,10 +6622,7 @@ M.UpdateGlobalSettingsInput = schema.new({
     },
 })
 
-M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateGlobalSettingsOutput = prelude.Unit
 
 M.UpdateIntegrationInput = schema.new({
     id = id.from(_N, "UpdateIntegrationInput"),
@@ -6572,10 +6660,7 @@ M.UpdateIntegrationInput = schema.new({
     },
 })
 
-M.UpdateIntegrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateIntegrationOutput = prelude.Unit
 
 M.UpdateLensReviewInput = schema.new({
     id = id.from(_N, "UpdateLensReviewInput"),
@@ -7236,10 +7321,7 @@ M.UpgradeLensReviewInput = schema.new({
     },
 })
 
-M.UpgradeLensReviewOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpgradeLensReviewOutput = prelude.Unit
 
 M.UpgradeProfileVersionInput = schema.new({
     id = id.from(_N, "UpgradeProfileVersionInput"),
@@ -7283,10 +7365,7 @@ M.UpgradeProfileVersionInput = schema.new({
     },
 })
 
-M.UpgradeProfileVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpgradeProfileVersionOutput = prelude.Unit
 
 M.UpgradeReviewTemplateLensReviewInput = schema.new({
     id = id.from(_N, "UpgradeReviewTemplateLensReviewInput"),
@@ -7321,10 +7400,7 @@ M.UpgradeReviewTemplateLensReviewInput = schema.new({
     },
 })
 
-M.UpgradeReviewTemplateLensReviewOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpgradeReviewTemplateLensReviewOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

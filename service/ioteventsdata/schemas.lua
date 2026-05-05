@@ -7,6 +7,42 @@ local _N = "com.amazonaws.ioteventsdata"
 
 local M = {}
 
+M.AcknowledgeAlarmActionRequests = schema.new({ type = "list", list_member = M.AcknowledgeAlarmActionRequest })
+
+M.BatchAlarmActionErrorEntries = schema.new({ type = "list", list_member = M.BatchAlarmActionErrorEntry })
+
+M.DeleteDetectorRequests = schema.new({ type = "list", list_member = M.DeleteDetectorRequest })
+
+M.BatchDeleteDetectorErrorEntries = schema.new({ type = "list", list_member = M.BatchDeleteDetectorErrorEntry })
+
+M.DisableAlarmActionRequests = schema.new({ type = "list", list_member = M.DisableAlarmActionRequest })
+
+M.EnableAlarmActionRequests = schema.new({ type = "list", list_member = M.EnableAlarmActionRequest })
+
+M.Messages = schema.new({ type = "list", list_member = M.Message })
+
+M.BatchPutMessageErrorEntries = schema.new({ type = "list", list_member = M.BatchPutMessageErrorEntry })
+
+M.ResetAlarmActionRequests = schema.new({ type = "list", list_member = M.ResetAlarmActionRequest })
+
+M.SnoozeAlarmActionRequests = schema.new({ type = "list", list_member = M.SnoozeAlarmActionRequest })
+
+M.UpdateDetectorRequests = schema.new({ type = "list", list_member = M.UpdateDetectorRequest })
+
+M.BatchUpdateDetectorErrorEntries = schema.new({ type = "list", list_member = M.BatchUpdateDetectorErrorEntry })
+
+M.AlarmSummaries = schema.new({ type = "list", list_member = M.AlarmSummary })
+
+M.DetectorSummaries = schema.new({ type = "list", list_member = M.DetectorSummary })
+
+M.Variables = schema.new({ type = "list", list_member = M.Variable })
+
+M.Timers = schema.new({ type = "list", list_member = M.Timer })
+
+M.VariableDefinitions = schema.new({ type = "list", list_member = M.VariableDefinition })
+
+M.TimerDefinitions = schema.new({ type = "list", list_member = M.TimerDefinition })
+
 M.AcknowledgeActionConfiguration = schema.new({
     id = id.from(_N, "AcknowledgeActionConfiguration"),
     type = "structure",

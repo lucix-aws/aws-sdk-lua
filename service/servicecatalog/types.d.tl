@@ -1928,39 +1928,39 @@ local record TagOptionNotMigratedException
     Message: string
 end
 
-local type PrincipalType = "IAM" | "IAM_PATTERN"
-
-local type ProvisioningArtifactGuidance = "DEFAULT" | "DEPRECATED"
-
-local type DescribePortfolioShareType = "ACCOUNT" | "ORGANIZATION" | "ORGANIZATIONAL_UNIT" | "ORGANIZATION_MEMBER_ACCOUNT"
-
-local type ShareStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "ERROR"
-
-local type ProvisionedProductPlanType = "CLOUDFORMATION"
-
-local type ProductViewSortBy = "Title" | "VersionCount" | "CreationDate"
-
-local type ProductType = "CLOUD_FORMATION_TEMPLATE" | "MARKETPLACE" | "TERRAFORM_OPEN_SOURCE" | "TERRAFORM_CLOUD" | "EXTERNAL"
-
-local type RecordStatus = "CREATED" | "IN_PROGRESS" | "IN_PROGRESS_IN_ERROR" | "SUCCEEDED" | "FAILED"
+local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local type PortfolioShareType = "IMPORTED" | "AWS_SERVICECATALOG" | "AWS_ORGANIZATIONS"
 
 local type AccessStatus = "ENABLED" | "UNDER_CHANGE" | "DISABLED"
 
-local type ProductSource = "ACCOUNT"
-
-local type CopyProductStatus = "SUCCEEDED" | "IN_PROGRESS" | "FAILED"
-
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type Status = "AVAILABLE" | "CREATING" | "FAILED"
+local type ServiceActionDefinitionType = "SSM_AUTOMATION"
 
 local type OrganizationNodeType = "ORGANIZATION" | "ORGANIZATIONAL_UNIT" | "ACCOUNT"
 
-local type ServiceActionDefinitionType = "SSM_AUTOMATION"
+local type CopyProductStatus = "SUCCEEDED" | "IN_PROGRESS" | "FAILED"
+
+local type Status = "AVAILABLE" | "CREATING" | "FAILED"
+
+local type ProductViewSortBy = "Title" | "VersionCount" | "CreationDate"
+
+local type ProductSource = "ACCOUNT"
 
 local type EngineWorkflowStatus = "SUCCEEDED" | "FAILED"
+
+local type DescribePortfolioShareType = "ACCOUNT" | "ORGANIZATION" | "ORGANIZATIONAL_UNIT" | "ORGANIZATION_MEMBER_ACCOUNT"
+
+local type ProvisionedProductPlanType = "CLOUDFORMATION"
+
+local type ProductType = "CLOUD_FORMATION_TEMPLATE" | "MARKETPLACE" | "TERRAFORM_OPEN_SOURCE" | "TERRAFORM_CLOUD" | "EXTERNAL"
+
+local type RecordStatus = "CREATED" | "IN_PROGRESS" | "IN_PROGRESS_IN_ERROR" | "SUCCEEDED" | "FAILED"
+
+local type PrincipalType = "IAM" | "IAM_PATTERN"
+
+local type ShareStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "ERROR"
+
+local type ProvisioningArtifactGuidance = "DEFAULT" | "DEPRECATED"
 
 local record M
     AcceptPortfolioShareInput: AcceptPortfolioShareInput

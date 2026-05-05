@@ -7,6 +7,46 @@ local _N = "com.amazonaws.resourcegroupstaggingapi"
 
 local M = {}
 
+M.TargetIdFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupBy = schema.new({ type = "list", list_member = prelude.String })
+
+M.SummaryList = schema.new({ type = "list", list_member = M.Summary })
+
+M.TagFilterList = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.ResourceARNListForGet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagMappingList = schema.new({ type = "list", list_member = M.ResourceTagMapping })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagValuesOutputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RequiredTagsForListRequiredTags = schema.new({ type = "list", list_member = M.RequiredTag })
+
+M.ResourceARNListForTagUntag = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FailedResourcesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FailureInfo })
+
+M.TagKeyListForUntag = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.CloudFormationResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReportingTagKeys = schema.new({ type = "list", list_member = prelude.String })
+
 M.ComplianceDetails = schema.new({
     id = id.from(_N, "ComplianceDetails"),
     type = "structure",

@@ -7,6 +7,66 @@ local _N = "com.amazonaws.arcregionswitch"
 
 local M = {}
 
+M.PlanWarnings = schema.new({ type = "list", list_member = M.ResourceWarning })
+
+M.StepStates = schema.new({ type = "list", list_member = M.StepState })
+
+M.GeneratedReportDetails = schema.new({ type = "list", list_member = M.GeneratedReport })
+
+M.ExecutionEventList = schema.new({ type = "list", list_member = M.ExecutionEvent })
+
+M.AbbreviatedExecutionsList = schema.new({ type = "list", list_member = M.AbbreviatedExecution })
+
+M.PlanList = schema.new({ type = "list", list_member = M.AbbreviatedPlan })
+
+M.Route53HealthCheckList = schema.new({ type = "list", list_member = M.Route53HealthCheck })
+
+M.WorkflowList = schema.new({ type = "list", list_member = M.Workflow })
+
+M.AssociatedAlarmMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AssociatedAlarm })
+
+M.TriggerList = schema.new({ type = "list", list_member = M.Trigger })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReportOutputList = schema.new({ type = "list", list_member = M.ReportOutputConfiguration })
+
+M.Resources = schema.new({ type = "list", list_member = prelude.String })
+
+M.Steps = schema.new({ type = "list", list_member = M.Step })
+
+M.TriggerConditionList = schema.new({ type = "list", list_member = M.TriggerCondition })
+
+M.LambdaList = schema.new({ type = "list", list_member = M.Lambdas })
+
+M.AsgList = schema.new({ type = "list", list_member = M.Asg })
+
+M.RegionAndRoutingControls = schema.new({ type = "map", map_key = prelude.String, map_value = M.ArcRoutingControlStates })
+
+M.AuroraClusterArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceList = schema.new({ type = "list", list_member = M.Service })
+
+M.KubernetesScalingApps = schema.new({ type = "list", list_member = M.KubernetesScalingApplication })
+
+M.EksClusters = schema.new({ type = "list", list_member = M.EksCluster })
+
+M.Route53ResourceRecordSetList = schema.new({ type = "list", list_member = M.Route53ResourceRecordSet })
+
+M.DocumentDbClusterArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.RdsDbInstanceArnMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ArcRoutingControlStates = schema.new({ type = "list", list_member = M.ArcRoutingControlState })
+
+M.KubernetesScalingApplication = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionalScalingResource })
+
+M.RegionalScalingResource = schema.new({ type = "map", map_key = prelude.String, map_value = M.KubernetesScalingResource })
+
 M.AbbreviatedExecution = schema.new({
     id = id.from(_N, "AbbreviatedExecution"),
     type = "structure",
@@ -1321,7 +1381,7 @@ M.EksResourceScalingConfiguration = schema.new({
             type = "list",
             name = "scalingResources",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.KubernetesScalingApplication,
         }),
         eksClusters = schema.new({
             id = id.from(_N, "EksResourceScalingConfiguration", "eksClusters"),

@@ -7,6 +7,16 @@ local _N = "com.amazonaws.networkmonitor"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitorList = schema.new({ type = "list", list_member = M.MonitorSummary })
+
+M.CreateMonitorProbeInputList = schema.new({ type = "list", list_member = M.CreateMonitorProbeInput })
+
+M.ProbeList = schema.new({ type = "list", list_member = M.Probe })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

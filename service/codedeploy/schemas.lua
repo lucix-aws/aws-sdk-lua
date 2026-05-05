@@ -7,6 +7,88 @@ local _N = "com.amazonaws.codedeploy"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.InstanceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RevisionLocationList = schema.new({ type = "list", list_member = M.RevisionLocation })
+
+M.RevisionInfoList = schema.new({ type = "list", list_member = M.RevisionInfo })
+
+M.ApplicationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationsInfoList = schema.new({ type = "list", list_member = M.ApplicationInfo })
+
+M.DeploymentGroupsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentGroupInfoList = schema.new({ type = "list", list_member = M.DeploymentGroupInfo })
+
+M.InstancesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceSummaryList = schema.new({ type = "list", list_member = M.InstanceSummary })
+
+M.DeploymentsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentsInfoList = schema.new({ type = "list", list_member = M.DeploymentInfo })
+
+M.TargetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentTargetList = schema.new({ type = "list", list_member = M.DeploymentTarget })
+
+M.InstanceInfoList = schema.new({ type = "list", list_member = M.InstanceInfo })
+
+M.EC2TagFilterList = schema.new({ type = "list", list_member = M.EC2TagFilter })
+
+M.TagFilterList = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.AutoScalingGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerConfigList = schema.new({ type = "list", list_member = M.TriggerConfig })
+
+M.ECSServiceList = schema.new({ type = "list", list_member = M.ECSService })
+
+M.AutoScalingGroupList = schema.new({ type = "list", list_member = M.AutoScalingGroup })
+
+M.DeploymentConfigsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetFilters = schema.new({ type = "map", map_key = prelude.String, map_value = M.FilterValueList })
+
+M.GitHubAccountTokenNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoRollbackEventsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AlarmList = schema.new({ type = "list", list_member = M.Alarm })
+
+M.ELBInfoList = schema.new({ type = "list", list_member = M.ELBInfo })
+
+M.TargetGroupInfoList = schema.new({ type = "list", list_member = M.TargetGroupInfo })
+
+M.TargetGroupPairInfoList = schema.new({ type = "list", list_member = M.TargetGroupPairInfo })
+
+M.EC2TagSetList = schema.new({ type = "list", list_member = M.EC2TagFilterList })
+
+M.OnPremisesTagSetList = schema.new({ type = "list", list_member = M.TagFilterList })
+
+M.DeploymentStatusMessageList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecycleEventList = schema.new({ type = "list", list_member = M.LifecycleEvent })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerEventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ECSTaskSetList = schema.new({ type = "list", list_member = M.ECSTaskSet })
+
+M.ListenerArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -53,10 +135,7 @@ M.AddTagsToOnPremisesInstancesInput = schema.new({
     },
 })
 
-M.AddTagsToOnPremisesInstancesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsToOnPremisesInstancesOutput = prelude.Unit
 
 M.InstanceLimitExceededException = schema.new({
     id = id.from(_N, "InstanceLimitExceededException"),
@@ -2595,10 +2674,7 @@ M.ContinueDeploymentInput = schema.new({
     },
 })
 
-M.ContinueDeploymentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ContinueDeploymentOutput = prelude.Unit
 
 M.DeploymentAlreadyCompletedException = schema.new({
     id = id.from(_N, "DeploymentAlreadyCompletedException"),
@@ -3820,10 +3896,7 @@ M.DeleteApplicationInput = schema.new({
     },
 })
 
-M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationOutput = prelude.Unit
 
 M.DeleteDeploymentConfigInput = schema.new({
     id = id.from(_N, "DeleteDeploymentConfigInput"),
@@ -3841,10 +3914,7 @@ M.DeleteDeploymentConfigInput = schema.new({
     },
 })
 
-M.DeleteDeploymentConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeploymentConfigOutput = prelude.Unit
 
 M.DeploymentConfigInUseException = schema.new({
     id = id.from(_N, "DeploymentConfigInUseException"),
@@ -4057,10 +4127,7 @@ M.DeregisterOnPremisesInstanceInput = schema.new({
     },
 })
 
-M.DeregisterOnPremisesInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterOnPremisesInstanceOutput = prelude.Unit
 
 M.GetApplicationInput = schema.new({
     id = id.from(_N, "GetApplicationInput"),
@@ -5275,10 +5342,7 @@ M.RegisterApplicationRevisionInput = schema.new({
     },
 })
 
-M.RegisterApplicationRevisionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterApplicationRevisionOutput = prelude.Unit
 
 M.IamArnRequiredException = schema.new({
     id = id.from(_N, "IamArnRequiredException"),
@@ -5436,10 +5500,7 @@ M.RegisterOnPremisesInstanceInput = schema.new({
     },
 })
 
-M.RegisterOnPremisesInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterOnPremisesInstanceOutput = prelude.Unit
 
 M.RemoveTagsFromOnPremisesInstancesInput = schema.new({
     id = id.from(_N, "RemoveTagsFromOnPremisesInstancesInput"),
@@ -5468,10 +5529,7 @@ M.RemoveTagsFromOnPremisesInstancesInput = schema.new({
     },
 })
 
-M.RemoveTagsFromOnPremisesInstancesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsFromOnPremisesInstancesOutput = prelude.Unit
 
 M.SkipWaitTimeForInstanceTerminationInput = schema.new({
     id = id.from(_N, "SkipWaitTimeForInstanceTerminationInput"),
@@ -5486,10 +5544,7 @@ M.SkipWaitTimeForInstanceTerminationInput = schema.new({
     },
 })
 
-M.SkipWaitTimeForInstanceTerminationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SkipWaitTimeForInstanceTerminationOutput = prelude.Unit
 
 M.StopDeploymentInput = schema.new({
     id = id.from(_N, "StopDeploymentInput"),
@@ -5613,10 +5668,7 @@ M.UpdateApplicationInput = schema.new({
     },
 })
 
-M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateApplicationOutput = prelude.Unit
 
 M.UpdateDeploymentGroupInput = schema.new({
     id = id.from(_N, "UpdateDeploymentGroupInput"),

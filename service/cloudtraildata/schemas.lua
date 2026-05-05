@@ -7,6 +7,12 @@ local _N = "com.amazonaws.cloudtraildata"
 
 local M = {}
 
+M.AuditEvents = schema.new({ type = "list", list_member = M.AuditEvent })
+
+M.AuditEventResultEntries = schema.new({ type = "list", list_member = M.AuditEventResultEntry })
+
+M.ResultErrorEntries = schema.new({ type = "list", list_member = M.ResultErrorEntry })
+
 M.AuditEvent = schema.new({
     id = id.from(_N, "AuditEvent"),
     type = "structure",

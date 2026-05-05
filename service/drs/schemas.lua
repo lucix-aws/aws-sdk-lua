@@ -7,6 +7,104 @@ local _N = "com.amazonaws.drs"
 
 local M = {}
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.StagingSourceServersList = schema.new({ type = "list", list_member = M.StagingSourceServer })
+
+M.LaunchActions = schema.new({ type = "list", list_member = M.LaunchAction })
+
+M.Accounts = schema.new({ type = "list", list_member = M.Account })
+
+M.LaunchActionParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.LaunchActionParameter })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobsList = schema.new({ type = "list", list_member = M.Job })
+
+M.JobLogs = schema.new({ type = "list", list_member = M.JobLog })
+
+M.LaunchConfigurationTemplateIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchConfigurationTemplates = schema.new({ type = "list", list_member = M.LaunchConfigurationTemplate })
+
+M.DescribeRecoveryInstancesItems = schema.new({ type = "list", list_member = M.RecoveryInstance })
+
+M.StartFailbackRequestRecoveryInstanceIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryInstancesForTerminationRequest = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationConfigurationTemplateIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationConfigurationTemplates = schema.new({ type = "list", list_member = M.ReplicationConfigurationTemplate })
+
+M.ReplicationServersSecurityGroupsIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.PITPolicy = schema.new({ type = "list", list_member = M.PITPolicyRule })
+
+M.SourceNetworksList = schema.new({ type = "list", list_member = M.SourceNetwork })
+
+M.StartSourceNetworkRecoveryRequestNetworkEntries = schema.new({ type = "list", list_member = M.StartSourceNetworkRecoveryRequestNetworkEntry })
+
+M.SourceServersList = schema.new({ type = "list", list_member = M.SourceServer })
+
+M.RecoverySnapshotsList = schema.new({ type = "list", list_member = M.RecoverySnapshot })
+
+M.ReplicationConfigurationReplicatedDisks = schema.new({ type = "list", list_member = M.ReplicationConfigurationReplicatedDisk })
+
+M.StartRecoveryRequestSourceServers = schema.new({ type = "list", list_member = M.StartRecoveryRequestSourceServer })
+
+M.LaunchActionIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeJobsRequestFiltersJobIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryInstanceIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParticipatingServers = schema.new({ type = "list", list_member = M.ParticipatingServer })
+
+M.ParticipatingResources = schema.new({ type = "list", list_member = M.ParticipatingResource })
+
+M.DescribeSourceNetworksRequestFiltersIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeSourceServersRequestFiltersIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataReplicationInfoReplicatedDisks = schema.new({ type = "list", list_member = M.DataReplicationInfoReplicatedDisk })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.Disks = schema.new({ type = "list", list_member = M.Disk })
+
+M.Cpus = schema.new({ type = "list", list_member = M.CPU })
+
+M.EbsSnapshotsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataReplicationInitiationSteps = schema.new({ type = "list", list_member = M.DataReplicationInitiationStep })
+
+M.RecoveryInstanceDataReplicationInfoReplicatedDisks = schema.new({ type = "list", list_member = M.RecoveryInstanceDataReplicationInfoReplicatedDisk })
+
+M.RecoveryInstanceDisks = schema.new({ type = "list", list_member = M.RecoveryInstanceDisk })
+
+M.IPsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeToConversionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConversionMap })
+
+M.VolumeToSizeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.VolumeToProductCodes = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProductCodes })
+
+M.RecoveryInstanceDataReplicationInitiationSteps = schema.new({ type = "list", list_member = M.RecoveryInstanceDataReplicationInitiationStep })
+
+M.LaunchActionRuns = schema.new({ type = "list", list_member = M.LaunchActionRun })
+
+M.ConversionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProductCodes = schema.new({ type = "list", list_member = M.ProductCode })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1948,10 +2046,7 @@ M.DeleteRecoveryInstanceInput = schema.new({
     },
 })
 
-M.DeleteRecoveryInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRecoveryInstanceOutput = prelude.Unit
 
 M.DeleteReplicationConfigurationTemplateInput = schema.new({
     id = id.from(_N, "DeleteReplicationConfigurationTemplateRequest"),
@@ -3373,10 +3468,7 @@ M.DisconnectRecoveryInstanceInput = schema.new({
     },
 })
 
-M.DisconnectRecoveryInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisconnectRecoveryInstanceOutput = prelude.Unit
 
 M.DisconnectSourceServerInput = schema.new({
     id = id.from(_N, "DisconnectSourceServerRequest"),
@@ -4132,10 +4224,7 @@ M.StopFailbackInput = schema.new({
     },
 })
 
-M.StopFailbackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopFailbackOutput = prelude.Unit
 
 M.TerminateRecoveryInstancesInput = schema.new({
     id = id.from(_N, "TerminateRecoveryInstancesRequest"),
@@ -4211,10 +4300,7 @@ M.UpdateFailbackReplicationConfigurationInput = schema.new({
     },
 })
 
-M.UpdateFailbackReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateFailbackReplicationConfigurationOutput = prelude.Unit
 
 M.UpdateReplicationConfigurationTemplateInput = schema.new({
     id = id.from(_N, "UpdateReplicationConfigurationTemplateRequest"),
@@ -5557,10 +5643,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -5590,10 +5673,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

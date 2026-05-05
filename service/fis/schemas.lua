@@ -7,6 +7,92 @@ local _N = "com.amazonaws.fis"
 
 local M = {}
 
+M.CreateExperimentTemplateStopConditionInputList = schema.new({ type = "list", list_member = M.CreateExperimentTemplateStopConditionInput })
+
+M.CreateExperimentTemplateTargetInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CreateExperimentTemplateTargetInput })
+
+M.CreateExperimentTemplateActionInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CreateExperimentTemplateActionInput })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ActionSummaryList = schema.new({ type = "list", list_member = M.ActionSummary })
+
+M.ResolvedTargetList = schema.new({ type = "list", list_member = M.ResolvedTarget })
+
+M.ExperimentSummaryList = schema.new({ type = "list", list_member = M.ExperimentSummary })
+
+M.ExperimentTargetAccountConfigurationList = schema.new({ type = "list", list_member = M.ExperimentTargetAccountConfigurationSummary })
+
+M.ExperimentTemplateSummaryList = schema.new({ type = "list", list_member = M.ExperimentTemplateSummary })
+
+M.TargetAccountConfigurationList = schema.new({ type = "list", list_member = M.TargetAccountConfigurationSummary })
+
+M.TargetResourceTypeSummaryList = schema.new({ type = "list", list_member = M.TargetResourceTypeSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateExperimentTemplateStopConditionInputList = schema.new({ type = "list", list_member = M.UpdateExperimentTemplateStopConditionInput })
+
+M.UpdateExperimentTemplateTargetInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.UpdateExperimentTemplateTargetInput })
+
+M.UpdateExperimentTemplateActionInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.UpdateExperimentTemplateActionInputItem })
+
+M.ExperimentTemplateTargetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExperimentTemplateTarget })
+
+M.ExperimentTemplateActionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExperimentTemplateAction })
+
+M.ExperimentTemplateStopConditionList = schema.new({ type = "list", list_member = M.ExperimentTemplateStopCondition })
+
+M.ActionParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ActionParameter })
+
+M.ActionTargetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ActionTarget })
+
+M.ExperimentTargetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExperimentTarget })
+
+M.ExperimentActionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExperimentAction })
+
+M.ExperimentStopConditionList = schema.new({ type = "list", list_member = M.ExperimentStopCondition })
+
+M.TargetResourceTypeParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TargetResourceTypeParameter })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExperimentTemplateTargetFilterInputList = schema.new({ type = "list", list_member = M.ExperimentTemplateTargetInputFilter })
+
+M.ExperimentTemplateTargetParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentTemplateActionParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentTemplateActionTargetMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentTemplateActionStartAfterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReportConfigurationCloudWatchDashboardInputList = schema.new({ type = "list", list_member = M.ReportConfigurationCloudWatchDashboardInput })
+
+M.ExperimentReportS3ReportList = schema.new({ type = "list", list_member = M.ExperimentReportS3Report })
+
+M.TargetInformationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentTemplateTargetFilterList = schema.new({ type = "list", list_member = M.ExperimentTemplateTargetFilter })
+
+M.ExperimentTemplateReportConfigurationCloudWatchDashboardList = schema.new({ type = "list", list_member = M.ExperimentTemplateReportConfigurationCloudWatchDashboard })
+
+M.ExperimentTargetFilterList = schema.new({ type = "list", list_member = M.ExperimentTargetFilter })
+
+M.ExperimentTargetParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentActionParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentActionTargetMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExperimentActionStartAfterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExperimentReportConfigurationCloudWatchDashboardList = schema.new({ type = "list", list_member = M.ExperimentReportConfigurationCloudWatchDashboard })
+
+M.ExperimentTemplateTargetFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExperimentTargetFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActionParameter = schema.new({
     id = id.from(_N, "ActionParameter"),
     type = "structure",

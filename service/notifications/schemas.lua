@@ -7,6 +7,62 @@ local _N = "com.amazonaws.notifications"
 
 local M = {}
 
+M.ManagedNotificationChannelAssociations = schema.new({ type = "list", list_member = M.ManagedNotificationChannelAssociationSummary })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.MemberAccounts = schema.new({ type = "list", list_member = M.MemberAccount })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Channels = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventRules = schema.new({ type = "list", list_member = M.EventRuleStructure })
+
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusSummaryByRegion = schema.new({ type = "map", map_key = prelude.String, map_value = M.EventRuleStatusSummary })
+
+M.ManagedRuleArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManagedNotificationChildEvents = schema.new({ type = "list", list_member = M.ManagedNotificationChildEventOverview })
+
+M.ManagedNotificationConfigurations = schema.new({ type = "list", list_member = M.ManagedNotificationConfigurationStructure })
+
+M.ManagedNotificationEvents = schema.new({ type = "list", list_member = M.ManagedNotificationEventOverview })
+
+M.NotificationConfigurations = schema.new({ type = "list", list_member = M.NotificationConfigurationStructure })
+
+M.NotificationEvents = schema.new({ type = "list", list_member = M.NotificationEventOverview })
+
+M.NotificationHubs = schema.new({ type = "list", list_member = M.NotificationHubOverview })
+
+M.OrganizationalUnits = schema.new({ type = "list", list_member = prelude.String })
+
+M.TextParts = schema.new({ type = "map", map_key = prelude.String, map_value = M.TextPartValue })
+
+M.Media = schema.new({ type = "list", list_member = M.MediaElement })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
+M.SummarizationDimensionDetails = schema.new({ type = "list", list_member = M.SummarizationDimensionDetail })
+
+M.AggregatedNotificationRegions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregationKeys = schema.new({ type = "list", list_member = M.AggregationKey })
+
+M.SummarizationDimensionOverviews = schema.new({ type = "list", list_member = M.SummarizationDimensionOverview })
+
+M.Resources = schema.new({ type = "list", list_member = M.Resource })
+
+M.TextByLocale = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SampleAggregationDimensionValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

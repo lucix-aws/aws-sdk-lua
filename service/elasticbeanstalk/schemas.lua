@@ -7,6 +7,106 @@ local _N = "com.amazonaws.elasticbeanstalk"
 
 local M = {}
 
+M.VersionLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentDescriptionsList = schema.new({ type = "list", list_member = M.EnvironmentDescription })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ConfigurationOptionSettingsList = schema.new({ type = "list", list_member = M.ConfigurationOptionSetting })
+
+M.OptionsSpecifierList = schema.new({ type = "list", list_member = M.OptionSpecification })
+
+M.EnvironmentLinks = schema.new({ type = "list", list_member = M.EnvironmentLink })
+
+M.ApplicationNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationDescriptionList = schema.new({ type = "list", list_member = M.ApplicationDescription })
+
+M.VersionLabelsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationVersionDescriptionList = schema.new({ type = "list", list_member = M.ApplicationVersionDescription })
+
+M.ConfigurationOptionDescriptionsList = schema.new({ type = "list", list_member = M.ConfigurationOptionDescription })
+
+M.ConfigurationSettingsDescriptionList = schema.new({ type = "list", list_member = M.ConfigurationSettingsDescription })
+
+M.EnvironmentHealthAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Causes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManagedActionHistoryItems = schema.new({ type = "list", list_member = M.ManagedActionHistoryItem })
+
+M.ManagedActions = schema.new({ type = "list", list_member = M.ManagedAction })
+
+M.EnvironmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventDescriptionList = schema.new({ type = "list", list_member = M.EventDescription })
+
+M.InstancesHealthAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceHealthList = schema.new({ type = "list", list_member = M.SingleInstanceHealth })
+
+M.AvailableSolutionStackNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailableSolutionStackDetailsList = schema.new({ type = "list", list_member = M.SolutionStackDescription })
+
+M.SearchFilters = schema.new({ type = "list", list_member = M.SearchFilter })
+
+M.PlatformBranchSummaryList = schema.new({ type = "list", list_member = M.PlatformBranchSummary })
+
+M.PlatformFilters = schema.new({ type = "list", list_member = M.PlatformFilter })
+
+M.PlatformSummaryList = schema.new({ type = "list", list_member = M.PlatformSummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EnvironmentInfoDescriptionList = schema.new({ type = "list", list_member = M.EnvironmentInfoDescription })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationMessagesList = schema.new({ type = "list", list_member = M.ValidationMessage })
+
+M.ConfigurationTemplateNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedTierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedAddonList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoScalingGroupList = schema.new({ type = "list", list_member = M.AutoScalingGroup })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.LaunchConfigurationList = schema.new({ type = "list", list_member = M.LaunchConfiguration })
+
+M.LaunchTemplateList = schema.new({ type = "list", list_member = M.LaunchTemplate })
+
+M.LoadBalancerList = schema.new({ type = "list", list_member = M.LoadBalancer })
+
+M.TriggerList = schema.new({ type = "list", list_member = M.Trigger })
+
+M.QueueList = schema.new({ type = "list", list_member = M.Queue })
+
+M.PlatformProgrammingLanguages = schema.new({ type = "list", list_member = M.PlatformProgrammingLanguage })
+
+M.PlatformFrameworks = schema.new({ type = "list", list_member = M.PlatformFramework })
+
+M.CustomAmiList = schema.new({ type = "list", list_member = M.CustomAmi })
+
+M.LoadBalancerListenersDescription = schema.new({ type = "list", list_member = M.Listener })
+
+M.ConfigurationOptionPossibleValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SolutionStackFileTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlatformFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadAverage = schema.new({ type = "list", list_member = prelude.Double })
+
 M.AbortEnvironmentUpdateInput = schema.new({
     id = id.from(_N, "AbortEnvironmentUpdateMessage"),
     type = "structure",
@@ -26,10 +126,7 @@ M.AbortEnvironmentUpdateInput = schema.new({
     },
 })
 
-M.AbortEnvironmentUpdateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AbortEnvironmentUpdateOutput = prelude.Unit
 
 M.InsufficientPrivilegesException = schema.new({
     id = id.from(_N, "InsufficientPrivilegesException"),
@@ -562,10 +659,7 @@ M.AssociateEnvironmentOperationsRoleInput = schema.new({
     },
 })
 
-M.AssociateEnvironmentOperationsRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateEnvironmentOperationsRoleOutput = prelude.Unit
 
 M.AutoScalingGroup = schema.new({
     id = id.from(_N, "AutoScalingGroup"),
@@ -1865,10 +1959,7 @@ M.TooManyPlatformsException = schema.new({
     },
 })
 
-M.CreateStorageLocationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateStorageLocationInput = prelude.Unit
 
 M.CreateStorageLocationOutput = schema.new({
     id = id.from(_N, "CreateStorageLocationResultMessage"),
@@ -1921,10 +2012,7 @@ M.DeleteApplicationInput = schema.new({
     },
 })
 
-M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationOutput = prelude.Unit
 
 M.OperationInProgressException = schema.new({
     id = id.from(_N, "OperationInProgressException"),
@@ -1973,10 +2061,7 @@ M.DeleteApplicationVersionInput = schema.new({
     },
 })
 
-M.DeleteApplicationVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationVersionOutput = prelude.Unit
 
 M.SourceBundleDeletionException = schema.new({
     id = id.from(_N, "SourceBundleDeletionException"),
@@ -2019,10 +2104,7 @@ M.DeleteConfigurationTemplateInput = schema.new({
     },
 })
 
-M.DeleteConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigurationTemplateOutput = prelude.Unit
 
 M.DeleteEnvironmentConfigurationInput = schema.new({
     id = id.from(_N, "DeleteEnvironmentConfigurationMessage"),
@@ -2049,10 +2131,7 @@ M.DeleteEnvironmentConfigurationInput = schema.new({
     },
 })
 
-M.DeleteEnvironmentConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEnvironmentConfigurationOutput = prelude.Unit
 
 M.DeletePlatformVersionInput = schema.new({
     id = id.from(_N, "DeletePlatformVersionRequest"),
@@ -2097,10 +2176,7 @@ M.PlatformVersionStillReferencedException = schema.new({
     },
 })
 
-M.DescribeAccountAttributesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeAccountAttributesInput = prelude.Unit
 
 M.ResourceQuota = schema.new({
     id = id.from(_N, "ResourceQuota"),
@@ -3752,15 +3828,9 @@ M.DisassociateEnvironmentOperationsRoleInput = schema.new({
     },
 })
 
-M.DisassociateEnvironmentOperationsRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateEnvironmentOperationsRoleOutput = prelude.Unit
 
-M.ListAvailableSolutionStacksInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ListAvailableSolutionStacksInput = prelude.Unit
 
 M.ListAvailableSolutionStacksOutput = schema.new({
     id = id.from(_N, "ListAvailableSolutionStacksResultMessage"),
@@ -4055,10 +4125,7 @@ M.RebuildEnvironmentInput = schema.new({
     },
 })
 
-M.RebuildEnvironmentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RebuildEnvironmentOutput = prelude.Unit
 
 M.RequestEnvironmentInfoInput = schema.new({
     id = id.from(_N, "RequestEnvironmentInfoMessage"),
@@ -4088,10 +4155,7 @@ M.RequestEnvironmentInfoInput = schema.new({
     },
 })
 
-M.RequestEnvironmentInfoOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RequestEnvironmentInfoOutput = prelude.Unit
 
 M.RestartAppServerInput = schema.new({
     id = id.from(_N, "RestartAppServerMessage"),
@@ -4112,10 +4176,7 @@ M.RestartAppServerInput = schema.new({
     },
 })
 
-M.RestartAppServerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RestartAppServerOutput = prelude.Unit
 
 M.RetrieveEnvironmentInfoInput = schema.new({
     id = id.from(_N, "RetrieveEnvironmentInfoMessage"),
@@ -4221,10 +4282,7 @@ M.SwapEnvironmentCNAMEsInput = schema.new({
     },
 })
 
-M.SwapEnvironmentCNAMEsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SwapEnvironmentCNAMEsOutput = prelude.Unit
 
 M.TerminateEnvironmentInput = schema.new({
     id = id.from(_N, "TerminateEnvironmentMessage"),
@@ -4897,10 +4955,7 @@ M.UpdateTagsForResourceInput = schema.new({
     },
 })
 
-M.UpdateTagsForResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateTagsForResourceOutput = prelude.Unit
 
 M.ValidateConfigurationSettingsInput = schema.new({
     id = id.from(_N, "ValidateConfigurationSettingsMessage"),

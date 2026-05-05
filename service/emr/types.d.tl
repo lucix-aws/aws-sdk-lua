@@ -1028,29 +1028,29 @@ local record InvalidRequestException
     Message: string
 end
 
-local type PersistentAppUIType = "SHS" | "TEZ" | "YTS"
+local type ProfilerType = "SHS" | "TEZUI" | "YTS"
 
-local type RepoUpgradeOnBoot = "SECURITY" | "NONE"
+local type IdentityType = "USER" | "GROUP"
+
+local type ScaleDownBehavior = "TERMINATE_AT_INSTANCE_HOUR" | "TERMINATE_AT_TASK_COMPLETION"
 
 local type IdcUserAssignment = "REQUIRED" | "OPTIONAL"
+
+local type InstanceFleetType = "MASTER" | "CORE" | "TASK"
+
+local type PersistentAppUIType = "SHS" | "TEZ" | "YTS"
+
+local type AuthMode = "SSO" | "IAM"
+
+local type NotebookExecutionStatus = "START_PENDING" | "STARTING" | "RUNNING" | "FINISHING" | "FINISHED" | "FAILING" | "FAILED" | "STOP_PENDING" | "STOPPING" | "STOPPED"
 
 local type OutputNotebookFormat = "HTML"
 
 local type StepCancellationOption = "SEND_INTERRUPT" | "TERMINATE_PROCESS"
 
-local type ScaleDownBehavior = "TERMINATE_AT_INSTANCE_HOUR" | "TERMINATE_AT_TASK_COMPLETION"
-
 local type OnClusterAppUIType = "SparkHistoryServer" | "YarnTimelineService" | "TezUI" | "ApplicationMaster" | "JobHistoryServer" | "ResourceManager"
 
-local type IdentityType = "USER" | "GROUP"
-
-local type InstanceFleetType = "MASTER" | "CORE" | "TASK"
-
-local type NotebookExecutionStatus = "START_PENDING" | "STARTING" | "RUNNING" | "FINISHING" | "FINISHED" | "FAILING" | "FAILED" | "STOP_PENDING" | "STOPPING" | "STOPPED"
-
-local type ProfilerType = "SHS" | "TEZUI" | "YTS"
-
-local type AuthMode = "SSO" | "IAM"
+local type RepoUpgradeOnBoot = "SECURITY" | "NONE"
 
 local record M
     AddInstanceFleetInput: AddInstanceFleetInput

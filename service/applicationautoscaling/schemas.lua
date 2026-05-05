@@ -7,6 +7,44 @@ local _N = "com.amazonaws.applicationautoscaling"
 
 local M = {}
 
+M.ResourceIdsMaxLen1600 = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScalableTargets = schema.new({ type = "list", list_member = M.ScalableTarget })
+
+M.ScalingActivities = schema.new({ type = "list", list_member = M.ScalingActivity })
+
+M.ScalingPolicies = schema.new({ type = "list", list_member = M.ScalingPolicy })
+
+M.ScheduledActions = schema.new({ type = "list", list_member = M.ScheduledAction })
+
+M.LoadForecasts = schema.new({ type = "list", list_member = M.LoadForecast })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Alarms = schema.new({ type = "list", list_member = M.Alarm })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PredictiveScalingForecastTimestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.PredictiveScalingForecastValues = schema.new({ type = "list", list_member = prelude.Double })
+
+M.StepAdjustments = schema.new({ type = "list", list_member = M.StepAdjustment })
+
+M.PredictiveScalingMetricSpecifications = schema.new({ type = "list", list_member = M.PredictiveScalingMetricSpecification })
+
+M.NotScaledReasons = schema.new({ type = "list", list_member = M.NotScaledReason })
+
+M.MetricDimensions = schema.new({ type = "list", list_member = M.MetricDimension })
+
+M.TargetTrackingMetricDataQueries = schema.new({ type = "list", list_member = M.TargetTrackingMetricDataQuery })
+
+M.PredictiveScalingMetricDataQueries = schema.new({ type = "list", list_member = M.PredictiveScalingMetricDataQuery })
+
+M.TargetTrackingMetricDimensions = schema.new({ type = "list", list_member = M.TargetTrackingMetricDimension })
+
+M.PredictiveScalingMetricDimensions = schema.new({ type = "list", list_member = M.PredictiveScalingMetricDimension })
+
 M.Alarm = schema.new({
     id = id.from(_N, "Alarm"),
     type = "structure",

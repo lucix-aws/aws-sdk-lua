@@ -7,6 +7,34 @@ local _N = "com.amazonaws.repostspace"
 
 local M = {}
 
+M.AccessorIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchErrorList = schema.new({ type = "list", list_member = M.BatchError })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ChannelRoles = schema.new({ type = "map", map_key = prelude.String, map_value = M.ChannelRoleList })
+
+M.UserAdmins = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupAdmins = schema.new({ type = "list", list_member = prelude.String })
+
+M.Roles = schema.new({ type = "map", map_key = prelude.String, map_value = M.RoleList })
+
+M.ChannelsList = schema.new({ type = "list", list_member = M.ChannelData })
+
+M.SpacesList = schema.new({ type = "list", list_member = M.SpaceData })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedDomainsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelRoleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoleList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -843,10 +871,7 @@ M.DeleteSpaceInput = schema.new({
     },
 })
 
-M.DeleteSpaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSpaceOutput = prelude.Unit
 
 M.DeregisterAdminInput = schema.new({
     id = id.from(_N, "DeregisterAdminInput"),
@@ -875,10 +900,7 @@ M.DeregisterAdminInput = schema.new({
     },
 })
 
-M.DeregisterAdminOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterAdminOutput = prelude.Unit
 
 M.GetChannelInput = schema.new({
     id = id.from(_N, "GetChannelInput"),
@@ -1530,10 +1552,7 @@ M.RegisterAdminInput = schema.new({
     },
 })
 
-M.RegisterAdminOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterAdminOutput = prelude.Unit
 
 M.SendInvitesInput = schema.new({
     id = id.from(_N, "SendInvitesInput"),
@@ -1580,10 +1599,7 @@ M.SendInvitesInput = schema.new({
     },
 })
 
-M.SendInvitesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SendInvitesOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -1740,10 +1756,7 @@ M.UpdateSpaceInput = schema.new({
     },
 })
 
-M.UpdateSpaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateSpaceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

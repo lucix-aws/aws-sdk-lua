@@ -7,6 +7,28 @@ local _N = "com.amazonaws.mediapackagevod"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfEgressEndpoint = schema.new({ type = "list", list_member = M.EgressEndpoint })
+
+M.__listOfAssetShallow = schema.new({ type = "list", list_member = M.AssetShallow })
+
+M.__listOfPackagingConfiguration = schema.new({ type = "list", list_member = M.PackagingConfiguration })
+
+M.__listOfPackagingGroup = schema.new({ type = "list", list_member = M.PackagingGroup })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfHlsManifest = schema.new({ type = "list", list_member = M.HlsManifest })
+
+M.__listOfDashManifest = schema.new({ type = "list", list_member = M.DashManifest })
+
+M.__listOf__PeriodTriggersElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfMssManifest = schema.new({ type = "list", list_member = M.MssManifest })
+
 M.AssetShallow = schema.new({
     id = id.from(_N, "AssetShallow"),
     type = "structure",
@@ -2199,10 +2221,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -2232,10 +2251,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdatePackagingGroupInput = schema.new({
     id = id.from(_N, "UpdatePackagingGroupRequest"),

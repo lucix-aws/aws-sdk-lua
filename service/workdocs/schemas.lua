@@ -7,6 +7,72 @@ local _N = "com.amazonaws.workdocs"
 
 local M = {}
 
+M.EntityIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SharePrincipalList = schema.new({ type = "list", list_member = M.SharePrincipal })
+
+M.ShareResultsList = schema.new({ type = "list", list_member = M.ShareResult })
+
+M.CustomMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SharedLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomMetadataKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserActivities = schema.new({ type = "list", list_member = M.Activity })
+
+M.CommentList = schema.new({ type = "list", list_member = M.Comment })
+
+M.DocumentVersionMetadataList = schema.new({ type = "list", list_member = M.DocumentVersionMetadata })
+
+M.FolderMetadataList = schema.new({ type = "list", list_member = M.FolderMetadata })
+
+M.DocumentMetadataList = schema.new({ type = "list", list_member = M.DocumentMetadata })
+
+M.GroupMetadataList = schema.new({ type = "list", list_member = M.GroupMetadata })
+
+M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.PrincipalList = schema.new({ type = "list", list_member = M.Principal })
+
+M.OrganizationUserList = schema.new({ type = "list", list_member = M.User })
+
+M.SearchQueryScopeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalResponseFieldsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchResultSortList = schema.new({ type = "list", list_member = M.SearchSortResult })
+
+M.ResponseItemsList = schema.new({ type = "list", list_member = M.ResponseItem })
+
+M.ResourcePathComponentList = schema.new({ type = "list", list_member = M.ResourcePathComponent })
+
+M.DocumentThumbnailUrlMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DocumentSourceUrlMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SignedHeaderMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TextLocaleTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchContentCategoryTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchLabelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchPrincipalTypeList = schema.new({ type = "list", list_member = M.SearchPrincipalType })
+
+M.SearchAncestorIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchCollectionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionInfoList = schema.new({ type = "list", list_member = M.PermissionInfo })
+
+M.UserMetadataList = schema.new({ type = "list", list_member = M.UserMetadata })
+
+M.SearchPrincipalRoleList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AbortDocumentVersionUploadInput = schema.new({
     id = id.from(_N, "AbortDocumentVersionUploadRequest"),
     type = "structure",
@@ -43,10 +109,7 @@ M.AbortDocumentVersionUploadInput = schema.new({
     },
 })
 
-M.AbortDocumentVersionUploadOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AbortDocumentVersionUploadOutput = prelude.Unit
 
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),
@@ -1452,10 +1515,7 @@ M.DeactivateUserInput = schema.new({
     },
 })
 
-M.DeactivateUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeactivateUserOutput = prelude.Unit
 
 M.DeleteCommentInput = schema.new({
     id = id.from(_N, "DeleteCommentRequest"),
@@ -1503,10 +1563,7 @@ M.DeleteCommentInput = schema.new({
     },
 })
 
-M.DeleteCommentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCommentOutput = prelude.Unit
 
 M.DeleteCustomMetadataInput = schema.new({
     id = id.from(_N, "DeleteCustomMetadataRequest"),
@@ -1594,10 +1651,7 @@ M.DeleteDocumentInput = schema.new({
     },
 })
 
-M.DeleteDocumentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDocumentOutput = prelude.Unit
 
 M.DeleteDocumentVersionInput = schema.new({
     id = id.from(_N, "DeleteDocumentVersionRequest"),
@@ -1646,10 +1700,7 @@ M.DeleteDocumentVersionInput = schema.new({
     },
 })
 
-M.DeleteDocumentVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDocumentVersionOutput = prelude.Unit
 
 M.InvalidOperationException = schema.new({
     id = id.from(_N, "InvalidOperationException"),
@@ -1693,10 +1744,7 @@ M.DeleteFolderInput = schema.new({
     },
 })
 
-M.DeleteFolderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFolderOutput = prelude.Unit
 
 M.DeleteFolderContentsInput = schema.new({
     id = id.from(_N, "DeleteFolderContentsRequest"),
@@ -1724,10 +1772,7 @@ M.DeleteFolderContentsInput = schema.new({
     },
 })
 
-M.DeleteFolderContentsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFolderContentsOutput = prelude.Unit
 
 M.DeleteLabelsInput = schema.new({
     id = id.from(_N, "DeleteLabelsRequest"),
@@ -1807,10 +1852,7 @@ M.DeleteNotificationSubscriptionInput = schema.new({
     },
 })
 
-M.DeleteNotificationSubscriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNotificationSubscriptionOutput = prelude.Unit
 
 M.DeleteUserInput = schema.new({
     id = id.from(_N, "DeleteUserRequest"),
@@ -1838,10 +1880,7 @@ M.DeleteUserInput = schema.new({
     },
 })
 
-M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserOutput = prelude.Unit
 
 M.DescribeActivitiesInput = schema.new({
     id = id.from(_N, "DescribeActivitiesRequest"),
@@ -3486,10 +3525,7 @@ M.RemoveAllResourcePermissionsInput = schema.new({
     },
 })
 
-M.RemoveAllResourcePermissionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveAllResourcePermissionsOutput = prelude.Unit
 
 M.RemoveResourcePermissionInput = schema.new({
     id = id.from(_N, "RemoveResourcePermissionRequest"),
@@ -3536,10 +3572,7 @@ M.RemoveResourcePermissionInput = schema.new({
     },
 })
 
-M.RemoveResourcePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveResourcePermissionOutput = prelude.Unit
 
 M.RestoreDocumentVersionsInput = schema.new({
     id = id.from(_N, "RestoreDocumentVersionsRequest"),
@@ -3567,10 +3600,7 @@ M.RestoreDocumentVersionsInput = schema.new({
     },
 })
 
-M.RestoreDocumentVersionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RestoreDocumentVersionsOutput = prelude.Unit
 
 M.DateRangeType = schema.new({
     id = id.from(_N, "DateRangeType"),
@@ -3908,10 +3938,7 @@ M.UpdateDocumentInput = schema.new({
     },
 })
 
-M.UpdateDocumentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDocumentOutput = prelude.Unit
 
 M.UpdateDocumentVersionInput = schema.new({
     id = id.from(_N, "UpdateDocumentVersionRequest"),
@@ -3955,10 +3982,7 @@ M.UpdateDocumentVersionInput = schema.new({
     },
 })
 
-M.UpdateDocumentVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDocumentVersionOutput = prelude.Unit
 
 M.UpdateFolderInput = schema.new({
     id = id.from(_N, "UpdateFolderRequest"),
@@ -4004,10 +4028,7 @@ M.UpdateFolderInput = schema.new({
     },
 })
 
-M.UpdateFolderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateFolderOutput = prelude.Unit
 
 M.DeactivatingLastSystemUserException = schema.new({
     id = id.from(_N, "DeactivatingLastSystemUserException"),

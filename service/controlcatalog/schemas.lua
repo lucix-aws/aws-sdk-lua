@@ -7,6 +7,38 @@ local _N = "com.amazonaws.controlcatalog"
 
 local M = {}
 
+M.ControlMappings = schema.new({ type = "list", list_member = M.ControlMapping })
+
+M.CommonControlSummaryList = schema.new({ type = "list", list_member = M.CommonControlSummary })
+
+M.Controls = schema.new({ type = "list", list_member = M.ControlSummary })
+
+M.ControlAliases = schema.new({ type = "list", list_member = prelude.String })
+
+M.ControlParameters = schema.new({ type = "list", list_member = M.ControlParameter })
+
+M.GovernedResources = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainSummaryList = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.ObjectiveSummaryList = schema.new({ type = "list", list_member = M.ObjectiveSummary })
+
+M.ControlArnFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommonControlArnFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MappingTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectiveResourceFilterList = schema.new({ type = "list", list_member = M.ObjectiveResourceFilter })
+
+M.DeployableRegions = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainResourceFilterList = schema.new({ type = "list", list_member = M.DomainResourceFilter })
+
+M.ImplementationTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImplementationIdentifierFilterList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

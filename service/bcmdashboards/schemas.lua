@@ -7,6 +7,34 @@ local _N = "com.amazonaws.bcmdashboards"
 
 local M = {}
 
+M.WidgetList = schema.new({ type = "list", list_member = M.Widget })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.DashboardReferenceList = schema.new({ type = "list", list_member = M.DashboardReference })
+
+M.ScheduledReportSummaryList = schema.new({ type = "list", list_member = M.ScheduledReportSummary })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WidgetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusReasonList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WidgetConfigList = schema.new({ type = "list", list_member = M.WidgetConfig })
+
+M.GraphDisplayConfigMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.GraphDisplayConfig })
+
+M.MetricNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupDefinitions = schema.new({ type = "list", list_member = M.GroupDefinition })
+
+M.Expressions = schema.new({ type = "list", list_member = M.Expression })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchOptions = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

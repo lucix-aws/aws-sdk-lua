@@ -7,6 +7,116 @@ local _N = "com.amazonaws.elasticloadbalancingv2"
 
 local M = {}
 
+M.CertificateList = schema.new({ type = "list", list_member = M.Certificate })
+
+M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.RevocationContents = schema.new({ type = "list", list_member = M.RevocationContent })
+
+M.TrustStoreRevocations = schema.new({ type = "list", list_member = M.TrustStoreRevocation })
+
+M.Actions = schema.new({ type = "list", list_member = M.Action })
+
+M.AlpnPolicyName = schema.new({ type = "list", list_member = prelude.String })
+
+M.Listeners = schema.new({ type = "list", list_member = M.Listener })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetMappings = schema.new({ type = "list", list_member = M.SubnetMapping })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadBalancers = schema.new({ type = "list", list_member = M.LoadBalancer })
+
+M.RuleConditionList = schema.new({ type = "list", list_member = M.RuleCondition })
+
+M.RuleTransformList = schema.new({ type = "list", list_member = M.RuleTransform })
+
+M.Rules = schema.new({ type = "list", list_member = M.Rule })
+
+M.TargetGroups = schema.new({ type = "list", list_member = M.TargetGroup })
+
+M.TrustStores = schema.new({ type = "list", list_member = M.TrustStore })
+
+M.TargetDescriptions = schema.new({ type = "list", list_member = M.TargetDescription })
+
+M.Limits = schema.new({ type = "list", list_member = M.Limit })
+
+M.ZonalCapacityReservationStates = schema.new({ type = "list", list_member = M.ZonalCapacityReservationState })
+
+M.ListenerAttributes = schema.new({ type = "list", list_member = M.ListenerAttribute })
+
+M.ListenerArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadBalancerAttributes = schema.new({ type = "list", list_member = M.LoadBalancerAttribute })
+
+M.LoadBalancerArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadBalancerNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SslPolicyNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.SslPolicies = schema.new({ type = "list", list_member = M.SslPolicy })
+
+M.TagDescriptions = schema.new({ type = "list", list_member = M.TagDescription })
+
+M.TargetGroupAttributes = schema.new({ type = "list", list_member = M.TargetGroupAttribute })
+
+M.TargetGroupArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfDescribeTargetHealthIncludeOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetHealthDescriptions = schema.new({ type = "list", list_member = M.TargetHealthDescription })
+
+M.TrustStoreAssociations = schema.new({ type = "list", list_member = M.TrustStoreAssociation })
+
+M.RevocationIds = schema.new({ type = "list", list_member = prelude.Long })
+
+M.DescribeTrustStoreRevocationResponse = schema.new({ type = "list", list_member = M.DescribeTrustStoreRevocation })
+
+M.TrustStoreArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrustStoreNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.RemoveIpamPools = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.RulePriorityList = schema.new({ type = "list", list_member = M.RulePriorityPair })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.ListOfString = schema.new({ type = "list", list_member = prelude.String })
+
+M.SslProtocols = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ciphers = schema.new({ type = "list", list_member = M.Cipher })
+
+M.LoadBalancerAddresses = schema.new({ type = "list", list_member = M.LoadBalancerAddress })
+
+M.SourceNatIpv6Prefixes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthenticateOidcActionAuthenticationRequestExtraParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AuthenticateCognitoActionAuthenticationRequestExtraParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TargetGroupList = schema.new({ type = "list", list_member = M.TargetGroupTuple })
+
+M.JwtValidationActionAdditionalClaims = schema.new({ type = "list", list_member = M.JwtValidationActionAdditionalClaim })
+
+M.QueryStringKeyValuePairList = schema.new({ type = "list", list_member = M.QueryStringKeyValuePair })
+
+M.RewriteConfigList = schema.new({ type = "list", list_member = M.RewriteConfig })
+
+M.JwtValidationActionAdditionalClaimValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AuthenticateCognitoActionConfig = schema.new({
     id = id.from(_N, "AuthenticateCognitoActionConfig"),
     type = "structure",

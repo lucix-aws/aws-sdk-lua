@@ -7,6 +7,38 @@ local _N = "com.amazonaws.mq"
 
 local M = {}
 
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfUser = schema.new({ type = "list", list_member = M.User })
+
+M.__listOfActionRequired = schema.new({ type = "list", list_member = M.ActionRequired })
+
+M.__listOfBrokerInstance = schema.new({ type = "list", list_member = M.BrokerInstance })
+
+M.__listOfUserSummary = schema.new({ type = "list", list_member = M.UserSummary })
+
+M.__listOfBrokerEngineType = schema.new({ type = "list", list_member = M.BrokerEngineType })
+
+M.__listOfBrokerInstanceOption = schema.new({ type = "list", list_member = M.BrokerInstanceOption })
+
+M.__listOfBrokerSummary = schema.new({ type = "list", list_member = M.BrokerSummary })
+
+M.__listOfConfigurationRevision = schema.new({ type = "list", list_member = M.ConfigurationRevision })
+
+M.__listOfConfiguration = schema.new({ type = "list", list_member = M.Configuration })
+
+M.__listOfSanitizationWarning = schema.new({ type = "list", list_member = M.SanitizationWarning })
+
+M.__listOfConfigurationId = schema.new({ type = "list", list_member = M.ConfigurationId })
+
+M.__listOfEngineVersion = schema.new({ type = "list", list_member = M.EngineVersion })
+
+M.__listOfAvailabilityZone = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.__listOfDeploymentMode = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActionRequired = schema.new({
     id = id.from(_N, "ActionRequired"),
     type = "structure",
@@ -1336,10 +1368,7 @@ M.CreateTagsInput = schema.new({
     },
 })
 
-M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTagsOutput = prelude.Unit
 
 M.NotFoundException = schema.new({
     id = id.from(_N, "NotFoundException"),
@@ -1587,10 +1616,7 @@ M.DeleteTagsInput = schema.new({
     },
 })
 
-M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTagsOutput = prelude.Unit
 
 M.DeleteUserInput = schema.new({
     id = id.from(_N, "DeleteUserRequest"),

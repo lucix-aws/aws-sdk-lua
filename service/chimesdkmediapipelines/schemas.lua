@@ -7,6 +7,52 @@ local _N = "com.amazonaws.chimesdkmediapipelines"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ConcatenationSourceList = schema.new({ type = "list", list_member = M.ConcatenationSource })
+
+M.ConcatenationSinkList = schema.new({ type = "list", list_member = M.ConcatenationSink })
+
+M.MediaInsightsRuntimeMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MediaInsightsPipelineConfigurationElements = schema.new({ type = "list", list_member = M.MediaInsightsPipelineConfigurationElement })
+
+M.LiveConnectorSourceList = schema.new({ type = "list", list_member = M.LiveConnectorSourceConfiguration })
+
+M.LiveConnectorSinkList = schema.new({ type = "list", list_member = M.LiveConnectorSinkConfiguration })
+
+M.MediaStreamSourceList = schema.new({ type = "list", list_member = M.MediaStreamSource })
+
+M.MediaStreamSinkList = schema.new({ type = "list", list_member = M.MediaStreamSink })
+
+M.MediaCapturePipelineSummaryList = schema.new({ type = "list", list_member = M.MediaCapturePipelineSummary })
+
+M.MediaInsightsPipelineConfigurationSummaryList = schema.new({ type = "list", list_member = M.MediaInsightsPipelineConfigurationSummary })
+
+M.KinesisVideoStreamPoolSummaryList = schema.new({ type = "list", list_member = M.KinesisVideoStreamPoolSummary })
+
+M.MediaPipelineList = schema.new({ type = "list", list_member = M.MediaPipelineSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Streams = schema.new({ type = "list", list_member = M.StreamConfiguration })
+
+M.RecordingStreamList = schema.new({ type = "list", list_member = M.RecordingStreamConfiguration })
+
+M.MediaInsightsPipelineElementStatuses = schema.new({ type = "list", list_member = M.MediaInsightsPipelineElementStatus })
+
+M.RealTimeAlertRuleList = schema.new({ type = "list", list_member = M.RealTimeAlertRule })
+
+M.AttendeeIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExternalUserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelDefinitions = schema.new({ type = "list", list_member = M.ChannelDefinition })
+
+M.KeywordMatchWordList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActiveSpeakerOnlyConfiguration = schema.new({
     id = id.from(_N, "ActiveSpeakerOnlyConfiguration"),
     type = "structure",
@@ -2967,10 +3013,7 @@ M.DeleteMediaCapturePipelineInput = schema.new({
     },
 })
 
-M.DeleteMediaCapturePipelineOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMediaCapturePipelineOutput = prelude.Unit
 
 M.DeleteMediaInsightsPipelineConfigurationInput = schema.new({
     id = id.from(_N, "DeleteMediaInsightsPipelineConfigurationRequest"),
@@ -2989,10 +3032,7 @@ M.DeleteMediaInsightsPipelineConfigurationInput = schema.new({
     },
 })
 
-M.DeleteMediaInsightsPipelineConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMediaInsightsPipelineConfigurationOutput = prelude.Unit
 
 M.DeleteMediaPipelineInput = schema.new({
     id = id.from(_N, "DeleteMediaPipelineRequest"),
@@ -3011,10 +3051,7 @@ M.DeleteMediaPipelineInput = schema.new({
     },
 })
 
-M.DeleteMediaPipelineOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMediaPipelineOutput = prelude.Unit
 
 M.DeleteMediaPipelineKinesisVideoStreamPoolInput = schema.new({
     id = id.from(_N, "DeleteMediaPipelineKinesisVideoStreamPoolRequest"),
@@ -3033,10 +3070,7 @@ M.DeleteMediaPipelineKinesisVideoStreamPoolInput = schema.new({
     },
 })
 
-M.DeleteMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMediaPipelineKinesisVideoStreamPoolOutput = prelude.Unit
 
 M.GetMediaCapturePipelineInput = schema.new({
     id = id.from(_N, "GetMediaCapturePipelineRequest"),
@@ -3830,10 +3864,7 @@ M.StopSpeakerSearchTaskInput = schema.new({
     },
 })
 
-M.StopSpeakerSearchTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopSpeakerSearchTaskOutput = prelude.Unit
 
 M.StopVoiceToneAnalysisTaskInput = schema.new({
     id = id.from(_N, "StopVoiceToneAnalysisTaskRequest"),
@@ -3862,10 +3893,7 @@ M.StopVoiceToneAnalysisTaskInput = schema.new({
     },
 })
 
-M.StopVoiceToneAnalysisTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopVoiceToneAnalysisTaskOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -4012,10 +4040,7 @@ M.UpdateMediaInsightsPipelineStatusInput = schema.new({
     },
 })
 
-M.UpdateMediaInsightsPipelineStatusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateMediaInsightsPipelineStatusOutput = prelude.Unit
 
 M.KinesisVideoStreamConfigurationUpdate = schema.new({
     id = id.from(_N, "KinesisVideoStreamConfigurationUpdate"),

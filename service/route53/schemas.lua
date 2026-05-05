@@ -7,6 +7,70 @@ local _N = "com.amazonaws.route53"
 
 local M = {}
 
+M.CidrCollectionChanges = schema.new({ type = "list", list_member = M.CidrCollectionChange })
+
+M.ErrorMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CheckerIpRanges = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeySigningKeys = schema.new({ type = "list", list_member = M.KeySigningKey })
+
+M.HealthCheckObservations = schema.new({ type = "list", list_member = M.HealthCheckObservation })
+
+M.VPCs = schema.new({ type = "list", list_member = M.VPC })
+
+M.CidrBlockSummaries = schema.new({ type = "list", list_member = M.CidrBlockSummary })
+
+M.CollectionSummaries = schema.new({ type = "list", list_member = M.CollectionSummary })
+
+M.LocationSummaries = schema.new({ type = "list", list_member = M.LocationSummary })
+
+M.GeoLocationDetailsList = schema.new({ type = "list", list_member = M.GeoLocationDetails })
+
+M.HealthChecks = schema.new({ type = "list", list_member = M.HealthCheck })
+
+M.HostedZones = schema.new({ type = "list", list_member = M.HostedZone })
+
+M.HostedZoneSummaries = schema.new({ type = "list", list_member = M.HostedZoneSummary })
+
+M.QueryLoggingConfigs = schema.new({ type = "list", list_member = M.QueryLoggingConfig })
+
+M.ResourceRecordSets = schema.new({ type = "list", list_member = M.ResourceRecordSet })
+
+M.DelegationSets = schema.new({ type = "list", list_member = M.DelegationSet })
+
+M.TagResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagSetList = schema.new({ type = "list", list_member = M.ResourceTagSet })
+
+M.TrafficPolicySummaries = schema.new({ type = "list", list_member = M.TrafficPolicySummary })
+
+M.TrafficPolicyInstances = schema.new({ type = "list", list_member = M.TrafficPolicyInstance })
+
+M.TrafficPolicies = schema.new({ type = "list", list_member = M.TrafficPolicy })
+
+M.RecordData = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChildHealthCheckList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HealthCheckRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResettableElementNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Changes = schema.new({ type = "list", list_member = M.Change })
+
+M.DelegationSetNameServers = schema.new({ type = "list", list_member = prelude.String })
+
+M.CidrList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DimensionList = schema.new({ type = "list", list_member = M.Dimension })
+
+M.ResourceRecords = schema.new({ type = "list", list_member = M.ResourceRecord })
+
 M.AccountLimit = schema.new({
     id = id.from(_N, "AccountLimit"),
     type = "structure",

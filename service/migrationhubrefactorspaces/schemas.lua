@@ -7,6 +7,28 @@ local _N = "com.amazonaws.migrationhubrefactorspaces"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.HttpMethods = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathResourceToId = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ApplicationSummaries = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.EnvironmentSummaries = schema.new({ type = "list", list_member = M.EnvironmentSummary })
+
+M.EnvironmentVpcs = schema.new({ type = "list", list_member = M.EnvironmentVpc })
+
+M.RouteSummaries = schema.new({ type = "list", list_member = M.RouteSummary })
+
+M.ServiceSummaries = schema.new({ type = "list", list_member = M.ServiceSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalDetails = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CidrBlocks = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

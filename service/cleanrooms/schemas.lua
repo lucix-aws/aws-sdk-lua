@@ -7,6 +7,180 @@ local _N = "com.amazonaws.cleanrooms"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisTemplateSummaryList = schema.new({ type = "list", list_member = M.AnalysisTemplateSummary })
+
+M.AnalysisParameterList = schema.new({ type = "list", list_member = M.AnalysisParameter })
+
+M.CollaborationSummaryList = schema.new({ type = "list", list_member = M.CollaborationSummary })
+
+M.MemberList = schema.new({ type = "list", list_member = M.MemberSpecification })
+
+M.MemberAbilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoApprovedChangeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedResultRegions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisTemplateArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CollaborationAnalysisTemplateList = schema.new({ type = "list", list_member = M.CollaborationAnalysisTemplate })
+
+M.BatchGetCollaborationAnalysisTemplateErrorList = schema.new({ type = "list", list_member = M.BatchGetCollaborationAnalysisTemplateError })
+
+M.TableAliasList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchemaList = schema.new({ type = "list", list_member = M.Schema })
+
+M.BatchGetSchemaErrorList = schema.new({ type = "list", list_member = M.BatchGetSchemaError })
+
+M.SchemaAnalysisRuleRequestList = schema.new({ type = "list", list_member = M.SchemaAnalysisRuleRequest })
+
+M.SchemaAnalysisRuleList = schema.new({ type = "list", list_member = M.AnalysisRule })
+
+M.BatchGetSchemaAnalysisRuleErrorList = schema.new({ type = "list", list_member = M.BatchGetSchemaAnalysisRuleError })
+
+M.ChangeInputList = schema.new({ type = "list", list_member = M.ChangeInput })
+
+M.CollaborationAnalysisTemplateSummaryList = schema.new({ type = "list", list_member = M.CollaborationAnalysisTemplateSummary })
+
+M.CollaborationChangeRequestSummaryList = schema.new({ type = "list", list_member = M.CollaborationChangeRequestSummary })
+
+M.CollaborationConfiguredAudienceModelAssociationSummaryList = schema.new({ type = "list", list_member = M.CollaborationConfiguredAudienceModelAssociationSummary })
+
+M.CollaborationIdNamespaceAssociationSummaryList = schema.new({ type = "list", list_member = M.CollaborationIdNamespaceAssociationSummary })
+
+M.CollaborationPrivacyBudgetSummaryList = schema.new({ type = "list", list_member = M.CollaborationPrivacyBudgetSummary })
+
+M.CollaborationPrivacyBudgetTemplateSummaryList = schema.new({ type = "list", list_member = M.CollaborationPrivacyBudgetTemplateSummary })
+
+M.MemberSummaryList = schema.new({ type = "list", list_member = M.MemberSummary })
+
+M.SchemaSummaryList = schema.new({ type = "list", list_member = M.SchemaSummary })
+
+M.ConfiguredAudienceModelAssociationSummaryList = schema.new({ type = "list", list_member = M.ConfiguredAudienceModelAssociationSummary })
+
+M.ConfiguredTableAssociationSummaryList = schema.new({ type = "list", list_member = M.ConfiguredTableAssociationSummary })
+
+M.ConfiguredTableSummaryList = schema.new({ type = "list", list_member = M.ConfiguredTableSummary })
+
+M.AllowedColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SelectedAnalysisMethods = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdMappingTableSummaryList = schema.new({ type = "list", list_member = M.IdMappingTableSummary })
+
+M.IdNamespaceAssociationSummaryList = schema.new({ type = "list", list_member = M.IdNamespaceAssociationSummary })
+
+M.MembershipSummaryList = schema.new({ type = "list", list_member = M.MembershipSummary })
+
+M.PrivacyBudgetSummaryList = schema.new({ type = "list", list_member = M.PrivacyBudgetSummary })
+
+M.ProtectedJobSummaryList = schema.new({ type = "list", list_member = M.ProtectedJobSummary })
+
+M.ProtectedQuerySummaryList = schema.new({ type = "list", list_member = M.ProtectedQuerySummary })
+
+M.PrivacyBudgetTemplateSummaryList = schema.new({ type = "list", list_member = M.PrivacyBudgetTemplateSummary })
+
+M.QueryTables = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisTemplateValidationStatusDetailList = schema.new({ type = "list", list_member = M.AnalysisTemplateValidationStatusDetail })
+
+M.CustomMLMemberAbilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChangeList = schema.new({ type = "list", list_member = M.Change })
+
+M.ApprovalStatuses = schema.new({ type = "map", map_key = prelude.String, map_value = M.ApprovalStatusDetails })
+
+M.ColumnList = schema.new({ type = "list", list_member = M.Column })
+
+M.AnalysisRuleTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchemaStatusDetailList = schema.new({ type = "list", list_member = M.SchemaStatusDetail })
+
+M.ConfiguredTableAssociationAnalysisRuleTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfiguredTableAnalysisRuleTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AnalysisTemplateArtifactList = schema.new({ type = "list", list_member = M.AnalysisTemplateArtifact })
+
+M.IdMappingWorkflowsSupported = schema.new({ type = "list", list_member = prelude.Document })
+
+M.IdMappingTableInputSourceList = schema.new({ type = "list", list_member = M.IdMappingTableInputSource })
+
+M.DifferentialPrivacySensitivityParametersList = schema.new({ type = "list", list_member = M.DifferentialPrivacySensitivityParameters })
+
+M.ProtectedJobReceiverConfigurations = schema.new({ type = "list", list_member = M.ProtectedJobReceiverConfiguration })
+
+M.ReceiverConfigurationsList = schema.new({ type = "list", list_member = M.ReceiverConfiguration })
+
+M.DifferentialPrivacyPreviewAggregationList = schema.new({ type = "list", list_member = M.DifferentialPrivacyPreviewAggregation })
+
+M.BudgetParameters = schema.new({ type = "list", list_member = M.BudgetParameter })
+
+M.ColumnMappingList = schema.new({ type = "list", list_member = M.SyntheticDataColumnProperties })
+
+M.HashList = schema.new({ type = "list", list_member = M.Hash })
+
+M.AnalysisTemplateValidationStatusReasonList = schema.new({ type = "list", list_member = M.AnalysisTemplateValidationStatusReason })
+
+M.ChangeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchemaStatusReasonList = schema.new({ type = "list", list_member = M.SchemaStatusReason })
+
+M.SchemaConfigurationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedResultReceivers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedAdditionalAnalyses = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnowflakeTableSchemaList = schema.new({ type = "list", list_member = M.SnowflakeTableSchemaV1 })
+
+M.AnalysisRuleColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JoinOperatorsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregateColumnList = schema.new({ type = "list", list_member = M.AggregateColumn })
+
+M.ScalarFunctionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregationConstraints = schema.new({ type = "list", list_member = M.AggregationConstraint })
+
+M.AllowedAnalysesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedAnalysisProviderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectedJobMemberOutputList = schema.new({ type = "list", list_member = M.ProtectedJobSingleMemberOutput })
+
+M.ProtectedQueryMemberOutputList = schema.new({ type = "list", list_member = M.ProtectedQuerySingleMemberOutput })
+
+M.SparkProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProtectedQueryDistributeOutputConfigurationLocations = schema.new({ type = "list", list_member = M.ProtectedQueryDistributeOutputConfigurationLocation })
+
+M.QueryConstraintList = schema.new({ type = "list", list_member = M.QueryConstraint })
+
+M.DifferentialPrivacyPrivacyBudgetAggregationList = schema.new({ type = "list", list_member = M.DifferentialPrivacyPrivacyBudgetAggregation })
+
+M.AccessBudgetDetailsList = schema.new({ type = "list", list_member = M.AccessBudgetDetails })
+
+M.DifferentialPrivacyColumnList = schema.new({ type = "list", list_member = M.DifferentialPrivacyColumn })
+
+M.AnalysisRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectedJobReceiverAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReceiverAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessBudgetDetails = schema.new({
     id = id.from(_N, "AccessBudgetDetails"),
     type = "structure",

@@ -7,6 +7,78 @@ local _N = "com.amazonaws.groundstation"
 
 local M = {}
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentStatusList = schema.new({ type = "list", list_member = M.ComponentStatusData })
+
+M.ConfigList = schema.new({ type = "list", list_member = M.ConfigListItem })
+
+M.StatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactList = schema.new({ type = "list", list_member = M.ContactData })
+
+M.DataflowList = schema.new({ type = "list", list_member = M.DataflowDetail })
+
+M.ContactVersionsList = schema.new({ type = "list", list_member = M.ContactVersion })
+
+M.DataflowEndpointGroupList = schema.new({ type = "list", list_member = M.DataflowEndpointListItem })
+
+M.EndpointDetailsList = schema.new({ type = "list", list_member = M.EndpointDetails })
+
+M.CreateEndpointDetailsList = schema.new({ type = "list", list_member = M.CreateEndpointDetails })
+
+M.EphemerisStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EphemeridesList = schema.new({ type = "list", list_member = M.EphemerisItem })
+
+M.EphemerisErrorReasonList = schema.new({ type = "list", list_member = M.EphemerisErrorReason })
+
+M.GroundStationList = schema.new({ type = "list", list_member = M.GroundStationData })
+
+M.AntennaList = schema.new({ type = "list", list_member = M.AntennaListItem })
+
+M.ReservationTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroundStationReservationList = schema.new({ type = "list", list_member = M.GroundStationReservationListItem })
+
+M.MissionProfileList = schema.new({ type = "list", list_member = M.MissionProfileListItem })
+
+M.DataflowEdgeList = schema.new({ type = "list", list_member = M.DataflowEdge })
+
+M.SatelliteList = schema.new({ type = "list", list_member = M.SatelliteListItem })
+
+M.GroundStationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentCpuCoresList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ComponentVersionList = schema.new({ type = "list", list_member = M.ComponentVersion })
+
+M.SignatureMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Boolean })
+
+M.VersionFailureReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataflowEdge = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityHealthReasonList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TLEDataList = schema.new({ type = "list", list_member = M.TLEData })
+
+M.VersionStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AzElSegmentList = schema.new({ type = "list", list_member = M.AzElSegment })
+
+M.TimeAzElList = schema.new({ type = "list", list_member = M.TimeAzEl })
+
 M.DependencyException = schema.new({
     id = id.from(_N, "DependencyException"),
     type = "structure",

@@ -7,6 +7,42 @@ local _N = "com.amazonaws.resourceexplorer2"
 
 local M = {}
 
+M.ViewArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ViewList = schema.new({ type = "list", list_member = M.View })
+
+M.BatchGetViewErrors = schema.new({ type = "list", list_member = M.BatchGetViewError })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RegionStatusList = schema.new({ type = "list", list_member = M.RegionStatus })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemberIndexList = schema.new({ type = "list", list_member = M.MemberIndex })
+
+M.ManagedViewArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.IndexList = schema.new({ type = "list", list_member = M.Index })
+
+M.ServiceViewArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamingAccessDetailsList = schema.new({ type = "list", list_member = M.StreamingAccessDetails })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = M.SupportedResourceType })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IncludedPropertyList = schema.new({ type = "list", list_member = M.IncludedProperty })
+
+M.ResourcePropertyList = schema.new({ type = "list", list_member = M.ResourceProperty })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -903,15 +939,9 @@ M.DeleteResourceExplorerSetupOutput = schema.new({
     },
 })
 
-M.DisassociateDefaultViewInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateDefaultViewInput = prelude.Unit
 
-M.DisassociateDefaultViewOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateDefaultViewOutput = prelude.Unit
 
 M.ErrorDetails = schema.new({
     id = id.from(_N, "ErrorDetails"),
@@ -932,10 +962,7 @@ M.ErrorDetails = schema.new({
     },
 })
 
-M.GetAccountLevelServiceConfigurationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountLevelServiceConfigurationInput = prelude.Unit
 
 M.OrgConfiguration = schema.new({
     id = id.from(_N, "OrgConfiguration"),
@@ -973,10 +1000,7 @@ M.GetAccountLevelServiceConfigurationOutput = schema.new({
     },
 })
 
-M.GetDefaultViewInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetDefaultViewInput = prelude.Unit
 
 M.GetDefaultViewOutput = schema.new({
     id = id.from(_N, "GetDefaultViewOutput"),
@@ -991,10 +1015,7 @@ M.GetDefaultViewOutput = schema.new({
     },
 })
 
-M.GetIndexInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetIndexInput = prelude.Unit
 
 M.GetIndexOutput = schema.new({
     id = id.from(_N, "GetIndexOutput"),
@@ -1292,10 +1313,7 @@ M.GetResourceExplorerSetupOutput = schema.new({
     },
 })
 
-M.GetServiceIndexInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetServiceIndexInput = prelude.Unit
 
 M.GetServiceIndexOutput = schema.new({
     id = id.from(_N, "GetServiceIndexOutput"),

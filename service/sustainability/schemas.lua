@@ -7,6 +7,22 @@ local _N = "com.amazonaws.sustainability"
 
 local M = {}
 
+M.DimensionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmissionsTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EstimatedCarbonEmissionsList = schema.new({ type = "list", list_member = M.EstimatedCarbonEmissions })
+
+M.DimensionEntryList = schema.new({ type = "list", list_member = M.DimensionEntry })
+
+M.DimensionListMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DimensionValueList })
+
+M.DimensionValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DimensionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EmissionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Emissions })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

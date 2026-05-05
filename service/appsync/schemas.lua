@@ -7,6 +7,58 @@ local _N = "com.amazonaws.appsync"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AuthModes = schema.new({ type = "list", list_member = M.AuthMode })
+
+M.AdditionalAuthenticationProviders = schema.new({ type = "list", list_member = M.AdditionalAuthenticationProvider })
+
+M.Logs = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentVariableMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ApiKeys = schema.new({ type = "list", list_member = M.ApiKey })
+
+M.Apis = schema.new({ type = "list", list_member = M.Api })
+
+M.ChannelNamespaces = schema.new({ type = "list", list_member = M.ChannelNamespace })
+
+M.DataSources = schema.new({ type = "list", list_member = M.DataSource })
+
+M.DomainNameConfigs = schema.new({ type = "list", list_member = M.DomainNameConfig })
+
+M.Functions = schema.new({ type = "list", list_member = M.FunctionConfiguration })
+
+M.GraphqlApis = schema.new({ type = "list", list_member = M.GraphqlApi })
+
+M.Resolvers = schema.new({ type = "list", list_member = M.Resolver })
+
+M.SourceApiAssociationSummaryList = schema.new({ type = "list", list_member = M.SourceApiAssociationSummary })
+
+M.TypeList = schema.new({ type = "list", list_member = M.Type })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeErrors = schema.new({ type = "list", list_member = M.CodeError })
+
+M.AuthProviders = schema.new({ type = "list", list_member = M.AuthProvider })
+
+M.MapOfStringToString = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FunctionsIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CachingKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceIntrospectionModels = schema.new({ type = "list", list_member = M.DataSourceIntrospectionModel })
+
+M.DataSourceIntrospectionModelFields = schema.new({ type = "list", list_member = M.DataSourceIntrospectionModelField })
+
+M.DataSourceIntrospectionModelIndexes = schema.new({ type = "list", list_member = M.DataSourceIntrospectionModelIndex })
+
+M.DataSourceIntrospectionModelIndexFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceIntrospectionModelFieldTypeValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

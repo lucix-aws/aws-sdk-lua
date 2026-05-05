@@ -7,6 +7,46 @@ local _N = "com.amazonaws.dax"
 
 local M = {}
 
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SubnetIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterList = schema.new({ type = "list", list_member = M.Cluster })
+
+M.ParameterList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.ParameterGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterGroupList = schema.new({ type = "list", list_member = M.ParameterGroup })
+
+M.SubnetGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetGroupList = schema.new({ type = "list", list_member = M.SubnetGroup })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterNameValueList = schema.new({ type = "list", list_member = M.ParameterNameValue })
+
+M.NodeList = schema.new({ type = "list", list_member = M.Node })
+
+M.SecurityGroupMembershipList = schema.new({ type = "list", list_member = M.SecurityGroupMembership })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.NetworkTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeTypeSpecificValueList = schema.new({ type = "list", list_member = M.NodeTypeSpecificValue })
+
 M.ClusterAlreadyExistsFault = schema.new({
     id = id.from(_N, "ClusterAlreadyExistsFault"),
     type = "structure",

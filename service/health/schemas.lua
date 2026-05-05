@@ -7,6 +7,92 @@ local _N = "com.amazonaws.health"
 
 local M = {}
 
+M.affectedAccountsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityList = schema.new({ type = "list", list_member = M.AffectedEntity })
+
+M.OrganizationEntityFiltersList = schema.new({ type = "list", list_member = M.EventAccountFilter })
+
+M.OrganizationEntityAccountFiltersList = schema.new({ type = "list", list_member = M.EntityAccountFilter })
+
+M.DescribeAffectedEntitiesForOrganizationFailedSet = schema.new({ type = "list", list_member = M.OrganizationAffectedEntitiesErrorItem })
+
+M.EventArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityAggregateList = schema.new({ type = "list", list_member = M.EntityAggregate })
+
+M.OrganizationEventArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationAccountIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationEntityAggregatesList = schema.new({ type = "list", list_member = M.OrganizationEntityAggregate })
+
+M.EventAggregateList = schema.new({ type = "list", list_member = M.EventAggregate })
+
+M.eventArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeEventDetailsSuccessfulSet = schema.new({ type = "list", list_member = M.EventDetails })
+
+M.DescribeEventDetailsFailedSet = schema.new({ type = "list", list_member = M.EventDetailsErrorItem })
+
+M.OrganizationEventDetailFiltersList = schema.new({ type = "list", list_member = M.EventAccountFilter })
+
+M.DescribeEventDetailsForOrganizationSuccessfulSet = schema.new({ type = "list", list_member = M.OrganizationEventDetails })
+
+M.DescribeEventDetailsForOrganizationFailedSet = schema.new({ type = "list", list_member = M.OrganizationEventDetailsErrorItem })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.OrganizationEventList = schema.new({ type = "list", list_member = M.OrganizationEvent })
+
+M.EventTypeList = schema.new({ type = "list", list_member = M.EventType })
+
+M.entityArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.entityValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.dateTimeRangeList = schema.new({ type = "list", list_member = M.DateTimeRange })
+
+M.tagFilter = schema.new({ type = "list", list_member = M.tagSet })
+
+M.entityStatusCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventActionabilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.eventTypeList2 = schema.new({ type = "list", list_member = prelude.String })
+
+M.serviceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.regionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.availabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
+M.eventTypeCategoryList2 = schema.new({ type = "list", list_member = prelude.String })
+
+M.eventStatusCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventPersonaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.awsAccountIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypeCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypeCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypeActionabilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypePersonaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.tagSet = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.entityMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.entityStatuses = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.AccountEntityAggregatesList = schema.new({ type = "list", list_member = M.AccountEntityAggregate })
+
+M.eventMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccountEntityAggregate = schema.new({
     id = id.from(_N, "AccountEntityAggregate"),
     type = "structure",
@@ -231,7 +317,7 @@ M.EntityFilter = schema.new({
             type = "list",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.tagSet,
         }),
         statusCodes = schema.new({
             id = id.from(_N, "EntityFilter", "statusCodes"),
@@ -688,7 +774,7 @@ M.EventFilter = schema.new({
             type = "list",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.tagSet,
         }),
         eventStatusCodes = schema.new({
             id = id.from(_N, "EventFilter", "eventStatusCodes"),
@@ -1505,10 +1591,7 @@ M.DescribeEventTypesOutput = schema.new({
     },
 })
 
-M.DescribeHealthServiceStatusForOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeHealthServiceStatusForOrganizationInput = prelude.Unit
 
 M.DescribeHealthServiceStatusForOrganizationOutput = schema.new({
     id = id.from(_N, "DescribeHealthServiceStatusForOrganizationResponse"),
@@ -1539,25 +1622,13 @@ M.ConcurrentModificationException = schema.new({
     },
 })
 
-M.DisableHealthServiceAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableHealthServiceAccessForOrganizationInput = prelude.Unit
 
-M.DisableHealthServiceAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableHealthServiceAccessForOrganizationOutput = prelude.Unit
 
-M.EnableHealthServiceAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableHealthServiceAccessForOrganizationInput = prelude.Unit
 
-M.EnableHealthServiceAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableHealthServiceAccessForOrganizationOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

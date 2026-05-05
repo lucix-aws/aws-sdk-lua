@@ -7,6 +7,318 @@ local _N = "com.amazonaws.datazone"
 
 local M = {}
 
+M.GlossaryTerms = schema.new({ type = "list", list_member = prelude.String })
+
+M.FormInputList = schema.new({ type = "list", list_member = M.FormInput })
+
+M.FormOutputList = schema.new({ type = "list", list_member = M.FormOutput })
+
+M.TimeSeriesDataPointSummaryFormOutputList = schema.new({ type = "list", list_member = M.TimeSeriesDataPointSummaryFormOutput })
+
+M.GovernedGlossaryTerms = schema.new({ type = "list", list_member = prelude.String })
+
+M.FormsInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FormEntryInput })
+
+M.FormsOutputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FormEntryOutput })
+
+M.DataProductItems = schema.new({ type = "list", list_member = M.DataProductItem })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DomainUnitOwners = schema.new({ type = "list", list_member = M.DomainUnitOwnerProperties })
+
+M.DomainUnitIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnabledRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionalParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionalParameter })
+
+M.GlossaryUsageRestrictions = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetadataGenerationRunTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.CellOrder = schema.new({ type = "list", list_member = M.CellInformation })
+
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Parameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AcceptChoices = schema.new({ type = "list", list_member = M.AcceptChoice })
+
+M.AcceptedAssetScopes = schema.new({ type = "list", list_member = M.AcceptedAssetScope })
+
+M.AssetPermissions = schema.new({ type = "list", list_member = M.AssetPermission })
+
+M.SubscribedPrincipals = schema.new({ type = "list", list_member = M.SubscribedPrincipal })
+
+M.SubscribedListings = schema.new({ type = "list", list_member = M.SubscribedListing })
+
+M.MetadataForms = schema.new({ type = "list", list_member = M.FormOutput })
+
+M.AttributesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchGetAttributeItems = schema.new({ type = "list", list_member = M.BatchGetAttributeOutput })
+
+M.AttributesErrors = schema.new({ type = "list", list_member = M.AttributeError })
+
+M.Attributes = schema.new({ type = "list", list_member = M.AttributeInput })
+
+M.BatchPutAttributeItems = schema.new({ type = "list", list_member = M.BatchPutAttributeOutput })
+
+M.ColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Configurations = schema.new({ type = "list", list_member = M.Configuration })
+
+M.PhysicalEndpoints = schema.new({ type = "list", list_member = M.PhysicalEndpoint })
+
+M.EnvironmentParametersList = schema.new({ type = "list", list_member = M.EnvironmentParameter })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.EnvironmentActionList = schema.new({ type = "list", list_member = M.ConfigurableEnvironmentAction })
+
+M.CustomParameterList = schema.new({ type = "list", list_member = M.CustomParameter })
+
+M.EnvironmentConfigurationUserParametersList = schema.new({ type = "list", list_member = M.EnvironmentConfigurationUserParameter })
+
+M.ProjectMembershipAssignments = schema.new({ type = "list", list_member = M.ProjectMembershipAssignment })
+
+M.FailureReasons = schema.new({ type = "list", list_member = M.ProjectDeletionError })
+
+M.ResourceTags = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.ProjectResourceTagParameters = schema.new({ type = "list", list_member = M.ResourceTagParameter })
+
+M.EnvironmentConfigurationsList = schema.new({ type = "list", list_member = M.EnvironmentConfiguration })
+
+M.AssetTargetNames = schema.new({ type = "list", list_member = M.AssetTargetNameMap })
+
+M.SubscribedAssets = schema.new({ type = "list", list_member = M.SubscribedAsset })
+
+M.SubscribedPrincipalInputs = schema.new({ type = "list", list_member = M.SubscribedPrincipalInput })
+
+M.SubscribedListingInputs = schema.new({ type = "list", list_member = M.SubscribedListingInput })
+
+M.MetadataFormInputs = schema.new({ type = "list", list_member = M.FormInput })
+
+M.SubscriptionTargetForms = schema.new({ type = "list", list_member = M.SubscriptionTargetForm })
+
+M.AuthorizedPrincipalIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicableAssetTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.LineageNodeReferenceList = schema.new({ type = "list", list_member = M.LineageNodeReference })
+
+M.AccountPoolSummaries = schema.new({ type = "list", list_member = M.AccountPoolSummary })
+
+M.AccountInfoList = schema.new({ type = "list", list_member = M.AccountInfo })
+
+M.AssetFilters = schema.new({ type = "list", list_member = M.AssetFilterSummary })
+
+M.AssetRevisions = schema.new({ type = "list", list_member = M.AssetRevision })
+
+M.ConnectionSummaries = schema.new({ type = "list", list_member = M.ConnectionSummary })
+
+M.DataProductRevisions = schema.new({ type = "list", list_member = M.DataProductRevision })
+
+M.DataSourceRunActivities = schema.new({ type = "list", list_member = M.DataSourceRunActivity })
+
+M.EntityOwners = schema.new({ type = "list", list_member = M.OwnerPropertiesOutput })
+
+M.ListEnvironmentActionSummaries = schema.new({ type = "list", list_member = M.EnvironmentActionSummary })
+
+M.EnvironmentBlueprintSummaries = schema.new({ type = "list", list_member = M.EnvironmentBlueprintSummary })
+
+M.EnvironmentProfileSummaries = schema.new({ type = "list", list_member = M.EnvironmentProfileSummary })
+
+M.EnvironmentSummaries = schema.new({ type = "list", list_member = M.EnvironmentSummary })
+
+M.JobRunSummaries = schema.new({ type = "list", list_member = M.JobRunSummary })
+
+M.LineageEventSummaries = schema.new({ type = "list", list_member = M.LineageEventSummary })
+
+M.LineageNodeSummaries = schema.new({ type = "list", list_member = M.LineageNodeSummary })
+
+M.NotificationSubjects = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationsList = schema.new({ type = "list", list_member = M.NotificationOutput })
+
+M.PolicyGrantList = schema.new({ type = "list", list_member = M.PolicyGrantMember })
+
+M.ProjectMembers = schema.new({ type = "list", list_member = M.ProjectMember })
+
+M.ProjectProfileSummaries = schema.new({ type = "list", list_member = M.ProjectProfileSummary })
+
+M.ProjectSummaries = schema.new({ type = "list", list_member = M.ProjectSummary })
+
+M.SubscriptionGrants = schema.new({ type = "list", list_member = M.SubscriptionGrantSummary })
+
+M.SubscriptionRequests = schema.new({ type = "list", list_member = M.SubscriptionRequestSummary })
+
+M.Subscriptions = schema.new({ type = "list", list_member = M.SubscriptionSummary })
+
+M.SubscriptionTargets = schema.new({ type = "list", list_member = M.SubscriptionTargetSummary })
+
+M.TimeSeriesDataPointFormInputList = schema.new({ type = "list", list_member = M.TimeSeriesDataPointFormInput })
+
+M.TimeSeriesDataPointFormOutputList = schema.new({ type = "list", list_member = M.TimeSeriesDataPointFormOutput })
+
+M.MatchClauses = schema.new({ type = "list", list_member = M.MatchClause })
+
+M.ResultItemList = schema.new({ type = "list", list_member = M.ResultItem })
+
+M.RejectChoices = schema.new({ type = "list", list_member = M.RejectChoice })
+
+M.SearchInList = schema.new({ type = "list", list_member = M.SearchInItem })
+
+M.SearchOutputAdditionalAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchInventoryResultItems = schema.new({ type = "list", list_member = M.SearchInventoryResultItem })
+
+M.GroupProfileSummaries = schema.new({ type = "list", list_member = M.GroupProfileSummary })
+
+M.AggregationList = schema.new({ type = "list", list_member = M.AggregationListItem })
+
+M.SearchResultItems = schema.new({ type = "list", list_member = M.SearchResultItem })
+
+M.AggregationOutputList = schema.new({ type = "list", list_member = M.AggregationOutput })
+
+M.SearchTypesResultItems = schema.new({ type = "list", list_member = M.SearchTypesResultItem })
+
+M.UserProfileSummaries = schema.new({ type = "list", list_member = M.UserProfileSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionalParameter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceSummaries = schema.new({ type = "list", list_member = M.DataSourceSummary })
+
+M.DataSourceRunSummaries = schema.new({ type = "list", list_member = M.DataSourceRunSummary })
+
+M.DomainSummaries = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.DomainUnitSummaries = schema.new({ type = "list", list_member = M.DomainUnitSummary })
+
+M.EnvironmentBlueprintConfigurations = schema.new({ type = "list", list_member = M.EnvironmentBlueprintConfigurationItem })
+
+M.GlobalParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProvisioningConfigurationList = schema.new({ type = "list", list_member = M.ProvisioningConfiguration })
+
+M.ImportList = schema.new({ type = "list", list_member = M.Import })
+
+M.MetadataGenerationRuns = schema.new({ type = "list", list_member = M.MetadataGenerationRunItem })
+
+M.MetadataGenerationRunTypeStats = schema.new({ type = "list", list_member = M.MetadataGenerationRunTypeStat })
+
+M.NotebookRunSummaryList = schema.new({ type = "list", list_member = M.NotebookRunSummary })
+
+M.ProjectIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetTypeIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.DeploymentMessagesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentFailureReasons = schema.new({ type = "map", map_key = prelude.String, map_value = M.EnvironmentFailureReasonsList })
+
+M.FormNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.FilterClause })
+
+M.ItemGlossaryTerms = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetailedGlossaryTerms = schema.new({ type = "list", list_member = M.DetailedGlossaryTerm })
+
+M.ListingSummaries = schema.new({ type = "list", list_member = M.ListingSummary })
+
+M.RuleAssetTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleProjectIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RequiredMetadataFormList = schema.new({ type = "list", list_member = M.MetadataFormReference })
+
+M.GlossaryTermIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProjectProfileList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GlueConnectionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurableActionParameterList = schema.new({ type = "list", list_member = M.ConfigurableActionParameter })
+
+M.EnvironmentFailureReasonsList = schema.new({ type = "list", list_member = M.EnvironmentError })
+
+M.AccountPoolList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetadataFormsSummary = schema.new({ type = "list", list_member = M.MetadataFormSummary })
+
+M.PredictionChoices = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.AggregationOutputItems = schema.new({ type = "list", list_member = M.AggregationOutputItem })
+
+M.RelationalFilterConfigurations = schema.new({ type = "list", list_member = M.RelationalFilterConfiguration })
+
+M.TrackingAssets = schema.new({ type = "map", map_key = prelude.String, map_value = M.TrackingAssetArns })
+
+M.SelfGrantStatusDetails = schema.new({ type = "list", list_member = M.SelfGrantStatusDetail })
+
+M.S3Permissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetInDataProductListingItems = schema.new({ type = "list", list_member = M.AssetInDataProductListingItem })
+
+M.RowFilterList = schema.new({ type = "list", list_member = M.RowFilter })
+
+M.ConnectionProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ComputeEnvironmentsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchCriteria = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentConfigurationParametersList = schema.new({ type = "list", list_member = M.EnvironmentConfigurationParameter })
+
+M.FailedQueryProcessingErrorMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.LineageNodeIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListingSummaryItems = schema.new({ type = "list", list_member = M.ListingSummaryItem })
+
+M.TrackingAssetArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3LocationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CredentialMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NameIdentifiers = schema.new({ type = "list", list_member = M.NameIdentifier })
+
+M.MatchRationale = schema.new({ type = "list", list_member = M.MatchRationaleItem })
+
+M.FilterExpressions = schema.new({ type = "list", list_member = M.FilterExpression })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TokenUrlParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TextMatches = schema.new({ type = "list", list_member = M.TextMatchItem })
+
+M.MatchOffsets = schema.new({ type = "list", list_member = M.MatchOffset })
+
 M.AcceptChoice = schema.new({
     id = id.from(_N, "AcceptChoice"),
     type = "structure",
@@ -1336,10 +1648,7 @@ M.CreateDomainUnitPolicyGrantDetail = schema.new({
     },
 })
 
-M.Unit = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.Unit = prelude.Unit
 
 M.CreateEnvironmentProfilePolicyGrantDetail = schema.new({
     id = id.from(_N, "CreateEnvironmentProfilePolicyGrantDetail"),
@@ -14647,10 +14956,7 @@ M.DeleteAssetFilterInput = schema.new({
     },
 })
 
-M.DeleteAssetFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAssetFilterOutput = prelude.Unit
 
 M.DeleteConnectionInput = schema.new({
     id = id.from(_N, "DeleteConnectionInput"),
@@ -14741,10 +15047,7 @@ M.DeleteEnvironmentInput = schema.new({
     },
 })
 
-M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEnvironmentOutput = prelude.Unit
 
 M.DeleteEnvironmentActionInput = schema.new({
     id = id.from(_N, "DeleteEnvironmentActionInput"),
@@ -14783,10 +15086,7 @@ M.DeleteEnvironmentActionInput = schema.new({
     },
 })
 
-M.DeleteEnvironmentActionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEnvironmentActionOutput = prelude.Unit
 
 M.DeleteEnvironmentBlueprintInput = schema.new({
     id = id.from(_N, "DeleteEnvironmentBlueprintInput"),
@@ -14815,10 +15115,7 @@ M.DeleteEnvironmentBlueprintInput = schema.new({
     },
 })
 
-M.DeleteEnvironmentBlueprintOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEnvironmentBlueprintOutput = prelude.Unit
 
 M.DeleteEnvironmentProfileInput = schema.new({
     id = id.from(_N, "DeleteEnvironmentProfileInput"),
@@ -14847,10 +15144,7 @@ M.DeleteEnvironmentProfileInput = schema.new({
     },
 })
 
-M.DeleteEnvironmentProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEnvironmentProfileOutput = prelude.Unit
 
 M.DeleteProjectInput = schema.new({
     id = id.from(_N, "DeleteProjectInput"),
@@ -15126,10 +15420,7 @@ M.DeleteSubscriptionRequestInput = schema.new({
     },
 })
 
-M.DeleteSubscriptionRequestOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSubscriptionRequestOutput = prelude.Unit
 
 M.DeleteSubscriptionTargetInput = schema.new({
     id = id.from(_N, "DeleteSubscriptionTargetInput"),
@@ -15168,10 +15459,7 @@ M.DeleteSubscriptionTargetInput = schema.new({
     },
 })
 
-M.DeleteSubscriptionTargetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSubscriptionTargetOutput = prelude.Unit
 
 M.DeleteTimeSeriesDataPointsInput = schema.new({
     id = id.from(_N, "DeleteTimeSeriesDataPointsInput"),

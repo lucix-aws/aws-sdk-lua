@@ -7,6 +7,58 @@ local _N = "com.amazonaws.qapps"
 
 local M = {}
 
+M.BatchCreateCategoryInputCategoryList = schema.new({ type = "list", list_member = M.BatchCreateCategoryInputCategory })
+
+M.DeleteCategoryInputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoryListInput = schema.new({ type = "list", list_member = M.CategoryInput })
+
+M.CategoryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PresignedUrlFields = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AppRequiredCapabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionsOutputList = schema.new({ type = "list", list_member = M.PermissionOutput })
+
+M.CategoryList = schema.new({ type = "list", list_member = M.Category })
+
+M.CardStatusMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CardStatus })
+
+M.CategoriesList = schema.new({ type = "list", list_member = M.Category })
+
+M.LibraryItemList = schema.new({ type = "list", list_member = M.LibraryItemMember })
+
+M.UserAppsList = schema.new({ type = "list", list_member = M.UserAppItem })
+
+M.QAppSessionDataList = schema.new({ type = "list", list_member = M.QAppSessionData })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CardValueList = schema.new({ type = "list", list_member = M.CardValue })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionsInputList = schema.new({ type = "list", list_member = M.PermissionInput })
+
+M.CardList = schema.new({ type = "list", list_member = M.CardInput })
+
+M.CardModelList = schema.new({ type = "list", list_member = M.Card })
+
+M.MessageList = schema.new({ type = "list", list_member = M.ConversationMessage })
+
+M.SubmissionList = schema.new({ type = "list", list_member = M.Submission })
+
+M.DependencyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemoryReferenceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeFilters = schema.new({ type = "list", list_member = M.AttributeFilter })
+
+M.DocumentAttributeStringListValue = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -591,10 +643,7 @@ M.AssociateLibraryItemReviewInput = schema.new({
     },
 })
 
-M.AssociateLibraryItemReviewOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateLibraryItemReviewOutput = prelude.Unit
 
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
@@ -863,10 +912,7 @@ M.AssociateQAppWithUserInput = schema.new({
     },
 })
 
-M.AssociateQAppWithUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateQAppWithUserOutput = prelude.Unit
 
 M.BatchCreateCategoryInputCategory = schema.new({
     id = id.from(_N, "BatchCreateCategoryInputCategory"),
@@ -923,10 +969,7 @@ M.BatchCreateCategoryInput = schema.new({
     },
 })
 
-M.BatchCreateCategoryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.BatchCreateCategoryOutput = prelude.Unit
 
 M.BatchDeleteCategoryInput = schema.new({
     id = id.from(_N, "BatchDeleteCategoryInput"),
@@ -955,10 +998,7 @@ M.BatchDeleteCategoryInput = schema.new({
     },
 })
 
-M.BatchDeleteCategoryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.BatchDeleteCategoryOutput = prelude.Unit
 
 M.CategoryInput = schema.new({
     id = id.from(_N, "CategoryInput"),
@@ -1018,10 +1058,7 @@ M.BatchUpdateCategoryInput = schema.new({
     },
 })
 
-M.BatchUpdateCategoryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.BatchUpdateCategoryOutput = prelude.Unit
 
 M.Submission = schema.new({
     id = id.from(_N, "Submission"),
@@ -1619,10 +1656,7 @@ M.DeleteLibraryItemInput = schema.new({
     },
 })
 
-M.DeleteLibraryItemOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLibraryItemOutput = prelude.Unit
 
 M.DeleteQAppInput = schema.new({
     id = id.from(_N, "DeleteQAppInput"),
@@ -1650,10 +1684,7 @@ M.DeleteQAppInput = schema.new({
     },
 })
 
-M.DeleteQAppOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteQAppOutput = prelude.Unit
 
 M.DescribeQAppPermissionsInput = schema.new({
     id = id.from(_N, "DescribeQAppPermissionsInput"),
@@ -1785,10 +1816,7 @@ M.DisassociateLibraryItemReviewInput = schema.new({
     },
 })
 
-M.DisassociateLibraryItemReviewOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateLibraryItemReviewOutput = prelude.Unit
 
 M.DisassociateQAppFromUserInput = schema.new({
     id = id.from(_N, "DisassociateQAppFromUserInput"),
@@ -1816,10 +1844,7 @@ M.DisassociateQAppFromUserInput = schema.new({
     },
 })
 
-M.DisassociateQAppFromUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateQAppFromUserOutput = prelude.Unit
 
 M.ExportQAppSessionDataInput = schema.new({
     id = id.from(_N, "ExportQAppSessionDataInput"),
@@ -3030,10 +3055,7 @@ M.StopQAppSessionInput = schema.new({
     },
 })
 
-M.StopQAppSessionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopQAppSessionOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -3289,10 +3311,7 @@ M.UpdateLibraryItemMetadataInput = schema.new({
     },
 })
 
-M.UpdateLibraryItemMetadataOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateLibraryItemMetadataOutput = prelude.Unit
 
 M.UpdateQAppOutput = schema.new({
     id = id.from(_N, "UpdateQAppOutput"),

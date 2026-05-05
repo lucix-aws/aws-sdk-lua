@@ -7,6 +7,32 @@ local _N = "com.amazonaws.mwaaserverless"
 
 local M = {}
 
+M.GenericMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFields = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskInstanceSummaries = schema.new({ type = "list", list_member = M.TaskInstanceSummary })
+
+M.WorkflowSummaries = schema.new({ type = "list", list_member = M.WorkflowSummary })
+
+M.WarningMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkflowRunSummaries = schema.new({ type = "list", list_member = M.WorkflowRunSummary })
+
+M.ObjectMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.WorkflowVersionSummaries = schema.new({ type = "list", list_member = M.WorkflowVersionSummary })
+
+M.TaskInstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

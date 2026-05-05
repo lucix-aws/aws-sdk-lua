@@ -7,6 +7,24 @@ local _N = "com.amazonaws.schemas"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfGetDiscoveredSchemaVersionItemInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfDiscovererSummary = schema.new({ type = "list", list_member = M.DiscovererSummary })
+
+M.__listOfRegistrySummary = schema.new({ type = "list", list_member = M.RegistrySummary })
+
+M.__listOfSchemaSummary = schema.new({ type = "list", list_member = M.SchemaSummary })
+
+M.__listOfSchemaVersionSummary = schema.new({ type = "list", list_member = M.SchemaVersionSummary })
+
+M.__listOfSearchSchemaSummary = schema.new({ type = "list", list_member = M.SearchSchemaSummary })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfSearchSchemaVersionSummary = schema.new({ type = "list", list_member = M.SearchSchemaVersionSummary })
+
 M.DiscovererSummary = schema.new({
     id = id.from(_N, "DiscovererSummary"),
     type = "structure",
@@ -697,10 +715,7 @@ M.DeleteDiscovererInput = schema.new({
     },
 })
 
-M.DeleteDiscovererOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDiscovererOutput = prelude.Unit
 
 M.NotFoundException = schema.new({
     id = id.from(_N, "NotFoundException"),
@@ -747,10 +762,7 @@ M.DeleteRegistryInput = schema.new({
     },
 })
 
-M.DeleteRegistryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRegistryOutput = prelude.Unit
 
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyRequest"),
@@ -768,10 +780,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DeleteSchemaInput = schema.new({
     id = id.from(_N, "DeleteSchemaRequest"),
@@ -800,10 +809,7 @@ M.DeleteSchemaInput = schema.new({
     },
 })
 
-M.DeleteSchemaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSchemaOutput = prelude.Unit
 
 M.DeleteSchemaVersionInput = schema.new({
     id = id.from(_N, "DeleteSchemaVersionRequest"),
@@ -842,10 +848,7 @@ M.DeleteSchemaVersionInput = schema.new({
     },
 })
 
-M.DeleteSchemaVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSchemaVersionOutput = prelude.Unit
 
 M.DescribeCodeBindingInput = schema.new({
     id = id.from(_N, "DescribeCodeBindingRequest"),
@@ -2064,10 +2067,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -2097,10 +2097,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateDiscovererInput = schema.new({
     id = id.from(_N, "UpdateDiscovererRequest"),

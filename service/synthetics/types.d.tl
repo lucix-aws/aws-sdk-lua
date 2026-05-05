@@ -564,9 +564,9 @@ local record ValidationException
     Message: string
 end
 
-local type ProvisionedResourceCleanupSetting = "AUTOMATIC" | "OFF"
-
 local type RunType = "CANARY_RUN" | "DRY_RUN"
+
+local type ProvisionedResourceCleanupSetting = "AUTOMATIC" | "OFF"
 
 local type BrowserType = "CHROME" | "FIREFOX"
 

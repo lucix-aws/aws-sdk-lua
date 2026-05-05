@@ -4115,47 +4115,47 @@ local record UnsupportedOperationFault
     message: string
 end
 
-local type UsageLimitBreachAction = "log" | "emit-metric" | "disable"
-
-local type NamespaceRegistrationStatus = "Registering" | "Deregistering"
-
-local type DataShareType = "INTERNAL"
-
-local type ApplicationType = "None" | "Lakehouse"
-
-local type LakehouseIdcRegistration = "Associate" | "Disassociate"
-
-local type ActionType = "restore-cluster" | "recommend-node-config" | "resize-cluster"
-
-local type DataShareStatusForConsumer = "ACTIVE" | "AVAILABLE"
-
-local type UsageLimitFeatureType = "spectrum" | "concurrency-scaling" | "cross-region-datasharing" | "extra-compute-for-automatic-optimization"
-
-local type ReservedNodeExchangeActionType = "restore-cluster" | "resize-cluster"
-
-local type ScheduledActionTypeValues = "ResizeCluster" | "PauseCluster" | "ResumeCluster"
-
-local type PartnerIntegrationStatus = "Active" | "Inactive" | "RuntimeFailure" | "ConnectionFailure"
-
-local type ZeroETLIntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
-
 local type AuthorizationStatus = "Authorized" | "Revoking"
 
 local type UsageLimitPeriod = "daily" | "weekly" | "monthly"
 
-local type ScheduledActionState = "ACTIVE" | "DISABLED"
+local type ZeroETLIntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
+
+local type AquaConfigurationStatus = "enabled" | "disabled" | "auto"
+
+local type PartnerIntegrationStatus = "Active" | "Inactive" | "RuntimeFailure" | "ConnectionFailure"
 
 local type UsageLimitLimitType = "time" | "data-scanned"
 
-local type DataShareStatusForProducer = "ACTIVE" | "AUTHORIZED" | "PENDING_AUTHORIZATION" | "DEAUTHORIZED" | "REJECTED"
+local type LakehouseRegistration = "Register" | "Deregister"
 
 local type LogDestinationType = "s3" | "cloudwatch"
 
-local type LakehouseRegistration = "Register" | "Deregister"
+local type DataShareType = "INTERNAL"
+
+local type ActionType = "restore-cluster" | "recommend-node-config" | "resize-cluster"
+
+local type LakehouseIdcRegistration = "Associate" | "Disassociate"
+
+local type NamespaceRegistrationStatus = "Registering" | "Deregistering"
+
+local type ReservedNodeExchangeActionType = "restore-cluster" | "resize-cluster"
+
+local type DataShareStatusForProducer = "ACTIVE" | "AUTHORIZED" | "PENDING_AUTHORIZATION" | "DEAUTHORIZED" | "REJECTED"
 
 local type SourceType = "cluster" | "cluster-parameter-group" | "cluster-security-group" | "cluster-snapshot" | "scheduled-action"
 
-local type AquaConfigurationStatus = "enabled" | "disabled" | "auto"
+local type ApplicationType = "None" | "Lakehouse"
+
+local type UsageLimitBreachAction = "log" | "emit-metric" | "disable"
+
+local type ScheduledActionTypeValues = "ResizeCluster" | "PauseCluster" | "ResumeCluster"
+
+local type ScheduledActionState = "ACTIVE" | "DISABLED"
+
+local type DataShareStatusForConsumer = "ACTIVE" | "AVAILABLE"
+
+local type UsageLimitFeatureType = "spectrum" | "concurrency-scaling" | "cross-region-datasharing" | "extra-compute-for-automatic-optimization"
 
 local record M
     AcceptReservedNodeExchangeInput: AcceptReservedNodeExchangeInput

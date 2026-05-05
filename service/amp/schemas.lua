@@ -7,6 +7,40 @@ local _N = "com.amazonaws.amp"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScraperFilters = schema.new({ type = "map", map_key = prelude.String, map_value = M.FilterValues })
+
+M.ScraperSummaryList = schema.new({ type = "list", list_member = M.ScraperSummary })
+
+M.WorkspaceSummaryList = schema.new({ type = "list", list_member = M.WorkspaceSummary })
+
+M.ScraperComponents = schema.new({ type = "list", list_member = M.ScraperComponent })
+
+M.AnomalyDetectorSummaryList = schema.new({ type = "list", list_member = M.AnomalyDetectorSummary })
+
+M.PrometheusMetricLabelMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LoggingDestinations = schema.new({ type = "list", list_member = M.LoggingDestination })
+
+M.RuleGroupsNamespaceSummaryList = schema.new({ type = "list", list_member = M.RuleGroupsNamespaceSummary })
+
+M.LimitsPerLabelSetList = schema.new({ type = "list", list_member = M.LimitsPerLabelSet })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.LabelSet = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -384,10 +418,7 @@ M.DeleteAlertManagerDefinitionInput = schema.new({
     },
 })
 
-M.DeleteAlertManagerDefinitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAlertManagerDefinitionOutput = prelude.Unit
 
 M.DescribeAlertManagerDefinitionInput = schema.new({
     id = id.from(_N, "DescribeAlertManagerDefinitionRequest"),
@@ -1242,10 +1273,7 @@ M.DeleteScraperLoggingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteScraperLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteScraperLoggingConfigurationOutput = prelude.Unit
 
 M.DescribeScraperLoggingConfigurationInput = schema.new({
     id = id.from(_N, "DescribeScraperLoggingConfigurationRequest"),
@@ -1901,10 +1929,7 @@ M.DeleteAnomalyDetectorInput = schema.new({
     },
 })
 
-M.DeleteAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAnomalyDetectorOutput = prelude.Unit
 
 M.DescribeAnomalyDetectorInput = schema.new({
     id = id.from(_N, "DescribeAnomalyDetectorRequest"),
@@ -2426,10 +2451,7 @@ M.DeleteWorkspaceInput = schema.new({
     },
 })
 
-M.DeleteWorkspaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkspaceOutput = prelude.Unit
 
 M.DescribeWorkspaceInput = schema.new({
     id = id.from(_N, "DescribeWorkspaceRequest"),
@@ -2757,10 +2779,7 @@ M.DeleteLoggingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLoggingConfigurationOutput = prelude.Unit
 
 M.DescribeLoggingConfigurationInput = schema.new({
     id = id.from(_N, "DescribeLoggingConfigurationRequest"),
@@ -3046,10 +3065,7 @@ M.DeleteQueryLoggingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteQueryLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteQueryLoggingConfigurationOutput = prelude.Unit
 
 M.DescribeQueryLoggingConfigurationInput = schema.new({
     id = id.from(_N, "DescribeQueryLoggingConfigurationRequest"),
@@ -3346,10 +3362,7 @@ M.DeleteRuleGroupsNamespaceInput = schema.new({
     },
 })
 
-M.DeleteRuleGroupsNamespaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRuleGroupsNamespaceOutput = prelude.Unit
 
 M.DescribeRuleGroupsNamespaceInput = schema.new({
     id = id.from(_N, "DescribeRuleGroupsNamespaceRequest"),
@@ -3713,10 +3726,7 @@ M.UpdateWorkspaceAliasInput = schema.new({
     },
 })
 
-M.UpdateWorkspaceAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateWorkspaceAliasOutput = prelude.Unit
 
 M.DescribeWorkspaceConfigurationInput = schema.new({
     id = id.from(_N, "DescribeWorkspaceConfigurationRequest"),
@@ -3937,10 +3947,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DescribeResourcePolicyInput = schema.new({
     id = id.from(_N, "DescribeResourcePolicyRequest"),

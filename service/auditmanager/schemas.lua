@@ -7,6 +7,94 @@ local _N = "com.amazonaws.auditmanager"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.EvidenceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentReportEvidenceErrors = schema.new({ type = "list", list_member = M.AssessmentReportEvidenceError })
+
+M.CreateDelegationRequests = schema.new({ type = "list", list_member = M.CreateDelegationRequest })
+
+M.Delegations = schema.new({ type = "list", list_member = M.Delegation })
+
+M.BatchCreateDelegationByAssessmentErrors = schema.new({ type = "list", list_member = M.BatchCreateDelegationByAssessmentError })
+
+M.DelegationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteDelegationByAssessmentErrors = schema.new({ type = "list", list_member = M.BatchDeleteDelegationByAssessmentError })
+
+M.ManualEvidenceList = schema.new({ type = "list", list_member = M.ManualEvidence })
+
+M.BatchImportEvidenceToAssessmentControlErrors = schema.new({ type = "list", list_member = M.BatchImportEvidenceToAssessmentControlError })
+
+M.Roles = schema.new({ type = "list", list_member = M.Role })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CreateAssessmentFrameworkControlSets = schema.new({ type = "list", list_member = M.CreateAssessmentFrameworkControlSet })
+
+M.CreateControlMappingSources = schema.new({ type = "list", list_member = M.CreateControlMappingSource })
+
+M.ChangeLogs = schema.new({ type = "list", list_member = M.ChangeLog })
+
+M.DelegationMetadataList = schema.new({ type = "list", list_member = M.DelegationMetadata })
+
+M.EvidenceList = schema.new({ type = "list", list_member = M.Evidence })
+
+M.AssessmentEvidenceFolders = schema.new({ type = "list", list_member = M.AssessmentEvidenceFolder })
+
+M.ServiceMetadataList = schema.new({ type = "list", list_member = M.ServiceMetadata })
+
+M.ControlInsightsMetadataByAssessment = schema.new({ type = "list", list_member = M.ControlInsightsMetadataByAssessmentItem })
+
+M.FrameworkMetadataList = schema.new({ type = "list", list_member = M.AssessmentFrameworkMetadata })
+
+M.AssessmentFrameworkShareRequestList = schema.new({ type = "list", list_member = M.AssessmentFrameworkShareRequest })
+
+M.AssessmentReportsMetadata = schema.new({ type = "list", list_member = M.AssessmentReportMetadata })
+
+M.ListAssessmentMetadata = schema.new({ type = "list", list_member = M.AssessmentMetadataItem })
+
+M.ControlDomainInsightsList = schema.new({ type = "list", list_member = M.ControlDomainInsights })
+
+M.ControlInsightsMetadata = schema.new({ type = "list", list_member = M.ControlInsightsMetadataItem })
+
+M.ControlMetadataList = schema.new({ type = "list", list_member = M.ControlMetadata })
+
+M.Keywords = schema.new({ type = "list", list_member = prelude.String })
+
+M.Notifications = schema.new({ type = "list", list_member = M.Notification })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateAssessmentFrameworkControlSets = schema.new({ type = "list", list_member = M.UpdateAssessmentFrameworkControlSet })
+
+M.ControlMappingSources = schema.new({ type = "list", list_member = M.ControlMappingSource })
+
+M.ValidationErrors = schema.new({ type = "list", list_member = prelude.String })
+
+M.AWSAccounts = schema.new({ type = "list", list_member = M.AWSAccount })
+
+M.AWSServices = schema.new({ type = "list", list_member = M.AWSService })
+
+M.ControlSets = schema.new({ type = "list", list_member = M.ControlSet })
+
+M.Resources = schema.new({ type = "list", list_member = M.Resource })
+
+M.EvidenceAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ControlComments = schema.new({ type = "list", list_member = M.ControlComment })
+
+M.EvidenceSources = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentControls = schema.new({ type = "list", list_member = M.AssessmentControl })
+
+M.AssessmentControlSets = schema.new({ type = "list", list_member = M.AssessmentControlSet })
+
+M.CreateAssessmentFrameworkControls = schema.new({ type = "list", list_member = M.CreateAssessmentFrameworkControl })
+
+M.Controls = schema.new({ type = "list", list_member = M.Control })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

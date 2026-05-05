@@ -7,6 +7,142 @@ local _N = "com.amazonaws.costexplorer"
 
 local M = {}
 
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.CostCategoryRulesList = schema.new({ type = "list", list_member = M.CostCategoryRule })
+
+M.CostCategorySplitChargeRulesList = schema.new({ type = "list", list_member = M.CostCategorySplitChargeRule })
+
+M.Anomalies = schema.new({ type = "list", list_member = M.Anomaly })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnomalyMonitors = schema.new({ type = "list", list_member = M.AnomalyMonitor })
+
+M.AnomalySubscriptions = schema.new({ type = "list", list_member = M.AnomalySubscription })
+
+M.UsageServices = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApproximateUsageRecordsPerService = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.MetricNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupDefinitions = schema.new({ type = "list", list_member = M.GroupDefinition })
+
+M.ResultsByTime = schema.new({ type = "list", list_member = M.ResultByTime })
+
+M.DimensionValuesWithAttributesList = schema.new({ type = "list", list_member = M.DimensionValuesWithAttributes })
+
+M.CostAndUsageComparisons = schema.new({ type = "list", list_member = M.CostAndUsageComparison })
+
+M.ComparisonMetrics = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComparisonMetricValue })
+
+M.SortDefinitions = schema.new({ type = "list", list_member = M.SortDefinition })
+
+M.CostCategoryNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CostCategoryValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CostComparisonDrivers = schema.new({ type = "list", list_member = M.CostComparisonDriver })
+
+M.ForecastResultsByTime = schema.new({ type = "list", list_member = M.ForecastResult })
+
+M.CoveragesByTime = schema.new({ type = "list", list_member = M.CoverageByTime })
+
+M.ReservationPurchaseRecommendations = schema.new({ type = "list", list_member = M.ReservationPurchaseRecommendation })
+
+M.UtilizationsByTime = schema.new({ type = "list", list_member = M.UtilizationByTime })
+
+M.RightsizingRecommendationList = schema.new({ type = "list", list_member = M.RightsizingRecommendation })
+
+M.SavingsPlansCoverages = schema.new({ type = "list", list_member = M.SavingsPlansCoverage })
+
+M.SavingsPlansUtilizationsByTime = schema.new({ type = "list", list_member = M.SavingsPlansUtilizationByTime })
+
+M.SavingsPlansDataTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlansUtilizationDetails = schema.new({ type = "list", list_member = M.SavingsPlansUtilizationDetail })
+
+M.TagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisSummaryList = schema.new({ type = "list", list_member = M.AnalysisSummary })
+
+M.CostAllocationTagBackfillRequestList = schema.new({ type = "list", list_member = M.CostAllocationTagBackfillRequest })
+
+M.CostAllocationTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CostAllocationTagList = schema.new({ type = "list", list_member = M.CostAllocationTag })
+
+M.ResourceTypesFilterInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.CostCategoryReferencesList = schema.new({ type = "list", list_member = M.CostCategoryReference })
+
+M.CostCategoryResourceAssociations = schema.new({ type = "list", list_member = M.CostCategoryResourceAssociation })
+
+M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GenerationSummaryList = schema.new({ type = "list", list_member = M.GenerationSummary })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitorArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Subscribers = schema.new({ type = "list", list_member = M.Subscriber })
+
+M.CostAllocationTagStatusList = schema.new({ type = "list", list_member = M.CostAllocationTagStatusEntry })
+
+M.UpdateCostAllocationTagsStatusErrors = schema.new({ type = "list", list_member = M.UpdateCostAllocationTagsStatusError })
+
+M.CostCategoryProcessingStatusList = schema.new({ type = "list", list_member = M.CostCategoryProcessingStatus })
+
+M.Expressions = schema.new({ type = "list", list_member = M.Expression })
+
+M.MetricsOverLookbackPeriod = schema.new({ type = "list", list_member = M.RecommendationDetailHourlyMetrics })
+
+M.SavingsPlansPurchaseRecommendationDetailList = schema.new({ type = "list", list_member = M.SavingsPlansPurchaseRecommendationDetail })
+
+M.CostCategorySplitChargeRuleTargetsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CostCategorySplitChargeRuleParametersList = schema.new({ type = "list", list_member = M.CostCategorySplitChargeRuleParameter })
+
+M.RootCauses = schema.new({ type = "list", list_member = M.RootCause })
+
+M.SavingsPlansToAdd = schema.new({ type = "list", list_member = M.SavingsPlans })
+
+M.SavingsPlansToExclude = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Metrics = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetricValue })
+
+M.Groups = schema.new({ type = "list", list_member = M.Group })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CostDrivers = schema.new({ type = "list", list_member = M.CostDriver })
+
+M.ReservationCoverageGroups = schema.new({ type = "list", list_member = M.ReservationCoverageGroup })
+
+M.ReservationPurchaseRecommendationDetails = schema.new({ type = "list", list_member = M.ReservationPurchaseRecommendationDetail })
+
+M.ReservationUtilizationGroups = schema.new({ type = "list", list_member = M.ReservationUtilizationGroup })
+
+M.FindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagValuesList = schema.new({ type = "list", list_member = M.TagValues })
+
+M.TargetInstancesList = schema.new({ type = "list", list_member = M.TargetInstance })
+
+M.CostCategorySplitChargeRuleParameterValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Keys = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlatformDifferences = schema.new({ type = "list", list_member = prelude.String })
+
 M.RecommendationDetailHourlyMetrics = schema.new({
     id = id.from(_N, "RecommendationDetailHourlyMetrics"),
     type = "structure",

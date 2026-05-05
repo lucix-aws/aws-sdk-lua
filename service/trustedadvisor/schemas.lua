@@ -7,6 +7,28 @@ local _N = "com.amazonaws.trustedadvisor"
 
 local M = {}
 
+M.RecommendationResourceExclusionList = schema.new({ type = "list", list_member = M.RecommendationResourceExclusion })
+
+M.UpdateRecommendationResourceExclusionErrorList = schema.new({ type = "list", list_member = M.UpdateRecommendationResourceExclusionError })
+
+M.CheckSummaryList = schema.new({ type = "list", list_member = M.CheckSummary })
+
+M.AccountRecommendationLifecycleSummaryList = schema.new({ type = "list", list_member = M.AccountRecommendationLifecycleSummary })
+
+M.OrganizationRecommendationResourceSummaryList = schema.new({ type = "list", list_member = M.OrganizationRecommendationResourceSummary })
+
+M.OrganizationRecommendationSummaryList = schema.new({ type = "list", list_member = M.OrganizationRecommendationSummary })
+
+M.RecommendationResourceSummaryList = schema.new({ type = "list", list_member = M.RecommendationResourceSummary })
+
+M.RecommendationSummaryList = schema.new({ type = "list", list_member = M.RecommendationSummary })
+
+M.RecommendationPillarList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationAwsServiceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1918,10 +1940,7 @@ M.UpdateOrganizationRecommendationLifecycleInput = schema.new({
     },
 })
 
-M.UpdateOrganizationRecommendationLifecycleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateOrganizationRecommendationLifecycleOutput = prelude.Unit
 
 M.UpdateRecommendationLifecycleInput = schema.new({
     id = id.from(_N, "UpdateRecommendationLifecycleRequest"),
@@ -1961,10 +1980,7 @@ M.UpdateRecommendationLifecycleInput = schema.new({
     },
 })
 
-M.UpdateRecommendationLifecycleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRecommendationLifecycleOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

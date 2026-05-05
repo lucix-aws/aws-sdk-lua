@@ -7,6 +7,60 @@ local _N = "com.amazonaws.ssoadmin"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AccountAssignmentOperationStatusList = schema.new({ type = "list", list_member = M.AccountAssignmentOperationStatusMetadata })
+
+M.AccountAssignmentList = schema.new({ type = "list", list_member = M.AccountAssignment })
+
+M.AccountAssignmentListForPrincipal = schema.new({ type = "list", list_member = M.AccountAssignmentForPrincipal })
+
+M.AccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationAssignmentsList = schema.new({ type = "list", list_member = M.ApplicationAssignment })
+
+M.ApplicationAssignmentListForPrincipal = schema.new({ type = "list", list_member = M.ApplicationAssignmentForPrincipal })
+
+M.ApplicationProviderList = schema.new({ type = "list", list_member = M.ApplicationProvider })
+
+M.ApplicationList = schema.new({ type = "list", list_member = M.Application })
+
+M.CustomerManagedPolicyReferenceList = schema.new({ type = "list", list_member = M.CustomerManagedPolicyReference })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.InstanceMetadata })
+
+M.AttachedManagedPolicyList = schema.new({ type = "list", list_member = M.AttachedManagedPolicy })
+
+M.PermissionSetProvisioningStatusList = schema.new({ type = "list", list_member = M.PermissionSetProvisioningStatusMetadata })
+
+M.PermissionSetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionMetadataList = schema.new({ type = "list", list_member = M.RegionMetadata })
+
+M.TrustedTokenIssuerList = schema.new({ type = "list", list_member = M.TrustedTokenIssuerMetadata })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Scopes = schema.new({ type = "list", list_member = M.ScopeDetails })
+
+M.ScopeTargets = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthenticationMethods = schema.new({ type = "list", list_member = M.AuthenticationMethodItem })
+
+M.Grants = schema.new({ type = "list", list_member = M.GrantItem })
+
+M.AccessControlAttributeList = schema.new({ type = "list", list_member = M.AccessControlAttribute })
+
+M.ResourceServerScopes = schema.new({ type = "map", map_key = prelude.String, map_value = M.ResourceServerScopeDetails })
+
+M.RedirectUris = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizedTokenIssuers = schema.new({ type = "list", list_member = M.AuthorizedTokenIssuer })
+
+M.AccessControlAttributeValueSourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TokenIssuerAudiences = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessControlAttributeValue = schema.new({
     id = id.from(_N, "AccessControlAttributeValue"),
     type = "structure",
@@ -494,10 +548,7 @@ M.DeleteApplicationAccessScopeInput = schema.new({
     },
 })
 
-M.DeleteApplicationAccessScopeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationAccessScopeOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -678,10 +729,7 @@ M.PutApplicationAccessScopeInput = schema.new({
     },
 })
 
-M.PutApplicationAccessScopeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutApplicationAccessScopeOutput = prelude.Unit
 
 M.ApplicationAssignment = schema.new({
     id = id.from(_N, "ApplicationAssignment"),
@@ -767,10 +815,7 @@ M.DeleteApplicationAuthenticationMethodInput = schema.new({
     },
 })
 
-M.DeleteApplicationAuthenticationMethodOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationAuthenticationMethodOutput = prelude.Unit
 
 M.GetApplicationAuthenticationMethodInput = schema.new({
     id = id.from(_N, "GetApplicationAuthenticationMethodRequest"),
@@ -938,10 +983,7 @@ M.PutApplicationAuthenticationMethodInput = schema.new({
     },
 })
 
-M.PutApplicationAuthenticationMethodOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutApplicationAuthenticationMethodOutput = prelude.Unit
 
 M.DeleteApplicationGrantInput = schema.new({
     id = id.from(_N, "DeleteApplicationGrantRequest"),
@@ -968,10 +1010,7 @@ M.DeleteApplicationGrantInput = schema.new({
     },
 })
 
-M.DeleteApplicationGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationGrantOutput = prelude.Unit
 
 M.GetApplicationGrantInput = schema.new({
     id = id.from(_N, "GetApplicationGrantRequest"),
@@ -1214,10 +1253,7 @@ M.PutApplicationGrantInput = schema.new({
     },
 })
 
-M.PutApplicationGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutApplicationGrantOutput = prelude.Unit
 
 M.DisplayData = schema.new({
     id = id.from(_N, "DisplayData"),

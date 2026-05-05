@@ -7,6 +7,124 @@ local _N = "com.amazonaws.resiliencehub"
 
 local M = {}
 
+M.AcceptGroupingRecommendationEntries = schema.new({ type = "list", list_member = M.AcceptGroupingRecommendationEntry })
+
+M.FailedGroupingRecommendationEntries = schema.new({ type = "list", list_member = M.FailedGroupingRecommendationEntry })
+
+M.ResourceMappingList = schema.new({ type = "list", list_member = M.ResourceMapping })
+
+M.UpdateRecommendationStatusRequestEntries = schema.new({ type = "list", list_member = M.UpdateRecommendationStatusRequestEntry })
+
+M.BatchUpdateRecommendationStatusSuccessfulEntries = schema.new({ type = "list", list_member = M.BatchUpdateRecommendationStatusSuccessfulEntry })
+
+M.BatchUpdateRecommendationStatusFailedEntries = schema.new({ type = "list", list_member = M.BatchUpdateRecommendationStatusFailedEntry })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventSubscriptionList = schema.new({ type = "list", list_member = M.EventSubscription })
+
+M.AdditionalInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AdditionalInfoValueList })
+
+M.AppComponentNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RenderRecommendationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisruptionPolicy = schema.new({ type = "map", map_key = prelude.String, map_value = M.FailurePolicy })
+
+M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TerraformSourceList = schema.new({ type = "list", list_member = M.TerraformSource })
+
+M.EksSourceList = schema.new({ type = "list", list_member = M.EksSource })
+
+M.AlarmRecommendationList = schema.new({ type = "list", list_member = M.AlarmRecommendation })
+
+M.ComplianceDriftList = schema.new({ type = "list", list_member = M.ComplianceDrift })
+
+M.ResourceDriftList = schema.new({ type = "list", list_member = M.ResourceDrift })
+
+M.AssessmentStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppAssessmentSummaryList = schema.new({ type = "list", list_member = M.AppAssessmentSummary })
+
+M.ComponentCompliancesList = schema.new({ type = "list", list_member = M.AppComponentCompliance })
+
+M.ComponentRecommendationList = schema.new({ type = "list", list_member = M.ComponentRecommendation })
+
+M.AppInputSourceList = schema.new({ type = "list", list_member = M.AppInputSource })
+
+M.AppSummaryList = schema.new({ type = "list", list_member = M.AppSummary })
+
+M.AppComponentList = schema.new({ type = "list", list_member = M.AppComponent })
+
+M.PhysicalResourceList = schema.new({ type = "list", list_member = M.PhysicalResource })
+
+M.AppVersionList = schema.new({ type = "list", list_member = M.AppVersionSummary })
+
+M.FieldList = schema.new({ type = "list", list_member = M.Field })
+
+M.ConditionList = schema.new({ type = "list", list_member = M.Condition })
+
+M.SortList = schema.new({ type = "list", list_member = M.Sort })
+
+M.RowList = schema.new({ type = "list", list_member = M.Row })
+
+M.RecommendationTemplateStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationTemplateList = schema.new({ type = "list", list_member = M.RecommendationTemplate })
+
+M.ResiliencyPolicies = schema.new({ type = "list", list_member = M.ResiliencyPolicy })
+
+M.GroupingRecommendationList = schema.new({ type = "list", list_member = M.GroupingRecommendation })
+
+M.SopRecommendationList = schema.new({ type = "list", list_member = M.SopRecommendation })
+
+M.TestRecommendationList = schema.new({ type = "list", list_member = M.TestRecommendation })
+
+M.UnsupportedResourceList = schema.new({ type = "list", list_member = M.UnsupportedResource })
+
+M.RejectGroupingRecommendationEntries = schema.new({ type = "list", list_member = M.RejectGroupingRecommendationEntry })
+
+M.EntityNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.String255List = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IamRoleArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalInfoValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentCompliance = schema.new({ type = "map", map_key = prelude.String, map_value = M.DisruptionCompliance })
+
+M.Row = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisruptionResiliencyScore = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.ScoringComponentResiliencyScores = schema.new({ type = "map", map_key = prelude.String, map_value = M.ScoringComponentResiliencyScore })
+
+M.ResourceErrorList = schema.new({ type = "list", list_member = M.ResourceError })
+
+M.AssessmentRiskRecommendationList = schema.new({ type = "list", list_member = M.AssessmentRiskRecommendation })
+
+M.EksNamespaceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationItemList = schema.new({ type = "list", list_member = M.RecommendationItem })
+
+M.ConfigRecommendationList = schema.new({ type = "list", list_member = M.ConfigRecommendation })
+
+M.GroupingResourceList = schema.new({ type = "list", list_member = M.GroupingResource })
+
+M.AlarmReferenceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationCompliance = schema.new({ type = "map", map_key = prelude.String, map_value = M.RecommendationDisruptionCompliance })
+
+M.SuggestedChangesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptGroupingRecommendationEntry = schema.new({
     id = id.from(_N, "AcceptGroupingRecommendationEntry"),
     type = "structure",

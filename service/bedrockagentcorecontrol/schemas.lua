@@ -7,6 +7,216 @@ local _N = "com.amazonaws.bedrockagentcorecontrol"
 
 local M = {}
 
+M.ResourceOauth2ReturnUrlListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentRuntimeEndpoints = schema.new({ type = "list", list_member = M.AgentRuntimeEndpoint })
+
+M.AgentRuntimes = schema.new({ type = "list", list_member = M.AgentRuntime })
+
+M.EnvironmentVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilesystemConfigurations = schema.new({ type = "list", list_member = M.FilesystemConfiguration })
+
+M.ApiKeyCredentialProviders = schema.new({ type = "list", list_member = M.ApiKeyCredentialProviderItem })
+
+M.BrowserProfileSummaries = schema.new({ type = "list", list_member = M.BrowserProfileSummary })
+
+M.BrowserSummaries = schema.new({ type = "list", list_member = M.BrowserSummary })
+
+M.BrowserEnterprisePolicies = schema.new({ type = "list", list_member = M.BrowserEnterprisePolicy })
+
+M.Certificates = schema.new({ type = "list", list_member = M.Certificate })
+
+M.CodeInterpreterSummaries = schema.new({ type = "list", list_member = M.CodeInterpreterSummary })
+
+M.ConfigurationBundleSummaryList = schema.new({ type = "list", list_member = M.ConfigurationBundleSummary })
+
+M.ComponentConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentConfiguration })
+
+M.ConfigurationBundleVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurationBundleVersionSummaryList = schema.new({ type = "list", list_member = M.ConfigurationBundleVersionSummary })
+
+M.EvaluatorSummaryList = schema.new({ type = "list", list_member = M.EvaluatorSummary })
+
+M.GatewayInterceptorConfigurations = schema.new({ type = "list", list_member = M.GatewayInterceptorConfiguration })
+
+M.StatusReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewaySummaries = schema.new({ type = "list", list_member = M.GatewaySummary })
+
+M.Conditions = schema.new({ type = "list", list_member = M.Condition })
+
+M.Actions = schema.new({ type = "list", list_member = M.Action })
+
+M.GatewayRules = schema.new({ type = "list", list_member = M.GatewayRuleDetail })
+
+M.CredentialProviderConfigurations = schema.new({ type = "list", list_member = M.CredentialProviderConfiguration })
+
+M.PrivateEndpointManagedResources = schema.new({ type = "list", list_member = M.ManagedResourceDetails })
+
+M.TargetSummaries = schema.new({ type = "list", list_member = M.TargetSummary })
+
+M.TargetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewayTargetList = schema.new({ type = "list", list_member = M.GatewayTarget })
+
+M.HarnessSystemPrompt = schema.new({ type = "list", list_member = M.HarnessSystemContentBlock })
+
+M.HarnessTools = schema.new({ type = "list", list_member = M.HarnessTool })
+
+M.HarnessSkills = schema.new({ type = "list", list_member = M.HarnessSkill })
+
+M.HarnessAllowedTools = schema.new({ type = "list", list_member = prelude.String })
+
+M.HarnessSummaries = schema.new({ type = "list", list_member = M.HarnessSummary })
+
+M.MemorySummaryList = schema.new({ type = "list", list_member = M.MemorySummary })
+
+M.MemoryStrategyInputList = schema.new({ type = "list", list_member = M.MemoryStrategyInput })
+
+M.IndexedKeysList = schema.new({ type = "list", list_member = M.IndexedKey })
+
+M.Oauth2CredentialProviders = schema.new({ type = "list", list_member = M.Oauth2CredentialProviderItem })
+
+M.OnlineEvaluationConfigSummaryList = schema.new({ type = "list", list_member = M.OnlineEvaluationConfigSummary })
+
+M.EvaluatorList = schema.new({ type = "list", list_member = M.EvaluatorReference })
+
+M.PolicyEngines = schema.new({ type = "list", list_member = M.PolicyEngine })
+
+M.PolicyStatusReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyGenerations = schema.new({ type = "list", list_member = M.PolicyGeneration })
+
+M.PolicyGenerationAssets = schema.new({ type = "list", list_member = M.PolicyGenerationAsset })
+
+M.Policies = schema.new({ type = "list", list_member = M.Policy })
+
+M.RegistryRecordSummaryList = schema.new({ type = "list", list_member = M.RegistryRecordSummary })
+
+M.RegistrySummaryList = schema.new({ type = "list", list_member = M.RegistrySummary })
+
+M.WorkloadIdentityList = schema.new({ type = "list", list_member = M.WorkloadIdentityType })
+
+M.PrivateEndpointOverrides = schema.new({ type = "list", list_member = M.PrivateEndpointOverride })
+
+M.RequestHeaderAllowlist = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedRequestHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedQueryParameters = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedResponseHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamDeliveryResourcesList = schema.new({ type = "list", list_member = M.StreamDeliveryResource })
+
+M.MemoryStrategyList = schema.new({ type = "list", list_member = M.MemoryStrategy })
+
+M.ModifyMemoryStrategiesList = schema.new({ type = "list", list_member = M.ModifyMemoryStrategyInput })
+
+M.DeleteMemoryStrategiesList = schema.new({ type = "list", list_member = M.DeleteMemoryStrategyInput })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.EntryPoints = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedAudienceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedClientsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedScopesType = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomClaimValidationsType = schema.new({ type = "list", list_member = M.CustomClaimValidationType })
+
+M.McpSupportedVersions = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewayInterceptionPoints = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.HarnessAgentCoreMemoryRetrievalConfigs = schema.new({ type = "map", map_key = prelude.String, map_value = M.HarnessAgentCoreMemoryRetrievalConfig })
+
+M.LogGroupNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Findings = schema.new({ type = "list", list_member = M.Finding })
+
+M.RegistryRecordCredentialProviderConfigurationList = schema.new({ type = "list", list_member = M.RegistryRecordCredentialProviderConfiguration })
+
+M.ResponseListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.TokenEndpointAuthMethodsType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScopesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumericalScaleDefinitions = schema.new({ type = "list", list_member = M.NumericalScaleDefinition })
+
+M.CategoricalScaleDefinitions = schema.new({ type = "list", list_member = M.CategoricalScaleDefinition })
+
+M.MatchPrincipalEntries = schema.new({ type = "list", list_member = M.MatchPrincipalEntry })
+
+M.MatchPathPatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficSplitEntries = schema.new({ type = "list", list_member = M.TrafficSplitEntry })
+
+M.TargetTrafficSplitEntries = schema.new({ type = "list", list_member = M.TargetTrafficSplitEntry })
+
+M.ToolDefinitions = schema.new({ type = "list", list_member = M.ToolDefinition })
+
+M.ApiGatewayToolOverrides = schema.new({ type = "list", list_member = M.ApiGatewayToolOverride })
+
+M.ApiGatewayToolFilters = schema.new({ type = "list", list_member = M.ApiGatewayToolFilter })
+
+M.OAuthScopes = schema.new({ type = "list", list_member = prelude.String })
+
+M.OAuthCustomParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.HttpHeadersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetadataSchemaList = schema.new({ type = "list", list_member = M.MetadataSchemaEntry })
+
+M.ContentConfigurationList = schema.new({ type = "list", list_member = M.ContentConfiguration })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerConditionInputList = schema.new({ type = "list", list_member = M.TriggerConditionInput })
+
+M.TriggerConditionsList = schema.new({ type = "list", list_member = M.TriggerCondition })
+
+M.MatchValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficSplitMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RestApiMethods = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScopeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SchemaProperties = schema.new({ type = "map", map_key = prelude.String, map_value = M.SchemaDefinition })
+
+M.RequiredProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedStringValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedStringListValuesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AgentCardDefinition = schema.new({
     id = id.from(_N, "AgentCardDefinition"),
     type = "structure",
@@ -8872,10 +9082,7 @@ M.HarnessAgentCoreCodeInterpreterConfig = schema.new({
     },
 })
 
-M.Unit = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.Unit = prelude.Unit
 
 M.HarnessGatewayOutboundAuth = schema.new({
     id = id.from(_N, "HarnessGatewayOutboundAuth"),

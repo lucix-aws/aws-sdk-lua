@@ -7,6 +7,114 @@ local _N = "com.amazonaws.partnercentralselling"
 
 local M = {}
 
+M.ValidationExceptionErrorList = schema.new({ type = "list", list_member = M.ValidationExceptionError })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsAccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngagementContextTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngagementIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngagementSummaryList = schema.new({ type = "list", list_member = M.EngagementSummary })
+
+M.EngagementContexts = schema.new({ type = "list", list_member = M.EngagementContextDetails })
+
+M.EngagementMembers = schema.new({ type = "list", list_member = M.EngagementMember })
+
+M.TaskStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpportunityIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngagementInvitationIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListEngagementByAcceptingInvitationTaskSummaries = schema.new({ type = "list", list_member = M.ListEngagementByAcceptingInvitationTaskSummary })
+
+M.ListEngagementFromOpportunityTaskSummaries = schema.new({ type = "list", list_member = M.ListEngagementFromOpportunityTaskSummary })
+
+M.EngagementInvitationsPayloadType = schema.new({ type = "list", list_member = prelude.String })
+
+M.InvitationStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsAccountIdOrAliasList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngagementInvitationSummaries = schema.new({ type = "list", list_member = M.EngagementInvitationSummary })
+
+M.EngagementMemberSummaries = schema.new({ type = "list", list_member = M.EngagementMemberSummary })
+
+M.FilterIdentifier = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterLifeCycleStage = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterLifeCycleReviewStatus = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpportunitySummaries = schema.new({ type = "list", list_member = M.OpportunitySummary })
+
+M.PrimaryNeedsFromAws = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartnerOpportunityTeamMembersList = schema.new({ type = "list", list_member = M.Contact })
+
+M.AwsOpportunityTeamMembersList = schema.new({ type = "list", list_member = M.AwsTeamMember })
+
+M.ContextIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOpportunityFromEngagementTaskSummaries = schema.new({ type = "list", list_member = M.ListOpportunityFromEngagementTaskSummary })
+
+M.EngagementResourceAssociationSummaryList = schema.new({ type = "list", list_member = M.EngagementResourceAssociationSummary })
+
+M.ResourceSnapshotSummaryList = schema.new({ type = "list", list_member = M.ResourceSnapshotSummary })
+
+M.ResourceSnapshotJobSummaryList = schema.new({ type = "list", list_member = M.ResourceSnapshotJobSummary })
+
+M.FilterStatus = schema.new({ type = "list", list_member = prelude.String })
+
+M.SolutionIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.SolutionList = schema.new({ type = "list", list_member = M.SolutionBase })
+
+M.CustomerContactsList = schema.new({ type = "list", list_member = M.Contact })
+
+M.DeliveryModels = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExpectedCustomerSpendList = schema.new({ type = "list", list_member = M.ExpectedCustomerSpend })
+
+M.ApnPrograms = schema.new({ type = "list", list_member = prelude.String })
+
+M.SalesActivities = schema.new({ type = "list", list_member = prelude.String })
+
+M.UseCases = schema.new({ type = "list", list_member = prelude.String })
+
+M.Channels = schema.new({ type = "list", list_member = prelude.String })
+
+M.NextStepsHistories = schema.new({ type = "list", list_member = M.NextStepsHistory })
+
+M.AwsMarketplaceOfferIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsMarketplaceOfferSetIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsProductIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileNextStepsHistories = schema.new({ type = "list", list_member = M.ProfileNextStepsHistory })
+
+M.LeadInteractionList = schema.new({ type = "list", list_member = M.LeadInteraction })
+
+M.SenderContactList = schema.new({ type = "list", list_member = M.SenderContact })
+
+M.ReceiverResponsibilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmountMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AwsProductsList = schema.new({ type = "list", list_member = M.AwsProductDetails })
+
+M.AwsProductOptimizationsList = schema.new({ type = "list", list_member = M.AwsProductOptimization })
+
 M.AcceptEngagementInvitationInput = schema.new({
     id = id.from(_N, "AcceptEngagementInvitationRequest"),
     type = "structure",
@@ -32,10 +140,7 @@ M.AcceptEngagementInvitationInput = schema.new({
     },
 })
 
-M.AcceptEngagementInvitationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AcceptEngagementInvitationOutput = prelude.Unit
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -457,10 +562,7 @@ M.AssignOpportunityInput = schema.new({
     },
 })
 
-M.AssignOpportunityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssignOpportunityOutput = prelude.Unit
 
 M.AssociateOpportunityInput = schema.new({
     id = id.from(_N, "AssociateOpportunityRequest"),
@@ -505,10 +607,7 @@ M.AssociateOpportunityInput = schema.new({
     },
 })
 
-M.AssociateOpportunityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateOpportunityOutput = prelude.Unit
 
 M.Contact = schema.new({
     id = id.from(_N, "Contact"),
@@ -3348,10 +3447,7 @@ M.RejectEngagementInvitationInput = schema.new({
     },
 })
 
-M.RejectEngagementInvitationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RejectEngagementInvitationOutput = prelude.Unit
 
 M.GetSellingSystemSettingsInput = schema.new({
     id = id.from(_N, "GetSellingSystemSettingsRequest"),
@@ -3895,10 +3991,7 @@ M.DisassociateOpportunityInput = schema.new({
     },
 })
 
-M.DisassociateOpportunityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateOpportunityOutput = prelude.Unit
 
 M.GetAwsOpportunitySummaryInput = schema.new({
     id = id.from(_N, "GetAwsOpportunitySummaryRequest"),
@@ -4611,10 +4704,7 @@ M.SubmitOpportunityInput = schema.new({
     },
 })
 
-M.SubmitOpportunityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SubmitOpportunityOutput = prelude.Unit
 
 M.UpdateOpportunityInput = schema.new({
     id = id.from(_N, "UpdateOpportunityRequest"),
@@ -5796,10 +5886,7 @@ M.DeleteResourceSnapshotJobInput = schema.new({
     },
 })
 
-M.DeleteResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceSnapshotJobOutput = prelude.Unit
 
 M.GetResourceSnapshotJobInput = schema.new({
     id = id.from(_N, "GetResourceSnapshotJobRequest"),
@@ -6062,10 +6149,7 @@ M.StartResourceSnapshotJobInput = schema.new({
     },
 })
 
-M.StartResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartResourceSnapshotJobOutput = prelude.Unit
 
 M.StopResourceSnapshotJobInput = schema.new({
     id = id.from(_N, "StopResourceSnapshotJobRequest"),
@@ -6092,10 +6176,7 @@ M.StopResourceSnapshotJobInput = schema.new({
     },
 })
 
-M.StopResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopResourceSnapshotJobOutput = prelude.Unit
 
 M.SolutionSort = schema.new({
     id = id.from(_N, "SolutionSort"),

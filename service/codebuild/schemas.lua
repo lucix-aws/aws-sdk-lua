@@ -7,6 +7,118 @@ local _N = "com.amazonaws.codebuild"
 
 local M = {}
 
+M.BuildIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BuildsNotDeleted = schema.new({ type = "list", list_member = M.BuildNotDeleted })
+
+M.BuildBatchIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BuildBatches = schema.new({ type = "list", list_member = M.BuildBatch })
+
+M.Builds = schema.new({ type = "list", list_member = M.Build })
+
+M.CommandExecutionIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommandExecutions = schema.new({ type = "list", list_member = M.CommandExecution })
+
+M.FleetNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Fleets = schema.new({ type = "list", list_member = M.Fleet })
+
+M.ProjectNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Projects = schema.new({ type = "list", list_member = M.Project })
+
+M.ReportGroupArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReportGroups = schema.new({ type = "list", list_member = M.ReportGroup })
+
+M.ReportArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.Reports = schema.new({ type = "list", list_member = M.Report })
+
+M.SandboxIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Sandboxes = schema.new({ type = "list", list_member = M.Sandbox })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ProjectSources = schema.new({ type = "list", list_member = M.ProjectSource })
+
+M.ProjectSecondarySourceVersions = schema.new({ type = "list", list_member = M.ProjectSourceVersion })
+
+M.ProjectArtifactsList = schema.new({ type = "list", list_member = M.ProjectArtifacts })
+
+M.ProjectFileSystemLocations = schema.new({ type = "list", list_member = M.ProjectFileSystemLocation })
+
+M.FilterGroups = schema.new({ type = "list", list_member = M.FilterGroup })
+
+M.CodeCoverages = schema.new({ type = "list", list_member = M.CodeCoverage })
+
+M.TestCases = schema.new({ type = "list", list_member = M.TestCase })
+
+M.ReportGroupTrendRawDataList = schema.new({ type = "list", list_member = M.ReportWithRawData })
+
+M.EnvironmentPlatforms = schema.new({ type = "list", list_member = M.EnvironmentPlatform })
+
+M.FleetArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProjectArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceCredentialsInfos = schema.new({ type = "list", list_member = M.SourceCredentialsInfo })
+
+M.EnvironmentVariables = schema.new({ type = "list", list_member = M.EnvironmentVariable })
+
+M.TargetTrackingScalingConfigurations = schema.new({ type = "list", list_member = M.TargetTrackingScalingConfiguration })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.FleetProxyRules = schema.new({ type = "list", list_member = M.FleetProxyRule })
+
+M.ProjectCacheModes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterGroup = schema.new({ type = "list", list_member = M.WebhookFilter })
+
+M.PullRequestBuildApproverRoles = schema.new({ type = "list", list_member = prelude.String })
+
+M.BuildPhases = schema.new({ type = "list", list_member = M.BuildPhase })
+
+M.BuildArtifactsList = schema.new({ type = "list", list_member = M.BuildArtifacts })
+
+M.ExportedEnvironmentVariables = schema.new({ type = "list", list_member = M.ExportedEnvironmentVariable })
+
+M.BuildReportArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.BuildBatchPhases = schema.new({ type = "list", list_member = M.BuildBatchPhase })
+
+M.BuildGroups = schema.new({ type = "list", list_member = M.BuildGroup })
+
+M.ComputeTypesAllowed = schema.new({ type = "list", list_member = prelude.String })
+
+M.FleetsAllowed = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentLanguages = schema.new({ type = "list", list_member = M.EnvironmentLanguage })
+
+M.SandboxSessionPhases = schema.new({ type = "list", list_member = M.SandboxSessionPhase })
+
+M.ReportStatusCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.FleetProxyRuleEntities = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhaseContexts = schema.new({ type = "list", list_member = M.PhaseContext })
+
+M.Identifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.BuildSummaries = schema.new({ type = "list", list_member = M.BuildSummary })
+
+M.EnvironmentImages = schema.new({ type = "list", list_member = M.EnvironmentImage })
+
+M.ResolvedSecondaryArtifacts = schema.new({ type = "list", list_member = M.ResolvedArtifact })
+
+M.ImageVersions = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccountLimitExceededException = schema.new({
     id = id.from(_N, "AccountLimitExceededException"),
     type = "structure",

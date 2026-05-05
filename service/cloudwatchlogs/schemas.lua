@@ -7,6 +7,200 @@ local _N = "com.amazonaws.cloudwatchlogs"
 
 local M = {}
 
+M.RecordFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogGroupArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledQueryLogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountPolicies = schema.new({ type = "list", list_member = M.AccountPolicy })
+
+M.LogTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeliveryDestinationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurationTemplates = schema.new({ type = "list", list_member = M.ConfigurationTemplate })
+
+M.Deliveries = schema.new({ type = "list", list_member = M.Delivery })
+
+M.DeliveryDestinations = schema.new({ type = "list", list_member = M.DeliveryDestination })
+
+M.DeliverySources = schema.new({ type = "list", list_member = M.DeliverySource })
+
+M.Destinations = schema.new({ type = "list", list_member = M.Destination })
+
+M.ExportTasks = schema.new({ type = "list", list_member = M.ExportTask })
+
+M.DescribeFieldIndexesLogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldIndexes = schema.new({ type = "list", list_member = M.FieldIndex })
+
+M.ImportStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportBatchList = schema.new({ type = "list", list_member = M.ImportBatch })
+
+M.ImportList = schema.new({ type = "list", list_member = M.Import })
+
+M.DescribeIndexPoliciesLogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.IndexPolicies = schema.new({ type = "list", list_member = M.IndexPolicy })
+
+M.DescribeLogGroupsLogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogGroups = schema.new({ type = "list", list_member = M.LogGroup })
+
+M.LogStreams = schema.new({ type = "list", list_member = M.LogStream })
+
+M.LookupTables = schema.new({ type = "list", list_member = M.LookupTable })
+
+M.MetricFilters = schema.new({ type = "list", list_member = M.MetricFilter })
+
+M.QueryInfoList = schema.new({ type = "list", list_member = M.QueryInfo })
+
+M.QueryDefinitionList = schema.new({ type = "list", list_member = M.QueryDefinition })
+
+M.ResourcePolicies = schema.new({ type = "list", list_member = M.ResourcePolicy })
+
+M.SubscriptionFilters = schema.new({ type = "list", list_member = M.SubscriptionFilter })
+
+M.InputLogStreamNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilteredLogEvents = schema.new({ type = "list", list_member = M.FilteredLogEvent })
+
+M.SearchedLogStreams = schema.new({ type = "list", list_member = M.SearchedLogStream })
+
+M.OutputLogEvents = schema.new({ type = "list", list_member = M.OutputLogEvent })
+
+M.LogFieldsList = schema.new({ type = "list", list_member = M.LogFieldsListItem })
+
+M.LogGroupFieldList = schema.new({ type = "list", list_member = M.LogGroupField })
+
+M.LogRecord = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QueryResults = schema.new({ type = "list", list_member = M.ResultRows })
+
+M.ExecutionStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerHistoryRecordList = schema.new({ type = "list", list_member = M.TriggerHistoryRecord })
+
+M.Processors = schema.new({ type = "list", list_member = M.Processor })
+
+M.DataSourceFilters = schema.new({ type = "list", list_member = M.DataSourceFilter })
+
+M.AggregateLogGroupSummaries = schema.new({ type = "list", list_member = M.AggregateLogGroupSummary })
+
+M.Anomalies = schema.new({ type = "list", list_member = M.Anomaly })
+
+M.IntegrationSummaries = schema.new({ type = "list", list_member = M.IntegrationSummary })
+
+M.AnomalyDetectors = schema.new({ type = "list", list_member = M.AnomalyDetector })
+
+M.FieldIndexNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagFilters = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.LogGroupSummaries = schema.new({ type = "list", list_member = M.LogGroupSummary })
+
+M.LogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledQuerySummaryList = schema.new({ type = "list", list_member = M.ScheduledQuerySummary })
+
+M.S3TableIntegrationSources = schema.new({ type = "list", list_member = M.S3TableIntegrationSource })
+
+M.InputLogEvents = schema.new({ type = "list", list_member = M.InputLogEvent })
+
+M.MetricTransformations = schema.new({ type = "list", list_member = M.MetricTransformation })
+
+M.EmitSystemFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryParameterList = schema.new({ type = "list", list_member = M.QueryParameter })
+
+M.StartLiveTailLogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.TestEventMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricFilterMatches = schema.new({ type = "list", list_member = M.MetricFilterMatchRecord })
+
+M.TransformedLogs = schema.new({ type = "list", list_member = M.TransformedLogRecord })
+
+M.TagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResultRows = schema.new({ type = "list", list_member = M.ResultField })
+
+M.EntityKeyAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EntityAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AllowedFields = schema.new({ type = "list", list_member = M.RecordField })
+
+M.OutputFormats = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedFieldDelimiters = schema.new({ type = "list", list_member = prelude.String })
+
+M.InheritedProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledQueryDestinationList = schema.new({ type = "list", list_member = M.ScheduledQueryDestination })
+
+M.GroupingIdentifiers = schema.new({ type = "list", list_member = M.GroupingIdentifier })
+
+M.Histogram = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.LogSamples = schema.new({ type = "list", list_member = M.LogEvent })
+
+M.PatternTokens = schema.new({ type = "list", list_member = M.PatternToken })
+
+M.TagFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DashboardViewerPrincipals = schema.new({ type = "list", list_member = prelude.String })
+
+M.Dimensions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LiveTailSessionResults = schema.new({ type = "list", list_member = M.LiveTailSessionLogEvent })
+
+M.ExtractedValues = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AddKeyEntries = schema.new({ type = "list", list_member = M.AddKeyEntry })
+
+M.CopyValueEntries = schema.new({ type = "list", list_member = M.CopyValueEntry })
+
+M.Columns = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchPatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteWithKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.LowerCaseStringWithKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.MoveKeyEntries = schema.new({ type = "list", list_member = M.MoveKeyEntry })
+
+M.RenameKeyEntries = schema.new({ type = "list", list_member = M.RenameKeyEntry })
+
+M.SplitStringEntries = schema.new({ type = "list", list_member = M.SplitStringEntry })
+
+M.SubstituteStringEntries = schema.new({ type = "list", list_member = M.SubstituteStringEntry })
+
+M.TrimStringWithKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.TypeConverterEntries = schema.new({ type = "list", list_member = M.TypeConverterEntry })
+
+M.UpperCaseStringWithKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Enumerations = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -517,10 +711,7 @@ M.AssociateKmsKeyInput = schema.new({
     },
 })
 
-M.AssociateKmsKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateKmsKeyOutput = prelude.Unit
 
 M.InvalidParameterException = schema.new({
     id = id.from(_N, "InvalidParameterException"),
@@ -711,10 +902,7 @@ M.CancelExportTaskInput = schema.new({
     },
 })
 
-M.CancelExportTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelExportTaskOutput = prelude.Unit
 
 M.InvalidOperationException = schema.new({
     id = id.from(_N, "InvalidOperationException"),
@@ -1424,10 +1612,7 @@ M.CreateLogGroupInput = schema.new({
     },
 })
 
-M.CreateLogGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateLogGroupOutput = prelude.Unit
 
 M.CreateLogStreamInput = schema.new({
     id = id.from(_N, "CreateLogStreamRequest"),
@@ -1454,10 +1639,7 @@ M.CreateLogStreamInput = schema.new({
     },
 })
 
-M.CreateLogStreamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateLogStreamOutput = prelude.Unit
 
 M.CreateLookupTableInput = schema.new({
     id = id.from(_N, "CreateLookupTableRequest"),
@@ -1872,10 +2054,7 @@ M.DeleteAccountPolicyInput = schema.new({
     },
 })
 
-M.DeleteAccountPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccountPolicyOutput = prelude.Unit
 
 M.DeleteDataProtectionPolicyInput = schema.new({
     id = id.from(_N, "DeleteDataProtectionPolicyRequest"),
@@ -1893,10 +2072,7 @@ M.DeleteDataProtectionPolicyInput = schema.new({
     },
 })
 
-M.DeleteDataProtectionPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDataProtectionPolicyOutput = prelude.Unit
 
 M.DeleteDeliveryInput = schema.new({
     id = id.from(_N, "DeleteDeliveryRequest"),
@@ -1914,10 +2090,7 @@ M.DeleteDeliveryInput = schema.new({
     },
 })
 
-M.DeleteDeliveryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeliveryOutput = prelude.Unit
 
 M.DeleteDeliveryDestinationInput = schema.new({
     id = id.from(_N, "DeleteDeliveryDestinationRequest"),
@@ -1935,10 +2108,7 @@ M.DeleteDeliveryDestinationInput = schema.new({
     },
 })
 
-M.DeleteDeliveryDestinationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeliveryDestinationOutput = prelude.Unit
 
 M.DeleteDeliveryDestinationPolicyInput = schema.new({
     id = id.from(_N, "DeleteDeliveryDestinationPolicyRequest"),
@@ -1956,10 +2126,7 @@ M.DeleteDeliveryDestinationPolicyInput = schema.new({
     },
 })
 
-M.DeleteDeliveryDestinationPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeliveryDestinationPolicyOutput = prelude.Unit
 
 M.DeleteDeliverySourceInput = schema.new({
     id = id.from(_N, "DeleteDeliverySourceRequest"),
@@ -1977,10 +2144,7 @@ M.DeleteDeliverySourceInput = schema.new({
     },
 })
 
-M.DeleteDeliverySourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeliverySourceOutput = prelude.Unit
 
 M.DeleteDestinationInput = schema.new({
     id = id.from(_N, "DeleteDestinationRequest"),
@@ -1998,10 +2162,7 @@ M.DeleteDestinationInput = schema.new({
     },
 })
 
-M.DeleteDestinationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDestinationOutput = prelude.Unit
 
 M.DeleteIndexPolicyInput = schema.new({
     id = id.from(_N, "DeleteIndexPolicyRequest"),
@@ -2087,10 +2248,7 @@ M.DeleteLogAnomalyDetectorInput = schema.new({
     },
 })
 
-M.DeleteLogAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLogAnomalyDetectorOutput = prelude.Unit
 
 M.DeleteLogGroupInput = schema.new({
     id = id.from(_N, "DeleteLogGroupRequest"),
@@ -2108,10 +2266,7 @@ M.DeleteLogGroupInput = schema.new({
     },
 })
 
-M.DeleteLogGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLogGroupOutput = prelude.Unit
 
 M.DeleteLogStreamInput = schema.new({
     id = id.from(_N, "DeleteLogStreamRequest"),
@@ -2138,10 +2293,7 @@ M.DeleteLogStreamInput = schema.new({
     },
 })
 
-M.DeleteLogStreamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLogStreamOutput = prelude.Unit
 
 M.DeleteLookupTableInput = schema.new({
     id = id.from(_N, "DeleteLookupTableRequest"),
@@ -2159,10 +2311,7 @@ M.DeleteLookupTableInput = schema.new({
     },
 })
 
-M.DeleteLookupTableOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLookupTableOutput = prelude.Unit
 
 M.DeleteMetricFilterInput = schema.new({
     id = id.from(_N, "DeleteMetricFilterRequest"),
@@ -2189,10 +2338,7 @@ M.DeleteMetricFilterInput = schema.new({
     },
 })
 
-M.DeleteMetricFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMetricFilterOutput = prelude.Unit
 
 M.DeleteQueryDefinitionInput = schema.new({
     id = id.from(_N, "DeleteQueryDefinitionRequest"),
@@ -2251,10 +2397,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DeleteRetentionPolicyInput = schema.new({
     id = id.from(_N, "DeleteRetentionPolicyRequest"),
@@ -2272,10 +2415,7 @@ M.DeleteRetentionPolicyInput = schema.new({
     },
 })
 
-M.DeleteRetentionPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRetentionPolicyOutput = prelude.Unit
 
 M.DeleteScheduledQueryInput = schema.new({
     id = id.from(_N, "DeleteScheduledQueryRequest"),
@@ -2323,10 +2463,7 @@ M.DeleteSubscriptionFilterInput = schema.new({
     },
 })
 
-M.DeleteSubscriptionFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSubscriptionFilterOutput = prelude.Unit
 
 M.DeleteTransformerInput = schema.new({
     id = id.from(_N, "DeleteTransformerRequest"),
@@ -2344,10 +2481,7 @@ M.DeleteTransformerInput = schema.new({
     },
 })
 
-M.DeleteTransformerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTransformerOutput = prelude.Unit
 
 M.DeliveryDestinationConfiguration = schema.new({
     id = id.from(_N, "DeliveryDestinationConfiguration"),
@@ -4373,10 +4507,7 @@ M.DisassociateKmsKeyInput = schema.new({
     },
 })
 
-M.DisassociateKmsKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateKmsKeyOutput = prelude.Unit
 
 M.DisassociateSourceFromS3TableIntegrationInput = schema.new({
     id = id.from(_N, "DisassociateSourceFromS3TableIntegrationRequest"),
@@ -7705,10 +7836,7 @@ M.PutBearerTokenAuthenticationInput = schema.new({
     },
 })
 
-M.PutBearerTokenAuthenticationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBearerTokenAuthenticationOutput = prelude.Unit
 
 M.PutDataProtectionPolicyInput = schema.new({
     id = id.from(_N, "PutDataProtectionPolicyRequest"),
@@ -7999,10 +8127,7 @@ M.PutDestinationPolicyInput = schema.new({
     },
 })
 
-M.PutDestinationPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutDestinationPolicyOutput = prelude.Unit
 
 M.PutIndexPolicyInput = schema.new({
     id = id.from(_N, "PutIndexPolicyRequest"),
@@ -8315,10 +8440,7 @@ M.PutLogGroupDeletionProtectionInput = schema.new({
     },
 })
 
-M.PutLogGroupDeletionProtectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutLogGroupDeletionProtectionOutput = prelude.Unit
 
 M.PutMetricFilterInput = schema.new({
     id = id.from(_N, "PutMetricFilterRequest"),
@@ -8386,10 +8508,7 @@ M.PutMetricFilterInput = schema.new({
     },
 })
 
-M.PutMetricFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutMetricFilterOutput = prelude.Unit
 
 M.PutQueryDefinitionInput = schema.new({
     id = id.from(_N, "PutQueryDefinitionRequest"),
@@ -8540,10 +8659,7 @@ M.PutRetentionPolicyInput = schema.new({
     },
 })
 
-M.PutRetentionPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutRetentionPolicyOutput = prelude.Unit
 
 M.PutSubscriptionFilterInput = schema.new({
     id = id.from(_N, "PutSubscriptionFilterRequest"),
@@ -8622,10 +8738,7 @@ M.PutSubscriptionFilterInput = schema.new({
     },
 })
 
-M.PutSubscriptionFilterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutSubscriptionFilterOutput = prelude.Unit
 
 M.PutTransformerInput = schema.new({
     id = id.from(_N, "PutTransformerRequest"),
@@ -8653,10 +8766,7 @@ M.PutTransformerInput = schema.new({
     },
 })
 
-M.PutTransformerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTransformerOutput = prelude.Unit
 
 M.StartLiveTailInput = schema.new({
     id = id.from(_N, "StartLiveTailRequest"),
@@ -8976,10 +9086,7 @@ M.TagLogGroupInput = schema.new({
     },
 })
 
-M.TagLogGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagLogGroupOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -9008,10 +9115,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TooManyTagsException = schema.new({
     id = id.from(_N, "TooManyTagsException"),
@@ -9200,10 +9304,7 @@ M.UntagLogGroupInput = schema.new({
     },
 })
 
-M.UntagLogGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagLogGroupOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -9231,10 +9332,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.SuppressionPeriod = schema.new({
     id = id.from(_N, "SuppressionPeriod"),
@@ -9305,10 +9403,7 @@ M.UpdateAnomalyInput = schema.new({
     },
 })
 
-M.UpdateAnomalyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAnomalyOutput = prelude.Unit
 
 M.UpdateDeliveryConfigurationInput = schema.new({
     id = id.from(_N, "UpdateDeliveryConfigurationRequest"),
@@ -9394,10 +9489,7 @@ M.UpdateLogAnomalyDetectorInput = schema.new({
     },
 })
 
-M.UpdateLogAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateLogAnomalyDetectorOutput = prelude.Unit
 
 M.UpdateLookupTableInput = schema.new({
     id = id.from(_N, "UpdateLookupTableRequest"),

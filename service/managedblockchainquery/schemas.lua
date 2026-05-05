@@ -7,6 +7,26 @@ local _N = "com.amazonaws.managedblockchainquery"
 
 local M = {}
 
+M.GetTokenBalanceInputList = schema.new({ type = "list", list_member = M.BatchGetTokenBalanceInputItem })
+
+M.BatchGetTokenBalanceOutputList = schema.new({ type = "list", list_member = M.BatchGetTokenBalanceOutputItem })
+
+M.BatchGetTokenBalanceErrors = schema.new({ type = "list", list_member = M.BatchGetTokenBalanceErrorItem })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AssetContractList = schema.new({ type = "list", list_member = M.AssetContract })
+
+M.TransactionEventList = schema.new({ type = "list", list_member = M.TransactionEvent })
+
+M.TokenBalanceList = schema.new({ type = "list", list_member = M.TokenBalance })
+
+M.TransactionOutputList = schema.new({ type = "list", list_member = M.TransactionOutputItem })
+
+M.ChainAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfirmationStatusIncludeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,26 @@ local _N = "com.amazonaws.licensemanagerlinuxsubscriptions"
 
 local M = {}
 
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.SubscriptionProviderSourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegisteredSubscriptionProviderList = schema.new({ type = "list", list_member = M.RegisteredSubscriptionProvider })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductCodeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.DeregisterSubscriptionProviderInput = schema.new({
     id = id.from(_N, "DeregisterSubscriptionProviderRequest"),
     type = "structure",

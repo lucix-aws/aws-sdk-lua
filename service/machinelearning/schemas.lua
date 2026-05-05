@@ -7,6 +7,30 @@ local _N = "com.amazonaws.machinelearning"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TrainingParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchPredictions = schema.new({ type = "list", list_member = M.BatchPrediction })
+
+M.DataSources = schema.new({ type = "list", list_member = M.DataSource })
+
+M.Evaluations = schema.new({ type = "list", list_member = M.Evaluation })
+
+M.MLModels = schema.new({ type = "list", list_member = M.MLModel })
+
+M.Record = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EDPSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PerformanceMetricsProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ScoreValuePerLabelMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Float })
+
+M.DetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",

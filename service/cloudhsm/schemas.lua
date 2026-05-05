@@ -7,6 +7,22 @@ local _N = "com.amazonaws.cloudhsm"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.HsmList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartitionSerialList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartitionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HapgList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AZList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClientList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",

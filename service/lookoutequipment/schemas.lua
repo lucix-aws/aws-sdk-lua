@@ -7,6 +7,36 @@ local _N = "com.amazonaws.lookoutequipment"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.FaultCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataIngestionJobSummaries = schema.new({ type = "list", list_member = M.DataIngestionJobSummary })
+
+M.DatasetSummaries = schema.new({ type = "list", list_member = M.DatasetSummary })
+
+M.InferenceEventSummaries = schema.new({ type = "list", list_member = M.InferenceEventSummary })
+
+M.InferenceExecutionSummaries = schema.new({ type = "list", list_member = M.InferenceExecutionSummary })
+
+M.InferenceSchedulerSummaries = schema.new({ type = "list", list_member = M.InferenceSchedulerSummary })
+
+M.LabelGroupSummaries = schema.new({ type = "list", list_member = M.LabelGroupSummary })
+
+M.LabelSummaries = schema.new({ type = "list", list_member = M.LabelSummary })
+
+M.ModelSummaries = schema.new({ type = "list", list_member = M.ModelSummary })
+
+M.ModelVersionSummaries = schema.new({ type = "list", list_member = M.ModelVersionSummary })
+
+M.RetrainingSchedulerSummaries = schema.new({ type = "list", list_member = M.RetrainingSchedulerSummary })
+
+M.SensorStatisticsSummaries = schema.new({ type = "list", list_member = M.SensorStatisticsSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfDiscardedFiles = schema.new({ type = "list", list_member = M.S3Object })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -959,10 +989,7 @@ M.DeleteDatasetInput = schema.new({
     },
 })
 
-M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatasetOutput = prelude.Unit
 
 M.DeleteInferenceSchedulerInput = schema.new({
     id = id.from(_N, "DeleteInferenceSchedulerRequest"),
@@ -980,10 +1007,7 @@ M.DeleteInferenceSchedulerInput = schema.new({
     },
 })
 
-M.DeleteInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInferenceSchedulerOutput = prelude.Unit
 
 M.DeleteLabelInput = schema.new({
     id = id.from(_N, "DeleteLabelRequest"),
@@ -1010,10 +1034,7 @@ M.DeleteLabelInput = schema.new({
     },
 })
 
-M.DeleteLabelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLabelOutput = prelude.Unit
 
 M.DeleteLabelGroupInput = schema.new({
     id = id.from(_N, "DeleteLabelGroupRequest"),
@@ -1031,10 +1052,7 @@ M.DeleteLabelGroupInput = schema.new({
     },
 })
 
-M.DeleteLabelGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLabelGroupOutput = prelude.Unit
 
 M.DeleteModelInput = schema.new({
     id = id.from(_N, "DeleteModelRequest"),
@@ -1052,10 +1070,7 @@ M.DeleteModelInput = schema.new({
     },
 })
 
-M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelOutput = prelude.Unit
 
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyRequest"),
@@ -1073,10 +1088,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DeleteRetrainingSchedulerInput = schema.new({
     id = id.from(_N, "DeleteRetrainingSchedulerRequest"),
@@ -1094,10 +1106,7 @@ M.DeleteRetrainingSchedulerInput = schema.new({
     },
 })
 
-M.DeleteRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRetrainingSchedulerOutput = prelude.Unit
 
 M.DescribeDataIngestionJobInput = schema.new({
     id = id.from(_N, "DescribeDataIngestionJobRequest"),
@@ -4647,10 +4656,7 @@ M.UpdateInferenceSchedulerInput = schema.new({
     },
 })
 
-M.UpdateInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateInferenceSchedulerOutput = prelude.Unit
 
 M.UpdateLabelGroupInput = schema.new({
     id = id.from(_N, "UpdateLabelGroupRequest"),
@@ -4675,10 +4681,7 @@ M.UpdateLabelGroupInput = schema.new({
     },
 })
 
-M.UpdateLabelGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateLabelGroupOutput = prelude.Unit
 
 M.UpdateModelInput = schema.new({
     id = id.from(_N, "UpdateModelRequest"),
@@ -4716,10 +4719,7 @@ M.UpdateModelInput = schema.new({
     },
 })
 
-M.UpdateModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateModelOutput = prelude.Unit
 
 M.UpdateRetrainingSchedulerInput = schema.new({
     id = id.from(_N, "UpdateRetrainingSchedulerRequest"),
@@ -4761,10 +4761,7 @@ M.UpdateRetrainingSchedulerInput = schema.new({
     },
 })
 
-M.UpdateRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRetrainingSchedulerOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

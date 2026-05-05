@@ -7,6 +7,188 @@ local _N = "com.amazonaws.computeoptimizer"
 
 local M = {}
 
+M.RecommendationPreferenceNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobFilters = schema.new({ type = "list", list_member = M.JobFilter })
+
+M.RecommendationExportJobs = schema.new({ type = "list", list_member = M.RecommendationExportJob })
+
+M.AccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.ExportableAutoScalingGroupFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.EBSFilters = schema.new({ type = "list", list_member = M.EBSFilter })
+
+M.ExportableVolumeFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportableInstanceFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.ECSServiceRecommendationFilters = schema.new({ type = "list", list_member = M.ECSServiceRecommendationFilter })
+
+M.ExportableECSServiceFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdleRecommendationFilters = schema.new({ type = "list", list_member = M.IdleRecommendationFilter })
+
+M.ExportableIdleFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaFunctionRecommendationFilters = schema.new({ type = "list", list_member = M.LambdaFunctionRecommendationFilter })
+
+M.ExportableLambdaFunctionFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.LicenseRecommendationFilters = schema.new({ type = "list", list_member = M.LicenseRecommendationFilter })
+
+M.ExportableLicenseFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.RDSDBRecommendationFilters = schema.new({ type = "list", list_member = M.RDSDBRecommendationFilter })
+
+M.ExportableRDSDBFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoScalingGroupArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoScalingGroupRecommendations = schema.new({ type = "list", list_member = M.AutoScalingGroupRecommendation })
+
+M.GetRecommendationErrors = schema.new({ type = "list", list_member = M.GetRecommendationError })
+
+M.VolumeArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeRecommendations = schema.new({ type = "list", list_member = M.VolumeRecommendation })
+
+M.InstanceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceRecommendations = schema.new({ type = "list", list_member = M.InstanceRecommendation })
+
+M.RecommendedOptionProjectedMetrics = schema.new({ type = "list", list_member = M.RecommendedOptionProjectedMetric })
+
+M.ECSServiceRecommendedOptionProjectedMetrics = schema.new({ type = "list", list_member = M.ECSServiceRecommendedOptionProjectedMetric })
+
+M.ServiceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ECSServiceRecommendations = schema.new({ type = "list", list_member = M.ECSServiceRecommendation })
+
+M.UtilizationPreferences = schema.new({ type = "list", list_member = M.UtilizationPreference })
+
+M.EffectivePreferredResources = schema.new({ type = "list", list_member = M.EffectivePreferredResource })
+
+M.EnrollmentFilters = schema.new({ type = "list", list_member = M.EnrollmentFilter })
+
+M.AccountEnrollmentStatuses = schema.new({ type = "list", list_member = M.AccountEnrollmentStatus })
+
+M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdleRecommendations = schema.new({ type = "list", list_member = M.IdleRecommendation })
+
+M.IdleRecommendationErrors = schema.new({ type = "list", list_member = M.IdleRecommendationError })
+
+M.FunctionArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaFunctionRecommendations = schema.new({ type = "list", list_member = M.LambdaFunctionRecommendation })
+
+M.LicenseRecommendations = schema.new({ type = "list", list_member = M.LicenseRecommendation })
+
+M.RDSDatabaseRecommendedOptionProjectedMetrics = schema.new({ type = "list", list_member = M.RDSDatabaseRecommendedOptionProjectedMetric })
+
+M.RDSDBRecommendations = schema.new({ type = "list", list_member = M.RDSDBRecommendation })
+
+M.RecommendationPreferencesDetails = schema.new({ type = "list", list_member = M.RecommendationPreferencesDetail })
+
+M.RecommendationSummaries = schema.new({ type = "list", list_member = M.RecommendationSummary })
+
+M.PreferredResources = schema.new({ type = "list", list_member = M.PreferredResource })
+
+M.CpuVendorArchitectures = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.UtilizationMetrics = schema.new({ type = "list", list_member = M.UtilizationMetric })
+
+M.AutoScalingGroupRecommendationOptions = schema.new({ type = "list", list_member = M.AutoScalingGroupRecommendationOption })
+
+M.InferredWorkloadTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.EBSUtilizationMetrics = schema.new({ type = "list", list_member = M.EBSUtilizationMetric })
+
+M.VolumeRecommendationOptions = schema.new({ type = "list", list_member = M.VolumeRecommendationOption })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.InstanceRecommendationFindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationOptions = schema.new({ type = "list", list_member = M.InstanceRecommendationOption })
+
+M.RecommendationSources = schema.new({ type = "list", list_member = M.RecommendationSource })
+
+M.ProjectedMetrics = schema.new({ type = "list", list_member = M.ProjectedMetric })
+
+M.ECSServiceProjectedMetrics = schema.new({ type = "list", list_member = M.ECSServiceProjectedMetric })
+
+M.ECSServiceUtilizationMetrics = schema.new({ type = "list", list_member = M.ECSServiceUtilizationMetric })
+
+M.ECSServiceRecommendationFindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ECSServiceRecommendationOptions = schema.new({ type = "list", list_member = M.ECSServiceRecommendationOption })
+
+M.PreferredResourceValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdleUtilizationMetrics = schema.new({ type = "list", list_member = M.IdleUtilizationMetric })
+
+M.LambdaFunctionUtilizationMetrics = schema.new({ type = "list", list_member = M.LambdaFunctionUtilizationMetric })
+
+M.LambdaFunctionRecommendationFindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaFunctionMemoryRecommendationOptions = schema.new({ type = "list", list_member = M.LambdaFunctionMemoryRecommendationOption })
+
+M.LicenseFindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.LicenseRecommendationOptions = schema.new({ type = "list", list_member = M.LicenseRecommendationOption })
+
+M.RDSDatabaseProjectedMetrics = schema.new({ type = "list", list_member = M.RDSDatabaseProjectedMetric })
+
+M.RDSInstanceFindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RDSStorageFindingReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RDSDBInstanceRecommendationOptions = schema.new({ type = "list", list_member = M.RDSDBInstanceRecommendationOption })
+
+M.RDSDBStorageRecommendationOptions = schema.new({ type = "list", list_member = M.RDSDBStorageRecommendationOption })
+
+M.RDSDBUtilizationMetrics = schema.new({ type = "list", list_member = M.RDSDBUtilizationMetric })
+
+M.Summaries = schema.new({ type = "list", list_member = M.Summary })
+
+M.IdleSummaries = schema.new({ type = "list", list_member = M.IdleSummary })
+
+M.InferredWorkloadSavings = schema.new({ type = "list", list_member = M.InferredWorkloadSaving })
+
+M.MixedInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Gpus = schema.new({ type = "list", list_member = M.Gpu })
+
+M.ContainerConfigurations = schema.new({ type = "list", list_member = M.ContainerConfiguration })
+
+M.MetricsSource = schema.new({ type = "list", list_member = M.MetricSource })
+
+M.ProjectedUtilizationMetrics = schema.new({ type = "list", list_member = M.UtilizationMetric })
+
+M.PlatformDifferences = schema.new({ type = "list", list_member = prelude.String })
+
+M.Timestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.MetricValues = schema.new({ type = "list", list_member = prelude.Double })
+
+M.ECSServiceProjectedUtilizationMetrics = schema.new({ type = "list", list_member = M.ECSServiceProjectedUtilizationMetric })
+
+M.ContainerRecommendations = schema.new({ type = "list", list_member = M.ContainerRecommendation })
+
+M.LambdaFunctionMemoryProjectedMetrics = schema.new({ type = "list", list_member = M.LambdaFunctionMemoryProjectedMetric })
+
+M.RDSDBProjectedUtilizationMetrics = schema.new({ type = "list", list_member = M.RDSDBUtilizationMetric })
+
+M.ReasonCodeSummaries = schema.new({ type = "list", list_member = M.ReasonCodeSummary })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

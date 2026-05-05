@@ -7,6 +7,42 @@ local _N = "com.amazonaws.servicediscovery"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ServiceAttributeKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.HttpInstanceSummaryList = schema.new({ type = "list", list_member = M.HttpInstanceSummary })
+
+M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceHealthStatusMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InstanceSummaryList = schema.new({ type = "list", list_member = M.InstanceSummary })
+
+M.NamespaceFilters = schema.new({ type = "list", list_member = M.NamespaceFilter })
+
+M.NamespaceSummariesList = schema.new({ type = "list", list_member = M.NamespaceSummary })
+
+M.OperationFilters = schema.new({ type = "list", list_member = M.OperationFilter })
+
+M.OperationSummaryList = schema.new({ type = "list", list_member = M.OperationSummary })
+
+M.ServiceFilters = schema.new({ type = "list", list_member = M.ServiceFilter })
+
+M.ServiceSummariesList = schema.new({ type = "list", list_member = M.ServiceSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DnsRecordList = schema.new({ type = "list", list_member = M.DnsRecord })
+
+M.OperationTargetsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -2455,10 +2491,7 @@ M.UpdateInstanceCustomHealthStatusInput = schema.new({
     },
 })
 
-M.UpdateInstanceCustomHealthStatusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateInstanceCustomHealthStatusOutput = prelude.Unit
 
 M.UpdatePrivateDnsNamespaceInput = schema.new({
     id = id.from(_N, "UpdatePrivateDnsNamespaceRequest"),

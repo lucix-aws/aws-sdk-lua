@@ -7,6 +7,58 @@ local _N = "com.amazonaws.dataexchange"
 
 local M = {}
 
+M.MapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfJobError = schema.new({ type = "list", list_member = M.JobError })
+
+M.ListOfDataGrantSummaryEntry = schema.new({ type = "list", list_member = M.DataGrantSummaryEntry })
+
+M.ListOfRevisionEntry = schema.new({ type = "list", list_member = M.RevisionEntry })
+
+M.ListOfDataSetEntry = schema.new({ type = "list", list_member = M.DataSetEntry })
+
+M.ListOfEventActionEntry = schema.new({ type = "list", list_member = M.EventActionEntry })
+
+M.ListOfJobEntry = schema.new({ type = "list", list_member = M.JobEntry })
+
+M.AcceptanceStateFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfReceivedDataGrantSummariesEntry = schema.new({ type = "list", list_member = M.ReceivedDataGrantSummariesEntry })
+
+M.ListOfAssetEntry = schema.new({ type = "list", list_member = M.AssetEntry })
+
+M.ListOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfTag = schema.new({ type = "list", list_member = M.Tag })
+
+M.ListOfLakeFormationTagPolicies = schema.new({ type = "list", list_member = M.LakeFormationTagPolicyDetails })
+
+M.ListOfRedshiftDataShares = schema.new({ type = "list", list_member = M.RedshiftDataShareDetails })
+
+M.ListOfS3DataAccesses = schema.new({ type = "list", list_member = M.S3DataAccessDetails })
+
+M.ListOfAssetDestinationEntry = schema.new({ type = "list", list_member = M.AssetDestinationEntry })
+
+M.ListOfRevisionDestinationEntry = schema.new({ type = "list", list_member = M.RevisionDestinationEntry })
+
+M.ListOfAssetSourceEntry = schema.new({ type = "list", list_member = M.AssetSourceEntry })
+
+M.ListOfRedshiftDataShareAssetSourceEntry = schema.new({ type = "list", list_member = M.RedshiftDataShareAssetSourceEntry })
+
+M.ListOfKmsKeysToGrant = schema.new({ type = "list", list_member = M.KmsKeyToGrant })
+
+M.ListOfLFPermissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfSchemaChangeDetails = schema.new({ type = "list", list_member = M.SchemaChangeDetails })
+
+M.ListOfLFTags = schema.new({ type = "list", list_member = M.LFTag })
+
+M.ListOfDatabaseLFTagPolicyPermissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfTableTagPolicyLFPermissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfLFTagValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptDataGrantInput = schema.new({
     id = id.from(_N, "AcceptDataGrantRequest"),
     type = "structure",
@@ -967,10 +1019,7 @@ M.CancelJobInput = schema.new({
     },
 })
 
-M.CancelJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelJobOutput = prelude.Unit
 
 M.CreateDataGrantInput = schema.new({
     id = id.from(_N, "CreateDataGrantRequest"),
@@ -2973,10 +3022,7 @@ M.DeleteAssetInput = schema.new({
     },
 })
 
-M.DeleteAssetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAssetOutput = prelude.Unit
 
 M.DeleteDataGrantInput = schema.new({
     id = id.from(_N, "DeleteDataGrantRequest"),
@@ -2995,10 +3041,7 @@ M.DeleteDataGrantInput = schema.new({
     },
 })
 
-M.DeleteDataGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDataGrantOutput = prelude.Unit
 
 M.DeleteDataSetInput = schema.new({
     id = id.from(_N, "DeleteDataSetRequest"),
@@ -3017,10 +3060,7 @@ M.DeleteDataSetInput = schema.new({
     },
 })
 
-M.DeleteDataSetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDataSetOutput = prelude.Unit
 
 M.DeleteEventActionInput = schema.new({
     id = id.from(_N, "DeleteEventActionRequest"),
@@ -3039,10 +3079,7 @@ M.DeleteEventActionInput = schema.new({
     },
 })
 
-M.DeleteEventActionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventActionOutput = prelude.Unit
 
 M.DeleteRevisionInput = schema.new({
     id = id.from(_N, "DeleteRevisionRequest"),
@@ -3071,10 +3108,7 @@ M.DeleteRevisionInput = schema.new({
     },
 })
 
-M.DeleteRevisionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRevisionOutput = prelude.Unit
 
 M.GetAssetInput = schema.new({
     id = id.from(_N, "GetAssetRequest"),
@@ -5512,10 +5546,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -5545,10 +5576,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAssetInput = schema.new({
     id = id.from(_N, "UpdateAssetRequest"),

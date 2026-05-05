@@ -7,6 +7,158 @@ local _N = "com.amazonaws.bedrockagentcore"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ScopesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomRequestParametersType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourcesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.AudiencesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.HarnessMessages = schema.new({ type = "list", list_member = M.HarnessMessage })
+
+M.HarnessSystemPrompt = schema.new({ type = "list", list_member = M.HarnessSystemContentBlock })
+
+M.HarnessTools = schema.new({ type = "list", list_member = M.HarnessTool })
+
+M.HarnessSkills = schema.new({ type = "list", list_member = M.HarnessSkill })
+
+M.HarnessAllowedTools = schema.new({ type = "list", list_member = prelude.String })
+
+M.BrowserExtensions = schema.new({ type = "list", list_member = M.BrowserExtension })
+
+M.BrowserEnterprisePolicies = schema.new({ type = "list", list_member = M.BrowserEnterprisePolicy })
+
+M.Certificates = schema.new({ type = "list", list_member = M.Certificate })
+
+M.BrowserSessionSummaries = schema.new({ type = "list", list_member = M.BrowserSessionSummary })
+
+M.CodeInterpreterSessionSummaries = schema.new({ type = "list", list_member = M.CodeInterpreterSessionSummary })
+
+M.VariantList = schema.new({ type = "list", list_member = M.Variant })
+
+M.EvaluationReferenceInputs = schema.new({ type = "list", list_member = M.EvaluationReferenceInput })
+
+M.EvaluationResults = schema.new({ type = "list", list_member = M.EvaluationResultContent })
+
+M.ErrorDetailsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluatorList = schema.new({ type = "list", list_member = M.Evaluator })
+
+M.ABTestSummaryList = schema.new({ type = "list", list_member = M.ABTestSummary })
+
+M.BatchEvaluationSummaryList = schema.new({ type = "list", list_member = M.BatchEvaluationSummary })
+
+M.RecommendationSummaryList = schema.new({ type = "list", list_member = M.RecommendationSummary })
+
+M.MemoryRecordsCreateInputList = schema.new({ type = "list", list_member = M.MemoryRecordCreateInput })
+
+M.MemoryRecordsOutputList = schema.new({ type = "list", list_member = M.MemoryRecordOutput })
+
+M.MemoryRecordsDeleteInputList = schema.new({ type = "list", list_member = M.MemoryRecordDeleteInput })
+
+M.MemoryRecordsUpdateInputList = schema.new({ type = "list", list_member = M.MemoryRecordUpdateInput })
+
+M.PayloadTypeList = schema.new({ type = "list", list_member = M.PayloadType })
+
+M.MetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetadataValue })
+
+M.ActorSummaryList = schema.new({ type = "list", list_member = M.ActorSummary })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.ExtractionJobMetadataList = schema.new({ type = "list", list_member = M.ExtractionJobMetadata })
+
+M.MemoryMetadataFilterList = schema.new({ type = "list", list_member = M.MemoryMetadataFilterExpression })
+
+M.MemoryRecordSummaryList = schema.new({ type = "list", list_member = M.MemoryRecordSummary })
+
+M.SessionSummaryList = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.RegistryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistryRecordSummaryList = schema.new({ type = "list", list_member = M.RegistryRecordSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InputContentBlockList = schema.new({ type = "list", list_member = M.InputContentBlock })
+
+M.Proxies = schema.new({ type = "list", list_member = M.Proxy })
+
+M.TargetPathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PerVariantOnlineEvaluationConfigList = schema.new({ type = "list", list_member = M.PerVariantOnlineEvaluationConfig })
+
+M.Spans = schema.new({ type = "list", list_member = prelude.Document })
+
+M.SpanIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TraceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluatorMetricList = schema.new({ type = "list", list_member = M.EvaluatorMetric })
+
+M.EvaluatorSummaryList = schema.new({ type = "list", list_member = M.EvaluatorSummary })
+
+M.SessionMetadataList = schema.new({ type = "list", list_member = M.SessionMetadataShape })
+
+M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemoryRecordMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MemoryRecordMetadataValue })
+
+M.EventMetadataFilterList = schema.new({ type = "list", list_member = M.EventMetadataFilterExpression })
+
+M.ContentBlockList = schema.new({ type = "list", list_member = M.ContentBlock })
+
+M.HarnessContentBlocks = schema.new({ type = "list", list_member = M.HarnessContentBlock })
+
+M.DomainPatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationContentList = schema.new({ type = "list", list_member = M.EvaluationContent })
+
+M.IgnoredReferenceInputFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDescriptionOutput })
+
+M.HarnessToolResultBlocksDelta = schema.new({ type = "list", list_member = M.HarnessToolResultBlockDelta })
+
+M.EvaluationToolNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.VariantResultList = schema.new({ type = "list", list_member = M.VariantResult })
+
+M.RecommendationEvaluatorList = schema.new({ type = "list", list_member = M.RecommendationEvaluatorReference })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessagesList = schema.new({ type = "list", list_member = M.MessageMetadata })
+
+M.HttpHeadersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogGroupArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ToolDescriptionList = schema.new({ type = "list", list_member = M.ToolDescriptionInput })
+
+M.ConfigurationBundleToolEntryList = schema.new({ type = "list", list_member = M.ConfigurationBundleToolEntry })
+
+M.HarnessToolResultContentBlocks = schema.new({ type = "list", list_member = M.HarnessToolResultContentBlock })
+
+M.CloudWatchLogsFilterList = schema.new({ type = "list", list_member = M.CloudWatchLogsFilter })
+
+M.GroundTruthTurnList = schema.new({ type = "list", list_member = M.GroundTruthTurn })
+
+M.OAuthScopes = schema.new({ type = "list", list_member = prelude.String })
+
+M.OAuthCustomParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AgentCardDefinition = schema.new({
     id = id.from(_N, "AgentCardDefinition"),
     type = "structure",
@@ -7438,10 +7590,7 @@ M.HarnessAgentCoreCodeInterpreterConfig = schema.new({
     },
 })
 
-M.Unit = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.Unit = prelude.Unit
 
 M.OAuthCredentialProvider = schema.new({
     id = id.from(_N, "OAuthCredentialProvider"),

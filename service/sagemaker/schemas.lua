@@ -7,6 +7,746 @@ local _N = "com.amazonaws.sagemaker"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AddClusterNodeSpecificationList = schema.new({ type = "list", list_member = M.AddClusterNodeSpecification })
+
+M.NodeAdditionResultList = schema.new({ type = "list", list_member = M.NodeAdditionResult })
+
+M.BatchAddClusterNodesErrorList = schema.new({ type = "list", list_member = M.BatchAddClusterNodesError })
+
+M.ClusterNodeIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterNodeLogicalIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteClusterNodesErrorList = schema.new({ type = "list", list_member = M.BatchDeleteClusterNodesError })
+
+M.BatchDeleteClusterNodeLogicalIdsErrorList = schema.new({ type = "list", list_member = M.BatchDeleteClusterNodeLogicalIdsError })
+
+M.ModelPackageArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ModelPackageSummaries = schema.new({ type = "map", map_key = prelude.String, map_value = M.BatchDescribeModelPackageSummary })
+
+M.BatchDescribeModelPackageErrorMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.BatchDescribeModelPackageError })
+
+M.BatchRebootClusterNodesErrors = schema.new({ type = "list", list_member = M.BatchRebootClusterNodesError })
+
+M.BatchRebootClusterNodeLogicalIdsErrors = schema.new({ type = "list", list_member = M.BatchRebootClusterNodeLogicalIdsError })
+
+M.BatchReplaceClusterNodesErrors = schema.new({ type = "list", list_member = M.BatchReplaceClusterNodesError })
+
+M.BatchReplaceClusterNodeLogicalIdsErrors = schema.new({ type = "list", list_member = M.BatchReplaceClusterNodeLogicalIdsError })
+
+M.LineageEntityParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ArtifactProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AutoMLInputDataConfig = schema.new({ type = "list", list_member = M.AutoMLChannel })
+
+M.AutoMLJobInputDataConfig = schema.new({ type = "list", list_member = M.AutoMLJobChannel })
+
+M.ClusterInstanceGroupSpecifications = schema.new({ type = "list", list_member = M.ClusterInstanceGroupSpecification })
+
+M.ClusterRestrictedInstanceGroupSpecifications = schema.new({ type = "list", list_member = M.ClusterRestrictedInstanceGroupSpecification })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.EdgeDeploymentModelConfigs = schema.new({ type = "list", list_member = M.EdgeDeploymentModelConfig })
+
+M.DeploymentStages = schema.new({ type = "list", list_member = M.DeploymentStage })
+
+M.ProductionVariantList = schema.new({ type = "list", list_member = M.ProductionVariant })
+
+M.FeatureDefinitions = schema.new({ type = "list", list_member = M.FeatureDefinition })
+
+M.HubSearchKeywordList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizedUrlConfigs = schema.new({ type = "list", list_member = M.AuthorizedUrl })
+
+M.HyperParameterTrainingJobDefinitions = schema.new({ type = "list", list_member = M.HyperParameterTrainingJobDefinition })
+
+M.SageMakerImageVersionAliases = schema.new({ type = "list", list_member = prelude.String })
+
+M.InferenceComponentSpecificationList = schema.new({ type = "list", list_member = M.InferenceComponentSpecification })
+
+M.ModelVariantConfigList = schema.new({ type = "list", list_member = M.ModelVariantConfig })
+
+M.DefaultDomainIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerDefinitionList = schema.new({ type = "list", list_member = M.ContainerDefinition })
+
+M.CustomerMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdditionalInferenceSpecifications = schema.new({ type = "list", list_member = M.AdditionalInferenceSpecificationDefinition })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotebookInstanceAcceleratorTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalCodeRepositoryNamesOrUrls = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotebookInstanceLifecycleConfigList = schema.new({ type = "list", list_member = M.NotebookInstanceLifecycleHook })
+
+M.OptimizationJobEnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.OptimizationConfigs = schema.new({ type = "list", list_member = M.OptimizationConfig })
+
+M.ProcessingInputs = schema.new({ type = "list", list_member = M.ProcessingInput })
+
+M.ProcessingEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CreateTemplateProviderList = schema.new({ type = "list", list_member = M.CreateTemplateProvider })
+
+M.HyperParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InputDataConfig = schema.new({ type = "list", list_member = M.Channel })
+
+M.DebugRuleConfigurations = schema.new({ type = "list", list_member = M.DebugRuleConfiguration })
+
+M.ProfilerRuleConfigurations = schema.new({ type = "list", list_member = M.ProfilerRuleConfiguration })
+
+M.TrainingEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TransformEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TrialComponentParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.TrialComponentParameterValue })
+
+M.TrialComponentArtifacts = schema.new({ type = "map", map_key = prelude.String, map_value = M.TrialComponentArtifact })
+
+M.MemberDefinitions = schema.new({ type = "list", list_member = M.MemberDefinition })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIRecommendationList = schema.new({ type = "list", list_member = M.AIRecommendation })
+
+M.AutoMLPartialFailureReasons = schema.new({ type = "list", list_member = M.AutoMLPartialFailureReason })
+
+M.ClusterInstanceGroupDetailsList = schema.new({ type = "list", list_member = M.ClusterInstanceGroupDetails })
+
+M.ClusterRestrictedInstanceGroupDetailsList = schema.new({ type = "list", list_member = M.ClusterRestrictedInstanceGroupDetails })
+
+M.StatusDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EdgeModels = schema.new({ type = "list", list_member = M.EdgeModel })
+
+M.DeploymentStageStatusSummaries = schema.new({ type = "list", list_member = M.DeploymentStageStatusSummary })
+
+M.ProductionVariantSummaryList = schema.new({ type = "list", list_member = M.ProductionVariantSummary })
+
+M.FeatureParameters = schema.new({ type = "list", list_member = M.FeatureParameter })
+
+M.HubContentSearchKeywordList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HubContentDependencyList = schema.new({ type = "list", list_member = M.HubContentDependency })
+
+M.InferenceComponentSpecificationSummaryList = schema.new({ type = "list", list_member = M.InferenceComponentSpecificationSummary })
+
+M.ModelVariantConfigSummaryList = schema.new({ type = "list", list_member = M.ModelVariantConfigSummary })
+
+M.InferenceRecommendations = schema.new({ type = "list", list_member = M.InferenceRecommendation })
+
+M.EndpointPerformances = schema.new({ type = "list", list_member = M.EndpointPerformance })
+
+M.TemplateProviderDetailList = schema.new({ type = "list", list_member = M.TemplateProviderDetail })
+
+M.SecondaryStatusTransitions = schema.new({ type = "list", list_member = M.SecondaryStatusTransition })
+
+M.FinalMetricDataList = schema.new({ type = "list", list_member = M.MetricData })
+
+M.DebugRuleEvaluationStatuses = schema.new({ type = "list", list_member = M.DebugRuleEvaluationStatus })
+
+M.ProfilerRuleEvaluationStatuses = schema.new({ type = "list", list_member = M.ProfilerRuleEvaluationStatus })
+
+M.SageMakerResourceNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedCapacitySummaries = schema.new({ type = "list", list_member = M.ReservedCapacitySummary })
+
+M.TrainingPlanExtensions = schema.new({ type = "list", list_member = M.TrainingPlanExtension })
+
+M.TrialComponentMetricSummaries = schema.new({ type = "list", list_member = M.TrialComponentMetricSummary })
+
+M.TrialComponentSources = schema.new({ type = "list", list_member = M.TrialComponentSource })
+
+M.AgentVersions = schema.new({ type = "list", list_member = M.AgentVersion })
+
+M.EdgeModelStats = schema.new({ type = "list", list_member = M.EdgeModelStat })
+
+M.PropertyNameSuggestionList = schema.new({ type = "list", list_member = M.PropertyNameSuggestion })
+
+M.ActionSummaries = schema.new({ type = "list", list_member = M.ActionSummary })
+
+M.AIBenchmarkJobSummaryList = schema.new({ type = "list", list_member = M.AIBenchmarkJobSummary })
+
+M.AIRecommendationJobSummaryList = schema.new({ type = "list", list_member = M.AIRecommendationJobSummary })
+
+M.AIWorkloadConfigSummaryList = schema.new({ type = "list", list_member = M.AIWorkloadConfigSummary })
+
+M.AlgorithmSummaryList = schema.new({ type = "list", list_member = M.AlgorithmSummary })
+
+M.AppImageConfigList = schema.new({ type = "list", list_member = M.AppImageConfigDetails })
+
+M.AppList = schema.new({ type = "list", list_member = M.AppDetails })
+
+M.ArtifactSummaries = schema.new({ type = "list", list_member = M.ArtifactSummary })
+
+M.AssociationSummaries = schema.new({ type = "list", list_member = M.AssociationSummary })
+
+M.AutoMLJobSummaries = schema.new({ type = "list", list_member = M.AutoMLJobSummary })
+
+M.AutoMLCandidates = schema.new({ type = "list", list_member = M.AutoMLCandidate })
+
+M.ClusterEventSummaries = schema.new({ type = "list", list_member = M.ClusterEventSummary })
+
+M.ClusterNodeSummaries = schema.new({ type = "list", list_member = M.ClusterNodeSummary })
+
+M.ClusterSummaries = schema.new({ type = "list", list_member = M.ClusterSummary })
+
+M.ClusterSchedulerConfigSummaryList = schema.new({ type = "list", list_member = M.ClusterSchedulerConfigSummary })
+
+M.CodeRepositorySummaryList = schema.new({ type = "list", list_member = M.CodeRepositorySummary })
+
+M.CompilationJobSummaries = schema.new({ type = "list", list_member = M.CompilationJobSummary })
+
+M.ComputeQuotaSummaryList = schema.new({ type = "list", list_member = M.ComputeQuotaSummary })
+
+M.ContextSummaries = schema.new({ type = "list", list_member = M.ContextSummary })
+
+M.MonitoringJobDefinitionSummaryList = schema.new({ type = "list", list_member = M.MonitoringJobDefinitionSummary })
+
+M.DeviceFleetSummaries = schema.new({ type = "list", list_member = M.DeviceFleetSummary })
+
+M.DeviceSummaries = schema.new({ type = "list", list_member = M.DeviceSummary })
+
+M.DomainList = schema.new({ type = "list", list_member = M.DomainDetails })
+
+M.EdgeDeploymentPlanSummaries = schema.new({ type = "list", list_member = M.EdgeDeploymentPlanSummary })
+
+M.EdgePackagingJobSummaries = schema.new({ type = "list", list_member = M.EdgePackagingJobSummary })
+
+M.EndpointConfigSummaryList = schema.new({ type = "list", list_member = M.EndpointConfigSummary })
+
+M.EndpointSummaryList = schema.new({ type = "list", list_member = M.EndpointSummary })
+
+M.ExperimentSummaries = schema.new({ type = "list", list_member = M.ExperimentSummary })
+
+M.FeatureGroupSummaries = schema.new({ type = "list", list_member = M.FeatureGroupSummary })
+
+M.FlowDefinitionSummaries = schema.new({ type = "list", list_member = M.FlowDefinitionSummary })
+
+M.HubContentInfoList = schema.new({ type = "list", list_member = M.HubContentInfo })
+
+M.HubInfoList = schema.new({ type = "list", list_member = M.HubInfo })
+
+M.HumanTaskUiSummaries = schema.new({ type = "list", list_member = M.HumanTaskUiSummary })
+
+M.HyperParameterTuningJobSummaries = schema.new({ type = "list", list_member = M.HyperParameterTuningJobSummary })
+
+M.Images = schema.new({ type = "list", list_member = M.Image })
+
+M.ImageVersions = schema.new({ type = "list", list_member = M.ImageVersion })
+
+M.InferenceComponentSummaryList = schema.new({ type = "list", list_member = M.InferenceComponentSummary })
+
+M.InferenceExperimentList = schema.new({ type = "list", list_member = M.InferenceExperimentSummary })
+
+M.InferenceRecommendationsJobs = schema.new({ type = "list", list_member = M.InferenceRecommendationsJob })
+
+M.InferenceRecommendationsJobSteps = schema.new({ type = "list", list_member = M.InferenceRecommendationsJobStep })
+
+M.LabelingJobSummaryList = schema.new({ type = "list", list_member = M.LabelingJobSummary })
+
+M.LabelingJobForWorkteamSummaryList = schema.new({ type = "list", list_member = M.LabelingJobForWorkteamSummary })
+
+M.LineageGroupSummaries = schema.new({ type = "list", list_member = M.LineageGroupSummary })
+
+M.MlflowAppSummaries = schema.new({ type = "list", list_member = M.MlflowAppSummary })
+
+M.TrackingServerSummaryList = schema.new({ type = "list", list_member = M.TrackingServerSummary })
+
+M.ModelCardExportJobSummaryList = schema.new({ type = "list", list_member = M.ModelCardExportJobSummary })
+
+M.ModelCardSummaryList = schema.new({ type = "list", list_member = M.ModelCardSummary })
+
+M.ModelCardVersionSummaryList = schema.new({ type = "list", list_member = M.ModelCardVersionSummary })
+
+M.ModelMetadataSummaries = schema.new({ type = "list", list_member = M.ModelMetadataSummary })
+
+M.ModelPackageGroupSummaryList = schema.new({ type = "list", list_member = M.ModelPackageGroupSummary })
+
+M.ModelPackageSummaryList = schema.new({ type = "list", list_member = M.ModelPackageSummary })
+
+M.ModelSummaryList = schema.new({ type = "list", list_member = M.ModelSummary })
+
+M.MonitoringAlertHistoryList = schema.new({ type = "list", list_member = M.MonitoringAlertHistorySummary })
+
+M.MonitoringAlertSummaryList = schema.new({ type = "list", list_member = M.MonitoringAlertSummary })
+
+M.MonitoringExecutionSummaryList = schema.new({ type = "list", list_member = M.MonitoringExecutionSummary })
+
+M.MonitoringScheduleSummaryList = schema.new({ type = "list", list_member = M.MonitoringScheduleSummary })
+
+M.NotebookInstanceLifecycleConfigSummaryList = schema.new({ type = "list", list_member = M.NotebookInstanceLifecycleConfigSummary })
+
+M.NotebookInstanceSummaryList = schema.new({ type = "list", list_member = M.NotebookInstanceSummary })
+
+M.OptimizationJobSummaries = schema.new({ type = "list", list_member = M.OptimizationJobSummary })
+
+M.PartnerAppSummaries = schema.new({ type = "list", list_member = M.PartnerAppSummary })
+
+M.PipelineExecutionSummaryList = schema.new({ type = "list", list_member = M.PipelineExecutionSummary })
+
+M.PipelineExecutionStepList = schema.new({ type = "list", list_member = M.PipelineExecutionStep })
+
+M.ParameterList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.PipelineSummaryList = schema.new({ type = "list", list_member = M.PipelineSummary })
+
+M.PipelineVersionSummaryList = schema.new({ type = "list", list_member = M.PipelineVersionSummary })
+
+M.ProcessingJobSummaries = schema.new({ type = "list", list_member = M.ProcessingJobSummary })
+
+M.ProjectSummaryList = schema.new({ type = "list", list_member = M.ProjectSummary })
+
+M.ResourceCatalogList = schema.new({ type = "list", list_member = M.ResourceCatalog })
+
+M.SpaceList = schema.new({ type = "list", list_member = M.SpaceDetails })
+
+M.DeviceDeploymentSummaries = schema.new({ type = "list", list_member = M.DeviceDeploymentSummary })
+
+M.StudioLifecycleConfigsList = schema.new({ type = "list", list_member = M.StudioLifecycleConfigDetails })
+
+M.SubscribedWorkteams = schema.new({ type = "list", list_member = M.SubscribedWorkteam })
+
+M.TrainingJobSummaries = schema.new({ type = "list", list_member = M.TrainingJobSummary })
+
+M.HyperParameterTrainingJobSummaries = schema.new({ type = "list", list_member = M.HyperParameterTrainingJobSummary })
+
+M.TrainingPlanFilters = schema.new({ type = "list", list_member = M.TrainingPlanFilter })
+
+M.TrainingPlanSummaries = schema.new({ type = "list", list_member = M.TrainingPlanSummary })
+
+M.TransformJobSummaries = schema.new({ type = "list", list_member = M.TransformJobSummary })
+
+M.TrialComponentSummaries = schema.new({ type = "list", list_member = M.TrialComponentSummary })
+
+M.TrialSummaries = schema.new({ type = "list", list_member = M.TrialSummary })
+
+M.UltraServers = schema.new({ type = "list", list_member = M.UltraServer })
+
+M.UserProfileList = schema.new({ type = "list", list_member = M.UserProfileDetails })
+
+M.Workforces = schema.new({ type = "list", list_member = M.Workforce })
+
+M.Workteams = schema.new({ type = "list", list_member = M.Workteam })
+
+M.QueryLineageStartArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.Vertices = schema.new({ type = "list", list_member = M.Vertex })
+
+M.Edges = schema.new({ type = "list", list_member = M.Edge })
+
+M.Devices = schema.new({ type = "list", list_member = M.Device })
+
+M.RenderingErrorList = schema.new({ type = "list", list_member = M.RenderingError })
+
+M.VisibilityConditionsList = schema.new({ type = "list", list_member = M.VisibilityConditions })
+
+M.SearchResultsList = schema.new({ type = "list", list_member = M.SearchRecord })
+
+M.TrainingPlanOfferings = schema.new({ type = "list", list_member = M.TrainingPlanOffering })
+
+M.TrainingPlanExtensionOfferings = schema.new({ type = "list", list_member = M.TrainingPlanExtensionOffering })
+
+M.OutputParameterList = schema.new({ type = "list", list_member = M.OutputParameter })
+
+M.DeepHealthCheckConfigurations = schema.new({ type = "list", list_member = M.InstanceGroupHealthCheckConfiguration })
+
+M.ModelVariantActionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListLineageEntityParameterKey = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterInstanceGroupsToDelete = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateClusterSoftwareInstanceGroups = schema.new({ type = "list", list_member = M.UpdateClusterSoftwareInstanceGroupSpecification })
+
+M.VariantPropertyList = schema.new({ type = "list", list_member = M.VariantProperty })
+
+M.DesiredWeightAndCapacityList = schema.new({ type = "list", list_member = M.DesiredWeightAndCapacity })
+
+M.FeatureAdditions = schema.new({ type = "list", list_member = M.FeatureDefinition })
+
+M.FeatureParameterAdditions = schema.new({ type = "list", list_member = M.FeatureParameter })
+
+M.FeatureParameterRemovals = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageDeletePropertyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomerMetadataKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateTemplateProviderList = schema.new({ type = "list", list_member = M.UpdateTemplateProvider })
+
+M.ListTrialComponentKey256 = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIRecommendationConstraintList = schema.new({ type = "list", list_member = M.AIRecommendationConstraint })
+
+M.AIRecommendationInstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIWorkloadInputDataConfigList = schema.new({ type = "list", list_member = M.AIWorkloadInputDataConfig })
+
+M.HyperParameterSpecifications = schema.new({ type = "list", list_member = M.HyperParameterSpecification })
+
+M.TrainingInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDefinitionList = schema.new({ type = "list", list_member = M.MetricDefinition })
+
+M.ChannelSpecifications = schema.new({ type = "list", list_member = M.ChannelSpecification })
+
+M.HyperParameterTuningJobObjectives = schema.new({ type = "list", list_member = M.HyperParameterTuningJobObjective })
+
+M.ModelPackageContainerDefinitionList = schema.new({ type = "list", list_member = M.ModelPackageContainerDefinition })
+
+M.TransformInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RealtimeInferenceInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseMIMETypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AlgorithmValidationProfiles = schema.new({ type = "list", list_member = M.AlgorithmValidationProfile })
+
+M.KernelSpecs = schema.new({ type = "list", list_member = M.KernelSpec })
+
+M.ArtifactSourceTypes = schema.new({ type = "list", list_member = M.ArtifactSourceType })
+
+M.VpcSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PriorityClassList = schema.new({ type = "list", list_member = M.PriorityClass })
+
+M.NeoVpcSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.NeoVpcSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComputeQuotaResourceConfigList = schema.new({ type = "list", list_member = M.ComputeQuotaResourceConfig })
+
+M.ContainerEntrypoint = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitoringContainerArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitoringEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MonitoringOutputs = schema.new({ type = "list", list_member = M.MonitoringOutput })
+
+M.CustomFileSystemConfigs = schema.new({ type = "list", list_member = M.CustomFileSystemConfig })
+
+M.DomainSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CaptureOptionList = schema.new({ type = "list", list_member = M.CaptureOption })
+
+M.FlowDefinitionTaskKeywords = schema.new({ type = "list", list_member = prelude.String })
+
+M.HyperParameterTrainingJobEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParentHyperParameterTuningJobs = schema.new({ type = "list", list_member = M.ParentHyperParameterTuningJob })
+
+M.ShadowModelVariantConfigList = schema.new({ type = "list", list_member = M.ShadowModelVariantConfig })
+
+M.EndpointInputConfigurations = schema.new({ type = "list", list_member = M.EndpointInputConfiguration })
+
+M.Endpoints = schema.new({ type = "list", list_member = M.EndpointInfo })
+
+M.ModelLatencyThresholds = schema.new({ type = "list", list_member = M.ModelLatencyThreshold })
+
+M.TaskKeywords = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalModelDataSources = schema.new({ type = "list", list_member = M.AdditionalModelDataSource })
+
+M.EnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ModelPackageValidationProfiles = schema.new({ type = "list", list_member = M.ModelPackageValidationProfile })
+
+M.SourceAlgorithmList = schema.new({ type = "list", list_member = M.SourceAlgorithm })
+
+M.OptimizationVpcSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.OptimizationVpcSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartnerAppAdminUserList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartnerAppArguments = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AssignedGroupPatternsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoleGroupAssignmentsList = schema.new({ type = "list", list_member = M.RoleGroupAssignment })
+
+M.ProcessingOutputs = schema.new({ type = "list", list_member = M.ProcessingOutput })
+
+M.ContainerArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProvisioningParameters = schema.new({ type = "list", list_member = M.ProvisioningParameter })
+
+M.CustomFileSystems = schema.new({ type = "list", list_member = M.CustomFileSystem })
+
+M.TrainingContainerEntrypoint = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrainingContainerArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceGroups = schema.new({ type = "list", list_member = M.InstanceGroup })
+
+M.HookParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CollectionConfigurations = schema.new({ type = "list", list_member = M.CollectionConfiguration })
+
+M.ProfilingParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AuthenticationRequestExtraParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Cidrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkforceSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkforceSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.AICloudWatchLogsList = schema.new({ type = "list", list_member = M.AICloudWatchLogs })
+
+M.AlgorithmStatusItemList = schema.new({ type = "list", list_member = M.AlgorithmStatusItem })
+
+M.CandidateSteps = schema.new({ type = "list", list_member = M.AutoMLCandidateStep })
+
+M.AutoMLContainerDefinitions = schema.new({ type = "list", list_member = M.AutoMLContainerDefinition })
+
+M.AutoMLInferenceContainerDefinitions = schema.new({ type = "map", map_key = prelude.String, map_value = M.AutoMLContainerDefinitions })
+
+M.ClusterInstanceStorageConfigs = schema.new({ type = "list", list_member = M.ClusterInstanceStorageConfig })
+
+M.PendingProductionVariantSummaryList = schema.new({ type = "list", list_member = M.PendingProductionVariantSummary })
+
+M.InferenceComponentPlacementStatusList = schema.new({ type = "list", list_member = M.InferenceComponentPlacementStatus })
+
+M.RealTimeInferenceRecommendations = schema.new({ type = "list", list_member = M.RealTimeInferenceRecommendation })
+
+M.ModelPackageStatusItemList = schema.new({ type = "list", list_member = M.ModelPackageStatusItem })
+
+M.ReleaseNotesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SelectedStepList = schema.new({ type = "list", list_member = M.SelectedStep })
+
+M.ProductListings = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScalingPolicies = schema.new({ type = "list", list_member = M.ScalingPolicy })
+
+M.ModelMetadataFilters = schema.new({ type = "list", list_member = M.ModelMetadataFilter })
+
+M.QueryTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryLineageTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.NestedFiltersList = schema.new({ type = "list", list_member = M.NestedFilters })
+
+M.SearchExpressionList = schema.new({ type = "list", list_member = M.SearchExpression })
+
+M.AutoRollbackAlarms = schema.new({ type = "list", list_member = M.AlarmDetails })
+
+M.ClusterAvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIBenchmarkInferenceComponentList = schema.new({ type = "list", list_member = M.AIBenchmarkInferenceComponent })
+
+M.AIMlReservationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomImageContainerArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomImageContainerEntrypoint = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomImageContainerEnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AutoMLAlgorithmsConfig = schema.new({ type = "list", list_member = M.AutoMLAlgorithmConfig })
+
+M.ForecastQuantiles = schema.new({ type = "list", list_member = prelude.String })
+
+M.HolidayConfig = schema.new({ type = "list", list_member = M.HolidayConfigAttributes })
+
+M.TextGenerationHyperParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.OnStartDeepHealthChecks = schema.new({ type = "list", list_member = prelude.String })
+
+M.AbsoluteBorrowLimitResourceList = schema.new({ type = "list", list_member = M.ComputeQuotaResourceConfig })
+
+M.LifecycleConfigArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeRepositories = schema.new({ type = "list", list_member = M.CodeRepository })
+
+M.CustomImages = schema.new({ type = "list", list_member = M.CustomImage })
+
+M.IdentityProviderOAuthSettings = schema.new({ type = "list", list_member = M.IdentityProviderOAuthSetting })
+
+M.HiddenMlToolsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HiddenAppTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HiddenInstanceTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HiddenSageMakerImageVersionAliasesList = schema.new({ type = "list", list_member = M.HiddenSageMakerImage })
+
+M.VpcOnlyTrustedAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.AlarmList = schema.new({ type = "list", list_member = M.Alarm })
+
+M.InstancePoolList = schema.new({ type = "list", list_member = M.InstancePool })
+
+M.CsvContentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.JsonContentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerParameterRanges = schema.new({ type = "list", list_member = M.IntegerParameterRange })
+
+M.ContinuousParameterRanges = schema.new({ type = "list", list_member = M.ContinuousParameterRange })
+
+M.CategoricalParameterRanges = schema.new({ type = "list", list_member = M.CategoricalParameterRange })
+
+M.AutoParameters = schema.new({ type = "list", list_member = M.AutoParameter })
+
+M.HyperParameterTuningInstanceConfigs = schema.new({ type = "list", list_member = M.HyperParameterTuningInstanceConfig })
+
+M.Phases = schema.new({ type = "list", list_member = M.Phase })
+
+M.RecommendationJobSupportedInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationJobSupportedResponseMIMETypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationJobVpcSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationJobVpcSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContentClassifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitoringInputs = schema.new({ type = "list", list_member = M.MonitoringInput })
+
+M.PlacementSpecifications = schema.new({ type = "list", list_member = M.PlacementSpecification })
+
+M.RuleParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AIRecommendationOptimizationDetailList = schema.new({ type = "list", list_member = M.AIRecommendationOptimizationDetail })
+
+M.ExpectedPerformanceList = schema.new({ type = "list", list_member = M.AIRecommendationPerformanceMetric })
+
+M.MetricDataList = schema.new({ type = "list", list_member = M.MetricDatum })
+
+M.ClusterInstanceTypeDetails = schema.new({ type = "list", list_member = M.ClusterInstanceTypeDetail })
+
+M.ActiveOperations = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ClusterKubernetesLabels = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ClusterKubernetesTaints = schema.new({ type = "list", list_member = M.ClusterKubernetesTaint })
+
+M.DeployedImages = schema.new({ type = "list", list_member = M.DeployedImage })
+
+M.InstancePoolSummaryList = schema.new({ type = "list", list_member = M.InstancePoolSummary })
+
+M.ProductionVariantStatusList = schema.new({ type = "list", list_member = M.ProductionVariantStatus })
+
+M.TrainingPlanArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.EdgeModelSummaries = schema.new({ type = "list", list_member = M.EdgeModelSummary })
+
+M.OptimizationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedCapacityOfferings = schema.new({ type = "list", list_member = M.ReservedCapacityOffering })
+
+M.InstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeepHealthChecks = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompressionTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.InputModes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FillingTransformations = schema.new({ type = "map", map_key = prelude.String, map_value = M.FillingTransformationMap })
+
+M.AggregationTransformations = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GroupingAttributeNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterPartitionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssumableRoleArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExecutionRoleArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.AsyncNotificationTopicTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClarifyLabelHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClarifyFeatureHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClarifyFeatureTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationJobSupportedContentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupPatternsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CfnStackCreateParameters = schema.new({ type = "list", list_member = M.CfnStackCreateParameter })
+
+M.CollectionParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Groups = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIRecommendationInstanceDetailList = schema.new({ type = "list", list_member = M.AIRecommendationInstanceDetail })
+
+M.AIRecommendationDeploymentS3ChannelList = schema.new({ type = "list", list_member = M.AIRecommendationDeploymentS3Channel })
+
+M.Ec2CapacityReservationsList = schema.new({ type = "list", list_member = M.Ec2CapacityReservation })
+
+M.EnvironmentParameters = schema.new({ type = "list", list_member = M.EnvironmentParameter })
+
+M.CfnStackParameters = schema.new({ type = "list", list_member = M.CfnStackParameter })
+
+M.TrialComponentSimpleSummaries = schema.new({ type = "list", list_member = M.TrialComponentSimpleSummary })
+
+M.Parents = schema.new({ type = "list", list_member = M.Parent })
+
+M.MonitoringScheduleList = schema.new({ type = "list", list_member = M.MonitoringSchedule })
+
+M.ModelDashboardEndpoints = schema.new({ type = "list", list_member = M.ModelDashboardEndpoint })
+
+M.ModelDashboardMonitoringSchedules = schema.new({ type = "list", list_member = M.ModelDashboardMonitoringSchedule })
+
+M.CfnStackUpdateParameters = schema.new({ type = "list", list_member = M.CfnStackUpdateParameter })
+
+M.AutoMLAlgorithms = schema.new({ type = "list", list_member = prelude.String })
+
+M.FillingTransformationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VersionAliasesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoricalParameters = schema.new({ type = "list", list_member = M.CategoricalParameter })
+
+M.AttributeNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIRecommendationOptimizationConfigMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EksRoleAccessEntries = schema.new({ type = "list", list_member = prelude.String })
+
+M.MapString2048 = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AssociationInfoList = schema.new({ type = "list", list_member = M.AssociationInfo })
+
+M.EfaEnis = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoricalParameterRangeValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceleratorPartitionConfig = schema.new({
     id = id.from(_N, "AcceleratorPartitionConfig"),
     type = "structure",
@@ -11942,10 +12682,7 @@ M.CreateDeviceFleetInput = schema.new({
     },
 })
 
-M.CreateDeviceFleetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateDeviceFleetOutput = prelude.Unit
 
 M.EFSFileSystemConfig = schema.new({
     id = id.from(_N, "EFSFileSystemConfig"),
@@ -13079,10 +13816,7 @@ M.CreateEdgeDeploymentStageInput = schema.new({
     },
 })
 
-M.CreateEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateEdgeDeploymentStageOutput = prelude.Unit
 
 M.CreateEdgePackagingJobInput = schema.new({
     id = id.from(_N, "CreateEdgePackagingJobRequest"),
@@ -13159,10 +13893,7 @@ M.CreateEdgePackagingJobInput = schema.new({
     },
 })
 
-M.CreateEdgePackagingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateEdgePackagingJobOutput = prelude.Unit
 
 M.RollingUpdatePolicy = schema.new({
     id = id.from(_N, "RollingUpdatePolicy"),
@@ -22961,10 +23692,7 @@ M.DeleteAlgorithmInput = schema.new({
     },
 })
 
-M.DeleteAlgorithmOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAlgorithmOutput = prelude.Unit
 
 M.DeleteAppInput = schema.new({
     id = id.from(_N, "DeleteAppRequest"),
@@ -23012,10 +23740,7 @@ M.DeleteAppInput = schema.new({
     },
 })
 
-M.DeleteAppOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppOutput = prelude.Unit
 
 M.DeleteAppImageConfigInput = schema.new({
     id = id.from(_N, "DeleteAppImageConfigRequest"),
@@ -23033,10 +23758,7 @@ M.DeleteAppImageConfigInput = schema.new({
     },
 })
 
-M.DeleteAppImageConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppImageConfigOutput = prelude.Unit
 
 M.DeleteArtifactInput = schema.new({
     id = id.from(_N, "DeleteArtifactRequest"),
@@ -23163,10 +23885,7 @@ M.DeleteClusterSchedulerConfigInput = schema.new({
     },
 })
 
-M.DeleteClusterSchedulerConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteClusterSchedulerConfigOutput = prelude.Unit
 
 M.DeleteCodeRepositoryInput = schema.new({
     id = id.from(_N, "DeleteCodeRepositoryInput"),
@@ -23184,10 +23903,7 @@ M.DeleteCodeRepositoryInput = schema.new({
     },
 })
 
-M.DeleteCodeRepositoryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCodeRepositoryOutput = prelude.Unit
 
 M.DeleteCompilationJobInput = schema.new({
     id = id.from(_N, "DeleteCompilationJobRequest"),
@@ -23205,10 +23921,7 @@ M.DeleteCompilationJobInput = schema.new({
     },
 })
 
-M.DeleteCompilationJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCompilationJobOutput = prelude.Unit
 
 M.DeleteComputeQuotaInput = schema.new({
     id = id.from(_N, "DeleteComputeQuotaRequest"),
@@ -23226,10 +23939,7 @@ M.DeleteComputeQuotaInput = schema.new({
     },
 })
 
-M.DeleteComputeQuotaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteComputeQuotaOutput = prelude.Unit
 
 M.DeleteContextInput = schema.new({
     id = id.from(_N, "DeleteContextRequest"),
@@ -23276,10 +23986,7 @@ M.DeleteDataQualityJobDefinitionInput = schema.new({
     },
 })
 
-M.DeleteDataQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDataQualityJobDefinitionOutput = prelude.Unit
 
 M.DeleteDeviceFleetInput = schema.new({
     id = id.from(_N, "DeleteDeviceFleetRequest"),
@@ -23297,10 +24004,7 @@ M.DeleteDeviceFleetInput = schema.new({
     },
 })
 
-M.DeleteDeviceFleetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeviceFleetOutput = prelude.Unit
 
 M.RetentionPolicy = schema.new({
     id = id.from(_N, "RetentionPolicy"),
@@ -23338,10 +24042,7 @@ M.DeleteDomainInput = schema.new({
     },
 })
 
-M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDomainOutput = prelude.Unit
 
 M.DeleteEdgeDeploymentPlanInput = schema.new({
     id = id.from(_N, "DeleteEdgeDeploymentPlanRequest"),
@@ -23359,10 +24060,7 @@ M.DeleteEdgeDeploymentPlanInput = schema.new({
     },
 })
 
-M.DeleteEdgeDeploymentPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEdgeDeploymentPlanOutput = prelude.Unit
 
 M.DeleteEdgeDeploymentStageInput = schema.new({
     id = id.from(_N, "DeleteEdgeDeploymentStageRequest"),
@@ -23389,10 +24087,7 @@ M.DeleteEdgeDeploymentStageInput = schema.new({
     },
 })
 
-M.DeleteEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEdgeDeploymentStageOutput = prelude.Unit
 
 M.DeleteEndpointInput = schema.new({
     id = id.from(_N, "DeleteEndpointInput"),
@@ -23410,10 +24105,7 @@ M.DeleteEndpointInput = schema.new({
     },
 })
 
-M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEndpointOutput = prelude.Unit
 
 M.DeleteEndpointConfigInput = schema.new({
     id = id.from(_N, "DeleteEndpointConfigInput"),
@@ -23431,10 +24123,7 @@ M.DeleteEndpointConfigInput = schema.new({
     },
 })
 
-M.DeleteEndpointConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEndpointConfigOutput = prelude.Unit
 
 M.DeleteExperimentInput = schema.new({
     id = id.from(_N, "DeleteExperimentRequest"),
@@ -23481,10 +24170,7 @@ M.DeleteFeatureGroupInput = schema.new({
     },
 })
 
-M.DeleteFeatureGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFeatureGroupOutput = prelude.Unit
 
 M.DeleteFlowDefinitionInput = schema.new({
     id = id.from(_N, "DeleteFlowDefinitionRequest"),
@@ -23523,10 +24209,7 @@ M.DeleteHubInput = schema.new({
     },
 })
 
-M.DeleteHubOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHubOutput = prelude.Unit
 
 M.DeleteHubContentInput = schema.new({
     id = id.from(_N, "DeleteHubContentRequest"),
@@ -23571,10 +24254,7 @@ M.DeleteHubContentInput = schema.new({
     },
 })
 
-M.DeleteHubContentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHubContentOutput = prelude.Unit
 
 M.DeleteHubContentReferenceInput = schema.new({
     id = id.from(_N, "DeleteHubContentReferenceRequest"),
@@ -23610,10 +24290,7 @@ M.DeleteHubContentReferenceInput = schema.new({
     },
 })
 
-M.DeleteHubContentReferenceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHubContentReferenceOutput = prelude.Unit
 
 M.DeleteHumanTaskUiInput = schema.new({
     id = id.from(_N, "DeleteHumanTaskUiRequest"),
@@ -23652,10 +24329,7 @@ M.DeleteHyperParameterTuningJobInput = schema.new({
     },
 })
 
-M.DeleteHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHyperParameterTuningJobOutput = prelude.Unit
 
 M.DeleteImageInput = schema.new({
     id = id.from(_N, "DeleteImageRequest"),
@@ -23727,10 +24401,7 @@ M.DeleteInferenceComponentInput = schema.new({
     },
 })
 
-M.DeleteInferenceComponentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInferenceComponentOutput = prelude.Unit
 
 M.DeleteInferenceExperimentInput = schema.new({
     id = id.from(_N, "DeleteInferenceExperimentRequest"),
@@ -23838,10 +24509,7 @@ M.DeleteModelInput = schema.new({
     },
 })
 
-M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelOutput = prelude.Unit
 
 M.DeleteModelBiasJobDefinitionInput = schema.new({
     id = id.from(_N, "DeleteModelBiasJobDefinitionRequest"),
@@ -23859,10 +24527,7 @@ M.DeleteModelBiasJobDefinitionInput = schema.new({
     },
 })
 
-M.DeleteModelBiasJobDefinitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelBiasJobDefinitionOutput = prelude.Unit
 
 M.DeleteModelCardInput = schema.new({
     id = id.from(_N, "DeleteModelCardRequest"),
@@ -23880,10 +24545,7 @@ M.DeleteModelCardInput = schema.new({
     },
 })
 
-M.DeleteModelCardOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelCardOutput = prelude.Unit
 
 M.DeleteModelExplainabilityJobDefinitionInput = schema.new({
     id = id.from(_N, "DeleteModelExplainabilityJobDefinitionRequest"),
@@ -23901,10 +24563,7 @@ M.DeleteModelExplainabilityJobDefinitionInput = schema.new({
     },
 })
 
-M.DeleteModelExplainabilityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelExplainabilityJobDefinitionOutput = prelude.Unit
 
 M.DeleteModelPackageInput = schema.new({
     id = id.from(_N, "DeleteModelPackageInput"),
@@ -23922,10 +24581,7 @@ M.DeleteModelPackageInput = schema.new({
     },
 })
 
-M.DeleteModelPackageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelPackageOutput = prelude.Unit
 
 M.DeleteModelPackageGroupInput = schema.new({
     id = id.from(_N, "DeleteModelPackageGroupInput"),
@@ -23943,10 +24599,7 @@ M.DeleteModelPackageGroupInput = schema.new({
     },
 })
 
-M.DeleteModelPackageGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelPackageGroupOutput = prelude.Unit
 
 M.DeleteModelPackageGroupPolicyInput = schema.new({
     id = id.from(_N, "DeleteModelPackageGroupPolicyInput"),
@@ -23964,10 +24617,7 @@ M.DeleteModelPackageGroupPolicyInput = schema.new({
     },
 })
 
-M.DeleteModelPackageGroupPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelPackageGroupPolicyOutput = prelude.Unit
 
 M.DeleteModelQualityJobDefinitionInput = schema.new({
     id = id.from(_N, "DeleteModelQualityJobDefinitionRequest"),
@@ -23985,10 +24635,7 @@ M.DeleteModelQualityJobDefinitionInput = schema.new({
     },
 })
 
-M.DeleteModelQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelQualityJobDefinitionOutput = prelude.Unit
 
 M.DeleteMonitoringScheduleInput = schema.new({
     id = id.from(_N, "DeleteMonitoringScheduleRequest"),
@@ -24006,10 +24653,7 @@ M.DeleteMonitoringScheduleInput = schema.new({
     },
 })
 
-M.DeleteMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMonitoringScheduleOutput = prelude.Unit
 
 M.DeleteNotebookInstanceInput = schema.new({
     id = id.from(_N, "DeleteNotebookInstanceInput"),
@@ -24027,10 +24671,7 @@ M.DeleteNotebookInstanceInput = schema.new({
     },
 })
 
-M.DeleteNotebookInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNotebookInstanceOutput = prelude.Unit
 
 M.DeleteNotebookInstanceLifecycleConfigInput = schema.new({
     id = id.from(_N, "DeleteNotebookInstanceLifecycleConfigInput"),
@@ -24048,10 +24689,7 @@ M.DeleteNotebookInstanceLifecycleConfigInput = schema.new({
     },
 })
 
-M.DeleteNotebookInstanceLifecycleConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNotebookInstanceLifecycleConfigOutput = prelude.Unit
 
 M.DeleteOptimizationJobInput = schema.new({
     id = id.from(_N, "DeleteOptimizationJobRequest"),
@@ -24069,10 +24707,7 @@ M.DeleteOptimizationJobInput = schema.new({
     },
 })
 
-M.DeleteOptimizationJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOptimizationJobOutput = prelude.Unit
 
 M.DeletePartnerAppInput = schema.new({
     id = id.from(_N, "DeletePartnerAppRequest"),
@@ -24167,10 +24802,7 @@ M.DeleteProcessingJobInput = schema.new({
     },
 })
 
-M.DeleteProcessingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProcessingJobOutput = prelude.Unit
 
 M.DeleteProjectInput = schema.new({
     id = id.from(_N, "DeleteProjectInput"),
@@ -24188,10 +24820,7 @@ M.DeleteProjectInput = schema.new({
     },
 })
 
-M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProjectOutput = prelude.Unit
 
 M.DeleteSpaceInput = schema.new({
     id = id.from(_N, "DeleteSpaceRequest"),
@@ -24218,10 +24847,7 @@ M.DeleteSpaceInput = schema.new({
     },
 })
 
-M.DeleteSpaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSpaceOutput = prelude.Unit
 
 M.DeleteStudioLifecycleConfigInput = schema.new({
     id = id.from(_N, "DeleteStudioLifecycleConfigRequest"),
@@ -24239,10 +24865,7 @@ M.DeleteStudioLifecycleConfigInput = schema.new({
     },
 })
 
-M.DeleteStudioLifecycleConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStudioLifecycleConfigOutput = prelude.Unit
 
 M.DeleteTagsInput = schema.new({
     id = id.from(_N, "DeleteTagsInput"),
@@ -24291,10 +24914,7 @@ M.DeleteTrainingJobInput = schema.new({
     },
 })
 
-M.DeleteTrainingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTrainingJobOutput = prelude.Unit
 
 M.DeleteTrialInput = schema.new({
     id = id.from(_N, "DeleteTrialRequest"),
@@ -24379,10 +24999,7 @@ M.DeleteUserProfileInput = schema.new({
     },
 })
 
-M.DeleteUserProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserProfileOutput = prelude.Unit
 
 M.DeleteWorkforceInput = schema.new({
     id = id.from(_N, "DeleteWorkforceRequest"),
@@ -24645,10 +25262,7 @@ M.DeregisterDevicesInput = schema.new({
     },
 })
 
-M.DeregisterDevicesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterDevicesOutput = prelude.Unit
 
 M.DerivedInformation = schema.new({
     id = id.from(_N, "DerivedInformation"),
@@ -50434,10 +51048,7 @@ M.RegisterDevicesInput = schema.new({
     },
 })
 
-M.RegisterDevicesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterDevicesOutput = prelude.Unit
 
 M.RemoteDebugConfigForUpdate = schema.new({
     id = id.from(_N, "RemoteDebugConfigForUpdate"),
@@ -51828,10 +52439,7 @@ M.StartEdgeDeploymentStageInput = schema.new({
     },
 })
 
-M.StartEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartEdgeDeploymentStageOutput = prelude.Unit
 
 M.StartInferenceExperimentInput = schema.new({
     id = id.from(_N, "StartInferenceExperimentRequest"),
@@ -51910,10 +52518,7 @@ M.StartMonitoringScheduleInput = schema.new({
     },
 })
 
-M.StartMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartMonitoringScheduleOutput = prelude.Unit
 
 M.StartNotebookInstanceInput = schema.new({
     id = id.from(_N, "StartNotebookInstanceInput"),
@@ -51931,10 +52536,7 @@ M.StartNotebookInstanceInput = schema.new({
     },
 })
 
-M.StartNotebookInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartNotebookInstanceOutput = prelude.Unit
 
 M.StartPipelineExecutionInput = schema.new({
     id = id.from(_N, "StartPipelineExecutionRequest"),
@@ -52141,10 +52743,7 @@ M.StopAutoMLJobInput = schema.new({
     },
 })
 
-M.StopAutoMLJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopAutoMLJobOutput = prelude.Unit
 
 M.StopCompilationJobInput = schema.new({
     id = id.from(_N, "StopCompilationJobRequest"),
@@ -52162,10 +52761,7 @@ M.StopCompilationJobInput = schema.new({
     },
 })
 
-M.StopCompilationJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopCompilationJobOutput = prelude.Unit
 
 M.StopEdgeDeploymentStageInput = schema.new({
     id = id.from(_N, "StopEdgeDeploymentStageRequest"),
@@ -52192,10 +52788,7 @@ M.StopEdgeDeploymentStageInput = schema.new({
     },
 })
 
-M.StopEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopEdgeDeploymentStageOutput = prelude.Unit
 
 M.StopEdgePackagingJobInput = schema.new({
     id = id.from(_N, "StopEdgePackagingJobRequest"),
@@ -52213,10 +52806,7 @@ M.StopEdgePackagingJobInput = schema.new({
     },
 })
 
-M.StopEdgePackagingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopEdgePackagingJobOutput = prelude.Unit
 
 M.StopHyperParameterTuningJobInput = schema.new({
     id = id.from(_N, "StopHyperParameterTuningJobRequest"),
@@ -52234,10 +52824,7 @@ M.StopHyperParameterTuningJobInput = schema.new({
     },
 })
 
-M.StopHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopHyperParameterTuningJobOutput = prelude.Unit
 
 M.StopInferenceExperimentInput = schema.new({
     id = id.from(_N, "StopInferenceExperimentRequest"),
@@ -52317,10 +52904,7 @@ M.StopInferenceRecommendationsJobInput = schema.new({
     },
 })
 
-M.StopInferenceRecommendationsJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopInferenceRecommendationsJobOutput = prelude.Unit
 
 M.StopLabelingJobInput = schema.new({
     id = id.from(_N, "StopLabelingJobRequest"),
@@ -52338,10 +52922,7 @@ M.StopLabelingJobInput = schema.new({
     },
 })
 
-M.StopLabelingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopLabelingJobOutput = prelude.Unit
 
 M.StopMlflowTrackingServerInput = schema.new({
     id = id.from(_N, "StopMlflowTrackingServerRequest"),
@@ -52388,10 +52969,7 @@ M.StopMonitoringScheduleInput = schema.new({
     },
 })
 
-M.StopMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopMonitoringScheduleOutput = prelude.Unit
 
 M.StopNotebookInstanceInput = schema.new({
     id = id.from(_N, "StopNotebookInstanceInput"),
@@ -52409,10 +52987,7 @@ M.StopNotebookInstanceInput = schema.new({
     },
 })
 
-M.StopNotebookInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopNotebookInstanceOutput = prelude.Unit
 
 M.StopOptimizationJobInput = schema.new({
     id = id.from(_N, "StopOptimizationJobRequest"),
@@ -52430,10 +53005,7 @@ M.StopOptimizationJobInput = schema.new({
     },
 })
 
-M.StopOptimizationJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopOptimizationJobOutput = prelude.Unit
 
 M.StopPipelineExecutionInput = schema.new({
     id = id.from(_N, "StopPipelineExecutionRequest"),
@@ -52490,10 +53062,7 @@ M.StopProcessingJobInput = schema.new({
     },
 })
 
-M.StopProcessingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopProcessingJobOutput = prelude.Unit
 
 M.StopTrainingJobInput = schema.new({
     id = id.from(_N, "StopTrainingJobRequest"),
@@ -52511,10 +53080,7 @@ M.StopTrainingJobInput = schema.new({
     },
 })
 
-M.StopTrainingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTrainingJobOutput = prelude.Unit
 
 M.StopTransformJobInput = schema.new({
     id = id.from(_N, "StopTransformJobRequest"),
@@ -52532,10 +53098,7 @@ M.StopTransformJobInput = schema.new({
     },
 })
 
-M.StopTransformJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTransformJobOutput = prelude.Unit
 
 M.UpdateActionInput = schema.new({
     id = id.from(_N, "UpdateActionRequest"),
@@ -53125,10 +53688,7 @@ M.UpdateDeviceFleetInput = schema.new({
     },
 })
 
-M.UpdateDeviceFleetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDeviceFleetOutput = prelude.Unit
 
 M.UpdateDevicesInput = schema.new({
     id = id.from(_N, "UpdateDevicesRequest"),
@@ -53156,10 +53716,7 @@ M.UpdateDevicesInput = schema.new({
     },
 })
 
-M.UpdateDevicesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDevicesOutput = prelude.Unit
 
 M.UpdateDomainInput = schema.new({
     id = id.from(_N, "UpdateDomainRequest"),
@@ -53531,10 +54088,7 @@ M.UpdateFeatureMetadataInput = schema.new({
     },
 })
 
-M.UpdateFeatureMetadataOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateFeatureMetadataOutput = prelude.Unit
 
 M.UpdateHubInput = schema.new({
     id = id.from(_N, "UpdateHubRequest"),

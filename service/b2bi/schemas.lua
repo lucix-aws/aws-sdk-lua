@@ -7,6 +7,34 @@ local _N = "com.amazonaws.b2bi"
 
 local M = {}
 
+M.S3LocationList = schema.new({ type = "list", list_member = M.S3Location })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ValidationMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParsedSplitFileContentsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityList = schema.new({ type = "list", list_member = M.CapabilitySummary })
+
+M.InstructionsDocuments = schema.new({ type = "list", list_member = M.S3Location })
+
+M.PartnershipList = schema.new({ type = "list", list_member = M.PartnershipSummary })
+
+M.PartnershipCapabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileList = schema.new({ type = "list", list_member = M.ProfileSummary })
+
+M.TransformerList = schema.new({ type = "list", list_member = M.TransformerSummary })
+
+M.KeyList = schema.new({ type = "list", list_member = M.SampleDocumentKeys })
+
+M.X12ValidationRules = schema.new({ type = "list", list_member = M.X12ValidationRule })
+
+M.CodeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -667,10 +695,7 @@ M.DeleteCapabilityInput = schema.new({
     },
 })
 
-M.DeleteCapabilityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCapabilityOutput = prelude.Unit
 
 M.GetCapabilityInput = schema.new({
     id = id.from(_N, "GetCapabilityRequest"),
@@ -1683,10 +1708,7 @@ M.DeletePartnershipInput = schema.new({
     },
 })
 
-M.DeletePartnershipOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePartnershipOutput = prelude.Unit
 
 M.GetPartnershipInput = schema.new({
     id = id.from(_N, "GetPartnershipRequest"),
@@ -2225,10 +2247,7 @@ M.DeleteProfileInput = schema.new({
     },
 })
 
-M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProfileOutput = prelude.Unit
 
 M.GetProfileInput = schema.new({
     id = id.from(_N, "GetProfileRequest"),
@@ -2676,10 +2695,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.InputFileSource = schema.new({
     id = id.from(_N, "InputFileSource"),
@@ -3316,10 +3332,7 @@ M.DeleteTransformerInput = schema.new({
     },
 })
 
-M.DeleteTransformerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTransformerOutput = prelude.Unit
 
 M.GetTransformerInput = schema.new({
     id = id.from(_N, "GetTransformerRequest"),
@@ -3863,10 +3876,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

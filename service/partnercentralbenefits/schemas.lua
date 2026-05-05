@@ -7,6 +7,54 @@ local _N = "com.amazonaws.partnercentralbenefits"
 
 local M = {}
 
+M.AmendmentList = schema.new({ type = "list", list_member = M.Amendment })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.FulfillmentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.Arns = schema.new({ type = "list", list_member = prelude.String })
+
+M.Contacts = schema.new({ type = "list", list_member = M.Contact })
+
+M.FileInputDetails = schema.new({ type = "list", list_member = M.FileInput })
+
+M.Programs = schema.new({ type = "list", list_member = prelude.String })
+
+M.BenefitIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusReasonCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileDetails = schema.new({ type = "list", list_member = M.FileDetail })
+
+M.BenefitApplicationIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BenefitAllocationStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BenefitAllocationSummaries = schema.new({ type = "list", list_member = M.BenefitAllocationSummary })
+
+M.Statuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.Stages = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedResources = schema.new({ type = "list", list_member = M.AssociatedResource })
+
+M.BenefitApplicationSummaries = schema.new({ type = "list", list_member = M.BenefitApplicationSummary })
+
+M.BenefitStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.BenefitSummaries = schema.new({ type = "list", list_member = M.BenefitSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CreditCodes = schema.new({ type = "list", list_member = M.CreditCode })
+
+M.BenefitIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -4365,45 +4365,45 @@ local record ThrottlingException
     Logref: string
 end
 
-local type CelebrityRecognitionSortBy = "ID" | "TIMESTAMP"
+local type OrientationCorrection = "ROTATE_0" | "ROTATE_90" | "ROTATE_180" | "ROTATE_270"
 
-local type LabelDetectionSortBy = "NAME" | "TIMESTAMP"
+local type FaceAttributes = "DEFAULT" | "ALL"
 
-local type ContentModerationSortBy = "NAME" | "TIMESTAMP"
+local type ProjectStatus = "CREATING" | "CREATED" | "DELETING"
 
-local type UserStatus = "ACTIVE" | "UPDATING" | "CREATING" | "CREATED"
+local type LivenessSessionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "EXPIRED"
 
-local type QualityFilter = "NONE" | "AUTO" | "LOW" | "MEDIUM" | "HIGH"
+local type CustomizationFeature = "CONTENT_MODERATION" | "CUSTOM_LABELS"
+
+local type ProjectAutoUpdate = "ENABLED" | "DISABLED"
+
+local type MediaAnalysisJobStatus = "CREATED" | "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
 local type LabelDetectionAggregateBy = "TIMESTAMPS" | "SEGMENTS"
 
 local type PersonTrackingSortBy = "INDEX" | "TIMESTAMP"
 
-local type ProjectVersionStatus = "TRAINING_IN_PROGRESS" | "TRAINING_COMPLETED" | "TRAINING_FAILED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING" | "COPYING_IN_PROGRESS" | "COPYING_COMPLETED" | "COPYING_FAILED" | "DEPRECATED" | "EXPIRED"
+local type FaceSearchSortBy = "INDEX" | "TIMESTAMP"
 
-local type StreamProcessorStatus = "STOPPED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "UPDATING"
-
-local type LivenessSessionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "EXPIRED"
-
-local type OrientationCorrection = "ROTATE_0" | "ROTATE_90" | "ROTATE_180" | "ROTATE_270"
-
-local type ProjectAutoUpdate = "ENABLED" | "DISABLED"
-
-local type ProjectStatus = "CREATING" | "CREATED" | "DELETING"
+local type UserStatus = "ACTIVE" | "UPDATING" | "CREATING" | "CREATED"
 
 local type ContentModerationAggregateBy = "TIMESTAMPS" | "SEGMENTS"
 
-local type CustomizationFeature = "CONTENT_MODERATION" | "CUSTOM_LABELS"
+local type LabelDetectionSortBy = "NAME" | "TIMESTAMP"
+
+local type ContentModerationSortBy = "NAME" | "TIMESTAMP"
+
+local type CelebrityRecognitionSortBy = "ID" | "TIMESTAMP"
+
+local type QualityFilter = "NONE" | "AUTO" | "LOW" | "MEDIUM" | "HIGH"
 
 local type VideoJobStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
+local type ProjectVersionStatus = "TRAINING_IN_PROGRESS" | "TRAINING_COMPLETED" | "TRAINING_FAILED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING" | "COPYING_IN_PROGRESS" | "COPYING_COMPLETED" | "COPYING_FAILED" | "DEPRECATED" | "EXPIRED"
+
 local type DatasetType = "TRAIN" | "TEST"
 
-local type FaceAttributes = "DEFAULT" | "ALL"
-
-local type MediaAnalysisJobStatus = "CREATED" | "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
-local type FaceSearchSortBy = "INDEX" | "TIMESTAMP"
+local type StreamProcessorStatus = "STOPPED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "UPDATING"
 
 local record M
     AssociateFacesInput: AssociateFacesInput

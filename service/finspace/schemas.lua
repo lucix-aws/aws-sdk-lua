@@ -7,6 +7,72 @@ local _N = "com.amazonaws.finspace"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DataBundleArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChangeRequests = schema.new({ type = "list", list_member = M.ChangeRequest })
+
+M.KxDatabaseConfigurations = schema.new({ type = "list", list_member = M.KxDatabaseConfiguration })
+
+M.KxCacheStorageConfigurations = schema.new({ type = "list", list_member = M.KxCacheStorageConfiguration })
+
+M.KxCommandLineArguments = schema.new({ type = "list", list_member = M.KxCommandLineArgument })
+
+M.Volumes = schema.new({ type = "list", list_member = M.Volume })
+
+M.KxDataviewSegmentConfigurationList = schema.new({ type = "list", list_member = M.KxDataviewSegmentConfiguration })
+
+M.AvailabilityZoneIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.KxDataviewActiveVersionList = schema.new({ type = "list", list_member = M.KxDataviewActiveVersion })
+
+M.CustomDNSConfiguration = schema.new({ type = "list", list_member = M.CustomDNSServer })
+
+M.KxClusterNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KxAttachedClusters = schema.new({ type = "list", list_member = M.KxAttachedCluster })
+
+M.EnvironmentList = schema.new({ type = "list", list_member = M.Environment })
+
+M.KxChangesets = schema.new({ type = "list", list_member = M.KxChangesetListEntry })
+
+M.KxNodeSummaries = schema.new({ type = "list", list_member = M.KxNode })
+
+M.KxClusters = schema.new({ type = "list", list_member = M.KxCluster })
+
+M.KxDatabases = schema.new({ type = "list", list_member = M.KxDatabaseListEntry })
+
+M.KxDataviews = schema.new({ type = "list", list_member = M.KxDataviewListEntry })
+
+M.KxEnvironmentList = schema.new({ type = "list", list_member = M.KxEnvironment })
+
+M.KxScalingGroupList = schema.new({ type = "list", list_member = M.KxScalingGroup })
+
+M.KxUserList = schema.new({ type = "list", list_member = M.KxUser })
+
+M.KxVolumes = schema.new({ type = "list", list_member = M.KxVolume })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TickerplantLogVolumes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkACLConfiguration = schema.new({ type = "list", list_member = M.NetworkACLEntry })
+
+M.KxDatabaseCacheConfigurations = schema.new({ type = "list", list_member = M.KxDatabaseCacheConfiguration })
+
+M.SegmentConfigurationDbPathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachedClusterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbPaths = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

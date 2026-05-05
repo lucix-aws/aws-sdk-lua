@@ -7,6 +7,8 @@ local _N = "com.amazonaws.migrationhubconfig"
 
 local M = {}
 
+M.HomeRegionControls = schema.new({ type = "list", list_member = M.HomeRegionControl })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

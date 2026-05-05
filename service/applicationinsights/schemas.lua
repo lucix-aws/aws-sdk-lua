@@ -7,6 +7,34 @@ local _N = "com.amazonaws.applicationinsights"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationInfoList = schema.new({ type = "list", list_member = M.ApplicationInfo })
+
+M.ApplicationComponentList = schema.new({ type = "list", list_member = M.ApplicationComponent })
+
+M.ConfigurationEventList = schema.new({ type = "list", list_member = M.ConfigurationEvent })
+
+M.LogPatternList = schema.new({ type = "list", list_member = M.LogPattern })
+
+M.LogPatternSetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProblemList = schema.new({ type = "list", list_member = M.Problem })
+
+M.WorkloadList = schema.new({ type = "list", list_member = M.Workload })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectedWorkload = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkloadMetaData })
+
+M.Feedback = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ObservationList = schema.new({ type = "list", list_member = M.Observation })
+
+M.WorkloadMetaData = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

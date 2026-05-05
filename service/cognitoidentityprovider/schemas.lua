@@ -7,6 +7,118 @@ local _N = "com.amazonaws.cognitoidentityprovider"
 
 local M = {}
 
+M.CustomAttributesListType = schema.new({ type = "list", list_member = M.SchemaAttributeType })
+
+M.ClientMetadataType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AttributeListType = schema.new({ type = "list", list_member = M.AttributeType })
+
+M.DeliveryMediumListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeNameListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.MFAOptionListType = schema.new({ type = "list", list_member = M.MFAOptionType })
+
+M.UserMFASettingListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthParametersType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ChallengeParametersType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AvailableChallengeListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceListType = schema.new({ type = "list", list_member = M.DeviceType })
+
+M.GroupListType = schema.new({ type = "list", list_member = M.GroupType })
+
+M.AuthEventsType = schema.new({ type = "list", list_member = M.AuthEventType })
+
+M.ChallengeResponsesType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProviderDetailsType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AttributeMappingType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IdpIdentifiersListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetListType = schema.new({ type = "list", list_member = M.AssetType })
+
+M.ResourceServerScopeListType = schema.new({ type = "list", list_member = M.ResourceServerScopeType })
+
+M.LinksType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VerifiedAttributesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.AliasAttributesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsernameAttributesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserPoolTagsType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SchemaAttributesListType = schema.new({ type = "list", list_member = M.SchemaAttributeType })
+
+M.ClientPermissionListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExplicitAuthFlowsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedIdentityProvidersListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.CallbackURLsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogoutURLsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.OAuthFlowsType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScopeListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfStringTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfiguredUserAuthFactorsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProvidersListType = schema.new({ type = "list", list_member = M.ProviderDescription })
+
+M.ResourceServersListType = schema.new({ type = "list", list_member = M.ResourceServerType })
+
+M.TermsDescriptionListType = schema.new({ type = "list", list_member = M.TermsDescriptionType })
+
+M.UserImportJobsListType = schema.new({ type = "list", list_member = M.UserImportJobType })
+
+M.UserPoolClientListType = schema.new({ type = "list", list_member = M.UserPoolClientDescription })
+
+M.ClientSecretDescriptorListType = schema.new({ type = "list", list_member = M.ClientSecretDescriptorType })
+
+M.UserPoolListType = schema.new({ type = "list", list_member = M.UserPoolDescriptionType })
+
+M.SearchedAttributeNamesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsersListType = schema.new({ type = "list", list_member = M.UserType })
+
+M.WebAuthnCredentialDescriptionListType = schema.new({ type = "list", list_member = M.WebAuthnCredentialDescription })
+
+M.LogConfigurationListType = schema.new({ type = "list", list_member = M.LogConfigurationType })
+
+M.UserPoolTagsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeDeliveryDetailsListType = schema.new({ type = "list", list_member = M.CodeDeliveryDetailsType })
+
+M.HttpHeaderList = schema.new({ type = "list", list_member = M.HttpHeader })
+
+M.AttributesRequireVerificationBeforeUpdateType = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryMechanismsType = schema.new({ type = "list", list_member = M.RecoveryOptionType })
+
+M.EventFiltersType = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockedIPRangeListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.SkippedIPRangeListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChallengeResponseListType = schema.new({ type = "list", list_member = M.ChallengeResponseType })
+
+M.AllowedFirstAuthFactorsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.WebAuthnAuthenticatorTransportsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -584,10 +696,7 @@ M.AdminAddUserToGroupInput = schema.new({
     },
 })
 
-M.AdminAddUserToGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AdminAddUserToGroupOutput = prelude.Unit
 
 M.UserNotFoundException = schema.new({
     id = id.from(_N, "UserNotFoundException"),
@@ -1085,10 +1194,7 @@ M.AdminDeleteUserInput = schema.new({
     },
 })
 
-M.AdminDeleteUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AdminDeleteUserOutput = prelude.Unit
 
 M.AdminDeleteUserAttributesInput = schema.new({
     id = id.from(_N, "AdminDeleteUserAttributesRequest"),
@@ -1296,10 +1402,7 @@ M.AdminForgetDeviceInput = schema.new({
     },
 })
 
-M.AdminForgetDeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AdminForgetDeviceOutput = prelude.Unit
 
 M.InvalidUserPoolConfigurationException = schema.new({
     id = id.from(_N, "InvalidUserPoolConfigurationException"),
@@ -2322,10 +2425,7 @@ M.AdminRemoveUserFromGroupInput = schema.new({
     },
 })
 
-M.AdminRemoveUserFromGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AdminRemoveUserFromGroupOutput = prelude.Unit
 
 M.AdminResetUserPasswordInput = schema.new({
     id = id.from(_N, "AdminResetUserPasswordRequest"),
@@ -5837,10 +5937,7 @@ M.DeleteGroupInput = schema.new({
     },
 })
 
-M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGroupOutput = prelude.Unit
 
 M.DeleteIdentityProviderInput = schema.new({
     id = id.from(_N, "DeleteIdentityProviderRequest"),
@@ -5867,10 +5964,7 @@ M.DeleteIdentityProviderInput = schema.new({
     },
 })
 
-M.DeleteIdentityProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIdentityProviderOutput = prelude.Unit
 
 M.UnsupportedIdentityProviderException = schema.new({
     id = id.from(_N, "UnsupportedIdentityProviderException"),
@@ -5913,10 +6007,7 @@ M.DeleteManagedLoginBrandingInput = schema.new({
     },
 })
 
-M.DeleteManagedLoginBrandingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteManagedLoginBrandingOutput = prelude.Unit
 
 M.DeleteResourceServerInput = schema.new({
     id = id.from(_N, "DeleteResourceServerRequest"),
@@ -5943,10 +6034,7 @@ M.DeleteResourceServerInput = schema.new({
     },
 })
 
-M.DeleteResourceServerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceServerOutput = prelude.Unit
 
 M.DeleteTermsInput = schema.new({
     id = id.from(_N, "DeleteTermsRequest"),
@@ -5973,10 +6061,7 @@ M.DeleteTermsInput = schema.new({
     },
 })
 
-M.DeleteTermsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTermsOutput = prelude.Unit
 
 M.DeleteUserInput = schema.new({
     id = id.from(_N, "DeleteUserRequest"),
@@ -5994,10 +6079,7 @@ M.DeleteUserInput = schema.new({
     },
 })
 
-M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserOutput = prelude.Unit
 
 M.DeleteUserAttributesInput = schema.new({
     id = id.from(_N, "DeleteUserAttributesRequest"),
@@ -6046,10 +6128,7 @@ M.DeleteUserPoolInput = schema.new({
     },
 })
 
-M.DeleteUserPoolOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserPoolOutput = prelude.Unit
 
 M.DeleteUserPoolClientInput = schema.new({
     id = id.from(_N, "DeleteUserPoolClientRequest"),
@@ -6076,10 +6155,7 @@ M.DeleteUserPoolClientInput = schema.new({
     },
 })
 
-M.DeleteUserPoolClientOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserPoolClientOutput = prelude.Unit
 
 M.DeleteUserPoolClientSecretInput = schema.new({
     id = id.from(_N, "DeleteUserPoolClientSecretRequest"),
@@ -6767,10 +6843,7 @@ M.ForgetDeviceInput = schema.new({
     },
 })
 
-M.ForgetDeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ForgetDeviceOutput = prelude.Unit
 
 M.ForgotPasswordInput = schema.new({
     id = id.from(_N, "ForgotPasswordRequest"),

@@ -7,6 +7,38 @@ local _N = "com.amazonaws.apprunner"
 
 local M = {}
 
+M.VpcDNSTargetList = schema.new({ type = "list", list_member = M.VpcDNSTarget })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomDomainList = schema.new({ type = "list", list_member = M.CustomDomain })
+
+M.AutoScalingConfigurationSummaryList = schema.new({ type = "list", list_member = M.AutoScalingConfigurationSummary })
+
+M.ConnectionSummaryList = schema.new({ type = "list", list_member = M.ConnectionSummary })
+
+M.ObservabilityConfigurationSummaryList = schema.new({ type = "list", list_member = M.ObservabilityConfigurationSummary })
+
+M.OperationSummaryList = schema.new({ type = "list", list_member = M.OperationSummary })
+
+M.ServiceSummaryList = schema.new({ type = "list", list_member = M.ServiceSummary })
+
+M.ServiceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcConnectors = schema.new({ type = "list", list_member = M.VpcConnector })
+
+M.VpcIngressConnectionSummaryList = schema.new({ type = "list", list_member = M.VpcIngressConnectionSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateValidationRecordList = schema.new({ type = "list", list_member = M.CertificateValidationRecord })
+
+M.RuntimeEnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RuntimeEnvironmentSecrets = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AssociateCustomDomainInput = schema.new({
     id = id.from(_N, "AssociateCustomDomainRequest"),
     type = "structure",

@@ -7,6 +7,46 @@ local _N = "com.amazonaws.invoicing"
 
 local M = {}
 
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileList = schema.new({ type = "list", list_member = M.InvoiceProfile })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.Contacts = schema.new({ type = "list", list_member = M.Contact })
+
+M.InvoiceSummaries = schema.new({ type = "list", list_member = M.InvoiceSummary })
+
+M.InvoiceUnits = schema.new({ type = "list", list_member = M.InvoiceUnit })
+
+M.ProcurementPortalPreferenceSummaries = schema.new({ type = "list", list_member = M.ProcurementPortalPreferenceSummary })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InvoiceUnitArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SellerOfRecords = schema.new({ type = "list", list_member = prelude.String })
+
+M.EinvoiceDeliveryDocumentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.EinvoiceDeliveryAttachmentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.PurchaseOrderDataSources = schema.new({ type = "list", list_member = M.PurchaseOrderDataSource })
+
+M.SupplementalDocuments = schema.new({ type = "list", list_member = M.SupplementalDocument })
+
+M.InvoiceUnitNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.DiscountsBreakdownAmountList = schema.new({ type = "list", list_member = M.DiscountsBreakdownAmount })
+
+M.TaxesBreakdownAmountList = schema.new({ type = "list", list_member = M.TaxesBreakdownAmount })
+
+M.FeesBreakdownAmountList = schema.new({ type = "list", list_member = M.FeesBreakdownAmount })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

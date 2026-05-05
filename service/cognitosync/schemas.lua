@@ -7,6 +7,20 @@ local _N = "com.amazonaws.cognitosync"
 
 local M = {}
 
+M.Events = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DatasetList = schema.new({ type = "list", list_member = M.Dataset })
+
+M.IdentityPoolUsageList = schema.new({ type = "list", list_member = M.IdentityPoolUsage })
+
+M.RecordList = schema.new({ type = "list", list_member = M.Record })
+
+M.MergedDatasetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecordPatchList = schema.new({ type = "list", list_member = M.RecordPatch })
+
+M.ApplicationArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AlreadyStreamedException = schema.new({
     id = id.from(_N, "AlreadyStreamedException"),
     type = "structure",
@@ -1088,10 +1102,7 @@ M.SetCognitoEventsInput = schema.new({
     },
 })
 
-M.SetCognitoEventsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetCognitoEventsOutput = prelude.Unit
 
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),

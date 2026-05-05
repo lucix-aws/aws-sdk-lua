@@ -7,6 +7,46 @@ local _N = "com.amazonaws.sns"
 
 local M = {}
 
+M.DelegatesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MapStringToString = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TopicAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ListString = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubscriptionAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfEndpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.PhoneNumberInformationList = schema.new({ type = "list", list_member = M.PhoneNumberInformation })
+
+M.PhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfPlatformApplications = schema.new({ type = "list", list_member = M.PlatformApplication })
+
+M.SMSSandboxPhoneNumberList = schema.new({ type = "list", list_member = M.SMSSandboxPhoneNumber })
+
+M.SubscriptionsList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.TopicsList = schema.new({ type = "list", list_member = M.Topic })
+
+M.MessageAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MessageAttributeValue })
+
+M.PublishBatchRequestEntryList = schema.new({ type = "list", list_member = M.PublishBatchRequestEntry })
+
+M.PublishBatchResultEntryList = schema.new({ type = "list", list_member = M.PublishBatchResultEntry })
+
+M.BatchResultErrorEntryList = schema.new({ type = "list", list_member = M.BatchResultErrorEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumberCapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AddPermissionInput = schema.new({
     id = id.from(_N, "AddPermissionInput"),
     type = "structure",
@@ -52,10 +92,7 @@ M.AddPermissionInput = schema.new({
     },
 })
 
-M.AddPermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddPermissionOutput = prelude.Unit
 
 M.AuthorizationErrorException = schema.new({
     id = id.from(_N, "AuthorizationErrorException"),
@@ -608,10 +645,7 @@ M.DeleteEndpointInput = schema.new({
     },
 })
 
-M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEndpointOutput = prelude.Unit
 
 M.DeletePlatformApplicationInput = schema.new({
     id = id.from(_N, "DeletePlatformApplicationInput"),
@@ -629,10 +663,7 @@ M.DeletePlatformApplicationInput = schema.new({
     },
 })
 
-M.DeletePlatformApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePlatformApplicationOutput = prelude.Unit
 
 M.DeleteSMSSandboxPhoneNumberInput = schema.new({
     id = id.from(_N, "DeleteSMSSandboxPhoneNumberInput"),
@@ -687,10 +718,7 @@ M.DeleteTopicInput = schema.new({
     },
 })
 
-M.DeleteTopicOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTopicOutput = prelude.Unit
 
 M.InvalidStateException = schema.new({
     id = id.from(_N, "InvalidStateException"),
@@ -1966,10 +1994,7 @@ M.PutDataProtectionPolicyInput = schema.new({
     },
 })
 
-M.PutDataProtectionPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutDataProtectionPolicyOutput = prelude.Unit
 
 M.RemovePermissionInput = schema.new({
     id = id.from(_N, "RemovePermissionInput"),
@@ -1996,10 +2021,7 @@ M.RemovePermissionInput = schema.new({
     },
 })
 
-M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemovePermissionOutput = prelude.Unit
 
 M.SetEndpointAttributesInput = schema.new({
     id = id.from(_N, "SetEndpointAttributesInput"),
@@ -2028,10 +2050,7 @@ M.SetEndpointAttributesInput = schema.new({
     },
 })
 
-M.SetEndpointAttributesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetEndpointAttributesOutput = prelude.Unit
 
 M.SetPlatformApplicationAttributesInput = schema.new({
     id = id.from(_N, "SetPlatformApplicationAttributesInput"),
@@ -2060,10 +2079,7 @@ M.SetPlatformApplicationAttributesInput = schema.new({
     },
 })
 
-M.SetPlatformApplicationAttributesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetPlatformApplicationAttributesOutput = prelude.Unit
 
 M.SetSMSAttributesInput = schema.new({
     id = id.from(_N, "SetSMSAttributesInput"),
@@ -2119,10 +2135,7 @@ M.SetSubscriptionAttributesInput = schema.new({
     },
 })
 
-M.SetSubscriptionAttributesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetSubscriptionAttributesOutput = prelude.Unit
 
 M.SetTopicAttributesInput = schema.new({
     id = id.from(_N, "SetTopicAttributesInput"),
@@ -2155,10 +2168,7 @@ M.SetTopicAttributesInput = schema.new({
     },
 })
 
-M.SetTopicAttributesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetTopicAttributesOutput = prelude.Unit
 
 M.SubscribeInput = schema.new({
     id = id.from(_N, "SubscribeInput"),
@@ -2268,10 +2278,7 @@ M.UnsubscribeInput = schema.new({
     },
 })
 
-M.UnsubscribeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UnsubscribeOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),

@@ -7,6 +7,38 @@ local _N = "com.amazonaws.gameliftstreams"
 
 local M = {}
 
+M.FilePaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationStatuses = schema.new({ type = "list", list_member = M.ReplicationStatus })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocationStates = schema.new({ type = "list", list_member = M.LocationState })
+
+M.LocationConfigurations = schema.new({ type = "list", list_member = M.LocationConfiguration })
+
+M.Identifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.GameLaunchArgList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StreamSessionSummaryList = schema.new({ type = "list", list_member = M.StreamSessionSummary })
+
+M.LocationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationSummaryList = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.StreamGroupSummaryList = schema.new({ type = "list", list_member = M.StreamGroupSummary })
+
+M.Ipv4CidrBlockList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -605,10 +637,7 @@ M.DeleteApplicationInput = schema.new({
     },
 })
 
-M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationOutput = prelude.Unit
 
 M.GetApplicationInput = schema.new({
     id = id.from(_N, "GetApplicationInput"),
@@ -1238,10 +1267,7 @@ M.DeleteStreamGroupInput = schema.new({
     },
 })
 
-M.DeleteStreamGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStreamGroupOutput = prelude.Unit
 
 M.DisassociateApplicationsInput = schema.new({
     id = id.from(_N, "DisassociateApplicationsInput"),
@@ -1798,10 +1824,7 @@ M.RemoveStreamGroupLocationsInput = schema.new({
     },
 })
 
-M.RemoveStreamGroupLocationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveStreamGroupLocationsOutput = prelude.Unit
 
 M.StartStreamSessionInput = schema.new({
     id = id.from(_N, "StartStreamSessionInput"),
@@ -2440,10 +2463,7 @@ M.TerminateStreamSessionInput = schema.new({
     },
 })
 
-M.TerminateStreamSessionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TerminateStreamSessionOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),

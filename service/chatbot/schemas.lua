@@ -7,6 +7,40 @@ local _N = "com.amazonaws.chatbot"
 
 local M = {}
 
+M.CustomActionAttachmentList = schema.new({ type = "list", list_member = M.CustomActionAttachment })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SnsTopicArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.GuardrailPolicyArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChimeWebhookConfigurationList = schema.new({ type = "list", list_member = M.ChimeWebhookConfiguration })
+
+M.SlackChannelConfigurationList = schema.new({ type = "list", list_member = M.SlackChannelConfiguration })
+
+M.SlackUserIdentitiesList = schema.new({ type = "list", list_member = M.SlackUserIdentity })
+
+M.SlackWorkspacesList = schema.new({ type = "list", list_member = M.SlackWorkspace })
+
+M.AssociationList = schema.new({ type = "list", list_member = M.AssociationListing })
+
+M.TeamChannelConfigurationsList = schema.new({ type = "list", list_member = M.TeamsChannelConfiguration })
+
+M.ConfiguredTeamsList = schema.new({ type = "list", list_member = M.ConfiguredTeam })
+
+M.TeamsUserIdentitiesList = schema.new({ type = "list", list_member = M.TeamsUserIdentity })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomActionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomActionAttachmentCriteriaList = schema.new({ type = "list", list_member = M.CustomActionAttachmentCriteria })
+
+M.CustomActionAttachmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccountPreferences = schema.new({
     id = id.from(_N, "AccountPreferences"),
     type = "structure",

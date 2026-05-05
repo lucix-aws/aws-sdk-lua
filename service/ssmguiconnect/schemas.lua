@@ -7,6 +7,8 @@ local _N = "com.amazonaws.ssmguiconnect"
 
 local M = {}
 
+M.S3Buckets = schema.new({ type = "list", list_member = M.S3Bucket })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -237,10 +239,7 @@ M.ValidationException = schema.new({
     },
 })
 
-M.GetConnectionRecordingPreferencesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetConnectionRecordingPreferencesInput = prelude.Unit
 
 M.GetConnectionRecordingPreferencesOutput = schema.new({
     id = id.from(_N, "GetConnectionRecordingPreferencesResponse"),

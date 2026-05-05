@@ -7,6 +7,48 @@ local _N = "com.amazonaws.acm"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ThrottlingReasonList = schema.new({ type = "list", list_member = M.ThrottlingReason })
+
+M.CertificateStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateSummaryList = schema.new({ type = "list", list_member = M.CertificateSummary })
+
+M.DomainList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainValidationOptionList = schema.new({ type = "list", list_member = M.DomainValidationOption })
+
+M.CertificateSearchResultList = schema.new({ type = "list", list_member = M.CertificateSearchResult })
+
+M.DomainValidationList = schema.new({ type = "list", list_member = M.DomainValidation })
+
+M.InUseList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyUsageList = schema.new({ type = "list", list_member = M.KeyUsage })
+
+M.ExtendedKeyUsageList = schema.new({ type = "list", list_member = M.ExtendedKeyUsage })
+
+M.ExtendedKeyUsageFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyUsageFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyAlgorithmList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateFilterStatementList = schema.new({ type = "list", list_member = M.CertificateFilterStatement })
+
+M.KeyUsageNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExtendedKeyUsageNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationEmailList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GeneralNameList = schema.new({ type = "list", list_member = M.GeneralName })
+
+M.DomainComponentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomAttributeList = schema.new({ type = "list", list_member = M.CustomAttribute })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -211,10 +253,7 @@ M.AddTagsToCertificateInput = schema.new({
     },
 })
 
-M.AddTagsToCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsToCertificateOutput = prelude.Unit
 
 M.InvalidArnException = schema.new({
     id = id.from(_N, "InvalidArnException"),
@@ -945,10 +984,7 @@ M.DeleteCertificateInput = schema.new({
     },
 })
 
-M.DeleteCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCertificateOutput = prelude.Unit
 
 M.ResourceInUseException = schema.new({
     id = id.from(_N, "ResourceInUseException"),
@@ -1062,10 +1098,7 @@ M.RequestInProgressException = schema.new({
     },
 })
 
-M.GetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountConfigurationInput = prelude.Unit
 
 M.ExpiryEventsConfiguration = schema.new({
     id = id.from(_N, "ExpiryEventsConfiguration"),
@@ -1522,10 +1555,7 @@ M.PutAccountConfigurationInput = schema.new({
     },
 })
 
-M.PutAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAccountConfigurationOutput = prelude.Unit
 
 M.RemoveTagsFromCertificateInput = schema.new({
     id = id.from(_N, "RemoveTagsFromCertificateRequest"),
@@ -1553,10 +1583,7 @@ M.RemoveTagsFromCertificateInput = schema.new({
     },
 })
 
-M.RemoveTagsFromCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsFromCertificateOutput = prelude.Unit
 
 M.RenewCertificateInput = schema.new({
     id = id.from(_N, "RenewCertificateRequest"),
@@ -1574,10 +1601,7 @@ M.RenewCertificateInput = schema.new({
     },
 })
 
-M.RenewCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RenewCertificateOutput = prelude.Unit
 
 M.InvalidDomainValidationOptionsException = schema.new({
     id = id.from(_N, "InvalidDomainValidationOptionsException"),
@@ -1757,10 +1781,7 @@ M.ResendValidationEmailInput = schema.new({
     },
 })
 
-M.ResendValidationEmailOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResendValidationEmailOutput = prelude.Unit
 
 M.RevokeCertificateInput = schema.new({
     id = id.from(_N, "RevokeCertificateRequest"),
@@ -2147,10 +2168,7 @@ M.UpdateCertificateOptionsInput = schema.new({
     },
 })
 
-M.UpdateCertificateOptionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCertificateOptionsOutput = prelude.Unit
 
 M.CertificateFilterStatement = schema.new({
     id = id.from(_N, "CertificateFilterStatement"),

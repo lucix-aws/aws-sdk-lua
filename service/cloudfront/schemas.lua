@@ -7,6 +7,158 @@ local _N = "com.amazonaws.cloudfront"
 
 local M = {}
 
+M.IpamCidrConfigList = schema.new({ type = "list", list_member = M.IpamCidrConfig })
+
+M.DomainList = schema.new({ type = "list", list_member = M.DomainItem })
+
+M.Parameters = schema.new({ type = "list", list_member = M.Parameter })
+
+M.EndPointList = schema.new({ type = "list", list_member = M.EndPoint })
+
+M.FieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionFunctionSummaryList = schema.new({ type = "list", list_member = M.ConnectionFunctionSummary })
+
+M.ConnectionGroupSummaryList = schema.new({ type = "list", list_member = M.ConnectionGroupSummary })
+
+M.DistributionTenantList = schema.new({ type = "list", list_member = M.DistributionTenantSummary })
+
+M.DomainConflictsList = schema.new({ type = "list", list_member = M.DomainConflict })
+
+M.TrustStoreList = schema.new({ type = "list", list_member = M.TrustStoreSummary })
+
+M.DnsConfigurationList = schema.new({ type = "list", list_member = M.DnsConfiguration })
+
+M.AliasICPRecordals = schema.new({ type = "list", list_member = M.AliasICPRecordal })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AnycastIps = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainResultList = schema.new({ type = "list", list_member = M.DomainResult })
+
+M.PublicKeyIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationTokenDetailList = schema.new({ type = "list", list_member = M.ValidationTokenDetail })
+
+M.AnycastIpListSummaries = schema.new({ type = "list", list_member = M.AnycastIpListSummary })
+
+M.CachePolicySummaryList = schema.new({ type = "list", list_member = M.CachePolicySummary })
+
+M.CloudFrontOriginAccessIdentitySummaryList = schema.new({ type = "list", list_member = M.CloudFrontOriginAccessIdentitySummary })
+
+M.ConflictingAliases = schema.new({ type = "list", list_member = M.ConflictingAlias })
+
+M.ContinuousDeploymentPolicySummaryList = schema.new({ type = "list", list_member = M.ContinuousDeploymentPolicySummary })
+
+M.DistributionSummaryList = schema.new({ type = "list", list_member = M.DistributionSummary })
+
+M.DistributionIdListSummary = schema.new({ type = "list", list_member = prelude.String })
+
+M.DistributionIdOwnerItemList = schema.new({ type = "list", list_member = M.DistributionIdOwner })
+
+M.FieldLevelEncryptionSummaryList = schema.new({ type = "list", list_member = M.FieldLevelEncryptionSummary })
+
+M.FieldLevelEncryptionProfileSummaryList = schema.new({ type = "list", list_member = M.FieldLevelEncryptionProfileSummary })
+
+M.FunctionSummaryList = schema.new({ type = "list", list_member = M.FunctionSummary })
+
+M.InvalidationSummaryList = schema.new({ type = "list", list_member = M.InvalidationSummary })
+
+M.KeyGroupSummaryList = schema.new({ type = "list", list_member = M.KeyGroupSummary })
+
+M.KeyValueStoreSummaryList = schema.new({ type = "list", list_member = M.KeyValueStore })
+
+M.OriginAccessControlSummaryList = schema.new({ type = "list", list_member = M.OriginAccessControlSummary })
+
+M.OriginRequestPolicySummaryList = schema.new({ type = "list", list_member = M.OriginRequestPolicySummary })
+
+M.PublicKeySummaryList = schema.new({ type = "list", list_member = M.PublicKeySummary })
+
+M.RealtimeLogConfigList = schema.new({ type = "list", list_member = M.RealtimeLogConfig })
+
+M.ResponseHeadersPolicySummaryList = schema.new({ type = "list", list_member = M.ResponseHeadersPolicySummary })
+
+M.StreamingDistributionSummaryList = schema.new({ type = "list", list_member = M.StreamingDistributionSummary })
+
+M.VpcOriginSummaryList = schema.new({ type = "list", list_member = M.VpcOriginSummary })
+
+M.FunctionExecutionLogList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SignerList = schema.new({ type = "list", list_member = M.Signer })
+
+M.KGKeyPairIdsList = schema.new({ type = "list", list_member = M.KGKeyPairIds })
+
+M.KeyValueStoreAssociationList = schema.new({ type = "list", list_member = M.KeyValueStoreAssociation })
+
+M.StagingDistributionDnsNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AliasList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OriginList = schema.new({ type = "list", list_member = M.Origin })
+
+M.OriginGroupList = schema.new({ type = "list", list_member = M.OriginGroup })
+
+M.CacheBehaviorList = schema.new({ type = "list", list_member = M.CacheBehavior })
+
+M.CustomErrorResponseList = schema.new({ type = "list", list_member = M.CustomErrorResponse })
+
+M.ParameterDefinitions = schema.new({ type = "list", list_member = M.ParameterDefinition })
+
+M.LocationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EncryptionEntityList = schema.new({ type = "list", list_member = M.EncryptionEntity })
+
+M.PathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseHeadersPolicyCustomHeaderList = schema.new({ type = "list", list_member = M.ResponseHeadersPolicyCustomHeader })
+
+M.ResponseHeadersPolicyRemoveHeaderList = schema.new({ type = "list", list_member = M.ResponseHeadersPolicyRemoveHeader })
+
+M.AwsAccountNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SslProtocolsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrustedKeyGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MethodsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaFunctionAssociationList = schema.new({ type = "list", list_member = M.LambdaFunctionAssociation })
+
+M.FunctionAssociationList = schema.new({ type = "list", list_member = M.FunctionAssociation })
+
+M.QueryArgProfileList = schema.new({ type = "list", list_member = M.QueryArgProfile })
+
+M.ContentTypeProfileList = schema.new({ type = "list", list_member = M.ContentTypeProfile })
+
+M.HeaderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CookieNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryStringNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessControlAllowOriginsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessControlAllowHeadersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessControlAllowMethodsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessControlExposeHeadersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryStringCacheKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyPairIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OriginCustomHeadersList = schema.new({ type = "list", list_member = M.OriginCustomHeader })
+
+M.OriginGroupMemberList = schema.new({ type = "list", list_member = M.OriginGroupMember })
+
+M.FieldPatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusCodeList = schema.new({ type = "list", list_member = prelude.Integer })
+
 M.AccessDenied = schema.new({
     id = id.from(_N, "AccessDenied"),
     type = "structure",
@@ -561,10 +713,7 @@ M.AssociateAliasInput = schema.new({
     },
 })
 
-M.AssociateAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateAliasOutput = prelude.Unit
 
 M.IllegalUpdate = schema.new({
     id = id.from(_N, "IllegalUpdate"),
@@ -9454,10 +9603,7 @@ M.DeleteAnycastIpListInput = schema.new({
     },
 })
 
-M.DeleteAnycastIpListOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAnycastIpListOutput = prelude.Unit
 
 M.IllegalDelete = schema.new({
     id = id.from(_N, "IllegalDelete"),
@@ -9501,10 +9647,7 @@ M.DeleteCachePolicyInput = schema.new({
     },
 })
 
-M.DeleteCachePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCachePolicyOutput = prelude.Unit
 
 M.CloudFrontOriginAccessIdentityInUse = schema.new({
     id = id.from(_N, "CloudFrontOriginAccessIdentityInUse"),
@@ -9548,10 +9691,7 @@ M.DeleteCloudFrontOriginAccessIdentityInput = schema.new({
     },
 })
 
-M.DeleteCloudFrontOriginAccessIdentityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCloudFrontOriginAccessIdentityOutput = prelude.Unit
 
 M.NoSuchCloudFrontOriginAccessIdentity = schema.new({
     id = id.from(_N, "NoSuchCloudFrontOriginAccessIdentity"),
@@ -9596,10 +9736,7 @@ M.DeleteConnectionFunctionInput = schema.new({
     },
 })
 
-M.DeleteConnectionFunctionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectionFunctionOutput = prelude.Unit
 
 M.DeleteConnectionGroupInput = schema.new({
     id = id.from(_N, "DeleteConnectionGroupRequest"),
@@ -9628,10 +9765,7 @@ M.DeleteConnectionGroupInput = schema.new({
     },
 })
 
-M.DeleteConnectionGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectionGroupOutput = prelude.Unit
 
 M.ResourceNotDisabled = schema.new({
     id = id.from(_N, "ResourceNotDisabled"),
@@ -9675,10 +9809,7 @@ M.DeleteContinuousDeploymentPolicyInput = schema.new({
     },
 })
 
-M.DeleteContinuousDeploymentPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteContinuousDeploymentPolicyOutput = prelude.Unit
 
 M.DeleteDistributionInput = schema.new({
     id = id.from(_N, "DeleteDistributionRequest"),
@@ -9706,10 +9837,7 @@ M.DeleteDistributionInput = schema.new({
     },
 })
 
-M.DeleteDistributionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDistributionOutput = prelude.Unit
 
 M.DistributionNotDisabled = schema.new({
     id = id.from(_N, "DistributionNotDisabled"),
@@ -9770,10 +9898,7 @@ M.DeleteDistributionTenantInput = schema.new({
     },
 })
 
-M.DeleteDistributionTenantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDistributionTenantOutput = prelude.Unit
 
 M.DeleteFieldLevelEncryptionConfigInput = schema.new({
     id = id.from(_N, "DeleteFieldLevelEncryptionConfigRequest"),
@@ -9801,10 +9926,7 @@ M.DeleteFieldLevelEncryptionConfigInput = schema.new({
     },
 })
 
-M.DeleteFieldLevelEncryptionConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFieldLevelEncryptionConfigOutput = prelude.Unit
 
 M.FieldLevelEncryptionConfigInUse = schema.new({
     id = id.from(_N, "FieldLevelEncryptionConfigInUse"),
@@ -9848,10 +9970,7 @@ M.DeleteFieldLevelEncryptionProfileInput = schema.new({
     },
 })
 
-M.DeleteFieldLevelEncryptionProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFieldLevelEncryptionProfileOutput = prelude.Unit
 
 M.FieldLevelEncryptionProfileInUse = schema.new({
     id = id.from(_N, "FieldLevelEncryptionProfileInUse"),
@@ -9896,10 +10015,7 @@ M.DeleteFunctionInput = schema.new({
     },
 })
 
-M.DeleteFunctionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFunctionOutput = prelude.Unit
 
 M.FunctionInUse = schema.new({
     id = id.from(_N, "FunctionInUse"),
@@ -9959,10 +10075,7 @@ M.DeleteKeyGroupInput = schema.new({
     },
 })
 
-M.DeleteKeyGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteKeyGroupOutput = prelude.Unit
 
 M.NoSuchResource = schema.new({
     id = id.from(_N, "NoSuchResource"),
@@ -10007,10 +10120,7 @@ M.DeleteKeyValueStoreInput = schema.new({
     },
 })
 
-M.DeleteKeyValueStoreOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteKeyValueStoreOutput = prelude.Unit
 
 M.DeleteMonitoringSubscriptionInput = schema.new({
     id = id.from(_N, "DeleteMonitoringSubscriptionRequest"),
@@ -10076,10 +10186,7 @@ M.DeleteOriginAccessControlInput = schema.new({
     },
 })
 
-M.DeleteOriginAccessControlOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOriginAccessControlOutput = prelude.Unit
 
 M.NoSuchOriginAccessControl = schema.new({
     id = id.from(_N, "NoSuchOriginAccessControl"),
@@ -10139,10 +10246,7 @@ M.DeleteOriginRequestPolicyInput = schema.new({
     },
 })
 
-M.DeleteOriginRequestPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOriginRequestPolicyOutput = prelude.Unit
 
 M.OriginRequestPolicyInUse = schema.new({
     id = id.from(_N, "OriginRequestPolicyInUse"),
@@ -10186,10 +10290,7 @@ M.DeletePublicKeyInput = schema.new({
     },
 })
 
-M.DeletePublicKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePublicKeyOutput = prelude.Unit
 
 M.PublicKeyInUse = schema.new({
     id = id.from(_N, "PublicKeyInUse"),
@@ -10226,10 +10327,7 @@ M.DeleteRealtimeLogConfigInput = schema.new({
     },
 })
 
-M.DeleteRealtimeLogConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRealtimeLogConfigOutput = prelude.Unit
 
 M.RealtimeLogConfigInUse = schema.new({
     id = id.from(_N, "RealtimeLogConfigInUse"),
@@ -10263,10 +10361,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DeleteResponseHeadersPolicyInput = schema.new({
     id = id.from(_N, "DeleteResponseHeadersPolicyRequest"),
@@ -10294,10 +10389,7 @@ M.DeleteResponseHeadersPolicyInput = schema.new({
     },
 })
 
-M.DeleteResponseHeadersPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResponseHeadersPolicyOutput = prelude.Unit
 
 M.ResponseHeadersPolicyInUse = schema.new({
     id = id.from(_N, "ResponseHeadersPolicyInUse"),
@@ -10341,10 +10433,7 @@ M.DeleteStreamingDistributionInput = schema.new({
     },
 })
 
-M.DeleteStreamingDistributionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStreamingDistributionOutput = prelude.Unit
 
 M.NoSuchStreamingDistribution = schema.new({
     id = id.from(_N, "NoSuchStreamingDistribution"),
@@ -10405,10 +10494,7 @@ M.DeleteTrustStoreInput = schema.new({
     },
 })
 
-M.DeleteTrustStoreOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTrustStoreOutput = prelude.Unit
 
 M.DeleteVpcOriginInput = schema.new({
     id = id.from(_N, "DeleteVpcOriginRequest"),
@@ -16543,10 +16629,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TestConnectionFunctionInput = schema.new({
     id = id.from(_N, "TestConnectionFunctionRequest"),
@@ -16803,10 +16886,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAnycastIpListInput = schema.new({
     id = id.from(_N, "UpdateAnycastIpListRequest"),

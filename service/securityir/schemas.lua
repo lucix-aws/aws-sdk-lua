@@ -7,6 +7,50 @@ local _N = "com.amazonaws.securityir"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListCasesItems = schema.new({ type = "list", list_member = M.ListCasesItem })
+
+M.ImpactedAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.Watchers = schema.new({ type = "list", list_member = M.Watcher })
+
+M.ThreatActorIpList = schema.new({ type = "list", list_member = M.ThreatActorIp })
+
+M.ImpactedServicesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImpactedAwsRegionList = schema.new({ type = "list", list_member = M.ImpactedAwsRegion })
+
+M.CaseAttachmentsList = schema.new({ type = "list", list_member = M.CaseAttachmentAttributes })
+
+M.CaseMetadata = schema.new({ type = "list", list_member = M.CaseMetadataEntry })
+
+M.CaseEditItems = schema.new({ type = "list", list_member = M.CaseEditItem })
+
+M.ListCommentsItems = schema.new({ type = "list", list_member = M.ListCommentsItem })
+
+M.InvestigationActionList = schema.new({ type = "list", list_member = M.InvestigationAction })
+
+M.ListMembershipItems = schema.new({ type = "list", list_member = M.ListMembershipItem })
+
+M.IncidentResponseTeam = schema.new({ type = "list", list_member = M.IncidentResponder })
+
+M.OptInFeatures = schema.new({ type = "list", list_member = M.OptInFeature })
+
+M.AWSAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.GetMembershipAccountDetailItems = schema.new({ type = "list", list_member = M.GetMembershipAccountDetailItem })
+
+M.GetMembershipAccountDetailErrors = schema.new({ type = "list", list_member = M.GetMembershipAccountDetailError })
+
+M.OrganizationalUnits = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommunicationPreferences = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

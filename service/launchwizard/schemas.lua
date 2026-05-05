@@ -7,6 +7,36 @@ local _N = "com.amazonaws.launchwizard"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentFilterList = schema.new({ type = "list", list_member = M.DeploymentFilter })
+
+M.DeploymentDataSummaryList = schema.new({ type = "list", list_member = M.DeploymentDataSummary })
+
+M.DeploymentSpecifications = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.WorkloadDataSummaryList = schema.new({ type = "list", list_member = M.WorkloadDataSummary })
+
+M.DeploymentEventDataSummaryList = schema.new({ type = "list", list_member = M.DeploymentEventDataSummary })
+
+M.WorkloadDeploymentPatternDataSummaryList = schema.new({ type = "list", list_member = M.WorkloadDeploymentPatternDataSummary })
+
+M.FilterList = schema.new({ type = "list", list_member = M.DeploymentPatternVersionFilter })
+
+M.DeploymentPatternVersionDataSummaryList = schema.new({ type = "list", list_member = M.DeploymentPatternVersionDataSummary })
+
+M.DeploymentSpecificationsData = schema.new({ type = "list", list_member = M.DeploymentSpecificationsField })
+
+M.DeploymentFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentPatternVersionFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpecificationsConditionalData = schema.new({ type = "list", list_member = M.DeploymentConditionalField })
+
 M.CreateDeploymentInput = schema.new({
     id = id.from(_N, "CreateDeploymentInput"),
     type = "structure",

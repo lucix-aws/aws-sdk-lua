@@ -7,6 +7,90 @@ local _N = "com.amazonaws.waf"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ManagedKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.SampledHTTPRequests = schema.new({ type = "list", list_member = M.SampledHTTPRequest })
+
+M.ActivatedRules = schema.new({ type = "list", list_member = M.ActivatedRule })
+
+M.ByteMatchSetSummaries = schema.new({ type = "list", list_member = M.ByteMatchSetSummary })
+
+M.GeoMatchSetSummaries = schema.new({ type = "list", list_member = M.GeoMatchSetSummary })
+
+M.IPSetSummaries = schema.new({ type = "list", list_member = M.IPSetSummary })
+
+M.LoggingConfigurations = schema.new({ type = "list", list_member = M.LoggingConfiguration })
+
+M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.RegexMatchSetSummaries = schema.new({ type = "list", list_member = M.RegexMatchSetSummary })
+
+M.RegexPatternSetSummaries = schema.new({ type = "list", list_member = M.RegexPatternSetSummary })
+
+M.RuleGroupSummaries = schema.new({ type = "list", list_member = M.RuleGroupSummary })
+
+M.SizeConstraintSetSummaries = schema.new({ type = "list", list_member = M.SizeConstraintSetSummary })
+
+M.SqlInjectionMatchSetSummaries = schema.new({ type = "list", list_member = M.SqlInjectionMatchSetSummary })
+
+M.SubscribedRuleGroupSummaries = schema.new({ type = "list", list_member = M.SubscribedRuleGroupSummary })
+
+M.WebACLSummaries = schema.new({ type = "list", list_member = M.WebACLSummary })
+
+M.XssMatchSetSummaries = schema.new({ type = "list", list_member = M.XssMatchSetSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ByteMatchSetUpdates = schema.new({ type = "list", list_member = M.ByteMatchSetUpdate })
+
+M.GeoMatchSetUpdates = schema.new({ type = "list", list_member = M.GeoMatchSetUpdate })
+
+M.IPSetUpdates = schema.new({ type = "list", list_member = M.IPSetUpdate })
+
+M.RuleUpdates = schema.new({ type = "list", list_member = M.RuleUpdate })
+
+M.RegexMatchSetUpdates = schema.new({ type = "list", list_member = M.RegexMatchSetUpdate })
+
+M.RegexPatternSetUpdates = schema.new({ type = "list", list_member = M.RegexPatternSetUpdate })
+
+M.RuleGroupUpdates = schema.new({ type = "list", list_member = M.RuleGroupUpdate })
+
+M.SizeConstraintSetUpdates = schema.new({ type = "list", list_member = M.SizeConstraintSetUpdate })
+
+M.SqlInjectionMatchSetUpdates = schema.new({ type = "list", list_member = M.SqlInjectionMatchSetUpdate })
+
+M.WebACLUpdates = schema.new({ type = "list", list_member = M.WebACLUpdate })
+
+M.XssMatchSetUpdates = schema.new({ type = "list", list_member = M.XssMatchSetUpdate })
+
+M.ByteMatchTuples = schema.new({ type = "list", list_member = M.ByteMatchTuple })
+
+M.GeoMatchConstraints = schema.new({ type = "list", list_member = M.GeoMatchConstraint })
+
+M.IPSetDescriptors = schema.new({ type = "list", list_member = M.IPSetDescriptor })
+
+M.Predicates = schema.new({ type = "list", list_member = M.Predicate })
+
+M.RegexMatchTuples = schema.new({ type = "list", list_member = M.RegexMatchTuple })
+
+M.RegexPatternStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.SizeConstraints = schema.new({ type = "list", list_member = M.SizeConstraint })
+
+M.SqlInjectionMatchTuples = schema.new({ type = "list", list_member = M.SqlInjectionMatchTuple })
+
+M.XssMatchTuples = schema.new({ type = "list", list_member = M.XssMatchTuple })
+
+M.LogDestinationConfigs = schema.new({ type = "list", list_member = prelude.String })
+
+M.RedactedFields = schema.new({ type = "list", list_member = M.FieldToMatch })
+
+M.ExcludedRules = schema.new({ type = "list", list_member = M.ExcludedRule })
+
+M.HTTPHeaders = schema.new({ type = "list", list_member = M.HTTPHeader })
+
 M.WafAction = schema.new({
     id = id.from(_N, "WafAction"),
     type = "structure",

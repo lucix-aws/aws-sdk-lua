@@ -7,6 +7,308 @@ local _N = "com.amazonaws.iot"
 
 local M = {}
 
+M.JobTargets = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PublicKeyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.CertificateProviderAccountDefaultForOperations = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommandParameterList = schema.new({ type = "list", list_member = M.CommandParameter })
+
+M.DimensionStringValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServerCertificateArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DestinationPackageVersions = schema.new({ type = "list", list_member = prelude.String })
+
+M.MaintenanceWindows = schema.new({ type = "list", list_member = M.MaintenanceWindow })
+
+M.Targets = schema.new({ type = "list", list_member = prelude.String })
+
+M.Protocols = schema.new({ type = "list", list_member = prelude.String })
+
+M.OTAUpdateFiles = schema.new({ type = "list", list_member = M.OTAUpdateFile })
+
+M.AdditionalParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TargetAuditCheckNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Behaviors = schema.new({ type = "list", list_member = M.Behavior })
+
+M.AlertTargets = schema.new({ type = "map", map_key = prelude.String, map_value = M.AlertTarget })
+
+M.AdditionalMetricsToRetainList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalMetricsToRetainV2List = schema.new({ type = "list", list_member = M.MetricToRetain })
+
+M.StreamFiles = schema.new({ type = "list", list_member = M.StreamFile })
+
+M.AuditNotificationTargetConfigurations = schema.new({ type = "map", map_key = prelude.String, map_value = M.AuditNotificationTarget })
+
+M.AuditCheckConfigurations = schema.new({ type = "map", map_key = prelude.String, map_value = M.AuditCheckConfiguration })
+
+M.AuditMitigationActionsTaskStatistics = schema.new({ type = "map", map_key = prelude.String, map_value = M.TaskStatisticsForAuditCheck })
+
+M.AuditCheckToActionsMapping = schema.new({ type = "map", map_key = prelude.String, map_value = M.MitigationActionNameList })
+
+M.MitigationActionList = schema.new({ type = "list", list_member = M.MitigationAction })
+
+M.AuditDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.AuditCheckDetails })
+
+M.ServerCertificates = schema.new({ type = "list", list_member = M.ServerCertificateSummary })
+
+M.EventConfigurations = schema.new({ type = "map", map_key = prelude.String, map_value = M.Configuration })
+
+M.Environments = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentParameters = schema.new({ type = "list", list_member = M.DocumentParameter })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.BehaviorModelTrainingSummaries = schema.new({ type = "list", list_member = M.BehaviorModelTrainingSummary })
+
+M.Buckets = schema.new({ type = "list", list_member = M.Bucket })
+
+M.CommandExecutionResultMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CommandExecutionResult })
+
+M.CommandExecutionParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CommandParameterValue })
+
+M.EffectivePolicies = schema.new({ type = "list", list_member = M.EffectivePolicy })
+
+M.PercentList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.Percentiles = schema.new({ type = "list", list_member = M.PercentPair })
+
+M.LogEventConfigurations = schema.new({ type = "list", list_member = M.LogEventConfiguration })
+
+M.ActiveViolations = schema.new({ type = "list", list_member = M.ActiveViolation })
+
+M.Policies = schema.new({ type = "list", list_member = M.Policy })
+
+M.AuditFindings = schema.new({ type = "list", list_member = M.AuditFinding })
+
+M.AuditMitigationActionExecutionMetadataList = schema.new({ type = "list", list_member = M.AuditMitigationActionExecutionMetadata })
+
+M.AuditMitigationActionsTaskMetadataList = schema.new({ type = "list", list_member = M.AuditMitigationActionsTaskMetadata })
+
+M.AuditSuppressionList = schema.new({ type = "list", list_member = M.AuditSuppression })
+
+M.AuditTaskMetadataList = schema.new({ type = "list", list_member = M.AuditTaskMetadata })
+
+M.Authorizers = schema.new({ type = "list", list_member = M.AuthorizerSummary })
+
+M.BillingGroupNameAndArnList = schema.new({ type = "list", list_member = M.GroupNameAndArn })
+
+M.CACertificates = schema.new({ type = "list", list_member = M.CACertificate })
+
+M.CertificateProviders = schema.new({ type = "list", list_member = M.CertificateProviderSummary })
+
+M.Certificates = schema.new({ type = "list", list_member = M.Certificate })
+
+M.CommandExecutionSummaryList = schema.new({ type = "list", list_member = M.CommandExecutionSummary })
+
+M.CommandSummaryList = schema.new({ type = "list", list_member = M.CommandSummary })
+
+M.MetricNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectMitigationActionExecutionList = schema.new({ type = "list", list_member = M.DetectMitigationActionExecution })
+
+M.DetectMitigationActionsTaskSummaryList = schema.new({ type = "list", list_member = M.DetectMitigationActionsTaskSummary })
+
+M.DimensionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainConfigurations = schema.new({ type = "list", list_member = M.DomainConfigurationSummary })
+
+M.FleetMetricNameAndArnList = schema.new({ type = "list", list_member = M.FleetMetricNameAndArn })
+
+M.IndexNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobExecutionSummaryForJobList = schema.new({ type = "list", list_member = M.JobExecutionSummaryForJob })
+
+M.JobExecutionSummaryForThingList = schema.new({ type = "list", list_member = M.JobExecutionSummaryForThing })
+
+M.JobSummaryList = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.JobTemplateSummaryList = schema.new({ type = "list", list_member = M.JobTemplateSummary })
+
+M.ManagedJobTemplatesSummaryList = schema.new({ type = "list", list_member = M.ManagedJobTemplateSummary })
+
+M.MetricDatumList = schema.new({ type = "list", list_member = M.MetricDatum })
+
+M.MitigationActionIdentifierList = schema.new({ type = "list", list_member = M.MitigationActionIdentifier })
+
+M.OTAUpdatesSummary = schema.new({ type = "list", list_member = M.OTAUpdateSummary })
+
+M.OutgoingCertificates = schema.new({ type = "list", list_member = M.OutgoingCertificate })
+
+M.PackageSummaryList = schema.new({ type = "list", list_member = M.PackageSummary })
+
+M.PackageVersionSummaryList = schema.new({ type = "list", list_member = M.PackageVersionSummary })
+
+M.Principals = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyVersions = schema.new({ type = "list", list_member = M.PolicyVersion })
+
+M.ThingNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrincipalThingObjects = schema.new({ type = "list", list_member = M.PrincipalThingObject })
+
+M.ProvisioningTemplateListing = schema.new({ type = "list", list_member = M.ProvisioningTemplateSummary })
+
+M.ProvisioningTemplateVersionListing = schema.new({ type = "list", list_member = M.ProvisioningTemplateVersionSummary })
+
+M.RelatedResources = schema.new({ type = "list", list_member = M.RelatedResource })
+
+M.RoleAliases = schema.new({ type = "list", list_member = prelude.String })
+
+M.SbomValidationResultSummaryList = schema.new({ type = "list", list_member = M.SbomValidationResultSummary })
+
+M.ScheduledAuditMetadataList = schema.new({ type = "list", list_member = M.ScheduledAuditMetadata })
+
+M.SecurityProfileIdentifiers = schema.new({ type = "list", list_member = M.SecurityProfileIdentifier })
+
+M.SecurityProfileTargetMappings = schema.new({ type = "list", list_member = M.SecurityProfileTargetMapping })
+
+M.StreamsSummary = schema.new({ type = "list", list_member = M.StreamSummary })
+
+M.PolicyTargets = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityProfileTargets = schema.new({ type = "list", list_member = M.SecurityProfileTarget })
+
+M.ThingGroupNameAndArnList = schema.new({ type = "list", list_member = M.GroupNameAndArn })
+
+M.ThingPrincipalObjects = schema.new({ type = "list", list_member = M.ThingPrincipalObject })
+
+M.S3FileUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThingAttributeList = schema.new({ type = "list", list_member = M.ThingAttribute })
+
+M.ThingTypeList = schema.new({ type = "list", list_member = M.ThingTypeDefinition })
+
+M.TopicRuleDestinationSummaries = schema.new({ type = "list", list_member = M.TopicRuleDestinationSummary })
+
+M.TopicRuleList = schema.new({ type = "list", list_member = M.TopicRuleListItem })
+
+M.LogTargetConfigurations = schema.new({ type = "list", list_member = M.LogTargetConfiguration })
+
+M.ViolationEvents = schema.new({ type = "list", list_member = M.ViolationEvent })
+
+M.Parameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceArns = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ThingDocumentList = schema.new({ type = "list", list_member = M.ThingDocument })
+
+M.ThingGroupDocumentList = schema.new({ type = "list", list_member = M.ThingGroupDocument })
+
+M.DetectMitigationActionsToExecuteList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthInfos = schema.new({ type = "list", list_member = M.AuthInfo })
+
+M.PolicyNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthResults = schema.new({ type = "list", list_member = M.AuthResult })
+
+M.PolicyDocuments = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThingGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationErrors = schema.new({ type = "list", list_member = M.ValidationError })
+
+M.AggregationTypeValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AbortCriteriaList = schema.new({ type = "list", list_member = M.AbortCriteria })
+
+M.RetryCriteriaList = schema.new({ type = "list", list_member = M.RetryCriteria })
+
+M.AwsJobAbortCriteriaList = schema.new({ type = "list", list_member = M.AwsJobAbortCriteria })
+
+M.SearchableAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionList = schema.new({ type = "list", list_member = M.Action })
+
+M.FindingIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuditCheckToReasonCodeFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.ReasonForNonComplianceCodes })
+
+M.MitigationActionNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledJobRolloutList = schema.new({ type = "list", list_member = M.ScheduledJobRollout })
+
+M.Fields = schema.new({ type = "list", list_member = M.Field })
+
+M.TargetViolationIdsForDetectMitigationActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.HttpHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CommandParameterValueConditionList = schema.new({ type = "list", list_member = M.CommandParameterValueCondition })
+
+M.ThingGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PropagatingAttributeList = schema.new({ type = "list", list_member = M.PropagatingAttribute })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CheckCustomConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReasonForNonComplianceCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProcessingTargetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NamedShadowNamesFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.GeoLocationsFilter = schema.new({ type = "list", list_member = M.GeoLocationTarget })
+
+M.ThingGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Resources = schema.new({ type = "list", list_member = prelude.String })
+
+M.MissingContextValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.PutAssetPropertyValueEntryList = schema.new({ type = "list", list_member = M.PutAssetPropertyValueEntry })
+
+M.TimestreamDimensionList = schema.new({ type = "list", list_member = M.TimestreamDimension })
+
+M.HeaderList = schema.new({ type = "list", list_member = M.HttpActionHeader })
+
+M.ClientProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.KafkaHeaders = schema.new({ type = "list", list_member = M.KafkaActionHeader })
+
+M.Cidrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ports = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.NumberList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserProperties = schema.new({ type = "list", list_member = M.UserProperty })
+
+M.CommandParameterValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetPropertyValueList = schema.new({ type = "list", list_member = M.AssetPropertyValue })
+
 M.AbortCriteria = schema.new({
     id = id.from(_N, "AbortCriteria"),
     type = "structure",
@@ -94,10 +396,7 @@ M.AcceptCertificateTransferInput = schema.new({
     },
 })
 
-M.AcceptCertificateTransferOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AcceptCertificateTransferOutput = prelude.Unit
 
 M.InternalFailureException = schema.new({
     id = id.from(_N, "InternalFailureException"),
@@ -2516,10 +2815,7 @@ M.AttachPolicyInput = schema.new({
     },
 })
 
-M.AttachPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachPolicyOutput = prelude.Unit
 
 M.AttachPrincipalPolicyInput = schema.new({
     id = id.from(_N, "AttachPrincipalPolicyRequest"),
@@ -2548,10 +2844,7 @@ M.AttachPrincipalPolicyInput = schema.new({
     },
 })
 
-M.AttachPrincipalPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachPrincipalPolicyOutput = prelude.Unit
 
 M.AttachSecurityProfileInput = schema.new({
     id = id.from(_N, "AttachSecurityProfileRequest"),
@@ -3515,10 +3808,7 @@ M.CancelCertificateTransferInput = schema.new({
     },
 })
 
-M.CancelCertificateTransferOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelCertificateTransferOutput = prelude.Unit
 
 M.CancelDetectMitigationActionsTaskInput = schema.new({
     id = id.from(_N, "CancelDetectMitigationActionsTaskRequest"),
@@ -3657,10 +3947,7 @@ M.CancelJobExecutionInput = schema.new({
     },
 })
 
-M.CancelJobExecutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelJobExecutionOutput = prelude.Unit
 
 M.InvalidStateTransitionException = schema.new({
     id = id.from(_N, "InvalidStateTransitionException"),
@@ -7624,10 +7911,7 @@ M.CreateTopicRuleInput = schema.new({
     },
 })
 
-M.CreateTopicRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTopicRuleOutput = prelude.Unit
 
 M.SqlParseException = schema.new({
     id = id.from(_N, "SqlParseException"),
@@ -8039,10 +8323,7 @@ M.DeleteCertificateInput = schema.new({
     },
 })
 
-M.DeleteCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCertificateOutput = prelude.Unit
 
 M.DeleteCertificateProviderInput = schema.new({
     id = id.from(_N, "DeleteCertificateProviderRequest"),
@@ -8255,10 +8536,7 @@ M.DeleteFleetMetricInput = schema.new({
     },
 })
 
-M.DeleteFleetMetricOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFleetMetricOutput = prelude.Unit
 
 M.DeleteJobInput = schema.new({
     id = id.from(_N, "DeleteJobRequest"),
@@ -8296,10 +8574,7 @@ M.DeleteJobInput = schema.new({
     },
 })
 
-M.DeleteJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteJobOutput = prelude.Unit
 
 M.DeleteJobExecutionInput = schema.new({
     id = id.from(_N, "DeleteJobExecutionRequest"),
@@ -8357,10 +8632,7 @@ M.DeleteJobExecutionInput = schema.new({
     },
 })
 
-M.DeleteJobExecutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteJobExecutionOutput = prelude.Unit
 
 M.DeleteJobTemplateInput = schema.new({
     id = id.from(_N, "DeleteJobTemplateRequest"),
@@ -8379,10 +8651,7 @@ M.DeleteJobTemplateInput = schema.new({
     },
 })
 
-M.DeleteJobTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteJobTemplateOutput = prelude.Unit
 
 M.DeleteMitigationActionInput = schema.new({
     id = id.from(_N, "DeleteMitigationActionRequest"),
@@ -8539,10 +8808,7 @@ M.DeletePolicyInput = schema.new({
     },
 })
 
-M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyOutput = prelude.Unit
 
 M.DeletePolicyVersionInput = schema.new({
     id = id.from(_N, "DeletePolicyVersionRequest"),
@@ -8571,10 +8837,7 @@ M.DeletePolicyVersionInput = schema.new({
     },
 })
 
-M.DeletePolicyVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyVersionOutput = prelude.Unit
 
 M.DeleteProvisioningTemplateInput = schema.new({
     id = id.from(_N, "DeleteProvisioningTemplateRequest"),
@@ -8838,10 +9101,7 @@ M.DeleteTopicRuleInput = schema.new({
     },
 })
 
-M.DeleteTopicRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTopicRuleOutput = prelude.Unit
 
 M.DeleteTopicRuleDestinationInput = schema.new({
     id = id.from(_N, "DeleteTopicRuleDestinationRequest"),
@@ -8892,10 +9152,7 @@ M.DeleteV2LoggingLevelInput = schema.new({
     },
 })
 
-M.DeleteV2LoggingLevelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteV2LoggingLevelOutput = prelude.Unit
 
 M.DeprecateThingTypeInput = schema.new({
     id = id.from(_N, "DeprecateThingTypeRequest"),
@@ -12158,10 +12415,7 @@ M.DetachPolicyInput = schema.new({
     },
 })
 
-M.DetachPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachPolicyOutput = prelude.Unit
 
 M.DetachPrincipalPolicyInput = schema.new({
     id = id.from(_N, "DetachPrincipalPolicyRequest"),
@@ -12190,10 +12444,7 @@ M.DetachPrincipalPolicyInput = schema.new({
     },
 })
 
-M.DetachPrincipalPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachPrincipalPolicyOutput = prelude.Unit
 
 M.DetachSecurityProfileInput = schema.new({
     id = id.from(_N, "DetachSecurityProfileRequest"),
@@ -12276,10 +12527,7 @@ M.DisableTopicRuleInput = schema.new({
     },
 })
 
-M.DisableTopicRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableTopicRuleOutput = prelude.Unit
 
 M.DisassociateSbomFromPackageVersionInput = schema.new({
     id = id.from(_N, "DisassociateSbomFromPackageVersionRequest"),
@@ -12340,10 +12588,7 @@ M.EnableTopicRuleInput = schema.new({
     },
 })
 
-M.EnableTopicRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableTopicRuleOutput = prelude.Unit
 
 M.GetBehaviorModelTrainingSummariesInput = schema.new({
     id = id.from(_N, "GetBehaviorModelTrainingSummariesRequest"),
@@ -19935,10 +20180,7 @@ M.RejectCertificateTransferInput = schema.new({
     },
 })
 
-M.RejectCertificateTransferOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RejectCertificateTransferOutput = prelude.Unit
 
 M.RemoveThingFromBillingGroupInput = schema.new({
     id = id.from(_N, "RemoveThingFromBillingGroupRequest"),
@@ -20040,10 +20282,7 @@ M.ReplaceTopicRuleInput = schema.new({
     },
 })
 
-M.ReplaceTopicRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ReplaceTopicRuleOutput = prelude.Unit
 
 M.SearchIndexInput = schema.new({
     id = id.from(_N, "SearchIndexRequest"),
@@ -20298,10 +20537,7 @@ M.SetDefaultPolicyVersionInput = schema.new({
     },
 })
 
-M.SetDefaultPolicyVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetDefaultPolicyVersionOutput = prelude.Unit
 
 M.LoggingOptionsPayload = schema.new({
     id = id.from(_N, "LoggingOptionsPayload"),
@@ -20343,10 +20579,7 @@ M.SetLoggingOptionsInput = schema.new({
     },
 })
 
-M.SetLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetLoggingOptionsOutput = prelude.Unit
 
 M.SetV2LoggingLevelInput = schema.new({
     id = id.from(_N, "SetV2LoggingLevelRequest"),
@@ -20374,10 +20607,7 @@ M.SetV2LoggingLevelInput = schema.new({
     },
 })
 
-M.SetV2LoggingLevelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetV2LoggingLevelOutput = prelude.Unit
 
 M.SetV2LoggingOptionsInput = schema.new({
     id = id.from(_N, "SetV2LoggingOptionsRequest"),
@@ -20414,10 +20644,7 @@ M.SetV2LoggingOptionsInput = schema.new({
     },
 })
 
-M.SetV2LoggingOptionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetV2LoggingOptionsOutput = prelude.Unit
 
 M.StartAuditMitigationActionsTaskInput = schema.new({
     id = id.from(_N, "StartAuditMitigationActionsTaskRequest"),
@@ -21287,10 +21514,7 @@ M.UpdateCACertificateInput = schema.new({
     },
 })
 
-M.UpdateCACertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCACertificateOutput = prelude.Unit
 
 M.UpdateCertificateInput = schema.new({
     id = id.from(_N, "UpdateCertificateRequest"),
@@ -21319,10 +21543,7 @@ M.UpdateCertificateInput = schema.new({
     },
 })
 
-M.UpdateCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCertificateOutput = prelude.Unit
 
 M.UpdateCertificateProviderInput = schema.new({
     id = id.from(_N, "UpdateCertificateProviderRequest"),
@@ -21871,10 +22092,7 @@ M.UpdateFleetMetricInput = schema.new({
     },
 })
 
-M.UpdateFleetMetricOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateFleetMetricOutput = prelude.Unit
 
 M.UpdateIndexingConfigurationInput = schema.new({
     id = id.from(_N, "UpdateIndexingConfigurationRequest"),
@@ -21969,10 +22187,7 @@ M.UpdateJobInput = schema.new({
     },
 })
 
-M.UpdateJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateJobOutput = prelude.Unit
 
 M.UpdateMitigationActionInput = schema.new({
     id = id.from(_N, "UpdateMitigationActionRequest"),

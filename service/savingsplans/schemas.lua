@@ -7,6 +7,68 @@ local _N = "com.amazonaws.savingsplans"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SavingsPlanRateFilterList = schema.new({ type = "list", list_member = M.SavingsPlanRateFilter })
+
+M.SavingsPlanRateList = schema.new({ type = "list", list_member = M.SavingsPlanRate })
+
+M.SavingsPlanArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanFilterList = schema.new({ type = "list", list_member = M.SavingsPlanFilter })
+
+M.SavingsPlanList = schema.new({ type = "list", list_member = M.SavingsPlan })
+
+M.UUIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanPaymentOptionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanProductTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanRateServiceCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanRateUsageTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanRateOperationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanOfferingRateFiltersList = schema.new({ type = "list", list_member = M.SavingsPlanOfferingRateFilterElement })
+
+M.SavingsPlanOfferingRatesList = schema.new({ type = "list", list_member = M.SavingsPlanOfferingRate })
+
+M.DurationsList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.CurrencyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanDescriptionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanServiceCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanUsageTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanOperationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanOfferingFiltersList = schema.new({ type = "list", list_member = M.SavingsPlanOfferingFilterElement })
+
+M.SavingsPlanOfferingsList = schema.new({ type = "list", list_member = M.SavingsPlanOffering })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanRatePropertyList = schema.new({ type = "list", list_member = M.SavingsPlanRateProperty })
+
+M.FilterValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanOfferingRatePropertyList = schema.new({ type = "list", list_member = M.SavingsPlanOfferingRateProperty })
+
+M.SavingsPlanOfferingPropertyList = schema.new({ type = "list", list_member = M.SavingsPlanOfferingProperty })
+
 M.CreateSavingsPlanInput = schema.new({
     id = id.from(_N, "CreateSavingsPlanRequest"),
     type = "structure",

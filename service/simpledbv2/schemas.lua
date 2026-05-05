@@ -7,6 +7,8 @@ local _N = "com.amazonaws.simpledbv2"
 
 local M = {}
 
+M.ExportSummaries = schema.new({ type = "list", list_member = M.ExportSummary })
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",

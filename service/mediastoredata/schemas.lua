@@ -7,6 +7,8 @@ local _N = "com.amazonaws.mediastoredata"
 
 local M = {}
 
+M.ItemList = schema.new({ type = "list", list_member = M.Item })
+
 M.ContainerNotFoundException = schema.new({
     id = id.from(_N, "ContainerNotFoundException"),
     type = "structure",

@@ -7,6 +7,20 @@ local _N = "com.amazonaws.elementalinference"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FeedSummaryList = schema.new({ type = "list", list_member = M.FeedSummary })
+
+M.CreateOutputList = schema.new({ type = "list", list_member = M.CreateOutput })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GetOutputList = schema.new({ type = "list", list_member = M.GetOutput })
+
+M.UpdateOutputList = schema.new({ type = "list", list_member = M.UpdateOutput })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -992,10 +1006,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -1025,10 +1036,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

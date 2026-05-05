@@ -7,6 +7,40 @@ local _N = "com.amazonaws.ecrpublic"
 
 local M = {}
 
+M.BatchedOperationLayerDigestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LayerList = schema.new({ type = "list", list_member = M.Layer })
+
+M.LayerFailureList = schema.new({ type = "list", list_member = M.LayerFailure })
+
+M.ImageIdentifierList = schema.new({ type = "list", list_member = M.ImageIdentifier })
+
+M.ImageFailureList = schema.new({ type = "list", list_member = M.ImageFailure })
+
+M.LayerDigestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ImageDetailList = schema.new({ type = "list", list_member = M.ImageDetail })
+
+M.ImageTagDetailList = schema.new({ type = "list", list_member = M.ImageTagDetail })
+
+M.RegistryList = schema.new({ type = "list", list_member = M.Registry })
+
+M.RepositoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryList = schema.new({ type = "list", list_member = M.Repository })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArchitectureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperatingSystemList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageTagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistryAliasList = schema.new({ type = "list", list_member = M.RegistryAlias })
+
 M.AuthorizationData = schema.new({
     id = id.from(_N, "AuthorizationData"),
     type = "structure",

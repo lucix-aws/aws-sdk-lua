@@ -7,6 +7,22 @@ local _N = "com.amazonaws.mwaa"
 
 local M = {}
 
+M.AirflowConfigurationOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EnvironmentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricData = schema.new({ type = "list", list_member = M.MetricDatum })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

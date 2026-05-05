@@ -7,6 +7,116 @@ local _N = "com.amazonaws.marketplacecatalog"
 
 local M = {}
 
+M.EntityRequestList = schema.new({ type = "list", list_member = M.EntityRequest })
+
+M.EntityDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.EntityDetail })
+
+M.Errors = schema.new({ type = "map", map_key = prelude.String, map_value = M.BatchDescribeErrorDetail })
+
+M.ChangeSetDescription = schema.new({ type = "list", list_member = M.ChangeSummary })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ChangeSetSummaryList = schema.new({ type = "list", list_member = M.ChangeSetSummaryListItem })
+
+M.EntitySummaryList = schema.new({ type = "list", list_member = M.EntitySummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.RequestedChangeList = schema.new({ type = "list", list_member = M.Change })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.ValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataProductVisibilityFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SaaSProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SaaSProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SaaSProductVisibilityFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmiProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmiProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmiProductVisibilityFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferProductIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferResaleAuthorizationIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferStateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferTargetingFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerProductVisibilityFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationProductIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationCreatedDateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationAvailabilityEndDateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationManufacturerAccountIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationProductNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationManufacturerLegalNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationResellerAccountIDFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationResellerLegalNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationStatusFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationOfferExtendedStatusFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MachineLearningProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MachineLearningProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MachineLearningProductVisibilityFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetStateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetAssociatedOfferIdsFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetSolutionIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferBuyerAccountsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferTargetingList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferSetAssociatedOfferIdsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

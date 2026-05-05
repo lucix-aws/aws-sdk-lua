@@ -7,6 +7,48 @@ local _N = "com.amazonaws.greengrass"
 
 local M = {}
 
+M.ErrorDetails = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfConnector = schema.new({ type = "list", list_member = M.Connector })
+
+M.__listOfCore = schema.new({ type = "list", list_member = M.Core })
+
+M.__listOfDevice = schema.new({ type = "list", list_member = M.Device })
+
+M.__listOfFunction = schema.new({ type = "list", list_member = M.Function })
+
+M.__listOfLogger = schema.new({ type = "list", list_member = M.Logger })
+
+M.__listOfResource = schema.new({ type = "list", list_member = M.Resource })
+
+M.UpdateTargets = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfSubscription = schema.new({ type = "list", list_member = M.Subscription })
+
+M.__listOfConnectivityInfo = schema.new({ type = "list", list_member = M.ConnectivityInfo })
+
+M.BulkDeploymentResults = schema.new({ type = "list", list_member = M.BulkDeploymentResult })
+
+M.BulkDeployments = schema.new({ type = "list", list_member = M.BulkDeployment })
+
+M.__listOfDefinitionInformation = schema.new({ type = "list", list_member = M.DefinitionInformation })
+
+M.__listOfVersionInformation = schema.new({ type = "list", list_member = M.VersionInformation })
+
+M.Deployments = schema.new({ type = "list", list_member = M.Deployment })
+
+M.__listOfGroupCertificateAuthorityProperties = schema.new({ type = "list", list_member = M.GroupCertificateAuthorityProperties })
+
+M.__listOfGroupInformation = schema.new({ type = "list", list_member = M.GroupInformation })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfResourceAccessPolicy = schema.new({ type = "list", list_member = M.ResourceAccessPolicy })
+
 M.ConnectivityInfo = schema.new({
     id = id.from(_N, "ConnectivityInfo"),
     type = "structure",
@@ -5707,10 +5749,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -5740,10 +5779,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateConnectivityInfoInput = schema.new({
     id = id.from(_N, "UpdateConnectivityInfoRequest"),

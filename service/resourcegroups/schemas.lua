@@ -7,6 +7,52 @@ local _N = "com.amazonaws.resourcegroups"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GroupConfigurationList = schema.new({ type = "list", list_member = M.GroupConfigurationItem })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedResourceList = schema.new({ type = "list", list_member = M.FailedResource })
+
+M.PendingResourceList = schema.new({ type = "list", list_member = M.PendingResource })
+
+M.ListGroupingStatusesFilterList = schema.new({ type = "list", list_member = M.ListGroupingStatusesFilter })
+
+M.GroupingStatusesList = schema.new({ type = "list", list_member = M.GroupingStatusesItem })
+
+M.ResourceFilterList = schema.new({ type = "list", list_member = M.ResourceFilter })
+
+M.ListGroupResourcesItemList = schema.new({ type = "list", list_member = M.ListGroupResourcesItem })
+
+M.ResourceIdentifierList = schema.new({ type = "list", list_member = M.ResourceIdentifier })
+
+M.QueryErrorList = schema.new({ type = "list", list_member = M.QueryError })
+
+M.GroupFilterList = schema.new({ type = "list", list_member = M.GroupFilter })
+
+M.GroupIdentifierList = schema.new({ type = "list", list_member = M.GroupIdentifier })
+
+M.GroupList = schema.new({ type = "list", list_member = M.Group })
+
+M.ListTagSyncTasksFilterList = schema.new({ type = "list", list_member = M.ListTagSyncTasksFilter })
+
+M.TagSyncTaskList = schema.new({ type = "list", list_member = M.TagSyncTaskItem })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationTag = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GroupParameterList = schema.new({ type = "list", list_member = M.GroupConfigurationParameter })
+
+M.ListGroupingStatusesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupConfigurationParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccountSettings = schema.new({
     id = id.from(_N, "AccountSettings"),
     type = "structure",
@@ -64,10 +110,7 @@ M.CancelTagSyncTaskInput = schema.new({
     },
 })
 
-M.CancelTagSyncTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelTagSyncTaskOutput = prelude.Unit
 
 M.ForbiddenException = schema.new({
     id = id.from(_N, "ForbiddenException"),
@@ -457,10 +500,7 @@ M.NotFoundException = schema.new({
     },
 })
 
-M.GetAccountSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountSettingsInput = prelude.Unit
 
 M.GetAccountSettingsOutput = schema.new({
     id = id.from(_N, "GetAccountSettingsOutput"),

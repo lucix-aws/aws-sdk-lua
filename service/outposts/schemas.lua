@@ -7,6 +7,94 @@ local _N = "com.amazonaws.outposts"
 
 local M = {}
 
+M.LineItemRequestListDefinition = schema.new({ type = "list", list_member = M.LineItemRequest })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestedInstancePools = schema.new({ type = "list", list_member = M.InstanceTypeCapacity })
+
+M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.InstanceTypeListDefinition = schema.new({ type = "list", list_member = M.InstanceTypeItem })
+
+M.PricingOptionList = schema.new({ type = "list", list_member = M.PricingOption })
+
+M.AssetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutpostInstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AWSServiceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetInstanceList = schema.new({ type = "list", list_member = M.AssetInstance })
+
+M.HostIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetListDefinition = schema.new({ type = "list", list_member = M.AssetInfo })
+
+M.BlockingInstancesList = schema.new({ type = "list", list_member = M.BlockingInstance })
+
+M.CapacityTaskStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityTaskList = schema.new({ type = "list", list_member = M.CapacityTaskSummary })
+
+M.CatalogItemClassList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedStorageList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EC2FamilyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CatalogItemListDefinition = schema.new({ type = "list", list_member = M.CatalogItem })
+
+M.OrderSummaryListDefinition = schema.new({ type = "list", list_member = M.OrderSummary })
+
+M.LifeCycleStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.outpostListDefinition = schema.new({ type = "list", list_member = M.Outpost })
+
+M.CountryCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StateOrRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.siteListDefinition = schema.new({ type = "list", list_member = M.Site })
+
+M.BlockingResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LineItemListDefinition = schema.new({ type = "list", list_member = M.LineItem })
+
+M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EC2CapacityListDefinition = schema.new({ type = "list", list_member = M.EC2Capacity })
+
+M.SupportedUplinkGbpsListDefinition = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.CIDRList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrderIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LineItemStatusCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.LineItemAssetInformationList = schema.new({ type = "list", list_member = M.LineItemAssetInformation })
+
+M.InstanceFamilies = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetInstanceCapacityList = schema.new({ type = "list", list_member = M.AssetInstanceTypeCapacity })
+
+M.MacAddressList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

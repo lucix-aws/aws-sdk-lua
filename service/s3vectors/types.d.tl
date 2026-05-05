@@ -839,9 +839,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type DataType = "float32"
-
 local type DistanceMetric = "euclidean" | "cosine"
+
+local type DataType = "float32"
 
 local record M
     CreateIndexInput: CreateIndexInput

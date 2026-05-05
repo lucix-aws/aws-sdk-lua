@@ -7,6 +7,90 @@ local _N = "com.amazonaws.connectcases"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldValueList = schema.new({ type = "list", list_member = M.FieldValue })
+
+M.MutableTags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FieldIdentifierList = schema.new({ type = "list", list_member = M.FieldIdentifier })
+
+M.AuditEventsList = schema.new({ type = "list", list_member = M.AuditEvent })
+
+M.CaseSummaryList = schema.new({ type = "list", list_member = M.CaseSummary })
+
+M.SortList = schema.new({ type = "list", list_member = M.Sort })
+
+M.SearchCasesResponseItemList = schema.new({ type = "list", list_member = M.SearchCasesResponseItem })
+
+M.CaseRuleSummaryList = schema.new({ type = "list", list_member = M.CaseRuleSummary })
+
+M.CaseRuleIdentifierList = schema.new({ type = "list", list_member = M.CaseRuleIdentifier })
+
+M.BatchGetCaseRuleList = schema.new({ type = "list", list_member = M.GetCaseRuleResponse })
+
+M.BatchGetCaseRuleErrorList = schema.new({ type = "list", list_member = M.CaseRuleError })
+
+M.BatchGetCaseRuleUnprocessedList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainSummaryList = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.RelatedItemFilterList = schema.new({ type = "list", list_member = M.RelatedItemTypeFilter })
+
+M.SearchAllRelatedItemsSortList = schema.new({ type = "list", list_member = M.SearchAllRelatedItemsSort })
+
+M.SearchAllRelatedItemsResponseItemList = schema.new({ type = "list", list_member = M.SearchAllRelatedItemsResponseItem })
+
+M.FieldSummaryList = schema.new({ type = "list", list_member = M.FieldSummary })
+
+M.FieldOptionsList = schema.new({ type = "list", list_member = M.FieldOption })
+
+M.FieldOptionErrorList = schema.new({ type = "list", list_member = M.FieldOptionError })
+
+M.ValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchGetFieldIdentifierList = schema.new({ type = "list", list_member = M.FieldIdentifier })
+
+M.BatchGetFieldList = schema.new({ type = "list", list_member = M.GetFieldResponse })
+
+M.BatchGetFieldErrorList = schema.new({ type = "list", list_member = M.FieldError })
+
+M.LayoutSummaryList = schema.new({ type = "list", list_member = M.LayoutSummary })
+
+M.TemplateStatusFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.TemplateSummaryList = schema.new({ type = "list", list_member = M.TemplateSummary })
+
+M.RequiredFieldList = schema.new({ type = "list", list_member = M.RequiredField })
+
+M.TemplateCaseRuleList = schema.new({ type = "list", list_member = M.TemplateRule })
+
+M.TagPropagationConfigurationList = schema.new({ type = "list", list_member = M.TagPropagationConfiguration })
+
+M.SearchRelatedItemsResponseItemList = schema.new({ type = "list", list_member = M.SearchRelatedItemsResponseItem })
+
+M.CaseFilterList = schema.new({ type = "list", list_member = M.CaseFilter })
+
+M.AuditEventFieldList = schema.new({ type = "list", list_member = M.AuditEventField })
+
+M.BooleanConditionList = schema.new({ type = "list", list_member = M.BooleanCondition })
+
+M.ParentChildFieldOptionsMappingList = schema.new({ type = "list", list_member = M.ParentChildFieldOptionsMapping })
+
+M.ChannelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SectionsList = schema.new({ type = "list", list_member = M.Section })
+
+M.SlaFieldValueUnionList = schema.new({ type = "list", list_member = M.FieldValueUnion })
+
+M.ParentChildFieldOptionValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomFieldsFilterList = schema.new({ type = "list", list_member = M.CustomFieldsFilter })
+
+M.FieldList = schema.new({ type = "list", list_member = M.FieldItem })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -3954,10 +4038,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.LayoutConfiguration = schema.new({
     id = id.from(_N, "LayoutConfiguration"),
@@ -4526,10 +4607,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.CaseFilter = schema.new({
     id = id.from(_N, "CaseFilter"),

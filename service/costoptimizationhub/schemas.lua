@@ -7,6 +7,42 @@ local _N = "com.amazonaws.costoptimizationhub"
 
 local M = {}
 
+M.ValidationExceptionDetails = schema.new({ type = "list", list_member = M.ValidationExceptionDetail })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EfficiencyMetricsByGroupList = schema.new({ type = "list", list_member = M.EfficiencyMetricsByGroup })
+
+M.AccountEnrollmentStatuses = schema.new({ type = "list", list_member = M.AccountEnrollmentStatus })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.SummaryMetricsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationSummariesList = schema.new({ type = "list", list_member = M.RecommendationSummary })
+
+M.ImplementationEffortList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricsByTimeList = schema.new({ type = "list", list_member = M.MetricsByTime })
+
+M.UsageList = schema.new({ type = "list", list_member = M.Usage })
+
+M.MixedInstanceConfigurationList = schema.new({ type = "list", list_member = M.MixedInstanceConfiguration })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

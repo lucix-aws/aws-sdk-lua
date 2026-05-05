@@ -7,6 +7,20 @@ local _N = "com.amazonaws.pricing"
 
 local M = {}
 
+M.ServiceList = schema.new({ type = "list", list_member = M.Service })
+
+M.AttributeValueList = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.PriceListJsonItems = schema.new({ type = "list", list_member = prelude.String })
+
+M.PriceLists = schema.new({ type = "list", list_member = M.PriceList })
+
+M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileFormats = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

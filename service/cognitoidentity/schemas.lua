@@ -7,6 +7,40 @@ local _N = "com.amazonaws.cognitoidentity"
 
 local M = {}
 
+M.IdentityProviders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.OIDCProviderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CognitoIdentityProviderList = schema.new({ type = "list", list_member = M.CognitoIdentityProvider })
+
+M.SAMLProviderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdentityPoolTagsType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IdentityIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnprocessedIdentityIdList = schema.new({ type = "list", list_member = M.UnprocessedIdentityId })
+
+M.LoginsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoginsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RolesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RoleMappingMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RoleMapping })
+
+M.PrincipalTags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IdentitiesList = schema.new({ type = "list", list_member = M.IdentityDescription })
+
+M.IdentityPoolsList = schema.new({ type = "list", list_member = M.IdentityPoolShortDescription })
+
+M.DeveloperUserIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdentityPoolTagsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.MappingRulesList = schema.new({ type = "list", list_member = M.MappingRule })
+
 M.CognitoIdentityProvider = schema.new({
     id = id.from(_N, "CognitoIdentityProvider"),
     type = "structure",
@@ -356,10 +390,7 @@ M.DeleteIdentityPoolInput = schema.new({
     },
 })
 
-M.DeleteIdentityPoolOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIdentityPoolOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -1361,10 +1392,7 @@ M.SetIdentityPoolRolesInput = schema.new({
     },
 })
 
-M.SetIdentityPoolRolesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetIdentityPoolRolesOutput = prelude.Unit
 
 M.SetPrincipalTagAttributeMapInput = schema.new({
     id = id.from(_N, "SetPrincipalTagAttributeMapInput"),
@@ -1513,10 +1541,7 @@ M.UnlinkDeveloperIdentityInput = schema.new({
     },
 })
 
-M.UnlinkDeveloperIdentityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UnlinkDeveloperIdentityOutput = prelude.Unit
 
 M.UnlinkIdentityInput = schema.new({
     id = id.from(_N, "UnlinkIdentityInput"),
@@ -1555,10 +1580,7 @@ M.UnlinkIdentityInput = schema.new({
     },
 })
 
-M.UnlinkIdentityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UnlinkIdentityOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),

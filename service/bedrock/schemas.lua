@@ -7,6 +7,244 @@ local _N = "com.amazonaws.bedrock"
 
 local M = {}
 
+M.AutomatedReasoningPolicySummaries = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicySummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AutomatedReasoningPolicyAnnotationList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyAnnotation })
+
+M.AutomatedReasoningPolicyBuildWorkflowSummaries = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildWorkflowSummary })
+
+M.AutomatedReasoningPolicyTestCaseList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyTestCase })
+
+M.AutomatedReasoningPolicyTestList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyTestResult })
+
+M.AutomatedReasoningPolicyTestCaseIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MarketplaceModelEndpointSummaries = schema.new({ type = "list", list_member = M.MarketplaceModelEndpointSummary })
+
+M.CustomModelDeploymentSummaryList = schema.new({ type = "list", list_member = M.CustomModelDeploymentSummary })
+
+M.ModelCustomizationHyperParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationMetrics = schema.new({ type = "list", list_member = M.ValidatorMetric })
+
+M.CustomModelSummaryList = schema.new({ type = "list", list_member = M.CustomModelSummary })
+
+M.AccountEnforcedGuardrailsOutputConfiguration = schema.new({ type = "list", list_member = M.AccountEnforcedGuardrailOutputConfiguration })
+
+M.EvaluationJobIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteEvaluationJobErrors = schema.new({ type = "list", list_member = M.BatchDeleteEvaluationJobError })
+
+M.BatchDeleteEvaluationJobItems = schema.new({ type = "list", list_member = M.BatchDeleteEvaluationJobItem })
+
+M.ErrorMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationSummaries = schema.new({ type = "list", list_member = M.EvaluationSummary })
+
+M.GuardrailSummaries = schema.new({ type = "list", list_member = M.GuardrailSummary })
+
+M.GuardrailStatusReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailFailureRecommendations = schema.new({ type = "list", list_member = prelude.String })
+
+M.InferenceProfileSummaries = schema.new({ type = "list", list_member = M.InferenceProfileSummary })
+
+M.InferenceProfileModels = schema.new({ type = "list", list_member = M.InferenceProfileModel })
+
+M.ModelCopyJobSummaries = schema.new({ type = "list", list_member = M.ModelCopyJobSummary })
+
+M.ImportedModelSummaryList = schema.new({ type = "list", list_member = M.ImportedModelSummary })
+
+M.ModelImportJobSummaries = schema.new({ type = "list", list_member = M.ModelImportJobSummary })
+
+M.ModelInvocationJobSummaries = schema.new({ type = "list", list_member = M.ModelInvocationJobSummary })
+
+M.FoundationModelSummaryList = schema.new({ type = "list", list_member = M.FoundationModelSummary })
+
+M.PromptRouterSummaries = schema.new({ type = "list", list_member = M.PromptRouterSummary })
+
+M.PromptRouterTargetModels = schema.new({ type = "list", list_member = M.PromptRouterTargetModel })
+
+M.ProvisionedModelSummaries = schema.new({ type = "list", list_member = M.ProvisionedModelSummary })
+
+M.Offers = schema.new({ type = "list", list_member = M.Offer })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ModelCustomizationJobSummaries = schema.new({ type = "list", list_member = M.ModelCustomizationJobSummary })
+
+M.AutomatedReasoningPolicyDefinitionTypeList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionType })
+
+M.AutomatedReasoningPolicyDefinitionRuleList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionRule })
+
+M.AutomatedReasoningPolicyDefinitionVariableList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionVariable })
+
+M.AutomatedReasoningPolicyDefinitionRuleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningCheckFindingList = schema.new({ type = "list", list_member = M.AutomatedReasoningCheckFinding })
+
+M.Validators = schema.new({ type = "list", list_member = M.Validator })
+
+M.EvaluationModelConfigs = schema.new({ type = "list", list_member = M.EvaluationModelConfig })
+
+M.RagConfigs = schema.new({ type = "list", list_member = M.RAGConfig })
+
+M.GuardrailTopicsConfig = schema.new({ type = "list", list_member = M.GuardrailTopicConfig })
+
+M.GuardrailContentFiltersConfig = schema.new({ type = "list", list_member = M.GuardrailContentFilterConfig })
+
+M.GuardrailWordsConfig = schema.new({ type = "list", list_member = M.GuardrailWordConfig })
+
+M.GuardrailManagedWordListsConfig = schema.new({ type = "list", list_member = M.GuardrailManagedWordsConfig })
+
+M.GuardrailPiiEntitiesConfig = schema.new({ type = "list", list_member = M.GuardrailPiiEntityConfig })
+
+M.GuardrailRegexesConfig = schema.new({ type = "list", list_member = M.GuardrailRegexConfig })
+
+M.GuardrailContextualGroundingFiltersConfig = schema.new({ type = "list", list_member = M.GuardrailContextualGroundingFilterConfig })
+
+M.AutomatedReasoningPolicyArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailTopics = schema.new({ type = "list", list_member = M.GuardrailTopic })
+
+M.GuardrailContentFilters = schema.new({ type = "list", list_member = M.GuardrailContentFilter })
+
+M.GuardrailWords = schema.new({ type = "list", list_member = M.GuardrailWord })
+
+M.GuardrailManagedWordLists = schema.new({ type = "list", list_member = M.GuardrailManagedWords })
+
+M.GuardrailPiiEntities = schema.new({ type = "list", list_member = M.GuardrailPiiEntity })
+
+M.GuardrailRegexes = schema.new({ type = "list", list_member = M.GuardrailRegex })
+
+M.GuardrailContextualGroundingFilters = schema.new({ type = "list", list_member = M.GuardrailContextualGroundingFilter })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ModelModalityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ModelCustomizationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InferenceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyDefinitionTypeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyDefinitionTypeValuePairList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionTypeValuePair })
+
+M.AutomatedReasoningPolicyDefinitionVariableNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyConflictedRuleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyDisjointRuleSetList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDisjointRuleSet })
+
+M.AutomatedReasoningPolicyBuildLogEntryList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildLogEntry })
+
+M.AutomatedReasoningPolicyGeneratedTestCaseList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyGeneratedTestCase })
+
+M.AutomatedReasoningPolicyScenarioList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyScenario })
+
+M.AutomatedReasoningPolicyBuildResultAssetManifestList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildResultAssetManifestEntry })
+
+M.AutomatedReasoningPolicyRuleReportMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AutomatedReasoningPolicyRuleReport })
+
+M.AutomatedReasoningPolicyVariableReportMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AutomatedReasoningPolicyVariableReport })
+
+M.AutomatedReasoningPolicyReportSourceDocumentList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyReportSourceDocument })
+
+M.AutomatedReasoningPolicyBuildWorkflowDocumentList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildWorkflowDocument })
+
+M.IncludedModelsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedModelsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationDatasetMetricConfigs = schema.new({ type = "list", list_member = M.EvaluationDatasetMetricConfig })
+
+M.HumanEvaluationCustomMetrics = schema.new({ type = "list", list_member = M.HumanEvaluationCustomMetric })
+
+M.EvaluationTaskTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationBedrockModelIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationBedrockKnowledgeBaseIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluatorModelIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyDefinitionTypeValueList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionTypeValue })
+
+M.AutomatedReasoningPolicyTypeValueAnnotationList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyTypeValueAnnotation })
+
+M.AutomatedReasoningPolicyGenerateFidelityReportDocumentList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildWorkflowDocument })
+
+M.RequestMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestMetadataFiltersList = schema.new({ type = "list", list_member = M.RequestMetadataBaseFilters })
+
+M.BedrockEvaluatorModels = schema.new({ type = "list", list_member = M.BedrockEvaluatorModel })
+
+M.AutomatedEvaluationCustomMetrics = schema.new({ type = "list", list_member = M.AutomatedEvaluationCustomMetricSource })
+
+M.GuardrailTopicExamples = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailModalities = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyDisjointedRuleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyBuildStepList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildStep })
+
+M.AutomatedReasoningPolicyStatementReferenceList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyStatementReference })
+
+M.AutomatedReasoningPolicyJustificationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomatedReasoningPolicyAtomicStatementList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyAtomicStatement })
+
+M.AutomatedReasoningPolicyAnnotatedChunkList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyAnnotatedChunk })
+
+M.AutomatedReasoningCheckRuleList = schema.new({ type = "list", list_member = M.AutomatedReasoningCheckRule })
+
+M.AutomatedReasoningCheckTranslationOptionList = schema.new({ type = "list", list_member = M.AutomatedReasoningCheckTranslationOption })
+
+M.AutomatedReasoningCheckDifferenceScenarioList = schema.new({ type = "list", list_member = M.AutomatedReasoningCheckScenario })
+
+M.EvaluationMetricNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomMetricBedrockEvaluatorModels = schema.new({ type = "list", list_member = M.CustomMetricBedrockEvaluatorModel })
+
+M.EvaluationPrecomputedInferenceSourceIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationPrecomputedRagSourceIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.RateCard = schema.new({ type = "list", list_member = M.DimensionalPriceRate })
+
+M.AutomatedReasoningLogicStatementList = schema.new({ type = "list", list_member = M.AutomatedReasoningLogicStatement })
+
+M.AutomatedReasoningCheckInputTextReferenceList = schema.new({ type = "list", list_member = M.AutomatedReasoningCheckInputTextReference })
+
+M.AutomatedReasoningPolicyBuildStepMessageList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildStepMessage })
+
+M.AutomatedReasoningPolicyAnnotatedContentList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyAnnotatedContent })
+
+M.AutomatedReasoningCheckTranslationList = schema.new({ type = "list", list_member = M.AutomatedReasoningCheckTranslation })
+
+M.RatingScale = schema.new({ type = "list", list_member = M.RatingScaleItem })
+
+M.ExternalSources = schema.new({ type = "list", list_member = M.ExternalSource })
+
+M.AutomatedReasoningPolicyLineNumberList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.AdditionalModelRequestFields = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.RetrievalFilterList = schema.new({ type = "list", list_member = M.RetrievalFilter })
+
+M.MetadataAttributeSchemaList = schema.new({ type = "list", list_member = M.MetadataAttributeSchema })
+
+M.RAGStopSequences = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldsForReranking = schema.new({ type = "list", list_member = M.FieldForReranking })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

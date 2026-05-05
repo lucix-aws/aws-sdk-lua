@@ -7,6 +7,66 @@ local _N = "com.amazonaws.redshiftserverless"
 
 local M = {}
 
+M.WorkgroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociationList = schema.new({ type = "list", list_member = M.Association })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TrackList = schema.new({ type = "list", list_member = M.ServerlessTrack })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EndpointAccessList = schema.new({ type = "list", list_member = M.EndpointAccess })
+
+M.ManagedWorkgroups = schema.new({ type = "list", list_member = M.ManagedWorkgroupListItem })
+
+M.NamespaceList = schema.new({ type = "list", list_member = M.Namespace })
+
+M.IamRoleArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogExportList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryPointList = schema.new({ type = "list", list_member = M.RecoveryPoint })
+
+M.ReservationOfferingsList = schema.new({ type = "list", list_member = M.ReservationOffering })
+
+M.ReservationsList = schema.new({ type = "list", list_member = M.Reservation })
+
+M.ScheduledActionsList = schema.new({ type = "list", list_member = M.ScheduledActionAssociation })
+
+M.SnapshotCopyConfigurations = schema.new({ type = "list", list_member = M.SnapshotCopyConfiguration })
+
+M.SnapshotList = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.TableRestoreStatusList = schema.new({ type = "list", list_member = M.TableRestoreStatus })
+
+M.UsageLimits = schema.new({ type = "list", list_member = M.UsageLimit })
+
+M.WorkgroupList = schema.new({ type = "list", list_member = M.Workgroup })
+
+M.ConfigParameterList = schema.new({ type = "list", list_member = M.ConfigParameter })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateTargetsList = schema.new({ type = "list", list_member = M.UpdateTarget })
+
+M.VpcSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.VpcSecurityGroupMembership })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NextInvocationsList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.VpcIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.VpcEndpointList = schema.new({ type = "list", list_member = M.VpcEndpoint })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

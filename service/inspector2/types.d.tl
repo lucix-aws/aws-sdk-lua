@@ -2489,33 +2489,33 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type CisSecurityLevel = "LEVEL_1" | "LEVEL_2"
+local type ListCisScansSortBy = "STATUS" | "SCHEDULED_BY" | "SCAN_START_DATE" | "FAILED_CHECKS"
 
-local type IntegrationType = "GITLAB_SELF_MANAGED" | "GITHUB"
-
-local type IntegrationStatus = "PENDING" | "IN_PROGRESS" | "ACTIVE" | "INACTIVE" | "DISABLING"
+local type CodeScanStatus = "IN_PROGRESS" | "SUCCESSFUL" | "FAILED" | "SKIPPED"
 
 local type CisScanResultDetailsSortBy = "CHECK_ID" | "STATUS"
 
-local type ListCisScansDetailLevel = "ORGANIZATION" | "MEMBER"
-
-local type CisSortOrder = "ASC" | "DESC"
-
-local type ListCisScansSortBy = "STATUS" | "SCHEDULED_BY" | "SCAN_START_DATE" | "FAILED_CHECKS"
-
-local type CisReportFormat = "PDF" | "CSV"
-
-local type CisScanResultsAggregatedByTargetResourceSortBy = "RESOURCE_ID" | "FAILED_COUNTS" | "ACCOUNT_ID" | "PLATFORM" | "TARGET_STATUS" | "TARGET_STATUS_REASON"
+local type CisReportStatus = "SUCCEEDED" | "FAILED" | "IN_PROGRESS"
 
 local type CisScanResultsAggregatedByChecksSortBy = "CHECK_ID" | "TITLE" | "PLATFORM" | "FAILED_COUNTS" | "SECURITY_LEVEL"
 
 local type CisScanConfigurationsSortBy = "SCAN_NAME" | "SCAN_CONFIGURATION_ARN"
 
-local type CisReportStatus = "SUCCEEDED" | "FAILED" | "IN_PROGRESS"
+local type IntegrationType = "GITLAB_SELF_MANAGED" | "GITHUB"
 
-local type CodeScanStatus = "IN_PROGRESS" | "SUCCESSFUL" | "FAILED" | "SKIPPED"
+local type CisReportFormat = "PDF" | "CSV"
+
+local type CisSecurityLevel = "LEVEL_1" | "LEVEL_2"
 
 local type ConfigurationLevel = "ORGANIZATION" | "ACCOUNT"
+
+local type IntegrationStatus = "PENDING" | "IN_PROGRESS" | "ACTIVE" | "INACTIVE" | "DISABLING"
+
+local type CisSortOrder = "ASC" | "DESC"
+
+local type ListCisScansDetailLevel = "ORGANIZATION" | "MEMBER"
+
+local type CisScanResultsAggregatedByTargetResourceSortBy = "RESOURCE_ID" | "FAILED_COUNTS" | "ACCOUNT_ID" | "PLATFORM" | "TARGET_STATUS" | "TARGET_STATUS_REASON"
 
 local record M
     AssociateMemberInput: AssociateMemberInput

@@ -7,6 +7,54 @@ local _N = "com.amazonaws.chime"
 
 local M = {}
 
+M.SigninDelegateGroupList = schema.new({ type = "list", list_member = M.SigninDelegateGroup })
+
+M.MembershipItemList = schema.new({ type = "list", list_member = M.MembershipItem })
+
+M.MemberErrorList = schema.new({ type = "list", list_member = M.MemberError })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberErrorList = schema.new({ type = "list", list_member = M.PhoneNumberError })
+
+M.UserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserErrorList = schema.new({ type = "list", list_member = M.UserError })
+
+M.UpdatePhoneNumberRequestItemList = schema.new({ type = "list", list_member = M.UpdatePhoneNumberRequestItem })
+
+M.UpdateUserRequestItemList = schema.new({ type = "list", list_member = M.UpdateUserRequestItem })
+
+M.E164PhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserEmailList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InviteList = schema.new({ type = "list", list_member = M.Invite })
+
+M.AccountList = schema.new({ type = "list", list_member = M.Account })
+
+M.BotList = schema.new({ type = "list", list_member = M.Bot })
+
+M.PhoneNumberOrderList = schema.new({ type = "list", list_member = M.PhoneNumberOrder })
+
+M.PhoneNumberList = schema.new({ type = "list", list_member = M.PhoneNumber })
+
+M.RoomMembershipList = schema.new({ type = "list", list_member = M.RoomMembership })
+
+M.RoomList = schema.new({ type = "list", list_member = M.Room })
+
+M.PhoneNumberCountriesList = schema.new({ type = "list", list_member = M.PhoneNumberCountry })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.LicenseList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrderedPhoneNumberList = schema.new({ type = "list", list_member = M.OrderedPhoneNumber })
+
+M.PhoneNumberAssociationList = schema.new({ type = "list", list_member = M.PhoneNumberAssociation })
+
+M.PhoneNumberTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1601,10 +1649,7 @@ M.DeleteEventsConfigurationInput = schema.new({
     },
 })
 
-M.DeleteEventsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventsConfigurationOutput = prelude.Unit
 
 M.DeletePhoneNumberInput = schema.new({
     id = id.from(_N, "DeletePhoneNumberRequest"),
@@ -1623,10 +1668,7 @@ M.DeletePhoneNumberInput = schema.new({
     },
 })
 
-M.DeletePhoneNumberOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePhoneNumberOutput = prelude.Unit
 
 M.DeleteRoomInput = schema.new({
     id = id.from(_N, "DeleteRoomRequest"),
@@ -1655,10 +1697,7 @@ M.DeleteRoomInput = schema.new({
     },
 })
 
-M.DeleteRoomOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRoomOutput = prelude.Unit
 
 M.DeleteRoomMembershipInput = schema.new({
     id = id.from(_N, "DeleteRoomMembershipRequest"),
@@ -1697,10 +1736,7 @@ M.DeleteRoomMembershipInput = schema.new({
     },
 })
 
-M.DeleteRoomMembershipOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRoomMembershipOutput = prelude.Unit
 
 M.DisassociatePhoneNumberFromUserInput = schema.new({
     id = id.from(_N, "DisassociatePhoneNumberFromUserRequest"),
@@ -1935,10 +1971,7 @@ M.GetEventsConfigurationOutput = schema.new({
     },
 })
 
-M.GetGlobalSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetGlobalSettingsInput = prelude.Unit
 
 M.VoiceConnectorSettings = schema.new({
     id = id.from(_N, "VoiceConnectorSettings"),
@@ -2203,10 +2236,7 @@ M.GetPhoneNumberOrderOutput = schema.new({
     },
 })
 
-M.GetPhoneNumberSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetPhoneNumberSettingsInput = prelude.Unit
 
 M.GetPhoneNumberSettingsOutput = schema.new({
     id = id.from(_N, "GetPhoneNumberSettingsResponse"),
@@ -3627,10 +3657,7 @@ M.UpdateGlobalSettingsInput = schema.new({
     },
 })
 
-M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateGlobalSettingsOutput = prelude.Unit
 
 M.UpdatePhoneNumberInput = schema.new({
     id = id.from(_N, "UpdatePhoneNumberRequest"),
@@ -3691,10 +3718,7 @@ M.UpdatePhoneNumberSettingsInput = schema.new({
     },
 })
 
-M.UpdatePhoneNumberSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdatePhoneNumberSettingsOutput = prelude.Unit
 
 M.UpdateRoomInput = schema.new({
     id = id.from(_N, "UpdateRoomRequest"),
@@ -3897,10 +3921,7 @@ M.UpdateUserSettingsInput = schema.new({
     },
 })
 
-M.UpdateUserSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserSettingsOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

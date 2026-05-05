@@ -7,6 +7,76 @@ local _N = "com.amazonaws.globalaccelerator"
 
 local M = {}
 
+M.CustomRoutingEndpointConfigurations = schema.new({ type = "list", list_member = M.CustomRoutingEndpointConfiguration })
+
+M.CustomRoutingEndpointDescriptions = schema.new({ type = "list", list_member = M.CustomRoutingEndpointDescription })
+
+M.EndpointConfigurations = schema.new({ type = "list", list_member = M.EndpointConfiguration })
+
+M.EndpointDescriptions = schema.new({ type = "list", list_member = M.EndpointDescription })
+
+M.DestinationAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationPorts = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.IpAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.Principals = schema.new({ type = "list", list_member = prelude.String })
+
+M.Resources = schema.new({ type = "list", list_member = M.Resource })
+
+M.CustomRoutingDestinationConfigurations = schema.new({ type = "list", list_member = M.CustomRoutingDestinationConfiguration })
+
+M.PortRanges = schema.new({ type = "list", list_member = M.PortRange })
+
+M.PortOverrides = schema.new({ type = "list", list_member = M.PortOverride })
+
+M.Accelerators = schema.new({ type = "list", list_member = M.Accelerator })
+
+M.ByoipCidrs = schema.new({ type = "list", list_member = M.ByoipCidr })
+
+M.Attachments = schema.new({ type = "list", list_member = M.Attachment })
+
+M.AwsAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrossAccountResources = schema.new({ type = "list", list_member = M.CrossAccountResource })
+
+M.CustomRoutingAccelerators = schema.new({ type = "list", list_member = M.CustomRoutingAccelerator })
+
+M.CustomRoutingEndpointGroups = schema.new({ type = "list", list_member = M.CustomRoutingEndpointGroup })
+
+M.CustomRoutingListeners = schema.new({ type = "list", list_member = M.CustomRoutingListener })
+
+M.PortMappings = schema.new({ type = "list", list_member = M.PortMapping })
+
+M.DestinationPortMappings = schema.new({ type = "list", list_member = M.DestinationPortMapping })
+
+M.EndpointGroups = schema.new({ type = "list", list_member = M.EndpointGroup })
+
+M.Listeners = schema.new({ type = "list", list_member = M.Listener })
+
+M.EndpointIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EndpointIdentifiers = schema.new({ type = "list", list_member = M.EndpointIdentifier })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ByoipCidrEvents = schema.new({ type = "list", list_member = M.ByoipCidrEvent })
+
+M.IpSets = schema.new({ type = "list", list_member = M.IpSet })
+
+M.AcceleratorEvents = schema.new({ type = "list", list_member = M.AcceleratorEvent })
+
+M.CustomRoutingDestinationDescriptions = schema.new({ type = "list", list_member = M.CustomRoutingDestinationDescription })
+
+M.CustomRoutingProtocols = schema.new({ type = "list", list_member = prelude.String })
+
+M.SocketAddresses = schema.new({ type = "list", list_member = M.SocketAddress })
+
+M.Protocols = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceleratorEvent = schema.new({
     id = id.from(_N, "AcceleratorEvent"),
     type = "structure",
@@ -656,10 +726,7 @@ M.AllowCustomRoutingTrafficInput = schema.new({
     },
 })
 
-M.AllowCustomRoutingTrafficOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AllowCustomRoutingTrafficOutput = prelude.Unit
 
 M.AssociatedEndpointGroupFoundException = schema.new({
     id = id.from(_N, "AssociatedEndpointGroupFoundException"),
@@ -1727,10 +1794,7 @@ M.DeleteAcceleratorInput = schema.new({
     },
 })
 
-M.DeleteAcceleratorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAcceleratorOutput = prelude.Unit
 
 M.DeleteCrossAccountAttachmentInput = schema.new({
     id = id.from(_N, "DeleteCrossAccountAttachmentRequest"),
@@ -1748,10 +1812,7 @@ M.DeleteCrossAccountAttachmentInput = schema.new({
     },
 })
 
-M.DeleteCrossAccountAttachmentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCrossAccountAttachmentOutput = prelude.Unit
 
 M.DeleteCustomRoutingAcceleratorInput = schema.new({
     id = id.from(_N, "DeleteCustomRoutingAcceleratorRequest"),
@@ -1769,10 +1830,7 @@ M.DeleteCustomRoutingAcceleratorInput = schema.new({
     },
 })
 
-M.DeleteCustomRoutingAcceleratorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomRoutingAcceleratorOutput = prelude.Unit
 
 M.DeleteCustomRoutingEndpointGroupInput = schema.new({
     id = id.from(_N, "DeleteCustomRoutingEndpointGroupRequest"),
@@ -1790,10 +1848,7 @@ M.DeleteCustomRoutingEndpointGroupInput = schema.new({
     },
 })
 
-M.DeleteCustomRoutingEndpointGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomRoutingEndpointGroupOutput = prelude.Unit
 
 M.DeleteCustomRoutingListenerInput = schema.new({
     id = id.from(_N, "DeleteCustomRoutingListenerRequest"),
@@ -1811,10 +1866,7 @@ M.DeleteCustomRoutingListenerInput = schema.new({
     },
 })
 
-M.DeleteCustomRoutingListenerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomRoutingListenerOutput = prelude.Unit
 
 M.DeleteEndpointGroupInput = schema.new({
     id = id.from(_N, "DeleteEndpointGroupRequest"),
@@ -1832,10 +1884,7 @@ M.DeleteEndpointGroupInput = schema.new({
     },
 })
 
-M.DeleteEndpointGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEndpointGroupOutput = prelude.Unit
 
 M.DeleteListenerInput = schema.new({
     id = id.from(_N, "DeleteListenerRequest"),
@@ -1853,10 +1902,7 @@ M.DeleteListenerInput = schema.new({
     },
 })
 
-M.DeleteListenerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteListenerOutput = prelude.Unit
 
 M.DenyCustomRoutingTrafficInput = schema.new({
     id = id.from(_N, "DenyCustomRoutingTrafficRequest"),
@@ -1903,10 +1949,7 @@ M.DenyCustomRoutingTrafficInput = schema.new({
     },
 })
 
-M.DenyCustomRoutingTrafficOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DenyCustomRoutingTrafficOutput = prelude.Unit
 
 M.DeprovisionByoipCidrInput = schema.new({
     id = id.from(_N, "DeprovisionByoipCidrRequest"),
@@ -3011,10 +3054,7 @@ M.RemoveCustomRoutingEndpointsInput = schema.new({
     },
 })
 
-M.RemoveCustomRoutingEndpointsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveCustomRoutingEndpointsOutput = prelude.Unit
 
 M.RemoveEndpointsInput = schema.new({
     id = id.from(_N, "RemoveEndpointsRequest"),
@@ -3042,10 +3082,7 @@ M.RemoveEndpointsInput = schema.new({
     },
 })
 
-M.RemoveEndpointsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveEndpointsOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),

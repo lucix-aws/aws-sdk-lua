@@ -7,6 +7,34 @@ local _N = "com.amazonaws.ssmquicksetup"
 
 local M = {}
 
+M.ConfigurationDefinitionsInputList = schema.new({ type = "list", list_member = M.ConfigurationDefinitionInput })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StatusSummariesList = schema.new({ type = "list", list_member = M.StatusSummary })
+
+M.ConfigurationParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConfigurationDefinitionsList = schema.new({ type = "list", list_member = M.ConfigurationDefinition })
+
+M.FiltersList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ConfigurationManagerList = schema.new({ type = "list", list_member = M.ConfigurationManagerSummary })
+
+M.ConfigurationsList = schema.new({ type = "list", list_member = M.ConfigurationSummary })
+
+M.QuickSetupTypeList = schema.new({ type = "list", list_member = M.QuickSetupTypeOutput })
+
+M.Tags = schema.new({ type = "list", list_member = M.TagEntry })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusDetails = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurationDefinitionSummariesList = schema.new({ type = "list", list_member = M.ConfigurationDefinitionSummary })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -450,10 +478,7 @@ M.DeleteConfigurationManagerInput = schema.new({
     },
 })
 
-M.DeleteConfigurationManagerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigurationManagerOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -681,10 +706,7 @@ M.GetConfigurationManagerOutput = schema.new({
     },
 })
 
-M.GetServiceSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetServiceSettingsInput = prelude.Unit
 
 M.ServiceSettings = schema.new({
     id = id.from(_N, "ServiceSettings"),
@@ -817,10 +839,7 @@ M.ListConfigurationsOutput = schema.new({
     },
 })
 
-M.ListQuickSetupTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ListQuickSetupTypesInput = prelude.Unit
 
 M.QuickSetupTypeOutput = schema.new({
     id = id.from(_N, "QuickSetupTypeOutput"),
@@ -933,10 +952,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -966,10 +982,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateConfigurationDefinitionInput = schema.new({
     id = id.from(_N, "UpdateConfigurationDefinitionInput"),
@@ -1024,10 +1037,7 @@ M.UpdateConfigurationDefinitionInput = schema.new({
     },
 })
 
-M.UpdateConfigurationDefinitionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateConfigurationDefinitionOutput = prelude.Unit
 
 M.UpdateConfigurationManagerInput = schema.new({
     id = id.from(_N, "UpdateConfigurationManagerInput"),
@@ -1058,10 +1068,7 @@ M.UpdateConfigurationManagerInput = schema.new({
     },
 })
 
-M.UpdateConfigurationManagerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateConfigurationManagerOutput = prelude.Unit
 
 M.UpdateServiceSettingsInput = schema.new({
     id = id.from(_N, "UpdateServiceSettingsInput"),
@@ -1076,10 +1083,7 @@ M.UpdateServiceSettingsInput = schema.new({
     },
 })
 
-M.UpdateServiceSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateServiceSettingsOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

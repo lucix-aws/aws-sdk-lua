@@ -7,6 +7,28 @@ local _N = "com.amazonaws.kinesisvideo"
 
 local M = {}
 
+M.TagOnCreateList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ResourceTags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MappedResourceConfigurationList = schema.new({ type = "list", list_member = M.MappedResourceConfigurationListItem })
+
+M.ResourceEndpointList = schema.new({ type = "list", list_member = M.ResourceEndpointListItem })
+
+M.ListEdgeAgentConfigurationsEdgeConfigList = schema.new({ type = "list", list_member = M.ListEdgeAgentConfigurationsEdgeConfig })
+
+M.ChannelInfoList = schema.new({ type = "list", list_member = M.ChannelInfo })
+
+M.StreamInfoList = schema.new({ type = "list", list_member = M.StreamInfo })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FormatConfig = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfProtocols = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,108 @@ local _N = "com.amazonaws.bcmpricingcalculator"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.RateTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceTagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceCostDifferenceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CostDifference })
+
+M.ListBillEstimatesFilters = schema.new({ type = "list", list_member = M.ListBillEstimatesFilter })
+
+M.BillEstimateSummaries = schema.new({ type = "list", list_member = M.BillEstimateSummary })
+
+M.ListBillScenariosFilters = schema.new({ type = "list", list_member = M.ListBillScenariosFilter })
+
+M.BillScenarioSummaries = schema.new({ type = "list", list_member = M.BillScenarioSummary })
+
+M.ListWorkloadEstimatesFilters = schema.new({ type = "list", list_member = M.ListWorkloadEstimatesFilter })
+
+M.WorkloadEstimateSummaries = schema.new({ type = "list", list_member = M.WorkloadEstimateSummary })
+
+M.BillEstimateCommitmentSummaries = schema.new({ type = "list", list_member = M.BillEstimateCommitmentSummary })
+
+M.BillEstimateInputCommitmentModificationSummaries = schema.new({ type = "list", list_member = M.BillEstimateInputCommitmentModificationSummary })
+
+M.ListUsageFilters = schema.new({ type = "list", list_member = M.ListUsageFilter })
+
+M.BillEstimateInputUsageModificationSummaries = schema.new({ type = "list", list_member = M.BillEstimateInputUsageModificationSummary })
+
+M.ListBillEstimateLineItemsFilters = schema.new({ type = "list", list_member = M.ListBillEstimateLineItemsFilter })
+
+M.BillEstimateLineItemSummaries = schema.new({ type = "list", list_member = M.BillEstimateLineItemSummary })
+
+M.BillScenarioCommitmentModificationItems = schema.new({ type = "list", list_member = M.BillScenarioCommitmentModificationItem })
+
+M.BatchCreateBillScenarioCommitmentModificationEntries = schema.new({ type = "list", list_member = M.BatchCreateBillScenarioCommitmentModificationEntry })
+
+M.BatchCreateBillScenarioCommitmentModificationItems = schema.new({ type = "list", list_member = M.BatchCreateBillScenarioCommitmentModificationItem })
+
+M.BatchCreateBillScenarioCommitmentModificationErrors = schema.new({ type = "list", list_member = M.BatchCreateBillScenarioCommitmentModificationError })
+
+M.BatchDeleteBillScenarioCommitmentModificationEntries = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteBillScenarioCommitmentModificationErrors = schema.new({ type = "list", list_member = M.BatchDeleteBillScenarioCommitmentModificationError })
+
+M.BatchUpdateBillScenarioCommitmentModificationEntries = schema.new({ type = "list", list_member = M.BatchUpdateBillScenarioCommitmentModificationEntry })
+
+M.BatchUpdateBillScenarioCommitmentModificationErrors = schema.new({ type = "list", list_member = M.BatchUpdateBillScenarioCommitmentModificationError })
+
+M.BillScenarioUsageModificationItems = schema.new({ type = "list", list_member = M.BillScenarioUsageModificationItem })
+
+M.BatchCreateBillScenarioUsageModificationEntries = schema.new({ type = "list", list_member = M.BatchCreateBillScenarioUsageModificationEntry })
+
+M.BatchCreateBillScenarioUsageModificationItems = schema.new({ type = "list", list_member = M.BatchCreateBillScenarioUsageModificationItem })
+
+M.BatchCreateBillScenarioUsageModificationErrors = schema.new({ type = "list", list_member = M.BatchCreateBillScenarioUsageModificationError })
+
+M.BatchDeleteBillScenarioUsageModificationEntries = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteBillScenarioUsageModificationErrors = schema.new({ type = "list", list_member = M.BatchDeleteBillScenarioUsageModificationError })
+
+M.BatchUpdateBillScenarioUsageModificationEntries = schema.new({ type = "list", list_member = M.BatchUpdateBillScenarioUsageModificationEntry })
+
+M.BatchUpdateBillScenarioUsageModificationErrors = schema.new({ type = "list", list_member = M.BatchUpdateBillScenarioUsageModificationError })
+
+M.WorkloadEstimateUsageItems = schema.new({ type = "list", list_member = M.WorkloadEstimateUsageItem })
+
+M.BatchCreateWorkloadEstimateUsageEntries = schema.new({ type = "list", list_member = M.BatchCreateWorkloadEstimateUsageEntry })
+
+M.BatchCreateWorkloadEstimateUsageItems = schema.new({ type = "list", list_member = M.BatchCreateWorkloadEstimateUsageItem })
+
+M.BatchCreateWorkloadEstimateUsageErrors = schema.new({ type = "list", list_member = M.BatchCreateWorkloadEstimateUsageError })
+
+M.BatchDeleteWorkloadEstimateUsageEntries = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteWorkloadEstimateUsageErrors = schema.new({ type = "list", list_member = M.BatchDeleteWorkloadEstimateUsageError })
+
+M.BatchUpdateWorkloadEstimateUsageEntries = schema.new({ type = "list", list_member = M.BatchUpdateWorkloadEstimateUsageEntry })
+
+M.BatchUpdateWorkloadEstimateUsageErrors = schema.new({ type = "list", list_member = M.BatchUpdateWorkloadEstimateUsageError })
+
+M.ListBillEstimatesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListBillScenariosFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListWorkloadEstimatesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListUsageFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageQuantities = schema.new({ type = "list", list_member = M.UsageQuantity })
+
+M.ListBillEstimateLineItemsFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SavingsPlanArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageAmounts = schema.new({ type = "list", list_member = M.UsageAmount })
+
+M.ExpressionList = schema.new({ type = "list", list_member = M.Expression })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

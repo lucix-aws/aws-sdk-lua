@@ -7,6 +7,134 @@ local _N = "com.amazonaws.iottwinmaker"
 
 local M = {}
 
+M.Entries = schema.new({ type = "list", list_member = M.PropertyValueEntry })
+
+M.ErrorEntries = schema.new({ type = "list", list_member = M.BatchPutPropertyErrorEntry })
+
+M.PropertyDefinitionsRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyDefinitionRequest })
+
+M.ExtendsFrom = schema.new({ type = "list", list_member = prelude.String })
+
+M.FunctionsRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.FunctionRequest })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PropertyGroupsRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyGroupRequest })
+
+M.CompositeComponentTypesRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.CompositeComponentTypeRequest })
+
+M.ComponentsMapRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentRequest })
+
+M.CompositeComponentsMapRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.CompositeComponentRequest })
+
+M.SourceConfigurations = schema.new({ type = "list", list_member = M.SourceConfiguration })
+
+M.SceneCapabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.SceneMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ColumnDescriptions = schema.new({ type = "list", list_member = M.ColumnDescription })
+
+M.Rows = schema.new({ type = "list", list_member = M.Row })
+
+M.PropertyDefinitionsResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyDefinitionResponse })
+
+M.FunctionsResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.FunctionResponse })
+
+M.PropertyGroupsResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyGroupResponse })
+
+M.CompositeComponentTypesResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.CompositeComponentTypeResponse })
+
+M.ComponentsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentResponse })
+
+M.SelectedPropertyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PropertyLatestValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyLatestValue })
+
+M.TabularPropertyValues = schema.new({ type = "list", list_member = M.TabularPropertyValue })
+
+M.PropertyFilters = schema.new({ type = "list", list_member = M.PropertyFilter })
+
+M.PropertyValueList = schema.new({ type = "list", list_member = M.PropertyValueHistory })
+
+M.GeneratedSceneMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LinkedServices = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentSummaries = schema.new({ type = "list", list_member = M.ComponentSummary })
+
+M.ListComponentTypesFilters = schema.new({ type = "list", list_member = M.ListComponentTypesFilter })
+
+M.ComponentTypeSummaries = schema.new({ type = "list", list_member = M.ComponentTypeSummary })
+
+M.ListEntitiesFilters = schema.new({ type = "list", list_member = M.ListEntitiesFilter })
+
+M.EntitySummaries = schema.new({ type = "list", list_member = M.EntitySummary })
+
+M.ListMetadataTransferJobsFilters = schema.new({ type = "list", list_member = M.ListMetadataTransferJobsFilter })
+
+M.MetadataTransferJobSummaries = schema.new({ type = "list", list_member = M.MetadataTransferJobSummary })
+
+M.PropertySummaries = schema.new({ type = "list", list_member = M.PropertySummary })
+
+M.SceneSummaries = schema.new({ type = "list", list_member = M.SceneSummary })
+
+M.SyncJobSummaries = schema.new({ type = "list", list_member = M.SyncJobSummary })
+
+M.SyncResourceFilters = schema.new({ type = "list", list_member = M.SyncResourceFilter })
+
+M.SyncResourceSummaries = schema.new({ type = "list", list_member = M.SyncResourceSummary })
+
+M.WorkspaceSummaries = schema.new({ type = "list", list_member = M.WorkspaceSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentUpdatesMapRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentUpdateRequest })
+
+M.CompositeComponentUpdatesMapRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.CompositeComponentUpdateRequest })
+
+M.PricingBundles = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrderByList = schema.new({ type = "list", list_member = M.OrderBy })
+
+M.TabularPropertyValue = schema.new({ type = "list", list_member = M.PropertyTableValue })
+
+M.PropertyValues = schema.new({ type = "list", list_member = M.PropertyValue })
+
+M.Errors = schema.new({ type = "list", list_member = M.BatchPutPropertyError })
+
+M.Configuration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequiredProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.PropertyNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.PropertyRequests = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyRequest })
+
+M.ComponentPropertyGroupRequests = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentPropertyGroupRequest })
+
+M.RowData = schema.new({ type = "list", list_member = prelude.Document })
+
+M.PropertyResponses = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyResponse })
+
+M.ComponentPropertyGroupResponses = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentPropertyGroupResponse })
+
+M.CompositeComponentResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentSummary })
+
+M.PropertyTableValue = schema.new({ type = "map", map_key = prelude.String, map_value = M.DataValue })
+
+M.Values = schema.new({ type = "list", list_member = M.PropertyValue })
+
+M.ExternalIdProperty = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DataValueList = schema.new({ type = "list", list_member = M.DataValue })
+
+M.DataValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DataValue })
+
+M.IotSiteWiseSourceConfigurationFilters = schema.new({ type = "list", list_member = M.IotSiteWiseSourceConfigurationFilter })
+
+M.IotTwinMakerSourceConfigurationFilters = schema.new({ type = "list", list_member = M.IotTwinMakerSourceConfigurationFilter })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4533,7 +4661,7 @@ M.GetPropertyValueOutput = schema.new({
             type = "list",
             name = "tabularPropertyValues",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.PropertyTableValue }),
         }),
     },
 })

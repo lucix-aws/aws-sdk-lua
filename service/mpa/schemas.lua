@@ -7,6 +7,42 @@ local _N = "com.amazonaws.mpa"
 
 local M = {}
 
+M.Policies = schema.new({ type = "list", list_member = M.Policy })
+
+M.PolicyVersions = schema.new({ type = "list", list_member = M.PolicyVersionSummary })
+
+M.ListResourcePoliciesResponseResourcePolicies = schema.new({ type = "list", list_member = M.ListResourcePoliciesResponseResourcePolicy })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListApprovalTeamsResponseApprovalTeams = schema.new({ type = "list", list_member = M.ListApprovalTeamsResponseApprovalTeam })
+
+M.ApprovalTeamRequestApprovers = schema.new({ type = "list", list_member = M.ApprovalTeamRequestApprover })
+
+M.PoliciesReferences = schema.new({ type = "list", list_member = M.PolicyReference })
+
+M.GetApprovalTeamResponseApprovers = schema.new({ type = "list", list_member = M.GetApprovalTeamResponseApprover })
+
+M.UpdateActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.StartApprovalTeamBaselineApproverIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdentitySources = schema.new({ type = "list", list_member = M.IdentitySourceForList })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.ListSessionsResponseSessions = schema.new({ type = "list", list_member = M.ListSessionsResponseSession })
+
+M.SessionMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GetSessionResponseApproverResponses = schema.new({ type = "list", list_member = M.GetSessionResponseApproverResponse })
+
+M.AdditionalSecurityRequirements = schema.new({ type = "list", list_member = prelude.String })
+
+M.MfaMethods = schema.new({ type = "list", list_member = M.MfaMethod })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1258,10 +1294,7 @@ M.DeleteIdentitySourceInput = schema.new({
     },
 })
 
-M.DeleteIdentitySourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIdentitySourceOutput = prelude.Unit
 
 M.GetIdentitySourceInput = schema.new({
     id = id.from(_N, "GetIdentitySourceRequest"),

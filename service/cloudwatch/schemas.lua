@@ -7,6 +7,118 @@ local _N = "com.amazonaws.cloudwatch"
 
 local M = {}
 
+M.AlarmNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
+M.DashboardNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightRuleNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchFailures = schema.new({ type = "list", list_member = M.PartialFailure })
+
+M.AlarmContributors = schema.new({ type = "list", list_member = M.AlarmContributor })
+
+M.AlarmTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AlarmHistoryItems = schema.new({ type = "list", list_member = M.AlarmHistoryItem })
+
+M.CompositeAlarms = schema.new({ type = "list", list_member = M.CompositeAlarm })
+
+M.MetricAlarms = schema.new({ type = "list", list_member = M.MetricAlarm })
+
+M.AnomalyDetectorTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnomalyDetectors = schema.new({ type = "list", list_member = M.AnomalyDetector })
+
+M.InsightRules = schema.new({ type = "list", list_member = M.InsightRule })
+
+M.InsightRuleMetricList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightRuleContributorKeyLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightRuleContributors = schema.new({ type = "list", list_member = M.InsightRuleContributor })
+
+M.InsightRuleMetricDatapoints = schema.new({ type = "list", list_member = M.InsightRuleMetricDatapoint })
+
+M.MetricDataQueries = schema.new({ type = "list", list_member = M.MetricDataQuery })
+
+M.MetricDataResults = schema.new({ type = "list", list_member = M.MetricDataResult })
+
+M.MetricDataResultMessages = schema.new({ type = "list", list_member = M.MessageData })
+
+M.Statistics = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExtendedStatistics = schema.new({ type = "list", list_member = prelude.String })
+
+M.Datapoints = schema.new({ type = "list", list_member = M.Datapoint })
+
+M.MetricStreamFilters = schema.new({ type = "list", list_member = M.MetricStreamFilter })
+
+M.MetricStreamStatisticsConfigurations = schema.new({ type = "list", list_member = M.MetricStreamStatisticsConfiguration })
+
+M.AlarmMuteRuleStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.AlarmMuteRuleSummaries = schema.new({ type = "list", list_member = M.AlarmMuteRuleSummary })
+
+M.DashboardEntries = schema.new({ type = "list", list_member = M.DashboardEntry })
+
+M.ManagedRuleDescriptions = schema.new({ type = "list", list_member = M.ManagedRuleDescription })
+
+M.DimensionFilters = schema.new({ type = "list", list_member = M.DimensionFilter })
+
+M.Metrics = schema.new({ type = "list", list_member = M.Metric })
+
+M.OwningAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricStreamEntries = schema.new({ type = "list", list_member = M.MetricStreamEntry })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DashboardValidationMessages = schema.new({ type = "list", list_member = M.DashboardValidationMessage })
+
+M.ManagedRules = schema.new({ type = "list", list_member = M.ManagedRule })
+
+M.MetricData = schema.new({ type = "list", list_member = M.MetricDatum })
+
+M.EntityMetricDataList = schema.new({ type = "list", list_member = M.EntityMetricData })
+
+M.MetricStreamNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MuteTargetAlarmNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnomalyDetectorExcludedTimeRanges = schema.new({ type = "list", list_member = M.Range })
+
+M.ContributorAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InsightRuleContributorKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightRuleContributorDatapoints = schema.new({ type = "list", list_member = M.InsightRuleContributorDatapoint })
+
+M.Timestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.DatapointValues = schema.new({ type = "list", list_member = prelude.Double })
+
+M.DatapointValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.MetricStreamFilterMetricNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricStreamStatisticsIncludeMetrics = schema.new({ type = "list", list_member = M.MetricStreamStatisticsMetric })
+
+M.MetricStreamStatisticsAdditionalStatistics = schema.new({ type = "list", list_member = prelude.String })
+
+M.Values = schema.new({ type = "list", list_member = prelude.Double })
+
+M.Counts = schema.new({ type = "list", list_member = prelude.Double })
+
+M.EntityKeyAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EntityAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AlarmContributor = schema.new({
     id = id.from(_N, "AlarmContributor"),
     type = "structure",
@@ -841,10 +953,7 @@ M.DeleteAlarmMuteRuleInput = schema.new({
     },
 })
 
-M.DeleteAlarmMuteRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAlarmMuteRuleOutput = prelude.Unit
 
 M.DeleteAlarmsInput = schema.new({
     id = id.from(_N, "DeleteAlarmsInput"),
@@ -863,10 +972,7 @@ M.DeleteAlarmsInput = schema.new({
     },
 })
 
-M.DeleteAlarmsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAlarmsOutput = prelude.Unit
 
 M.ResourceNotFound = schema.new({
     id = id.from(_N, "ResourceNotFound"),
@@ -1815,10 +1921,7 @@ M.DisableAlarmActionsInput = schema.new({
     },
 })
 
-M.DisableAlarmActionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableAlarmActionsOutput = prelude.Unit
 
 M.DisableInsightRulesInput = schema.new({
     id = id.from(_N, "DisableInsightRulesInput"),
@@ -1868,10 +1971,7 @@ M.EnableAlarmActionsInput = schema.new({
     },
 })
 
-M.EnableAlarmActionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableAlarmActionsOutput = prelude.Unit
 
 M.EnableInsightRulesInput = schema.new({
     id = id.from(_N, "EnableInsightRulesInput"),
@@ -3467,10 +3567,7 @@ M.PutAlarmMuteRuleInput = schema.new({
     },
 })
 
-M.PutAlarmMuteRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAlarmMuteRuleOutput = prelude.Unit
 
 M.PutAnomalyDetectorInput = schema.new({
     id = id.from(_N, "PutAnomalyDetectorInput"),
@@ -3620,10 +3717,7 @@ M.PutCompositeAlarmInput = schema.new({
     },
 })
 
-M.PutCompositeAlarmOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutCompositeAlarmOutput = prelude.Unit
 
 M.PutDashboardInput = schema.new({
     id = id.from(_N, "PutDashboardInput"),
@@ -3944,10 +4038,7 @@ M.PutMetricAlarmInput = schema.new({
     },
 })
 
-M.PutMetricAlarmOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutMetricAlarmOutput = prelude.Unit
 
 M.PutMetricDataInput = schema.new({
     id = id.from(_N, "PutMetricDataInput"),
@@ -3985,10 +4076,7 @@ M.PutMetricDataInput = schema.new({
     },
 })
 
-M.PutMetricDataOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutMetricDataOutput = prelude.Unit
 
 M.PutMetricStreamInput = schema.new({
     id = id.from(_N, "PutMetricStreamInput"),
@@ -4136,10 +4224,7 @@ M.SetAlarmStateInput = schema.new({
     },
 })
 
-M.SetAlarmStateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetAlarmStateOutput = prelude.Unit
 
 M.StartMetricStreamsInput = schema.new({
     id = id.from(_N, "StartMetricStreamsInput"),

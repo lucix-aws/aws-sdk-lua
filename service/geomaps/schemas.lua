@@ -7,6 +7,12 @@ local _N = "com.amazonaws.geomaps"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TravelModeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TileAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

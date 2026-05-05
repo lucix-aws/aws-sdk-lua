@@ -7,6 +7,10 @@ local _N = "com.amazonaws.kinesisvideosignaling"
 
 local M = {}
 
+M.IceServerList = schema.new({ type = "list", list_member = M.IceServer })
+
+M.Uris = schema.new({ type = "list", list_member = prelude.String })
+
 M.ClientLimitExceededException = schema.new({
     id = id.from(_N, "ClientLimitExceededException"),
     type = "structure",

@@ -7,6 +7,162 @@ local _N = "com.amazonaws.dynamodb"
 
 local M = {}
 
+M.PartiQLBatchRequest = schema.new({ type = "list", list_member = M.BatchStatementRequest })
+
+M.PartiQLBatchResponse = schema.new({ type = "list", list_member = M.BatchStatementResponse })
+
+M.ConsumedCapacityMultiple = schema.new({ type = "list", list_member = M.ConsumedCapacity })
+
+M.ThrottlingReasonList = schema.new({ type = "list", list_member = M.ThrottlingReason })
+
+M.BatchGetRequestMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.KeysAndAttributes })
+
+M.BatchGetResponseMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ItemList })
+
+M.BatchWriteItemRequestMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.WriteRequests })
+
+M.ItemCollectionMetricsPerTable = schema.new({ type = "map", map_key = prelude.String, map_value = M.ItemCollectionMetricsMultiple })
+
+M.ReplicaList = schema.new({ type = "list", list_member = M.Replica })
+
+M.AttributeDefinitions = schema.new({ type = "list", list_member = M.AttributeDefinition })
+
+M.KeySchema = schema.new({ type = "list", list_member = M.KeySchemaElement })
+
+M.LocalSecondaryIndexList = schema.new({ type = "list", list_member = M.LocalSecondaryIndex })
+
+M.GlobalSecondaryIndexList = schema.new({ type = "list", list_member = M.GlobalSecondaryIndex })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Key = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ExpectedAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExpectedAttributeValue })
+
+M.ExpressionAttributeNameMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExpressionAttributeValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ContributorInsightsRuleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.ReplicaSettingsDescriptionList = schema.new({ type = "list", list_member = M.ReplicaSettingsDescription })
+
+M.KinesisDataStreamDestinations = schema.new({ type = "list", list_member = M.KinesisDataStreamDestination })
+
+M.PreparedStatementParameters = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.ItemList = schema.new({ type = "list", list_member = M.AttributeMap })
+
+M.ParameterizedStatements = schema.new({ type = "list", list_member = M.ParameterizedStatement })
+
+M.ItemResponseList = schema.new({ type = "list", list_member = M.ItemResponse })
+
+M.CancellationReasonList = schema.new({ type = "list", list_member = M.CancellationReason })
+
+M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BackupSummaries = schema.new({ type = "list", list_member = M.BackupSummary })
+
+M.ContributorInsightsSummaries = schema.new({ type = "list", list_member = M.ContributorInsightsSummary })
+
+M.ExportSummaries = schema.new({ type = "list", list_member = M.ExportSummary })
+
+M.GlobalTableList = schema.new({ type = "list", list_member = M.GlobalTable })
+
+M.ImportSummaryList = schema.new({ type = "list", list_member = M.ImportSummary })
+
+M.TableNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PutItemInputAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.KeyConditions = schema.new({ type = "map", map_key = prelude.String, map_value = M.Condition })
+
+M.FilterConditionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Condition })
+
+M.TransactGetItemList = schema.new({ type = "list", list_member = M.TransactGetItem })
+
+M.TransactWriteItemList = schema.new({ type = "list", list_member = M.TransactWriteItem })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicaUpdateList = schema.new({ type = "list", list_member = M.ReplicaUpdate })
+
+M.GlobalTableGlobalSecondaryIndexSettingsUpdateList = schema.new({ type = "list", list_member = M.GlobalTableGlobalSecondaryIndexSettingsUpdate })
+
+M.ReplicaSettingsUpdateList = schema.new({ type = "list", list_member = M.ReplicaSettingsUpdate })
+
+M.AttributeUpdates = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValueUpdate })
+
+M.GlobalSecondaryIndexUpdateList = schema.new({ type = "list", list_member = M.GlobalSecondaryIndexUpdate })
+
+M.ReplicationGroupUpdateList = schema.new({ type = "list", list_member = M.ReplicationGroupUpdate })
+
+M.GlobalTableWitnessGroupUpdateList = schema.new({ type = "list", list_member = M.GlobalTableWitnessGroupUpdate })
+
+M.GlobalSecondaryIndexAutoScalingUpdateList = schema.new({ type = "list", list_member = M.GlobalSecondaryIndexAutoScalingUpdate })
+
+M.ReplicaAutoScalingUpdateList = schema.new({ type = "list", list_member = M.ReplicaAutoScalingUpdate })
+
+M.WriteRequests = schema.new({ type = "list", list_member = M.WriteRequest })
+
+M.ItemCollectionMetricsMultiple = schema.new({ type = "list", list_member = M.ItemCollectionMetrics })
+
+M.ReplicaDescriptionList = schema.new({ type = "list", list_member = M.ReplicaDescription })
+
+M.LocalSecondaryIndexDescriptionList = schema.new({ type = "list", list_member = M.LocalSecondaryIndexDescription })
+
+M.GlobalSecondaryIndexDescriptionList = schema.new({ type = "list", list_member = M.GlobalSecondaryIndexDescription })
+
+M.GlobalTableWitnessDescriptionList = schema.new({ type = "list", list_member = M.GlobalTableWitnessDescription })
+
+M.SecondaryIndexesCapacityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Capacity })
+
+M.ItemCollectionKeyAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ItemCollectionSizeEstimateRange = schema.new({ type = "list", list_member = prelude.Double })
+
+M.ReplicaAutoScalingDescriptionList = schema.new({ type = "list", list_member = M.ReplicaAutoScalingDescription })
+
+M.KeyList = schema.new({ type = "list", list_member = M.Key })
+
+M.LocalSecondaryIndexes = schema.new({ type = "list", list_member = M.LocalSecondaryIndexInfo })
+
+M.GlobalSecondaryIndexes = schema.new({ type = "list", list_member = M.GlobalSecondaryIndexInfo })
+
+M.StringSetAttributeValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumberSetAttributeValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.BinarySetAttributeValue = schema.new({ type = "list", list_member = prelude.Blob })
+
+M.MapAttributeValue = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ListAttributeValue = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.AttributeValueList = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.ReplicaGlobalSecondaryIndexSettingsDescriptionList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndexSettingsDescription })
+
+M.CsvHeaderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicaGlobalSecondaryIndexSettingsUpdateList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndexSettingsUpdate })
+
+M.ReplicaGlobalSecondaryIndexAutoScalingUpdateList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndexAutoScalingUpdate })
+
+M.ReplicaGlobalSecondaryIndexDescriptionList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndexDescription })
+
+M.NonKeyAttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoScalingPolicyDescriptionList = schema.new({ type = "list", list_member = M.AutoScalingPolicyDescription })
+
+M.ReplicaGlobalSecondaryIndexAutoScalingDescriptionList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndexAutoScalingDescription })
+
+M.ReplicaGlobalSecondaryIndexList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndex })
+
 M.ArchivalSummary = schema.new({
     id = id.from(_N, "ArchivalSummary"),
     type = "structure",
@@ -5035,10 +5191,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -5066,10 +5219,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.PointInTimeRecoverySpecification = schema.new({
     id = id.from(_N, "PointInTimeRecoverySpecification"),
@@ -6544,7 +6694,7 @@ M.KeysAndAttributes = schema.new({
             type = "list",
             name = "Keys",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.Key,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -7116,7 +7266,7 @@ M.ExecuteStatementOutput = schema.new({
             type = "list",
             name = "Items",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.AttributeMap,
         }),
         NextToken = schema.new({
             id = id.from(_N, "ExecuteStatementOutput", "NextToken"),
@@ -7180,7 +7330,7 @@ M.QueryOutput = schema.new({
             type = "list",
             name = "Items",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.AttributeMap,
         }),
         Count = schema.new({
             id = id.from(_N, "QueryOutput", "Count"),
@@ -7227,7 +7377,7 @@ M.ScanOutput = schema.new({
             type = "list",
             name = "Items",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.AttributeMap,
         }),
         Count = schema.new({
             id = id.from(_N, "ScanOutput", "Count"),
@@ -7346,7 +7496,7 @@ M.BatchGetItemOutput = schema.new({
             name = "Responses",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "list", list_member = prelude.Document }),
+            map_value = schema.new({ type = "list", list_member = M.AttributeMap }),
         }),
         UnprocessedKeys = schema.new({
             id = id.from(_N, "BatchGetItemOutput", "UnprocessedKeys"),

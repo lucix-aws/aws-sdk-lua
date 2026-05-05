@@ -1570,15 +1570,15 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type Domain = "ECOMMERCE" | "VIDEO_ON_DEMAND"
-
-local type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN"
+local type ImportMode = "FULL" | "INCREMENTAL"
 
 local type RecipeProvider = "SERVICE"
 
 local type BatchInferenceJobMode = "BATCH_INFERENCE" | "THEME_GENERATION"
 
-local type ImportMode = "FULL" | "INCREMENTAL"
+local type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN"
+
+local type Domain = "ECOMMERCE" | "VIDEO_ON_DEMAND"
 
 local type IngestionMode = "BULK" | "PUT" | "ALL"
 

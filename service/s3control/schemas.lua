@@ -7,6 +7,98 @@ local _N = "com.amazonaws.s3control"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.S3TagSet = schema.new({ type = "list", list_member = M.S3Tag })
+
+M.Endpoints = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LifecycleRules = schema.new({ type = "list", list_member = M.LifecycleRule })
+
+M.RouteList = schema.new({ type = "list", list_member = M.MultiRegionAccessPointRoute })
+
+M.StorageLensTags = schema.new({ type = "list", list_member = M.StorageLensTag })
+
+M.AccessGrantsList = schema.new({ type = "list", list_member = M.ListAccessGrantEntry })
+
+M.AccessGrantsInstancesList = schema.new({ type = "list", list_member = M.ListAccessGrantsInstanceEntry })
+
+M.AccessGrantsLocationsList = schema.new({ type = "list", list_member = M.ListAccessGrantsLocationsEntry })
+
+M.AccessPointList = schema.new({ type = "list", list_member = M.AccessPoint })
+
+M.ObjectLambdaAccessPointList = schema.new({ type = "list", list_member = M.ObjectLambdaAccessPoint })
+
+M.CallerAccessGrantsList = schema.new({ type = "list", list_member = M.ListCallerAccessGrantsEntry })
+
+M.JobStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobListDescriptorList = schema.new({ type = "list", list_member = M.JobListDescriptor })
+
+M.MultiRegionAccessPointReportList = schema.new({ type = "list", list_member = M.MultiRegionAccessPointReport })
+
+M.RegionalBucketList = schema.new({ type = "list", list_member = M.RegionalBucket })
+
+M.StorageLensConfigurationList = schema.new({ type = "list", list_member = M.ListStorageLensConfigurationEntry })
+
+M.StorageLensGroupList = schema.new({ type = "list", list_member = M.ListStorageLensGroupEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrefixesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScopePermissionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectLambdaAllowedFeaturesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectLambdaTransformationConfigurationsList = schema.new({ type = "list", list_member = M.ObjectLambdaTransformationConfiguration })
+
+M.RegionCreationList = schema.new({ type = "list", list_member = M.Region })
+
+M.JobFailureList = schema.new({ type = "list", list_member = M.JobFailure })
+
+M.ReplicationRules = schema.new({ type = "list", list_member = M.ReplicationRule })
+
+M.RegionReportList = schema.new({ type = "list", list_member = M.RegionReport })
+
+M.UserArguments = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.S3GrantList = schema.new({ type = "list", list_member = M.S3Grant })
+
+M.JobManifestFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchAnyPrefix = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchAnySuffix = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchAnyTag = schema.new({ type = "list", list_member = M.S3Tag })
+
+M.TransitionList = schema.new({ type = "list", list_member = M.Transition })
+
+M.NoncurrentVersionTransitionList = schema.new({ type = "list", list_member = M.NoncurrentVersionTransition })
+
+M.Buckets = schema.new({ type = "list", list_member = prelude.String })
+
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectLambdaTransformationConfigurationActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3UserMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReplicationStatusFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageClassList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectEncryptionFilterList = schema.new({ type = "list", list_member = M.ObjectEncryptionFilter })
+
+M.MultiRegionAccessPointRegionalResponseList = schema.new({ type = "list", list_member = M.MultiRegionAccessPointRegionalResponse })
+
+M.NonEmptyMaxLength1024StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageLensGroupLevelInclude = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageLensGroupLevelExclude = schema.new({ type = "list", list_member = prelude.String })
+
 M.AbortIncompleteMultipartUpload = schema.new({
     id = id.from(_N, "AbortIncompleteMultipartUpload"),
     type = "structure",
@@ -615,10 +707,7 @@ M.AssociateAccessGrantsIdentityCenterInput = schema.new({
     },
 })
 
-M.AssociateAccessGrantsIdentityCenterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateAccessGrantsIdentityCenterOutput = prelude.Unit
 
 M.AsyncErrorDetails = schema.new({
     id = id.from(_N, "AsyncErrorDetails"),
@@ -3326,10 +3415,7 @@ M.CreateStorageLensGroupInput = schema.new({
     },
 })
 
-M.CreateStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateStorageLensGroupOutput = prelude.Unit
 
 M.DeleteAccessGrantInput = schema.new({
     id = id.from(_N, "DeleteAccessGrantRequest"),
@@ -3358,10 +3444,7 @@ M.DeleteAccessGrantInput = schema.new({
     },
 })
 
-M.DeleteAccessGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessGrantOutput = prelude.Unit
 
 M.DeleteAccessGrantsInstanceInput = schema.new({
     id = id.from(_N, "DeleteAccessGrantsInstanceRequest"),
@@ -3380,10 +3463,7 @@ M.DeleteAccessGrantsInstanceInput = schema.new({
     },
 })
 
-M.DeleteAccessGrantsInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessGrantsInstanceOutput = prelude.Unit
 
 M.DeleteAccessGrantsInstanceResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteAccessGrantsInstanceResourcePolicyRequest"),
@@ -3402,10 +3482,7 @@ M.DeleteAccessGrantsInstanceResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteAccessGrantsInstanceResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessGrantsInstanceResourcePolicyOutput = prelude.Unit
 
 M.DeleteAccessGrantsLocationInput = schema.new({
     id = id.from(_N, "DeleteAccessGrantsLocationRequest"),
@@ -3434,10 +3511,7 @@ M.DeleteAccessGrantsLocationInput = schema.new({
     },
 })
 
-M.DeleteAccessGrantsLocationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessGrantsLocationOutput = prelude.Unit
 
 M.DeleteAccessPointInput = schema.new({
     id = id.from(_N, "DeleteAccessPointRequest"),
@@ -3466,10 +3540,7 @@ M.DeleteAccessPointInput = schema.new({
     },
 })
 
-M.DeleteAccessPointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointOutput = prelude.Unit
 
 M.DeleteAccessPointForObjectLambdaInput = schema.new({
     id = id.from(_N, "DeleteAccessPointForObjectLambdaRequest"),
@@ -3498,10 +3569,7 @@ M.DeleteAccessPointForObjectLambdaInput = schema.new({
     },
 })
 
-M.DeleteAccessPointForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointForObjectLambdaOutput = prelude.Unit
 
 M.DeleteAccessPointPolicyInput = schema.new({
     id = id.from(_N, "DeleteAccessPointPolicyRequest"),
@@ -3530,10 +3598,7 @@ M.DeleteAccessPointPolicyInput = schema.new({
     },
 })
 
-M.DeleteAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointPolicyOutput = prelude.Unit
 
 M.DeleteAccessPointPolicyForObjectLambdaInput = schema.new({
     id = id.from(_N, "DeleteAccessPointPolicyForObjectLambdaRequest"),
@@ -3562,10 +3627,7 @@ M.DeleteAccessPointPolicyForObjectLambdaInput = schema.new({
     },
 })
 
-M.DeleteAccessPointPolicyForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointPolicyForObjectLambdaOutput = prelude.Unit
 
 M.DeleteAccessPointScopeInput = schema.new({
     id = id.from(_N, "DeleteAccessPointScopeRequest"),
@@ -3594,10 +3656,7 @@ M.DeleteAccessPointScopeInput = schema.new({
     },
 })
 
-M.DeleteAccessPointScopeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointScopeOutput = prelude.Unit
 
 M.DeleteBucketInput = schema.new({
     id = id.from(_N, "DeleteBucketRequest"),
@@ -3626,10 +3685,7 @@ M.DeleteBucketInput = schema.new({
     },
 })
 
-M.DeleteBucketOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketOutput = prelude.Unit
 
 M.DeleteBucketLifecycleConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketLifecycleConfigurationRequest"),
@@ -3658,10 +3714,7 @@ M.DeleteBucketLifecycleConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketLifecycleConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketLifecycleConfigurationOutput = prelude.Unit
 
 M.DeleteBucketPolicyInput = schema.new({
     id = id.from(_N, "DeleteBucketPolicyRequest"),
@@ -3690,10 +3743,7 @@ M.DeleteBucketPolicyInput = schema.new({
     },
 })
 
-M.DeleteBucketPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketPolicyOutput = prelude.Unit
 
 M.DeleteBucketReplicationInput = schema.new({
     id = id.from(_N, "DeleteBucketReplicationRequest"),
@@ -3722,10 +3772,7 @@ M.DeleteBucketReplicationInput = schema.new({
     },
 })
 
-M.DeleteBucketReplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketReplicationOutput = prelude.Unit
 
 M.DeleteBucketTaggingInput = schema.new({
     id = id.from(_N, "DeleteBucketTaggingRequest"),
@@ -3754,10 +3801,7 @@ M.DeleteBucketTaggingInput = schema.new({
     },
 })
 
-M.DeleteBucketTaggingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketTaggingOutput = prelude.Unit
 
 M.DeleteJobTaggingInput = schema.new({
     id = id.from(_N, "DeleteJobTaggingRequest"),
@@ -3874,10 +3918,7 @@ M.DeletePublicAccessBlockInput = schema.new({
     },
 })
 
-M.DeletePublicAccessBlockOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePublicAccessBlockOutput = prelude.Unit
 
 M.DeleteStorageLensConfigurationInput = schema.new({
     id = id.from(_N, "DeleteStorageLensConfigurationRequest"),
@@ -3906,10 +3947,7 @@ M.DeleteStorageLensConfigurationInput = schema.new({
     },
 })
 
-M.DeleteStorageLensConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStorageLensConfigurationOutput = prelude.Unit
 
 M.DeleteStorageLensConfigurationTaggingInput = schema.new({
     id = id.from(_N, "DeleteStorageLensConfigurationTaggingRequest"),
@@ -3970,10 +4008,7 @@ M.DeleteStorageLensGroupInput = schema.new({
     },
 })
 
-M.DeleteStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStorageLensGroupOutput = prelude.Unit
 
 M.DescribeJobInput = schema.new({
     id = id.from(_N, "DescribeJobRequest"),
@@ -4304,10 +4339,7 @@ M.DissociateAccessGrantsIdentityCenterInput = schema.new({
     },
 })
 
-M.DissociateAccessGrantsIdentityCenterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DissociateAccessGrantsIdentityCenterOutput = prelude.Unit
 
 M.GetAccessGrantInput = schema.new({
     id = id.from(_N, "GetAccessGrantRequest"),
@@ -8168,10 +8200,7 @@ M.PutAccessPointConfigurationForObjectLambdaInput = schema.new({
     },
 })
 
-M.PutAccessPointConfigurationForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAccessPointConfigurationForObjectLambdaOutput = prelude.Unit
 
 M.PutAccessPointPolicyInput = schema.new({
     id = id.from(_N, "PutAccessPointPolicyRequest"),
@@ -8209,10 +8238,7 @@ M.PutAccessPointPolicyInput = schema.new({
     },
 })
 
-M.PutAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAccessPointPolicyOutput = prelude.Unit
 
 M.PutAccessPointPolicyForObjectLambdaInput = schema.new({
     id = id.from(_N, "PutAccessPointPolicyForObjectLambdaRequest"),
@@ -8250,10 +8276,7 @@ M.PutAccessPointPolicyForObjectLambdaInput = schema.new({
     },
 })
 
-M.PutAccessPointPolicyForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAccessPointPolicyForObjectLambdaOutput = prelude.Unit
 
 M.PutAccessPointScopeInput = schema.new({
     id = id.from(_N, "PutAccessPointScopeRequest"),
@@ -8292,10 +8315,7 @@ M.PutAccessPointScopeInput = schema.new({
     },
 })
 
-M.PutAccessPointScopeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAccessPointScopeOutput = prelude.Unit
 
 M.LifecycleConfiguration = schema.new({
     id = id.from(_N, "LifecycleConfiguration"),
@@ -8349,10 +8369,7 @@ M.PutBucketLifecycleConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketLifecycleConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketLifecycleConfigurationOutput = prelude.Unit
 
 M.PutBucketPolicyInput = schema.new({
     id = id.from(_N, "PutBucketPolicyRequest"),
@@ -8400,10 +8417,7 @@ M.PutBucketPolicyInput = schema.new({
     },
 })
 
-M.PutBucketPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketPolicyOutput = prelude.Unit
 
 M.PutBucketReplicationInput = schema.new({
     id = id.from(_N, "PutBucketReplicationRequest"),
@@ -8444,10 +8458,7 @@ M.PutBucketReplicationInput = schema.new({
     },
 })
 
-M.PutBucketReplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketReplicationOutput = prelude.Unit
 
 M.Tagging = schema.new({
     id = id.from(_N, "Tagging"),
@@ -8505,10 +8516,7 @@ M.PutBucketTaggingInput = schema.new({
     },
 })
 
-M.PutBucketTaggingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketTaggingOutput = prelude.Unit
 
 M.VersioningConfiguration = schema.new({
     id = id.from(_N, "VersioningConfiguration"),
@@ -8580,10 +8588,7 @@ M.PutBucketVersioningInput = schema.new({
     },
 })
 
-M.PutBucketVersioningOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketVersioningOutput = prelude.Unit
 
 M.PutJobTaggingInput = schema.new({
     id = id.from(_N, "PutJobTaggingRequest"),
@@ -8722,10 +8727,7 @@ M.PutPublicAccessBlockInput = schema.new({
     },
 })
 
-M.PutPublicAccessBlockOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutPublicAccessBlockOutput = prelude.Unit
 
 M.PutStorageLensConfigurationInput = schema.new({
     id = id.from(_N, "PutStorageLensConfigurationRequest"),
@@ -8771,10 +8773,7 @@ M.PutStorageLensConfigurationInput = schema.new({
     },
 })
 
-M.PutStorageLensConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutStorageLensConfigurationOutput = prelude.Unit
 
 M.PutStorageLensConfigurationTaggingInput = schema.new({
     id = id.from(_N, "PutStorageLensConfigurationTaggingRequest"),
@@ -9206,10 +9205,7 @@ M.UpdateStorageLensGroupInput = schema.new({
     },
 })
 
-M.UpdateStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateStorageLensGroupOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

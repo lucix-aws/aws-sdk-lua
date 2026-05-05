@@ -7,6 +7,36 @@ local _N = "com.amazonaws.identitystore"
 
 local M = {}
 
+M.GroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupMembershipExistenceResults = schema.new({ type = "list", list_member = M.GroupMembershipExistenceResult })
+
+M.GroupMemberships = schema.new({ type = "list", list_member = M.GroupMembership })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.Groups = schema.new({ type = "list", list_member = M.Group })
+
+M.ExternalIds = schema.new({ type = "list", list_member = M.ExternalId })
+
+M.AttributeOperations = schema.new({ type = "list", list_member = M.AttributeOperation })
+
+M.ExtensionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Users = schema.new({ type = "list", list_member = M.User })
+
+M.Emails = schema.new({ type = "list", list_member = M.Email })
+
+M.Addresses = schema.new({ type = "list", list_member = M.Address })
+
+M.PhoneNumbers = schema.new({ type = "list", list_member = M.PhoneNumber })
+
+M.Photos = schema.new({ type = "list", list_member = M.Photo })
+
+M.Roles = schema.new({ type = "list", list_member = M.Role })
+
+M.Extensions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

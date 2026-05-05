@@ -7,6 +7,10 @@ local _N = "com.amazonaws.sso"
 
 local M = {}
 
+M.RoleListType = schema.new({ type = "list", list_member = M.RoleInfo })
+
+M.AccountListType = schema.new({ type = "list", list_member = M.AccountInfo })
+
 M.AccountInfo = schema.new({
     id = id.from(_N, "AccountInfo"),
     type = "structure",
@@ -337,10 +341,7 @@ M.LogoutInput = schema.new({
     },
 })
 
-M.LogoutOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.LogoutOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

@@ -416,21 +416,21 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type UpdatePlanExecutionAction = "switchToGraceful" | "switchToUngraceful" | "pause" | "resume"
-
-local type EvaluationStatus = "passed" | "actionRequired" | "pendingEvaluation" | "unknown"
-
-local type ExecutionMode = "graceful" | "ungraceful"
-
-local type ExecutionAction = "activate" | "deactivate" | "postRecovery"
-
-local type ExecutionState = "inProgress" | "pausedByFailedStep" | "pausedByOperator" | "completed" | "completedWithExceptions" | "canceled" | "planExecutionTimedOut" | "pendingManualApproval" | "failed" | "pending" | "completedMonitoringApplicationHealth"
-
 local type Approval = "approve" | "decline"
+
+local type RecoveryApproach = "activeActive" | "activePassive"
 
 local type UpdatePlanExecutionStepAction = "switchToUngraceful" | "skip"
 
-local type RecoveryApproach = "activeActive" | "activePassive"
+local type EvaluationStatus = "passed" | "actionRequired" | "pendingEvaluation" | "unknown"
+
+local type ExecutionState = "inProgress" | "pausedByFailedStep" | "pausedByOperator" | "completed" | "completedWithExceptions" | "canceled" | "planExecutionTimedOut" | "pendingManualApproval" | "failed" | "pending" | "completedMonitoringApplicationHealth"
+
+local type ExecutionAction = "activate" | "deactivate" | "postRecovery"
+
+local type UpdatePlanExecutionAction = "switchToGraceful" | "switchToUngraceful" | "pause" | "resume"
+
+local type ExecutionMode = "graceful" | "ungraceful"
 
 local record M
     ApprovePlanExecutionStepInput: ApprovePlanExecutionStepInput

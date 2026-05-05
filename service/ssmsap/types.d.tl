@@ -603,9 +603,9 @@ local type ConfigurationCheckOperationListingMode = "ALL_OPERATIONS" | "LATEST_P
 
 local type ConnectedEntityType = "DBMS"
 
-local type PermissionActionType = "RESTORE"
-
 local type ApplicationType = "HANA" | "SAP_ABAP"
+
+local type PermissionActionType = "RESTORE"
 
 local record M
     DeleteResourcePermissionInput: DeleteResourcePermissionInput

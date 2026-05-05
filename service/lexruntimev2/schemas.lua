@@ -7,6 +7,30 @@ local _N = "com.amazonaws.lexruntimev2"
 
 local M = {}
 
+M.Messages = schema.new({ type = "list", list_member = M.Message })
+
+M.Interpretations = schema.new({ type = "list", list_member = M.Interpretation })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ActiveContextsList = schema.new({ type = "list", list_member = M.ActiveContext })
+
+M.Slots = schema.new({ type = "map", map_key = prelude.String, map_value = M.Slot })
+
+M.SlotHintsIntentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SlotHintsSlotMap })
+
+M.ButtonsList = schema.new({ type = "list", list_member = M.Button })
+
+M.ActiveContextParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SlotHintsSlotMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RuntimeHintDetails })
+
+M.Values = schema.new({ type = "list", list_member = M.Slot })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuntimeHintValuesList = schema.new({ type = "list", list_member = M.RuntimeHintValue })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

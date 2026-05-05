@@ -7,6 +7,14 @@ local _N = "com.amazonaws.kinesisvideoarchivedmedia"
 
 local M = {}
 
+M.FormatConfig = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Images = schema.new({ type = "list", list_member = M.Image })
+
+M.FragmentNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FragmentList = schema.new({ type = "list", list_member = M.Fragment })
+
 M.ClientLimitExceededException = schema.new({
     id = id.from(_N, "ClientLimitExceededException"),
     type = "structure",

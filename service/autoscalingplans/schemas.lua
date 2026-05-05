@@ -7,6 +7,28 @@ local _N = "com.amazonaws.autoscalingplans"
 
 local M = {}
 
+M.ScalingInstructions = schema.new({ type = "list", list_member = M.ScalingInstruction })
+
+M.ScalingPlanResources = schema.new({ type = "list", list_member = M.ScalingPlanResource })
+
+M.ScalingPlanNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationSources = schema.new({ type = "list", list_member = M.ApplicationSource })
+
+M.ScalingPlans = schema.new({ type = "list", list_member = M.ScalingPlan })
+
+M.Datapoints = schema.new({ type = "list", list_member = M.Datapoint })
+
+M.TagFilters = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.TargetTrackingConfigurations = schema.new({ type = "list", list_member = M.TargetTrackingConfiguration })
+
+M.ScalingPolicies = schema.new({ type = "list", list_member = M.ScalingPolicy })
+
+M.TagValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDimensions = schema.new({ type = "list", list_member = M.MetricDimension })
+
 M.ConcurrentUpdateException = schema.new({
     id = id.from(_N, "ConcurrentUpdateException"),
     type = "structure",

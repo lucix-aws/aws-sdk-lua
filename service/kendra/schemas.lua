@@ -7,6 +7,228 @@ local _N = "com.amazonaws.kendra"
 
 local M = {}
 
+M.AssociateEntityList = schema.new({ type = "list", list_member = M.EntityConfiguration })
+
+M.AssociateEntitiesToExperienceFailedEntityList = schema.new({ type = "list", list_member = M.FailedEntity })
+
+M.EntityPersonaConfigurationList = schema.new({ type = "list", list_member = M.EntityPersonaConfiguration })
+
+M.FailedEntityList = schema.new({ type = "list", list_member = M.FailedEntity })
+
+M.DocumentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteDocumentResponseFailedDocuments = schema.new({ type = "list", list_member = M.BatchDeleteDocumentResponseFailedDocument })
+
+M.FeaturedResultsSetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteFeaturedResultsSetErrors = schema.new({ type = "list", list_member = M.BatchDeleteFeaturedResultsSetError })
+
+M.DocumentInfoList = schema.new({ type = "list", list_member = M.DocumentInfo })
+
+M.BatchGetDocumentStatusResponseErrors = schema.new({ type = "list", list_member = M.BatchGetDocumentStatusResponseError })
+
+M.DocumentStatusList = schema.new({ type = "list", list_member = M.Status })
+
+M.DocumentList = schema.new({ type = "list", list_member = M.Document })
+
+M.BatchPutDocumentResponseFailedDocuments = schema.new({ type = "list", list_member = M.BatchPutDocumentResponseFailedDocument })
+
+M.PrincipalList = schema.new({ type = "list", list_member = M.Principal })
+
+M.HierarchicalPrincipalList = schema.new({ type = "list", list_member = M.HierarchicalPrincipal })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.QueryTextList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FeaturedDocumentList = schema.new({ type = "list", list_member = M.FeaturedDocument })
+
+M.ConflictingItems = schema.new({ type = "list", list_member = M.ConflictingItem })
+
+M.UserTokenConfigurationList = schema.new({ type = "list", list_member = M.UserTokenConfiguration })
+
+M.ExperienceEndpoints = schema.new({ type = "list", list_member = M.ExperienceEndpoint })
+
+M.FeaturedDocumentWithMetadataList = schema.new({ type = "list", list_member = M.FeaturedDocumentWithMetadata })
+
+M.FeaturedDocumentMissingList = schema.new({ type = "list", list_member = M.FeaturedDocumentMissing })
+
+M.DocumentMetadataConfigurationList = schema.new({ type = "list", list_member = M.DocumentMetadataConfiguration })
+
+M.GroupOrderingIdSummaries = schema.new({ type = "list", list_member = M.GroupOrderingIdSummary })
+
+M.DisassociateEntityList = schema.new({ type = "list", list_member = M.EntityConfiguration })
+
+M.EntityIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuggestionTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuggestionList = schema.new({ type = "list", list_member = M.Suggestion })
+
+M.SnapshotsDataHeaderFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotsDataRecords = schema.new({ type = "list", list_member = M.SnapshotsDataRecord })
+
+M.AccessControlConfigurationSummaryList = schema.new({ type = "list", list_member = M.AccessControlConfigurationSummary })
+
+M.DataSourceSummaryList = schema.new({ type = "list", list_member = M.DataSourceSummary })
+
+M.DataSourceSyncJobHistoryList = schema.new({ type = "list", list_member = M.DataSourceSyncJob })
+
+M.PersonasSummaryList = schema.new({ type = "list", list_member = M.PersonasSummary })
+
+M.ExperienceEntitiesSummaryList = schema.new({ type = "list", list_member = M.ExperienceEntitiesSummary })
+
+M.ExperiencesSummaryList = schema.new({ type = "list", list_member = M.ExperiencesSummary })
+
+M.FaqSummaryItems = schema.new({ type = "list", list_member = M.FaqSummary })
+
+M.FeaturedResultsSetSummaryItems = schema.new({ type = "list", list_member = M.FeaturedResultsSetSummary })
+
+M.ListOfGroupSummaries = schema.new({ type = "list", list_member = M.GroupSummary })
+
+M.IndexConfigurationSummaryList = schema.new({ type = "list", list_member = M.IndexConfigurationSummary })
+
+M.QuerySuggestionsBlockListSummaryItems = schema.new({ type = "list", list_member = M.QuerySuggestionsBlockListSummary })
+
+M.ThesaurusSummaryItems = schema.new({ type = "list", list_member = M.ThesaurusSummary })
+
+M.FacetList = schema.new({ type = "list", list_member = M.Facet })
+
+M.DocumentAttributeKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentRelevanceOverrideConfigurationList = schema.new({ type = "list", list_member = M.DocumentRelevanceConfiguration })
+
+M.SortingConfigurationList = schema.new({ type = "list", list_member = M.SortingConfiguration })
+
+M.QueryResultItemList = schema.new({ type = "list", list_member = M.QueryResultItem })
+
+M.FacetResultList = schema.new({ type = "list", list_member = M.FacetResult })
+
+M.WarningList = schema.new({ type = "list", list_member = M.Warning })
+
+M.SpellCorrectedQueryList = schema.new({ type = "list", list_member = M.SpellCorrectedQuery })
+
+M.FeaturedResultsItemList = schema.new({ type = "list", list_member = M.FeaturedResultsItem })
+
+M.RetrieveResultItemList = schema.new({ type = "list", list_member = M.RetrieveResultItem })
+
+M.ClickFeedbackList = schema.new({ type = "list", list_member = M.ClickFeedback })
+
+M.RelevanceFeedbackList = schema.new({ type = "list", list_member = M.RelevanceFeedback })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InlineCustomDocumentEnrichmentConfigurationList = schema.new({ type = "list", list_member = M.InlineCustomDocumentEnrichmentConfiguration })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuggestableConfigList = schema.new({ type = "list", list_member = M.SuggestableConfig })
+
+M.SnapshotsDataRecord = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemberGroups = schema.new({ type = "list", list_member = M.MemberGroup })
+
+M.MemberUsers = schema.new({ type = "list", list_member = M.MemberUser })
+
+M.AttributeFilterList = schema.new({ type = "list", list_member = M.AttributeFilter })
+
+M.Groups = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceGroups = schema.new({ type = "list", list_member = M.DataSourceGroup })
+
+M.DocumentAttributeList = schema.new({ type = "list", list_member = M.DocumentAttribute })
+
+M.DataSourceInclusionsExclusionsStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.SharePointUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceToIndexFieldMappingList = schema.new({ type = "list", list_member = M.DataSourceToIndexFieldMapping })
+
+M.SalesforceStandardObjectConfigurationList = schema.new({ type = "list", list_member = M.SalesforceStandardObjectConfiguration })
+
+M.ExcludeMimeTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludeUserAccountsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludeSharedDrivesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SlackEntityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrivateChannelFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.PublicChannelFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.FolderIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Project = schema.new({ type = "list", list_member = prelude.String })
+
+M.IssueType = schema.new({ type = "list", list_member = prelude.String })
+
+M.JiraStatus = schema.new({ type = "list", list_member = prelude.String })
+
+M.IssueSubEntityFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FaqIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceDocuments = schema.new({ type = "list", list_member = M.SourceDocument })
+
+M.AdditionalResultAttributeList = schema.new({ type = "list", list_member = M.AdditionalResultAttribute })
+
+M.DocumentAttributeValueCountPairList = schema.new({ type = "list", list_member = M.DocumentAttributeValueCountPair })
+
+M.CorrectionList = schema.new({ type = "list", list_member = M.Correction })
+
+M.ChangeDetectingColumns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SalesforceKnowledgeArticleStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SalesforceCustomKnowledgeArticleTypeConfigurationList = schema.new({ type = "list", list_member = M.SalesforceCustomKnowledgeArticleTypeConfiguration })
+
+M.SalesforceChatterFeedIncludeFilterTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.OneDriveUserList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfluenceSpaceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfluenceSpaceFieldMappingsList = schema.new({ type = "list", list_member = M.ConfluenceSpaceToIndexFieldMapping })
+
+M.ConfluencePageFieldMappingsList = schema.new({ type = "list", list_member = M.ConfluencePageToIndexFieldMapping })
+
+M.ConfluenceBlogFieldMappingsList = schema.new({ type = "list", list_member = M.ConfluenceBlogToIndexFieldMapping })
+
+M.ConfluenceAttachmentFieldMappingsList = schema.new({ type = "list", list_member = M.ConfluenceAttachmentToIndexFieldMapping })
+
+M.BasicAuthenticationConfigurationList = schema.new({ type = "list", list_member = M.BasicAuthenticationConfiguration })
+
+M.ValueImportanceMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.DocumentAttributeStringListValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.HighlightList = schema.new({ type = "list", list_member = M.Highlight })
+
+M.TableRowList = schema.new({ type = "list", list_member = M.TableRow })
+
+M.ExpandedResultList = schema.new({ type = "list", list_member = M.ExpandedResultItem })
+
+M.SeedUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SiteMapsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuggestionHighlightList = schema.new({ type = "list", list_member = M.SuggestionHighlight })
+
+M.TableCellList = schema.new({ type = "list", list_member = M.TableCell })
+
 M.AccessControlConfigurationSummary = schema.new({
     id = id.from(_N, "AccessControlConfigurationSummary"),
     type = "structure",
@@ -1564,10 +1786,7 @@ M.ClearQuerySuggestionsInput = schema.new({
     },
 })
 
-M.ClearQuerySuggestionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ClearQuerySuggestionsOutput = prelude.Unit
 
 M.CreateAccessControlConfigurationInput = schema.new({
     id = id.from(_N, "CreateAccessControlConfigurationRequest"),
@@ -5013,10 +5232,7 @@ M.DeleteDataSourceInput = schema.new({
     },
 })
 
-M.DeleteDataSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDataSourceOutput = prelude.Unit
 
 M.DeleteExperienceInput = schema.new({
     id = id.from(_N, "DeleteExperienceRequest"),
@@ -5073,10 +5289,7 @@ M.DeleteFaqInput = schema.new({
     },
 })
 
-M.DeleteFaqOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFaqOutput = prelude.Unit
 
 M.DeleteIndexInput = schema.new({
     id = id.from(_N, "DeleteIndexRequest"),
@@ -5094,10 +5307,7 @@ M.DeleteIndexInput = schema.new({
     },
 })
 
-M.DeleteIndexOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIndexOutput = prelude.Unit
 
 M.DeletePrincipalMappingInput = schema.new({
     id = id.from(_N, "DeletePrincipalMappingRequest"),
@@ -5136,10 +5346,7 @@ M.DeletePrincipalMappingInput = schema.new({
     },
 })
 
-M.DeletePrincipalMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePrincipalMappingOutput = prelude.Unit
 
 M.DeleteQuerySuggestionsBlockListInput = schema.new({
     id = id.from(_N, "DeleteQuerySuggestionsBlockListRequest"),
@@ -5166,10 +5373,7 @@ M.DeleteQuerySuggestionsBlockListInput = schema.new({
     },
 })
 
-M.DeleteQuerySuggestionsBlockListOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteQuerySuggestionsBlockListOutput = prelude.Unit
 
 M.DeleteThesaurusInput = schema.new({
     id = id.from(_N, "DeleteThesaurusRequest"),
@@ -5196,10 +5400,7 @@ M.DeleteThesaurusInput = schema.new({
     },
 })
 
-M.DeleteThesaurusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteThesaurusOutput = prelude.Unit
 
 M.DescribeAccessControlConfigurationInput = schema.new({
     id = id.from(_N, "DescribeAccessControlConfigurationRequest"),
@@ -8121,10 +8322,7 @@ M.PutPrincipalMappingInput = schema.new({
     },
 })
 
-M.PutPrincipalMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutPrincipalMappingOutput = prelude.Unit
 
 M.ExpandConfiguration = schema.new({
     id = id.from(_N, "ExpandConfiguration"),
@@ -8792,10 +8990,7 @@ M.StopDataSourceSyncJobInput = schema.new({
     },
 })
 
-M.StopDataSourceSyncJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopDataSourceSyncJobOutput = prelude.Unit
 
 M.ClickFeedback = schema.new({
     id = id.from(_N, "ClickFeedback"),
@@ -8886,10 +9081,7 @@ M.SubmitFeedbackInput = schema.new({
     },
 })
 
-M.SubmitFeedbackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SubmitFeedbackOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -9085,10 +9277,7 @@ M.UpdateDataSourceInput = schema.new({
     },
 })
 
-M.UpdateDataSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDataSourceOutput = prelude.Unit
 
 M.UpdateExperienceInput = schema.new({
     id = id.from(_N, "UpdateExperienceRequest"),
@@ -9140,10 +9329,7 @@ M.UpdateExperienceInput = schema.new({
     },
 })
 
-M.UpdateExperienceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateExperienceOutput = prelude.Unit
 
 M.UpdateFeaturedResultsSetInput = schema.new({
     id = id.from(_N, "UpdateFeaturedResultsSetRequest"),
@@ -9284,10 +9470,7 @@ M.UpdateIndexInput = schema.new({
     },
 })
 
-M.UpdateIndexOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateIndexOutput = prelude.Unit
 
 M.UpdateQuerySuggestionsBlockListInput = schema.new({
     id = id.from(_N, "UpdateQuerySuggestionsBlockListRequest"),
@@ -9339,10 +9522,7 @@ M.UpdateQuerySuggestionsBlockListInput = schema.new({
     },
 })
 
-M.UpdateQuerySuggestionsBlockListOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQuerySuggestionsBlockListOutput = prelude.Unit
 
 M.UpdateQuerySuggestionsConfigInput = schema.new({
     id = id.from(_N, "UpdateQuerySuggestionsConfigRequest"),
@@ -9397,10 +9577,7 @@ M.UpdateQuerySuggestionsConfigInput = schema.new({
     },
 })
 
-M.UpdateQuerySuggestionsConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQuerySuggestionsConfigOutput = prelude.Unit
 
 M.UpdateThesaurusInput = schema.new({
     id = id.from(_N, "UpdateThesaurusRequest"),
@@ -9452,10 +9629,7 @@ M.UpdateThesaurusInput = schema.new({
     },
 })
 
-M.UpdateThesaurusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateThesaurusOutput = prelude.Unit
 
 M.Facet = schema.new({
     id = id.from(_N, "Facet"),

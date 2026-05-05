@@ -7,6 +7,24 @@ local _N = "com.amazonaws.swf"
 
 local M = {}
 
+M.HistoryEventList = schema.new({ type = "list", list_member = M.HistoryEvent })
+
+M.ActivityTypeInfoList = schema.new({ type = "list", list_member = M.ActivityTypeInfo })
+
+M.WorkflowExecutionInfoList = schema.new({ type = "list", list_member = M.WorkflowExecutionInfo })
+
+M.DomainInfoList = schema.new({ type = "list", list_member = M.DomainInfo })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.WorkflowTypeInfoList = schema.new({ type = "list", list_member = M.WorkflowTypeInfo })
+
+M.DecisionList = schema.new({ type = "list", list_member = M.Decision })
+
+M.TagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActivityTaskCanceledEventAttributes = schema.new({
     id = id.from(_N, "ActivityTaskCanceledEventAttributes"),
     type = "structure",
@@ -2038,10 +2056,7 @@ M.DeleteActivityTypeInput = schema.new({
     },
 })
 
-M.DeleteActivityTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteActivityTypeOutput = prelude.Unit
 
 M.TypeNotDeprecatedFault = schema.new({
     id = id.from(_N, "TypeNotDeprecatedFault"),
@@ -2085,10 +2100,7 @@ M.DeleteWorkflowTypeInput = schema.new({
     },
 })
 
-M.DeleteWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkflowTypeOutput = prelude.Unit
 
 M.DeprecateActivityTypeInput = schema.new({
     id = id.from(_N, "DeprecateActivityTypeInput"),
@@ -2116,10 +2128,7 @@ M.DeprecateActivityTypeInput = schema.new({
     },
 })
 
-M.DeprecateActivityTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeprecateActivityTypeOutput = prelude.Unit
 
 M.TypeDeprecatedFault = schema.new({
     id = id.from(_N, "TypeDeprecatedFault"),
@@ -2153,10 +2162,7 @@ M.DeprecateDomainInput = schema.new({
     },
 })
 
-M.DeprecateDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeprecateDomainOutput = prelude.Unit
 
 M.DomainDeprecatedFault = schema.new({
     id = id.from(_N, "DomainDeprecatedFault"),
@@ -2200,10 +2206,7 @@ M.DeprecateWorkflowTypeInput = schema.new({
     },
 })
 
-M.DeprecateWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeprecateWorkflowTypeOutput = prelude.Unit
 
 M.DescribeActivityTypeInput = schema.new({
     id = id.from(_N, "DescribeActivityTypeInput"),
@@ -5462,10 +5465,7 @@ M.RegisterActivityTypeInput = schema.new({
     },
 })
 
-M.RegisterActivityTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterActivityTypeOutput = prelude.Unit
 
 M.TypeAlreadyExistsFault = schema.new({
     id = id.from(_N, "TypeAlreadyExistsFault"),
@@ -5521,10 +5521,7 @@ M.RegisterDomainInput = schema.new({
     },
 })
 
-M.RegisterDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterDomainOutput = prelude.Unit
 
 M.TooManyTagsFault = schema.new({
     id = id.from(_N, "TooManyTagsFault"),
@@ -5619,10 +5616,7 @@ M.RegisterWorkflowTypeInput = schema.new({
     },
 })
 
-M.RegisterWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterWorkflowTypeOutput = prelude.Unit
 
 M.RequestCancelWorkflowExecutionInput = schema.new({
     id = id.from(_N, "RequestCancelWorkflowExecutionInput"),
@@ -5655,10 +5649,7 @@ M.RequestCancelWorkflowExecutionInput = schema.new({
     },
 })
 
-M.RequestCancelWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RequestCancelWorkflowExecutionOutput = prelude.Unit
 
 M.RespondActivityTaskCanceledInput = schema.new({
     id = id.from(_N, "RespondActivityTaskCanceledInput"),
@@ -5682,10 +5673,7 @@ M.RespondActivityTaskCanceledInput = schema.new({
     },
 })
 
-M.RespondActivityTaskCanceledOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RespondActivityTaskCanceledOutput = prelude.Unit
 
 M.RespondActivityTaskCompletedInput = schema.new({
     id = id.from(_N, "RespondActivityTaskCompletedInput"),
@@ -5709,10 +5697,7 @@ M.RespondActivityTaskCompletedInput = schema.new({
     },
 })
 
-M.RespondActivityTaskCompletedOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RespondActivityTaskCompletedOutput = prelude.Unit
 
 M.RespondActivityTaskFailedInput = schema.new({
     id = id.from(_N, "RespondActivityTaskFailedInput"),
@@ -5742,10 +5727,7 @@ M.RespondActivityTaskFailedInput = schema.new({
     },
 })
 
-M.RespondActivityTaskFailedOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RespondActivityTaskFailedOutput = prelude.Unit
 
 M.RespondDecisionTaskCompletedInput = schema.new({
     id = id.from(_N, "RespondDecisionTaskCompletedInput"),
@@ -5789,10 +5771,7 @@ M.RespondDecisionTaskCompletedInput = schema.new({
     },
 })
 
-M.RespondDecisionTaskCompletedOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RespondDecisionTaskCompletedOutput = prelude.Unit
 
 M.SignalWorkflowExecutionInput = schema.new({
     id = id.from(_N, "SignalWorkflowExecutionInput"),
@@ -5840,10 +5819,7 @@ M.SignalWorkflowExecutionInput = schema.new({
     },
 })
 
-M.SignalWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SignalWorkflowExecutionOutput = prelude.Unit
 
 M.StartWorkflowExecutionInput = schema.new({
     id = id.from(_N, "StartWorkflowExecutionInput"),
@@ -5985,10 +5961,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TerminateWorkflowExecutionInput = schema.new({
     id = id.from(_N, "TerminateWorkflowExecutionInput"),
@@ -6039,10 +6012,7 @@ M.TerminateWorkflowExecutionInput = schema.new({
     },
 })
 
-M.TerminateWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TerminateWorkflowExecutionOutput = prelude.Unit
 
 M.UndeprecateActivityTypeInput = schema.new({
     id = id.from(_N, "UndeprecateActivityTypeInput"),
@@ -6070,10 +6040,7 @@ M.UndeprecateActivityTypeInput = schema.new({
     },
 })
 
-M.UndeprecateActivityTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UndeprecateActivityTypeOutput = prelude.Unit
 
 M.UndeprecateDomainInput = schema.new({
     id = id.from(_N, "UndeprecateDomainInput"),
@@ -6091,10 +6058,7 @@ M.UndeprecateDomainInput = schema.new({
     },
 })
 
-M.UndeprecateDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UndeprecateDomainOutput = prelude.Unit
 
 M.UndeprecateWorkflowTypeInput = schema.new({
     id = id.from(_N, "UndeprecateWorkflowTypeInput"),
@@ -6122,10 +6086,7 @@ M.UndeprecateWorkflowTypeInput = schema.new({
     },
 })
 
-M.UndeprecateWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UndeprecateWorkflowTypeOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -6153,10 +6114,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

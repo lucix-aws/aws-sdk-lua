@@ -7,6 +7,174 @@ local _N = "com.amazonaws.batch"
 
 local M = {}
 
+M.TagrisTagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ComputeEnvironmentOrders = schema.new({ type = "list", list_member = M.ComputeEnvironmentOrder })
+
+M.ServiceEnvironmentOrders = schema.new({ type = "list", list_member = M.ServiceEnvironmentOrder })
+
+M.JobStateTimeLimitActions = schema.new({ type = "list", list_member = M.JobStateTimeLimitAction })
+
+M.QuotaShareCapacityLimits = schema.new({ type = "list", list_member = M.QuotaShareCapacityLimit })
+
+M.CapacityLimits = schema.new({ type = "list", list_member = M.CapacityLimit })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComputeEnvironmentDetailList = schema.new({ type = "list", list_member = M.ComputeEnvironmentDetail })
+
+M.JobDefinitionList = schema.new({ type = "list", list_member = M.JobDefinition })
+
+M.JobQueueDetailList = schema.new({ type = "list", list_member = M.JobQueueDetail })
+
+M.JobDetailList = schema.new({ type = "list", list_member = M.JobDetail })
+
+M.SchedulingPolicyDetailList = schema.new({ type = "list", list_member = M.SchedulingPolicyDetail })
+
+M.ServiceEnvironmentDetailList = schema.new({ type = "list", list_member = M.ServiceEnvironmentDetail })
+
+M.ServiceJobAttemptDetails = schema.new({ type = "list", list_member = M.ServiceJobAttemptDetail })
+
+M.ServiceJobCapacityUsageDetailList = schema.new({ type = "list", list_member = M.ServiceJobCapacityUsageDetail })
+
+M.ListConsumableResourcesFilterList = schema.new({ type = "list", list_member = M.KeyValuesPair })
+
+M.ConsumableResourceSummaryList = schema.new({ type = "list", list_member = M.ConsumableResourceSummary })
+
+M.ListJobsFilterList = schema.new({ type = "list", list_member = M.KeyValuesPair })
+
+M.JobSummaryList = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.ListJobsByConsumableResourceFilterList = schema.new({ type = "list", list_member = M.KeyValuesPair })
+
+M.ListJobsByConsumableResourceSummaryList = schema.new({ type = "list", list_member = M.ListJobsByConsumableResourceSummary })
+
+M.QuotaShareList = schema.new({ type = "list", list_member = M.QuotaShareDetail })
+
+M.SchedulingPolicyListingDetailList = schema.new({ type = "list", list_member = M.SchedulingPolicyListingDetail })
+
+M.ServiceJobSummaryList = schema.new({ type = "list", list_member = M.ServiceJobSummary })
+
+M.ParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PlatformCapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobDependencyList = schema.new({ type = "list", list_member = M.JobDependency })
+
+M.TagKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Ec2ConfigurationList = schema.new({ type = "list", list_member = M.Ec2Configuration })
+
+M.ShareAttributesList = schema.new({ type = "list", list_member = M.ShareAttributes })
+
+M.ServiceJobEvaluateOnExitList = schema.new({ type = "list", list_member = M.ServiceJobEvaluateOnExit })
+
+M.ServiceJobRecentPreemptedAttemptList = schema.new({ type = "list", list_member = M.ServiceJobPreemptedAttempt })
+
+M.FrontOfQueueJobSummaryList = schema.new({ type = "list", list_member = M.FrontOfQueueJobSummary })
+
+M.FrontOfQuotaSharesJobSummaryMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FrontOfQuotaShareJobSummaryList })
+
+M.QueueSnapshotCapacityUsageList = schema.new({ type = "list", list_member = M.QueueSnapshotCapacityUsage })
+
+M.Volumes = schema.new({ type = "list", list_member = M.Volume })
+
+M.EnvironmentVariables = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.MountPoints = schema.new({ type = "list", list_member = M.MountPoint })
+
+M.Ulimits = schema.new({ type = "list", list_member = M.Ulimit })
+
+M.ResourceRequirements = schema.new({ type = "list", list_member = M.ResourceRequirement })
+
+M.SecretList = schema.new({ type = "list", list_member = M.Secret })
+
+M.NodeRangeProperties = schema.new({ type = "list", list_member = M.NodeRangeProperty })
+
+M.EvaluateOnExitList = schema.new({ type = "list", list_member = M.EvaluateOnExit })
+
+M.ListEcsTaskProperties = schema.new({ type = "list", list_member = M.EcsTaskProperties })
+
+M.ConsumableResourceList = schema.new({ type = "list", list_member = M.ConsumableResourceRequirement })
+
+M.NodePropertyOverrides = schema.new({ type = "list", list_member = M.NodePropertyOverride })
+
+M.ListTaskPropertiesOverride = schema.new({ type = "list", list_member = M.TaskPropertiesOverride })
+
+M.LaunchTemplateSpecificationOverrideList = schema.new({ type = "list", list_member = M.LaunchTemplateSpecificationOverride })
+
+M.AttemptDetails = schema.new({ type = "list", list_member = M.AttemptDetail })
+
+M.EksAttemptDetails = schema.new({ type = "list", list_member = M.EksAttemptDetail })
+
+M.FrontOfQuotaShareJobSummaryList = schema.new({ type = "list", list_member = M.FrontOfQuotaShareJobSummary })
+
+M.FairshareCapacityUtilizationList = schema.new({ type = "list", list_member = M.FairshareCapacityUtilization })
+
+M.QuotaShareCapacityUtilizationList = schema.new({ type = "list", list_member = M.QuotaShareCapacityUtilization })
+
+M.JobCapacityUsageSummaryList = schema.new({ type = "list", list_member = M.JobCapacityUsageSummary })
+
+M.ServiceJobCapacityUsageSummaryList = schema.new({ type = "list", list_member = M.ServiceJobCapacityUsageSummary })
+
+M.DevicesList = schema.new({ type = "list", list_member = M.Device })
+
+M.TmpfsList = schema.new({ type = "list", list_member = M.Tmpfs })
+
+M.LogConfigurationOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ImagePullSecrets = schema.new({ type = "list", list_member = M.ImagePullSecret })
+
+M.EksContainers = schema.new({ type = "list", list_member = M.EksContainer })
+
+M.EksVolumes = schema.new({ type = "list", list_member = M.EksVolume })
+
+M.EksContainerOverrideList = schema.new({ type = "list", list_member = M.EksContainerOverride })
+
+M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.ArrayJobStatusSummary = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ListEcsTaskDetails = schema.new({ type = "list", list_member = M.EcsTaskDetails })
+
+M.EksLabelsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EksAnnotationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListTaskContainerProperties = schema.new({ type = "list", list_member = M.TaskContainerProperties })
+
+M.ListTaskContainerOverrides = schema.new({ type = "list", list_member = M.TaskContainerOverrides })
+
+M.ListAttemptEcsTaskDetails = schema.new({ type = "list", list_member = M.AttemptEcsTaskDetails })
+
+M.EksContainerDetails = schema.new({ type = "list", list_member = M.EksContainerDetail })
+
+M.EksAttemptContainerDetails = schema.new({ type = "list", list_member = M.EksAttemptContainerDetail })
+
+M.FairshareCapacityUsageList = schema.new({ type = "list", list_member = M.FairshareCapacityUsage })
+
+M.QuotaShareCapacityUsageList = schema.new({ type = "list", list_member = M.QuotaShareCapacityUsage })
+
+M.DeviceCgroupPermissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.EksContainerEnvironmentVariables = schema.new({ type = "list", list_member = M.EksContainerEnvironmentVariable })
+
+M.EksContainerVolumeMounts = schema.new({ type = "list", list_member = M.EksContainerVolumeMount })
+
+M.ListTaskContainerDetails = schema.new({ type = "list", list_member = M.TaskContainerDetails })
+
+M.EksLimits = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EksRequests = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TaskContainerDependencyList = schema.new({ type = "list", list_member = M.TaskContainerDependency })
+
+M.ListAttemptTaskContainerDetails = schema.new({ type = "list", list_member = M.AttemptTaskContainerDetails })
+
+M.FirelensConfigurationOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ArrayProperties = schema.new({
     id = id.from(_N, "ArrayProperties"),
     type = "structure",

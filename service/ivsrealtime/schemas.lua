@@ -7,6 +7,56 @@ local _N = "com.amazonaws.ivsrealtime"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParticipantAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParticipantTokenAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParticipantTokenCapabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParticipantTokenConfigurations = schema.new({ type = "list", list_member = M.ParticipantTokenConfiguration })
+
+M.ParticipantTokenList = schema.new({ type = "list", list_member = M.ParticipantToken })
+
+M.CompositionSummaryList = schema.new({ type = "list", list_member = M.CompositionSummary })
+
+M.EncoderConfigurationSummaryList = schema.new({ type = "list", list_member = M.EncoderConfigurationSummary })
+
+M.IngestConfigurationList = schema.new({ type = "list", list_member = M.IngestConfigurationSummary })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.ParticipantReplicaList = schema.new({ type = "list", list_member = M.ParticipantReplica })
+
+M.ParticipantList = schema.new({ type = "list", list_member = M.ParticipantSummary })
+
+M.PublicKeyList = schema.new({ type = "list", list_member = M.PublicKeySummary })
+
+M.StageSummaryList = schema.new({ type = "list", list_member = M.StageSummary })
+
+M.StageSessionList = schema.new({ type = "list", list_member = M.StageSessionSummary })
+
+M.StorageConfigurationSummaryList = schema.new({ type = "list", list_member = M.StorageConfigurationSummary })
+
+M.DestinationConfigurationList = schema.new({ type = "list", list_member = M.DestinationConfiguration })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RedundantIngestCredentials = schema.new({ type = "list", list_member = M.RedundantIngestCredential })
+
+M.ParticipantRecordingMediaTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationList = schema.new({ type = "list", list_member = M.Destination })
+
+M.ThumbnailStorageTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationSummaryList = schema.new({ type = "list", list_member = M.DestinationSummary })
+
+M.EncoderConfigurationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompositionThumbnailConfigurationList = schema.new({ type = "list", list_member = M.CompositionThumbnailConfiguration })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

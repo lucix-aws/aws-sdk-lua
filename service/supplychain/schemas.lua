@@ -7,6 +7,36 @@ local _N = "com.amazonaws.supplychain"
 
 local M = {}
 
+M.DataIntegrationFlowSourceList = schema.new({ type = "list", list_member = M.DataIntegrationFlowSource })
+
+M.DataIntegrationEventList = schema.new({ type = "list", list_member = M.DataIntegrationEvent })
+
+M.DataIntegrationFlowExecutionList = schema.new({ type = "list", list_member = M.DataIntegrationFlowExecution })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataLakeDatasetSchemaFieldList = schema.new({ type = "list", list_member = M.DataLakeDatasetSchemaField })
+
+M.DataLakeDatasetPrimaryKeyFieldList = schema.new({ type = "list", list_member = M.DataLakeDatasetPrimaryKeyField })
+
+M.DataLakeDatasetPartitionFieldList = schema.new({ type = "list", list_member = M.DataLakeDatasetPartitionField })
+
+M.DataIntegrationFlowList = schema.new({ type = "list", list_member = M.DataIntegrationFlow })
+
+M.DataLakeDatasetList = schema.new({ type = "list", list_member = M.DataLakeDataset })
+
+M.DataLakeNamespaceList = schema.new({ type = "list", list_member = M.DataLakeNamespace })
+
+M.InstanceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.DataIntegrationFlowFieldPriorityDedupeFieldList = schema.new({ type = "list", list_member = M.DataIntegrationFlowFieldPriorityDedupeField })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,18 @@ local _N = "com.amazonaws.bcmrecommendedactions"
 
 local M = {}
 
+M.RecommendedActions = schema.new({ type = "list", list_member = M.RecommendedAction })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ActionFilterList = schema.new({ type = "list", list_member = M.ActionFilter })
+
+M.Context = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NextSteps = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

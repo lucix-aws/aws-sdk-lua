@@ -7,6 +7,30 @@ local _N = "com.amazonaws.novaact"
 
 local M = {}
 
+M.ActSummaries = schema.new({ type = "list", list_member = M.ActSummary })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ToolSpecs = schema.new({ type = "list", list_member = M.ToolSpec })
+
+M.CallResults = schema.new({ type = "list", list_member = M.CallResult })
+
+M.Calls = schema.new({ type = "list", list_member = M.Call })
+
+M.ModelSummaries = schema.new({ type = "list", list_member = M.ModelSummary })
+
+M.ModelAliases = schema.new({ type = "list", list_member = M.ModelAlias })
+
+M.SessionSummaries = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.WorkflowDefinitionSummaries = schema.new({ type = "list", list_member = M.WorkflowDefinitionSummary })
+
+M.WorkflowRunSummaries = schema.new({ type = "list", list_member = M.WorkflowRunSummary })
+
+M.ModelIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CallResultContents = schema.new({ type = "list", list_member = M.CallResultContent })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

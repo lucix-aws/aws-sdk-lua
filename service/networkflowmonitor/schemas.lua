@@ -7,6 +7,32 @@ local _N = "com.amazonaws.networkflowmonitor"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitorList = schema.new({ type = "list", list_member = M.MonitorSummary })
+
+M.MonitorLocalResources = schema.new({ type = "list", list_member = M.MonitorLocalResource })
+
+M.MonitorRemoteResources = schema.new({ type = "list", list_member = M.MonitorRemoteResource })
+
+M.MonitorTopContributorsRowList = schema.new({ type = "list", list_member = M.MonitorTopContributorsRow })
+
+M.ScopeSummaryList = schema.new({ type = "list", list_member = M.ScopeSummary })
+
+M.TargetResourceList = schema.new({ type = "list", list_member = M.TargetResource })
+
+M.WorkloadInsightsTopContributorsRowList = schema.new({ type = "list", list_member = M.WorkloadInsightsTopContributorsRow })
+
+M.WorkloadInsightsTopContributorsDataPoints = schema.new({ type = "list", list_member = M.WorkloadInsightsTopContributorsDataPoint })
+
+M.TraversedConstructsList = schema.new({ type = "list", list_member = M.TraversedComponent })
+
+M.WorkloadInsightsTopContributorsTimestampsList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.WorkloadInsightsTopContributorsValuesList = schema.new({ type = "list", list_member = prelude.Double })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

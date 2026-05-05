@@ -7,6 +7,122 @@ local _N = "com.amazonaws.fsx"
 
 local M = {}
 
+M.AlternateDNSNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Aliases = schema.new({ type = "list", list_member = M.Alias })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.UpdateOpenZFSVolumeOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdministrativeActions = schema.new({ type = "list", list_member = M.AdministrativeAction })
+
+M.DataRepositoryTaskPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CreateFileCacheDataRepositoryAssociations = schema.new({ type = "list", list_member = M.FileCacheDataRepositoryAssociation })
+
+M.BackupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.Backups = schema.new({ type = "list", list_member = M.Backup })
+
+M.DataRepositoryAssociationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataRepositoryAssociations = schema.new({ type = "list", list_member = M.DataRepositoryAssociation })
+
+M.TaskIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataRepositoryTaskFilters = schema.new({ type = "list", list_member = M.DataRepositoryTaskFilter })
+
+M.DataRepositoryTasks = schema.new({ type = "list", list_member = M.DataRepositoryTask })
+
+M.FileCacheIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileCaches = schema.new({ type = "list", list_member = M.FileCache })
+
+M.FileSystemIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileSystems = schema.new({ type = "list", list_member = M.FileSystem })
+
+M.S3AccessPointAttachmentNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3AccessPointAttachmentsFilters = schema.new({ type = "list", list_member = M.S3AccessPointAttachmentsFilter })
+
+M.S3AccessPointAttachments = schema.new({ type = "list", list_member = M.S3AccessPointAttachment })
+
+M.SnapshotIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotFilters = schema.new({ type = "list", list_member = M.SnapshotFilter })
+
+M.Snapshots = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.StorageVirtualMachineIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageVirtualMachineFilters = schema.new({ type = "list", list_member = M.StorageVirtualMachineFilter })
+
+M.StorageVirtualMachines = schema.new({ type = "list", list_member = M.StorageVirtualMachine })
+
+M.VolumeIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeFilters = schema.new({ type = "list", list_member = M.VolumeFilter })
+
+M.Volumes = schema.new({ type = "list", list_member = M.Volume })
+
+M.RestoreOpenZFSVolumeOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubDirectoriesPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTableIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpenZFSNfsExports = schema.new({ type = "list", list_member = M.OpenZFSNfsExport })
+
+M.OpenZFSUserAndGroupQuotas = schema.new({ type = "list", list_member = M.OpenZFSUserOrGroupQuota })
+
+M.DeleteFileSystemOpenZFSOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteOpenZFSVolumeOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryDnsIps = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsIps = schema.new({ type = "list", list_member = prelude.String })
+
+M.LustreNoSquashNids = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileSystemMaintenanceOperations = schema.new({ type = "list", list_member = prelude.String })
+
+M.Aggregates = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataRepositoryTaskFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3AccessPointAttachmentsFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageVirtualMachineFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileSystemSecondaryGIDs = schema.new({ type = "list", list_member = prelude.Long })
+
+M.OntapEndpointIpAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpenZFSClientConfigurations = schema.new({ type = "list", list_member = M.OpenZFSClientConfiguration })
+
+M.OpenZFSNfsExportOptions = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessPointAlreadyOwnedByYou = schema.new({
     id = id.from(_N, "AccessPointAlreadyOwnedByYou"),
     type = "structure",

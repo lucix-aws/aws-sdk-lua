@@ -7,6 +7,126 @@ local _N = "com.amazonaws.imagebuilder"
 
 local M = {}
 
+M.OsVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ComponentConfigurationList = schema.new({ type = "list", list_member = M.ComponentConfiguration })
+
+M.DistributionList = schema.new({ type = "list", list_member = M.Distribution })
+
+M.WorkflowConfigurationList = schema.new({ type = "list", list_member = M.WorkflowConfiguration })
+
+M.InstanceBlockDeviceMappings = schema.new({ type = "list", list_member = M.InstanceBlockDeviceMapping })
+
+M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LifecyclePolicyDetails = schema.new({ type = "list", list_member = M.LifecyclePolicyDetail })
+
+M.ComponentSummaryList = schema.new({ type = "list", list_member = M.ComponentSummary })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ComponentVersionList = schema.new({ type = "list", list_member = M.ComponentVersion })
+
+M.ContainerRecipeSummaryList = schema.new({ type = "list", list_member = M.ContainerRecipeSummary })
+
+M.DistributionConfigurationSummaryList = schema.new({ type = "list", list_member = M.DistributionConfigurationSummary })
+
+M.ImageSummaryList = schema.new({ type = "list", list_member = M.ImageSummary })
+
+M.ImagePackageList = schema.new({ type = "list", list_member = M.ImagePackage })
+
+M.ImagePipelineList = schema.new({ type = "list", list_member = M.ImagePipeline })
+
+M.ImageRecipeSummaryList = schema.new({ type = "list", list_member = M.ImageRecipeSummary })
+
+M.ImageVersionList = schema.new({ type = "list", list_member = M.ImageVersion })
+
+M.ImageScanFindingAggregationsList = schema.new({ type = "list", list_member = M.ImageScanFindingAggregation })
+
+M.ImageScanFindingsFilterList = schema.new({ type = "list", list_member = M.ImageScanFindingsFilter })
+
+M.ImageScanFindingsList = schema.new({ type = "list", list_member = M.ImageScanFinding })
+
+M.InfrastructureConfigurationSummaryList = schema.new({ type = "list", list_member = M.InfrastructureConfigurationSummary })
+
+M.LifecycleExecutionResourceList = schema.new({ type = "list", list_member = M.LifecycleExecutionResource })
+
+M.LifecycleExecutionsList = schema.new({ type = "list", list_member = M.LifecycleExecution })
+
+M.LifecyclePolicySummaryList = schema.new({ type = "list", list_member = M.LifecyclePolicySummary })
+
+M.WorkflowStepExecutionList = schema.new({ type = "list", list_member = M.WorkflowStepExecution })
+
+M.WorkflowSummaryList = schema.new({ type = "list", list_member = M.WorkflowSummary })
+
+M.WorkflowExecutionsList = schema.new({ type = "list", list_member = M.WorkflowExecutionMetadata })
+
+M.WorkflowVersionList = schema.new({ type = "list", list_member = M.WorkflowVersion })
+
+M.WorkflowStepExecutionsList = schema.new({ type = "list", list_member = M.WorkflowStepMetadata })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecyclePolicyResourceSelectionRecipes = schema.new({ type = "list", list_member = M.LifecyclePolicyResourceSelectionRecipe })
+
+M.ComponentParameterDetailList = schema.new({ type = "list", list_member = M.ComponentParameterDetail })
+
+M.ProductCodeList = schema.new({ type = "list", list_member = M.ProductCodeListItem })
+
+M.WorkflowParameterDetailList = schema.new({ type = "list", list_member = M.WorkflowParameterDetail })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentParameterList = schema.new({ type = "list", list_member = M.ComponentParameter })
+
+M.LicenseConfigurationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchTemplateConfigurationList = schema.new({ type = "list", list_member = M.LaunchTemplateConfiguration })
+
+M.FastLaunchConfigurationList = schema.new({ type = "list", list_member = M.FastLaunchConfiguration })
+
+M.SsmParameterConfigurationList = schema.new({ type = "list", list_member = M.SsmParameterConfiguration })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkflowParameterList = schema.new({ type = "list", list_member = M.WorkflowParameter })
+
+M.AmiList = schema.new({ type = "list", list_member = M.Ami })
+
+M.ContainerList = schema.new({ type = "list", list_member = M.Container })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageScanFindingsFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecycleExecutionSnapshotResourceList = schema.new({ type = "list", list_member = M.LifecycleExecutionSnapshotResource })
+
+M.AccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkflowParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VulnerablePackageList = schema.new({ type = "list", list_member = M.VulnerablePackage })
+
+M.CvssScoreList = schema.new({ type = "list", list_member = M.CvssScore })
+
+M.VulnerabilityIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CvssScoreAdjustmentList = schema.new({ type = "list", list_member = M.CvssScoreAdjustment })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

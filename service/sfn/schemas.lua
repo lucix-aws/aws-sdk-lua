@@ -7,6 +7,36 @@ local _N = "com.amazonaws.sfn"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.RoutingConfigurationList = schema.new({ type = "list", list_member = M.RoutingConfigurationListItem })
+
+M.VariableReferences = schema.new({ type = "map", map_key = prelude.String, map_value = M.VariableNameList })
+
+M.HistoryEventList = schema.new({ type = "list", list_member = M.HistoryEvent })
+
+M.ActivityList = schema.new({ type = "list", list_member = M.ActivityListItem })
+
+M.ExecutionList = schema.new({ type = "list", list_member = M.ExecutionListItem })
+
+M.MapRunList = schema.new({ type = "list", list_member = M.MapRunListItem })
+
+M.StateMachineAliasList = schema.new({ type = "list", list_member = M.StateMachineAliasListItem })
+
+M.StateMachineList = schema.new({ type = "list", list_member = M.StateMachineListItem })
+
+M.StateMachineVersionList = schema.new({ type = "list", list_member = M.StateMachineVersionListItem })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidateStateMachineDefinitionDiagnosticList = schema.new({ type = "list", list_member = M.ValidateStateMachineDefinitionDiagnostic })
+
+M.LogDestinationList = schema.new({ type = "list", list_member = M.LogDestination })
+
+M.VariableNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssignedVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ActivityAlreadyExists = schema.new({
     id = id.from(_N, "ActivityAlreadyExists"),
     type = "structure",

@@ -7,6 +7,144 @@ local _N = "com.amazonaws.qbusiness"
 
 local M = {}
 
+M.QIamActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionConditions = schema.new({ type = "list", list_member = M.PermissionCondition })
+
+M.ValidationExceptionFields = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.DeleteDocuments = schema.new({ type = "list", list_member = M.DeleteDocument })
+
+M.FailedDocuments = schema.new({ type = "list", list_member = M.FailedDocument })
+
+M.Documents = schema.new({ type = "list", list_member = M.Document })
+
+M.UserGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachmentsInput = schema.new({ type = "list", list_member = M.AttachmentInput })
+
+M.SourceAttributions = schema.new({ type = "list", list_member = M.SourceAttribution })
+
+M.AttachmentsOutput = schema.new({ type = "list", list_member = M.AttachmentOutput })
+
+M.AssociatedGroups = schema.new({ type = "list", list_member = M.AssociatedGroup })
+
+M.AssociatedUsers = schema.new({ type = "list", list_member = M.AssociatedUser })
+
+M.ResponseConfigurations = schema.new({ type = "map", map_key = prelude.String, map_value = M.ResponseConfiguration })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.UserAliases = schema.new({ type = "list", list_member = M.UserAlias })
+
+M.TopicConfigurations = schema.new({ type = "list", list_member = M.TopicConfiguration })
+
+M.GroupStatusDetails = schema.new({ type = "list", list_member = M.GroupStatusDetail })
+
+M.AttachmentList = schema.new({ type = "list", list_member = M.Attachment })
+
+M.ChatResponseConfigurations = schema.new({ type = "list", list_member = M.ChatResponseConfiguration })
+
+M.Conversations = schema.new({ type = "list", list_member = M.Conversation })
+
+M.DataSourceSyncJobs = schema.new({ type = "list", list_member = M.DataSourceSyncJob })
+
+M.DataSourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentDetailList = schema.new({ type = "list", list_member = M.DocumentDetails })
+
+M.GroupSummaryList = schema.new({ type = "list", list_member = M.GroupSummary })
+
+M.Messages = schema.new({ type = "list", list_member = M.Message })
+
+M.Actions = schema.new({ type = "list", list_member = M.ActionSummary })
+
+M.ListPluginTypeMetadataSummaries = schema.new({ type = "list", list_member = M.PluginTypeMetadataSummary })
+
+M.Subscriptions = schema.new({ type = "list", list_member = M.Subscription })
+
+M.RelevantContentList = schema.new({ type = "list", list_member = M.RelevantContent })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Applications = schema.new({ type = "list", list_member = M.Application })
+
+M.ClientIdsForOIDC = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionExecutionPayload = schema.new({ type = "map", map_key = prelude.String, map_value = M.ActionExecutionPayloadField })
+
+M.AuthorizationResponseMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AttributeFilters = schema.new({ type = "list", list_member = M.AttributeFilter })
+
+M.ActionReviewPayload = schema.new({ type = "map", map_key = prelude.String, map_value = M.ActionReviewPayloadField })
+
+M.BlockedPhrases = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemberGroups = schema.new({ type = "list", list_member = M.MemberGroup })
+
+M.MemberUsers = schema.new({ type = "list", list_member = M.MemberUser })
+
+M.DataAccessors = schema.new({ type = "list", list_member = M.DataAccessor })
+
+M.ActionConfigurationList = schema.new({ type = "list", list_member = M.ActionConfiguration })
+
+M.Indices = schema.new({ type = "list", list_member = M.Index })
+
+M.DocumentAttributeConfigurations = schema.new({ type = "list", list_member = M.DocumentAttributeConfiguration })
+
+M.Plugins = schema.new({ type = "list", list_member = M.Plugin })
+
+M.Retrievers = schema.new({ type = "list", list_member = M.Retriever })
+
+M.WebExperiences = schema.new({ type = "list", list_member = M.WebExperience })
+
+M.WebExperienceOrigins = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSources = schema.new({ type = "list", list_member = M.DataSource })
+
+M.PermissionConditionValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentAttributes = schema.new({ type = "list", list_member = M.DocumentAttribute })
+
+M.TextSegmentList = schema.new({ type = "list", list_member = M.TextSegment })
+
+M.DocumentAclConditions = schema.new({ type = "list", list_member = M.DocumentAclCondition })
+
+M.ExampleChatMessages = schema.new({ type = "list", list_member = prelude.String })
+
+M.Rules = schema.new({ type = "list", list_member = M.Rule })
+
+M.DataAccessorExternalIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BrowserExtensionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.InlineDocumentEnrichmentConfigurations = schema.new({ type = "list", list_member = M.InlineDocumentEnrichmentConfiguration })
+
+M.AccessControls = schema.new({ type = "list", list_member = M.AccessControl })
+
+M.DocumentAttributeStringListValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionReviewPayloadFieldAllowedValues = schema.new({ type = "list", list_member = M.ActionReviewPayloadFieldAllowedValue })
+
+M.DocumentAttributeBoostingOverrideMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DocumentAttributeBoostingConfiguration })
+
+M.DocumentAclUsers = schema.new({ type = "list", list_member = M.DocumentAclUser })
+
+M.DocumentAclGroups = schema.new({ type = "list", list_member = M.DocumentAclGroup })
+
+M.Principals = schema.new({ type = "list", list_member = M.Principal })
+
+M.UserIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EligibleDataSources = schema.new({ type = "list", list_member = M.EligibleDataSource })
+
+M.StringAttributeValueBoosting = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.PrincipalGroup = schema.new({
     id = id.from(_N, "PrincipalGroup"),
     type = "structure",
@@ -8735,10 +8873,7 @@ M.PutFeedbackInput = schema.new({
     },
 })
 
-M.PutFeedbackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutFeedbackOutput = prelude.Unit
 
 M.MemberGroup = schema.new({
     id = id.from(_N, "MemberGroup"),

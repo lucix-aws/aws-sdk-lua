@@ -1325,21 +1325,21 @@ local record SubnetNotFoundException
     Message: string
 end
 
+local type LoadBalancerTypeEnum = "application" | "network" | "gateway"
+
 local type EnablePrefixForIpv6SourceNatEnum = "on" | "off"
+
+local type TargetTypeEnum = "instance" | "ip" | "lambda" | "alb"
 
 local type ProtocolEnum = "HTTP" | "HTTPS" | "TCP" | "TLS" | "UDP" | "TCP_UDP" | "GENEVE" | "QUIC" | "TCP_QUIC"
 
-local type LoadBalancerTypeEnum = "application" | "network" | "gateway"
+local type TargetGroupIpAddressTypeEnum = "ipv4" | "ipv6"
+
+local type EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum = "on" | "off"
 
 local type IpAddressType = "ipv4" | "dualstack" | "dualstack-without-public-ipv4"
 
 local type LoadBalancerSchemeEnum = "internet-facing" | "internal"
-
-local type EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum = "on" | "off"
-
-local type TargetTypeEnum = "instance" | "ip" | "lambda" | "alb"
-
-local type TargetGroupIpAddressTypeEnum = "ipv4" | "ipv6"
 
 local record M
     AddListenerCertificatesInput: AddListenerCertificatesInput

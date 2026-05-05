@@ -7,6 +7,24 @@ local _N = "com.amazonaws.sagemakerfeaturestoreruntime"
 
 local M = {}
 
+M.BatchGetRecordIdentifiers = schema.new({ type = "list", list_member = M.BatchGetRecordIdentifier })
+
+M.BatchGetRecordResultDetails = schema.new({ type = "list", list_member = M.BatchGetRecordResultDetail })
+
+M.BatchGetRecordErrors = schema.new({ type = "list", list_member = M.BatchGetRecordError })
+
+M.UnprocessedIdentifiers = schema.new({ type = "list", list_member = M.BatchGetRecordIdentifier })
+
+M.TargetStores = schema.new({ type = "list", list_member = prelude.String })
+
+M.FeatureNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Record = schema.new({ type = "list", list_member = M.FeatureValue })
+
+M.RecordIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValueAsStringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessForbidden = schema.new({
     id = id.from(_N, "AccessForbidden"),
     type = "structure",
@@ -333,10 +351,7 @@ M.DeleteRecordInput = schema.new({
     },
 })
 
-M.DeleteRecordOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRecordOutput = prelude.Unit
 
 M.GetRecordInput = schema.new({
     id = id.from(_N, "GetRecordRequest"),
@@ -486,10 +501,7 @@ M.PutRecordInput = schema.new({
     },
 })
 
-M.PutRecordOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutRecordOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

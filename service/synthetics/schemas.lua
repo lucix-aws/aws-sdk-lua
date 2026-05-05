@@ -7,6 +7,50 @@ local _N = "com.amazonaws.synthetics"
 
 local M = {}
 
+M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BrowserConfigs = schema.new({ type = "list", list_member = M.BrowserConfig })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DescribeCanariesNameFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.Canaries = schema.new({ type = "list", list_member = M.Canary })
+
+M.DescribeCanariesLastRunNameFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.CanariesLastRun = schema.new({ type = "list", list_member = M.CanaryLastRun })
+
+M.RuntimeVersionList = schema.new({ type = "list", list_member = M.RuntimeVersion })
+
+M.CanaryRuns = schema.new({ type = "list", list_member = M.CanaryRun })
+
+M.GroupSummaryList = schema.new({ type = "list", list_member = M.GroupSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VisualReferences = schema.new({ type = "list", list_member = M.VisualReferenceInput })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlueprintTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Dependencies = schema.new({ type = "list", list_member = M.Dependency })
+
+M.EnvironmentVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngineConfigs = schema.new({ type = "list", list_member = M.EngineConfig })
+
+M.VisualReferencesOutput = schema.new({ type = "list", list_member = M.VisualReferenceOutput })
+
+M.BaseScreenshots = schema.new({ type = "list", list_member = M.BaseScreenshot })
+
+M.BaseScreenshotIgnoreCoordinates = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

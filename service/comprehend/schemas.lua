@@ -7,6 +7,132 @@ local _N = "com.amazonaws.comprehend"
 
 local M = {}
 
+M.CustomerInputStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfDetectDominantLanguageResult = schema.new({ type = "list", list_member = M.BatchDetectDominantLanguageItemResult })
+
+M.BatchItemErrorList = schema.new({ type = "list", list_member = M.BatchItemError })
+
+M.ListOfDetectEntitiesResult = schema.new({ type = "list", list_member = M.BatchDetectEntitiesItemResult })
+
+M.ListOfDetectKeyPhrasesResult = schema.new({ type = "list", list_member = M.BatchDetectKeyPhrasesItemResult })
+
+M.ListOfDetectSentimentResult = schema.new({ type = "list", list_member = M.BatchDetectSentimentItemResult })
+
+M.ListOfDetectSyntaxResult = schema.new({ type = "list", list_member = M.BatchDetectSyntaxItemResult })
+
+M.ListOfDetectTargetedSentimentResult = schema.new({ type = "list", list_member = M.BatchDetectTargetedSentimentItemResult })
+
+M.ListOfClasses = schema.new({ type = "list", list_member = M.DocumentClass })
+
+M.ListOfLabels = schema.new({ type = "list", list_member = M.DocumentLabel })
+
+M.ListOfDocumentType = schema.new({ type = "list", list_member = M.DocumentTypeListItem })
+
+M.ListOfErrors = schema.new({ type = "list", list_member = M.ErrorsListItem })
+
+M.ListOfWarnings = schema.new({ type = "list", list_member = M.WarningsListItem })
+
+M.ListOfEntityLabels = schema.new({ type = "list", list_member = M.EntityLabel })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ListOfDominantLanguages = schema.new({ type = "list", list_member = M.DominantLanguage })
+
+M.ListOfEntities = schema.new({ type = "list", list_member = M.Entity })
+
+M.ListOfBlocks = schema.new({ type = "list", list_member = M.Block })
+
+M.ListOfKeyPhrases = schema.new({ type = "list", list_member = M.KeyPhrase })
+
+M.ListOfPiiEntities = schema.new({ type = "list", list_member = M.PiiEntity })
+
+M.ListOfSyntaxTokens = schema.new({ type = "list", list_member = M.SyntaxToken })
+
+M.ListOfTargetedSentimentEntities = schema.new({ type = "list", list_member = M.TargetedSentimentEntity })
+
+M.ListOfTextSegments = schema.new({ type = "list", list_member = M.TextSegment })
+
+M.ListOfToxicLabels = schema.new({ type = "list", list_member = M.ToxicLabels })
+
+M.DatasetPropertiesList = schema.new({ type = "list", list_member = M.DatasetProperties })
+
+M.DocumentClassificationJobPropertiesList = schema.new({ type = "list", list_member = M.DocumentClassificationJobProperties })
+
+M.DocumentClassifierPropertiesList = schema.new({ type = "list", list_member = M.DocumentClassifierProperties })
+
+M.DocumentClassifierSummariesList = schema.new({ type = "list", list_member = M.DocumentClassifierSummary })
+
+M.DominantLanguageDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.DominantLanguageDetectionJobProperties })
+
+M.EndpointPropertiesList = schema.new({ type = "list", list_member = M.EndpointProperties })
+
+M.EntitiesDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.EntitiesDetectionJobProperties })
+
+M.EntityRecognizerPropertiesList = schema.new({ type = "list", list_member = M.EntityRecognizerProperties })
+
+M.EntityRecognizerSummariesList = schema.new({ type = "list", list_member = M.EntityRecognizerSummary })
+
+M.EventsDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.EventsDetectionJobProperties })
+
+M.FlywheelIterationPropertiesList = schema.new({ type = "list", list_member = M.FlywheelIterationProperties })
+
+M.FlywheelSummaryList = schema.new({ type = "list", list_member = M.FlywheelSummary })
+
+M.KeyPhrasesDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.KeyPhrasesDetectionJobProperties })
+
+M.PiiEntitiesDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.PiiEntitiesDetectionJobProperties })
+
+M.SentimentDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.SentimentDetectionJobProperties })
+
+M.TargetedSentimentDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.TargetedSentimentDetectionJobProperties })
+
+M.TopicsDetectionJobPropertiesList = schema.new({ type = "list", list_member = M.TopicsDetectionJobProperties })
+
+M.TargetEventTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfDocumentReadFeatureTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfExtractedCharacters = schema.new({ type = "list", list_member = M.ExtractedCharactersListItem })
+
+M.DatasetAugmentedManifestsList = schema.new({ type = "list", list_member = M.DatasetAugmentedManifestsListItem })
+
+M.DocumentClassifierAugmentedManifestsList = schema.new({ type = "list", list_member = M.AugmentedManifestsListItem })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityTypesList = schema.new({ type = "list", list_member = M.EntityTypesListItem })
+
+M.EntityRecognizerAugmentedManifestsList = schema.new({ type = "list", list_member = M.AugmentedManifestsListItem })
+
+M.ListOfPiiEntityTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.LabelsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityRecognizerMetadataEntityTypesList = schema.new({ type = "list", list_member = M.EntityRecognizerMetadataEntityTypesListItem })
+
+M.ListOfBlockReferences = schema.new({ type = "list", list_member = M.BlockReference })
+
+M.ListOfRelationships = schema.new({ type = "list", list_member = M.RelationshipsListItem })
+
+M.ListOfDescriptiveMentionIndices = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ListOfMentions = schema.new({ type = "list", list_member = M.TargetedSentimentMention })
+
+M.ListOfToxicContent = schema.new({ type = "list", list_member = M.ToxicContent })
+
+M.AttributeNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Polygon = schema.new({ type = "list", list_member = M.Point })
+
+M.ListOfChildBlocks = schema.new({ type = "list", list_member = M.ChildBlock })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AugmentedManifestsListItem = schema.new({
     id = id.from(_N, "AugmentedManifestsListItem"),
     type = "structure",

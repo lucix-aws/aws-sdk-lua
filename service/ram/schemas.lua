@@ -7,6 +7,50 @@ local _N = "com.amazonaws.ram"
 
 local M = {}
 
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrincipalArnOrIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceArnOrAccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceShareAssociationList = schema.new({ type = "list", list_member = M.ResourceShareAssociation })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.PermissionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceShareArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceShareInvitationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceShareInvitationList = schema.new({ type = "list", list_member = M.ResourceShareInvitation })
+
+M.TagFilters = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.ResourceShareList = schema.new({ type = "list", list_member = M.ResourceShare })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.AssociatedPermissionList = schema.new({ type = "list", list_member = M.AssociatedPermission })
+
+M.ResourceSharePermissionList = schema.new({ type = "list", list_member = M.ResourceSharePermissionSummary })
+
+M.PrincipalList = schema.new({ type = "list", list_member = M.Principal })
+
+M.ReplacePermissionAssociationsWorkIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplacePermissionAssociationsWorkList = schema.new({ type = "list", list_member = M.ReplacePermissionAssociationsWork })
+
+M.ServiceNameAndResourceTypeList = schema.new({ type = "list", list_member = M.ServiceNameAndResourceType })
+
+M.AssociatedSourceList = schema.new({ type = "list", list_member = M.AssociatedSource })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptResourceShareInvitationInput = schema.new({
     id = id.from(_N, "AcceptResourceShareInvitationRequest"),
     type = "structure",

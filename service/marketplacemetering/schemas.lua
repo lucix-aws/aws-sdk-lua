@@ -7,6 +7,14 @@ local _N = "com.amazonaws.marketplacemetering"
 
 local M = {}
 
+M.UsageRecordList = schema.new({ type = "list", list_member = M.UsageRecord })
+
+M.UsageRecordResultList = schema.new({ type = "list", list_member = M.UsageRecordResult })
+
+M.UsageAllocations = schema.new({ type = "list", list_member = M.UsageAllocation })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",

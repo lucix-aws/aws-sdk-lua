@@ -7,6 +7,12 @@ local _N = "com.amazonaws.forecastquery"
 
 local M = {}
 
+M.Filters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Predictions = schema.new({ type = "map", map_key = prelude.String, map_value = M.TimeSeries })
+
+M.TimeSeries = schema.new({ type = "list", list_member = M.DataPoint })
+
 M.InvalidInputException = schema.new({
     id = id.from(_N, "InvalidInputException"),
     type = "structure",

@@ -7,6 +7,124 @@ local _N = "com.amazonaws.emr"
 
 local M = {}
 
+M.InstanceGroupConfigList = schema.new({ type = "list", list_member = M.InstanceGroupConfig })
+
+M.InstanceGroupIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StepConfigList = schema.new({ type = "list", list_member = M.StepConfig })
+
+M.StepIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.CancelStepsInfoList = schema.new({ type = "list", list_member = M.CancelStepsInfo })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.XmlStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobFlowExecutionStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobFlowDetailList = schema.new({ type = "list", list_member = M.JobFlowDetail })
+
+M.SimplifiedApplicationList = schema.new({ type = "list", list_member = M.SimplifiedApplication })
+
+M.OSReleaseList = schema.new({ type = "list", list_member = M.OSRelease })
+
+M.CommandList = schema.new({ type = "list", list_member = M.Command })
+
+M.ClusterStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterSummaryList = schema.new({ type = "list", list_member = M.ClusterSummary })
+
+M.InstanceFleetList = schema.new({ type = "list", list_member = M.InstanceFleet })
+
+M.InstanceGroupList = schema.new({ type = "list", list_member = M.InstanceGroup })
+
+M.InstanceGroupTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.NotebookExecutionSummaryList = schema.new({ type = "list", list_member = M.NotebookExecutionSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityConfigurationList = schema.new({ type = "list", list_member = M.SecurityConfigurationSummary })
+
+M.StepStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StepSummaryList = schema.new({ type = "list", list_member = M.StepSummary })
+
+M.StudioSummaryList = schema.new({ type = "list", list_member = M.StudioSummary })
+
+M.SessionMappingSummaryList = schema.new({ type = "list", list_member = M.SessionMappingSummary })
+
+M.SupportedInstanceTypesList = schema.new({ type = "list", list_member = M.SupportedInstanceType })
+
+M.InstanceGroupModifyConfigList = schema.new({ type = "list", list_member = M.InstanceGroupModifyConfig })
+
+M.BootstrapActionConfigList = schema.new({ type = "list", list_member = M.BootstrapActionConfig })
+
+M.SupportedProductsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NewSupportedProductsList = schema.new({ type = "list", list_member = M.SupportedProductConfig })
+
+M.ApplicationList = schema.new({ type = "list", list_member = M.Application })
+
+M.ConfigurationList = schema.new({ type = "list", list_member = M.Configuration })
+
+M.PlacementGroupConfigList = schema.new({ type = "list", list_member = M.PlacementGroupConfig })
+
+M.EnvironmentVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InstanceTypeConfigList = schema.new({ type = "list", list_member = M.InstanceTypeConfig })
+
+M.PersistentAppUITypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PortRanges = schema.new({ type = "list", list_member = M.PortRange })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ScalingRuleList = schema.new({ type = "list", list_member = M.ScalingRule })
+
+M.InstanceFleetConfigList = schema.new({ type = "list", list_member = M.InstanceFleetConfig })
+
+M.XmlStringMaxLen256List = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.StepDetailList = schema.new({ type = "list", list_member = M.StepDetail })
+
+M.BootstrapActionDetailList = schema.new({ type = "list", list_member = M.BootstrapActionDetail })
+
+M.InstanceTypeSpecificationList = schema.new({ type = "list", list_member = M.InstanceTypeSpecification })
+
+M.EbsBlockDeviceList = schema.new({ type = "list", list_member = M.EbsBlockDevice })
+
+M.EbsVolumeList = schema.new({ type = "list", list_member = M.EbsVolume })
+
+M.EC2InstanceIdsToTerminateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogTypesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.XmlStringList })
+
+M.LogTypeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EbsBlockDeviceConfigList = schema.new({ type = "list", list_member = M.EbsBlockDeviceConfig })
+
+M.KeyValueList = schema.new({ type = "list", list_member = M.KeyValue })
+
+M.InstanceGroupDetailList = schema.new({ type = "list", list_member = M.InstanceGroupDetail })
+
+M.ErrorData = schema.new({ type = "list", list_member = M.StringMap })
+
+M.EC2InstanceIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDimensionList = schema.new({ type = "list", list_member = M.MetricDimension })
+
 M.VolumeSpecification = schema.new({
     id = id.from(_N, "VolumeSpecification"),
     type = "structure",
@@ -1364,7 +1482,7 @@ M.ErrorDetail = schema.new({
             type = "list",
             name = "ErrorData",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.StringMap,
         }),
         ErrorMessage = schema.new({
             id = id.from(_N, "ErrorDetail", "ErrorMessage"),
@@ -1893,10 +2011,7 @@ M.CreateStudioSessionMappingInput = schema.new({
     },
 })
 
-M.CreateStudioSessionMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateStudioSessionMappingOutput = prelude.Unit
 
 M.UsernamePassword = schema.new({
     id = id.from(_N, "UsernamePassword"),
@@ -1968,10 +2083,7 @@ M.DeleteStudioInput = schema.new({
     },
 })
 
-M.DeleteStudioOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStudioOutput = prelude.Unit
 
 M.DeleteStudioSessionMappingInput = schema.new({
     id = id.from(_N, "DeleteStudioSessionMappingInput"),
@@ -2010,10 +2122,7 @@ M.DeleteStudioSessionMappingInput = schema.new({
     },
 })
 
-M.DeleteStudioSessionMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStudioSessionMappingOutput = prelude.Unit
 
 M.DescribeClusterInput = schema.new({
     id = id.from(_N, "DescribeClusterInput"),
@@ -5002,15 +5111,9 @@ M.ModifyClusterOutput = schema.new({
     },
 })
 
-M.ModifyInstanceFleetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyInstanceFleetOutput = prelude.Unit
 
-M.ModifyInstanceGroupsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyInstanceGroupsOutput = prelude.Unit
 
 M.PutAutoScalingPolicyInput = schema.new({
     id = id.from(_N, "PutAutoScalingPolicyInput"),
@@ -5311,10 +5414,7 @@ M.SetKeepJobFlowAliveWhenNoStepsInput = schema.new({
     },
 })
 
-M.SetKeepJobFlowAliveWhenNoStepsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetKeepJobFlowAliveWhenNoStepsOutput = prelude.Unit
 
 M.SetTerminationProtectionInput = schema.new({
     id = id.from(_N, "SetTerminationProtectionInput"),
@@ -5342,10 +5442,7 @@ M.SetTerminationProtectionInput = schema.new({
     },
 })
 
-M.SetTerminationProtectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetTerminationProtectionOutput = prelude.Unit
 
 M.SetUnhealthyNodeReplacementInput = schema.new({
     id = id.from(_N, "SetUnhealthyNodeReplacementInput"),
@@ -5373,10 +5470,7 @@ M.SetUnhealthyNodeReplacementInput = schema.new({
     },
 })
 
-M.SetUnhealthyNodeReplacementOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetUnhealthyNodeReplacementOutput = prelude.Unit
 
 M.SetVisibleToAllUsersInput = schema.new({
     id = id.from(_N, "SetVisibleToAllUsersInput"),
@@ -5404,10 +5498,7 @@ M.SetVisibleToAllUsersInput = schema.new({
     },
 })
 
-M.SetVisibleToAllUsersOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetVisibleToAllUsersOutput = prelude.Unit
 
 M.NotebookS3LocationFromInput = schema.new({
     id = id.from(_N, "NotebookS3LocationFromInput"),
@@ -5567,10 +5658,7 @@ M.StopNotebookExecutionInput = schema.new({
     },
 })
 
-M.StopNotebookExecutionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopNotebookExecutionOutput = prelude.Unit
 
 M.TerminateJobFlowsInput = schema.new({
     id = id.from(_N, "TerminateJobFlowsInput"),
@@ -5589,10 +5677,7 @@ M.TerminateJobFlowsInput = schema.new({
     },
 })
 
-M.TerminateJobFlowsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TerminateJobFlowsOutput = prelude.Unit
 
 M.UpdateStudioInput = schema.new({
     id = id.from(_N, "UpdateStudioInput"),
@@ -5641,10 +5726,7 @@ M.UpdateStudioInput = schema.new({
     },
 })
 
-M.UpdateStudioOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateStudioOutput = prelude.Unit
 
 M.UpdateStudioSessionMappingInput = schema.new({
     id = id.from(_N, "UpdateStudioSessionMappingInput"),
@@ -5692,10 +5774,7 @@ M.UpdateStudioSessionMappingInput = schema.new({
     },
 })
 
-M.UpdateStudioSessionMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateStudioSessionMappingOutput = prelude.Unit
 
 M.Configuration = schema.new({
     id = id.from(_N, "Configuration"),

@@ -1122,23 +1122,23 @@ local record ValidationException
     reason: string
 end
 
-local type DatasetKind = "TABULAR" | "NON_TABULAR"
+local type UserType = "SUPER_USER" | "APP_USER"
 
-local type locationType = "INGESTION" | "SAGEMAKER"
+local type DataViewStatus = "RUNNING" | "STARTING" | "FAILED" | "CANCELLED" | "TIMEOUT" | "SUCCESS" | "PENDING" | "FAILED_CLEANUP_FAILED"
 
 local type ChangeType = "REPLACE" | "APPEND" | "MODIFY"
+
+local type DatasetKind = "TABULAR" | "NON_TABULAR"
 
 local type UserStatus = "CREATING" | "ENABLED" | "DISABLED"
 
 local type DatasetStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING"
 
-local type IngestionStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING" | "STOP_REQUESTED"
-
 local type ApiAccess = "ENABLED" | "DISABLED"
 
-local type UserType = "SUPER_USER" | "APP_USER"
+local type locationType = "INGESTION" | "SAGEMAKER"
 
-local type DataViewStatus = "RUNNING" | "STARTING" | "FAILED" | "CANCELLED" | "TIMEOUT" | "SUCCESS" | "PENDING" | "FAILED_CLEANUP_FAILED"
+local type IngestionStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING" | "STOP_REQUESTED"
 
 local record M
     AssociateUserToPermissionGroupInput: AssociateUserToPermissionGroupInput

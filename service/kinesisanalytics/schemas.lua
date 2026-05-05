@@ -7,6 +7,48 @@ local _N = "com.amazonaws.kinesisanalytics"
 
 local M = {}
 
+M.Inputs = schema.new({ type = "list", list_member = M.Input })
+
+M.Outputs = schema.new({ type = "list", list_member = M.Output })
+
+M.CloudWatchLoggingOptions = schema.new({ type = "list", list_member = M.CloudWatchLoggingOption })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ParsedInputRecords = schema.new({ type = "list", list_member = M.ParsedInputRecord })
+
+M.ProcessedInputRecords = schema.new({ type = "list", list_member = prelude.String })
+
+M.RawInputRecords = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationSummaries = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.InputConfigurations = schema.new({ type = "list", list_member = M.InputConfiguration })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.InputDescriptions = schema.new({ type = "list", list_member = M.InputDescription })
+
+M.OutputDescriptions = schema.new({ type = "list", list_member = M.OutputDescription })
+
+M.ReferenceDataSourceDescriptions = schema.new({ type = "list", list_member = M.ReferenceDataSourceDescription })
+
+M.CloudWatchLoggingOptionDescriptions = schema.new({ type = "list", list_member = M.CloudWatchLoggingOptionDescription })
+
+M.RecordColumns = schema.new({ type = "list", list_member = M.RecordColumn })
+
+M.ParsedInputRecord = schema.new({ type = "list", list_member = prelude.String })
+
+M.InputUpdates = schema.new({ type = "list", list_member = M.InputUpdate })
+
+M.OutputUpdates = schema.new({ type = "list", list_member = M.OutputUpdate })
+
+M.ReferenceDataSourceUpdates = schema.new({ type = "list", list_member = M.ReferenceDataSourceUpdate })
+
+M.CloudWatchLoggingOptionUpdates = schema.new({ type = "list", list_member = M.CloudWatchLoggingOptionUpdate })
+
+M.InAppStreamNames = schema.new({ type = "list", list_member = prelude.String })
+
 M.CloudWatchLoggingOption = schema.new({
     id = id.from(_N, "CloudWatchLoggingOption"),
     type = "structure",

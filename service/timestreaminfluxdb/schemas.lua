@@ -7,6 +7,28 @@ local _N = "com.amazonaws.timestreaminfluxdb"
 
 local M = {}
 
+M.ResponseTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbClusterSummaryList = schema.new({ type = "list", list_member = M.DbClusterSummary })
+
+M.VpcSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbInstanceForClusterSummaryList = schema.new({ type = "list", list_member = M.DbInstanceForClusterSummary })
+
+M.DbInstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbInstanceSummaryList = schema.new({ type = "list", list_member = M.DbInstanceSummary })
+
+M.InstanceModeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbParameterGroupSummaryList = schema.new({ type = "list", list_member = M.DbParameterGroupSummary })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -3505,10 +3527,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -3537,10 +3556,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

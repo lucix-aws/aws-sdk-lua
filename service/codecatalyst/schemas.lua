@@ -7,6 +7,48 @@ local _N = "com.amazonaws.codecatalyst"
 
 local M = {}
 
+M.AccessTokenSummaries = schema.new({ type = "list", list_member = M.AccessTokenSummary })
+
+M.SpaceSummaries = schema.new({ type = "list", list_member = M.SpaceSummary })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.DevEnvironmentSummaryList = schema.new({ type = "list", list_member = M.DevEnvironmentSummary })
+
+M.EventLogEntries = schema.new({ type = "list", list_member = M.EventLogEntry })
+
+M.ProjectListFilters = schema.new({ type = "list", list_member = M.ProjectListFilter })
+
+M.ProjectSummaries = schema.new({ type = "list", list_member = M.ProjectSummary })
+
+M.RepositoriesInput = schema.new({ type = "list", list_member = M.RepositoryInput })
+
+M.IdeConfigurationList = schema.new({ type = "list", list_member = M.IdeConfiguration })
+
+M.DevEnvironmentRepositorySummaries = schema.new({ type = "list", list_member = M.DevEnvironmentRepositorySummary })
+
+M.Ides = schema.new({ type = "list", list_member = M.Ide })
+
+M.DevEnvironmentSessionsSummaryList = schema.new({ type = "list", list_member = M.DevEnvironmentSessionSummary })
+
+M.ListSourceRepositoriesItems = schema.new({ type = "list", list_member = M.ListSourceRepositoriesItem })
+
+M.WorkflowSortCriteriaList = schema.new({ type = "list", list_member = M.WorkflowSortCriteria })
+
+M.WorkflowSummaries = schema.new({ type = "list", list_member = M.WorkflowSummary })
+
+M.WorkflowRunSortCriteriaList = schema.new({ type = "list", list_member = M.WorkflowRunSortCriteria })
+
+M.WorkflowRunSummaries = schema.new({ type = "list", list_member = M.WorkflowRunSummary })
+
+M.WorkflowRunStatusReasons = schema.new({ type = "list", list_member = M.WorkflowRunStatusReason })
+
+M.ListSourceRepositoryBranchesItems = schema.new({ type = "list", list_member = M.ListSourceRepositoryBranchesItem })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExecuteCommandSessionConfigurationArguments = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4015,10 +4057,7 @@ M.UpdateSpaceOutput = schema.new({
     },
 })
 
-M.VerifySessionInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.VerifySessionInput = prelude.Unit
 
 M.VerifySessionOutput = schema.new({
     id = id.from(_N, "VerifySessionResponse"),

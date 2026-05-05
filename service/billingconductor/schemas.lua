@@ -7,6 +7,78 @@ local _N = "com.amazonaws.billingconductor"
 
 local M = {}
 
+M.GroupByAttributesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingGroupCostReportResultsList = schema.new({ type = "list", list_member = M.BillingGroupCostReportResultElement })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AccountAssociationsList = schema.new({ type = "list", list_member = M.AccountAssociationsListElement })
+
+M.BillingGroupCostReportList = schema.new({ type = "list", list_member = M.BillingGroupCostReportElement })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingGroupList = schema.new({ type = "list", list_member = M.BillingGroupListElement })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomLineItemList = schema.new({ type = "list", list_member = M.CustomLineItemListElement })
+
+M.CustomLineItemBatchAssociationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociateResourcesResponseList = schema.new({ type = "list", list_member = M.AssociateResourceResponseElement })
+
+M.CustomLineItemBatchDisassociationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisassociateResourcesResponseList = schema.new({ type = "list", list_member = M.DisassociateResourceResponseElement })
+
+M.CustomLineItemVersionList = schema.new({ type = "list", list_member = M.CustomLineItemVersionListElement })
+
+M.ListResourcesAssociatedToCustomLineItemResponseList = schema.new({ type = "list", list_member = M.ListResourcesAssociatedToCustomLineItemResponseElement })
+
+M.PricingPlanList = schema.new({ type = "list", list_member = M.PricingPlanListElement })
+
+M.PricingRuleArnsInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.PricingRuleArnsNonEmptyInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.PricingPlanArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.PricingRuleList = schema.new({ type = "list", list_member = M.PricingRuleListElement })
+
+M.PricingRuleArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIdFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingGroupArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingGroupStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrimaryAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingGroupTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringSearches = schema.new({ type = "list", list_member = M.StringSearch })
+
+M.ResponsibilityTransferArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomLineItemNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomLineItemArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.LineItemFiltersList = schema.new({ type = "list", list_member = M.LineItemFilter })
+
+M.AttributesList = schema.new({ type = "list", list_member = M.Attribute })
+
+M.CustomLineItemAssociationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LineItemFilterValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

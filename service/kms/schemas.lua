@@ -7,6 +7,40 @@ local _N = "com.amazonaws.kms"
 
 local M = {}
 
+M.GrantOperationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GrantTokenList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EncryptionContextType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DryRunModifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomKeyStoresList = schema.new({ type = "list", list_member = M.CustomKeyStoresListEntry })
+
+M.EncryptionAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SigningAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyAgreementAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AliasList = schema.new({ type = "list", list_member = M.AliasListEntry })
+
+M.GrantList = schema.new({ type = "list", list_member = M.GrantListEntry })
+
+M.PolicyNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RotationsList = schema.new({ type = "list", list_member = M.RotationsListEntry })
+
+M.KeyList = schema.new({ type = "list", list_member = M.KeyListEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MacAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MultiRegionKeyList = schema.new({ type = "list", list_member = M.MultiRegionKey })
+
 M.AliasListEntry = schema.new({
     id = id.from(_N, "AliasListEntry"),
     type = "structure",
@@ -343,10 +377,7 @@ M.CreateAliasInput = schema.new({
     },
 })
 
-M.CreateAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateAliasOutput = prelude.Unit
 
 M.InvalidAliasNameException = schema.new({
     id = id.from(_N, "InvalidAliasNameException"),
@@ -1591,10 +1622,7 @@ M.DeleteAliasInput = schema.new({
     },
 })
 
-M.DeleteAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAliasOutput = prelude.Unit
 
 M.DeleteCustomKeyStoreInput = schema.new({
     id = id.from(_N, "DeleteCustomKeyStoreRequest"),
@@ -1878,10 +1906,7 @@ M.DisableKeyInput = schema.new({
     },
 })
 
-M.DisableKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableKeyOutput = prelude.Unit
 
 M.DisableKeyRotationInput = schema.new({
     id = id.from(_N, "DisableKeyRotationRequest"),
@@ -1899,10 +1924,7 @@ M.DisableKeyRotationInput = schema.new({
     },
 })
 
-M.DisableKeyRotationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableKeyRotationOutput = prelude.Unit
 
 M.DisconnectCustomKeyStoreInput = schema.new({
     id = id.from(_N, "DisconnectCustomKeyStoreRequest"),
@@ -1941,10 +1963,7 @@ M.EnableKeyInput = schema.new({
     },
 })
 
-M.EnableKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableKeyOutput = prelude.Unit
 
 M.EnableKeyRotationInput = schema.new({
     id = id.from(_N, "EnableKeyRotationRequest"),
@@ -1968,10 +1987,7 @@ M.EnableKeyRotationInput = schema.new({
     },
 })
 
-M.EnableKeyRotationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableKeyRotationOutput = prelude.Unit
 
 M.EncryptInput = schema.new({
     id = id.from(_N, "EncryptRequest"),
@@ -3608,10 +3624,7 @@ M.PutKeyPolicyInput = schema.new({
     },
 })
 
-M.PutKeyPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutKeyPolicyOutput = prelude.Unit
 
 M.ReEncryptInput = schema.new({
     id = id.from(_N, "ReEncryptRequest"),
@@ -3849,10 +3862,7 @@ M.RetireGrantInput = schema.new({
     },
 })
 
-M.RetireGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RetireGrantOutput = prelude.Unit
 
 M.RevokeGrantInput = schema.new({
     id = id.from(_N, "RevokeGrantRequest"),
@@ -3885,10 +3895,7 @@ M.RevokeGrantInput = schema.new({
     },
 })
 
-M.RevokeGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RevokeGrantOutput = prelude.Unit
 
 M.RotateKeyOnDemandInput = schema.new({
     id = id.from(_N, "RotateKeyOnDemandRequest"),
@@ -4076,10 +4083,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -4107,10 +4111,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAliasInput = schema.new({
     id = id.from(_N, "UpdateAliasRequest"),
@@ -4137,10 +4138,7 @@ M.UpdateAliasInput = schema.new({
     },
 })
 
-M.UpdateAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAliasOutput = prelude.Unit
 
 M.UpdateCustomKeyStoreInput = schema.new({
     id = id.from(_N, "UpdateCustomKeyStoreRequest"),
@@ -4243,10 +4241,7 @@ M.UpdateKeyDescriptionInput = schema.new({
     },
 })
 
-M.UpdateKeyDescriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateKeyDescriptionOutput = prelude.Unit
 
 M.UpdatePrimaryRegionInput = schema.new({
     id = id.from(_N, "UpdatePrimaryRegionRequest"),
@@ -4273,10 +4268,7 @@ M.UpdatePrimaryRegionInput = schema.new({
     },
 })
 
-M.UpdatePrimaryRegionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdatePrimaryRegionOutput = prelude.Unit
 
 M.VerifyInput = schema.new({
     id = id.from(_N, "VerifyRequest"),

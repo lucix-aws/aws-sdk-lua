@@ -7,6 +7,16 @@ local _N = "com.amazonaws.cloudcontrol"
 
 local M = {}
 
+M.HooksProgressEvent = schema.new({ type = "list", list_member = M.HookProgressEvent })
+
+M.ResourceRequestStatusSummaries = schema.new({ type = "list", list_member = M.ProgressEvent })
+
+M.ResourceDescriptions = schema.new({ type = "list", list_member = M.ResourceDescription })
+
+M.Operations = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperationStatuses = schema.new({ type = "list", list_member = prelude.String })
+
 M.AlreadyExistsException = schema.new({
     id = id.from(_N, "AlreadyExistsException"),
     type = "structure",

@@ -7,6 +7,12 @@ local _N = "com.amazonaws.cloudfrontkeyvaluestore"
 
 local M = {}
 
+M.ListKeysResponseList = schema.new({ type = "list", list_member = M.ListKeysResponseListItem })
+
+M.PutKeyRequestsList = schema.new({ type = "list", list_member = M.PutKeyRequestListItem })
+
+M.DeleteKeyRequestsList = schema.new({ type = "list", list_member = M.DeleteKeyRequestListItem })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

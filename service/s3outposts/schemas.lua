@@ -7,6 +7,12 @@ local _N = "com.amazonaws.s3outposts"
 
 local M = {}
 
+M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.Outposts = schema.new({ type = "list", list_member = M.Outpost })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -205,10 +211,7 @@ M.DeleteEndpointInput = schema.new({
     },
 })
 
-M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEndpointOutput = prelude.Unit
 
 M.FailedReason = schema.new({
     id = id.from(_N, "FailedReason"),

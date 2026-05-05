@@ -7,6 +7,40 @@ local _N = "com.amazonaws.codegurureviewer"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProviderTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeReviewSummaries = schema.new({ type = "list", list_member = M.CodeReviewSummary })
+
+M.UserIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationFeedbackSummaries = schema.new({ type = "list", list_member = M.RecommendationFeedbackSummary })
+
+M.RecommendationSummaries = schema.new({ type = "list", list_member = M.RecommendationSummary })
+
+M.RepositoryAssociationStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.Names = schema.new({ type = "list", list_member = prelude.String })
+
+M.Owners = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryAssociationSummaries = schema.new({ type = "list", list_member = M.RepositoryAssociationSummary })
+
+M.Reactions = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleTags = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

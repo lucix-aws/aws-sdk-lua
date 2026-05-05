@@ -1338,13 +1338,13 @@ end
 
 local type EnvironmentState = "READY_FOR_DEPLOYMENT" | "DEPLOYING" | "ROLLING_BACK" | "ROLLED_BACK" | "REVERTED"
 
-local type GrowthType = "LINEAR" | "EXPONENTIAL"
-
-local type ReplicateTo = "NONE" | "SSM_DOCUMENT"
+local type DeploymentState = "BAKING" | "VALIDATING" | "DEPLOYING" | "COMPLETE" | "ROLLING_BACK" | "ROLLED_BACK" | "REVERTED"
 
 local type DeletionProtectionCheck = "ACCOUNT_DEFAULT" | "APPLY" | "BYPASS"
 
-local type DeploymentState = "BAKING" | "VALIDATING" | "DEPLOYING" | "COMPLETE" | "ROLLING_BACK" | "ROLLED_BACK" | "REVERTED"
+local type ReplicateTo = "NONE" | "SSM_DOCUMENT"
+
+local type GrowthType = "LINEAR" | "EXPONENTIAL"
 
 local record M
     CreateApplicationInput: CreateApplicationInput

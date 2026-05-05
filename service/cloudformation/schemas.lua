@@ -7,6 +7,176 @@ local _N = "com.amazonaws.cloudformation"
 
 local M = {}
 
+M.TypeConfigurationIdentifiers = schema.new({ type = "list", list_member = M.TypeConfigurationIdentifier })
+
+M.BatchDescribeTypeConfigurationsErrors = schema.new({ type = "list", list_member = M.BatchDescribeTypeConfigurationsError })
+
+M.UnprocessedTypeConfigurations = schema.new({ type = "list", list_member = M.TypeConfigurationIdentifier })
+
+M.TypeConfigurationDetailsList = schema.new({ type = "list", list_member = M.TypeConfigurationDetails })
+
+M.ResourcesToSkip = schema.new({ type = "list", list_member = prelude.String })
+
+M.Parameters = schema.new({ type = "list", list_member = M.Parameter })
+
+M.Capabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ResourcesToImport = schema.new({ type = "list", list_member = M.ResourceToImport })
+
+M.ResourceDefinitions = schema.new({ type = "list", list_member = M.ResourceDefinition })
+
+M.AccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceMappings = schema.new({ type = "list", list_member = M.ResourceMapping })
+
+M.StackDefinitions = schema.new({ type = "list", list_member = M.StackDefinition })
+
+M.RetainResources = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountLimitList = schema.new({ type = "list", list_member = M.AccountLimit })
+
+M.Changes = schema.new({ type = "list", list_member = M.Change })
+
+M.ChangeSetHooks = schema.new({ type = "list", list_member = M.ChangeSetHook })
+
+M.OperationEvents = schema.new({ type = "list", list_member = M.OperationEvent })
+
+M.ResourceDetails = schema.new({ type = "list", list_member = M.ResourceDetail })
+
+M.ScanFilters = schema.new({ type = "list", list_member = M.ScanFilter })
+
+M.StackEvents = schema.new({ type = "list", list_member = M.StackEvent })
+
+M.StackIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackResourceDriftStatusFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackResourceDrifts = schema.new({ type = "list", list_member = M.StackResourceDrift })
+
+M.StackResources = schema.new({ type = "list", list_member = M.StackResource })
+
+M.Stacks = schema.new({ type = "list", list_member = M.Stack })
+
+M.RequiredActivatedTypes = schema.new({ type = "list", list_member = M.RequiredActivatedType })
+
+M.LogicalResourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnnotationList = schema.new({ type = "list", list_member = M.Annotation })
+
+M.StageList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterDeclarations = schema.new({ type = "list", list_member = M.ParameterDeclaration })
+
+M.TransformsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceIdentifierSummaries = schema.new({ type = "list", list_member = M.ResourceIdentifierSummary })
+
+M.StackIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChangeSetSummaries = schema.new({ type = "list", list_member = M.ChangeSetSummary })
+
+M.Exports = schema.new({ type = "list", list_member = M.Export })
+
+M.TemplateSummaries = schema.new({ type = "list", list_member = M.TemplateSummary })
+
+M.HookResultSummaries = schema.new({ type = "list", list_member = M.HookResultSummary })
+
+M.Imports = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScannedResourceIdentifiers = schema.new({ type = "list", list_member = M.ScannedResourceIdentifier })
+
+M.RelatedResources = schema.new({ type = "list", list_member = M.ScannedResource })
+
+M.ScannedResources = schema.new({ type = "list", list_member = M.ScannedResource })
+
+M.ResourceScanSummaries = schema.new({ type = "list", list_member = M.ResourceScanSummary })
+
+M.StackInstanceResourceDriftsSummaries = schema.new({ type = "list", list_member = M.StackInstanceResourceDriftsSummary })
+
+M.StackInstanceFilters = schema.new({ type = "list", list_member = M.StackInstanceFilter })
+
+M.StackInstanceSummaries = schema.new({ type = "list", list_member = M.StackInstanceSummary })
+
+M.StackRefactorActions = schema.new({ type = "list", list_member = M.StackRefactorAction })
+
+M.StackRefactorExecutionStatusFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackRefactorSummaries = schema.new({ type = "list", list_member = M.StackRefactorSummary })
+
+M.StackResourceSummaries = schema.new({ type = "list", list_member = M.StackResourceSummary })
+
+M.StackStatusFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackSummaries = schema.new({ type = "list", list_member = M.StackSummary })
+
+M.StackSetAutoDeploymentTargetSummaries = schema.new({ type = "list", list_member = M.StackSetAutoDeploymentTargetSummary })
+
+M.OperationResultFilters = schema.new({ type = "list", list_member = M.OperationResultFilter })
+
+M.StackSetOperationResultSummaries = schema.new({ type = "list", list_member = M.StackSetOperationResultSummary })
+
+M.StackSetOperationSummaries = schema.new({ type = "list", list_member = M.StackSetOperationSummary })
+
+M.StackSetSummaries = schema.new({ type = "list", list_member = M.StackSetSummary })
+
+M.RegistrationTokenList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TypeSummaries = schema.new({ type = "list", list_member = M.TypeSummary })
+
+M.TypeVersionSummaries = schema.new({ type = "list", list_member = M.TypeVersionSummary })
+
+M.JazzLogicalResourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TemplateParameters = schema.new({ type = "list", list_member = M.TemplateParameter })
+
+M.RollbackTriggers = schema.new({ type = "list", list_member = M.RollbackTrigger })
+
+M.StackSetARNList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhysicalResourceIdContext = schema.new({ type = "list", list_member = M.PhysicalResourceIdContextKeyValuePair })
+
+M.PropertyDifferences = schema.new({ type = "list", list_member = M.PropertyDifference })
+
+M.ResourceIdentifierProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.WarningDetails = schema.new({ type = "list", list_member = M.WarningDetail })
+
+M.ResourceTypeFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.Outputs = schema.new({ type = "list", list_member = M.Output })
+
+M.LastOperations = schema.new({ type = "list", list_member = M.OperationEntry })
+
+M.SupportedMajorVersions = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ResourceIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.JazzResourceIdentifierProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StackRefactorTagResources = schema.new({ type = "list", list_member = M.Tag })
+
+M.StackRefactorUntagResources = schema.new({ type = "list", list_member = prelude.String })
+
+M.Scope = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceDriftIgnoredAttributes = schema.new({ type = "list", list_member = M.ResourceDriftIgnoredAttribute })
+
+M.ResourceChangeDetails = schema.new({ type = "list", list_member = M.ResourceChangeDetail })
+
+M.AllowedValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.WarningProperties = schema.new({ type = "list", list_member = M.WarningProperty })
+
 M.AccountGateResult = schema.new({
     id = id.from(_N, "AccountGateResult"),
     type = "structure",
@@ -505,10 +675,7 @@ M.CancelUpdateStackInput = schema.new({
     },
 })
 
-M.CancelUpdateStackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelUpdateStackOutput = prelude.Unit
 
 M.TokenAlreadyExistsException = schema.new({
     id = id.from(_N, "TokenAlreadyExistsException"),
@@ -2257,10 +2424,7 @@ M.DeleteGeneratedTemplateInput = schema.new({
     },
 })
 
-M.DeleteGeneratedTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGeneratedTemplateOutput = prelude.Unit
 
 M.GeneratedTemplateNotFoundException = schema.new({
     id = id.from(_N, "GeneratedTemplateNotFoundException"),
@@ -2319,10 +2483,7 @@ M.DeleteStackInput = schema.new({
     },
 })
 
-M.DeleteStackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStackOutput = prelude.Unit
 
 M.DeleteStackInstancesInput = schema.new({
     id = id.from(_N, "DeleteStackInstancesInput"),
@@ -5606,10 +5767,7 @@ M.ExecuteStackRefactorInput = schema.new({
     },
 })
 
-M.ExecuteStackRefactorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ExecuteStackRefactorOutput = prelude.Unit
 
 M.GetGeneratedTemplateInput = schema.new({
     id = id.from(_N, "GetGeneratedTemplateInput"),
@@ -8814,10 +8972,7 @@ M.SetStackPolicyInput = schema.new({
     },
 })
 
-M.SetStackPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetStackPolicyOutput = prelude.Unit
 
 M.SetTypeConfigurationInput = schema.new({
     id = id.from(_N, "SetTypeConfigurationInput"),
@@ -8951,10 +9106,7 @@ M.SignalResourceInput = schema.new({
     },
 })
 
-M.SignalResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SignalResourceOutput = prelude.Unit
 
 M.ResourceScanLimitExceededException = schema.new({
     id = id.from(_N, "ResourceScanLimitExceededException"),

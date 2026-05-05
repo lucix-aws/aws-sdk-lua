@@ -7,6 +7,62 @@ local _N = "com.amazonaws.dlm"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CrossRegionCopyTargetList = schema.new({ type = "list", list_member = M.CrossRegionCopyTarget })
+
+M.ParameterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetTagsFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagsToAddFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecyclePolicySummaryList = schema.new({ type = "list", list_member = M.LifecyclePolicySummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceLocationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetTagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ScheduleList = schema.new({ type = "list", list_member = M.Schedule })
+
+M.ActionList = schema.new({ type = "list", list_member = M.Action })
+
+M.ExcludeVolumeTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludeTagsList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ExcludeDataVolumeTagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagsToAddList = schema.new({ type = "list", list_member = M.Tag })
+
+M.VariableTagsList = schema.new({ type = "list", list_member = M.Tag })
+
+M.CrossRegionCopyRules = schema.new({ type = "list", list_member = M.CrossRegionCopyRule })
+
+M.ShareRules = schema.new({ type = "list", list_member = M.ShareRule })
+
+M.SnapshotOwnerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrossRegionCopyActionList = schema.new({ type = "list", list_member = M.CrossRegionCopyAction })
+
+M.TimesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScriptsList = schema.new({ type = "list", list_member = M.Script })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ShareTargetAccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StagesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.EncryptionConfiguration = schema.new({
     id = id.from(_N, "EncryptionConfiguration"),
     type = "structure",

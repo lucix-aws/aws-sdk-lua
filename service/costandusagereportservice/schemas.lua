@@ -7,6 +7,16 @@ local _N = "com.amazonaws.costandusagereportservice"
 
 local M = {}
 
+M.ReportDefinitionList = schema.new({ type = "list", list_member = M.ReportDefinition })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchemaElementList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalArtifactList = schema.new({ type = "list", list_member = prelude.String })
+
 M.DeleteReportDefinitionInput = schema.new({
     id = id.from(_N, "DeleteReportDefinitionRequest"),
     type = "structure",

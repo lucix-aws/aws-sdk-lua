@@ -7,6 +7,46 @@ local _N = "com.amazonaws.marketplaceagreement"
 
 local M = {}
 
+M.BatchCreateBillingAdjustmentRequestEntryList = schema.new({ type = "list", list_member = M.BatchCreateBillingAdjustmentRequestEntry })
+
+M.BatchCreateBillingAdjustmentItemList = schema.new({ type = "list", list_member = M.BatchCreateBillingAdjustmentItem })
+
+M.BatchCreateBillingAdjustmentErrorList = schema.new({ type = "list", list_member = M.BatchCreateBillingAdjustmentError })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AcceptedTermList = schema.new({ type = "list", list_member = M.AcceptedTerm })
+
+M.AgreementCancellationRequestSummaryList = schema.new({ type = "list", list_member = M.AgreementCancellationRequestSummary })
+
+M.AgreementInvoiceLineItemGroupSummaries = schema.new({ type = "list", list_member = M.AgreementInvoiceLineItemGroupSummary })
+
+M.PaymentRequestSummaryList = schema.new({ type = "list", list_member = M.PaymentRequestSummary })
+
+M.BillingAdjustmentSummaryList = schema.new({ type = "list", list_member = M.BillingAdjustmentSummary })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.AgreementViewSummaryList = schema.new({ type = "list", list_member = M.AgreementViewSummary })
+
+M.Resources = schema.new({ type = "list", list_member = M.Resource })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentList = schema.new({ type = "list", list_member = M.DocumentItem })
+
+M.UsageBasedRateCardList = schema.new({ type = "list", list_member = M.UsageBasedRateCardItem })
+
+M.ConfigurableUpfrontRateCardList = schema.new({ type = "list", list_member = M.ConfigurableUpfrontRateCardItem })
+
+M.ScheduleList = schema.new({ type = "list", list_member = M.ScheduleItem })
+
+M.GrantList = schema.new({ type = "list", list_member = M.GrantItem })
+
+M.DimensionList = schema.new({ type = "list", list_member = M.Dimension })
+
+M.RateCardList = schema.new({ type = "list", list_member = M.RateCardItem })
+
 M.ByolPricingTerm = schema.new({
     id = id.from(_N, "ByolPricingTerm"),
     type = "structure",

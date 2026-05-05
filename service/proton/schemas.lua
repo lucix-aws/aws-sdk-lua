@@ -7,6 +7,60 @@ local _N = "com.amazonaws.proton"
 
 local M = {}
 
+M.RepositorySyncDefinitionList = schema.new({ type = "list", list_member = M.RepositorySyncDefinition })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.OutputsList = schema.new({ type = "list", list_member = M.Output })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProvisionedResourceList = schema.new({ type = "list", list_member = M.ProvisionedResource })
+
+M.ComponentSummaryList = schema.new({ type = "list", list_member = M.ComponentSummary })
+
+M.DeploymentSummaryList = schema.new({ type = "list", list_member = M.DeploymentSummary })
+
+M.EnvironmentAccountConnectionStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentAccountConnectionSummaryList = schema.new({ type = "list", list_member = M.EnvironmentAccountConnectionSummary })
+
+M.EnvironmentTemplateFilterList = schema.new({ type = "list", list_member = M.EnvironmentTemplateFilter })
+
+M.EnvironmentSummaryList = schema.new({ type = "list", list_member = M.EnvironmentSummary })
+
+M.EnvironmentTemplateSummaryList = schema.new({ type = "list", list_member = M.EnvironmentTemplateSummary })
+
+M.EnvironmentTemplateVersionSummaryList = schema.new({ type = "list", list_member = M.EnvironmentTemplateVersionSummary })
+
+M.RepositorySummaryList = schema.new({ type = "list", list_member = M.RepositorySummary })
+
+M.ListServiceInstancesFilterList = schema.new({ type = "list", list_member = M.ListServiceInstancesFilter })
+
+M.ServiceInstanceSummaryList = schema.new({ type = "list", list_member = M.ServiceInstanceSummary })
+
+M.ServiceSummaryList = schema.new({ type = "list", list_member = M.ServiceSummary })
+
+M.ServiceTemplateSummaryList = schema.new({ type = "list", list_member = M.ServiceTemplateSummary })
+
+M.ServiceTemplateVersionSummaryList = schema.new({ type = "list", list_member = M.ServiceTemplateVersionSummary })
+
+M.CompatibleEnvironmentTemplateInputList = schema.new({ type = "list", list_member = M.CompatibleEnvironmentTemplateInput })
+
+M.ServiceTemplateSupportedComponentSourceInputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositorySyncEvents = schema.new({ type = "list", list_member = M.RepositorySyncEvent })
+
+M.ResourceSyncEvents = schema.new({ type = "list", list_member = M.ResourceSyncEvent })
+
+M.LatestSyncBlockers = schema.new({ type = "list", list_member = M.SyncBlocker })
+
+M.SyncBlockerContexts = schema.new({ type = "list", list_member = M.SyncBlockerContext })
+
+M.CompatibleEnvironmentTemplateList = schema.new({ type = "list", list_member = M.CompatibleEnvironmentTemplate })
+
+M.ComponentDeploymentIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptEnvironmentAccountConnectionInput = schema.new({
     id = id.from(_N, "AcceptEnvironmentAccountConnectionInput"),
     type = "structure",

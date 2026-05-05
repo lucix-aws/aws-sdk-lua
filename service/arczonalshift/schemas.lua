@@ -7,6 +7,30 @@ local _N = "com.amazonaws.arczonalshift"
 
 local M = {}
 
+M.AutoshiftSummaries = schema.new({ type = "list", list_member = M.AutoshiftSummary })
+
+M.ManagedResourceSummaries = schema.new({ type = "list", list_member = M.ManagedResourceSummary })
+
+M.AppliedWeights = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Float })
+
+M.ZonalShiftsInResource = schema.new({ type = "list", list_member = M.ZonalShiftInResource })
+
+M.AutoshiftsInResource = schema.new({ type = "list", list_member = M.AutoshiftInResource })
+
+M.BlockedWindows = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockedDates = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockingAlarms = schema.new({ type = "list", list_member = M.ControlCondition })
+
+M.AllowedWindows = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutcomeAlarms = schema.new({ type = "list", list_member = M.ControlCondition })
+
+M.ZonalShiftSummaries = schema.new({ type = "list", list_member = M.ZonalShiftSummary })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

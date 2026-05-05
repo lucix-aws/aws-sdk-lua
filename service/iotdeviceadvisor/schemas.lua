@@ -7,6 +7,24 @@ local _N = "com.amazonaws.iotdeviceadvisor"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SuiteDefinitionInformationList = schema.new({ type = "list", list_member = M.SuiteDefinitionInformation })
+
+M.SuiteRunsList = schema.new({ type = "list", list_member = M.SuiteRunInformation })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceUnderTestList = schema.new({ type = "list", list_member = M.DeviceUnderTest })
+
+M.SelectedTestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupResultList = schema.new({ type = "list", list_member = M.GroupResult })
+
+M.TestCaseRuns = schema.new({ type = "list", list_member = M.TestCaseRun })
+
+M.TestCaseScenariosList = schema.new({ type = "list", list_member = M.TestCaseScenario })
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",

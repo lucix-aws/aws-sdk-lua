@@ -7,6 +7,26 @@ local _N = "com.amazonaws.personalizeruntime"
 
 local M = {}
 
+M.FilterValues = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ActionList = schema.new({ type = "list", list_member = M.PredictedAction })
+
+M.InputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Context = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetadataColumns = schema.new({ type = "map", map_key = prelude.String, map_value = M.ColumnNamesList })
+
+M.ItemList = schema.new({ type = "list", list_member = M.PredictedItem })
+
+M.PromotionList = schema.new({ type = "list", list_member = M.Promotion })
+
+M.ColumnNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReasonList = schema.new({ type = "list", list_member = prelude.String })
+
 M.PredictedAction = schema.new({
     id = id.from(_N, "PredictedAction"),
     type = "structure",

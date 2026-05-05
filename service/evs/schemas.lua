@@ -7,6 +7,54 @@ local _N = "com.amazonaws.evs"
 
 local M = {}
 
+M.VcfVersionList = schema.new({ type = "list", list_member = M.VcfVersionInfo })
+
+M.InstanceTypeEsxVersionsList = schema.new({ type = "list", list_member = M.InstanceTypeEsxVersionsInfo })
+
+M.ResponseTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentSummaryList = schema.new({ type = "list", list_member = M.EnvironmentSummary })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.LicenseInfoList = schema.new({ type = "list", list_member = M.LicenseInfo })
+
+M.HostInfoForCreateList = schema.new({ type = "list", list_member = M.HostInfoForCreate })
+
+M.VmIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VmEntitlementList = schema.new({ type = "list", list_member = M.VmEntitlement })
+
+M.ConnectorList = schema.new({ type = "list", list_member = M.Connector })
+
+M.HostList = schema.new({ type = "list", list_member = M.Host })
+
+M.VlanList = schema.new({ type = "list", list_member = M.Vlan })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteServerPeeringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChecksList = schema.new({ type = "list", list_member = M.Check })
+
+M.SecretList = schema.new({ type = "list", list_member = M.Secret })
+
+M.EipAssociationList = schema.new({ type = "list", list_member = M.EipAssociation })
+
+M.ConnectorsChecksList = schema.new({ type = "list", list_member = M.ConnectorCheck })
+
+M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EsxVersionList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AssociateEipToVlanInput = schema.new({
     id = id.from(_N, "AssociateEipToVlanRequest"),
     type = "structure",

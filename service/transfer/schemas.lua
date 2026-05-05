@@ -7,6 +7,80 @@ local _N = "com.amazonaws.transfer"
 
 local M = {}
 
+M.HomeDirectoryMappings = schema.new({ type = "list", list_member = M.HomeDirectoryMapEntry })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ListedAccesses = schema.new({ type = "list", list_member = M.ListedAccess })
+
+M.ListedExecutions = schema.new({ type = "list", list_member = M.ListedExecution })
+
+M.ConnectorFileTransferResults = schema.new({ type = "list", list_member = M.ConnectorFileTransferResult })
+
+M.ListedHostKeys = schema.new({ type = "list", list_member = M.ListedHostKey })
+
+M.SecurityPolicyNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilePaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomHttpHeaders = schema.new({ type = "list", list_member = M.CustomHttpHeader })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListedAgreements = schema.new({ type = "list", list_member = M.ListedAgreement })
+
+M.ListedCertificates = schema.new({ type = "list", list_member = M.ListedCertificate })
+
+M.ListedConnectors = schema.new({ type = "list", list_member = M.ListedConnector })
+
+M.ListedProfiles = schema.new({ type = "list", list_member = M.ListedProfile })
+
+M.CertificateIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListedServers = schema.new({ type = "list", list_member = M.ListedServer })
+
+M.Protocols = schema.new({ type = "list", list_member = prelude.String })
+
+M.StructuredLogDestinations = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListedUsers = schema.new({ type = "list", list_member = M.ListedUser })
+
+M.ListedWebApps = schema.new({ type = "list", list_member = M.ListedWebApp })
+
+M.ListedWorkflows = schema.new({ type = "list", list_member = M.ListedWorkflow })
+
+M.WorkflowSteps = schema.new({ type = "list", list_member = M.WorkflowStep })
+
+M.SecondaryGids = schema.new({ type = "list", list_member = prelude.Long })
+
+M.SecurityPolicyOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityPolicyProtocols = schema.new({ type = "list", list_member = prelude.String })
+
+M.SftpConnectorTrustedHostKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceManagedEgressIpAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddressAllocationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.As2Transports = schema.new({ type = "list", list_member = prelude.String })
+
+M.OnUploadWorkflowDetails = schema.new({ type = "list", list_member = M.WorkflowDetail })
+
+M.OnPartialUploadWorkflowDetails = schema.new({ type = "list", list_member = M.WorkflowDetail })
+
+M.SshPublicKeys = schema.new({ type = "list", list_member = M.SshPublicKey })
+
+M.ExecutionStepResults = schema.new({ type = "list", list_member = M.ExecutionStepResult })
+
+M.As2AsyncMdnServerIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3Tags = schema.new({ type = "list", list_member = M.S3Tag })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -375,10 +449,7 @@ M.DeleteAgreementInput = schema.new({
     },
 })
 
-M.DeleteAgreementOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAgreementOutput = prelude.Unit
 
 M.DescribeAgreementInput = schema.new({
     id = id.from(_N, "DescribeAgreementRequest"),
@@ -837,10 +908,7 @@ M.DeleteCertificateInput = schema.new({
     },
 })
 
-M.DeleteCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCertificateOutput = prelude.Unit
 
 M.DescribeCertificateInput = schema.new({
     id = id.from(_N, "DescribeCertificateRequest"),
@@ -1416,10 +1484,7 @@ M.DeleteConnectorInput = schema.new({
     },
 })
 
-M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectorOutput = prelude.Unit
 
 M.DescribeConnectorInput = schema.new({
     id = id.from(_N, "DescribeConnectorRequest"),
@@ -2946,10 +3011,7 @@ M.DeleteAccessInput = schema.new({
     },
 })
 
-M.DeleteAccessOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessOutput = prelude.Unit
 
 M.DeleteHostKeyInput = schema.new({
     id = id.from(_N, "DeleteHostKeyRequest"),
@@ -2976,10 +3038,7 @@ M.DeleteHostKeyInput = schema.new({
     },
 })
 
-M.DeleteHostKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHostKeyOutput = prelude.Unit
 
 M.DeleteProfileInput = schema.new({
     id = id.from(_N, "DeleteProfileRequest"),
@@ -2997,10 +3056,7 @@ M.DeleteProfileInput = schema.new({
     },
 })
 
-M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProfileOutput = prelude.Unit
 
 M.DeleteServerInput = schema.new({
     id = id.from(_N, "DeleteServerRequest"),
@@ -3018,10 +3074,7 @@ M.DeleteServerInput = schema.new({
     },
 })
 
-M.DeleteServerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteServerOutput = prelude.Unit
 
 M.DeleteSshPublicKeyInput = schema.new({
     id = id.from(_N, "DeleteSshPublicKeyRequest"),
@@ -3057,10 +3110,7 @@ M.DeleteSshPublicKeyInput = schema.new({
     },
 })
 
-M.DeleteSshPublicKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSshPublicKeyOutput = prelude.Unit
 
 M.DeleteUserInput = schema.new({
     id = id.from(_N, "DeleteUserRequest"),
@@ -3087,10 +3137,7 @@ M.DeleteUserInput = schema.new({
     },
 })
 
-M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserOutput = prelude.Unit
 
 M.DeleteWebAppInput = schema.new({
     id = id.from(_N, "DeleteWebAppRequest"),
@@ -3108,10 +3155,7 @@ M.DeleteWebAppInput = schema.new({
     },
 })
 
-M.DeleteWebAppOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWebAppOutput = prelude.Unit
 
 M.DeleteWebAppCustomizationInput = schema.new({
     id = id.from(_N, "DeleteWebAppCustomizationRequest"),
@@ -3129,10 +3173,7 @@ M.DeleteWebAppCustomizationInput = schema.new({
     },
 })
 
-M.DeleteWebAppCustomizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWebAppCustomizationOutput = prelude.Unit
 
 M.DeleteWorkflowInput = schema.new({
     id = id.from(_N, "DeleteWorkflowRequest"),
@@ -3150,10 +3191,7 @@ M.DeleteWorkflowInput = schema.new({
     },
 })
 
-M.DeleteWorkflowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkflowOutput = prelude.Unit
 
 M.DescribeAccessInput = schema.new({
     id = id.from(_N, "DescribeAccessRequest"),
@@ -6020,10 +6058,7 @@ M.StartServerInput = schema.new({
     },
 })
 
-M.StartServerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartServerOutput = prelude.Unit
 
 M.StopServerInput = schema.new({
     id = id.from(_N, "StopServerRequest"),
@@ -6041,10 +6076,7 @@ M.StopServerInput = schema.new({
     },
 })
 
-M.StopServerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopServerOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -6072,10 +6104,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TestConnectionInput = schema.new({
     id = id.from(_N, "TestConnectionRequest"),
@@ -6232,10 +6261,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAccessInput = schema.new({
     id = id.from(_N, "UpdateAccessRequest"),

@@ -7,6 +7,8 @@ local _N = "com.amazonaws.applicationcostprofiler"
 
 local M = {}
 
+M.ReportDefinitionList = schema.new({ type = "list", list_member = M.ReportDefinition })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

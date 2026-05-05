@@ -7,6 +7,18 @@ local _N = "com.amazonaws.interconnect"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AttachPointDescriptorList = schema.new({ type = "list", list_member = M.AttachPointDescriptor })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionSummariesList = schema.new({ type = "list", list_member = M.ConnectionSummary })
+
+M.EnvironmentList = schema.new({ type = "list", list_member = M.Environment })
+
+M.BandwidthList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AttachPoint = schema.new({
     id = id.from(_N, "AttachPoint"),
     type = "union",

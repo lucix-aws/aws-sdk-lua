@@ -1782,31 +1782,7 @@ end
 local record NoSuchKey
 end
 
-local type MetadataDirective = "COPY" | "REPLACE"
-
-local type ArchiveStatus = "ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS"
-
-local type LocationType = "AvailabilityZone" | "LocalZone"
-
-local type Payer = "Requester" | "BucketOwner"
-
-local type ObjectLockMode = "GOVERNANCE" | "COMPLIANCE"
-
-local type ChecksumType = "COMPOSITE" | "FULL_OBJECT"
-
-local type BucketAccelerateStatus = "Enabled" | "Suspended"
-
-local type ReplicationStatus = "COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED"
-
-local type SessionMode = "ReadOnly" | "ReadWrite"
-
-local type TaggingDirective = "COPY" | "REPLACE"
-
-local type ExpressionType = "SQL"
-
 local type BucketNamespace = "account-regional" | "global"
-
-local type MFADeleteStatus = "Enabled" | "Disabled"
 
 local type ObjectOwnership = "BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced"
 
@@ -1814,27 +1790,51 @@ local type BucketLocationConstraint = "af-south-1" | "ap-east-1" | "ap-east-2" |
 
 local type BucketCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read"
 
-local type ServerSideEncryption = "AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"
-
-local type ObjectCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"
-
-local type ObjectLockLegalHoldStatus = "ON" | "OFF"
-
-local type BucketVersioningStatus = "Enabled" | "Suspended"
+local type TransitionDefaultMinimumObjectSize = "varies_by_storage_class" | "all_storage_classes_128K"
 
 local type RequestPayer = "requester"
 
-local type StorageClass = "STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"
+local type RequestCharged = "requester"
 
-local type EncodingType = "url"
+local type ChecksumAlgorithm = "CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME" | "SHA512" | "MD5" | "XXHASH64" | "XXHASH3" | "XXHASH128"
+
+local type BucketAccelerateStatus = "Enabled" | "Suspended"
+
+local type MFADeleteStatus = "Enabled" | "Disabled"
+
+local type ExpressionType = "SQL"
 
 local type ChecksumMode = "ENABLED"
 
-local type RequestCharged = "requester"
+local type ObjectCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"
 
-local type TransitionDefaultMinimumObjectSize = "varies_by_storage_class" | "all_storage_classes_128K"
+local type TaggingDirective = "COPY" | "REPLACE"
 
-local type ChecksumAlgorithm = "CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME" | "SHA512" | "MD5" | "XXHASH64" | "XXHASH3" | "XXHASH128"
+local type EncodingType = "url"
+
+local type ServerSideEncryption = "AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"
+
+local type ObjectLockLegalHoldStatus = "ON" | "OFF"
+
+local type ArchiveStatus = "ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS"
+
+local type StorageClass = "STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"
+
+local type ObjectLockMode = "GOVERNANCE" | "COMPLIANCE"
+
+local type ChecksumType = "COMPOSITE" | "FULL_OBJECT"
+
+local type MetadataDirective = "COPY" | "REPLACE"
+
+local type LocationType = "AvailabilityZone" | "LocalZone"
+
+local type SessionMode = "ReadOnly" | "ReadWrite"
+
+local type ReplicationStatus = "COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED"
+
+local type BucketVersioningStatus = "Enabled" | "Suspended"
+
+local type Payer = "Requester" | "BucketOwner"
 
 local record M
     AbortMultipartUploadInput: AbortMultipartUploadInput

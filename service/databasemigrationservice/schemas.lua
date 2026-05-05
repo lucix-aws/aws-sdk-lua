@@ -7,6 +7,150 @@ local _N = "com.amazonaws.databasemigrationservice"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.StartRecommendationsRequestEntryList = schema.new({ type = "list", list_member = M.StartRecommendationsRequestEntry })
+
+M.BatchStartRecommendationsErrorEntryList = schema.new({ type = "list", list_member = M.BatchStartRecommendationsErrorEntry })
+
+M.SourceDataSettings = schema.new({ type = "list", list_member = M.SourceDataSetting })
+
+M.TargetDataSettings = schema.new({ type = "list", list_member = M.TargetDataSetting })
+
+M.EventCategoriesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataProviderDescriptorDefinitionList = schema.new({ type = "list", list_member = M.DataProviderDescriptorDefinition })
+
+M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountQuotaList = schema.new({ type = "list", list_member = M.AccountQuota })
+
+M.IndividualAssessmentNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.CertificateList = schema.new({ type = "list", list_member = M.Certificate })
+
+M.ConnectionList = schema.new({ type = "list", list_member = M.Connection })
+
+M.DataMigrations = schema.new({ type = "list", list_member = M.DataMigration })
+
+M.DataProviderList = schema.new({ type = "list", list_member = M.DataProvider })
+
+M.EndpointList = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.EndpointSettingsList = schema.new({ type = "list", list_member = M.EndpointSetting })
+
+M.SupportedEndpointTypeList = schema.new({ type = "list", list_member = M.SupportedEndpointType })
+
+M.EngineVersionList = schema.new({ type = "list", list_member = M.EngineVersion })
+
+M.EventCategoryGroupList = schema.new({ type = "list", list_member = M.EventCategoryGroup })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.EventSubscriptionsList = schema.new({ type = "list", list_member = M.EventSubscription })
+
+M.SchemaConversionRequestList = schema.new({ type = "list", list_member = M.SchemaConversionRequest })
+
+M.CollectorResponses = schema.new({ type = "list", list_member = M.CollectorResponse })
+
+M.DatabaseList = schema.new({ type = "list", list_member = M.DatabaseResponse })
+
+M.FleetAdvisorLsaAnalysisResponseList = schema.new({ type = "list", list_member = M.FleetAdvisorLsaAnalysisResponse })
+
+M.FleetAdvisorSchemaObjectList = schema.new({ type = "list", list_member = M.FleetAdvisorSchemaObjectResponse })
+
+M.FleetAdvisorSchemaList = schema.new({ type = "list", list_member = M.SchemaResponse })
+
+M.InstanceProfileList = schema.new({ type = "list", list_member = M.InstanceProfile })
+
+M.MetadataModelReferenceList = schema.new({ type = "list", list_member = M.MetadataModelReference })
+
+M.MigrationProjectList = schema.new({ type = "list", list_member = M.MigrationProject })
+
+M.OrderableReplicationInstanceList = schema.new({ type = "list", list_member = M.OrderableReplicationInstance })
+
+M.PendingMaintenanceActions = schema.new({ type = "list", list_member = M.ResourcePendingMaintenanceActions })
+
+M.LimitationList = schema.new({ type = "list", list_member = M.Limitation })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.ReplicationConfigList = schema.new({ type = "list", list_member = M.ReplicationConfig })
+
+M.ReplicationInstanceList = schema.new({ type = "list", list_member = M.ReplicationInstance })
+
+M.ReplicationInstanceTaskLogsList = schema.new({ type = "list", list_member = M.ReplicationInstanceTaskLog })
+
+M.ReplicationList = schema.new({ type = "list", list_member = M.Replication })
+
+M.ReplicationSubnetGroups = schema.new({ type = "list", list_member = M.ReplicationSubnetGroup })
+
+M.ReplicationTableStatisticsList = schema.new({ type = "list", list_member = M.TableStatistics })
+
+M.ReplicationTaskAssessmentResultList = schema.new({ type = "list", list_member = M.ReplicationTaskAssessmentResult })
+
+M.ReplicationTaskAssessmentRunList = schema.new({ type = "list", list_member = M.ReplicationTaskAssessmentRun })
+
+M.ReplicationTaskIndividualAssessmentList = schema.new({ type = "list", list_member = M.ReplicationTaskIndividualAssessment })
+
+M.ReplicationTaskList = schema.new({ type = "list", list_member = M.ReplicationTask })
+
+M.SchemaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableStatisticsList = schema.new({ type = "list", list_member = M.TableStatistics })
+
+M.AssessmentReportTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableListToReload = schema.new({ type = "list", list_member = M.TableToReload })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IncludeTestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludeTestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PendingMaintenanceActionDetails = schema.new({ type = "list", list_member = M.PendingMaintenanceAction })
+
+M.PublicIpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataMigrationCidrBlock = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.DataProviderDescriptorList = schema.new({ type = "list", list_member = M.DataProviderDescriptor })
+
+M.VpcSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.VpcSecurityGroupMembership })
+
+M.ReplicationInstancePublicIpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationInstancePrivateIpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationInstanceIpv6AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.PremigrationAssessmentStatusList = schema.new({ type = "list", list_member = M.PremigrationAssessmentStatus })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EndpointSettingEnumValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailableUpgradesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CollectorsList = schema.new({ type = "list", list_member = M.CollectorShortInfoResponse })
+
+M.AvailabilityZonesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedFault = schema.new({
     id = id.from(_N, "AccessDeniedFault"),
     type = "structure",
@@ -6770,10 +6914,7 @@ M.DeleteFleetAdvisorCollectorInput = schema.new({
     },
 })
 
-M.DeleteFleetAdvisorCollectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFleetAdvisorCollectorOutput = prelude.Unit
 
 M.DeleteFleetAdvisorDatabasesInput = schema.new({
     id = id.from(_N, "DeleteFleetAdvisorDatabasesRequest"),
@@ -12562,10 +12703,7 @@ M.RemoveTagsFromResourceOutput = schema.new({
     type = "structure",
 })
 
-M.RunFleetAdvisorLsaAnalysisInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RunFleetAdvisorLsaAnalysisInput = prelude.Unit
 
 M.RunFleetAdvisorLsaAnalysisOutput = schema.new({
     id = id.from(_N, "RunFleetAdvisorLsaAnalysisResponse"),
@@ -12996,10 +13134,7 @@ M.StartRecommendationsInput = schema.new({
     },
 })
 
-M.StartRecommendationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartRecommendationsOutput = prelude.Unit
 
 M.StartReplicationInput = schema.new({
     id = id.from(_N, "StartReplicationMessage"),

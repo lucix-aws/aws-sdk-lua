@@ -7,6 +7,98 @@ local _N = "com.amazonaws.appflow"
 
 local M = {}
 
+M.ExecutionIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationFlowConfigList = schema.new({ type = "list", list_member = M.DestinationFlowConfig })
+
+M.Tasks = schema.new({ type = "list", list_member = M.Task })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConnectorEntityFieldList = schema.new({ type = "list", list_member = M.ConnectorEntityField })
+
+M.ConnectorProfileNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorProfileDetailList = schema.new({ type = "list", list_member = M.ConnectorProfile })
+
+M.ConnectorTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorConfigurationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConnectorConfiguration })
+
+M.ConnectorList = schema.new({ type = "list", list_member = M.ConnectorDetail })
+
+M.MetadataCatalogDetails = schema.new({ type = "list", list_member = M.MetadataCatalogDetail })
+
+M.FlowExecutionList = schema.new({ type = "list", list_member = M.ExecutionRecord })
+
+M.ConnectorEntityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConnectorEntityList })
+
+M.FlowList = schema.new({ type = "list", list_member = M.FlowDefinition })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchedulingFrequencyTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorModeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorRuntimeSettingList = schema.new({ type = "list", list_member = M.ConnectorRuntimeSetting })
+
+M.SupportedApiVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedOperatorList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedWriteOperationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedDataTransferTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedDataTransferApis = schema.new({ type = "list", list_member = M.DataTransferApi })
+
+M.ConnectorEntityList = schema.new({ type = "list", list_member = M.ConnectorEntity })
+
+M.SourceFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskPropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CustomAuthConfigList = schema.new({ type = "list", list_member = M.CustomAuthConfig })
+
+M.CustomProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProfilePropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.OAuthScopeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SalesforceDataTransferApiList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OAuth2GrantTypeSupportedList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TokenUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthCodeUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OAuth2CustomPropertiesList = schema.new({ type = "list", list_member = M.OAuth2CustomParameter })
+
+M.ConnectorSuppliedValueOptionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TokenUrlCustomProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CredentialsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IdFieldNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthParameterList = schema.new({ type = "list", list_member = M.AuthParameter })
+
+M.FilterOperatorList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorSuppliedValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathPrefixHierarchy = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,48 @@ local _N = "com.amazonaws.detective"
 
 local M = {}
 
+M.AccountIdExtendedList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MembershipDatasourcesList = schema.new({ type = "list", list_member = M.MembershipDatasources })
+
+M.UnprocessedAccountList = schema.new({ type = "list", list_member = M.UnprocessedAccount })
+
+M.GraphArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnprocessedGraphList = schema.new({ type = "list", list_member = M.UnprocessedGraph })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountList = schema.new({ type = "list", list_member = M.Account })
+
+M.MemberDetailList = schema.new({ type = "list", list_member = M.MemberDetail })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasourcePackageIngestDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.DatasourcePackageIngestDetail })
+
+M.GraphList = schema.new({ type = "list", list_member = M.Graph })
+
+M.Indicators = schema.new({ type = "list", list_member = M.Indicator })
+
+M.InvestigationDetails = schema.new({ type = "list", list_member = M.InvestigationDetail })
+
+M.AdministratorList = schema.new({ type = "list", list_member = M.Administrator })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasourcePackageList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasourcePackageIngestHistory = schema.new({ type = "map", map_key = prelude.String, map_value = M.LastIngestStateChangeDates })
+
+M.VolumeUsageByDatasourcePackage = schema.new({ type = "map", map_key = prelude.String, map_value = M.DatasourcePackageUsageInfo })
+
+M.DatasourcePackageIngestStates = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LastIngestStateChangeDates = schema.new({ type = "map", map_key = prelude.String, map_value = M.TimestampForCollection })
+
 M.AcceptInvitationInput = schema.new({
     id = id.from(_N, "AcceptInvitationRequest"),
     type = "structure",
@@ -23,10 +65,7 @@ M.AcceptInvitationInput = schema.new({
     },
 })
 
-M.AcceptInvitationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AcceptInvitationOutput = prelude.Unit
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -633,10 +672,7 @@ M.DeleteGraphInput = schema.new({
     },
 })
 
-M.DeleteGraphOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGraphOutput = prelude.Unit
 
 M.DeleteMembersInput = schema.new({
     id = id.from(_N, "DeleteMembersRequest"),
@@ -733,15 +769,9 @@ M.TooManyRequestsException = schema.new({
     },
 })
 
-M.DisableOrganizationAdminAccountInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableOrganizationAdminAccountInput = prelude.Unit
 
-M.DisableOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableOrganizationAdminAccountOutput = prelude.Unit
 
 M.DisassociateMembershipInput = schema.new({
     id = id.from(_N, "DisassociateMembershipRequest"),
@@ -759,10 +789,7 @@ M.DisassociateMembershipInput = schema.new({
     },
 })
 
-M.DisassociateMembershipOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateMembershipOutput = prelude.Unit
 
 M.EnableOrganizationAdminAccountInput = schema.new({
     id = id.from(_N, "EnableOrganizationAdminAccountRequest"),
@@ -780,10 +807,7 @@ M.EnableOrganizationAdminAccountInput = schema.new({
     },
 })
 
-M.EnableOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableOrganizationAdminAccountOutput = prelude.Unit
 
 M.GetInvestigationInput = schema.new({
     id = id.from(_N, "GetInvestigationRequest"),
@@ -1841,10 +1865,7 @@ M.RejectInvitationInput = schema.new({
     },
 })
 
-M.RejectInvitationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RejectInvitationOutput = prelude.Unit
 
 M.StartInvestigationInput = schema.new({
     id = id.from(_N, "StartInvestigationRequest"),
@@ -1935,10 +1956,7 @@ M.StartMonitoringMemberInput = schema.new({
     },
 })
 
-M.StartMonitoringMemberOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartMonitoringMemberOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -2032,10 +2050,7 @@ M.UpdateDatasourcePackagesInput = schema.new({
     },
 })
 
-M.UpdateDatasourcePackagesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDatasourcePackagesOutput = prelude.Unit
 
 M.UpdateInvestigationStateInput = schema.new({
     id = id.from(_N, "UpdateInvestigationStateRequest"),
@@ -2071,10 +2086,7 @@ M.UpdateInvestigationStateInput = schema.new({
     },
 })
 
-M.UpdateInvestigationStateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateInvestigationStateOutput = prelude.Unit
 
 M.UpdateOrganizationConfigurationInput = schema.new({
     id = id.from(_N, "UpdateOrganizationConfigurationRequest"),
@@ -2101,10 +2113,7 @@ M.UpdateOrganizationConfigurationInput = schema.new({
     },
 })
 
-M.UpdateOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateOrganizationConfigurationOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

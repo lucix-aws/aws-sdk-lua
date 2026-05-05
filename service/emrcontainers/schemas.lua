@@ -7,6 +7,40 @@ local _N = "com.amazonaws.emrcontainers"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.JobRunStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobRuns = schema.new({ type = "list", list_member = M.JobRun })
+
+M.JobTemplates = schema.new({ type = "list", list_member = M.JobTemplate })
+
+M.EndpointTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.EndpointStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.SecurityConfigurations = schema.new({ type = "list", list_member = M.SecurityConfiguration })
+
+M.VirtualClusterStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.VirtualClusters = schema.new({ type = "list", list_member = M.VirtualCluster })
+
+M.TemplateParameterInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TemplateParameterConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TemplateParameterConfiguration })
+
+M.ConfigurationList = schema.new({ type = "list", list_member = M.Configuration })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntryPointArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.SensitivePropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.TLSCertificateConfiguration = schema.new({
     id = id.from(_N, "TLSCertificateConfiguration"),
     type = "structure",

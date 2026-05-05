@@ -7,6 +7,60 @@ local _N = "com.amazonaws.ssmsap"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ApplicationSummaryList = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.ComponentSummaryList = schema.new({ type = "list", list_member = M.ComponentSummary })
+
+M.ConfigurationCheckDefinitionList = schema.new({ type = "list", list_member = M.ConfigurationCheckDefinition })
+
+M.ConfigurationCheckOperationList = schema.new({ type = "list", list_member = M.ConfigurationCheckOperation })
+
+M.DatabaseSummaryList = schema.new({ type = "list", list_member = M.DatabaseSummary })
+
+M.OperationEventList = schema.new({ type = "list", list_member = M.OperationEvent })
+
+M.OperationList = schema.new({ type = "list", list_member = M.Operation })
+
+M.SubCheckResultList = schema.new({ type = "list", list_member = M.SubCheckResult })
+
+M.RuleResultList = schema.new({ type = "list", list_member = M.RuleResult })
+
+M.InstanceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationCredentialList = schema.new({ type = "list", list_member = M.ApplicationCredential })
+
+M.ComponentInfoList = schema.new({ type = "list", list_member = M.ComponentInfo })
+
+M.ConfigurationCheckTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HostList = schema.new({ type = "list", list_member = M.Host })
+
+M.ComponentArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperationProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IpAddressList = schema.new({ type = "list", list_member = M.IpAddressMember })
+
+M.ApplicationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubCheckReferencesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleResultMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.Application = schema.new({
     id = id.from(_N, "Application"),
     type = "structure",

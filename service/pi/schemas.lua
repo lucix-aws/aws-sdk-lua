@@ -7,6 +7,62 @@ local _N = "com.amazonaws.pi"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AdditionalMetricsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricQueryFilterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResponsePartitionKeyList = schema.new({ type = "list", list_member = M.ResponsePartitionKey })
+
+M.DimensionKeyDescriptionList = schema.new({ type = "list", list_member = M.DimensionKeyDescription })
+
+M.RequestedDimensionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DimensionKeyDetailList = schema.new({ type = "list", list_member = M.DimensionKeyDetail })
+
+M.FeatureMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FeatureMetadata })
+
+M.MetricQueryList = schema.new({ type = "list", list_member = M.MetricQuery })
+
+M.MetricKeyDataPointsList = schema.new({ type = "list", list_member = M.MetricKeyDataPoints })
+
+M.DimensionsMetricList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizedActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDimensionsList = schema.new({ type = "list", list_member = M.MetricDimensionGroups })
+
+M.MetricTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseResourceMetricList = schema.new({ type = "list", list_member = M.ResponseResourceMetric })
+
+M.AnalysisReportSummaryList = schema.new({ type = "list", list_member = M.AnalysisReportSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SanitizedStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightList = schema.new({ type = "list", list_member = M.Insight })
+
+M.DimensionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdditionalMetricsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.MetricValuesList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.DataPointsList = schema.new({ type = "list", list_member = M.DataPoint })
+
+M.DimensionGroupDetailList = schema.new({ type = "list", list_member = M.DimensionGroupDetail })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.DataList = schema.new({ type = "list", list_member = M.Data })
+
+M.DimensionDetailList = schema.new({ type = "list", list_member = M.DimensionDetail })
+
+M.DescriptiveMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.PerformanceInsightsMetric = schema.new({
     id = id.from(_N, "PerformanceInsightsMetric"),
     type = "structure",

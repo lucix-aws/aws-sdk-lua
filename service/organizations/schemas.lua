@@ -7,6 +7,50 @@ local _N = "com.amazonaws.organizations"
 
 local M = {}
 
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.Accounts = schema.new({ type = "list", list_member = M.Account })
+
+M.EnabledServicePrincipals = schema.new({ type = "list", list_member = M.EnabledServicePrincipal })
+
+M.Children = schema.new({ type = "list", list_member = M.Child })
+
+M.CreateAccountStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.CreateAccountStatuses = schema.new({ type = "list", list_member = M.CreateAccountStatus })
+
+M.DelegatedAdministrators = schema.new({ type = "list", list_member = M.DelegatedAdministrator })
+
+M.DelegatedServices = schema.new({ type = "list", list_member = M.DelegatedService })
+
+M.EffectivePolicyValidationErrors = schema.new({ type = "list", list_member = M.EffectivePolicyValidationError })
+
+M.Handshakes = schema.new({ type = "list", list_member = M.Handshake })
+
+M.ResponsibilityTransfers = schema.new({ type = "list", list_member = M.ResponsibilityTransfer })
+
+M.OrganizationalUnits = schema.new({ type = "list", list_member = M.OrganizationalUnit })
+
+M.Parents = schema.new({ type = "list", list_member = M.Parent })
+
+M.Policies = schema.new({ type = "list", list_member = M.PolicySummary })
+
+M.Roots = schema.new({ type = "list", list_member = M.Root })
+
+M.PolicyTargets = schema.new({ type = "list", list_member = M.PolicyTargetSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.HandshakeParties = schema.new({ type = "list", list_member = M.HandshakeParty })
+
+M.HandshakeResources = schema.new({ type = "list", list_member = M.HandshakeResource })
+
+M.PolicyTypes = schema.new({ type = "list", list_member = M.PolicyTypeSummary })
+
+M.Paths = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptHandshakeInput = schema.new({
     id = id.from(_N, "AcceptHandshakeRequest"),
     type = "structure",
@@ -469,10 +513,7 @@ M.AttachPolicyInput = schema.new({
     },
 })
 
-M.AttachPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachPolicyOutput = prelude.Unit
 
 M.DuplicatePolicyAttachmentException = schema.new({
     id = id.from(_N, "DuplicatePolicyAttachmentException"),
@@ -602,10 +643,7 @@ M.CloseAccountInput = schema.new({
     },
 })
 
-M.CloseAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CloseAccountOutput = prelude.Unit
 
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
@@ -1234,15 +1272,9 @@ M.DeclineHandshakeInput = schema.new({
     },
 })
 
-M.DeleteOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOrganizationInput = prelude.Unit
 
-M.DeleteOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOrganizationOutput = prelude.Unit
 
 M.OrganizationNotEmptyException = schema.new({
     id = id.from(_N, "OrganizationNotEmptyException"),
@@ -1276,10 +1308,7 @@ M.DeleteOrganizationalUnitInput = schema.new({
     },
 })
 
-M.DeleteOrganizationalUnitOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOrganizationalUnitOutput = prelude.Unit
 
 M.OrganizationalUnitNotEmptyException = schema.new({
     id = id.from(_N, "OrganizationalUnitNotEmptyException"),
@@ -1329,10 +1358,7 @@ M.DeletePolicyInput = schema.new({
     },
 })
 
-M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyOutput = prelude.Unit
 
 M.PolicyInUseException = schema.new({
     id = id.from(_N, "PolicyInUseException"),
@@ -1350,15 +1376,9 @@ M.PolicyInUseException = schema.new({
     },
 })
 
-M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyInput = prelude.Unit
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.ResourcePolicyNotFoundException = schema.new({
     id = id.from(_N, "ResourcePolicyNotFoundException"),
@@ -1401,10 +1421,7 @@ M.DeregisterDelegatedAdministratorInput = schema.new({
     },
 })
 
-M.DeregisterDelegatedAdministratorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterDelegatedAdministratorOutput = prelude.Unit
 
 M.DescribeAccountInput = schema.new({
     id = id.from(_N, "DescribeAccountRequest"),
@@ -1581,10 +1598,7 @@ M.DescribeHandshakeInput = schema.new({
     },
 })
 
-M.DescribeOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeOrganizationInput = prelude.Unit
 
 M.DescribeOrganizationOutput = schema.new({
     id = id.from(_N, "DescribeOrganizationResponse"),
@@ -1660,10 +1674,7 @@ M.DescribePolicyOutput = schema.new({
     },
 })
 
-M.DescribeResourcePolicyInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeResourcePolicyInput = prelude.Unit
 
 M.ResourcePolicySummary = schema.new({
     id = id.from(_N, "ResourcePolicySummary"),
@@ -1877,10 +1888,7 @@ M.DetachPolicyInput = schema.new({
     },
 })
 
-M.DetachPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachPolicyOutput = prelude.Unit
 
 M.PolicyNotAttachedException = schema.new({
     id = id.from(_N, "PolicyNotAttachedException"),
@@ -1914,10 +1922,7 @@ M.DisableAWSServiceAccessInput = schema.new({
     },
 })
 
-M.DisableAWSServiceAccessOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableAWSServiceAccessOutput = prelude.Unit
 
 M.DisablePolicyTypeInput = schema.new({
     id = id.from(_N, "DisablePolicyTypeRequest"),
@@ -2027,10 +2032,7 @@ M.EnableAWSServiceAccessInput = schema.new({
     },
 })
 
-M.EnableAWSServiceAccessOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableAWSServiceAccessOutput = prelude.Unit
 
 M.EnablePolicyTypeInput = schema.new({
     id = id.from(_N, "EnablePolicyTypeRequest"),
@@ -2190,15 +2192,9 @@ M.InviteOrganizationToTransferResponsibilityInput = schema.new({
     },
 })
 
-M.LeaveOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.LeaveOrganizationInput = prelude.Unit
 
-M.LeaveOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.LeaveOrganizationOutput = prelude.Unit
 
 M.ListAccountsInput = schema.new({
     id = id.from(_N, "ListAccountsRequest"),
@@ -3442,10 +3438,7 @@ M.MoveAccountInput = schema.new({
     },
 })
 
-M.MoveAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.MoveAccountOutput = prelude.Unit
 
 M.SourceParentNotFoundException = schema.new({
     id = id.from(_N, "SourceParentNotFoundException"),
@@ -3525,10 +3518,7 @@ M.RegisterDelegatedAdministratorInput = schema.new({
     },
 })
 
-M.RegisterDelegatedAdministratorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterDelegatedAdministratorOutput = prelude.Unit
 
 M.RemoveAccountFromOrganizationInput = schema.new({
     id = id.from(_N, "RemoveAccountFromOrganizationRequest"),
@@ -3546,10 +3536,7 @@ M.RemoveAccountFromOrganizationInput = schema.new({
     },
 })
 
-M.RemoveAccountFromOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveAccountFromOrganizationOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -3577,10 +3564,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.InvalidResponsibilityTransferTransitionException = schema.new({
     id = id.from(_N, "InvalidResponsibilityTransferTransitionException"),
@@ -3676,10 +3660,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateOrganizationalUnitInput = schema.new({
     id = id.from(_N, "UpdateOrganizationalUnitRequest"),

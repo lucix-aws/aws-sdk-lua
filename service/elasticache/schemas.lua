@@ -7,6 +7,162 @@ local _N = "com.amazonaws.elasticache"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ReplicationGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheClusterIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProcessedUpdateActionList = schema.new({ type = "list", list_member = M.ProcessedUpdateAction })
+
+M.UnprocessedUpdateActionList = schema.new({ type = "list", list_member = M.UnprocessedUpdateAction })
+
+M.PreferredAvailabilityZoneList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheSecurityGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PreferredOutpostArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogDeliveryConfigurationRequestList = schema.new({ type = "list", list_member = M.LogDeliveryConfigurationRequest })
+
+M.SubnetIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZonesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeGroupConfigurationList = schema.new({ type = "list", list_member = M.NodeGroupConfiguration })
+
+M.UserGroupIdListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PasswordListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserIdListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UGReplicationGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UGServerlessCacheIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GlobalNodeGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicaConfigurationList = schema.new({ type = "list", list_member = M.ConfigureShard })
+
+M.RemoveReplicasList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheClusterList = schema.new({ type = "list", list_member = M.CacheCluster })
+
+M.CacheEngineVersionList = schema.new({ type = "list", list_member = M.CacheEngineVersion })
+
+M.CacheParameterGroupList = schema.new({ type = "list", list_member = M.CacheParameterGroup })
+
+M.ParametersList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.CacheNodeTypeSpecificParametersList = schema.new({ type = "list", list_member = M.CacheNodeTypeSpecificParameter })
+
+M.CacheSecurityGroups = schema.new({ type = "list", list_member = M.CacheSecurityGroup })
+
+M.CacheSubnetGroups = schema.new({ type = "list", list_member = M.CacheSubnetGroup })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.GlobalReplicationGroupList = schema.new({ type = "list", list_member = M.GlobalReplicationGroup })
+
+M.ReplicationGroupList = schema.new({ type = "list", list_member = M.ReplicationGroup })
+
+M.ReservedCacheNodeList = schema.new({ type = "list", list_member = M.ReservedCacheNode })
+
+M.ReservedCacheNodesOfferingList = schema.new({ type = "list", list_member = M.ReservedCacheNodesOffering })
+
+M.ServerlessCacheList = schema.new({ type = "list", list_member = M.ServerlessCache })
+
+M.ServerlessCacheSnapshotList = schema.new({ type = "list", list_member = M.ServerlessCacheSnapshot })
+
+M.ServiceUpdateStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceUpdateList = schema.new({ type = "list", list_member = M.ServiceUpdate })
+
+M.SnapshotList = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.UpdateActionStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateActionList = schema.new({ type = "list", list_member = M.UpdateAction })
+
+M.UserGroupList = schema.new({ type = "list", list_member = M.UserGroup })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.RegionalConfigurationList = schema.new({ type = "list", list_member = M.RegionalConfiguration })
+
+M.NodeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheNodeIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterNameValueList = schema.new({ type = "list", list_member = M.ParameterNameValue })
+
+M.ReshardingConfigurationList = schema.new({ type = "list", list_member = M.ReshardingConfiguration })
+
+M.NodeGroupsToRemoveList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeGroupsToRetainList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomerNodeEndpointList = schema.new({ type = "list", list_member = M.CustomerNodeEndpoint })
+
+M.EC2SecurityGroupList = schema.new({ type = "list", list_member = M.EC2SecurityGroup })
+
+M.ClusterIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeGroupList = schema.new({ type = "list", list_member = M.NodeGroup })
+
+M.ReplicationGroupOutpostArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogDeliveryConfigurationList = schema.new({ type = "list", list_member = M.LogDeliveryConfiguration })
+
+M.NodeSnapshotList = schema.new({ type = "list", list_member = M.NodeSnapshot })
+
+M.CacheSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.CacheSecurityGroupMembership })
+
+M.CacheNodeList = schema.new({ type = "list", list_member = M.CacheNode })
+
+M.SecurityGroupMembershipList = schema.new({ type = "list", list_member = M.SecurityGroupMembership })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.NetworkTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GlobalReplicationGroupMemberList = schema.new({ type = "list", list_member = M.GlobalReplicationGroupMember })
+
+M.GlobalNodeGroupList = schema.new({ type = "list", list_member = M.GlobalNodeGroup })
+
+M.RecurringChargeList = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.PendingLogDeliveryConfigurationList = schema.new({ type = "list", list_member = M.PendingLogDeliveryConfiguration })
+
+M.OutpostArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheNodeTypeSpecificValueList = schema.new({ type = "list", list_member = M.CacheNodeTypeSpecificValue })
+
+M.NodeGroupUpdateStatusList = schema.new({ type = "list", list_member = M.NodeGroupUpdateStatus })
+
+M.CacheNodeUpdateStatusList = schema.new({ type = "list", list_member = M.CacheNodeUpdateStatus })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeGroupMemberList = schema.new({ type = "list", list_member = M.NodeGroupMember })
+
+M.NodeGroupMemberUpdateStatusList = schema.new({ type = "list", list_member = M.NodeGroupMemberUpdateStatus })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -4779,10 +4935,7 @@ M.DeleteCacheParameterGroupInput = schema.new({
     },
 })
 
-M.DeleteCacheParameterGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCacheParameterGroupOutput = prelude.Unit
 
 M.DeleteCacheSecurityGroupInput = schema.new({
     id = id.from(_N, "DeleteCacheSecurityGroupMessage"),
@@ -4800,10 +4953,7 @@ M.DeleteCacheSecurityGroupInput = schema.new({
     },
 })
 
-M.DeleteCacheSecurityGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCacheSecurityGroupOutput = prelude.Unit
 
 M.CacheSubnetGroupInUse = schema.new({
     id = id.from(_N, "CacheSubnetGroupInUse"),
@@ -4837,10 +4987,7 @@ M.DeleteCacheSubnetGroupInput = schema.new({
     },
 })
 
-M.DeleteCacheSubnetGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCacheSubnetGroupOutput = prelude.Unit
 
 M.DeleteGlobalReplicationGroupInput = schema.new({
     id = id.from(_N, "DeleteGlobalReplicationGroupMessage"),

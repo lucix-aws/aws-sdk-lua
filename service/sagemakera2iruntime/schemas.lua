@@ -7,6 +7,10 @@ local _N = "com.amazonaws.sagemakera2iruntime"
 
 local M = {}
 
+M.HumanLoopSummaries = schema.new({ type = "list", list_member = M.HumanLoopSummary })
+
+M.ContentClassifiers = schema.new({ type = "list", list_member = prelude.String })
+
 M.DeleteHumanLoopInput = schema.new({
     id = id.from(_N, "DeleteHumanLoopRequest"),
     type = "structure",

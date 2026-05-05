@@ -2369,39 +2369,39 @@ local record ValidationException
     Message: string
 end
 
-local type Interval = "THIS_MONTH" | "THIS_WEEK" | "ONE_WEEK_AGO" | "TWO_WEEKS_AGO" | "ONE_MONTH_AGO" | "TWO_MONTHS_AGO"
+local type QueryResultType = "DOCUMENT" | "QUESTION_ANSWER" | "ANSWER"
 
-local type DataSourceSyncJobStatus = "FAILED" | "SUCCEEDED" | "SYNCING" | "INCOMPLETE" | "STOPPING" | "ABORTED" | "SYNCING_INDEXING"
-
-local type ThesaurusStatus = "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "ACTIVE_BUT_UPDATE_FAILED" | "FAILED"
-
-local type IndexEdition = "DEVELOPER_EDITION" | "ENTERPRISE_EDITION" | "GEN_AI_ENTERPRISE_EDITION"
-
-local type Mode = "ENABLED" | "LEARN_ONLY"
+local type UserContextPolicy = "ATTRIBUTE_FILTER" | "USER_TOKEN"
 
 local type MetricType = "QUERIES_BY_COUNT" | "QUERIES_BY_ZERO_CLICK_RATE" | "QUERIES_BY_ZERO_RESULT_RATE" | "DOCS_BY_CLICK_COUNT" | "AGG_QUERY_DOC_METRICS" | "TREND_QUERY_DOC_METRICS"
 
 local type FaqFileFormat = "CSV" | "CSV_WITH_HEADER" | "JSON"
 
-local type DataSourceType = "S3" | "SHAREPOINT" | "DATABASE" | "SALESFORCE" | "ONEDRIVE" | "SERVICENOW" | "CUSTOM" | "CONFLUENCE" | "GOOGLEDRIVE" | "WEBCRAWLER" | "WORKDOCS" | "FSX" | "SLACK" | "BOX" | "QUIP" | "JIRA" | "GITHUB" | "ALFRESCO" | "TEMPLATE"
-
-local type QueryResultType = "DOCUMENT" | "QUESTION_ANSWER" | "ANSWER"
-
 local type QuerySuggestionsBlockListStatus = "ACTIVE" | "CREATING" | "DELETING" | "UPDATING" | "ACTIVE_BUT_UPDATE_FAILED" | "FAILED"
 
-local type FaqStatus = "CREATING" | "UPDATING" | "ACTIVE" | "DELETING" | "FAILED"
+local type IndexEdition = "DEVELOPER_EDITION" | "ENTERPRISE_EDITION" | "GEN_AI_ENTERPRISE_EDITION"
 
-local type FeaturedResultsSetStatus = "ACTIVE" | "INACTIVE"
+local type Mode = "ENABLED" | "LEARN_ONLY"
 
-local type QuerySuggestionsStatus = "ACTIVE" | "UPDATING"
-
-local type UserContextPolicy = "ATTRIBUTE_FILTER" | "USER_TOKEN"
+local type ExperienceStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED"
 
 local type IndexStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING" | "SYSTEM_UPDATING"
 
+local type DataSourceSyncJobStatus = "FAILED" | "SUCCEEDED" | "SYNCING" | "INCOMPLETE" | "STOPPING" | "ABORTED" | "SYNCING_INDEXING"
+
 local type DataSourceStatus = "CREATING" | "DELETING" | "FAILED" | "UPDATING" | "ACTIVE"
 
-local type ExperienceStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED"
+local type Interval = "THIS_MONTH" | "THIS_WEEK" | "ONE_WEEK_AGO" | "TWO_WEEKS_AGO" | "ONE_MONTH_AGO" | "TWO_MONTHS_AGO"
+
+local type QuerySuggestionsStatus = "ACTIVE" | "UPDATING"
+
+local type FaqStatus = "CREATING" | "UPDATING" | "ACTIVE" | "DELETING" | "FAILED"
+
+local type ThesaurusStatus = "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "ACTIVE_BUT_UPDATE_FAILED" | "FAILED"
+
+local type FeaturedResultsSetStatus = "ACTIVE" | "INACTIVE"
+
+local type DataSourceType = "S3" | "SHAREPOINT" | "DATABASE" | "SALESFORCE" | "ONEDRIVE" | "SERVICENOW" | "CUSTOM" | "CONFLUENCE" | "GOOGLEDRIVE" | "WEBCRAWLER" | "WORKDOCS" | "FSX" | "SLACK" | "BOX" | "QUIP" | "JIRA" | "GITHUB" | "ALFRESCO" | "TEMPLATE"
 
 local record M
     AssociateEntitiesToExperienceInput: AssociateEntitiesToExperienceInput

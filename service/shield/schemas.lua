@@ -7,6 +7,60 @@ local _N = "com.amazonaws.shield"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.EmergencyContactList = schema.new({ type = "list", list_member = M.EmergencyContact })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ProtectionGroupMembers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttackStatisticsDataList = schema.new({ type = "list", list_member = M.AttackStatisticsDataItem })
+
+M.LogBucketList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArnFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttackSummaries = schema.new({ type = "list", list_member = M.AttackSummary })
+
+M.ProtectionGroups = schema.new({ type = "list", list_member = M.ProtectionGroup })
+
+M.Protections = schema.new({ type = "list", list_member = M.Protection })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubResourceSummaryList = schema.new({ type = "list", list_member = M.SubResourceSummary })
+
+M.SummarizedCounterList = schema.new({ type = "list", list_member = M.SummarizedCounter })
+
+M.AttackProperties = schema.new({ type = "list", list_member = M.AttackProperty })
+
+M.MitigationList = schema.new({ type = "list", list_member = M.Mitigation })
+
+M.HealthCheckIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Limits = schema.new({ type = "list", list_member = M.Limit })
+
+M.ProtectionGroupIdFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectionGroupPatternFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectedResourceTypeFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectionGroupAggregationFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArnFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectionNameFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttackVectorDescriptionList = schema.new({ type = "list", list_member = M.AttackVectorDescription })
+
+M.SummarizedAttackVectorList = schema.new({ type = "list", list_member = M.SummarizedAttackVector })
+
+M.TopContributors = schema.new({ type = "list", list_member = M.Contributor })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,256 @@ local _N = "com.amazonaws.guardduty"
 
 local M = {}
 
+M.FindingIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DetectorFeatureConfigurations = schema.new({ type = "list", list_member = M.DetectorFeatureConfiguration })
+
+M.AccountDetails = schema.new({ type = "list", list_member = M.AccountDetail })
+
+M.UnprocessedAccounts = schema.new({ type = "list", list_member = M.UnprocessedAccount })
+
+M.FindingTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Scans = schema.new({ type = "list", list_member = M.Scan })
+
+M.OrganizationFeaturesConfigurationsResults = schema.new({ type = "list", list_member = M.OrganizationFeatureConfigurationResult })
+
+M.CoverageStatisticsTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectorFeatureConfigurationsResults = schema.new({ type = "list", list_member = M.DetectorFeatureConfigurationResult })
+
+M.Findings = schema.new({ type = "list", list_member = M.Finding })
+
+M.FindingStatisticTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.MalwareProtectionPlanStatusReasonsList = schema.new({ type = "list", list_member = M.MalwareProtectionPlanStatusReason })
+
+M.ScannedResources = schema.new({ type = "list", list_member = M.ScannedResource })
+
+M.MemberDataSourceConfigurations = schema.new({ type = "list", list_member = M.MemberDataSourceConfiguration })
+
+M.Members = schema.new({ type = "list", list_member = M.Member })
+
+M.AccountFreeTrialInfos = schema.new({ type = "list", list_member = M.AccountFreeTrialInfo })
+
+M.CoverageResources = schema.new({ type = "list", list_member = M.CoverageResource })
+
+M.DetectorIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Invitations = schema.new({ type = "list", list_member = M.Invitation })
+
+M.IpSetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.MalwareProtectionPlansSummary = schema.new({ type = "list", list_member = M.MalwareProtectionPlanSummary })
+
+M.MalwareScans = schema.new({ type = "list", list_member = M.MalwareScan })
+
+M.AdminAccounts = schema.new({ type = "list", list_member = M.AdminAccount })
+
+M.Destinations = schema.new({ type = "list", list_member = M.Destination })
+
+M.ThreatEntitySetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThreatIntelSetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrustedEntitySetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemberFeaturesConfigurations = schema.new({ type = "list", list_member = M.MemberFeaturesConfiguration })
+
+M.OrganizationFeaturesConfigurations = schema.new({ type = "list", list_member = M.OrganizationFeatureConfiguration })
+
+M.Criterion = schema.new({ type = "map", map_key = prelude.String, map_value = M.Condition })
+
+M.FilterCriterionList = schema.new({ type = "list", list_member = M.FilterCriterion })
+
+M.CoverageFilterCriterionList = schema.new({ type = "list", list_member = M.CoverageFilterCriterion })
+
+M.CountByResourceType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.CountByCoverageStatus = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.CountBySeverity = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.GroupedByAccount = schema.new({ type = "list", list_member = M.AccountStatistics })
+
+M.GroupedByDate = schema.new({ type = "list", list_member = M.DateStatistics })
+
+M.GroupedByFindingType = schema.new({ type = "list", list_member = M.FindingTypeStatistics })
+
+M.GroupedByResource = schema.new({ type = "list", list_member = M.ResourceStatistics })
+
+M.GroupedBySeverity = schema.new({ type = "list", list_member = M.SeverityStatistics })
+
+M.ScanResultThreats = schema.new({ type = "list", list_member = M.ScanResultThreat })
+
+M.ScanCriterion = schema.new({ type = "map", map_key = prelude.String, map_value = M.ScanCondition })
+
+M.DataSourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageAccountResultList = schema.new({ type = "list", list_member = M.UsageAccountResult })
+
+M.UsageTopAccountsResultList = schema.new({ type = "list", list_member = M.UsageTopAccountsResult })
+
+M.UsageDataSourceResultList = schema.new({ type = "list", list_member = M.UsageDataSourceResult })
+
+M.UsageResourceResultList = schema.new({ type = "list", list_member = M.UsageResourceResult })
+
+M.UsageFeatureResultList = schema.new({ type = "list", list_member = M.UsageFeatureResult })
+
+M.ListMalwareScansFilterCriterionList = schema.new({ type = "list", list_member = M.ListMalwareScansFilterCriterion })
+
+M.DetectorAdditionalConfigurations = schema.new({ type = "list", list_member = M.DetectorAdditionalConfiguration })
+
+M.MalwareProtectionPlanObjectPrefixesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeDetails = schema.new({ type = "list", list_member = M.VolumeDetail })
+
+M.OrganizationAdditionalConfigurationResults = schema.new({ type = "list", list_member = M.OrganizationAdditionalConfigurationResult })
+
+M.DetectorAdditionalConfigurationResults = schema.new({ type = "list", list_member = M.DetectorAdditionalConfigurationResult })
+
+M.MemberFeaturesConfigurationsResults = schema.new({ type = "list", list_member = M.MemberFeaturesConfigurationResult })
+
+M.OrganizationFeatureStatisticsResults = schema.new({ type = "list", list_member = M.OrganizationFeatureStatistics })
+
+M.FreeTrialFeatureConfigurationsResults = schema.new({ type = "list", list_member = M.FreeTrialFeatureConfigurationResult })
+
+M.MemberAdditionalConfigurations = schema.new({ type = "list", list_member = M.MemberAdditionalConfiguration })
+
+M.OrganizationAdditionalConfigurations = schema.new({ type = "list", list_member = M.OrganizationAdditionalConfiguration })
+
+M.Eq = schema.new({ type = "list", list_member = prelude.String })
+
+M.Neq = schema.new({ type = "list", list_member = prelude.String })
+
+M.Equals = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotEquals = schema.new({ type = "list", list_member = prelude.String })
+
+M.Matches = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotMatches = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3BucketDetails = schema.new({ type = "list", list_member = M.S3BucketDetail })
+
+M.ItemDetailsList = schema.new({ type = "list", list_member = M.ItemDetails })
+
+M.MapEquals = schema.new({ type = "list", list_member = M.ScanConditionPair })
+
+M.UsageTopAccountsByFeatureList = schema.new({ type = "list", list_member = M.UsageTopAccountResult })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.ProductCodes = schema.new({ type = "list", list_member = M.ProductCode })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.VolumeMounts = schema.new({ type = "list", list_member = M.VolumeMount })
+
+M.ThreatIntelligenceDetails = schema.new({ type = "list", list_member = M.ThreatIntelligenceDetail })
+
+M.Sources = schema.new({ type = "list", list_member = prelude.String })
+
+M.Threats = schema.new({ type = "list", list_member = M.Threat })
+
+M.MemberAdditionalConfigurationResults = schema.new({ type = "list", list_member = M.MemberAdditionalConfigurationResult })
+
+M.OrganizationFeatureStatisticsAdditionalConfigurations = schema.new({ type = "list", list_member = M.OrganizationFeatureStatisticsAdditionalConfiguration })
+
+M.S3ObjectDetails = schema.new({ type = "list", list_member = M.S3ObjectDetail })
+
+M.Groups = schema.new({ type = "list", list_member = prelude.String })
+
+M.SessionNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Containers = schema.new({ type = "list", list_member = M.Container })
+
+M.Volumes = schema.new({ type = "list", list_member = M.Volume })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = M.SecurityGroup })
+
+M.AffectedResources = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PortProbeDetails = schema.new({ type = "list", list_member = M.PortProbeDetail })
+
+M.SourceIps = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoginAttributes = schema.new({ type = "list", list_member = M.LoginAttribute })
+
+M.Lineage = schema.new({ type = "list", list_member = M.LineageObject })
+
+M.FlagsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemoryRegionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnomalyProfiles = schema.new({ type = "map", map_key = prelude.String, map_value = M.AnomalyProfileFeatures })
+
+M.Actors = schema.new({ type = "list", list_member = M.Actor })
+
+M.Resources = schema.new({ type = "list", list_member = M.ResourceV2 })
+
+M.NetworkEndpoints = schema.new({ type = "list", list_member = M.NetworkEndpoint })
+
+M.Signals = schema.new({ type = "list", list_member = M.Signal })
+
+M.Indicators = schema.new({ type = "list", list_member = M.Indicator })
+
+M.AdditionalSequenceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Issues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ipv6Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrivateIpAddresses = schema.new({ type = "list", list_member = M.PrivateIpAddressDetails })
+
+M.ThreatNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScanThreatNames = schema.new({ type = "list", list_member = M.ScanThreatName })
+
+M.AnomalyProfileFeatures = schema.new({ type = "map", map_key = prelude.String, map_value = M.AnomalyProfileFeatureObjects })
+
+M.Behavior = schema.new({ type = "map", map_key = prelude.String, map_value = M.AnomalyUnusualBehaviorFeature })
+
+M.ItemPaths = schema.new({ type = "list", list_member = M.ItemPath })
+
+M.AnomalyProfileFeatureObjects = schema.new({ type = "list", list_member = M.AnomalyObject })
+
+M.AnomalyUnusualBehaviorFeature = schema.new({ type = "map", map_key = prelude.String, map_value = M.AnomalyObject })
+
+M.ResourceUids = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActorIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EndpointIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.IndicatorValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilePaths = schema.new({ type = "list", list_member = M.ScanFilePath })
+
+M.S3ObjectUids = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ec2NetworkInterfaceUids = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ec2InstanceUids = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerUids = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObservationTexts = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptAdministratorInvitationInput = schema.new({
     id = id.from(_N, "AcceptAdministratorInvitationRequest"),
     type = "structure",
@@ -1989,7 +2239,7 @@ M.Anomaly = schema.new({
             name = "Profiles",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.AnomalyProfileFeatureObjects }),
             traits = {
                 [traits.JSON_NAME] = { name = "profiles" },
             },
@@ -4583,10 +4833,7 @@ M.DeleteMalwareProtectionPlanInput = schema.new({
     },
 })
 
-M.DeleteMalwareProtectionPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMalwareProtectionPlanOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -12082,10 +12329,7 @@ M.GetMembersOutput = schema.new({
     },
 })
 
-M.GetOrganizationStatisticsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetOrganizationStatisticsInput = prelude.Unit
 
 M.OrganizationFeatureStatisticsAdditionalConfiguration = schema.new({
     id = id.from(_N, "OrganizationFeatureStatisticsAdditionalConfiguration"),
@@ -14870,10 +15114,7 @@ M.UpdateMalwareProtectionPlanInput = schema.new({
     },
 })
 
-M.UpdateMalwareProtectionPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateMalwareProtectionPlanOutput = prelude.Unit
 
 M.UpdateMalwareScanSettingsInput = schema.new({
     id = id.from(_N, "UpdateMalwareScanSettingsRequest"),

@@ -7,6 +7,10 @@ local _N = "com.amazonaws.appconfigdata"
 
 local M = {}
 
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InvalidParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.InvalidParameterDetail })
+
 M.InvalidParameterDetail = schema.new({
     id = id.from(_N, "InvalidParameterDetail"),
     type = "structure",

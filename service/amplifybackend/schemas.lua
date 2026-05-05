@@ -7,6 +7,26 @@ local _N = "com.amazonaws.amplifybackend"
 
 local M = {}
 
+M.ListOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfBackendJobRespObj = schema.new({ type = "list", list_member = M.BackendJobRespObj })
+
+M.ListOfS3BucketInfo = schema.new({ type = "list", list_member = M.S3BucketInfo })
+
+M.ListOfBackendAPIAuthType = schema.new({ type = "list", list_member = M.BackendAPIAuthType })
+
+M.ListOfRequiredSignUpAttributesElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfAuthenticatedElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfUnAuthenticatedElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfOAuthScopesElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfAdditionalConstraintsElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfMfaTypesElement = schema.new({ type = "list", list_member = prelude.String })
+
 M.BadRequestException = schema.new({
     id = id.from(_N, "BadRequestException"),
     type = "structure",

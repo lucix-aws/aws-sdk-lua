@@ -7,6 +7,62 @@ local _N = "com.amazonaws.ses"
 
 local M = {}
 
+M.ReceiptRulesList = schema.new({ type = "list", list_member = M.ReceiptRule })
+
+M.ConfigurationSetAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventDestinations = schema.new({ type = "list", list_member = M.EventDestination })
+
+M.IdentityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DkimAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityDkimAttributes })
+
+M.MailFromDomainAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityMailFromDomainAttributes })
+
+M.NotificationAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityNotificationAttributes })
+
+M.PolicyNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VerificationAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityVerificationAttributes })
+
+M.SendDataPointList = schema.new({ type = "list", list_member = M.SendDataPoint })
+
+M.ConfigurationSets = schema.new({ type = "list", list_member = M.ConfigurationSet })
+
+M.CustomVerificationEmailTemplates = schema.new({ type = "list", list_member = M.CustomVerificationEmailTemplate })
+
+M.ReceiptFilterList = schema.new({ type = "list", list_member = M.ReceiptFilter })
+
+M.ReceiptRuleSetsLists = schema.new({ type = "list", list_member = M.ReceiptRuleSetMetadata })
+
+M.TemplateMetadataList = schema.new({ type = "list", list_member = M.TemplateMetadata })
+
+M.AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReceiptRuleNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BouncedRecipientInfoList = schema.new({ type = "list", list_member = M.BouncedRecipientInfo })
+
+M.MessageTagList = schema.new({ type = "list", list_member = M.MessageTag })
+
+M.BulkEmailDestinationList = schema.new({ type = "list", list_member = M.BulkEmailDestination })
+
+M.BulkEmailDestinationStatusList = schema.new({ type = "list", list_member = M.BulkEmailDestinationStatus })
+
+M.VerificationTokenList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecipientsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReceiptActionsList = schema.new({ type = "list", list_member = M.ReceiptAction })
+
+M.ExtensionFieldList = schema.new({ type = "list", list_member = M.ExtensionField })
+
+M.CloudWatchDimensionConfigurations = schema.new({ type = "list", list_member = M.CloudWatchDimensionConfiguration })
+
 M.AccountSendingPausedException = schema.new({
     id = id.from(_N, "AccountSendingPausedException"),
     type = "structure",
@@ -1052,10 +1108,7 @@ M.CreateCustomVerificationEmailTemplateInput = schema.new({
     },
 })
 
-M.CreateCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateCustomVerificationEmailTemplateOutput = prelude.Unit
 
 M.CustomVerificationEmailInvalidContentException = schema.new({
     id = id.from(_N, "CustomVerificationEmailInvalidContentException"),
@@ -1862,10 +1915,7 @@ M.DeleteCustomVerificationEmailTemplateInput = schema.new({
     },
 })
 
-M.DeleteCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomVerificationEmailTemplateOutput = prelude.Unit
 
 M.DeleteIdentityInput = schema.new({
     id = id.from(_N, "DeleteIdentityRequest"),
@@ -2027,10 +2077,7 @@ M.DeleteVerifiedEmailAddressInput = schema.new({
     },
 })
 
-M.DeleteVerifiedEmailAddressOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVerifiedEmailAddressOutput = prelude.Unit
 
 M.DeliveryOptions = schema.new({
     id = id.from(_N, "DeliveryOptions"),
@@ -2295,10 +2342,7 @@ M.IdentityDkimAttributes = schema.new({
     },
 })
 
-M.GetAccountSendingEnabledInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountSendingEnabledInput = prelude.Unit
 
 M.GetAccountSendingEnabledOutput = schema.new({
     id = id.from(_N, "GetAccountSendingEnabledResponse"),
@@ -2686,10 +2730,7 @@ M.GetIdentityVerificationAttributesOutput = schema.new({
     },
 })
 
-M.GetSendQuotaInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetSendQuotaInput = prelude.Unit
 
 M.GetSendQuotaOutput = schema.new({
     id = id.from(_N, "GetSendQuotaResponse"),
@@ -2725,10 +2766,7 @@ M.GetSendQuotaOutput = schema.new({
     },
 })
 
-M.GetSendStatisticsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetSendStatisticsInput = prelude.Unit
 
 M.SendDataPoint = schema.new({
     id = id.from(_N, "SendDataPoint"),
@@ -3168,10 +3206,7 @@ M.ListTemplatesOutput = schema.new({
     },
 })
 
-M.ListVerifiedEmailAddressesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ListVerifiedEmailAddressesInput = prelude.Unit
 
 M.ListVerifiedEmailAddressesOutput = schema.new({
     id = id.from(_N, "ListVerifiedEmailAddressesResponse"),
@@ -4193,10 +4228,7 @@ M.UpdateAccountSendingEnabledInput = schema.new({
     },
 })
 
-M.UpdateAccountSendingEnabledOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAccountSendingEnabledOutput = prelude.Unit
 
 M.UpdateConfigurationSetEventDestinationInput = schema.new({
     id = id.from(_N, "UpdateConfigurationSetEventDestinationRequest"),
@@ -4255,10 +4287,7 @@ M.UpdateConfigurationSetReputationMetricsEnabledInput = schema.new({
     },
 })
 
-M.UpdateConfigurationSetReputationMetricsEnabledOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateConfigurationSetReputationMetricsEnabledOutput = prelude.Unit
 
 M.UpdateConfigurationSetSendingEnabledInput = schema.new({
     id = id.from(_N, "UpdateConfigurationSetSendingEnabledRequest"),
@@ -4286,10 +4315,7 @@ M.UpdateConfigurationSetSendingEnabledInput = schema.new({
     },
 })
 
-M.UpdateConfigurationSetSendingEnabledOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateConfigurationSetSendingEnabledOutput = prelude.Unit
 
 M.UpdateConfigurationSetTrackingOptionsInput = schema.new({
     id = id.from(_N, "UpdateConfigurationSetTrackingOptionsRequest"),
@@ -4368,10 +4394,7 @@ M.UpdateCustomVerificationEmailTemplateInput = schema.new({
     },
 })
 
-M.UpdateCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCustomVerificationEmailTemplateOutput = prelude.Unit
 
 M.UpdateReceiptRuleInput = schema.new({
     id = id.from(_N, "UpdateReceiptRuleRequest"),
@@ -4507,10 +4530,7 @@ M.VerifyEmailAddressInput = schema.new({
     },
 })
 
-M.VerifyEmailAddressOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.VerifyEmailAddressOutput = prelude.Unit
 
 M.VerifyEmailIdentityInput = schema.new({
     id = id.from(_N, "VerifyEmailIdentityRequest"),

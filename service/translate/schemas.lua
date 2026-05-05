@@ -7,6 +7,28 @@ local _N = "com.amazonaws.translate"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.LanguagesList = schema.new({ type = "list", list_member = M.Language })
+
+M.ParallelDataPropertiesList = schema.new({ type = "list", list_member = M.ParallelDataProperties })
+
+M.TerminologyPropertiesList = schema.new({ type = "list", list_member = M.TerminologyProperties })
+
+M.TextTranslationJobPropertiesList = schema.new({ type = "list", list_member = M.TextTranslationJobProperties })
+
+M.TargetLanguageCodeStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppliedTerminologyList = schema.new({ type = "list", list_member = M.AppliedTerminology })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LanguageCodeStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TermList = schema.new({ type = "list", list_member = M.Term })
+
 M.Term = schema.new({
     id = id.from(_N, "Term"),
     type = "structure",
@@ -391,10 +413,7 @@ M.DeleteTerminologyInput = schema.new({
     },
 })
 
-M.DeleteTerminologyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTerminologyOutput = prelude.Unit
 
 M.DescribeTextTranslationJobInput = schema.new({
     id = id.from(_N, "DescribeTextTranslationJobRequest"),

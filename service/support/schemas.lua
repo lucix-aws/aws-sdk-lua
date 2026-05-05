@@ -7,6 +7,44 @@ local _N = "com.amazonaws.support"
 
 local M = {}
 
+M.Attachments = schema.new({ type = "list", list_member = M.Attachment })
+
+M.CcEmailAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CaseIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CaseList = schema.new({ type = "list", list_member = M.CaseDetails })
+
+M.CommunicationList = schema.new({ type = "list", list_member = M.Communication })
+
+M.CommunicationTypeOptionsList = schema.new({ type = "list", list_member = M.CommunicationTypeOptions })
+
+M.ServiceCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceList = schema.new({ type = "list", list_member = M.Service })
+
+M.SeverityLevelsList = schema.new({ type = "list", list_member = M.SeverityLevel })
+
+M.SupportedLanguagesList = schema.new({ type = "list", list_member = M.SupportedLanguage })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrustedAdvisorCheckRefreshStatusList = schema.new({ type = "list", list_member = M.TrustedAdvisorCheckRefreshStatus })
+
+M.TrustedAdvisorCheckList = schema.new({ type = "list", list_member = M.TrustedAdvisorCheckDescription })
+
+M.TrustedAdvisorCheckSummaryList = schema.new({ type = "list", list_member = M.TrustedAdvisorCheckSummary })
+
+M.TrustedAdvisorResourceDetailList = schema.new({ type = "list", list_member = M.TrustedAdvisorResourceDetail })
+
+M.AttachmentSet = schema.new({ type = "list", list_member = M.AttachmentDetails })
+
+M.SupportedHoursList = schema.new({ type = "list", list_member = M.SupportedHour })
+
+M.DatesWithoutSupportList = schema.new({ type = "list", list_member = M.DateInterval })
+
+M.CategoryList = schema.new({ type = "list", list_member = M.Category })
+
 M.Attachment = schema.new({
     id = id.from(_N, "Attachment"),
     type = "structure",

@@ -7,6 +7,36 @@ local _N = "com.amazonaws.timestreamquery"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.ScheduledQueryList = schema.new({ type = "list", list_member = M.ScheduledQuery })
+
+M.SelectColumnList = schema.new({ type = "list", list_member = M.SelectColumn })
+
+M.ParameterMappingList = schema.new({ type = "list", list_member = M.ParameterMapping })
+
+M.RowList = schema.new({ type = "list", list_member = M.Row })
+
+M.ColumnInfoList = schema.new({ type = "list", list_member = M.ColumnInfo })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledQueryRunSummaryList = schema.new({ type = "list", list_member = M.ScheduledQueryRunSummary })
+
+M.DimensionMappingList = schema.new({ type = "list", list_member = M.DimensionMapping })
+
+M.MixedMeasureMappingList = schema.new({ type = "list", list_member = M.MixedMeasureMapping })
+
+M.DatumList = schema.new({ type = "list", list_member = M.Datum })
+
+M.MultiMeasureAttributeMappingList = schema.new({ type = "list", list_member = M.MultiMeasureAttributeMapping })
+
+M.PartitionKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TimeSeriesDataPointList = schema.new({ type = "list", list_member = M.TimeSeriesDataPoint })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -616,10 +646,7 @@ M.DeleteScheduledQueryInput = schema.new({
     },
 })
 
-M.DeleteScheduledQueryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteScheduledQueryOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -1278,10 +1305,7 @@ M.ExecuteScheduledQueryInput = schema.new({
     },
 })
 
-M.ExecuteScheduledQueryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ExecuteScheduledQueryOutput = prelude.Unit
 
 M.ListScheduledQueriesInput = schema.new({
     id = id.from(_N, "ListScheduledQueriesRequest"),
@@ -1870,10 +1894,7 @@ M.UpdateScheduledQueryInput = schema.new({
     },
 })
 
-M.UpdateScheduledQueryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateScheduledQueryOutput = prelude.Unit
 
 M.ColumnInfo = schema.new({
     id = id.from(_N, "ColumnInfo"),

@@ -7,6 +7,84 @@ local _N = "com.amazonaws.apigateway"
 
 local M = {}
 
+M.ListOfStageKeys = schema.new({ type = "list", list_member = M.StageKey })
+
+M.MapOfStringToString = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfString = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathToMapOfMethodSnapshot = schema.new({ type = "map", map_key = prelude.String, map_value = M.MapOfMethodSnapshot })
+
+M.MapOfMethod = schema.new({ type = "map", map_key = prelude.String, map_value = M.Method })
+
+M.MapOfMethodSettings = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodSetting })
+
+M.ListOfApiStage = schema.new({ type = "list", list_member = M.ApiStage })
+
+M.ListOfApiKey = schema.new({ type = "list", list_member = M.ApiKey })
+
+M.ListOfAuthorizer = schema.new({ type = "list", list_member = M.Authorizer })
+
+M.ListOfBasePathMapping = schema.new({ type = "list", list_member = M.BasePathMapping })
+
+M.ListOfClientCertificate = schema.new({ type = "list", list_member = M.ClientCertificate })
+
+M.ListOfDeployment = schema.new({ type = "list", list_member = M.Deployment })
+
+M.ListOfDocumentationPart = schema.new({ type = "list", list_member = M.DocumentationPart })
+
+M.ListOfDocumentationVersion = schema.new({ type = "list", list_member = M.DocumentationVersion })
+
+M.ListOfDomainNameAccessAssociation = schema.new({ type = "list", list_member = M.DomainNameAccessAssociation })
+
+M.ListOfDomainName = schema.new({ type = "list", list_member = M.DomainName })
+
+M.ListOfGatewayResponse = schema.new({ type = "list", list_member = M.GatewayResponse })
+
+M.MapOfIntegrationResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.IntegrationResponse })
+
+M.MapOfStringToBoolean = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Boolean })
+
+M.MapOfMethodResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodResponse })
+
+M.ListOfModel = schema.new({ type = "list", list_member = M.Model })
+
+M.ListOfRequestValidator = schema.new({ type = "list", list_member = M.RequestValidator })
+
+M.ListOfResource = schema.new({ type = "list", list_member = M.Resource })
+
+M.ListOfRestApi = schema.new({ type = "list", list_member = M.RestApi })
+
+M.ListOfSdkConfigurationProperty = schema.new({ type = "list", list_member = M.SdkConfigurationProperty })
+
+M.ListOfSdkType = schema.new({ type = "list", list_member = M.SdkType })
+
+M.ListOfStage = schema.new({ type = "list", list_member = M.Stage })
+
+M.MapOfKeyUsages = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListOfUsage })
+
+M.ListOfUsagePlanKey = schema.new({ type = "list", list_member = M.UsagePlanKey })
+
+M.ListOfUsagePlan = schema.new({ type = "list", list_member = M.UsagePlan })
+
+M.ListOfVpcLink = schema.new({ type = "list", list_member = M.VpcLink })
+
+M.MapOfStringToList = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListOfString })
+
+M.ListOfPatchOperation = schema.new({ type = "list", list_member = M.PatchOperation })
+
+M.MapOfMethodSnapshot = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodSnapshot })
+
+M.ListOfEndpointType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfUsage = schema.new({ type = "list", list_member = M.ListOfLong })
+
+M.MapOfApiStageThrottleSettings = schema.new({ type = "map", map_key = prelude.String, map_value = M.ThrottleSettings })
+
+M.ListOfLong = schema.new({ type = "list", list_member = prelude.Long })
+
 M.AccessLogSettings = schema.new({
     id = id.from(_N, "AccessLogSettings"),
     type = "structure",
@@ -2871,10 +2949,7 @@ M.DeleteApiKeyInput = schema.new({
     },
 })
 
-M.DeleteApiKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApiKeyOutput = prelude.Unit
 
 M.DeleteAuthorizerInput = schema.new({
     id = id.from(_N, "DeleteAuthorizerRequest"),
@@ -2903,10 +2978,7 @@ M.DeleteAuthorizerInput = schema.new({
     },
 })
 
-M.DeleteAuthorizerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAuthorizerOutput = prelude.Unit
 
 M.DeleteBasePathMappingInput = schema.new({
     id = id.from(_N, "DeleteBasePathMappingRequest"),
@@ -2944,10 +3016,7 @@ M.DeleteBasePathMappingInput = schema.new({
     },
 })
 
-M.DeleteBasePathMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBasePathMappingOutput = prelude.Unit
 
 M.DeleteClientCertificateInput = schema.new({
     id = id.from(_N, "DeleteClientCertificateRequest"),
@@ -2966,10 +3035,7 @@ M.DeleteClientCertificateInput = schema.new({
     },
 })
 
-M.DeleteClientCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteClientCertificateOutput = prelude.Unit
 
 M.DeleteDeploymentInput = schema.new({
     id = id.from(_N, "DeleteDeploymentRequest"),
@@ -2998,10 +3064,7 @@ M.DeleteDeploymentInput = schema.new({
     },
 })
 
-M.DeleteDeploymentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeploymentOutput = prelude.Unit
 
 M.DeleteDocumentationPartInput = schema.new({
     id = id.from(_N, "DeleteDocumentationPartRequest"),
@@ -3030,10 +3093,7 @@ M.DeleteDocumentationPartInput = schema.new({
     },
 })
 
-M.DeleteDocumentationPartOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDocumentationPartOutput = prelude.Unit
 
 M.DeleteDocumentationVersionInput = schema.new({
     id = id.from(_N, "DeleteDocumentationVersionRequest"),
@@ -3062,10 +3122,7 @@ M.DeleteDocumentationVersionInput = schema.new({
     },
 })
 
-M.DeleteDocumentationVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDocumentationVersionOutput = prelude.Unit
 
 M.DeleteDomainNameInput = schema.new({
     id = id.from(_N, "DeleteDomainNameRequest"),
@@ -3093,10 +3150,7 @@ M.DeleteDomainNameInput = schema.new({
     },
 })
 
-M.DeleteDomainNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDomainNameOutput = prelude.Unit
 
 M.DeleteDomainNameAccessAssociationInput = schema.new({
     id = id.from(_N, "DeleteDomainNameAccessAssociationRequest"),
@@ -3115,10 +3169,7 @@ M.DeleteDomainNameAccessAssociationInput = schema.new({
     },
 })
 
-M.DeleteDomainNameAccessAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDomainNameAccessAssociationOutput = prelude.Unit
 
 M.DeleteGatewayResponseInput = schema.new({
     id = id.from(_N, "DeleteGatewayResponseRequest"),
@@ -3147,10 +3198,7 @@ M.DeleteGatewayResponseInput = schema.new({
     },
 })
 
-M.DeleteGatewayResponseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGatewayResponseOutput = prelude.Unit
 
 M.DeleteIntegrationInput = schema.new({
     id = id.from(_N, "DeleteIntegrationRequest"),
@@ -3189,10 +3237,7 @@ M.DeleteIntegrationInput = schema.new({
     },
 })
 
-M.DeleteIntegrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntegrationOutput = prelude.Unit
 
 M.DeleteIntegrationResponseInput = schema.new({
     id = id.from(_N, "DeleteIntegrationResponseRequest"),
@@ -3241,10 +3286,7 @@ M.DeleteIntegrationResponseInput = schema.new({
     },
 })
 
-M.DeleteIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntegrationResponseOutput = prelude.Unit
 
 M.DeleteMethodInput = schema.new({
     id = id.from(_N, "DeleteMethodRequest"),
@@ -3283,10 +3325,7 @@ M.DeleteMethodInput = schema.new({
     },
 })
 
-M.DeleteMethodOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMethodOutput = prelude.Unit
 
 M.DeleteMethodResponseInput = schema.new({
     id = id.from(_N, "DeleteMethodResponseRequest"),
@@ -3335,10 +3374,7 @@ M.DeleteMethodResponseInput = schema.new({
     },
 })
 
-M.DeleteMethodResponseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMethodResponseOutput = prelude.Unit
 
 M.DeleteModelInput = schema.new({
     id = id.from(_N, "DeleteModelRequest"),
@@ -3367,10 +3403,7 @@ M.DeleteModelInput = schema.new({
     },
 })
 
-M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelOutput = prelude.Unit
 
 M.DeleteRequestValidatorInput = schema.new({
     id = id.from(_N, "DeleteRequestValidatorRequest"),
@@ -3399,10 +3432,7 @@ M.DeleteRequestValidatorInput = schema.new({
     },
 })
 
-M.DeleteRequestValidatorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRequestValidatorOutput = prelude.Unit
 
 M.DeleteResourceInput = schema.new({
     id = id.from(_N, "DeleteResourceRequest"),
@@ -3431,10 +3461,7 @@ M.DeleteResourceInput = schema.new({
     },
 })
 
-M.DeleteResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceOutput = prelude.Unit
 
 M.DeleteRestApiInput = schema.new({
     id = id.from(_N, "DeleteRestApiRequest"),
@@ -3453,10 +3480,7 @@ M.DeleteRestApiInput = schema.new({
     },
 })
 
-M.DeleteRestApiOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRestApiOutput = prelude.Unit
 
 M.DeleteStageInput = schema.new({
     id = id.from(_N, "DeleteStageRequest"),
@@ -3485,10 +3509,7 @@ M.DeleteStageInput = schema.new({
     },
 })
 
-M.DeleteStageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStageOutput = prelude.Unit
 
 M.DeleteUsagePlanInput = schema.new({
     id = id.from(_N, "DeleteUsagePlanRequest"),
@@ -3507,10 +3528,7 @@ M.DeleteUsagePlanInput = schema.new({
     },
 })
 
-M.DeleteUsagePlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUsagePlanOutput = prelude.Unit
 
 M.DeleteUsagePlanKeyInput = schema.new({
     id = id.from(_N, "DeleteUsagePlanKeyRequest"),
@@ -3539,10 +3557,7 @@ M.DeleteUsagePlanKeyInput = schema.new({
     },
 })
 
-M.DeleteUsagePlanKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUsagePlanKeyOutput = prelude.Unit
 
 M.DeleteVpcLinkInput = schema.new({
     id = id.from(_N, "DeleteVpcLinkRequest"),
@@ -3561,10 +3576,7 @@ M.DeleteVpcLinkInput = schema.new({
     },
 })
 
-M.DeleteVpcLinkOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVpcLinkOutput = prelude.Unit
 
 M.FlushStageAuthorizersCacheInput = schema.new({
     id = id.from(_N, "FlushStageAuthorizersCacheRequest"),
@@ -3593,10 +3605,7 @@ M.FlushStageAuthorizersCacheInput = schema.new({
     },
 })
 
-M.FlushStageAuthorizersCacheOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.FlushStageAuthorizersCacheOutput = prelude.Unit
 
 M.FlushStageCacheInput = schema.new({
     id = id.from(_N, "FlushStageCacheRequest"),
@@ -3625,10 +3634,7 @@ M.FlushStageCacheInput = schema.new({
     },
 })
 
-M.FlushStageCacheOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.FlushStageCacheOutput = prelude.Unit
 
 M.GenerateClientCertificateInput = schema.new({
     id = id.from(_N, "GenerateClientCertificateRequest"),
@@ -7629,7 +7635,7 @@ M.GetUsageOutput = schema.new({
             name = "items",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "list", list_member = prelude.Document }),
+            map_value = schema.new({ type = "list", list_member = M.ListOfLong }),
             traits = {
                 [traits.JSON_NAME] = { name = "values" },
             },
@@ -9411,10 +9417,7 @@ M.RejectDomainNameAccessAssociationInput = schema.new({
     },
 })
 
-M.RejectDomainNameAccessAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RejectDomainNameAccessAssociationOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -9444,10 +9447,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TestInvokeAuthorizerInput = schema.new({
     id = id.from(_N, "TestInvokeAuthorizerRequest"),
@@ -9739,10 +9739,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.PatchOperation = schema.new({
     id = id.from(_N, "PatchOperation"),
@@ -11652,7 +11649,7 @@ M.UpdateUsageOutput = schema.new({
             name = "items",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "list", list_member = prelude.Document }),
+            map_value = schema.new({ type = "list", list_member = M.ListOfLong }),
             traits = {
                 [traits.JSON_NAME] = { name = "values" },
             },

@@ -7,6 +7,26 @@ local _N = "com.amazonaws.cloudsearchdomain"
 
 local M = {}
 
+M.Facets = schema.new({ type = "map", map_key = prelude.String, map_value = M.BucketInfo })
+
+M.Stats = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldStats })
+
+M.DocumentServiceWarnings = schema.new({ type = "list", list_member = M.DocumentServiceWarning })
+
+M.HitList = schema.new({ type = "list", list_member = M.Hit })
+
+M.Suggestions = schema.new({ type = "list", list_member = M.SuggestionMatch })
+
+M.BucketList = schema.new({ type = "list", list_member = M.Bucket })
+
+M.Fields = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldValue })
+
+M.Exprs = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Highlights = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FieldValue = schema.new({ type = "list", list_member = prelude.String })
+
 M.SearchException = schema.new({
     id = id.from(_N, "SearchException"),
     type = "structure",

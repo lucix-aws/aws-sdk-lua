@@ -7,6 +7,72 @@ local _N = "com.amazonaws.greengrassv2"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AssociateClientDeviceWithCoreDeviceEntryList = schema.new({ type = "list", list_member = M.AssociateClientDeviceWithCoreDeviceEntry })
+
+M.AssociateClientDeviceWithCoreDeviceErrorList = schema.new({ type = "list", list_member = M.AssociateClientDeviceWithCoreDeviceErrorEntry })
+
+M.DisassociateClientDeviceFromCoreDeviceEntryList = schema.new({ type = "list", list_member = M.DisassociateClientDeviceFromCoreDeviceEntry })
+
+M.DisassociateClientDeviceFromCoreDeviceErrorList = schema.new({ type = "list", list_member = M.DisassociateClientDeviceFromCoreDeviceErrorEntry })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ComponentDeploymentSpecifications = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentDeploymentSpecification })
+
+M.ComponentPlatformList = schema.new({ type = "list", list_member = M.ComponentPlatform })
+
+M.connectivityInfoList = schema.new({ type = "list", list_member = M.ConnectivityInfo })
+
+M.AssociatedClientDeviceList = schema.new({ type = "list", list_member = M.AssociatedClientDevice })
+
+M.ComponentList = schema.new({ type = "list", list_member = M.Component })
+
+M.ComponentVersionList = schema.new({ type = "list", list_member = M.ComponentVersionListItem })
+
+M.CoreDevicesList = schema.new({ type = "list", list_member = M.CoreDevice })
+
+M.DeploymentList = schema.new({ type = "list", list_member = M.Deployment })
+
+M.EffectiveDeploymentsList = schema.new({ type = "list", list_member = M.EffectiveDeployment })
+
+M.InstalledComponentList = schema.new({ type = "list", list_member = M.InstalledComponent })
+
+M.ComponentCandidateList = schema.new({ type = "list", list_member = M.ComponentCandidate })
+
+M.ResolvedComponentVersionsList = schema.new({ type = "list", list_member = M.ResolvedComponentVersion })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentDependencyMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentDependencyRequirement })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PlatformAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LambdaEventSourceList = schema.new({ type = "list", list_member = M.LambdaEventSource })
+
+M.LambdaExecArgsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaEnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IoTJobAbortCriteriaList = schema.new({ type = "list", list_member = M.IoTJobAbortCriteria })
+
+M.InstalledComponentLifecycleStatusCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComponentVersionRequirementMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ComponentConfigurationPathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EffectiveDeploymentErrorStack = schema.new({ type = "list", list_member = prelude.String })
+
+M.EffectiveDeploymentErrorTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaVolumeList = schema.new({ type = "list", list_member = M.LambdaVolumeMount })
+
+M.LambdaDeviceList = schema.new({ type = "list", list_member = M.LambdaDeviceMount })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1665,10 +1731,7 @@ M.DeleteComponentInput = schema.new({
     },
 })
 
-M.DeleteComponentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteComponentOutput = prelude.Unit
 
 M.DeleteCoreDeviceInput = schema.new({
     id = id.from(_N, "DeleteCoreDeviceRequest"),
@@ -1687,10 +1750,7 @@ M.DeleteCoreDeviceInput = schema.new({
     },
 })
 
-M.DeleteCoreDeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCoreDeviceOutput = prelude.Unit
 
 M.DeleteDeploymentInput = schema.new({
     id = id.from(_N, "DeleteDeploymentRequest"),
@@ -1709,10 +1769,7 @@ M.DeleteDeploymentInput = schema.new({
     },
 })
 
-M.DeleteDeploymentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeploymentOutput = prelude.Unit
 
 M.Deployment = schema.new({
     id = id.from(_N, "Deployment"),

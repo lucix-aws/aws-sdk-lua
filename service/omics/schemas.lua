@@ -7,6 +7,134 @@ local _N = "com.amazonaws.omics"
 
 local M = {}
 
+M.IdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnnotationImportJobItems = schema.new({ type = "list", list_member = M.AnnotationImportJobItem })
+
+M.AnnotationImportItemSources = schema.new({ type = "list", list_member = M.AnnotationImportItemSource })
+
+M.AnnotationFieldMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AnnotationImportItemDetails = schema.new({ type = "list", list_member = M.AnnotationImportItemDetail })
+
+M.AnnotationStoreItems = schema.new({ type = "list", list_member = M.AnnotationStoreItem })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AnnotationStoreVersionItems = schema.new({ type = "list", list_member = M.AnnotationStoreVersionItem })
+
+M.VersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VersionDeleteErrorList = schema.new({ type = "list", list_member = M.VersionDeleteError })
+
+M.ConfigurationList = schema.new({ type = "list", list_member = M.ConfigurationListItem })
+
+M.ReferenceStoreDetailList = schema.new({ type = "list", list_member = M.ReferenceStoreDetail })
+
+M.ImportReferenceSourceList = schema.new({ type = "list", list_member = M.ImportReferenceSourceItem })
+
+M.ImportReferenceJobList = schema.new({ type = "list", list_member = M.ImportReferenceJobItem })
+
+M.StartReferenceImportJobSourceList = schema.new({ type = "list", list_member = M.StartReferenceImportJobSourceItem })
+
+M.BatchList = schema.new({ type = "list", list_member = M.BatchListItem })
+
+M.RunBatchList = schema.new({ type = "list", list_member = M.RunBatchListItem })
+
+M.RunCacheList = schema.new({ type = "list", list_member = M.RunCacheListItem })
+
+M.RunGroupList = schema.new({ type = "list", list_member = M.RunGroupListItem })
+
+M.RunList = schema.new({ type = "list", list_member = M.RunListItem })
+
+M.RunExportList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RunResourceDigests = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SequenceStoreDetailList = schema.new({ type = "list", list_member = M.SequenceStoreDetail })
+
+M.PropagatedSetLevelTags = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompleteReadSetUploadPartList = schema.new({ type = "list", list_member = M.CompleteReadSetUploadPartListItem })
+
+M.ActivateReadSetSourceList = schema.new({ type = "list", list_member = M.ActivateReadSetSourceItem })
+
+M.ExportReadSetDetailList = schema.new({ type = "list", list_member = M.ExportReadSetDetail })
+
+M.ImportReadSetSourceList = schema.new({ type = "list", list_member = M.ImportReadSetSourceItem })
+
+M.MultipartReadSetUploadList = schema.new({ type = "list", list_member = M.MultipartReadSetUploadListItem })
+
+M.ActivateReadSetJobList = schema.new({ type = "list", list_member = M.ActivateReadSetJobItem })
+
+M.ExportReadSetJobDetailList = schema.new({ type = "list", list_member = M.ExportReadSetJobDetail })
+
+M.ImportReadSetJobList = schema.new({ type = "list", list_member = M.ImportReadSetJobItem })
+
+M.ReadSetUploadPartList = schema.new({ type = "list", list_member = M.ReadSetUploadPartListItem })
+
+M.StartReadSetActivationJobSourceList = schema.new({ type = "list", list_member = M.StartReadSetActivationJobSourceItem })
+
+M.ExportReadSetList = schema.new({ type = "list", list_member = M.ExportReadSet })
+
+M.StartReadSetImportJobSourceList = schema.new({ type = "list", list_member = M.StartReadSetImportJobSourceItem })
+
+M.ShareDetailsList = schema.new({ type = "list", list_member = M.ShareDetails })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VariantImportJobItems = schema.new({ type = "list", list_member = M.VariantImportJobItem })
+
+M.VariantImportItemSources = schema.new({ type = "list", list_member = M.VariantImportItemSource })
+
+M.VariantImportItemDetails = schema.new({ type = "list", list_member = M.VariantImportItemDetail })
+
+M.VariantStoreItems = schema.new({ type = "list", list_member = M.VariantStoreItem })
+
+M.WorkflowList = schema.new({ type = "list", list_member = M.WorkflowListItem })
+
+M.WorkflowParameterTemplate = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkflowParameter })
+
+M.WorkflowExportList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkflowMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReferenceList = schema.new({ type = "list", list_member = M.ReferenceListItem })
+
+M.TaskList = schema.new({ type = "list", list_member = M.TaskListItem })
+
+M.ReadSetList = schema.new({ type = "list", list_member = M.ReadSetListItem })
+
+M.ReadSetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReadSetBatchErrorList = schema.new({ type = "list", list_member = M.ReadSetBatchError })
+
+M.WorkflowVersionList = schema.new({ type = "list", list_member = M.WorkflowVersionListItem })
+
+M.InlineSettings = schema.new({ type = "list", list_member = M.InlineSetting })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistryMappingsList = schema.new({ type = "list", list_member = M.RegistryMapping })
+
+M.ImageMappingsList = schema.new({ type = "list", list_member = M.ImageMapping })
+
+M.ExcludeFilePatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FormatToHeader = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Schema = schema.new({ type = "list", list_member = M.SchemaItem })
+
+M.SchemaItem = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AbortMultipartReadSetUploadInput = schema.new({
     id = id.from(_N, "AbortMultipartReadSetUploadRequest"),
     type = "structure",
@@ -1018,7 +1146,7 @@ M.TsvStoreOptions = schema.new({
             type = "list",
             name = "schema",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.SchemaItem,
         }),
     },
 })
@@ -1720,7 +1848,7 @@ M.TsvVersionOptions = schema.new({
             type = "list",
             name = "schema",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.SchemaItem,
         }),
     },
 })
@@ -2614,10 +2742,7 @@ M.CancelRunInput = schema.new({
     },
 })
 
-M.CancelRunOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelRunOutput = prelude.Unit
 
 M.CancelRunBatchInput = schema.new({
     id = id.from(_N, "CancelRunBatchRequest"),
@@ -3018,10 +3143,7 @@ M.DeleteConfigurationInput = schema.new({
     },
 })
 
-M.DeleteConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigurationOutput = prelude.Unit
 
 M.GetConfigurationInput = schema.new({
     id = id.from(_N, "GetConfigurationRequest"),
@@ -4675,10 +4797,7 @@ M.DeleteBatchInput = schema.new({
     },
 })
 
-M.DeleteBatchOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBatchOutput = prelude.Unit
 
 M.DeleteReferenceInput = schema.new({
     id = id.from(_N, "DeleteReferenceRequest"),
@@ -4751,10 +4870,7 @@ M.DeleteRunInput = schema.new({
     },
 })
 
-M.DeleteRunOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRunOutput = prelude.Unit
 
 M.DeleteRunBatchInput = schema.new({
     id = id.from(_N, "DeleteRunBatchRequest"),
@@ -4794,10 +4910,7 @@ M.DeleteRunCacheInput = schema.new({
     },
 })
 
-M.DeleteRunCacheOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRunCacheOutput = prelude.Unit
 
 M.DeleteRunGroupInput = schema.new({
     id = id.from(_N, "DeleteRunGroupRequest"),
@@ -4816,10 +4929,7 @@ M.DeleteRunGroupInput = schema.new({
     },
 })
 
-M.DeleteRunGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRunGroupOutput = prelude.Unit
 
 M.DeleteS3AccessPolicyInput = schema.new({
     id = id.from(_N, "DeleteS3AccessPolicyRequest"),
@@ -4955,10 +5065,7 @@ M.DeleteWorkflowInput = schema.new({
     },
 })
 
-M.DeleteWorkflowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkflowOutput = prelude.Unit
 
 M.DeleteWorkflowVersionInput = schema.new({
     id = id.from(_N, "DeleteWorkflowVersionRequest"),
@@ -4987,10 +5094,7 @@ M.DeleteWorkflowVersionInput = schema.new({
     },
 })
 
-M.DeleteWorkflowVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWorkflowVersionOutput = prelude.Unit
 
 M.ETag = schema.new({
     id = id.from(_N, "ETag"),
@@ -11591,10 +11695,7 @@ M.UpdateRunCacheInput = schema.new({
     },
 })
 
-M.UpdateRunCacheOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRunCacheOutput = prelude.Unit
 
 M.UpdateRunGroupInput = schema.new({
     id = id.from(_N, "UpdateRunGroupRequest"),
@@ -11643,10 +11744,7 @@ M.UpdateRunGroupInput = schema.new({
     },
 })
 
-M.UpdateRunGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRunGroupOutput = prelude.Unit
 
 M.StartRunInput = schema.new({
     id = id.from(_N, "StartRunRequest"),
@@ -12753,10 +12851,7 @@ M.UpdateWorkflowInput = schema.new({
     },
 })
 
-M.UpdateWorkflowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateWorkflowOutput = prelude.Unit
 
 M.UpdateWorkflowVersionInput = schema.new({
     id = id.from(_N, "UpdateWorkflowVersionRequest"),
@@ -12812,10 +12907,7 @@ M.UpdateWorkflowVersionInput = schema.new({
     },
 })
 
-M.UpdateWorkflowVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateWorkflowVersionOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

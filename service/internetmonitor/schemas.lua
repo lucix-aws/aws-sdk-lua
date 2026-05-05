@@ -7,6 +7,34 @@ local _N = "com.amazonaws.internetmonitor"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.InternetEventsList = schema.new({ type = "list", list_member = M.InternetEventSummary })
+
+M.MonitorList = schema.new({ type = "list", list_member = M.Monitor })
+
+M.SetOfARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryFields = schema.new({ type = "list", list_member = M.QueryField })
+
+M.QueryData = schema.new({ type = "list", list_member = M.QueryRow })
+
+M.FilterParameters = schema.new({ type = "list", list_member = M.FilterParameter })
+
+M.HealthEventList = schema.new({ type = "list", list_member = M.HealthEvent })
+
+M.ImpactedLocationsList = schema.new({ type = "list", list_member = M.ImpactedLocation })
+
+M.QueryRow = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ipv4PrefixList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkList = schema.new({ type = "list", list_member = M.Network })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

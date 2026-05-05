@@ -7,6 +7,16 @@ local _N = "com.amazonaws.sts"
 
 local M = {}
 
+M.policyDescriptorListType = schema.new({ type = "list", list_member = M.PolicyDescriptorType })
+
+M.tagListType = schema.new({ type = "list", list_member = M.Tag })
+
+M.tagKeyListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProvidedContextsListType = schema.new({ type = "list", list_member = M.ProvidedContext })
+
+M.webIdentityTokenAudienceListType = schema.new({ type = "list", list_member = prelude.String })
+
 M.AssumedRoleUser = schema.new({
     id = id.from(_N, "AssumedRoleUser"),
     type = "structure",

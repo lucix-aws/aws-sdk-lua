@@ -7,6 +7,110 @@ local _N = "com.amazonaws.securityagent"
 
 local M = {}
 
+M.TargetDomainIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.PentestIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PentestList = schema.new({ type = "list", list_member = M.Pentest })
+
+M.DeletePentestFailureList = schema.new({ type = "list", list_member = M.DeletePentestFailure })
+
+M.ArtifactIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArtifactMetadataList = schema.new({ type = "list", list_member = M.ArtifactMetadataItem })
+
+M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingList = schema.new({ type = "list", list_member = M.Finding })
+
+M.PentestJobIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PentestJobList = schema.new({ type = "list", list_member = M.PentestJob })
+
+M.TaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskList = schema.new({ type = "list", list_member = M.Task })
+
+M.RiskTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArtifactSummaryList = schema.new({ type = "list", list_member = M.ArtifactSummary })
+
+M.DiscoveredEndpointList = schema.new({ type = "list", list_member = M.DiscoveredEndpoint })
+
+M.FindingSummaryList = schema.new({ type = "list", list_member = M.FindingSummary })
+
+M.IntegratedResourceSummaryList = schema.new({ type = "list", list_member = M.IntegratedResourceSummary })
+
+M.MembershipSummaryList = schema.new({ type = "list", list_member = M.MembershipSummary })
+
+M.PentestJobSummaryList = schema.new({ type = "list", list_member = M.PentestJobSummary })
+
+M.TaskSummaryList = schema.new({ type = "list", list_member = M.TaskSummary })
+
+M.PentestSummaryList = schema.new({ type = "list", list_member = M.PentestSummary })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegratedResourceInputItemList = schema.new({ type = "list", list_member = M.IntegratedResourceInputItem })
+
+M.VpcConfigs = schema.new({ type = "list", list_member = M.VpcConfig })
+
+M.LogGroupArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3BucketArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecretArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.LambdaFunctionArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.IamRoles = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentSpaceSummaryList = schema.new({ type = "list", list_member = M.AgentSpaceSummary })
+
+M.AgentSpaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentSpaceList = schema.new({ type = "list", list_member = M.AgentSpace })
+
+M.ApplicationSummaryList = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.IntegrationSummaryList = schema.new({ type = "list", list_member = M.IntegrationSummary })
+
+M.TargetDomainSummaryList = schema.new({ type = "list", list_member = M.TargetDomainSummary })
+
+M.TargetDomainList = schema.new({ type = "list", list_member = M.TargetDomain })
+
+M.EndpointList = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.ActorList = schema.new({ type = "list", list_member = M.Actor })
+
+M.DocumentList = schema.new({ type = "list", list_member = M.DocumentInfo })
+
+M.SourceCodeRepositoryList = schema.new({ type = "list", list_member = M.SourceCodeRepository })
+
+M.IntegratedRepositoryList = schema.new({ type = "list", list_member = M.IntegratedRepository })
+
+M.SecurityGroupArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkTrafficRuleList = schema.new({ type = "list", list_member = M.NetworkTrafficRule })
+
+M.CustomHeaderList = schema.new({ type = "list", list_member = M.CustomHeader })
+
+M.StepList = schema.new({ type = "list", list_member = M.Step })
+
+M.ExecutionContextList = schema.new({ type = "list", list_member = M.ExecutionContext })
+
+M.CategoryList = schema.new({ type = "list", list_member = M.Category })
+
+M.CodeRemediationTaskDetailsList = schema.new({ type = "list", list_member = M.CodeRemediationTaskDetails })
+
+M.UriList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -900,10 +1004,7 @@ M.DeleteApplicationInput = schema.new({
     },
 })
 
-M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationOutput = prelude.Unit
 
 M.GetApplicationInput = schema.new({
     id = id.from(_N, "GetApplicationRequest"),

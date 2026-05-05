@@ -7,6 +7,26 @@ local _N = "com.amazonaws.cloudsearch"
 
 local M = {}
 
+M.FieldNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StandardNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisSchemeStatusList = schema.new({ type = "list", list_member = M.AnalysisSchemeStatus })
+
+M.DomainNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainStatusList = schema.new({ type = "list", list_member = M.DomainStatus })
+
+M.ExpressionStatusList = schema.new({ type = "list", list_member = M.ExpressionStatus })
+
+M.DynamicFieldNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IndexFieldStatusList = schema.new({ type = "list", list_member = M.IndexFieldStatus })
+
+M.SuggesterStatusList = schema.new({ type = "list", list_member = M.SuggesterStatus })
+
+M.DomainNameMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.BaseException = schema.new({
     id = id.from(_N, "BaseException"),
     type = "structure",
@@ -2144,10 +2164,7 @@ M.IndexDocumentsOutput = schema.new({
     },
 })
 
-M.ListDomainNamesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ListDomainNamesInput = prelude.Unit
 
 M.ListDomainNamesOutput = schema.new({
     id = id.from(_N, "ListDomainNamesResponse"),

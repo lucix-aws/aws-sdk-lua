@@ -7,6 +7,94 @@ local _N = "com.amazonaws.s3"
 
 local M = {}
 
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DeletedObjects = schema.new({ type = "list", list_member = M.DeletedObject })
+
+M.Errors = schema.new({ type = "list", list_member = M.Error })
+
+M.Grants = schema.new({ type = "list", list_member = M.Grant })
+
+M.CORSRules = schema.new({ type = "list", list_member = M.CORSRule })
+
+M.LifecycleRules = schema.new({ type = "list", list_member = M.LifecycleRule })
+
+M.TopicConfigurationList = schema.new({ type = "list", list_member = M.TopicConfiguration })
+
+M.QueueConfigurationList = schema.new({ type = "list", list_member = M.QueueConfiguration })
+
+M.LambdaFunctionConfigurationList = schema.new({ type = "list", list_member = M.LambdaFunctionConfiguration })
+
+M.TagSet = schema.new({ type = "list", list_member = M.Tag })
+
+M.RoutingRules = schema.new({ type = "list", list_member = M.RoutingRule })
+
+M.ObjectAttributesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalyticsConfigurationList = schema.new({ type = "list", list_member = M.AnalyticsConfiguration })
+
+M.IntelligentTieringConfigurationList = schema.new({ type = "list", list_member = M.IntelligentTieringConfiguration })
+
+M.InventoryConfigurationList = schema.new({ type = "list", list_member = M.InventoryConfiguration })
+
+M.MetricsConfigurationList = schema.new({ type = "list", list_member = M.MetricsConfiguration })
+
+M.Buckets = schema.new({ type = "list", list_member = M.Bucket })
+
+M.MultipartUploadList = schema.new({ type = "list", list_member = M.MultipartUpload })
+
+M.CommonPrefixList = schema.new({ type = "list", list_member = M.CommonPrefix })
+
+M.OptionalObjectAttributesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectList = schema.new({ type = "list", list_member = M.Object })
+
+M.ObjectVersionList = schema.new({ type = "list", list_member = M.ObjectVersion })
+
+M.DeleteMarkers = schema.new({ type = "list", list_member = M.DeleteMarkerEntry })
+
+M.Parts = schema.new({ type = "list", list_member = M.Part })
+
+M.CompletedPartList = schema.new({ type = "list", list_member = M.CompletedPart })
+
+M.ObjectIdentifierList = schema.new({ type = "list", list_member = M.ObjectIdentifier })
+
+M.ServerSideEncryptionRules = schema.new({ type = "list", list_member = M.ServerSideEncryptionRule })
+
+M.TieringList = schema.new({ type = "list", list_member = M.Tiering })
+
+M.InventoryOptionalFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetGrants = schema.new({ type = "list", list_member = M.TargetGrant })
+
+M.OwnershipControlsRules = schema.new({ type = "list", list_member = M.OwnershipControlsRule })
+
+M.ReplicationRules = schema.new({ type = "list", list_member = M.ReplicationRule })
+
+M.PartsList = schema.new({ type = "list", list_member = M.ObjectPart })
+
+M.AllowedHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedMethods = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedOrigins = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExposeHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitionList = schema.new({ type = "list", list_member = M.Transition })
+
+M.NoncurrentVersionTransitionList = schema.new({ type = "list", list_member = M.NoncurrentVersionTransition })
+
+M.EventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChecksumAlgorithmList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserMetadata = schema.new({ type = "list", list_member = M.MetadataEntry })
+
+M.EncryptionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterRuleList = schema.new({ type = "list", list_member = M.FilterRule })
+
 M.AbacStatus = schema.new({
     id = id.from(_N, "AbacStatus"),
     type = "structure",
@@ -1761,10 +1849,7 @@ M.CreateBucketMetadataConfigurationInput = schema.new({
     },
 })
 
-M.CreateBucketMetadataConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateBucketMetadataConfigurationOutput = prelude.Unit
 
 M.S3TablesDestination = schema.new({
     id = id.from(_N, "S3TablesDestination"),
@@ -1864,10 +1949,7 @@ M.CreateBucketMetadataTableConfigurationInput = schema.new({
     },
 })
 
-M.CreateBucketMetadataTableConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateBucketMetadataTableConfigurationOutput = prelude.Unit
 
 M.CreateMultipartUploadInput = schema.new({
     id = id.from(_N, "CreateMultipartUploadRequest"),
@@ -2493,10 +2575,7 @@ M.DeleteBucketInput = schema.new({
     },
 })
 
-M.DeleteBucketOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketOutput = prelude.Unit
 
 M.DeleteBucketAnalyticsConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketAnalyticsConfigurationRequest"),
@@ -2534,10 +2613,7 @@ M.DeleteBucketAnalyticsConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketAnalyticsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketAnalyticsConfigurationOutput = prelude.Unit
 
 M.DeleteBucketCorsInput = schema.new({
     id = id.from(_N, "DeleteBucketCorsRequest"),
@@ -2565,10 +2641,7 @@ M.DeleteBucketCorsInput = schema.new({
     },
 })
 
-M.DeleteBucketCorsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketCorsOutput = prelude.Unit
 
 M.DeleteBucketEncryptionInput = schema.new({
     id = id.from(_N, "DeleteBucketEncryptionRequest"),
@@ -2596,10 +2669,7 @@ M.DeleteBucketEncryptionInput = schema.new({
     },
 })
 
-M.DeleteBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketEncryptionOutput = prelude.Unit
 
 M.DeleteBucketIntelligentTieringConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketIntelligentTieringConfigurationRequest"),
@@ -2637,10 +2707,7 @@ M.DeleteBucketIntelligentTieringConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketIntelligentTieringConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketIntelligentTieringConfigurationOutput = prelude.Unit
 
 M.DeleteBucketInventoryConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketInventoryConfigurationRequest"),
@@ -2678,10 +2745,7 @@ M.DeleteBucketInventoryConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketInventoryConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketInventoryConfigurationOutput = prelude.Unit
 
 M.DeleteBucketLifecycleInput = schema.new({
     id = id.from(_N, "DeleteBucketLifecycleRequest"),
@@ -2709,10 +2773,7 @@ M.DeleteBucketLifecycleInput = schema.new({
     },
 })
 
-M.DeleteBucketLifecycleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketLifecycleOutput = prelude.Unit
 
 M.DeleteBucketMetadataConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketMetadataConfigurationRequest"),
@@ -2740,10 +2801,7 @@ M.DeleteBucketMetadataConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketMetadataConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketMetadataConfigurationOutput = prelude.Unit
 
 M.DeleteBucketMetadataTableConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketMetadataTableConfigurationRequest"),
@@ -2771,10 +2829,7 @@ M.DeleteBucketMetadataTableConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketMetadataTableConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketMetadataTableConfigurationOutput = prelude.Unit
 
 M.DeleteBucketMetricsConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBucketMetricsConfigurationRequest"),
@@ -2812,10 +2867,7 @@ M.DeleteBucketMetricsConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketMetricsConfigurationOutput = prelude.Unit
 
 M.DeleteBucketOwnershipControlsInput = schema.new({
     id = id.from(_N, "DeleteBucketOwnershipControlsRequest"),
@@ -2843,10 +2895,7 @@ M.DeleteBucketOwnershipControlsInput = schema.new({
     },
 })
 
-M.DeleteBucketOwnershipControlsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketOwnershipControlsOutput = prelude.Unit
 
 M.DeleteBucketPolicyInput = schema.new({
     id = id.from(_N, "DeleteBucketPolicyRequest"),
@@ -2874,10 +2923,7 @@ M.DeleteBucketPolicyInput = schema.new({
     },
 })
 
-M.DeleteBucketPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketPolicyOutput = prelude.Unit
 
 M.DeleteBucketReplicationInput = schema.new({
     id = id.from(_N, "DeleteBucketReplicationRequest"),
@@ -2905,10 +2951,7 @@ M.DeleteBucketReplicationInput = schema.new({
     },
 })
 
-M.DeleteBucketReplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketReplicationOutput = prelude.Unit
 
 M.DeleteBucketTaggingInput = schema.new({
     id = id.from(_N, "DeleteBucketTaggingRequest"),
@@ -2936,10 +2979,7 @@ M.DeleteBucketTaggingInput = schema.new({
     },
 })
 
-M.DeleteBucketTaggingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketTaggingOutput = prelude.Unit
 
 M.DeleteBucketWebsiteInput = schema.new({
     id = id.from(_N, "DeleteBucketWebsiteRequest"),
@@ -2967,10 +3007,7 @@ M.DeleteBucketWebsiteInput = schema.new({
     },
 })
 
-M.DeleteBucketWebsiteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBucketWebsiteOutput = prelude.Unit
 
 M.DeleteObjectInput = schema.new({
     id = id.from(_N, "DeleteObjectRequest"),
@@ -3440,10 +3477,7 @@ M.DeletePublicAccessBlockInput = schema.new({
     },
 })
 
-M.DeletePublicAccessBlockOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePublicAccessBlockOutput = prelude.Unit
 
 M.GetBucketAbacInput = schema.new({
     id = id.from(_N, "GetBucketAbacRequest"),
@@ -10918,10 +10952,7 @@ M.PutBucketAbacInput = schema.new({
     },
 })
 
-M.PutBucketAbacOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketAbacOutput = prelude.Unit
 
 M.PutBucketAccelerateConfigurationInput = schema.new({
     id = id.from(_N, "PutBucketAccelerateConfigurationRequest"),
@@ -10970,10 +11001,7 @@ M.PutBucketAccelerateConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketAccelerateConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketAccelerateConfigurationOutput = prelude.Unit
 
 M.PutBucketAclInput = schema.new({
     id = id.from(_N, "PutBucketAclRequest"),
@@ -11084,10 +11112,7 @@ M.PutBucketAclInput = schema.new({
     },
 })
 
-M.PutBucketAclOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketAclOutput = prelude.Unit
 
 M.PutBucketAnalyticsConfigurationInput = schema.new({
     id = id.from(_N, "PutBucketAnalyticsConfigurationRequest"),
@@ -11137,10 +11162,7 @@ M.PutBucketAnalyticsConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketAnalyticsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketAnalyticsConfigurationOutput = prelude.Unit
 
 M.CORSConfiguration = schema.new({
     id = id.from(_N, "CORSConfiguration"),
@@ -11217,10 +11239,7 @@ M.PutBucketCorsInput = schema.new({
     },
 })
 
-M.PutBucketCorsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketCorsOutput = prelude.Unit
 
 M.PutBucketEncryptionInput = schema.new({
     id = id.from(_N, "PutBucketEncryptionRequest"),
@@ -11278,10 +11297,7 @@ M.PutBucketEncryptionInput = schema.new({
     },
 })
 
-M.PutBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketEncryptionOutput = prelude.Unit
 
 M.PutBucketIntelligentTieringConfigurationInput = schema.new({
     id = id.from(_N, "PutBucketIntelligentTieringConfigurationRequest"),
@@ -11331,10 +11347,7 @@ M.PutBucketIntelligentTieringConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketIntelligentTieringConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketIntelligentTieringConfigurationOutput = prelude.Unit
 
 M.PutBucketInventoryConfigurationInput = schema.new({
     id = id.from(_N, "PutBucketInventoryConfigurationRequest"),
@@ -11384,10 +11397,7 @@ M.PutBucketInventoryConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketInventoryConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketInventoryConfigurationOutput = prelude.Unit
 
 M.BucketLifecycleConfiguration = schema.new({
     id = id.from(_N, "BucketLifecycleConfiguration"),
@@ -11549,10 +11559,7 @@ M.PutBucketLoggingInput = schema.new({
     },
 })
 
-M.PutBucketLoggingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketLoggingOutput = prelude.Unit
 
 M.PutBucketMetricsConfigurationInput = schema.new({
     id = id.from(_N, "PutBucketMetricsConfigurationRequest"),
@@ -11602,10 +11609,7 @@ M.PutBucketMetricsConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketMetricsConfigurationOutput = prelude.Unit
 
 M.NotificationConfiguration = schema.new({
     id = id.from(_N, "NotificationConfiguration"),
@@ -11701,10 +11705,7 @@ M.PutBucketNotificationConfigurationInput = schema.new({
     },
 })
 
-M.PutBucketNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketNotificationConfigurationOutput = prelude.Unit
 
 M.PutBucketOwnershipControlsInput = schema.new({
     id = id.from(_N, "PutBucketOwnershipControlsRequest"),
@@ -11762,10 +11763,7 @@ M.PutBucketOwnershipControlsInput = schema.new({
     },
 })
 
-M.PutBucketOwnershipControlsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketOwnershipControlsOutput = prelude.Unit
 
 M.PutBucketPolicyInput = schema.new({
     id = id.from(_N, "PutBucketPolicyRequest"),
@@ -11830,10 +11828,7 @@ M.PutBucketPolicyInput = schema.new({
     },
 })
 
-M.PutBucketPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketPolicyOutput = prelude.Unit
 
 M.PutBucketReplicationInput = schema.new({
     id = id.from(_N, "PutBucketReplicationRequest"),
@@ -11900,10 +11895,7 @@ M.PutBucketReplicationInput = schema.new({
     },
 })
 
-M.PutBucketReplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketReplicationOutput = prelude.Unit
 
 M.RequestPaymentConfiguration = schema.new({
     id = id.from(_N, "RequestPaymentConfiguration"),
@@ -11977,10 +11969,7 @@ M.PutBucketRequestPaymentInput = schema.new({
     },
 })
 
-M.PutBucketRequestPaymentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketRequestPaymentOutput = prelude.Unit
 
 M.Tagging = schema.new({
     id = id.from(_N, "Tagging"),
@@ -12055,10 +12044,7 @@ M.PutBucketTaggingInput = schema.new({
     },
 })
 
-M.PutBucketTaggingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketTaggingOutput = prelude.Unit
 
 M.VersioningConfiguration = schema.new({
     id = id.from(_N, "VersioningConfiguration"),
@@ -12147,10 +12133,7 @@ M.PutBucketVersioningInput = schema.new({
     },
 })
 
-M.PutBucketVersioningOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketVersioningOutput = prelude.Unit
 
 M.WebsiteConfiguration = schema.new({
     id = id.from(_N, "WebsiteConfiguration"),
@@ -12243,10 +12226,7 @@ M.PutBucketWebsiteInput = schema.new({
     },
 })
 
-M.PutBucketWebsiteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBucketWebsiteOutput = prelude.Unit
 
 M.EncryptionTypeMismatch = schema.new({
     id = id.from(_N, "EncryptionTypeMismatch"),
@@ -13520,10 +13500,7 @@ M.PutPublicAccessBlockInput = schema.new({
     },
 })
 
-M.PutPublicAccessBlockOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutPublicAccessBlockOutput = prelude.Unit
 
 M.IdempotencyParameterMismatch = schema.new({
     id = id.from(_N, "IdempotencyParameterMismatch"),
@@ -14578,10 +14555,7 @@ M.UpdateBucketMetadataInventoryTableConfigurationInput = schema.new({
     },
 })
 
-M.UpdateBucketMetadataInventoryTableConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateBucketMetadataInventoryTableConfigurationOutput = prelude.Unit
 
 M.JournalTableConfigurationUpdates = schema.new({
     id = id.from(_N, "JournalTableConfigurationUpdates"),
@@ -14656,10 +14630,7 @@ M.UpdateBucketMetadataJournalTableConfigurationInput = schema.new({
     },
 })
 
-M.UpdateBucketMetadataJournalTableConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateBucketMetadataJournalTableConfigurationOutput = prelude.Unit
 
 M.SSEKMSEncryption = schema.new({
     id = id.from(_N, "SSEKMSEncryption"),
@@ -15953,10 +15924,7 @@ M.WriteGetObjectResponseInput = schema.new({
     },
 })
 
-M.WriteGetObjectResponseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.WriteGetObjectResponseOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

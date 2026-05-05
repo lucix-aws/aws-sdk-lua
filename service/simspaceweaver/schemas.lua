@@ -7,6 +7,24 @@ local _N = "com.amazonaws.simspaceweaver"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SimulationList = schema.new({ type = "list", list_member = M.SimulationMetadata })
+
+M.SimulationAppList = schema.new({ type = "list", list_member = M.SimulationAppMetadata })
+
+M.LogDestinations = schema.new({ type = "list", list_member = M.LogDestination })
+
+M.DomainList = schema.new({ type = "list", list_member = M.Domain })
+
+M.SimulationClockList = schema.new({ type = "list", list_member = M.SimulationClock })
+
+M.LaunchCommandList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppPortMappings = schema.new({ type = "list", list_member = M.SimulationAppPortMapping })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,22 @@ local _N = "com.amazonaws.directoryservicedata"
 
 local M = {}
 
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.LdapDisplayNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MemberList = schema.new({ type = "list", list_member = M.Member })
+
+M.GroupSummaryList = schema.new({ type = "list", list_member = M.GroupSummary })
+
+M.UserSummaryList = schema.new({ type = "list", list_member = M.UserSummary })
+
+M.GroupList = schema.new({ type = "list", list_member = M.Group })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.StringSetAttributeValue = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

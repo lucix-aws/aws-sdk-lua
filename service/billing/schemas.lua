@@ -7,6 +7,26 @@ local _N = "com.amazonaws.billing"
 
 local M = {}
 
+M.BillingViewSourceViewsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.BillingViewArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingViewTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringSearches = schema.new({ type = "list", list_member = M.StringSearch })
+
+M.BillingViewList = schema.new({ type = "list", list_member = M.BillingViewListElement })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingViewStatusReasons = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

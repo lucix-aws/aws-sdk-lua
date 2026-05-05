@@ -7,6 +7,50 @@ local _N = "com.amazonaws.connectcampaignsv2"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CampaignIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuccessfulCampaignStateResponseList = schema.new({ type = "list", list_member = M.SuccessfulCampaignStateResponse })
+
+M.FailedCampaignStateResponseList = schema.new({ type = "list", list_member = M.FailedCampaignStateResponse })
+
+M.CampaignSummaryList = schema.new({ type = "list", list_member = M.CampaignSummary })
+
+M.IntegrationSummaryList = schema.new({ type = "list", list_member = M.IntegrationSummary })
+
+M.OutboundRequestList = schema.new({ type = "list", list_member = M.OutboundRequest })
+
+M.SuccessfulRequestList = schema.new({ type = "list", list_member = M.SuccessfulRequest })
+
+M.FailedRequestList = schema.new({ type = "list", list_member = M.FailedRequest })
+
+M.ProfileOutboundRequestList = schema.new({ type = "list", list_member = M.ProfileOutboundRequest })
+
+M.SuccessfulProfileOutboundRequestList = schema.new({ type = "list", list_member = M.SuccessfulProfileOutboundRequest })
+
+M.FailedProfileOutboundRequestList = schema.new({ type = "list", list_member = M.FailedProfileOutboundRequest })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalTimeZoneDetection = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommunicationLimitList = schema.new({ type = "list", list_member = M.CommunicationLimit })
+
+M.ChannelSubtypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectTypeNamesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DailyHours = schema.new({ type = "map", map_key = prelude.String, map_value = M.TimeRangeList })
+
+M.RestrictedPeriodList = schema.new({ type = "list", list_member = M.RestrictedPeriod })
+
+M.AgentActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.TimeRangeList = schema.new({ type = "list", list_member = M.TimeRange })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1150,10 +1194,7 @@ M.DeleteCampaignInput = schema.new({
     },
 })
 
-M.DeleteCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignOutput = prelude.Unit
 
 M.DeleteCampaignChannelSubtypeConfigInput = schema.new({
     id = id.from(_N, "DeleteCampaignChannelSubtypeConfigRequest"),
@@ -1182,10 +1223,7 @@ M.DeleteCampaignChannelSubtypeConfigInput = schema.new({
     },
 })
 
-M.DeleteCampaignChannelSubtypeConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignChannelSubtypeConfigOutput = prelude.Unit
 
 M.DeleteCampaignCommunicationLimitsInput = schema.new({
     id = id.from(_N, "DeleteCampaignCommunicationLimitsRequest"),
@@ -1214,10 +1252,7 @@ M.DeleteCampaignCommunicationLimitsInput = schema.new({
     },
 })
 
-M.DeleteCampaignCommunicationLimitsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignCommunicationLimitsOutput = prelude.Unit
 
 M.InvalidCampaignStateException = schema.new({
     id = id.from(_N, "InvalidCampaignStateException"),
@@ -1283,10 +1318,7 @@ M.DeleteCampaignCommunicationTimeInput = schema.new({
     },
 })
 
-M.DeleteCampaignCommunicationTimeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignCommunicationTimeOutput = prelude.Unit
 
 M.DeleteCampaignEntryLimitsInput = schema.new({
     id = id.from(_N, "DeleteCampaignEntryLimitsRequest"),
@@ -1305,10 +1337,7 @@ M.DeleteCampaignEntryLimitsInput = schema.new({
     },
 })
 
-M.DeleteCampaignEntryLimitsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignEntryLimitsOutput = prelude.Unit
 
 M.DeleteConnectInstanceConfigInput = schema.new({
     id = id.from(_N, "DeleteConnectInstanceConfigRequest"),
@@ -1336,10 +1365,7 @@ M.DeleteConnectInstanceConfigInput = schema.new({
     },
 })
 
-M.DeleteConnectInstanceConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectInstanceConfigOutput = prelude.Unit
 
 M.InvalidStateException = schema.new({
     id = id.from(_N, "InvalidStateException"),
@@ -1472,10 +1498,7 @@ M.DeleteConnectInstanceIntegrationInput = schema.new({
     },
 })
 
-M.DeleteConnectInstanceIntegrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectInstanceIntegrationOutput = prelude.Unit
 
 M.DeleteInstanceOnboardingJobInput = schema.new({
     id = id.from(_N, "DeleteInstanceOnboardingJobRequest"),
@@ -1494,10 +1517,7 @@ M.DeleteInstanceOnboardingJobInput = schema.new({
     },
 })
 
-M.DeleteInstanceOnboardingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInstanceOnboardingJobOutput = prelude.Unit
 
 M.DescribeCampaignInput = schema.new({
     id = id.from(_N, "DescribeCampaignRequest"),
@@ -2298,10 +2318,7 @@ M.PauseCampaignInput = schema.new({
     },
 })
 
-M.PauseCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PauseCampaignOutput = prelude.Unit
 
 M.CustomerProfilesIntegrationConfig = schema.new({
     id = id.from(_N, "CustomerProfilesIntegrationConfig"),
@@ -2417,10 +2434,7 @@ M.PutConnectInstanceIntegrationInput = schema.new({
     },
 })
 
-M.PutConnectInstanceIntegrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutConnectInstanceIntegrationOutput = prelude.Unit
 
 M.PutInstanceCommunicationLimitsInput = schema.new({
     id = id.from(_N, "PutInstanceCommunicationLimitsRequest"),
@@ -2449,10 +2463,7 @@ M.PutInstanceCommunicationLimitsInput = schema.new({
     },
 })
 
-M.PutInstanceCommunicationLimitsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutInstanceCommunicationLimitsOutput = prelude.Unit
 
 M.EmailChannelSubtypeParameters = schema.new({
     id = id.from(_N, "EmailChannelSubtypeParameters"),
@@ -2926,10 +2937,7 @@ M.ResumeCampaignInput = schema.new({
     },
 })
 
-M.ResumeCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResumeCampaignOutput = prelude.Unit
 
 M.StartCampaignInput = schema.new({
     id = id.from(_N, "StartCampaignRequest"),
@@ -2948,10 +2956,7 @@ M.StartCampaignInput = schema.new({
     },
 })
 
-M.StartCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartCampaignOutput = prelude.Unit
 
 M.StartInstanceOnboardingJobInput = schema.new({
     id = id.from(_N, "StartInstanceOnboardingJobRequest"),
@@ -3011,10 +3016,7 @@ M.StopCampaignInput = schema.new({
     },
 })
 
-M.StopCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopCampaignOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -3044,10 +3046,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -3077,10 +3076,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateCampaignChannelSubtypeConfigInput = schema.new({
     id = id.from(_N, "UpdateCampaignChannelSubtypeConfigRequest"),
@@ -3109,10 +3105,7 @@ M.UpdateCampaignChannelSubtypeConfigInput = schema.new({
     },
 })
 
-M.UpdateCampaignChannelSubtypeConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignChannelSubtypeConfigOutput = prelude.Unit
 
 M.UpdateCampaignCommunicationLimitsInput = schema.new({
     id = id.from(_N, "UpdateCampaignCommunicationLimitsRequest"),
@@ -3141,10 +3134,7 @@ M.UpdateCampaignCommunicationLimitsInput = schema.new({
     },
 })
 
-M.UpdateCampaignCommunicationLimitsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignCommunicationLimitsOutput = prelude.Unit
 
 M.UpdateCampaignCommunicationTimeInput = schema.new({
     id = id.from(_N, "UpdateCampaignCommunicationTimeRequest"),
@@ -3173,10 +3163,7 @@ M.UpdateCampaignCommunicationTimeInput = schema.new({
     },
 })
 
-M.UpdateCampaignCommunicationTimeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignCommunicationTimeOutput = prelude.Unit
 
 M.UpdateCampaignEntryLimitsInput = schema.new({
     id = id.from(_N, "UpdateCampaignEntryLimitsRequest"),
@@ -3205,10 +3192,7 @@ M.UpdateCampaignEntryLimitsInput = schema.new({
     },
 })
 
-M.UpdateCampaignEntryLimitsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignEntryLimitsOutput = prelude.Unit
 
 M.UpdateCampaignFlowAssociationInput = schema.new({
     id = id.from(_N, "UpdateCampaignFlowAssociationRequest"),
@@ -3236,10 +3220,7 @@ M.UpdateCampaignFlowAssociationInput = schema.new({
     },
 })
 
-M.UpdateCampaignFlowAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignFlowAssociationOutput = prelude.Unit
 
 M.UpdateCampaignNameInput = schema.new({
     id = id.from(_N, "UpdateCampaignNameRequest"),
@@ -3267,10 +3248,7 @@ M.UpdateCampaignNameInput = schema.new({
     },
 })
 
-M.UpdateCampaignNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignNameOutput = prelude.Unit
 
 M.UpdateCampaignScheduleInput = schema.new({
     id = id.from(_N, "UpdateCampaignScheduleRequest"),
@@ -3299,10 +3277,7 @@ M.UpdateCampaignScheduleInput = schema.new({
     },
 })
 
-M.UpdateCampaignScheduleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignScheduleOutput = prelude.Unit
 
 M.UpdateCampaignSourceInput = schema.new({
     id = id.from(_N, "UpdateCampaignSourceRequest"),
@@ -3331,10 +3306,7 @@ M.UpdateCampaignSourceInput = schema.new({
     },
 })
 
-M.UpdateCampaignSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignSourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

@@ -7,6 +7,98 @@ local _N = "com.amazonaws.cleanroomsml"
 
 local M = {}
 
+M.CollaborationConfiguredModelAlgorithmAssociationList = schema.new({ type = "list", list_member = M.CollaborationConfiguredModelAlgorithmAssociationSummary })
+
+M.CollaborationMLInputChannelsList = schema.new({ type = "list", list_member = M.CollaborationMLInputChannelSummary })
+
+M.CollaborationTrainedModelExportJobList = schema.new({ type = "list", list_member = M.CollaborationTrainedModelExportJobSummary })
+
+M.CollaborationTrainedModelInferenceJobList = schema.new({ type = "list", list_member = M.CollaborationTrainedModelInferenceJobSummary })
+
+M.CollaborationTrainedModelList = schema.new({ type = "list", list_member = M.CollaborationTrainedModelSummary })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AudienceExportJobList = schema.new({ type = "list", list_member = M.AudienceExportJobSummary })
+
+M.AudienceGenerationJobList = schema.new({ type = "list", list_member = M.AudienceGenerationJobSummary })
+
+M.AudienceModelList = schema.new({ type = "list", list_member = M.AudienceModelSummary })
+
+M.ConfiguredAudienceModelList = schema.new({ type = "list", list_member = M.ConfiguredAudienceModelSummary })
+
+M.MetricsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfiguredModelAlgorithmList = schema.new({ type = "list", list_member = M.ConfiguredModelAlgorithmSummary })
+
+M.ConfiguredModelAlgorithmAssociationList = schema.new({ type = "list", list_member = M.ConfiguredModelAlgorithmAssociationSummary })
+
+M.MLInputChannelsList = schema.new({ type = "list", list_member = M.MLInputChannelSummary })
+
+M.ConfiguredModelAlgorithmAssociationArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrainedModelList = schema.new({ type = "list", list_member = M.TrainedModelSummary })
+
+M.HyperParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Environment = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IncrementalTrainingDataChannels = schema.new({ type = "list", list_member = M.IncrementalTrainingDataChannel })
+
+M.ModelTrainingDataChannels = schema.new({ type = "list", list_member = M.ModelTrainingDataChannel })
+
+M.IncrementalTrainingDataChannelsOutput = schema.new({ type = "list", list_member = M.IncrementalTrainingDataChannelOutput })
+
+M.TrainedModelInferenceJobList = schema.new({ type = "list", list_member = M.TrainedModelInferenceJobSummary })
+
+M.InferenceEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TrainingDatasetList = schema.new({ type = "list", list_member = M.TrainingDatasetSummary })
+
+M.DatasetList = schema.new({ type = "list", list_member = M.Dataset })
+
+M.RelevanceMetrics = schema.new({ type = "list", list_member = M.RelevanceMetric })
+
+M.AudienceSizeBins = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ContainerEntrypoint = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDefinitionList = schema.new({ type = "list", list_member = M.MetricDefinition })
+
+M.AccessBudgets = schema.new({ type = "list", list_member = M.AccessBudget })
+
+M.TrainedModelExportReceiverMembers = schema.new({ type = "list", list_member = M.TrainedModelExportReceiverMember })
+
+M.InferenceReceiverMembers = schema.new({ type = "list", list_member = M.InferenceReceiverMember })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogsConfigurationPolicyList = schema.new({ type = "list", list_member = M.LogsConfigurationPolicy })
+
+M.TrainedModelExportFileTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessBudgetDetailsList = schema.new({ type = "list", list_member = M.AccessBudgetDetails })
+
+M.ColumnMappingList = schema.new({ type = "list", list_member = M.SyntheticDataColumnProperties })
+
+M.MembershipInferenceAttackScoreList = schema.new({ type = "list", list_member = M.MembershipInferenceAttackScore })
+
+M.DatasetSchemaList = schema.new({ type = "list", list_member = M.ColumnSchema })
+
+M.SparkProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomDataIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessBudgetDetails = schema.new({
     id = id.from(_N, "AccessBudgetDetails"),
     type = "structure",
@@ -466,10 +558,7 @@ M.StartAudienceExportJobInput = schema.new({
     },
 })
 
-M.StartAudienceExportJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartAudienceExportJobOutput = prelude.Unit
 
 M.DeleteAudienceGenerationJobInput = schema.new({
     id = id.from(_N, "DeleteAudienceGenerationJobRequest"),
@@ -488,10 +577,7 @@ M.DeleteAudienceGenerationJobInput = schema.new({
     },
 })
 
-M.DeleteAudienceGenerationJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAudienceGenerationJobOutput = prelude.Unit
 
 M.GetAudienceGenerationJobInput = schema.new({
     id = id.from(_N, "GetAudienceGenerationJobRequest"),
@@ -1145,10 +1231,7 @@ M.DeleteAudienceModelInput = schema.new({
     },
 })
 
-M.DeleteAudienceModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAudienceModelOutput = prelude.Unit
 
 M.GetAudienceModelInput = schema.new({
     id = id.from(_N, "GetAudienceModelRequest"),
@@ -1558,10 +1641,7 @@ M.DeleteConfiguredAudienceModelInput = schema.new({
     },
 })
 
-M.DeleteConfiguredAudienceModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfiguredAudienceModelOutput = prelude.Unit
 
 M.GetConfiguredAudienceModelInput = schema.new({
     id = id.from(_N, "GetConfiguredAudienceModelRequest"),
@@ -1912,10 +1992,7 @@ M.DeleteConfiguredAudienceModelPolicyInput = schema.new({
     },
 })
 
-M.DeleteConfiguredAudienceModelPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfiguredAudienceModelPolicyOutput = prelude.Unit
 
 M.GetConfiguredAudienceModelPolicyInput = schema.new({
     id = id.from(_N, "GetConfiguredAudienceModelPolicyRequest"),
@@ -2201,10 +2278,7 @@ M.DeleteConfiguredModelAlgorithmInput = schema.new({
     },
 })
 
-M.DeleteConfiguredModelAlgorithmOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfiguredModelAlgorithmOutput = prelude.Unit
 
 M.GetConfiguredModelAlgorithmInput = schema.new({
     id = id.from(_N, "GetConfiguredModelAlgorithmRequest"),
@@ -2801,10 +2875,7 @@ M.DeleteConfiguredModelAlgorithmAssociationInput = schema.new({
     },
 })
 
-M.DeleteConfiguredModelAlgorithmAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfiguredModelAlgorithmAssociationOutput = prelude.Unit
 
 M.GetCollaborationConfiguredModelAlgorithmAssociationInput = schema.new({
     id = id.from(_N, "GetCollaborationConfiguredModelAlgorithmAssociationRequest"),
@@ -4213,10 +4284,7 @@ M.DeleteMLConfigurationInput = schema.new({
     },
 })
 
-M.DeleteMLConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMLConfigurationOutput = prelude.Unit
 
 M.GetMLConfigurationInput = schema.new({
     id = id.from(_N, "GetMLConfigurationRequest"),
@@ -4348,10 +4416,7 @@ M.PutMLConfigurationInput = schema.new({
     },
 })
 
-M.PutMLConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutMLConfigurationOutput = prelude.Unit
 
 M.ProtectedQueryInputParameters = schema.new({
     id = id.from(_N, "ProtectedQueryInputParameters"),
@@ -4544,10 +4609,7 @@ M.DeleteMLInputChannelDataInput = schema.new({
     },
 })
 
-M.DeleteMLInputChannelDataOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMLInputChannelDataOutput = prelude.Unit
 
 M.GetCollaborationMLInputChannelInput = schema.new({
     id = id.from(_N, "GetCollaborationMLInputChannelRequest"),
@@ -5303,10 +5365,7 @@ M.CancelTrainedModelInput = schema.new({
     },
 })
 
-M.CancelTrainedModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelTrainedModelOutput = prelude.Unit
 
 M.ModelTrainingDataChannel = schema.new({
     id = id.from(_N, "ModelTrainingDataChannel"),
@@ -5614,10 +5673,7 @@ M.DeleteTrainedModelOutputInput = schema.new({
     },
 })
 
-M.DeleteTrainedModelOutputOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTrainedModelOutputOutput = prelude.Unit
 
 M.GetCollaborationTrainedModelInput = schema.new({
     id = id.from(_N, "GetCollaborationTrainedModelRequest"),
@@ -6347,10 +6403,7 @@ M.StartTrainedModelExportJobInput = schema.new({
     },
 })
 
-M.StartTrainedModelExportJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartTrainedModelExportJobOutput = prelude.Unit
 
 M.CancelTrainedModelInferenceJobInput = schema.new({
     id = id.from(_N, "CancelTrainedModelInferenceJobRequest"),
@@ -6379,10 +6432,7 @@ M.CancelTrainedModelInferenceJobInput = schema.new({
     },
 })
 
-M.CancelTrainedModelInferenceJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelTrainedModelInferenceJobOutput = prelude.Unit
 
 M.GetTrainedModelInferenceJobInput = schema.new({
     id = id.from(_N, "GetTrainedModelInferenceJobRequest"),
@@ -7197,10 +7247,7 @@ M.DeleteTrainingDatasetInput = schema.new({
     },
 })
 
-M.DeleteTrainingDatasetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTrainingDatasetOutput = prelude.Unit
 
 M.GetTrainingDatasetInput = schema.new({
     id = id.from(_N, "GetTrainingDatasetRequest"),

@@ -7,6 +7,28 @@ local _N = "com.amazonaws.mediapackage"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfChannel = schema.new({ type = "list", list_member = M.Channel })
+
+M.__listOfHarvestJob = schema.new({ type = "list", list_member = M.HarvestJob })
+
+M.__listOfOriginEndpoint = schema.new({ type = "list", list_member = M.OriginEndpoint })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfIngestEndpoint = schema.new({ type = "list", list_member = M.IngestEndpoint })
+
+M.__listOfHlsManifestCreateOrUpdateParameters = schema.new({ type = "list", list_member = M.HlsManifestCreateOrUpdateParameters })
+
+M.AdTriggers = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__PeriodTriggersElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfHlsManifest = schema.new({ type = "list", list_member = M.HlsManifest })
+
 M.EgressAccessLogs = schema.new({
     id = id.from(_N, "EgressAccessLogs"),
     type = "structure",
@@ -3099,10 +3121,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -3132,10 +3151,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateChannelInput = schema.new({
     id = id.from(_N, "UpdateChannelRequest"),

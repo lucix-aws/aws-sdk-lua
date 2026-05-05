@@ -7,6 +7,656 @@ local _N = "com.amazonaws.connect"
 
 local M = {}
 
+M.ParentHoursOfOperationConfigList = schema.new({ type = "list", list_member = M.ParentHoursOfOperationConfig })
+
+M.EmailAddressConfigList = schema.new({ type = "list", list_member = M.EmailAddressConfig })
+
+M.QuickConnectsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoutingProfileQueueConfigList = schema.new({ type = "list", list_member = M.RoutingProfileQueueConfig })
+
+M.RoutingProfileManualAssignmentQueueConfigList = schema.new({ type = "list", list_member = M.RoutingProfileManualAssignmentQueueConfig })
+
+M.SecurityProfiles = schema.new({ type = "list", list_member = M.SecurityProfileItem })
+
+M.UserProficiencyList = schema.new({ type = "list", list_member = M.UserProficiency })
+
+M.WorkspaceResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuccessfulBatchAssociationSummaryList = schema.new({ type = "list", list_member = M.SuccessfulBatchAssociationSummary })
+
+M.FailedBatchAssociationSummaryList = schema.new({ type = "list", list_member = M.FailedBatchAssociationSummary })
+
+M.DataSetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalyticsDataAssociationResults = schema.new({ type = "list", list_member = M.AnalyticsDataAssociationResult })
+
+M.ErrorResults = schema.new({ type = "list", list_member = M.ErrorResult })
+
+M.DataTableValueList = schema.new({ type = "list", list_member = M.DataTableValue })
+
+M.BatchCreateDataTableValueSuccessResultList = schema.new({ type = "list", list_member = M.BatchCreateDataTableValueSuccessResult })
+
+M.BatchCreateDataTableValueFailureResultList = schema.new({ type = "list", list_member = M.BatchCreateDataTableValueFailureResult })
+
+M.DataTableDeleteValueIdentifierList = schema.new({ type = "list", list_member = M.DataTableDeleteValueIdentifier })
+
+M.BatchDeleteDataTableValueSuccessResultList = schema.new({ type = "list", list_member = M.BatchDeleteDataTableValueSuccessResult })
+
+M.BatchDeleteDataTableValueFailureResultList = schema.new({ type = "list", list_member = M.BatchDeleteDataTableValueFailureResult })
+
+M.DataTableValueIdentifierList = schema.new({ type = "list", list_member = M.DataTableValueIdentifier })
+
+M.BatchDescribeDataTableValueSuccessResultList = schema.new({ type = "list", list_member = M.BatchDescribeDataTableValueSuccessResult })
+
+M.BatchDescribeDataTableValueFailureResultList = schema.new({ type = "list", list_member = M.BatchDescribeDataTableValueFailureResult })
+
+M.FileIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachedFilesList = schema.new({ type = "list", list_member = M.AttachedFile })
+
+M.AttachedFileErrorsList = schema.new({ type = "list", list_member = M.AttachedFileError })
+
+M.resourceArnListMaxLimit100 = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlowAssociationSummaryList = schema.new({ type = "list", list_member = M.FlowAssociationSummary })
+
+M.ContactDataRequestList = schema.new({ type = "list", list_member = M.ContactDataRequest })
+
+M.SuccessfulRequestList = schema.new({ type = "list", list_member = M.SuccessfulRequest })
+
+M.FailedRequestList = schema.new({ type = "list", list_member = M.FailedRequest })
+
+M.BatchUpdateDataTableValueSuccessResultList = schema.new({ type = "list", list_member = M.BatchUpdateDataTableValueSuccessResult })
+
+M.BatchUpdateDataTableValueFailureResultList = schema.new({ type = "list", list_member = M.BatchUpdateDataTableValueFailureResult })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ContactReferences = schema.new({ type = "map", map_key = prelude.String, map_value = M.Reference })
+
+M.SegmentAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.SegmentAttributeValue })
+
+M.Problems = schema.new({ type = "list", list_member = M.ProblemDetail })
+
+M.EvaluationFormItemsList = schema.new({ type = "list", list_member = M.EvaluationFormItem })
+
+M.HoursOfOperationConfigList = schema.new({ type = "list", list_member = M.HoursOfOperationConfig })
+
+M.HoursOfOperationOverrideConfigList = schema.new({ type = "list", list_member = M.HoursOfOperationOverrideConfig })
+
+M.RecipientList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationContent = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PredefinedAttributePurposeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MediaConcurrencies = schema.new({ type = "list", list_member = M.MediaConcurrency })
+
+M.RuleActions = schema.new({ type = "list", list_member = M.RuleAction })
+
+M.PermissionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedAccessControlTags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagRestrictedResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Applications = schema.new({ type = "list", list_member = M.Application })
+
+M.HierarchyRestrictedResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedFlowModules = schema.new({ type = "list", list_member = M.FlowModule })
+
+M.TaskTemplateFields = schema.new({ type = "list", list_member = M.TaskTemplateField })
+
+M.PropertyValidationExceptionPropertyList = schema.new({ type = "list", list_member = M.PropertyValidationExceptionProperty })
+
+M.SecurityProfileIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoAcceptConfigs = schema.new({ type = "list", list_member = M.AutoAcceptConfig })
+
+M.AfterContactWorkConfigs = schema.new({ type = "list", list_member = M.AfterContactWorkConfigPerChannel })
+
+M.PhoneNumberConfigs = schema.new({ type = "list", list_member = M.PhoneNumberConfig })
+
+M.PersistentConnectionConfigs = schema.new({ type = "list", list_member = M.PersistentConnectionConfig })
+
+M.VoiceEnhancementConfigs = schema.new({ type = "list", list_member = M.VoiceEnhancementConfig })
+
+M.AliasConfigurationList = schema.new({ type = "list", list_member = M.AliasConfiguration })
+
+M.ParentHoursOfOperationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailAddressIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoutingProfileQueueReferenceList = schema.new({ type = "list", list_member = M.RoutingProfileQueueReference })
+
+M.UserProficiencyDisassociateList = schema.new({ type = "list", list_member = M.UserProficiencyDisassociate })
+
+M.DataTableValueEvaluationSetList = schema.new({ type = "list", list_member = M.DataTableValueEvaluationSet })
+
+M.DataTableEvaluatedValueList = schema.new({ type = "list", list_member = M.DataTableEvaluatedValue })
+
+M.ContactMetrics = schema.new({ type = "list", list_member = M.ContactMetricInfo })
+
+M.ContactMetricResults = schema.new({ type = "list", list_member = M.ContactMetricResult })
+
+M.Groupings = schema.new({ type = "list", list_member = prelude.String })
+
+M.CurrentMetrics = schema.new({ type = "list", list_member = M.CurrentMetric })
+
+M.CurrentMetricSortCriteriaMaxOne = schema.new({ type = "list", list_member = M.CurrentMetricSortCriteria })
+
+M.CurrentMetricResults = schema.new({ type = "list", list_member = M.CurrentMetricResult })
+
+M.UserDataList = schema.new({ type = "list", list_member = M.UserData })
+
+M.EffectiveHoursOfOperationList = schema.new({ type = "list", list_member = M.EffectiveHoursOfOperations })
+
+M.EffectiveOverrideHoursList = schema.new({ type = "list", list_member = M.EffectiveOverrideHours })
+
+M.HistoricalMetrics = schema.new({ type = "list", list_member = M.HistoricalMetric })
+
+M.HistoricalMetricResults = schema.new({ type = "list", list_member = M.HistoricalMetricResult })
+
+M.FiltersV2List = schema.new({ type = "list", list_member = M.FilterV2 })
+
+M.GroupingsV2 = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricsV2 = schema.new({ type = "list", list_member = M.MetricV2 })
+
+M.MetricResultsV2 = schema.new({ type = "list", list_member = M.MetricResultV2 })
+
+M.AgentStatusTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentStatusSummaryList = schema.new({ type = "list", list_member = M.AgentStatusSummary })
+
+M.AnalyticsDataSetsResults = schema.new({ type = "list", list_member = M.AnalyticsDataSetsResult })
+
+M.OriginsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedContactSummaryList = schema.new({ type = "list", list_member = M.AssociatedContactSummary })
+
+M.AttachedFilesConfigurationSummaryList = schema.new({ type = "list", list_member = M.AttachedFilesConfigurationSummary })
+
+M.AuthenticationProfileSummaryList = schema.new({ type = "list", list_member = M.AuthenticationProfileSummary })
+
+M.LexBotConfigList = schema.new({ type = "list", list_member = M.LexBotConfig })
+
+M.ChildHoursOfOperationsList = schema.new({ type = "list", list_member = M.HoursOfOperationsIdentifier })
+
+M.EvaluationSummaryList = schema.new({ type = "list", list_member = M.EvaluationSummary })
+
+M.ContactFlowModuleAliasSummaryList = schema.new({ type = "list", list_member = M.ContactFlowModuleAliasSummary })
+
+M.ContactFlowModulesSummaryList = schema.new({ type = "list", list_member = M.ContactFlowModuleSummary })
+
+M.ContactFlowModuleVersionSummaryList = schema.new({ type = "list", list_member = M.ContactFlowModuleVersionSummary })
+
+M.ContactFlowTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactFlowSummaryList = schema.new({ type = "list", list_member = M.ContactFlowSummary })
+
+M.ContactFlowVersionSummaryList = schema.new({ type = "list", list_member = M.ContactFlowVersionSummary })
+
+M.ReferenceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReferenceSummaryList = schema.new({ type = "list", list_member = M.ReferenceSummary })
+
+M.AttributeIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeList = schema.new({ type = "list", list_member = M.DataTableAttribute })
+
+M.RecordIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrimaryAttributeValueFilters = schema.new({ type = "list", list_member = M.PrimaryAttributeValueFilter })
+
+M.PrimaryValuesList = schema.new({ type = "list", list_member = M.RecordPrimaryValue })
+
+M.DataTableSummaryList = schema.new({ type = "list", list_member = M.DataTableSummary })
+
+M.DataTableValueSummaryList = schema.new({ type = "list", list_member = M.DataTableValueSummary })
+
+M.DefaultVocabularyList = schema.new({ type = "list", list_member = M.DefaultVocabulary })
+
+M.SecurityProfiles100 = schema.new({ type = "list", list_member = M.SecurityProfileItem })
+
+M.EvaluationFormSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormSummary })
+
+M.EvaluationFormVersionSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormVersionSummary })
+
+M.HoursOfOperationOverrideList = schema.new({ type = "list", list_member = M.HoursOfOperationOverride })
+
+M.HoursOfOperationSummaryList = schema.new({ type = "list", list_member = M.HoursOfOperationSummary })
+
+M.AttributesList = schema.new({ type = "list", list_member = M.Attribute })
+
+M.InstanceSummaryList = schema.new({ type = "list", list_member = M.InstanceSummary })
+
+M.InstanceStorageConfigs = schema.new({ type = "list", list_member = M.InstanceStorageConfig })
+
+M.IntegrationAssociationSummaryList = schema.new({ type = "list", list_member = M.IntegrationAssociationSummary })
+
+M.FunctionArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LexBotsList = schema.new({ type = "list", list_member = M.LexBot })
+
+M.NotificationSummaryList = schema.new({ type = "list", list_member = M.Notification })
+
+M.PhoneNumberTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberCountryCodes = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberSummaryList = schema.new({ type = "list", list_member = M.PhoneNumberSummary })
+
+M.ListPhoneNumbersSummaryList = schema.new({ type = "list", list_member = M.ListPhoneNumbersSummary })
+
+M.PredefinedAttributeSummaryList = schema.new({ type = "list", list_member = M.PredefinedAttributeSummary })
+
+M.PromptSummaryList = schema.new({ type = "list", list_member = M.PromptSummary })
+
+M.EmailAddressMetadataList = schema.new({ type = "list", list_member = M.EmailAddressSummary })
+
+M.QuickConnectSummaryList = schema.new({ type = "list", list_member = M.QuickConnectSummary })
+
+M.QueueTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueueSummaryList = schema.new({ type = "list", list_member = M.QueueSummary })
+
+M.QuickConnectTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RealTimeContactAnalysisSegmentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RealtimeContactAnalysisSegments = schema.new({ type = "list", list_member = M.RealtimeContactAnalysisSegment })
+
+M.RoutingProfileManualAssignmentQueueConfigSummaryList = schema.new({ type = "list", list_member = M.RoutingProfileManualAssignmentQueueConfigSummary })
+
+M.RoutingProfileQueueConfigSummaryList = schema.new({ type = "list", list_member = M.RoutingProfileQueueConfigSummary })
+
+M.RoutingProfileSummaryList = schema.new({ type = "list", list_member = M.RoutingProfileSummary })
+
+M.RuleSummaryList = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.SecurityKeysList = schema.new({ type = "list", list_member = M.SecurityKey })
+
+M.SecurityProfileSummaryList = schema.new({ type = "list", list_member = M.SecurityProfileSummary })
+
+M.TaskTemplateList = schema.new({ type = "list", list_member = M.TaskTemplateMetadata })
+
+M.ExecutionRecordList = schema.new({ type = "list", list_member = M.ExecutionRecord })
+
+M.TestCaseExecutionList = schema.new({ type = "list", list_member = M.TestCaseExecution })
+
+M.TestCaseSummaryList = schema.new({ type = "list", list_member = M.TestCaseSummary })
+
+M.TrafficDistributionGroupSummaryList = schema.new({ type = "list", list_member = M.TrafficDistributionGroupSummary })
+
+M.TrafficDistributionGroupUserSummaryList = schema.new({ type = "list", list_member = M.TrafficDistributionGroupUserSummary })
+
+M.UseCaseSummaryList = schema.new({ type = "list", list_member = M.UseCase })
+
+M.HierarchyGroupSummaryList = schema.new({ type = "list", list_member = M.HierarchyGroupSummary })
+
+M.UserNotificationSummaryList = schema.new({ type = "list", list_member = M.UserNotificationSummary })
+
+M.UserSummaryList = schema.new({ type = "list", list_member = M.UserSummary })
+
+M.ViewsSummaryList = schema.new({ type = "list", list_member = M.ViewSummary })
+
+M.ViewVersionSummaryList = schema.new({ type = "list", list_member = M.ViewVersionSummary })
+
+M.MediaList = schema.new({ type = "list", list_member = M.MediaItem })
+
+M.WorkspacePageList = schema.new({ type = "list", list_member = M.WorkspacePage })
+
+M.WorkspaceSummaryList = schema.new({ type = "list", list_member = M.WorkspaceSummary })
+
+M.AllowedMonitorCapabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentStatusList = schema.new({ type = "list", list_member = M.AgentStatus })
+
+M.AvailableNumbersList = schema.new({ type = "list", list_member = M.AvailableNumberSummary })
+
+M.EvaluationSearchSummaryList = schema.new({ type = "list", list_member = M.EvaluationSearchSummary })
+
+M.ContactFlowModuleSearchSummaryList = schema.new({ type = "list", list_member = M.ContactFlowModule })
+
+M.ContactFlowSearchSummaryList = schema.new({ type = "list", list_member = M.ContactFlow })
+
+M.Contacts = schema.new({ type = "list", list_member = M.ContactSearchSummary })
+
+M.DataTableList = schema.new({ type = "list", list_member = M.DataTable })
+
+M.EmailAddressList = schema.new({ type = "list", list_member = M.EmailAddressMetadata })
+
+M.EvaluationFormSearchSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormSearchSummary })
+
+M.HoursOfOperationList = schema.new({ type = "list", list_member = M.HoursOfOperation })
+
+M.NotificationSearchSummaryList = schema.new({ type = "list", list_member = M.NotificationSearchSummary })
+
+M.PredefinedAttributeSearchSummaryList = schema.new({ type = "list", list_member = M.PredefinedAttribute })
+
+M.PromptList = schema.new({ type = "list", list_member = M.Prompt })
+
+M.QueueSearchSummaryList = schema.new({ type = "list", list_member = M.Queue })
+
+M.QuickConnectSearchSummaryList = schema.new({ type = "list", list_member = M.QuickConnect })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagsList = schema.new({ type = "list", list_member = M.TagSet })
+
+M.RoutingProfileList = schema.new({ type = "list", list_member = M.RoutingProfile })
+
+M.SecurityProfilesSearchSummaryList = schema.new({ type = "list", list_member = M.SecurityProfileSearchSummary })
+
+M.TestCaseSearchSummaryList = schema.new({ type = "list", list_member = M.TestCase })
+
+M.UserHierarchyGroupList = schema.new({ type = "list", list_member = M.HierarchyGroup })
+
+M.UserSearchSummaryList = schema.new({ type = "list", list_member = M.UserSearchSummary })
+
+M.ViewSearchSummaryList = schema.new({ type = "list", list_member = M.View })
+
+M.VocabularySummaryList = schema.new({ type = "list", list_member = M.VocabularySummary })
+
+M.WorkspaceAssociationSearchSummaryList = schema.new({ type = "list", list_member = M.WorkspaceAssociationSearchSummary })
+
+M.WorkspaceSearchSummaryList = schema.new({ type = "list", list_member = M.WorkspaceSearchSummary })
+
+M.SupportedMessagingContentTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisconnectOnCustomerExit = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailAttachments = schema.new({ type = "list", list_member = M.EmailAttachment })
+
+M.TaskAttachments = schema.new({ type = "list", list_member = M.TaskAttachment })
+
+M.EvaluationAnswersInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EvaluationAnswerInput })
+
+M.EvaluationNotesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EvaluationNote })
+
+M.ContactTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ContactTagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpCidrList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrimaryValuesSet = schema.new({ type = "list", list_member = M.PrimaryValue })
+
+M.EvaluationReviewNotificationRecipientList = schema.new({ type = "list", list_member = M.EvaluationReviewNotificationRecipient })
+
+M.PredefinedAttributeStringValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RequiredTaskTemplateFields = schema.new({ type = "list", list_member = M.RequiredFieldInfo })
+
+M.ReadOnlyTaskTemplateFields = schema.new({ type = "list", list_member = M.ReadOnlyFieldInfo })
+
+M.InvisibleTaskTemplateFields = schema.new({ type = "list", list_member = M.InvisibleFieldInfo })
+
+M.TaskTemplateDefaultFieldValueList = schema.new({ type = "list", list_member = M.TaskTemplateDefaultFieldValue })
+
+M.ViewActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Recordings = schema.new({ type = "list", list_member = M.RecordingInfo })
+
+M.ContactEvaluations = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContactEvaluation })
+
+M.NextContacts = schema.new({ type = "list", list_member = M.NextContactEntry })
+
+M.EvaluationAnswersOutputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EvaluationAnswerOutput })
+
+M.EvaluationScoresMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EvaluationScore })
+
+M.ParentHoursOfOperationsList = schema.new({ type = "list", list_member = M.HoursOfOperationsIdentifier })
+
+M.ReplicationStatusSummaryList = schema.new({ type = "list", list_member = M.ReplicationStatusSummary })
+
+M.AssociatedQueueIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Queues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Channels = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoutingProfiles = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoutingExpressions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.Subtypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationTestTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentsMinOneMaxHundred = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserDataHierarchyGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.DistributionList = schema.new({ type = "list", list_member = M.Distribution })
+
+M.SignInDistributionList = schema.new({ type = "list", list_member = M.SignInDistribution })
+
+M.AgentStatusSearchConditionList = schema.new({ type = "list", list_member = M.AgentStatusSearchCriteria })
+
+M.EvaluationSearchConditionList = schema.new({ type = "list", list_member = M.EvaluationSearchCriteria })
+
+M.ContactFlowModuleSearchConditionList = schema.new({ type = "list", list_member = M.ContactFlowModuleSearchCriteria })
+
+M.ContactFlowSearchConditionList = schema.new({ type = "list", list_member = M.ContactFlowSearchCriteria })
+
+M.AgentResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InitiationMethodList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueueIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActiveRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataTableSearchConditionList = schema.new({ type = "list", list_member = M.DataTableSearchCriteria })
+
+M.EmailAddressSearchConditionList = schema.new({ type = "list", list_member = M.EmailAddressSearchCriteria })
+
+M.EvaluationFormSearchConditionList = schema.new({ type = "list", list_member = M.EvaluationFormSearchCriteria })
+
+M.HoursOfOperationOverrideSearchConditionList = schema.new({ type = "list", list_member = M.HoursOfOperationOverrideSearchCriteria })
+
+M.HoursOfOperationSearchConditionList = schema.new({ type = "list", list_member = M.HoursOfOperationSearchCriteria })
+
+M.NotificationSearchConditionList = schema.new({ type = "list", list_member = M.NotificationSearchCriteria })
+
+M.PredefinedAttributeSearchConditionList = schema.new({ type = "list", list_member = M.PredefinedAttributeSearchCriteria })
+
+M.PromptSearchConditionList = schema.new({ type = "list", list_member = M.PromptSearchCriteria })
+
+M.QueueSearchConditionList = schema.new({ type = "list", list_member = M.QueueSearchCriteria })
+
+M.QuickConnectSearchConditionList = schema.new({ type = "list", list_member = M.QuickConnectSearchCriteria })
+
+M.RoutingProfileSearchConditionList = schema.new({ type = "list", list_member = M.RoutingProfileSearchCriteria })
+
+M.SecurityProfileSearchConditionList = schema.new({ type = "list", list_member = M.SecurityProfileSearchCriteria })
+
+M.TestCaseSearchConditionList = schema.new({ type = "list", list_member = M.TestCaseSearchCriteria })
+
+M.UserHierarchyGroupSearchConditionList = schema.new({ type = "list", list_member = M.UserHierarchyGroupSearchCriteria })
+
+M.UserSearchConditionList = schema.new({ type = "list", list_member = M.UserSearchCriteria })
+
+M.ViewSearchConditionList = schema.new({ type = "list", list_member = M.ViewSearchCriteria })
+
+M.WorkspaceAssociationSearchConditionList = schema.new({ type = "list", list_member = M.WorkspaceAssociationSearchCriteria })
+
+M.WorkspaceSearchConditionList = schema.new({ type = "list", list_member = M.WorkspaceSearchCriteria })
+
+M.EmailAddressRecipientList = schema.new({ type = "list", list_member = M.EmailAddressInfo })
+
+M.UrlMetadataSignedHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AllowedExtensionsList = schema.new({ type = "list", list_member = M.AllowedExtension })
+
+M.RoutingCriteriaInputSteps = schema.new({ type = "list", list_member = M.RoutingCriteriaInputStep })
+
+M.PrimaryValuesResponseSet = schema.new({ type = "list", list_member = M.PrimaryValueResponse })
+
+M.SegmentAttributeValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SegmentAttributeValue })
+
+M.SegmentAttributeValueList = schema.new({ type = "list", list_member = M.SegmentAttributeValue })
+
+M.ValidationEnumValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonthList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.MonthDayList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.WeekdayOccurrenceList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ApplicationPermissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.SingleSelectOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.StateTransitions = schema.new({ type = "list", list_member = M.StateTransition })
+
+M.AiAgents = schema.new({ type = "list", list_member = M.AiAgentInfo })
+
+M.Steps = schema.new({ type = "list", list_member = M.Step })
+
+M.EmailRecipientsList = schema.new({ type = "list", list_member = M.EmailRecipient })
+
+M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CurrentMetricDataCollections = schema.new({ type = "list", list_member = M.CurrentMetricData })
+
+M.ContactStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelToCountMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.AgentContactReferenceList = schema.new({ type = "list", list_member = M.AgentContactReference })
+
+M.OperationalHours = schema.new({ type = "list", list_member = M.OperationalHour })
+
+M.OverrideHours = schema.new({ type = "list", list_member = M.OverrideHour })
+
+M.HistoricalMetricDataCollections = schema.new({ type = "list", list_member = M.HistoricalMetricData })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThresholdCollections = schema.new({ type = "list", list_member = M.ThresholdV2 })
+
+M.MetricFiltersV2List = schema.new({ type = "list", list_member = M.MetricFilterV2 })
+
+M.DimensionsV2Map = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetricDataCollectionsV2 = schema.new({ type = "list", list_member = M.MetricDataV2 })
+
+M.ValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionSummaries = schema.new({ type = "list", list_member = M.ActionSummary })
+
+M.CommonAttributeOrConditionList = schema.new({ type = "list", list_member = M.CommonAttributeAndCondition })
+
+M.TagOrConditionList = schema.new({ type = "list", list_member = M.TagAndConditionList })
+
+M.TagAndConditionList = schema.new({ type = "list", list_member = M.TagCondition })
+
+M.ContactFlowAttributeOrConditionList = schema.new({ type = "list", list_member = M.ContactFlowAttributeAndCondition })
+
+M.SearchTextList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HierarchyGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchableRoutingCriteriaStepList = schema.new({ type = "list", list_member = M.SearchableRoutingCriteriaStep })
+
+M.SearchContactsAdditionalTimeRangeCriteriaList = schema.new({ type = "list", list_member = M.SearchContactsAdditionalTimeRangeCriteria })
+
+M.SearchableContactAttributesCriteriaList = schema.new({ type = "list", list_member = M.SearchableContactAttributesCriteria })
+
+M.SearchableSegmentAttributesCriteriaList = schema.new({ type = "list", list_member = M.SearchableSegmentAttributesCriteria })
+
+M.ContactSearchSummarySegmentAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContactSearchSummarySegmentAttributeValue })
+
+M.AttributeOrConditionList = schema.new({ type = "list", list_member = M.AttributeAndCondition })
+
+M.Conditions = schema.new({ type = "list", list_member = M.Condition })
+
+M.EmailHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParticipantTimerConfigList = schema.new({ type = "list", list_member = M.ParticipantTimerConfiguration })
+
+M.FieldValues = schema.new({ type = "list", list_member = M.FieldValue })
+
+M.PrimaryAttributeValuesSet = schema.new({ type = "list", list_member = M.PrimaryAttributeValue })
+
+M.EvaluationReviewRequestCommentList = schema.new({ type = "list", list_member = M.EvaluationReviewRequestComment })
+
+M.EvaluationSuggestedAnswersList = schema.new({ type = "list", list_member = M.EvaluationSuggestedAnswer })
+
+M.RealTimeContactAnalysisMatchedDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.RealTimeContactAnalysisCategoryDetails })
+
+M.RealTimeContactAnalysisIssuesDetected = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisIssueDetected })
+
+M.RealTimeContactAnalysisAttachments = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisAttachment })
+
+M.TranscriptCriteriaList = schema.new({ type = "list", list_member = M.TranscriptCriteria })
+
+M.EvaluationAnswerDataStringValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.UserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SlaFieldValueUnionList = schema.new({ type = "list", list_member = M.FieldValueUnion })
+
+M.PotentialAudioQualityIssues = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RealTimeContactAnalysisCharacterIntervals = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisCharacterInterval })
+
+M.SearchableContactAttributeValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchableSegmentAttributeValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedUserActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Expressions = schema.new({ type = "list", list_member = M.Expression })
+
+M.EvaluationFormNumericQuestionOptionList = schema.new({ type = "list", list_member = M.EvaluationFormNumericQuestionOption })
+
+M.EvaluationFormSingleSelectQuestionOptionList = schema.new({ type = "list", list_member = M.EvaluationFormSingleSelectQuestionOption })
+
+M.EvaluationFormMultiSelectQuestionOptionList = schema.new({ type = "list", list_member = M.EvaluationFormMultiSelectQuestionOption })
+
+M.EvaluationFormItemEnablementConditionOperandList = schema.new({ type = "list", list_member = M.EvaluationFormItemEnablementConditionOperand })
+
+M.PrimaryValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RealTimeContactAnalysisPointsOfInterest = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisPointOfInterest })
+
+M.RealTimeContactAnalysisTranscriptItemsWithContent = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisTranscriptItemWithContent })
+
+M.EvaluationFormSingleSelectQuestionAutomationOptionList = schema.new({ type = "list", list_member = M.EvaluationFormSingleSelectQuestionAutomationOption })
+
+M.EvaluationFormMultiSelectQuestionAutomationOptionList = schema.new({ type = "list", list_member = M.EvaluationFormMultiSelectQuestionAutomationOption })
+
+M.ReferenceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationTranscriptPointsOfInterest = schema.new({ type = "list", list_member = M.EvaluationTranscriptPointOfInterest })
+
+M.EvaluationAutomationRuleCategoryList = schema.new({ type = "list", list_member = M.EvaluationAutomationRuleCategory })
+
+M.RealTimeContactAnalysisTranscriptItemsWithCharacterOffsets = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisTranscriptItemWithCharacterOffsets })
+
+M.AgentIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationFormItemEnablementSourceValueList = schema.new({ type = "list", list_member = M.EvaluationFormItemEnablementSourceValue })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1251,10 +1901,7 @@ M.AssociateApprovedOriginInput = schema.new({
     },
 })
 
-M.AssociateApprovedOriginOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateApprovedOriginOutput = prelude.Unit
 
 M.ServiceQuotaExceededExceptionReason = schema.new({
     id = id.from(_N, "ServiceQuotaExceededExceptionReason"),
@@ -1370,10 +2017,7 @@ M.AssociateBotInput = schema.new({
     },
 })
 
-M.AssociateBotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateBotOutput = prelude.Unit
 
 M.LimitExceededException = schema.new({
     id = id.from(_N, "LimitExceededException"),
@@ -1636,10 +2280,7 @@ M.AssociateHoursOfOperationsInput = schema.new({
     },
 })
 
-M.AssociateHoursOfOperationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateHoursOfOperationsOutput = prelude.Unit
 
 M.ConditionalOperationFailedException = schema.new({
     id = id.from(_N, "ConditionalOperationFailedException"),
@@ -1925,10 +2566,7 @@ M.AssociateLambdaFunctionInput = schema.new({
     },
 })
 
-M.AssociateLambdaFunctionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateLambdaFunctionOutput = prelude.Unit
 
 M.AssociateLexBotInput = schema.new({
     id = id.from(_N, "AssociateLexBotRequest"),
@@ -1966,10 +2604,7 @@ M.AssociateLexBotInput = schema.new({
     },
 })
 
-M.AssociateLexBotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateLexBotOutput = prelude.Unit
 
 M.AssociatePhoneNumberContactFlowInput = schema.new({
     id = id.from(_N, "AssociatePhoneNumberContactFlowRequest"),
@@ -2006,10 +2641,7 @@ M.AssociatePhoneNumberContactFlowInput = schema.new({
     },
 })
 
-M.AssociatePhoneNumberContactFlowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociatePhoneNumberContactFlowOutput = prelude.Unit
 
 M.EmailAddressConfig = schema.new({
     id = id.from(_N, "EmailAddressConfig"),
@@ -2073,10 +2705,7 @@ M.AssociateQueueEmailAddressesInput = schema.new({
     },
 })
 
-M.AssociateQueueEmailAddressesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateQueueEmailAddressesOutput = prelude.Unit
 
 M.AssociateQueueQuickConnectsInput = schema.new({
     id = id.from(_N, "AssociateQueueQuickConnectsRequest"),
@@ -2115,10 +2744,7 @@ M.AssociateQueueQuickConnectsInput = schema.new({
     },
 })
 
-M.AssociateQueueQuickConnectsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateQueueQuickConnectsOutput = prelude.Unit
 
 M.RoutingProfileQueueReference = schema.new({
     id = id.from(_N, "RoutingProfileQueueReference"),
@@ -2239,10 +2865,7 @@ M.AssociateRoutingProfileQueuesInput = schema.new({
     },
 })
 
-M.AssociateRoutingProfileQueuesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateRoutingProfileQueuesOutput = prelude.Unit
 
 M.AssociateSecurityKeyInput = schema.new({
     id = id.from(_N, "AssociateSecurityKeyRequest"),
@@ -2350,10 +2973,7 @@ M.AssociateSecurityProfilesInput = schema.new({
     },
 })
 
-M.AssociateSecurityProfilesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateSecurityProfilesOutput = prelude.Unit
 
 M.AssociateTrafficDistributionGroupUserInput = schema.new({
     id = id.from(_N, "AssociateTrafficDistributionGroupUserRequest"),
@@ -2467,10 +3087,7 @@ M.AssociateUserProficienciesInput = schema.new({
     },
 })
 
-M.AssociateUserProficienciesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateUserProficienciesOutput = prelude.Unit
 
 M.AssociateWorkspaceInput = schema.new({
     id = id.from(_N, "AssociateWorkspaceRequest"),
@@ -6754,10 +7371,7 @@ M.CreatePredefinedAttributeInput = schema.new({
     },
 })
 
-M.CreatePredefinedAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreatePredefinedAttributeOutput = prelude.Unit
 
 M.CreatePromptInput = schema.new({
     id = id.from(_N, "CreatePromptRequest"),
@@ -10201,10 +10815,7 @@ M.DeleteContactEvaluationInput = schema.new({
     },
 })
 
-M.DeleteContactEvaluationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteContactEvaluationOutput = prelude.Unit
 
 M.DeleteContactFlowInput = schema.new({
     id = id.from(_N, "DeleteContactFlowRequest"),
@@ -10551,10 +11162,7 @@ M.DeleteEvaluationFormInput = schema.new({
     },
 })
 
-M.DeleteEvaluationFormOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEvaluationFormOutput = prelude.Unit
 
 M.DeleteHoursOfOperationInput = schema.new({
     id = id.from(_N, "DeleteHoursOfOperationRequest"),
@@ -10583,10 +11191,7 @@ M.DeleteHoursOfOperationInput = schema.new({
     },
 })
 
-M.DeleteHoursOfOperationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHoursOfOperationOutput = prelude.Unit
 
 M.DeleteHoursOfOperationOverrideInput = schema.new({
     id = id.from(_N, "DeleteHoursOfOperationOverrideRequest"),
@@ -10625,10 +11230,7 @@ M.DeleteHoursOfOperationOverrideInput = schema.new({
     },
 })
 
-M.DeleteHoursOfOperationOverrideOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHoursOfOperationOverrideOutput = prelude.Unit
 
 M.DeleteInstanceInput = schema.new({
     id = id.from(_N, "DeleteInstanceRequest"),
@@ -10657,10 +11259,7 @@ M.DeleteInstanceInput = schema.new({
     },
 })
 
-M.DeleteInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInstanceOutput = prelude.Unit
 
 M.DeleteIntegrationAssociationInput = schema.new({
     id = id.from(_N, "DeleteIntegrationAssociationRequest"),
@@ -10689,10 +11288,7 @@ M.DeleteIntegrationAssociationInput = schema.new({
     },
 })
 
-M.DeleteIntegrationAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntegrationAssociationOutput = prelude.Unit
 
 M.DeleteNotificationInput = schema.new({
     id = id.from(_N, "DeleteNotificationRequest"),
@@ -10753,10 +11349,7 @@ M.DeletePredefinedAttributeInput = schema.new({
     },
 })
 
-M.DeletePredefinedAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePredefinedAttributeOutput = prelude.Unit
 
 M.DeletePromptInput = schema.new({
     id = id.from(_N, "DeletePromptRequest"),
@@ -10785,10 +11378,7 @@ M.DeletePromptInput = schema.new({
     },
 })
 
-M.DeletePromptOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePromptOutput = prelude.Unit
 
 M.DeletePushNotificationRegistrationInput = schema.new({
     id = id.from(_N, "DeletePushNotificationRegistrationRequest"),
@@ -10859,10 +11449,7 @@ M.DeleteQueueInput = schema.new({
     },
 })
 
-M.DeleteQueueOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteQueueOutput = prelude.Unit
 
 M.DeleteQuickConnectInput = schema.new({
     id = id.from(_N, "DeleteQuickConnectRequest"),
@@ -10891,10 +11478,7 @@ M.DeleteQuickConnectInput = schema.new({
     },
 })
 
-M.DeleteQuickConnectOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteQuickConnectOutput = prelude.Unit
 
 M.DeleteRoutingProfileInput = schema.new({
     id = id.from(_N, "DeleteRoutingProfileRequest"),
@@ -10923,10 +11507,7 @@ M.DeleteRoutingProfileInput = schema.new({
     },
 })
 
-M.DeleteRoutingProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRoutingProfileOutput = prelude.Unit
 
 M.DeleteRuleInput = schema.new({
     id = id.from(_N, "DeleteRuleRequest"),
@@ -10955,10 +11536,7 @@ M.DeleteRuleInput = schema.new({
     },
 })
 
-M.DeleteRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRuleOutput = prelude.Unit
 
 M.DeleteSecurityProfileInput = schema.new({
     id = id.from(_N, "DeleteSecurityProfileRequest"),
@@ -10987,10 +11565,7 @@ M.DeleteSecurityProfileInput = schema.new({
     },
 })
 
-M.DeleteSecurityProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSecurityProfileOutput = prelude.Unit
 
 M.DeleteTaskTemplateInput = schema.new({
     id = id.from(_N, "DeleteTaskTemplateRequest"),
@@ -11115,10 +11690,7 @@ M.DeleteUseCaseInput = schema.new({
     },
 })
 
-M.DeleteUseCaseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUseCaseOutput = prelude.Unit
 
 M.DeleteUserInput = schema.new({
     id = id.from(_N, "DeleteUserRequest"),
@@ -11147,10 +11719,7 @@ M.DeleteUserInput = schema.new({
     },
 })
 
-M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserOutput = prelude.Unit
 
 M.DeleteUserHierarchyGroupInput = schema.new({
     id = id.from(_N, "DeleteUserHierarchyGroupRequest"),
@@ -11179,10 +11748,7 @@ M.DeleteUserHierarchyGroupInput = schema.new({
     },
 })
 
-M.DeleteUserHierarchyGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserHierarchyGroupOutput = prelude.Unit
 
 M.DeleteViewInput = schema.new({
     id = id.from(_N, "DeleteViewRequest"),
@@ -16548,10 +17114,7 @@ M.DisassociateAnalyticsDataSetInput = schema.new({
     },
 })
 
-M.DisassociateAnalyticsDataSetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateAnalyticsDataSetOutput = prelude.Unit
 
 M.DisassociateApprovedOriginInput = schema.new({
     id = id.from(_N, "DisassociateApprovedOriginRequest"),
@@ -16590,10 +17153,7 @@ M.DisassociateApprovedOriginInput = schema.new({
     },
 })
 
-M.DisassociateApprovedOriginOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateApprovedOriginOutput = prelude.Unit
 
 M.DisassociateBotInput = schema.new({
     id = id.from(_N, "DisassociateBotRequest"),
@@ -16635,10 +17195,7 @@ M.DisassociateBotInput = schema.new({
     },
 })
 
-M.DisassociateBotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateBotOutput = prelude.Unit
 
 M.DisassociateEmailAddressAliasInput = schema.new({
     id = id.from(_N, "DisassociateEmailAddressAliasRequest"),
@@ -16770,10 +17327,7 @@ M.DisassociateHoursOfOperationsInput = schema.new({
     },
 })
 
-M.DisassociateHoursOfOperationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateHoursOfOperationsOutput = prelude.Unit
 
 M.DisassociateInstanceStorageConfigInput = schema.new({
     id = id.from(_N, "DisassociateInstanceStorageConfigRequest"),
@@ -16822,10 +17376,7 @@ M.DisassociateInstanceStorageConfigInput = schema.new({
     },
 })
 
-M.DisassociateInstanceStorageConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateInstanceStorageConfigOutput = prelude.Unit
 
 M.DisassociateLambdaFunctionInput = schema.new({
     id = id.from(_N, "DisassociateLambdaFunctionRequest"),
@@ -16864,10 +17415,7 @@ M.DisassociateLambdaFunctionInput = schema.new({
     },
 })
 
-M.DisassociateLambdaFunctionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateLambdaFunctionOutput = prelude.Unit
 
 M.DisassociateLexBotInput = schema.new({
     id = id.from(_N, "DisassociateLexBotRequest"),
@@ -16916,10 +17464,7 @@ M.DisassociateLexBotInput = schema.new({
     },
 })
 
-M.DisassociateLexBotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateLexBotOutput = prelude.Unit
 
 M.DisassociatePhoneNumberContactFlowInput = schema.new({
     id = id.from(_N, "DisassociatePhoneNumberContactFlowRequest"),
@@ -16948,10 +17493,7 @@ M.DisassociatePhoneNumberContactFlowInput = schema.new({
     },
 })
 
-M.DisassociatePhoneNumberContactFlowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociatePhoneNumberContactFlowOutput = prelude.Unit
 
 M.DisassociateQueueEmailAddressesInput = schema.new({
     id = id.from(_N, "DisassociateQueueEmailAddressesRequest"),
@@ -16999,10 +17541,7 @@ M.DisassociateQueueEmailAddressesInput = schema.new({
     },
 })
 
-M.DisassociateQueueEmailAddressesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateQueueEmailAddressesOutput = prelude.Unit
 
 M.DisassociateQueueQuickConnectsInput = schema.new({
     id = id.from(_N, "DisassociateQueueQuickConnectsRequest"),
@@ -17041,10 +17580,7 @@ M.DisassociateQueueQuickConnectsInput = schema.new({
     },
 })
 
-M.DisassociateQueueQuickConnectsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateQueueQuickConnectsOutput = prelude.Unit
 
 M.DisassociateRoutingProfileQueuesInput = schema.new({
     id = id.from(_N, "DisassociateRoutingProfileQueuesRequest"),
@@ -17087,10 +17623,7 @@ M.DisassociateRoutingProfileQueuesInput = schema.new({
     },
 })
 
-M.DisassociateRoutingProfileQueuesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateRoutingProfileQueuesOutput = prelude.Unit
 
 M.DisassociateSecurityKeyInput = schema.new({
     id = id.from(_N, "DisassociateSecurityKeyRequest"),
@@ -17129,10 +17662,7 @@ M.DisassociateSecurityKeyInput = schema.new({
     },
 })
 
-M.DisassociateSecurityKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateSecurityKeyOutput = prelude.Unit
 
 M.DisassociateSecurityProfilesInput = schema.new({
     id = id.from(_N, "DisassociateSecurityProfilesRequest"),
@@ -17179,10 +17709,7 @@ M.DisassociateSecurityProfilesInput = schema.new({
     },
 })
 
-M.DisassociateSecurityProfilesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateSecurityProfilesOutput = prelude.Unit
 
 M.DisassociateTrafficDistributionGroupUserInput = schema.new({
     id = id.from(_N, "DisassociateTrafficDistributionGroupUserRequest"),
@@ -17288,10 +17815,7 @@ M.DisassociateUserProficienciesInput = schema.new({
     },
 })
 
-M.DisassociateUserProficienciesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateUserProficienciesOutput = prelude.Unit
 
 M.DisassociateWorkspaceInput = schema.new({
     id = id.from(_N, "DisassociateWorkspaceRequest"),
@@ -27359,10 +27883,7 @@ M.ReleasePhoneNumberInput = schema.new({
     },
 })
 
-M.ReleasePhoneNumberOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ReleasePhoneNumberOutput = prelude.Unit
 
 M.ReplicateInstanceInput = schema.new({
     id = id.from(_N, "ReplicateInstanceRequest"),
@@ -32590,10 +33111,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TransferContactInput = schema.new({
     id = id.from(_N, "TransferContactRequest"),
@@ -32740,10 +33258,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAgentStatusInput = schema.new({
     id = id.from(_N, "UpdateAgentStatusRequest"),
@@ -32805,10 +33320,7 @@ M.UpdateAgentStatusInput = schema.new({
     },
 })
 
-M.UpdateAgentStatusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAgentStatusOutput = prelude.Unit
 
 M.UpdateAttachedFilesConfigurationInput = schema.new({
     id = id.from(_N, "UpdateAttachedFilesConfigurationRequest"),
@@ -32968,10 +33480,7 @@ M.UpdateAuthenticationProfileInput = schema.new({
     },
 })
 
-M.UpdateAuthenticationProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAuthenticationProfileOutput = prelude.Unit
 
 M.QueueInfoInput = schema.new({
     id = id.from(_N, "QueueInfoInput"),
@@ -33858,10 +34367,7 @@ M.UpdateHoursOfOperationInput = schema.new({
     },
 })
 
-M.UpdateHoursOfOperationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateHoursOfOperationOutput = prelude.Unit
 
 M.UpdateHoursOfOperationOverrideInput = schema.new({
     id = id.from(_N, "UpdateHoursOfOperationOverrideRequest"),
@@ -33944,10 +34450,7 @@ M.UpdateHoursOfOperationOverrideInput = schema.new({
     },
 })
 
-M.UpdateHoursOfOperationOverrideOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateHoursOfOperationOverrideOutput = prelude.Unit
 
 M.UpdateInstanceAttributeInput = schema.new({
     id = id.from(_N, "UpdateInstanceAttributeRequest"),
@@ -33994,10 +34497,7 @@ M.UpdateInstanceAttributeInput = schema.new({
     },
 })
 
-M.UpdateInstanceAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateInstanceAttributeOutput = prelude.Unit
 
 M.UpdateInstanceStorageConfigInput = schema.new({
     id = id.from(_N, "UpdateInstanceStorageConfigRequest"),
@@ -34055,10 +34555,7 @@ M.UpdateInstanceStorageConfigInput = schema.new({
     },
 })
 
-M.UpdateInstanceStorageConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateInstanceStorageConfigOutput = prelude.Unit
 
 M.UpdateNotificationContentInput = schema.new({
     id = id.from(_N, "UpdateNotificationContentRequest"),
@@ -34367,10 +34864,7 @@ M.UpdatePhoneNumberMetadataInput = schema.new({
     },
 })
 
-M.UpdatePhoneNumberMetadataOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdatePhoneNumberMetadataOutput = prelude.Unit
 
 M.UpdatePredefinedAttributeInput = schema.new({
     id = id.from(_N, "UpdatePredefinedAttributeRequest"),
@@ -34420,10 +34914,7 @@ M.UpdatePredefinedAttributeInput = schema.new({
     },
 })
 
-M.UpdatePredefinedAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdatePredefinedAttributeOutput = prelude.Unit
 
 M.UpdatePromptInput = schema.new({
     id = id.from(_N, "UpdatePromptRequest"),
@@ -34525,10 +35016,7 @@ M.UpdateQueueHoursOfOperationInput = schema.new({
     },
 })
 
-M.UpdateQueueHoursOfOperationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQueueHoursOfOperationOutput = prelude.Unit
 
 M.UpdateQueueMaxContactsInput = schema.new({
     id = id.from(_N, "UpdateQueueMaxContactsRequest"),
@@ -34566,10 +35054,7 @@ M.UpdateQueueMaxContactsInput = schema.new({
     },
 })
 
-M.UpdateQueueMaxContactsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQueueMaxContactsOutput = prelude.Unit
 
 M.UpdateQueueNameInput = schema.new({
     id = id.from(_N, "UpdateQueueNameRequest"),
@@ -34610,10 +35095,7 @@ M.UpdateQueueNameInput = schema.new({
     },
 })
 
-M.UpdateQueueNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQueueNameOutput = prelude.Unit
 
 M.UpdateQueueOutboundCallerConfigInput = schema.new({
     id = id.from(_N, "UpdateQueueOutboundCallerConfigRequest"),
@@ -34652,10 +35134,7 @@ M.UpdateQueueOutboundCallerConfigInput = schema.new({
     },
 })
 
-M.UpdateQueueOutboundCallerConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQueueOutboundCallerConfigOutput = prelude.Unit
 
 M.UpdateQueueOutboundEmailConfigInput = schema.new({
     id = id.from(_N, "UpdateQueueOutboundEmailConfigRequest"),
@@ -34694,10 +35173,7 @@ M.UpdateQueueOutboundEmailConfigInput = schema.new({
     },
 })
 
-M.UpdateQueueOutboundEmailConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQueueOutboundEmailConfigOutput = prelude.Unit
 
 M.UpdateQueueStatusInput = schema.new({
     id = id.from(_N, "UpdateQueueStatusRequest"),
@@ -34735,10 +35211,7 @@ M.UpdateQueueStatusInput = schema.new({
     },
 })
 
-M.UpdateQueueStatusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQueueStatusOutput = prelude.Unit
 
 M.UpdateQuickConnectConfigInput = schema.new({
     id = id.from(_N, "UpdateQuickConnectConfigRequest"),
@@ -34777,10 +35250,7 @@ M.UpdateQuickConnectConfigInput = schema.new({
     },
 })
 
-M.UpdateQuickConnectConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQuickConnectConfigOutput = prelude.Unit
 
 M.UpdateQuickConnectNameInput = schema.new({
     id = id.from(_N, "UpdateQuickConnectNameRequest"),
@@ -34821,10 +35291,7 @@ M.UpdateQuickConnectNameInput = schema.new({
     },
 })
 
-M.UpdateQuickConnectNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateQuickConnectNameOutput = prelude.Unit
 
 M.UpdateRoutingProfileAgentAvailabilityTimerInput = schema.new({
     id = id.from(_N, "UpdateRoutingProfileAgentAvailabilityTimerRequest"),
@@ -34862,10 +35329,7 @@ M.UpdateRoutingProfileAgentAvailabilityTimerInput = schema.new({
     },
 })
 
-M.UpdateRoutingProfileAgentAvailabilityTimerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRoutingProfileAgentAvailabilityTimerOutput = prelude.Unit
 
 M.UpdateRoutingProfileConcurrencyInput = schema.new({
     id = id.from(_N, "UpdateRoutingProfileConcurrencyRequest"),
@@ -34904,10 +35368,7 @@ M.UpdateRoutingProfileConcurrencyInput = schema.new({
     },
 })
 
-M.UpdateRoutingProfileConcurrencyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRoutingProfileConcurrencyOutput = prelude.Unit
 
 M.UpdateRoutingProfileDefaultOutboundQueueInput = schema.new({
     id = id.from(_N, "UpdateRoutingProfileDefaultOutboundQueueRequest"),
@@ -34945,10 +35406,7 @@ M.UpdateRoutingProfileDefaultOutboundQueueInput = schema.new({
     },
 })
 
-M.UpdateRoutingProfileDefaultOutboundQueueOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRoutingProfileDefaultOutboundQueueOutput = prelude.Unit
 
 M.UpdateRoutingProfileNameInput = schema.new({
     id = id.from(_N, "UpdateRoutingProfileNameRequest"),
@@ -34989,10 +35447,7 @@ M.UpdateRoutingProfileNameInput = schema.new({
     },
 })
 
-M.UpdateRoutingProfileNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRoutingProfileNameOutput = prelude.Unit
 
 M.UpdateRoutingProfileQueuesInput = schema.new({
     id = id.from(_N, "UpdateRoutingProfileQueuesRequest"),
@@ -35031,10 +35486,7 @@ M.UpdateRoutingProfileQueuesInput = schema.new({
     },
 })
 
-M.UpdateRoutingProfileQueuesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRoutingProfileQueuesOutput = prelude.Unit
 
 M.UpdateRuleInput = schema.new({
     id = id.from(_N, "UpdateRuleRequest"),
@@ -35100,10 +35552,7 @@ M.UpdateRuleInput = schema.new({
     },
 })
 
-M.UpdateRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRuleOutput = prelude.Unit
 
 M.UpdateSecurityProfileInput = schema.new({
     id = id.from(_N, "UpdateSecurityProfileRequest"),
@@ -35194,10 +35643,7 @@ M.UpdateSecurityProfileInput = schema.new({
     },
 })
 
-M.UpdateSecurityProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateSecurityProfileOutput = prelude.Unit
 
 M.UpdateTaskTemplateInput = schema.new({
     id = id.from(_N, "UpdateTaskTemplateRequest"),
@@ -35557,10 +36003,7 @@ M.UpdateUserConfigInput = schema.new({
     },
 })
 
-M.UpdateUserConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserConfigOutput = prelude.Unit
 
 M.UpdateUserHierarchyInput = schema.new({
     id = id.from(_N, "UpdateUserHierarchyRequest"),
@@ -35595,10 +36038,7 @@ M.UpdateUserHierarchyInput = schema.new({
     },
 })
 
-M.UpdateUserHierarchyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserHierarchyOutput = prelude.Unit
 
 M.UpdateUserHierarchyGroupNameInput = schema.new({
     id = id.from(_N, "UpdateUserHierarchyGroupNameRequest"),
@@ -35636,10 +36076,7 @@ M.UpdateUserHierarchyGroupNameInput = schema.new({
     },
 })
 
-M.UpdateUserHierarchyGroupNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserHierarchyGroupNameOutput = prelude.Unit
 
 M.HierarchyLevelUpdate = schema.new({
     id = id.from(_N, "HierarchyLevelUpdate"),
@@ -35726,10 +36163,7 @@ M.UpdateUserHierarchyStructureInput = schema.new({
     },
 })
 
-M.UpdateUserHierarchyStructureOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserHierarchyStructureOutput = prelude.Unit
 
 M.UpdateUserIdentityInfoInput = schema.new({
     id = id.from(_N, "UpdateUserIdentityInfoRequest"),
@@ -35768,10 +36202,7 @@ M.UpdateUserIdentityInfoInput = schema.new({
     },
 })
 
-M.UpdateUserIdentityInfoOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserIdentityInfoOutput = prelude.Unit
 
 M.UpdateUserNotificationStatusInput = schema.new({
     id = id.from(_N, "UpdateUserNotificationStatusRequest"),
@@ -35879,10 +36310,7 @@ M.UpdateUserPhoneConfigInput = schema.new({
     },
 })
 
-M.UpdateUserPhoneConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserPhoneConfigOutput = prelude.Unit
 
 M.UpdateUserProficienciesInput = schema.new({
     id = id.from(_N, "UpdateUserProficienciesRequest"),
@@ -35921,10 +36349,7 @@ M.UpdateUserProficienciesInput = schema.new({
     },
 })
 
-M.UpdateUserProficienciesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserProficienciesOutput = prelude.Unit
 
 M.UpdateUserRoutingProfileInput = schema.new({
     id = id.from(_N, "UpdateUserRoutingProfileRequest"),
@@ -35962,10 +36387,7 @@ M.UpdateUserRoutingProfileInput = schema.new({
     },
 })
 
-M.UpdateUserRoutingProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserRoutingProfileOutput = prelude.Unit
 
 M.UpdateUserSecurityProfilesInput = schema.new({
     id = id.from(_N, "UpdateUserSecurityProfilesRequest"),
@@ -36004,10 +36426,7 @@ M.UpdateUserSecurityProfilesInput = schema.new({
     },
 })
 
-M.UpdateUserSecurityProfilesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserSecurityProfilesOutput = prelude.Unit
 
 M.UpdateViewContentInput = schema.new({
     id = id.from(_N, "UpdateViewContentRequest"),

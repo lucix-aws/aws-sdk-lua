@@ -7,6 +7,20 @@ local _N = "com.amazonaws.connecthealth"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DomainSummaryList = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.SubscriptionList = schema.new({ type = "list", list_member = M.SubscriptionDescription })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MedicalScribeChannelDefinitions = schema.new({ type = "list", list_member = M.MedicalScribeChannelDefinition })
+
+M.S3Sources = schema.new({ type = "list", list_member = M.S3Source })
+
+M.TemplateInstructions = schema.new({ type = "list", list_member = M.TemplateSectionInstruction })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -2237,10 +2251,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -2270,10 +2281,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

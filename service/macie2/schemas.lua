@@ -7,6 +7,112 @@ local _N = "com.amazonaws.macie2"
 
 local M = {}
 
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfBatchGetCustomDataIdentifierSummary = schema.new({ type = "list", list_member = M.BatchGetCustomDataIdentifierSummary })
+
+M.__listOfAutomatedDiscoveryAccountUpdate = schema.new({ type = "list", list_member = M.AutomatedDiscoveryAccountUpdate })
+
+M.__listOfAutomatedDiscoveryAccountUpdateError = schema.new({ type = "list", list_member = M.AutomatedDiscoveryAccountUpdateError })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SeverityLevelList = schema.new({ type = "list", list_member = M.SeverityLevel })
+
+M.__listOfUnprocessedAccount = schema.new({ type = "list", list_member = M.UnprocessedAccount })
+
+M.__listOfFindingType = schema.new({ type = "list", list_member = prelude.String })
+
+M.BucketCriteria = schema.new({ type = "map", map_key = prelude.String, map_value = M.BucketCriteriaAdditionalProperties })
+
+M.__listOfBucketMetadata = schema.new({ type = "list", list_member = M.BucketMetadata })
+
+M.__listOfFinding = schema.new({ type = "list", list_member = M.Finding })
+
+M.__listOfGroupCount = schema.new({ type = "list", list_member = M.GroupCount })
+
+M.SensitiveDataOccurrences = schema.new({ type = "map", map_key = prelude.String, map_value = M.__listOfDetectedDataDetails })
+
+M.__listOfUnavailabilityReasonCode = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfUsageStatisticsFilter = schema.new({ type = "list", list_member = M.UsageStatisticsFilter })
+
+M.__listOfUsageRecord = schema.new({ type = "list", list_member = M.UsageRecord })
+
+M.__listOfUsageTotal = schema.new({ type = "list", list_member = M.UsageTotal })
+
+M.__listOfAllowListSummary = schema.new({ type = "list", list_member = M.AllowListSummary })
+
+M.__listOfAutomatedDiscoveryAccount = schema.new({ type = "list", list_member = M.AutomatedDiscoveryAccount })
+
+M.__listOfJobSummary = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.__listOfClassificationScopeSummary = schema.new({ type = "list", list_member = M.ClassificationScopeSummary })
+
+M.__listOfCustomDataIdentifierSummary = schema.new({ type = "list", list_member = M.CustomDataIdentifierSummary })
+
+M.__listOfFindingsFilterListItem = schema.new({ type = "list", list_member = M.FindingsFilterListItem })
+
+M.__listOfInvitation = schema.new({ type = "list", list_member = M.Invitation })
+
+M.__listOfManagedDataIdentifierSummary = schema.new({ type = "list", list_member = M.ManagedDataIdentifierSummary })
+
+M.__listOfMember = schema.new({ type = "list", list_member = M.Member })
+
+M.__listOfAdminAccount = schema.new({ type = "list", list_member = M.AdminAccount })
+
+M.__listOfResourceProfileArtifact = schema.new({ type = "list", list_member = M.ResourceProfileArtifact })
+
+M.__listOfDetection = schema.new({ type = "list", list_member = M.Detection })
+
+M.__listOfSensitivityInspectionTemplatesEntry = schema.new({ type = "list", list_member = M.SensitivityInspectionTemplatesEntry })
+
+M.__listOfMatchingResource = schema.new({ type = "list", list_member = M.MatchingResource })
+
+M.__listOfSuppressDataIdentifier = schema.new({ type = "list", list_member = M.SuppressDataIdentifier })
+
+M.__listOfS3BucketDefinitionForJob = schema.new({ type = "list", list_member = M.S3BucketDefinitionForJob })
+
+M.Criterion = schema.new({ type = "map", map_key = prelude.String, map_value = M.CriterionAdditionalProperties })
+
+M.__listOfDetectedDataDetails = schema.new({ type = "list", list_member = M.DetectedDataDetails })
+
+M.__listOfListJobsFilterTerm = schema.new({ type = "list", list_member = M.ListJobsFilterTerm })
+
+M.__listOfKeyValuePair = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.__listOfS3BucketName = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfUsageByAccount = schema.new({ type = "list", list_member = M.UsageByAccount })
+
+M.__listOfSearchResourcesCriteria = schema.new({ type = "list", list_member = M.SearchResourcesCriteria })
+
+M.__listOfCriteriaForJob = schema.new({ type = "list", list_member = M.CriteriaForJob })
+
+M.__listOfJobScopeTerm = schema.new({ type = "list", list_member = M.JobScopeTerm })
+
+M.SensitiveData = schema.new({ type = "list", list_member = M.SensitiveDataItem })
+
+M.KeyValuePairList = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.CustomDetections = schema.new({ type = "list", list_member = M.CustomDetection })
+
+M.__listOfSearchResourcesTagCriterionPair = schema.new({ type = "list", list_member = M.SearchResourcesTagCriterionPair })
+
+M.__listOfTagCriterionPairForJob = schema.new({ type = "list", list_member = M.TagCriterionPairForJob })
+
+M.__listOfTagValuePair = schema.new({ type = "list", list_member = M.TagValuePair })
+
+M.DefaultDetections = schema.new({ type = "list", list_member = M.DefaultDetection })
+
+M.Cells = schema.new({ type = "list", list_member = M.Cell })
+
+M.Ranges = schema.new({ type = "list", list_member = M.Range })
+
+M.Pages = schema.new({ type = "list", list_member = M.Page })
+
+M.Records = schema.new({ type = "list", list_member = M.Record })
+
 M.AdminAccount = schema.new({
     id = id.from(_N, "AdminAccount"),
     type = "structure",

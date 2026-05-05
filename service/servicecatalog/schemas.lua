@@ -7,6 +7,138 @@ local _N = "com.amazonaws.servicecatalog"
 
 local M = {}
 
+M.ServiceActionAssociations = schema.new({ type = "list", list_member = M.ServiceActionAssociation })
+
+M.FailedServiceActionAssociations = schema.new({ type = "list", list_member = M.FailedServiceActionAssociation })
+
+M.SourceProvisioningArtifactProperties = schema.new({ type = "list", list_member = M.SourceProvisioningArtifactPropertiesMap })
+
+M.CopyOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddTags = schema.new({ type = "list", list_member = M.Tag })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.NotificationArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateProvisioningParameters = schema.new({ type = "list", list_member = M.UpdateProvisioningParameter })
+
+M.ProvisioningArtifactInfo = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ServiceActionDefinitionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagOptionDetails = schema.new({ type = "list", list_member = M.TagOptionDetail })
+
+M.Budgets = schema.new({ type = "list", list_member = M.BudgetDetail })
+
+M.PortfolioShareDetails = schema.new({ type = "list", list_member = M.PortfolioShareDetail })
+
+M.ProvisioningArtifacts = schema.new({ type = "list", list_member = M.ProvisioningArtifact })
+
+M.LaunchPaths = schema.new({ type = "list", list_member = M.LaunchPath })
+
+M.ProvisioningArtifactSummaries = schema.new({ type = "list", list_member = M.ProvisioningArtifactSummary })
+
+M.CloudWatchDashboards = schema.new({ type = "list", list_member = M.CloudWatchDashboard })
+
+M.ResourceChanges = schema.new({ type = "list", list_member = M.ResourceChange })
+
+M.ProvisioningArtifactParameters = schema.new({ type = "list", list_member = M.ProvisioningArtifactParameter })
+
+M.ConstraintSummaries = schema.new({ type = "list", list_member = M.ConstraintSummary })
+
+M.UsageInstructions = schema.new({ type = "list", list_member = M.UsageInstruction })
+
+M.TagOptionSummaries = schema.new({ type = "list", list_member = M.TagOptionSummary })
+
+M.ProvisioningArtifactOutputs = schema.new({ type = "list", list_member = M.ProvisioningArtifactOutput })
+
+M.RecordOutputs = schema.new({ type = "list", list_member = M.RecordOutput })
+
+M.ExecutionParameters = schema.new({ type = "list", list_member = M.ExecutionParameter })
+
+M.ExecutionParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExecutionParameterValueList })
+
+M.OutputKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.PortfolioDetails = schema.new({ type = "list", list_member = M.PortfolioDetail })
+
+M.ConstraintDetails = schema.new({ type = "list", list_member = M.ConstraintDetail })
+
+M.LaunchPathSummaries = schema.new({ type = "list", list_member = M.LaunchPathSummary })
+
+M.OrganizationNodes = schema.new({ type = "list", list_member = M.OrganizationNode })
+
+M.AccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Principals = schema.new({ type = "list", list_member = M.Principal })
+
+M.ProvisionedProductPlans = schema.new({ type = "list", list_member = M.ProvisionedProductPlanSummary })
+
+M.ProvisioningArtifactDetails = schema.new({ type = "list", list_member = M.ProvisioningArtifactDetail })
+
+M.ProvisioningArtifactViews = schema.new({ type = "list", list_member = M.ProvisioningArtifactView })
+
+M.RecordDetails = schema.new({ type = "list", list_member = M.RecordDetail })
+
+M.ResourceDetails = schema.new({ type = "list", list_member = M.ResourceDetail })
+
+M.ServiceActionSummaries = schema.new({ type = "list", list_member = M.ServiceActionSummary })
+
+M.StackInstances = schema.new({ type = "list", list_member = M.StackInstance })
+
+M.ProvisioningParameters = schema.new({ type = "list", list_member = M.ProvisioningParameter })
+
+M.ProvisionedProductDetails = schema.new({ type = "list", list_member = M.ProvisionedProductDetail })
+
+M.ProductViewFilters = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProductViewFilterValues })
+
+M.ProductViewSummaries = schema.new({ type = "list", list_member = M.ProductViewSummary })
+
+M.ProductViewAggregations = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProductViewAggregationValues })
+
+M.ProductViewDetails = schema.new({ type = "list", list_member = M.ProductViewDetail })
+
+M.ProvisionedProductFilters = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProvisionedProductViewFilterValues })
+
+M.ProvisionedProductAttributes = schema.new({ type = "list", list_member = M.ProvisionedProductAttribute })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProvisionedProductProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SourceProvisioningArtifactPropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SuccessfulShares = schema.new({ type = "list", list_member = prelude.String })
+
+M.ShareErrors = schema.new({ type = "list", list_member = M.ShareError })
+
+M.StackSetAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackSetRegions = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecordErrors = schema.new({ type = "list", list_member = M.RecordError })
+
+M.RecordTags = schema.new({ type = "list", list_member = M.RecordTag })
+
+M.ExecutionParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductViewFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductViewAggregationValues = schema.new({ type = "list", list_member = M.ProductViewAggregationValue })
+
+M.ProvisionedProductViewFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Scope = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceChangeDetails = schema.new({ type = "list", list_member = M.ResourceChangeDetail })
+
+M.TagOptionValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Namespaces = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptPortfolioShareInput = schema.new({
     id = id.from(_N, "AcceptPortfolioShareInput"),
     type = "structure",
@@ -562,7 +694,7 @@ M.CopyProductInput = schema.new({
             type = "list",
             name = "SourceProvisioningArtifactIdentifiers",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.SourceProvisioningArtifactPropertiesMap,
         }),
         CopyOptions = schema.new({
             id = id.from(_N, "CopyProductInput", "CopyOptions"),

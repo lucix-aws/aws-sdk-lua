@@ -7,6 +7,80 @@ local _N = "com.amazonaws.workmail"
 
 local M = {}
 
+M.ImpersonationRuleList = schema.new({ type = "list", list_member = M.ImpersonationRule })
+
+M.DeviceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceModelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceOperatingSystemList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceUserAgentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Domains = schema.new({ type = "list", list_member = M.Domain })
+
+M.AccessControlRuleNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FolderConfigurations = schema.new({ type = "list", list_member = M.FolderConfiguration })
+
+M.ImpersonationMatchedRuleList = schema.new({ type = "list", list_member = M.ImpersonationMatchedRule })
+
+M.DnsRecords = schema.new({ type = "list", list_member = M.DnsRecord })
+
+M.MobileDeviceAccessMatchedRuleList = schema.new({ type = "list", list_member = M.MobileDeviceAccessMatchedRule })
+
+M.PersonalAccessTokenScopeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessControlRulesList = schema.new({ type = "list", list_member = M.AccessControlRule })
+
+M.Aliases = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityConfigurationList = schema.new({ type = "list", list_member = M.AvailabilityConfiguration })
+
+M.Members = schema.new({ type = "list", list_member = M.Member })
+
+M.Groups = schema.new({ type = "list", list_member = M.Group })
+
+M.GroupIdentifiers = schema.new({ type = "list", list_member = M.GroupIdentifier })
+
+M.ImpersonationRoleList = schema.new({ type = "list", list_member = M.ImpersonationRole })
+
+M.Jobs = schema.new({ type = "list", list_member = M.MailboxExportJob })
+
+M.Permissions = schema.new({ type = "list", list_member = M.Permission })
+
+M.MailDomains = schema.new({ type = "list", list_member = M.MailDomainSummary })
+
+M.MobileDeviceAccessOverridesList = schema.new({ type = "list", list_member = M.MobileDeviceAccessOverride })
+
+M.MobileDeviceAccessRulesList = schema.new({ type = "list", list_member = M.MobileDeviceAccessRule })
+
+M.OrganizationSummaries = schema.new({ type = "list", list_member = M.OrganizationSummary })
+
+M.PersonalAccessTokenSummaryList = schema.new({ type = "list", list_member = M.PersonalAccessTokenSummary })
+
+M.ResourceDelegates = schema.new({ type = "list", list_member = M.Delegate })
+
+M.Resources = schema.new({ type = "list", list_member = M.Resource })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Users = schema.new({ type = "list", list_member = M.User })
+
+M.IpRangeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImpersonationRoleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetUsers = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessControlRule = schema.new({
     id = id.from(_N, "AccessControlRule"),
     type = "structure",

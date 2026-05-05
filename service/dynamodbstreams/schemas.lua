@@ -7,6 +7,26 @@ local _N = "com.amazonaws.dynamodbstreams"
 
 local M = {}
 
+M.RecordList = schema.new({ type = "list", list_member = M.Record })
+
+M.StreamList = schema.new({ type = "list", list_member = M.Stream })
+
+M.KeySchema = schema.new({ type = "list", list_member = M.KeySchemaElement })
+
+M.ShardDescriptionList = schema.new({ type = "list", list_member = M.Shard })
+
+M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.StringSetAttributeValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumberSetAttributeValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.BinarySetAttributeValue = schema.new({ type = "list", list_member = prelude.Blob })
+
+M.MapAttributeValue = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ListAttributeValue = schema.new({ type = "list", list_member = M.AttributeValue })
+
 M.ShardFilter = schema.new({
     id = id.from(_N, "ShardFilter"),
     type = "structure",

@@ -2305,33 +2305,33 @@ local record ThrottlingException
     RetryAfterSeconds: string
 end
 
-local type ConnectorsIpAddressType = "IPV4" | "DUALSTACK"
-
-local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
-
-local type Domain = "S3" | "EFS"
-
-local type ProfileType = "LOCAL" | "PARTNER"
-
-local type AgreementStatusType = "ACTIVE" | "INACTIVE"
-
-local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
-
-local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
-
 local type WebAppEndpointPolicy = "FIPS" | "STANDARD"
-
-local type HomeDirectoryType = "PATH" | "LOGICAL"
-
-local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
 
 local type CustomStepStatus = "SUCCESS" | "FAILURE"
 
+local type IpAddressType = "IPV4" | "DUALSTACK"
+
 local type PreserveFilenameType = "ENABLED" | "DISABLED"
+
+local type Domain = "S3" | "EFS"
+
+local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
+
+local type HomeDirectoryType = "PATH" | "LOGICAL"
+
+local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
+
+local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
+
+local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
+
+local type ConnectorsIpAddressType = "IPV4" | "DUALSTACK"
 
 local type IdentityProviderType = "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
 
-local type IpAddressType = "IPV4" | "DUALSTACK"
+local type AgreementStatusType = "ACTIVE" | "INACTIVE"
+
+local type ProfileType = "LOCAL" | "PARTNER"
 
 local record M
     CreateAccessInput: CreateAccessInput

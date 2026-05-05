@@ -7,6 +7,98 @@ local _N = "com.amazonaws.geoplaces"
 
 local M = {}
 
+M.Position = schema.new({ type = "list", list_member = prelude.Double })
+
+M.AutocompleteAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutocompleteResultItemList = schema.new({ type = "list", list_member = M.AutocompleteResultItem })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.GeocodeAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GeocodeResultItemList = schema.new({ type = "list", list_member = M.GeocodeResultItem })
+
+M.GetPlaceAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PostalCodeDetailsList = schema.new({ type = "list", list_member = M.PostalCodeDetails })
+
+M.BoundingBox = schema.new({ type = "list", list_member = prelude.Double })
+
+M.CategoryList = schema.new({ type = "list", list_member = M.Category })
+
+M.FoodTypeList = schema.new({ type = "list", list_member = M.FoodType })
+
+M.BusinessChainList = schema.new({ type = "list", list_member = M.BusinessChain })
+
+M.OpeningHoursList = schema.new({ type = "list", list_member = M.OpeningHours })
+
+M.AccessPointList = schema.new({ type = "list", list_member = M.AccessPoint })
+
+M.AccessRestrictionList = schema.new({ type = "list", list_member = M.AccessRestriction })
+
+M.RelatedPlaceList = schema.new({ type = "list", list_member = M.RelatedPlace })
+
+M.ReverseGeocodeAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReverseGeocodeResultItemList = schema.new({ type = "list", list_member = M.ReverseGeocodeResultItem })
+
+M.SearchNearbyAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchNearbyResultItemList = schema.new({ type = "list", list_member = M.SearchNearbyResultItem })
+
+M.SearchTextAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchTextResultItemList = schema.new({ type = "list", list_member = M.SearchTextResultItem })
+
+M.SuggestAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuggestResultItemList = schema.new({ type = "list", list_member = M.SuggestResultItem })
+
+M.QueryRefinementList = schema.new({ type = "list", list_member = M.QueryRefinement })
+
+M.CountryCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutocompleteFilterPlaceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GeocodeFilterPlaceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntersectionStreetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreetComponentsList = schema.new({ type = "list", list_member = M.StreetComponents })
+
+M.SecondaryAddressComponentList = schema.new({ type = "list", list_member = M.SecondaryAddressComponent })
+
+M.ContactDetailsList = schema.new({ type = "list", list_member = M.ContactDetails })
+
+M.PhonemeTranscriptionList = schema.new({ type = "list", list_member = M.PhonemeTranscription })
+
+M.ReverseGeocodeFilterPlaceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterBusinessChainList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterFoodTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntersectionList = schema.new({ type = "list", list_member = M.Intersection })
+
+M.OpeningHoursDisplayList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpeningHoursComponentsList = schema.new({ type = "list", list_member = M.OpeningHoursComponents })
+
+M.HighlightList = schema.new({ type = "list", list_member = M.Highlight })
+
+M.ParsedQueryComponentList = schema.new({ type = "list", list_member = M.ParsedQueryComponent })
+
+M.IntersectionHighlightsList = schema.new({ type = "list", list_member = M.HighlightList })
+
+M.ParsedQuerySecondaryAddressComponentList = schema.new({ type = "list", list_member = M.ParsedQuerySecondaryAddressComponent })
+
+M.MatchScoreList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.SecondaryAddressComponentMatchScoreList = schema.new({ type = "list", list_member = M.SecondaryAddressComponentMatchScore })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

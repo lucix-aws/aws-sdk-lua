@@ -7,6 +7,28 @@ local _N = "com.amazonaws.acmpca"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateAuthorities = schema.new({ type = "list", list_member = M.CertificateAuthority })
+
+M.PermissionList = schema.new({ type = "list", list_member = M.Permission })
+
+M.CustomAttributeList = schema.new({ type = "list", list_member = M.CustomAttribute })
+
+M.AccessDescriptionList = schema.new({ type = "list", list_member = M.AccessDescription })
+
+M.CertificatePolicyList = schema.new({ type = "list", list_member = M.PolicyInformation })
+
+M.ExtendedKeyUsageList = schema.new({ type = "list", list_member = M.ExtendedKeyUsage })
+
+M.GeneralNameList = schema.new({ type = "list", list_member = M.GeneralName })
+
+M.CustomExtensionList = schema.new({ type = "list", list_member = M.CustomExtension })
+
+M.PolicyQualifierInfoList = schema.new({ type = "list", list_member = M.PolicyQualifierInfo })
+
 M.CustomAttribute = schema.new({
     id = id.from(_N, "CustomAttribute"),
     type = "structure",
@@ -884,10 +906,7 @@ M.CreatePermissionInput = schema.new({
     },
 })
 
-M.CreatePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreatePermissionOutput = prelude.Unit
 
 M.PermissionAlreadyExistsException = schema.new({
     id = id.from(_N, "PermissionAlreadyExistsException"),
@@ -943,10 +962,7 @@ M.DeleteCertificateAuthorityInput = schema.new({
     },
 })
 
-M.DeleteCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCertificateAuthorityOutput = prelude.Unit
 
 M.DeletePermissionInput = schema.new({
     id = id.from(_N, "DeletePermissionRequest"),
@@ -979,10 +995,7 @@ M.DeletePermissionInput = schema.new({
     },
 })
 
-M.DeletePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePermissionOutput = prelude.Unit
 
 M.DeletePolicyInput = schema.new({
     id = id.from(_N, "DeletePolicyRequest"),
@@ -1000,10 +1013,7 @@ M.DeletePolicyInput = schema.new({
     },
 })
 
-M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyOutput = prelude.Unit
 
 M.LockoutPreventedException = schema.new({
     id = id.from(_N, "LockoutPreventedException"),
@@ -1390,10 +1400,7 @@ M.ImportCertificateAuthorityCertificateInput = schema.new({
     },
 })
 
-M.ImportCertificateAuthorityCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ImportCertificateAuthorityCertificateOutput = prelude.Unit
 
 M.InvalidRequestException = schema.new({
     id = id.from(_N, "InvalidRequestException"),
@@ -1958,10 +1965,7 @@ M.PutPolicyInput = schema.new({
     },
 })
 
-M.PutPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutPolicyOutput = prelude.Unit
 
 M.RestoreCertificateAuthorityInput = schema.new({
     id = id.from(_N, "RestoreCertificateAuthorityRequest"),
@@ -1979,10 +1983,7 @@ M.RestoreCertificateAuthorityInput = schema.new({
     },
 })
 
-M.RestoreCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RestoreCertificateAuthorityOutput = prelude.Unit
 
 M.RequestAlreadyProcessedException = schema.new({
     id = id.from(_N, "RequestAlreadyProcessedException"),
@@ -2034,10 +2035,7 @@ M.RevokeCertificateInput = schema.new({
     },
 })
 
-M.RevokeCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RevokeCertificateOutput = prelude.Unit
 
 M.TagCertificateAuthorityInput = schema.new({
     id = id.from(_N, "TagCertificateAuthorityRequest"),
@@ -2065,10 +2063,7 @@ M.TagCertificateAuthorityInput = schema.new({
     },
 })
 
-M.TagCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagCertificateAuthorityOutput = prelude.Unit
 
 M.TooManyTagsException = schema.new({
     id = id.from(_N, "TooManyTagsException"),
@@ -2112,10 +2107,7 @@ M.UntagCertificateAuthorityInput = schema.new({
     },
 })
 
-M.UntagCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagCertificateAuthorityOutput = prelude.Unit
 
 M.UpdateCertificateAuthorityInput = schema.new({
     id = id.from(_N, "UpdateCertificateAuthorityRequest"),
@@ -2146,10 +2138,7 @@ M.UpdateCertificateAuthorityInput = schema.new({
     },
 })
 
-M.UpdateCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCertificateAuthorityOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

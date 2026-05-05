@@ -1537,9 +1537,9 @@ end
 
 local type IpDiscovery = "ipv4" | "ipv6"
 
-local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
-
 local type SourceType = "node" | "parameter-group" | "subnet-group" | "cluster" | "user" | "acl"
+
+local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
 
 local type UpdateStrategy = "coordinated" | "uncoordinated"
 

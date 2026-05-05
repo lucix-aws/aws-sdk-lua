@@ -7,6 +7,114 @@ local _N = "com.amazonaws.frauddetector"
 
 local M = {}
 
+M.VariableEntryList = schema.new({ type = "list", list_member = M.VariableEntry })
+
+M.tagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.BatchCreateVariableErrorList = schema.new({ type = "list", list_member = M.BatchCreateVariableError })
+
+M.NameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VariableList = schema.new({ type = "list", list_member = M.Variable })
+
+M.BatchGetVariableErrorList = schema.new({ type = "list", list_member = M.BatchGetVariableError })
+
+M.ListOfStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleList = schema.new({ type = "list", list_member = M.Rule })
+
+M.ListOfModelVersions = schema.new({ type = "list", list_member = M.ModelVersion })
+
+M.ElementsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NonEmptyListOfStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectorVersionSummaryList = schema.new({ type = "list", list_member = M.DetectorVersionSummary })
+
+M.modelVersionDetailList = schema.new({ type = "list", list_member = M.ModelVersionDetail })
+
+M.BatchImportList = schema.new({ type = "list", list_member = M.BatchImport })
+
+M.BatchPredictionList = schema.new({ type = "list", list_member = M.BatchPrediction })
+
+M.DetectorList = schema.new({ type = "list", list_member = M.Detector })
+
+M.entityTypeList = schema.new({ type = "list", list_member = M.EntityType })
+
+M.listOfEntities = schema.new({ type = "list", list_member = M.Entity })
+
+M.EventVariableMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExternalModelEndpointDataBlobMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ModelEndpointDataBlob })
+
+M.ListOfModelScores = schema.new({ type = "list", list_member = M.ModelScores })
+
+M.ListOfRuleResults = schema.new({ type = "list", list_member = M.RuleResult })
+
+M.ListOfExternalModelOutputs = schema.new({ type = "list", list_member = M.ExternalModelOutputs })
+
+M.ListOfEventVariableSummaries = schema.new({ type = "list", list_member = M.EventVariableSummary })
+
+M.EvaluatedRuleList = schema.new({ type = "list", list_member = M.EvaluatedRule })
+
+M.ListOfEvaluatedModelVersions = schema.new({ type = "list", list_member = M.EvaluatedModelVersion })
+
+M.ListOfEvaluatedExternalModels = schema.new({ type = "list", list_member = M.EvaluatedExternalModel })
+
+M.eventTypeList = schema.new({ type = "list", list_member = M.EventType })
+
+M.ExternalModelList = schema.new({ type = "list", list_member = M.ExternalModel })
+
+M.labelList = schema.new({ type = "list", list_member = M.Label })
+
+M.AllowDenyLists = schema.new({ type = "list", list_member = M.AllowDenyList })
+
+M.modelList = schema.new({ type = "list", list_member = M.Model })
+
+M.OutcomeList = schema.new({ type = "list", list_member = M.Outcome })
+
+M.RuleDetailList = schema.new({ type = "list", list_member = M.RuleDetail })
+
+M.ListOfEventPredictionSummaries = schema.new({ type = "list", list_member = M.EventPredictionSummary })
+
+M.tagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.JsonKeyToVariableMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CsvIndexToVariableMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.labelMapper = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListOfStrings })
+
+M.ModelPredictionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Float })
+
+M.ExternalModelPredictionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfModelVersionEvaluations = schema.new({ type = "list", list_member = M.ModelVersionEvaluation })
+
+M.MapOfStrings = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.fileValidationMessageList = schema.new({ type = "list", list_member = M.FileValidationMessage })
+
+M.fieldValidationMessageList = schema.new({ type = "list", list_member = M.FieldValidationMessage })
+
+M.metricDataPointsList = schema.new({ type = "list", list_member = M.MetricDataPoint })
+
+M.ListOfLogOddsMetrics = schema.new({ type = "list", list_member = M.LogOddsMetric })
+
+M.ListOfAggregatedLogOddsMetrics = schema.new({ type = "list", list_member = M.AggregatedLogOddsMetric })
+
+M.OFIMetricDataPointsList = schema.new({ type = "list", list_member = M.OFIMetricDataPoint })
+
+M.TFIMetricDataPointsList = schema.new({ type = "list", list_member = M.TFIMetricDataPoint })
+
+M.ATIMetricDataPointsList = schema.new({ type = "list", list_member = M.ATIMetricDataPoint })
+
+M.listOfVariableImpactExplanations = schema.new({ type = "list", list_member = M.VariableImpactExplanation })
+
+M.ListOfAggregatedVariablesImpactExplanations = schema.new({ type = "list", list_member = M.AggregatedVariablesImpactExplanation })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4080,10 +4188,7 @@ M.GetExternalModelsOutput = schema.new({
     },
 })
 
-M.GetKMSEncryptionKeyInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetKMSEncryptionKeyInput = prelude.Unit
 
 M.KMSKey = schema.new({
     id = id.from(_N, "KMSKey"),

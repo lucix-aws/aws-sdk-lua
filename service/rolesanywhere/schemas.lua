@@ -7,6 +7,40 @@ local _N = "com.amazonaws.rolesanywhere"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.NotificationSettings = schema.new({ type = "list", list_member = M.NotificationSetting })
+
+M.NotificationSettingKeys = schema.new({ type = "list", list_member = M.NotificationSettingKey })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrlDetails = schema.new({ type = "list", list_member = M.CrlDetail })
+
+M.ProfileDetails = schema.new({ type = "list", list_member = M.ProfileDetail })
+
+M.RoleArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManagedPolicyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpecifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MappingRules = schema.new({ type = "list", list_member = M.MappingRule })
+
+M.SubjectSummaries = schema.new({ type = "list", list_member = M.SubjectSummary })
+
+M.TrustAnchorDetails = schema.new({ type = "list", list_member = M.TrustAnchorDetail })
+
+M.NotificationSettingDetails = schema.new({ type = "list", list_member = M.NotificationSettingDetail })
+
+M.AttributeMappings = schema.new({ type = "list", list_member = M.AttributeMapping })
+
+M.CredentialSummaries = schema.new({ type = "list", list_member = M.CredentialSummary })
+
+M.InstanceProperties = schema.new({ type = "list", list_member = M.InstanceProperty })
+
+M.InstancePropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,726 @@ local _N = "com.amazonaws.quicksight"
 
 local M = {}
 
+M.CreateTopicReviewedAnswers = schema.new({ type = "list", list_member = M.CreateTopicReviewedAnswer })
+
+M.SucceededTopicReviewedAnswers = schema.new({ type = "list", list_member = M.SucceededTopicReviewedAnswer })
+
+M.InvalidTopicReviewedAnswers = schema.new({ type = "list", list_member = M.InvalidTopicReviewedAnswer })
+
+M.AnswerIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.GroupsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourcePermissionList = schema.new({ type = "list", list_member = M.ResourcePermission })
+
+M.FolderArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LinkEntityArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhysicalTableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PhysicalTable })
+
+M.LogicalTableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.LogicalTable })
+
+M.ColumnGroupList = schema.new({ type = "list", list_member = M.ColumnGroup })
+
+M.FieldFolderMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldFolder })
+
+M.ColumnLevelPermissionRuleList = schema.new({ type = "list", list_member = M.ColumnLevelPermissionRule })
+
+M.DatasetParameterList = schema.new({ type = "list", list_member = M.DatasetParameter })
+
+M.IdentityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityNameList })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsResolverList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisErrorList = schema.new({ type = "list", list_member = M.AnalysisError })
+
+M.UpdateResourcePermissionList = schema.new({ type = "list", list_member = M.ResourcePermission })
+
+M.AssetBundleExportJobErrorList = schema.new({ type = "list", list_member = M.AssetBundleExportJobError })
+
+M.AssetBundleResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobWarningList = schema.new({ type = "list", list_member = M.AssetBundleExportJobWarning })
+
+M.AssetBundleImportJobErrorList = schema.new({ type = "list", list_member = M.AssetBundleImportJobError })
+
+M.AssetBundleImportJobWarningList = schema.new({ type = "list", list_member = M.AssetBundleImportJobWarning })
+
+M.DashboardErrorList = schema.new({ type = "list", list_member = M.DashboardError })
+
+M.IpRestrictionRuleMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VpcIdRestrictionRuleMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VpcEndpointIdRestrictionRuleMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.KeyRegistration = schema.new({ type = "list", list_member = M.RegisteredCustomerManagedKey })
+
+M.TemplateErrorList = schema.new({ type = "list", list_member = M.TemplateError })
+
+M.SessionTagList = schema.new({ type = "list", list_member = M.SessionTag })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalDashboardIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionsList = schema.new({ type = "list", list_member = M.Permission })
+
+M.ActionConnectorSummaryList = schema.new({ type = "list", list_member = M.ActionConnectorSummary })
+
+M.AnalysisSummaryList = schema.new({ type = "list", list_member = M.AnalysisSummary })
+
+M.AssetBundleExportJobSummaryList = schema.new({ type = "list", list_member = M.AssetBundleExportJobSummary })
+
+M.AssetBundleImportJobSummaryList = schema.new({ type = "list", list_member = M.AssetBundleImportJobSummary })
+
+M.BrandSummaryList = schema.new({ type = "list", list_member = M.BrandSummary })
+
+M.CustomPermissionsList = schema.new({ type = "list", list_member = M.CustomPermissions })
+
+M.DashboardSummaryList = schema.new({ type = "list", list_member = M.DashboardSummary })
+
+M.DashboardVersionSummaryList = schema.new({ type = "list", list_member = M.DashboardVersionSummary })
+
+M.DataSetSummaryList = schema.new({ type = "list", list_member = M.DataSetSummary })
+
+M.DataSourceList = schema.new({ type = "list", list_member = M.DataSource })
+
+M.FlowSummaryList = schema.new({ type = "list", list_member = M.FlowSummary })
+
+M.FolderMemberList = schema.new({ type = "list", list_member = M.MemberIdArnPair })
+
+M.FolderSummaryList = schema.new({ type = "list", list_member = M.FolderSummary })
+
+M.FoldersForResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupMemberList = schema.new({ type = "list", list_member = M.GroupMember })
+
+M.GroupList = schema.new({ type = "list", list_member = M.Group })
+
+M.IAMPolicyAssignmentSummaryList = schema.new({ type = "list", list_member = M.IAMPolicyAssignmentSummary })
+
+M.ActiveIAMPolicyAssignmentList = schema.new({ type = "list", list_member = M.ActiveIAMPolicyAssignment })
+
+M.AuthorizedTargetsByServices = schema.new({ type = "list", list_member = M.AuthorizedTargetsByService })
+
+M.Ingestions = schema.new({ type = "list", list_member = M.Ingestion })
+
+M.Namespaces = schema.new({ type = "list", list_member = M.NamespaceInfoV2 })
+
+M.RefreshSchedules = schema.new({ type = "list", list_member = M.RefreshSchedule })
+
+M.SelfUpgradeRequestDetailList = schema.new({ type = "list", list_member = M.SelfUpgradeRequestDetail })
+
+M.TemplateAliasList = schema.new({ type = "list", list_member = M.TemplateAlias })
+
+M.TemplateSummaryList = schema.new({ type = "list", list_member = M.TemplateSummary })
+
+M.TemplateVersionSummaryList = schema.new({ type = "list", list_member = M.TemplateVersionSummary })
+
+M.ThemeAliasList = schema.new({ type = "list", list_member = M.ThemeAlias })
+
+M.ThemeSummaryList = schema.new({ type = "list", list_member = M.ThemeSummary })
+
+M.ThemeVersionSummaryList = schema.new({ type = "list", list_member = M.ThemeVersionSummary })
+
+M.TopicRefreshScheduleSummaries = schema.new({ type = "list", list_member = M.TopicRefreshScheduleSummary })
+
+M.TopicReviewedAnswers = schema.new({ type = "list", list_member = M.TopicReviewedAnswer })
+
+M.TopicSummaries = schema.new({ type = "list", list_member = M.TopicSummary })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.VPCConnectionSummaryList = schema.new({ type = "list", list_member = M.VPCConnectionSummary })
+
+M.QAResults = schema.new({ type = "list", list_member = M.QAResult })
+
+M.ActionConnectorSearchFilterList = schema.new({ type = "list", list_member = M.ActionConnectorSearchFilter })
+
+M.AnalysisSearchFilterList = schema.new({ type = "list", list_member = M.AnalysisSearchFilter })
+
+M.DashboardSearchFilterList = schema.new({ type = "list", list_member = M.DashboardSearchFilter })
+
+M.DataSetSearchFilterList = schema.new({ type = "list", list_member = M.DataSetSearchFilter })
+
+M.DataSourceSearchFilterList = schema.new({ type = "list", list_member = M.DataSourceSearchFilter })
+
+M.DataSourceSummaryList = schema.new({ type = "list", list_member = M.DataSourceSummary })
+
+M.SearchFlowsFilterList = schema.new({ type = "list", list_member = M.SearchFlowsFilter })
+
+M.FolderSearchFilterList = schema.new({ type = "list", list_member = M.FolderSearchFilter })
+
+M.GroupSearchFilterList = schema.new({ type = "list", list_member = M.GroupSearchFilter })
+
+M.TopicSearchFilterList = schema.new({ type = "list", list_member = M.TopicSearchFilter })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateLinkPermissionList = schema.new({ type = "list", list_member = M.ResourcePermission })
+
+M.UpdateFlowPermissionsInputGrantPermissionsList = schema.new({ type = "list", list_member = M.Permission })
+
+M.UpdateFlowPermissionsInputRevokePermissionsList = schema.new({ type = "list", list_member = M.Permission })
+
+M.AuthorizedTargetsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedKeyRegistrationEntries = schema.new({ type = "list", list_member = M.FailedKeyRegistrationEntry })
+
+M.SuccessfulKeyRegistrationEntries = schema.new({ type = "list", list_member = M.SuccessfulKeyRegistrationEntry })
+
+M.StringParameterList = schema.new({ type = "list", list_member = M.StringParameter })
+
+M.IntegerParameterList = schema.new({ type = "list", list_member = M.IntegerParameter })
+
+M.DecimalParameterList = schema.new({ type = "list", list_member = M.DecimalParameter })
+
+M.DateTimeParameterList = schema.new({ type = "list", list_member = M.DateTimeParameter })
+
+M.DataSetIdentifierDeclarationList = schema.new({ type = "list", list_member = M.DataSetIdentifierDeclaration })
+
+M.SheetDefinitionList = schema.new({ type = "list", list_member = M.SheetDefinition })
+
+M.TooltipSheetDefinitionList = schema.new({ type = "list", list_member = M.TooltipSheetDefinition })
+
+M.CalculatedFields = schema.new({ type = "list", list_member = M.CalculatedField })
+
+M.ParameterDeclarationList = schema.new({ type = "list", list_member = M.ParameterDeclaration })
+
+M.FilterGroupList = schema.new({ type = "list", list_member = M.FilterGroup })
+
+M.ColumnConfigurationList = schema.new({ type = "list", list_member = M.ColumnConfiguration })
+
+M.StaticFileList = schema.new({ type = "list", list_member = M.StaticFile })
+
+M.ErrorList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RowLevelPermissionTagRuleList = schema.new({ type = "list", list_member = M.RowLevelPermissionTagRule })
+
+M.RowLevelPermissionTagRuleConfigurationList = schema.new({ type = "list", list_member = M.RowLevelPermissionTagRuleConfiguration })
+
+M.UniqueKeyList = schema.new({ type = "list", list_member = M.UniqueKey })
+
+M.SourceTableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SourceTable })
+
+M.TransformStepMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TransformStep })
+
+M.DestinationTableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DestinationTable })
+
+M.SemanticTableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SemanticTable })
+
+M.IdentityNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSetConfigurationList = schema.new({ type = "list", list_member = M.DataSetConfiguration })
+
+M.Datasets = schema.new({ type = "list", list_member = M.DatasetMetadata })
+
+M.ActionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSetArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SheetList = schema.new({ type = "list", list_member = M.Sheet })
+
+M.AssetBundleExportJobVPCConnectionOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobVPCConnectionOverrideProperties })
+
+M.AssetBundleExportJobRefreshScheduleOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobRefreshScheduleOverrideProperties })
+
+M.AssetBundleExportJobDataSourceOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobDataSourceOverrideProperties })
+
+M.AssetBundleExportJobDataSetOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobDataSetOverrideProperties })
+
+M.AssetBundleExportJobThemeOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobThemeOverrideProperties })
+
+M.AssetBundleExportJobAnalysisOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobAnalysisOverrideProperties })
+
+M.AssetBundleExportJobDashboardOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobDashboardOverrideProperties })
+
+M.AssetBundleExportJobFolderOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobFolderOverrideProperties })
+
+M.AssetBundleImportJobVPCConnectionOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobVPCConnectionOverrideParameters })
+
+M.AssetBundleImportJobRefreshScheduleOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobRefreshScheduleOverrideParameters })
+
+M.AssetBundleImportJobDataSourceOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSourceOverrideParameters })
+
+M.AssetBundleImportJobDataSetOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSetOverrideParameters })
+
+M.AssetBundleImportJobThemeOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobThemeOverrideParameters })
+
+M.AssetBundleImportJobAnalysisOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobAnalysisOverrideParameters })
+
+M.AssetBundleImportJobDashboardOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDashboardOverrideParameters })
+
+M.AssetBundleImportJobFolderOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobFolderOverrideParameters })
+
+M.AssetBundleImportJobDataSourceOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSourceOverridePermissions })
+
+M.AssetBundleImportJobDataSetOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSetOverridePermissions })
+
+M.AssetBundleImportJobThemeOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobThemeOverridePermissions })
+
+M.AssetBundleImportJobAnalysisOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobAnalysisOverridePermissions })
+
+M.AssetBundleImportJobDashboardOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDashboardOverridePermissions })
+
+M.AssetBundleImportJobFolderOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobFolderOverridePermissions })
+
+M.AssetBundleImportJobVPCConnectionOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobVPCConnectionOverrideTags })
+
+M.AssetBundleImportJobDataSourceOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSourceOverrideTags })
+
+M.AssetBundleImportJobDataSetOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSetOverrideTags })
+
+M.AssetBundleImportJobThemeOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobThemeOverrideTags })
+
+M.AssetBundleImportJobAnalysisOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobAnalysisOverrideTags })
+
+M.AssetBundleImportJobDashboardOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDashboardOverrideTags })
+
+M.AssetBundleImportJobFolderOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobFolderOverrideTags })
+
+M.SnapshotAnonymousUserRedactedList = schema.new({ type = "list", list_member = M.SnapshotAnonymousUserRedacted })
+
+M.SnapshotFileGroupList = schema.new({ type = "list", list_member = M.SnapshotFileGroup })
+
+M.AnonymousUserSnapshotJobResultList = schema.new({ type = "list", list_member = M.AnonymousUserSnapshotJobResult })
+
+M.RegisteredUserSnapshotJobResultList = schema.new({ type = "list", list_member = M.RegisteredUserSnapshotJobResult })
+
+M.OutputColumnList = schema.new({ type = "list", list_member = M.OutputColumn })
+
+M.DataSourceParametersList = schema.new({ type = "list", list_member = M.DataSourceParameters })
+
+M.Path = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.SnapshotAnonymousUserList = schema.new({ type = "list", list_member = M.SnapshotAnonymousUser })
+
+M.ActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSetReferenceList = schema.new({ type = "list", list_member = M.DataSetReference })
+
+M.TransformOperationList = schema.new({ type = "list", list_member = M.TransformOperation })
+
+M.FolderColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RowLevelPermissionTagRuleConfiguration = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrincipalList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnLevelPermissionRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColorList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FontList = schema.new({ type = "list", list_member = M.Font })
+
+M.EntityList = schema.new({ type = "list", list_member = M.Entity })
+
+M.SnapshotS3DestinationConfigurationList = schema.new({ type = "list", list_member = M.SnapshotS3DestinationConfiguration })
+
+M.ThemeErrorList = schema.new({ type = "list", list_member = M.ThemeError })
+
+M.AnonymousUserDashboardEmbeddingConfigurationEnabledFeatures = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnonymousUserDashboardEmbeddingConfigurationDisabledFeatures = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RowLevelPermissionDataSetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RowLevelPermissionDataSet })
+
+M.TopicIRMetricList = schema.new({ type = "list", list_member = M.TopicIRMetric })
+
+M.TopicIRGroupByList = schema.new({ type = "list", list_member = M.TopicIRGroupBy })
+
+M.TopicIRFilterList = schema.new({ type = "list", list_member = M.TopicIRFilterEntry })
+
+M.TopicVisuals = schema.new({ type = "list", list_member = M.TopicVisual })
+
+M.Slots = schema.new({ type = "list", list_member = M.Slot })
+
+M.SensitiveStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SensitiveLongList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.SensitiveDoubleList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.SensitiveTimestampList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.ParameterControlList = schema.new({ type = "list", list_member = M.ParameterControl })
+
+M.FilterControlList = schema.new({ type = "list", list_member = M.FilterControl })
+
+M.VisualList = schema.new({ type = "list", list_member = M.Visual })
+
+M.SheetTextBoxList = schema.new({ type = "list", list_member = M.SheetTextBox })
+
+M.SheetImageList = schema.new({ type = "list", list_member = M.SheetImage })
+
+M.LayoutList = schema.new({ type = "list", list_member = M.Layout })
+
+M.SheetControlLayoutList = schema.new({ type = "list", list_member = M.SheetControlLayout })
+
+M.TooltipSheetVisualList = schema.new({ type = "list", list_member = M.Visual })
+
+M.TooltipSheetTextBoxList = schema.new({ type = "list", list_member = M.SheetTextBox })
+
+M.TooltipSheetImageList = schema.new({ type = "list", list_member = M.SheetImage })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.InputColumnList = schema.new({ type = "list", list_member = M.InputColumn })
+
+M.TablePathElementList = schema.new({ type = "list", list_member = M.TablePathElement })
+
+M.ColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UniqueKeyColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnGroupSchemaList = schema.new({ type = "list", list_member = M.ColumnGroupSchema })
+
+M.TopicFilters = schema.new({ type = "list", list_member = M.TopicFilter })
+
+M.TopicColumns = schema.new({ type = "list", list_member = M.TopicColumn })
+
+M.TopicCalculatedFields = schema.new({ type = "list", list_member = M.TopicCalculatedField })
+
+M.TopicNamedEntities = schema.new({ type = "list", list_member = M.TopicNamedEntity })
+
+M.AssetBundleExportJobVPCConnectionPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobRefreshSchedulePropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobDataSourcePropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobDataSetPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobThemePropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobAnalysisPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobDashboardPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobFolderPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleRestrictiveResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SessionTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotFileList = schema.new({ type = "list", list_member = M.SnapshotFile })
+
+M.SnapshotJobResultFileGroupList = schema.new({ type = "list", list_member = M.SnapshotJobResultFileGroup })
+
+M.TopicIRFilterEntry = schema.new({ type = "list", list_member = M.TopicIRFilterOption })
+
+M.ContributionAnalysisFactorsList = schema.new({ type = "list", list_member = M.ContributionAnalysisFactor })
+
+M.MappedDataSetParameters = schema.new({ type = "list", list_member = M.MappedDataSetParameter })
+
+M.CustomColorsList = schema.new({ type = "list", list_member = M.CustomColor })
+
+M.DecalSettingsList = schema.new({ type = "list", list_member = M.DecalSettings })
+
+M.StringDatasetParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DecimalDatasetParameterValueList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.IntegerDatasetParameterValueList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.DateTimeDatasetParameterValueList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.ProjectedColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterOperationList = schema.new({ type = "list", list_member = M.FilterOperation })
+
+M.CalculatedColumnList = schema.new({ type = "list", list_member = M.CalculatedColumn })
+
+M.RenameColumnOperationList = schema.new({ type = "list", list_member = M.RenameColumnOperation })
+
+M.CastColumnTypeOperationList = schema.new({ type = "list", list_member = M.CastColumnTypeOperation })
+
+M.GroupByColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregationList = schema.new({ type = "list", list_member = M.Aggregation })
+
+M.PivotGroupByColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnToUnpivotList = schema.new({ type = "list", list_member = M.ColumnToUnpivot })
+
+M.AppendedColumnList = schema.new({ type = "list", list_member = M.AppendedColumn })
+
+M.ColumnSchemaList = schema.new({ type = "list", list_member = M.ColumnSchema })
+
+M.AssetBundlePrincipalList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperandList = schema.new({ type = "list", list_member = M.Identifier })
+
+M.CalculatedFieldReferenceList = schema.new({ type = "list", list_member = M.Identifier })
+
+M.ImageCustomActionList = schema.new({ type = "list", list_member = M.ImageCustomAction })
+
+M.StringDefaultValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DecimalDefaultValueList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.IntegerDefaultValueList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.DateTimeDefaultValueList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.SheetVisualScopingConfigurations = schema.new({ type = "list", list_member = M.SheetVisualScopingConfiguration })
+
+M.ColumnTagList = schema.new({ type = "list", list_member = M.ColumnTag })
+
+M.ColumnTagNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSetColumnIdMappingList = schema.new({ type = "list", list_member = M.DataSetColumnIdMapping })
+
+M.OutputColumnNameOverrideList = schema.new({ type = "list", list_member = M.OutputColumnNameOverride })
+
+M.PivotedLabelList = schema.new({ type = "list", list_member = M.PivotedLabel })
+
+M.ColumnGroupColumnSchemaList = schema.new({ type = "list", list_member = M.ColumnGroupColumnSchema })
+
+M.Synonyms = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorSpecifiedAggregations = schema.new({ type = "list", list_member = prelude.String })
+
+M.CellValueSynonyms = schema.new({ type = "list", list_member = M.CellValueSynonym })
+
+M.NamedEntityDefinitions = schema.new({ type = "list", list_member = M.NamedEntityDefinition })
+
+M.SnapshotFileSheetSelectionList = schema.new({ type = "list", list_member = M.SnapshotFileSheetSelection })
+
+M.SnapshotJobS3ResultList = schema.new({ type = "list", list_member = M.SnapshotJobS3Result })
+
+M.AggFunctionParamMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AggregationPartitionByList = schema.new({ type = "list", list_member = M.AggregationPartitionBy })
+
+M.FilterAggMetricsList = schema.new({ type = "list", list_member = M.FilterAggMetrics })
+
+M.ControlSortConfigurationList = schema.new({ type = "list", list_member = M.ControlSortConfiguration })
+
+M.VisualCustomActionList = schema.new({ type = "list", list_member = M.VisualCustomAction })
+
+M.ColumnHierarchyList = schema.new({ type = "list", list_member = M.ColumnHierarchy })
+
+M.GeocodePreferenceList = schema.new({ type = "list", list_member = M.GeocodePreference })
+
+M.AggregationSortConfigurationList = schema.new({ type = "list", list_member = M.AggregationSortConfiguration })
+
+M.TypeParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CollectiveConstantEntryList = schema.new({ type = "list", list_member = M.CollectiveConstantEntry })
+
+M.ParameterSelectableValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CascadingControlSourceList = schema.new({ type = "list", list_member = M.CascadingControlSource })
+
+M.TableInlineVisualizationList = schema.new({ type = "list", list_member = M.TableInlineVisualization })
+
+M.TableConditionalFormattingOptionList = schema.new({ type = "list", list_member = M.TableConditionalFormattingOption })
+
+M.PivotTableConditionalFormattingOptionList = schema.new({ type = "list", list_member = M.PivotTableConditionalFormattingOption })
+
+M.BarSeriesItemList = schema.new({ type = "list", list_member = M.BarSeriesItem })
+
+M.ReferenceLineList = schema.new({ type = "list", list_member = M.ReferenceLine })
+
+M.ContributionAnalysisDefaultList = schema.new({ type = "list", list_member = M.ContributionAnalysisDefault })
+
+M.KPIConditionalFormattingOptionList = schema.new({ type = "list", list_member = M.KPIConditionalFormattingOption })
+
+M.GaugeChartConditionalFormattingOptionList = schema.new({ type = "list", list_member = M.GaugeChartConditionalFormattingOption })
+
+M.ForecastConfigurationList = schema.new({ type = "list", list_member = M.ForecastConfiguration })
+
+M.SeriesItemList = schema.new({ type = "list", list_member = M.SeriesItem })
+
+M.FilledMapConditionalFormattingOptionList = schema.new({ type = "list", list_member = M.FilledMapConditionalFormattingOption })
+
+M.GeospatialMapLayerList = schema.new({ type = "list", list_member = M.GeospatialLayerItem })
+
+M.ComboSeriesItemList = schema.new({ type = "list", list_member = M.ComboSeriesItem })
+
+M.ComputationList = schema.new({ type = "list", list_member = M.Computation })
+
+M.PluginVisualFieldWells = schema.new({ type = "list", list_member = M.PluginVisualFieldWell })
+
+M.ImageCustomActionOperationList = schema.new({ type = "list", list_member = M.ImageCustomActionOperation })
+
+M.GridLayoutElementList = schema.new({ type = "list", list_member = M.GridLayoutElement })
+
+M.FreeFromLayoutElementList = schema.new({ type = "list", list_member = M.FreeFormLayoutElement })
+
+M.SheetLayoutGroupList = schema.new({ type = "list", list_member = M.SheetLayoutGroup })
+
+M.HeaderFooterSectionConfigurationList = schema.new({ type = "list", list_member = M.HeaderFooterSectionConfiguration })
+
+M.BodySectionConfigurationList = schema.new({ type = "list", list_member = M.BodySectionConfiguration })
+
+M.FilteredVisualsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotFileSheetSelectionVisualIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotJobResultErrorInfoList = schema.new({ type = "list", list_member = M.SnapshotJobResultErrorInfo })
+
+M.RowSortList = schema.new({ type = "list", list_member = M.FieldSortOptions })
+
+M.TotalAggregationOptionList = schema.new({ type = "list", list_member = M.TotalAggregationOption })
+
+M.TableFieldOptionList = schema.new({ type = "list", list_member = M.TableFieldOption })
+
+M.FieldOrderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransposedTableOptionList = schema.new({ type = "list", list_member = M.TransposedTableOption })
+
+M.VisualCustomActionOperationList = schema.new({ type = "list", list_member = M.VisualCustomActionOperation })
+
+M.PivotFieldSortOptionsList = schema.new({ type = "list", list_member = M.PivotFieldSortOptions })
+
+M.PivotTableFieldOptionList = schema.new({ type = "list", list_member = M.PivotTableFieldOption })
+
+M.PivotTableDataPathOptionList = schema.new({ type = "list", list_member = M.PivotTableDataPathOption })
+
+M.PivotTableFieldCollapseStateOptionList = schema.new({ type = "list", list_member = M.PivotTableFieldCollapseStateOption })
+
+M.FieldSortOptionsList = schema.new({ type = "list", list_member = M.FieldSortOptions })
+
+M.DataPathColorList = schema.new({ type = "list", list_member = M.DataPathColor })
+
+M.AxisLabelOptionsList = schema.new({ type = "list", list_member = M.AxisLabelOptions })
+
+M.DataLabelTypes = schema.new({ type = "list", list_member = M.DataLabelType })
+
+M.MeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.DimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.MissingDataConfigurationList = schema.new({ type = "list", list_member = M.MissingDataConfiguration })
+
+M.ColorScaleColorList = schema.new({ type = "list", list_member = M.DataColor })
+
+M.PluginVisualPropertiesList = schema.new({ type = "list", list_member = M.PluginVisualProperty })
+
+M.CategoryValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSetStringFilterStaticValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregationFunctionParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TableUnaggregatedFieldList = schema.new({ type = "list", list_member = M.UnaggregatedField })
+
+M.RowAlternateColorList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableFieldOrderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TooltipItemList = schema.new({ type = "list", list_member = M.TooltipItem })
+
+M.VisualCustomizationAdditionalFieldsList = schema.new({ type = "list", list_member = M.ColumnIdentifier })
+
+M.PivotTableDimensionList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.PivotMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.PivotTableFieldSubtotalOptionsList = schema.new({ type = "list", list_member = M.PivotTableFieldSubtotalOptions })
+
+M.TableStyleTargetList = schema.new({ type = "list", list_member = M.TableStyleTarget })
+
+M.SmallMultiplesDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.ContributorDimensionList = schema.new({ type = "list", list_member = M.ColumnIdentifier })
+
+M.ExplicitHierarchyColumnList = schema.new({ type = "list", list_member = M.ColumnIdentifier })
+
+M.DrillDownFilterList = schema.new({ type = "list", list_member = M.DrillDownFilter })
+
+M.PredefinedHierarchyColumnList = schema.new({ type = "list", list_member = M.ColumnIdentifier })
+
+M.HeatMapDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.HeatMapMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.TreeMapDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.TreeMapMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.FilledMapDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.FilledMapMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.LayerCustomActionList = schema.new({ type = "list", list_member = M.LayerCustomAction })
+
+M.FunnelChartDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.FunnelChartMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.BoxPlotDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.BoxPlotMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.HistogramMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.WordCloudDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.WordCloudMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.RadarChartCategoryFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.RadarChartColorFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.RadarChartValuesFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.UnaggregatedFieldList = schema.new({ type = "list", list_member = M.UnaggregatedField })
+
+M.SheetElementRenderingRuleList = schema.new({ type = "list", list_member = M.SheetElementRenderingRule })
+
+M.SheetLayoutGroupMemberList = schema.new({ type = "list", list_member = M.SheetLayoutGroupMember })
+
+M.DataPathValueList = schema.new({ type = "list", list_member = M.DataPathValue })
+
+M.PivotTableConditionalFormattingScopeList = schema.new({ type = "list", list_member = M.PivotTableConditionalFormattingScope })
+
+M.GeospatialHeatmapDataColorList = schema.new({ type = "list", list_member = M.GeospatialHeatmapDataColor })
+
+M.SetParameterValueConfigurationList = schema.new({ type = "list", list_member = M.SetParameterValueConfiguration })
+
+M.BodySectionRepeatDimensionConfigurationList = schema.new({ type = "list", list_member = M.BodySectionRepeatDimensionConfiguration })
+
+M.NonRepeatingVisualsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GeospatialLayerDimensionFieldList = schema.new({ type = "list", list_member = M.DimensionField })
+
+M.GeospatialLayerMeasureFieldList = schema.new({ type = "list", list_member = M.MeasureField })
+
+M.LayerCustomActionOperationList = schema.new({ type = "list", list_member = M.LayerCustomActionOperation })
+
+M.SelectedFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomActionColumnList = schema.new({ type = "list", list_member = M.ColumnIdentifier })
+
+M.GradientStopList = schema.new({ type = "list", list_member = M.GradientStop })
+
+M.TargetVisualList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BodySectionDynamicDimensionSortConfigurationList = schema.new({ type = "list", list_member = M.ColumnSort })
+
+M.GeospatialGradientStepColorList = schema.new({ type = "list", list_member = M.GeospatialGradientStepColor })
+
+M.GeospatialCategoricalDataColorList = schema.new({ type = "list", list_member = M.GeospatialCategoricalDataColor })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

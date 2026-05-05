@@ -7,6 +7,66 @@ local _N = "com.amazonaws.observabilityadmin"
 
 local M = {}
 
+M.TagMapInput = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationErrors = schema.new({ type = "list", list_member = M.ValidationError })
+
+M.RegionStatuses = schema.new({ type = "list", list_member = M.RegionStatus })
+
+M.CentralizationRuleSummaries = schema.new({ type = "list", list_member = M.CentralizationRuleSummary })
+
+M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.TelemetryConfigurationState = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TelemetryConfigurations = schema.new({ type = "list", list_member = M.TelemetryConfiguration })
+
+M.AccountIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegrationSummaries = schema.new({ type = "list", list_member = M.IntegrationSummary })
+
+M.TagMapOutput = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TelemetryRuleSummaries = schema.new({ type = "list", list_member = M.TelemetryRuleSummary })
+
+M.OrganizationUnitIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Records = schema.new({ type = "list", list_member = M.Record })
+
+M.PipelineOutputs = schema.new({ type = "list", list_member = M.PipelineOutput })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TelemetryPipelineSummaries = schema.new({ type = "list", list_member = M.TelemetryPipelineSummary })
+
+M.TelemetrySourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdvancedEventSelectors = schema.new({ type = "list", list_member = M.AdvancedEventSelector })
+
+M.RedactedFields = schema.new({ type = "list", list_member = M.FieldToMatch })
+
+M.LogTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Sources = schema.new({ type = "list", list_member = M.Source })
+
+M.DataSources = schema.new({ type = "list", list_member = M.DataSource })
+
+M.Processors = schema.new({ type = "list", list_member = prelude.String })
+
+M.Sinks = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.FieldSelectors = schema.new({ type = "list", list_member = M.AdvancedFieldSelector })
+
+M.Conditions = schema.new({ type = "list", list_member = M.Condition })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1317,10 +1377,7 @@ M.DeleteCentralizationRuleForOrganizationInput = schema.new({
     },
 })
 
-M.DeleteCentralizationRuleForOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCentralizationRuleForOrganizationOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -1366,10 +1423,7 @@ M.DeleteS3TableIntegrationInput = schema.new({
     },
 })
 
-M.DeleteS3TableIntegrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteS3TableIntegrationOutput = prelude.Unit
 
 M.InvalidStateException = schema.new({
     id = id.from(_N, "InvalidStateException"),
@@ -1424,10 +1478,7 @@ M.DeleteTelemetryRuleInput = schema.new({
     },
 })
 
-M.DeleteTelemetryRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTelemetryRuleOutput = prelude.Unit
 
 M.DeleteTelemetryRuleForOrganizationInput = schema.new({
     id = id.from(_N, "DeleteTelemetryRuleForOrganizationInput"),
@@ -1445,10 +1496,7 @@ M.DeleteTelemetryRuleForOrganizationInput = schema.new({
     },
 })
 
-M.DeleteTelemetryRuleForOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTelemetryRuleForOrganizationOutput = prelude.Unit
 
 M.GetCentralizationRuleForOrganizationInput = schema.new({
     id = id.from(_N, "GetCentralizationRuleForOrganizationInput"),
@@ -1588,10 +1636,7 @@ M.GetS3TableIntegrationOutput = schema.new({
     },
 })
 
-M.GetTelemetryEnrichmentStatusInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetTelemetryEnrichmentStatusInput = prelude.Unit
 
 M.GetTelemetryEnrichmentStatusOutput = schema.new({
     id = id.from(_N, "GetTelemetryEnrichmentStatusOutput"),
@@ -1612,10 +1657,7 @@ M.GetTelemetryEnrichmentStatusOutput = schema.new({
     },
 })
 
-M.GetTelemetryEvaluationStatusInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetTelemetryEvaluationStatusInput = prelude.Unit
 
 M.RegionStatus = schema.new({
     id = id.from(_N, "RegionStatus"),
@@ -1680,10 +1722,7 @@ M.GetTelemetryEvaluationStatusOutput = schema.new({
     },
 })
 
-M.GetTelemetryEvaluationStatusForOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetTelemetryEvaluationStatusForOrganizationInput = prelude.Unit
 
 M.GetTelemetryEvaluationStatusForOrganizationOutput = schema.new({
     id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationOutput"),
@@ -2570,10 +2609,7 @@ M.ListTelemetryRulesForOrganizationOutput = schema.new({
     },
 })
 
-M.StartTelemetryEnrichmentInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartTelemetryEnrichmentInput = prelude.Unit
 
 M.StartTelemetryEnrichmentOutput = schema.new({
     id = id.from(_N, "StartTelemetryEnrichmentOutput"),
@@ -2614,10 +2650,7 @@ M.StartTelemetryEvaluationInput = schema.new({
     },
 })
 
-M.StartTelemetryEvaluationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartTelemetryEvaluationOutput = prelude.Unit
 
 M.StartTelemetryEvaluationForOrganizationInput = schema.new({
     id = id.from(_N, "StartTelemetryEvaluationForOrganizationInput"),
@@ -2639,15 +2672,9 @@ M.StartTelemetryEvaluationForOrganizationInput = schema.new({
     },
 })
 
-M.StartTelemetryEvaluationForOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartTelemetryEvaluationForOrganizationOutput = prelude.Unit
 
-M.StopTelemetryEnrichmentInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTelemetryEnrichmentInput = prelude.Unit
 
 M.StopTelemetryEnrichmentOutput = schema.new({
     id = id.from(_N, "StopTelemetryEnrichmentOutput"),
@@ -2662,25 +2689,13 @@ M.StopTelemetryEnrichmentOutput = schema.new({
     },
 })
 
-M.StopTelemetryEvaluationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTelemetryEvaluationInput = prelude.Unit
 
-M.StopTelemetryEvaluationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTelemetryEvaluationOutput = prelude.Unit
 
-M.StopTelemetryEvaluationForOrganizationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTelemetryEvaluationForOrganizationInput = prelude.Unit
 
-M.StopTelemetryEvaluationForOrganizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopTelemetryEvaluationForOrganizationOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceInput"),
@@ -2709,10 +2724,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UpdateTelemetryPipelineInput = schema.new({
     id = id.from(_N, "UpdateTelemetryPipelineInput"),
@@ -2865,10 +2877,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateCentralizationRuleForOrganizationInput = schema.new({
     id = id.from(_N, "UpdateCentralizationRuleForOrganizationInput"),

@@ -7,6 +7,90 @@ local _N = "com.amazonaws.elasticsearchservice"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.GUIDList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CancelledChangePropertyList = schema.new({ type = "list", list_member = M.CancelledChangeProperty })
+
+M.AdvancedOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogPublishingOptions = schema.new({ type = "map", map_key = prelude.String, map_value = M.LogPublishingOption })
+
+M.AutoTuneList = schema.new({ type = "list", list_member = M.AutoTune })
+
+M.DomainNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ElasticsearchDomainStatusList = schema.new({ type = "list", list_member = M.ElasticsearchDomainStatus })
+
+M.LimitsByRole = schema.new({ type = "map", map_key = prelude.String, map_value = M.Limits })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.InboundCrossClusterSearchConnections = schema.new({ type = "list", list_member = M.InboundCrossClusterSearchConnection })
+
+M.OutboundCrossClusterSearchConnections = schema.new({ type = "list", list_member = M.OutboundCrossClusterSearchConnection })
+
+M.DescribePackagesFilterList = schema.new({ type = "list", list_member = M.DescribePackagesFilter })
+
+M.PackageDetailsList = schema.new({ type = "list", list_member = M.PackageDetails })
+
+M.ReservedElasticsearchInstanceOfferingList = schema.new({ type = "list", list_member = M.ReservedElasticsearchInstanceOffering })
+
+M.ReservedElasticsearchInstanceList = schema.new({ type = "list", list_member = M.ReservedElasticsearchInstance })
+
+M.VpcEndpointIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpoints = schema.new({ type = "list", list_member = M.VpcEndpoint })
+
+M.VpcEndpointErrorList = schema.new({ type = "list", list_member = M.VpcEndpointError })
+
+M.CompatibleElasticsearchVersionsList = schema.new({ type = "list", list_member = M.CompatibleVersionsMap })
+
+M.PackageVersionHistoryList = schema.new({ type = "list", list_member = M.PackageVersionHistory })
+
+M.UpgradeHistoryList = schema.new({ type = "list", list_member = M.UpgradeHistory })
+
+M.DomainInfoList = schema.new({ type = "list", list_member = M.DomainInfo })
+
+M.DomainPackageDetailsList = schema.new({ type = "list", list_member = M.DomainPackageDetails })
+
+M.ElasticsearchInstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ElasticsearchVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizedPrincipalList = schema.new({ type = "list", list_member = M.AuthorizedPrincipal })
+
+M.VpcEndpointSummaryList = schema.new({ type = "list", list_member = M.VpcEndpointSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoTuneMaintenanceScheduleList = schema.new({ type = "list", list_member = M.AutoTuneMaintenanceSchedule })
+
+M.EndpointsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ModifyingPropertiesList = schema.new({ type = "list", list_member = M.ModifyingProperties })
+
+M.ChangeProgressStageList = schema.new({ type = "list", list_member = M.ChangeProgressStage })
+
+M.StorageTypeList = schema.new({ type = "list", list_member = M.StorageType })
+
+M.AdditionalLimitList = schema.new({ type = "list", list_member = M.AdditionalLimit })
+
+M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribePackagesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecurringChargeList = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.UpgradeStepsList = schema.new({ type = "list", list_member = M.UpgradeStepItem })
+
+M.StorageTypeLimitList = schema.new({ type = "list", list_member = M.StorageTypeLimit })
+
+M.LimitValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Issues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptInboundCrossClusterSearchConnectionInput = schema.new({
     id = id.from(_N, "AcceptInboundCrossClusterSearchConnectionRequest"),
     type = "structure",
@@ -329,10 +413,7 @@ M.AddTagsInput = schema.new({
     },
 })
 
-M.AddTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsOutput = prelude.Unit
 
 M.BaseException = schema.new({
     id = id.from(_N, "BaseException"),
@@ -2250,15 +2331,9 @@ M.DeleteElasticsearchDomainOutput = schema.new({
     },
 })
 
-M.DeleteElasticsearchServiceRoleInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteElasticsearchServiceRoleInput = prelude.Unit
 
-M.DeleteElasticsearchServiceRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteElasticsearchServiceRoleOutput = prelude.Unit
 
 M.DeleteInboundCrossClusterSearchConnectionInput = schema.new({
     id = id.from(_N, "DeleteInboundCrossClusterSearchConnectionRequest"),
@@ -4956,10 +5031,7 @@ M.RemoveTagsInput = schema.new({
     },
 })
 
-M.RemoveTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsOutput = prelude.Unit
 
 M.RevokeVpcEndpointAccessInput = schema.new({
     id = id.from(_N, "RevokeVpcEndpointAccessRequest"),

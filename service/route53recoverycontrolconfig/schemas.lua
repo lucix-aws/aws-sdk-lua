@@ -7,6 +7,24 @@ local _N = "com.amazonaws.route53recoverycontrolconfig"
 
 local M = {}
 
+M.__mapOf__stringMin0Max256PatternS = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOf__stringMax36PatternS = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfCluster = schema.new({ type = "list", list_member = M.Cluster })
+
+M.__listOfControlPanel = schema.new({ type = "list", list_member = M.ControlPanel })
+
+M.__listOfRoutingControl = schema.new({ type = "list", list_member = M.RoutingControl })
+
+M.__listOfRule = schema.new({ type = "list", list_member = M.Rule })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfClusterEndpoint = schema.new({ type = "list", list_member = M.ClusterEndpoint })
+
+M.__listOf__stringMin1Max256PatternAZaZ09 = schema.new({ type = "list", list_member = prelude.String })
+
 M.ClusterEndpoint = schema.new({
     id = id.from(_N, "ClusterEndpoint"),
     type = "structure",

@@ -7,6 +7,58 @@ local _N = "com.amazonaws.panorama"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionErrorArgumentList = schema.new({ type = "list", list_member = M.ValidationExceptionErrorArgument })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.DeviceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobList = schema.new({ type = "list", list_member = M.Job })
+
+M.ConflictExceptionErrorArgumentList = schema.new({ type = "list", list_member = M.ConflictExceptionErrorArgument })
+
+M.TemplateParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.JobTagsList = schema.new({ type = "list", list_member = M.JobResourceTags })
+
+M.ReportedRuntimeContextStates = schema.new({ type = "list", list_member = M.ReportedRuntimeContextState })
+
+M.AlternateSoftwares = schema.new({ type = "list", list_member = M.AlternateSoftwareMetadata })
+
+M.PrincipalArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PackageObjects = schema.new({ type = "list", list_member = M.PackageObject })
+
+M.NodeInstances = schema.new({ type = "list", list_member = M.NodeInstance })
+
+M.ApplicationInstances = schema.new({ type = "list", list_member = M.ApplicationInstance })
+
+M.DeviceList = schema.new({ type = "list", list_member = M.Device })
+
+M.DeviceJobList = schema.new({ type = "list", list_member = M.DeviceJob })
+
+M.NodeFromTemplateJobList = schema.new({ type = "list", list_member = M.NodeFromTemplateJob })
+
+M.NodesList = schema.new({ type = "list", list_member = M.Node })
+
+M.PackageImportJobList = schema.new({ type = "list", list_member = M.PackageImportJob })
+
+M.PackageList = schema.new({ type = "list", list_member = M.PackageListItem })
+
+M.NodeSignalList = schema.new({ type = "list", list_member = M.NodeSignal })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InputPortList = schema.new({ type = "list", list_member = M.NodeInputPort })
+
+M.OutputPortList = schema.new({ type = "list", list_member = M.NodeOutputPort })
+
+M.NtpServerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

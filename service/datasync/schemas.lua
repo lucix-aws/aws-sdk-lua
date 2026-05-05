@@ -7,6 +7,44 @@ local _N = "com.amazonaws.datasync"
 
 local M = {}
 
+M.InputTagList = schema.new({ type = "list", list_member = M.TagListEntry })
+
+M.PLSubnetArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PLSecurityGroupArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ec2SecurityGroupArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HdfsNameNodeList = schema.new({ type = "list", list_member = M.HdfsNameNode })
+
+M.DnsIpList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.FilterRule })
+
+M.SourceNetworkInterfaceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationNetworkInterfaceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentList = schema.new({ type = "list", list_member = M.AgentListEntry })
+
+M.LocationFilters = schema.new({ type = "list", list_member = M.LocationFilter })
+
+M.LocationList = schema.new({ type = "list", list_member = M.LocationListEntry })
+
+M.OutputTagList = schema.new({ type = "list", list_member = M.TagListEntry })
+
+M.TaskExecutionList = schema.new({ type = "list", list_member = M.TaskExecutionListEntry })
+
+M.TaskFilters = schema.new({ type = "list", list_member = M.TaskFilter })
+
+M.TaskList = schema.new({ type = "list", list_member = M.TaskListEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.Platform = schema.new({
     id = id.from(_N, "Platform"),
     type = "structure",

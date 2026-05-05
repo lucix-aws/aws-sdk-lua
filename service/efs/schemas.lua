@@ -7,6 +7,30 @@ local _N = "com.amazonaws.efs"
 
 local M = {}
 
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationsToCreate = schema.new({ type = "list", list_member = M.DestinationToCreate })
+
+M.Destinations = schema.new({ type = "list", list_member = M.Destination })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessPointDescriptions = schema.new({ type = "list", list_member = M.AccessPointDescription })
+
+M.FileSystemDescriptions = schema.new({ type = "list", list_member = M.FileSystemDescription })
+
+M.LifecyclePolicies = schema.new({ type = "list", list_member = M.LifecyclePolicy })
+
+M.MountTargetDescriptions = schema.new({ type = "list", list_member = M.MountTargetDescription })
+
+M.ReplicationConfigurationDescriptions = schema.new({ type = "list", list_member = M.ReplicationConfigurationDescription })
+
+M.SecondaryGids = schema.new({ type = "list", list_member = prelude.Long })
+
+M.Resources = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessPointAlreadyExists = schema.new({
     id = id.from(_N, "AccessPointAlreadyExists"),
     type = "structure",
@@ -1545,10 +1569,7 @@ M.CreateTagsInput = schema.new({
     },
 })
 
-M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTagsOutput = prelude.Unit
 
 M.DeleteAccessPointInput = schema.new({
     id = id.from(_N, "DeleteAccessPointRequest"),
@@ -1567,10 +1588,7 @@ M.DeleteAccessPointInput = schema.new({
     },
 })
 
-M.DeleteAccessPointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessPointOutput = prelude.Unit
 
 M.DeleteFileSystemInput = schema.new({
     id = id.from(_N, "DeleteFileSystemRequest"),
@@ -1589,10 +1607,7 @@ M.DeleteFileSystemInput = schema.new({
     },
 })
 
-M.DeleteFileSystemOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFileSystemOutput = prelude.Unit
 
 M.FileSystemInUse = schema.new({
     id = id.from(_N, "FileSystemInUse"),
@@ -1636,10 +1651,7 @@ M.DeleteFileSystemPolicyInput = schema.new({
     },
 })
 
-M.DeleteFileSystemPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFileSystemPolicyOutput = prelude.Unit
 
 M.DeleteMountTargetInput = schema.new({
     id = id.from(_N, "DeleteMountTargetRequest"),
@@ -1658,10 +1670,7 @@ M.DeleteMountTargetInput = schema.new({
     },
 })
 
-M.DeleteMountTargetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMountTargetOutput = prelude.Unit
 
 M.DependencyTimeout = schema.new({
     id = id.from(_N, "DependencyTimeout"),
@@ -1739,10 +1748,7 @@ M.DeleteReplicationConfigurationInput = schema.new({
     },
 })
 
-M.DeleteReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteReplicationConfigurationOutput = prelude.Unit
 
 M.DeleteTagsInput = schema.new({
     id = id.from(_N, "DeleteTagsRequest"),
@@ -1771,10 +1777,7 @@ M.DeleteTagsInput = schema.new({
     },
 })
 
-M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTagsOutput = prelude.Unit
 
 M.DescribeAccessPointsInput = schema.new({
     id = id.from(_N, "DescribeAccessPointsRequest"),
@@ -2767,10 +2770,7 @@ M.ModifyMountTargetSecurityGroupsInput = schema.new({
     },
 })
 
-M.ModifyMountTargetSecurityGroupsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyMountTargetSecurityGroupsOutput = prelude.Unit
 
 M.PutAccountPreferencesInput = schema.new({
     id = id.from(_N, "PutAccountPreferencesRequest"),
@@ -2965,10 +2965,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -2998,10 +2995,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.TooManyRequests = schema.new({
     id = id.from(_N, "TooManyRequests"),

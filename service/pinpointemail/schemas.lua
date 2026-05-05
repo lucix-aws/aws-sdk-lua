@@ -7,6 +7,54 @@ local _N = "com.amazonaws.pinpointemail"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.BlacklistItemNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlacklistReport = schema.new({ type = "map", map_key = prelude.String, map_value = M.BlacklistEntries })
+
+M.EventDestinations = schema.new({ type = "list", list_member = M.EventDestination })
+
+M.DedicatedIpList = schema.new({ type = "list", list_member = M.DedicatedIp })
+
+M.DomainDeliverabilityTrackingOptions = schema.new({ type = "list", list_member = M.DomainDeliverabilityTrackingOption })
+
+M.IspPlacements = schema.new({ type = "list", list_member = M.IspPlacement })
+
+M.DailyVolumes = schema.new({ type = "list", list_member = M.DailyVolume })
+
+M.ConfigurationSetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfDedicatedIpPools = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeliverabilityTestReports = schema.new({ type = "list", list_member = M.DeliverabilityTestReport })
+
+M.DomainDeliverabilityCampaignList = schema.new({ type = "list", list_member = M.DomainDeliverabilityCampaign })
+
+M.IdentityInfoList = schema.new({ type = "list", list_member = M.IdentityInfo })
+
+M.EmailAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageTagList = schema.new({ type = "list", list_member = M.MessageTag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsTokenList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlacklistEntries = schema.new({ type = "list", list_member = M.BlacklistEntry })
+
+M.IpList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Esps = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainIspPlacements = schema.new({ type = "list", list_member = M.DomainIspPlacement })
+
+M.CloudWatchDimensionConfigurations = schema.new({ type = "list", list_member = M.CloudWatchDimensionConfiguration })
+
+M.IspNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccountSuspendedException = schema.new({
     id = id.from(_N, "AccountSuspendedException"),
     type = "structure",

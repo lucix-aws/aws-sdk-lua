@@ -7,6 +7,136 @@ local _N = "com.amazonaws.networkmanager"
 
 local M = {}
 
+M.ExceptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ConstrainedStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CoreNetworkPolicyErrorList = schema.new({ type = "list", list_member = M.CoreNetworkPolicyError })
+
+M.ExternalRegionCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GlobalNetworkIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GlobalNetworkList = schema.new({ type = "list", list_member = M.GlobalNetwork })
+
+M.ConnectionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionList = schema.new({ type = "list", list_member = M.Connection })
+
+M.ConnectPeerIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectPeerAssociationList = schema.new({ type = "list", list_member = M.ConnectPeerAssociation })
+
+M.CoreNetworkChangeEventList = schema.new({ type = "list", list_member = M.CoreNetworkChangeEvent })
+
+M.CoreNetworkChangeList = schema.new({ type = "list", list_member = M.CoreNetworkChange })
+
+M.CustomerGatewayArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomerGatewayAssociationList = schema.new({ type = "list", list_member = M.CustomerGatewayAssociation })
+
+M.DeviceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceList = schema.new({ type = "list", list_member = M.Device })
+
+M.LinkAssociationList = schema.new({ type = "list", list_member = M.LinkAssociation })
+
+M.LinkIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LinkList = schema.new({ type = "list", list_member = M.Link })
+
+M.NetworkResourceCountList = schema.new({ type = "list", list_member = M.NetworkResourceCount })
+
+M.RelationshipList = schema.new({ type = "list", list_member = M.Relationship })
+
+M.NetworkResourceList = schema.new({ type = "list", list_member = M.NetworkResource })
+
+M.RouteStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FilterValues })
+
+M.NetworkRouteList = schema.new({ type = "list", list_member = M.NetworkRoute })
+
+M.NetworkTelemetryList = schema.new({ type = "list", list_member = M.NetworkTelemetry })
+
+M.SiteIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SiteList = schema.new({ type = "list", list_member = M.Site })
+
+M.TransitGatewayConnectPeerArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayConnectPeerAssociationList = schema.new({ type = "list", list_member = M.TransitGatewayConnectPeerAssociation })
+
+M.TransitGatewayArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayRegistrationList = schema.new({ type = "list", list_member = M.TransitGatewayRegistration })
+
+M.AttachmentRoutingPolicyAssociationsList = schema.new({ type = "list", list_member = M.AttachmentRoutingPolicyAssociationSummary })
+
+M.AttachmentList = schema.new({ type = "list", list_member = M.Attachment })
+
+M.ConnectPeerSummaryList = schema.new({ type = "list", list_member = M.ConnectPeerSummary })
+
+M.CoreNetworkPolicyVersionList = schema.new({ type = "list", list_member = M.CoreNetworkPolicyVersion })
+
+M.PrefixListAssociationList = schema.new({ type = "list", list_member = M.PrefixListAssociation })
+
+M.CoreNetworkRoutingInformationList = schema.new({ type = "list", list_member = M.CoreNetworkRoutingInformation })
+
+M.CoreNetworkSummaryList = schema.new({ type = "list", list_member = M.CoreNetworkSummary })
+
+M.PeeringList = schema.new({ type = "list", list_member = M.Peering })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkResourceMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AttachmentErrorList = schema.new({ type = "list", list_member = M.AttachmentError })
+
+M.ConnectPeerErrorList = schema.new({ type = "list", list_member = M.ConnectPeerError })
+
+M.CoreNetworkSegmentList = schema.new({ type = "list", list_member = M.CoreNetworkSegment })
+
+M.CoreNetworkNetworkFunctionGroupList = schema.new({ type = "list", list_member = M.CoreNetworkNetworkFunctionGroup })
+
+M.CoreNetworkEdgeList = schema.new({ type = "list", list_member = M.CoreNetworkEdge })
+
+M.PeeringErrorList = schema.new({ type = "list", list_member = M.PeeringError })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountStatusList = schema.new({ type = "list", list_member = M.AccountStatus })
+
+M.ConnectPeerBgpConfigurationList = schema.new({ type = "list", list_member = M.ConnectPeerBgpConfiguration })
+
+M.NetworkRouteDestinationList = schema.new({ type = "list", list_member = M.NetworkRouteDestination })
+
+M.PathComponentList = schema.new({ type = "list", list_member = M.PathComponent })
+
+M.RoutingPolicyAssociationDetailsList = schema.new({ type = "list", list_member = M.RoutingPolicyAssociationDetail })
+
+M.ServiceInsertionActionList = schema.new({ type = "list", list_member = M.ServiceInsertionAction })
+
+M.ReasonContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.WhenSentToSegmentsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkFunctionGroupList = schema.new({ type = "list", list_member = M.NetworkFunctionGroup })
+
+M.WithEdgeOverridesList = schema.new({ type = "list", list_member = M.EdgeOverride })
+
+M.EdgeSetList = schema.new({ type = "list", list_member = M.EdgeSet })
+
+M.EdgeSet = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptAttachmentInput = schema.new({
     id = id.from(_N, "AcceptAttachmentRequest"),
     type = "structure",

@@ -7,6 +7,50 @@ local _N = "com.amazonaws.firehose"
 
 local M = {}
 
+M.TagDeliveryStreamInputTagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.DeliveryStreamNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListTagsForDeliveryStreamOutputTagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.PutRecordBatchRequestEntryList = schema.new({ type = "list", list_member = M.Record })
+
+M.PutRecordBatchResponseEntryList = schema.new({ type = "list", list_member = M.PutRecordBatchResponseEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationTableConfigurationList = schema.new({ type = "list", list_member = M.DestinationTableConfiguration })
+
+M.DatabaseSurrogateKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationDescriptionList = schema.new({ type = "list", list_member = M.DestinationDescription })
+
+M.ProcessorList = schema.new({ type = "list", list_member = M.Processor })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HttpEndpointCommonAttributesList = schema.new({ type = "list", list_member = M.HttpEndpointCommonAttribute })
+
+M.DatabaseIncludeOrExcludeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseTableIncludeOrExcludeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseColumnIncludeOrExcludeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfNonEmptyStringsWithoutWhitespace = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseSnapshotInfoList = schema.new({ type = "list", list_member = M.DatabaseSnapshotInfo })
+
+M.ProcessorParameterList = schema.new({ type = "list", list_member = M.ProcessorParameter })
+
+M.PartitionFields = schema.new({ type = "list", list_member = M.PartitionField })
+
+M.ColumnToJsonKeyMappings = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfNonEmptyStrings = schema.new({ type = "list", list_member = prelude.String })
+
 M.AmazonOpenSearchServerlessBufferingHints = schema.new({
     id = id.from(_N, "AmazonOpenSearchServerlessBufferingHints"),
     type = "structure",

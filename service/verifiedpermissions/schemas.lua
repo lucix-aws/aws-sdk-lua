@@ -7,6 +7,72 @@ local _N = "com.amazonaws.verifiedpermissions"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyStoreList = schema.new({ type = "list", list_member = M.PolicyStoreItem })
+
+M.ResourceConflictList = schema.new({ type = "list", list_member = M.ResourceConflict })
+
+M.BatchIsAuthorizedInputList = schema.new({ type = "list", list_member = M.BatchIsAuthorizedInputItem })
+
+M.BatchIsAuthorizedOutputList = schema.new({ type = "list", list_member = M.BatchIsAuthorizedOutputItem })
+
+M.BatchIsAuthorizedWithTokenInputList = schema.new({ type = "list", list_member = M.BatchIsAuthorizedWithTokenInputItem })
+
+M.BatchIsAuthorizedWithTokenOutputList = schema.new({ type = "list", list_member = M.BatchIsAuthorizedWithTokenOutputItem })
+
+M.NamespaceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeterminingPolicyList = schema.new({ type = "list", list_member = M.DeterminingPolicyItem })
+
+M.EvaluationErrorList = schema.new({ type = "list", list_member = M.EvaluationErrorItem })
+
+M.BatchGetPolicyInputList = schema.new({ type = "list", list_member = M.BatchGetPolicyInputItem })
+
+M.BatchGetPolicyOutputList = schema.new({ type = "list", list_member = M.BatchGetPolicyOutputItem })
+
+M.BatchGetPolicyErrorList = schema.new({ type = "list", list_member = M.BatchGetPolicyErrorItem })
+
+M.PolicyStoreAliasList = schema.new({ type = "list", list_member = M.PolicyStoreAliasItem })
+
+M.IdentitySourceFilters = schema.new({ type = "list", list_member = M.IdentitySourceFilter })
+
+M.IdentitySources = schema.new({ type = "list", list_member = M.IdentitySourceItem })
+
+M.PolicyList = schema.new({ type = "list", list_member = M.PolicyItem })
+
+M.ActionIdentifierList = schema.new({ type = "list", list_member = M.ActionIdentifier })
+
+M.PolicyTemplatesList = schema.new({ type = "list", list_member = M.PolicyTemplateItem })
+
+M.EntityList = schema.new({ type = "list", list_member = M.EntityItem })
+
+M.ContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ClientIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EncryptionContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EntityAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.ParentList = schema.new({ type = "list", list_member = M.EntityIdentifier })
+
+M.EntityCedarTags = schema.new({ type = "map", map_key = prelude.String, map_value = M.CedarTagValue })
+
+M.SetAttribute = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.RecordAttribute = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
+
+M.Audiences = schema.new({ type = "list", list_member = prelude.String })
+
+M.CedarTagSetAttribute = schema.new({ type = "list", list_member = M.CedarTagValue })
+
+M.CedarTagRecordAttribute = schema.new({ type = "map", map_key = prelude.String, map_value = M.CedarTagValue })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1512,10 +1578,7 @@ M.CreatePolicyOutput = schema.new({
     },
 })
 
-M.Unit = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.Unit = prelude.Unit
 
 M.KmsEncryptionSettings = schema.new({
     id = id.from(_N, "KmsEncryptionSettings"),

@@ -7,6 +7,98 @@ local _N = "com.amazonaws.inspector"
 
 local M = {}
 
+M.AddRemoveAttributesFindingArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserAttributeList = schema.new({ type = "list", list_member = M.Attribute })
+
+M.FailedItems = schema.new({ type = "map", map_key = prelude.String, map_value = M.FailedItemDetails })
+
+M.AssessmentTemplateRulesPackageArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceGroupTags = schema.new({ type = "list", list_member = M.ResourceGroupTag })
+
+M.AssessmentRunInProgressArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDescribeArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentRunList = schema.new({ type = "list", list_member = M.AssessmentRun })
+
+M.AssessmentTargetList = schema.new({ type = "list", list_member = M.AssessmentTarget })
+
+M.AssessmentTemplateList = schema.new({ type = "list", list_member = M.AssessmentTemplate })
+
+M.BatchDescribeExclusionsArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExclusionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Exclusion })
+
+M.FindingList = schema.new({ type = "list", list_member = M.Finding })
+
+M.ResourceGroupList = schema.new({ type = "list", list_member = M.ResourceGroup })
+
+M.RulesPackageList = schema.new({ type = "list", list_member = M.RulesPackage })
+
+M.ExclusionPreviewList = schema.new({ type = "list", list_member = M.ExclusionPreview })
+
+M.TelemetryMetadataList = schema.new({ type = "list", list_member = M.TelemetryMetadata })
+
+M.AssessmentRunAgentList = schema.new({ type = "list", list_member = M.AssessmentRunAgent })
+
+M.ListParentArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListReturnedArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AgentPreviewList = schema.new({ type = "list", list_member = M.AgentPreview })
+
+M.UserAttributeKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentAlreadyRunningAssessmentList = schema.new({ type = "list", list_member = M.AgentAlreadyRunningAssessment })
+
+M.AgentHealthList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentHealthCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentRunStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterRulesPackageArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutoScalingGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SeverityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeList = schema.new({ type = "list", list_member = M.Attribute })
+
+M.AssessmentRulesPackageArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentRunStateChangeList = schema.new({ type = "list", list_member = M.AssessmentRunStateChange })
+
+M.AssessmentRunNotificationList = schema.new({ type = "list", list_member = M.AssessmentRunNotification })
+
+M.AssessmentRunFindingCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ScopeList = schema.new({ type = "list", list_member = M.Scope })
+
+M.EventSubscriptionList = schema.new({ type = "list", list_member = M.EventSubscription })
+
+M.Ipv4AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.PrivateIpAddresses = schema.new({ type = "list", list_member = M.PrivateIp })
+
+M.Ipv6Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = M.SecurityGroup })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1547,10 +1639,7 @@ M.DeleteAssessmentRunInput = schema.new({
     },
 })
 
-M.DeleteAssessmentRunOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAssessmentRunOutput = prelude.Unit
 
 M.DeleteAssessmentTargetInput = schema.new({
     id = id.from(_N, "DeleteAssessmentTargetRequest"),
@@ -1568,10 +1657,7 @@ M.DeleteAssessmentTargetInput = schema.new({
     },
 })
 
-M.DeleteAssessmentTargetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAssessmentTargetOutput = prelude.Unit
 
 M.DeleteAssessmentTemplateInput = schema.new({
     id = id.from(_N, "DeleteAssessmentTemplateRequest"),
@@ -1589,10 +1675,7 @@ M.DeleteAssessmentTemplateInput = schema.new({
     },
 })
 
-M.DeleteAssessmentTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAssessmentTemplateOutput = prelude.Unit
 
 M.DescribeAssessmentRunsInput = schema.new({
     id = id.from(_N, "DescribeAssessmentRunsRequest"),
@@ -1729,10 +1812,7 @@ M.DescribeAssessmentTemplatesOutput = schema.new({
     },
 })
 
-M.DescribeCrossAccountAccessRoleInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeCrossAccountAccessRoleInput = prelude.Unit
 
 M.DescribeCrossAccountAccessRoleOutput = schema.new({
     id = id.from(_N, "DescribeCrossAccountAccessRoleResponse"),
@@ -3181,10 +3261,7 @@ M.RegisterCrossAccountAccessRoleInput = schema.new({
     },
 })
 
-M.RegisterCrossAccountAccessRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RegisterCrossAccountAccessRoleOutput = prelude.Unit
 
 M.RemoveAttributesFromFindingsInput = schema.new({
     id = id.from(_N, "RemoveAttributesFromFindingsRequest"),
@@ -3254,10 +3331,7 @@ M.SetTagsForResourceInput = schema.new({
     },
 })
 
-M.SetTagsForResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetTagsForResourceOutput = prelude.Unit
 
 M.StartAssessmentRunInput = schema.new({
     id = id.from(_N, "StartAssessmentRunRequest"),
@@ -3319,10 +3393,7 @@ M.StopAssessmentRunInput = schema.new({
     },
 })
 
-M.StopAssessmentRunOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopAssessmentRunOutput = prelude.Unit
 
 M.SubscribeToEventInput = schema.new({
     id = id.from(_N, "SubscribeToEventRequest"),
@@ -3358,10 +3429,7 @@ M.SubscribeToEventInput = schema.new({
     },
 })
 
-M.SubscribeToEventOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SubscribeToEventOutput = prelude.Unit
 
 M.UnsubscribeFromEventInput = schema.new({
     id = id.from(_N, "UnsubscribeFromEventRequest"),
@@ -3397,10 +3465,7 @@ M.UnsubscribeFromEventInput = schema.new({
     },
 })
 
-M.UnsubscribeFromEventOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UnsubscribeFromEventOutput = prelude.Unit
 
 M.UpdateAssessmentTargetInput = schema.new({
     id = id.from(_N, "UpdateAssessmentTargetRequest"),
@@ -3433,10 +3498,7 @@ M.UpdateAssessmentTargetInput = schema.new({
     },
 })
 
-M.UpdateAssessmentTargetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAssessmentTargetOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

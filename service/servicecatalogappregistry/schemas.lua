@@ -7,6 +7,28 @@ local _N = "com.amazonaws.servicecatalogappregistry"
 
 local M = {}
 
+M.Options = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ApplicationTagDefinition = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GetAssociatedResourceFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationSummaries = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.AttributeGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Resources = schema.new({ type = "list", list_member = M.ResourceInfo })
+
+M.AttributeGroupSummaries = schema.new({ type = "list", list_member = M.AttributeGroupSummary })
+
+M.AttributeGroupDetailsList = schema.new({ type = "list", list_member = M.AttributeGroupDetails })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourcesList = schema.new({ type = "list", list_member = M.ResourcesListItem })
+
 M.Application = schema.new({
     id = id.from(_N, "Application"),
     type = "structure",
@@ -1228,10 +1250,7 @@ M.GetAttributeGroupOutput = schema.new({
     },
 })
 
-M.GetConfigurationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetConfigurationInput = prelude.Unit
 
 M.GetConfigurationOutput = schema.new({
     id = id.from(_N, "GetConfigurationResponse"),
@@ -1603,10 +1622,7 @@ M.PutConfigurationInput = schema.new({
     },
 })
 
-M.PutConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutConfigurationOutput = prelude.Unit
 
 M.SyncResourceInput = schema.new({
     id = id.from(_N, "SyncResourceRequest"),

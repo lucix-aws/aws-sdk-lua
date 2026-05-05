@@ -7,6 +7,90 @@ local _N = "com.amazonaws.bedrockruntime"
 
 local M = {}
 
+M.AsyncInvokeSummaries = schema.new({ type = "list", list_member = M.AsyncInvokeSummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.GuardrailContentBlockList = schema.new({ type = "list", list_member = M.GuardrailContentBlock })
+
+M.GuardrailOutputContentList = schema.new({ type = "list", list_member = M.GuardrailOutputContent })
+
+M.GuardrailAssessmentList = schema.new({ type = "list", list_member = M.GuardrailAssessment })
+
+M.Messages = schema.new({ type = "list", list_member = M.Message })
+
+M.SystemContentBlocks = schema.new({ type = "list", list_member = M.SystemContentBlock })
+
+M.PromptVariableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PromptVariableValues })
+
+M.AdditionalModelResponseFieldPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.RequestMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tools = schema.new({ type = "list", list_member = M.Tool })
+
+M.CacheDetailsList = schema.new({ type = "list", list_member = M.CacheDetail })
+
+M.ContentBlocks = schema.new({ type = "list", list_member = M.ContentBlock })
+
+M.ModelOutputs = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailAssessmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.GuardrailAssessment })
+
+M.GuardrailAssessmentListMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.GuardrailAssessmentList })
+
+M.GuardrailContentQualifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailTopicList = schema.new({ type = "list", list_member = M.GuardrailTopic })
+
+M.GuardrailContentFilterList = schema.new({ type = "list", list_member = M.GuardrailContentFilter })
+
+M.GuardrailCustomWordList = schema.new({ type = "list", list_member = M.GuardrailCustomWord })
+
+M.GuardrailManagedWordList = schema.new({ type = "list", list_member = M.GuardrailManagedWord })
+
+M.GuardrailPiiEntityFilterList = schema.new({ type = "list", list_member = M.GuardrailPiiEntityFilter })
+
+M.GuardrailRegexFilterList = schema.new({ type = "list", list_member = M.GuardrailRegexFilter })
+
+M.GuardrailContextualGroundingFilters = schema.new({ type = "list", list_member = M.GuardrailContextualGroundingFilter })
+
+M.GuardrailAutomatedReasoningFindingList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningFinding })
+
+M.GuardrailOriginList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ToolResultBlocksDelta = schema.new({ type = "list", list_member = M.ToolResultBlockDelta })
+
+M.GuardrailConverseContentQualifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CitationSourceContentListDelta = schema.new({ type = "list", list_member = M.CitationSourceContentDelta })
+
+M.ToolResultContentBlocks = schema.new({ type = "list", list_member = M.ToolResultContentBlock })
+
+M.CitationGeneratedContentList = schema.new({ type = "list", list_member = M.CitationGeneratedContent })
+
+M.Citations = schema.new({ type = "list", list_member = M.Citation })
+
+M.SearchResultContentBlocks = schema.new({ type = "list", list_member = M.SearchResultContentBlock })
+
+M.GuardrailAutomatedReasoningRuleList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningRule })
+
+M.GuardrailAutomatedReasoningTranslationOptionList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningTranslationOption })
+
+M.GuardrailAutomatedReasoningDifferenceScenarioList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningScenario })
+
+M.DocumentContentBlocks = schema.new({ type = "list", list_member = M.DocumentContentBlock })
+
+M.GuardrailAutomatedReasoningStatementList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningStatement })
+
+M.GuardrailAutomatedReasoningInputTextReferenceList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningInputTextReference })
+
+M.CitationSourceContentList = schema.new({ type = "list", list_member = M.CitationSourceContent })
+
+M.GuardrailAutomatedReasoningTranslationList = schema.new({ type = "list", list_member = M.GuardrailAutomatedReasoningTranslation })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

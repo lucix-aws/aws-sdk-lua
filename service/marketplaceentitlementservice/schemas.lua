@@ -7,6 +7,12 @@ local _N = "com.amazonaws.marketplaceentitlementservice"
 
 local M = {}
 
+M.GetEntitlementFilters = schema.new({ type = "map", map_key = prelude.String, map_value = M.FilterValueList })
+
+M.EntitlementList = schema.new({ type = "list", list_member = M.Entitlement })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.GetEntitlementsInput = schema.new({
     id = id.from(_N, "GetEntitlementsRequest"),
     type = "structure",

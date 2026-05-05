@@ -7,6 +7,62 @@ local _N = "com.amazonaws.wisdom"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssistantList = schema.new({ type = "list", list_member = M.AssistantSummary })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.RecommendationData })
+
+M.RecommendationTriggerList = schema.new({ type = "list", list_member = M.RecommendationTrigger })
+
+M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyRecommendationsReceivedErrorList = schema.new({ type = "list", list_member = M.NotifyRecommendationsReceivedError })
+
+M.QueryResultsList = schema.new({ type = "list", list_member = M.ResultData })
+
+M.SessionSummaries = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.KnowledgeBaseList = schema.new({ type = "list", list_member = M.KnowledgeBaseSummary })
+
+M.ImportJobList = schema.new({ type = "list", list_member = M.ImportJobSummary })
+
+M.ContentSummaryList = schema.new({ type = "list", list_member = M.ContentSummary })
+
+M.ContactAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QuickResponseSearchResultsList = schema.new({ type = "list", list_member = M.QuickResponseSearchResultData })
+
+M.Headers = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ContentMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AssistantAssociationSummaryList = schema.new({ type = "list", list_member = M.AssistantAssociationSummary })
+
+M.QuickResponseSummaryList = schema.new({ type = "list", list_member = M.QuickResponseSummary })
+
+M.Channels = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.QuickResponseQueryFieldList = schema.new({ type = "list", list_member = M.QuickResponseQueryField })
+
+M.QuickResponseFilterFieldList = schema.new({ type = "list", list_member = M.QuickResponseFilterField })
+
+M.GroupingValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectFieldsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactAttributeKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.QuickResponseQueryValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QuickResponseFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Highlights = schema.new({ type = "list", list_member = M.Highlight })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

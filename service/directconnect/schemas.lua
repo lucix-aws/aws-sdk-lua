@@ -7,6 +7,52 @@ local _N = "com.amazonaws.directconnect"
 
 local M = {}
 
+M.RouteFilterPrefixList = schema.new({ type = "list", list_member = M.RouteFilterPrefix })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.MacSecKeyList = schema.new({ type = "list", list_member = M.MacSecKey })
+
+M.BGPPeerList = schema.new({ type = "list", list_member = M.BGPPeer })
+
+M.ConnectionList = schema.new({ type = "list", list_member = M.Connection })
+
+M.AgreementList = schema.new({ type = "list", list_member = M.CustomerAgreement })
+
+M.DirectConnectGatewayAssociationProposalList = schema.new({ type = "list", list_member = M.DirectConnectGatewayAssociationProposal })
+
+M.DirectConnectGatewayAssociationList = schema.new({ type = "list", list_member = M.DirectConnectGatewayAssociation })
+
+M.DirectConnectGatewayAttachmentList = schema.new({ type = "list", list_member = M.DirectConnectGatewayAttachment })
+
+M.DirectConnectGatewayList = schema.new({ type = "list", list_member = M.DirectConnectGateway })
+
+M.InterconnectList = schema.new({ type = "list", list_member = M.Interconnect })
+
+M.LagList = schema.new({ type = "list", list_member = M.Lag })
+
+M.LocationList = schema.new({ type = "list", list_member = M.Location })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.VirtualGatewayList = schema.new({ type = "list", list_member = M.VirtualGateway })
+
+M.VirtualInterfaceList = schema.new({ type = "list", list_member = M.VirtualInterface })
+
+M.BGPPeerIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VirtualInterfaceTestHistoryList = schema.new({ type = "list", list_member = M.VirtualInterfaceTestHistory })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailablePortSpeeds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProviderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailableMacSecPortSpeeds = schema.new({ type = "list", list_member = prelude.String })
+
 M.RouteFilterPrefix = schema.new({
     id = id.from(_N, "RouteFilterPrefix"),
     type = "structure",
@@ -4973,10 +5019,7 @@ M.DescribeConnectionsOnInterconnectOutput = schema.new({
     },
 })
 
-M.DescribeCustomerMetadataInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeCustomerMetadataInput = prelude.Unit
 
 M.DescribeCustomerMetadataOutput = schema.new({
     id = id.from(_N, "DescribeCustomerMetadataResponse"),
@@ -5758,10 +5801,7 @@ M.DescribeLoaOutput = schema.new({
     },
 })
 
-M.DescribeLocationsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeLocationsInput = prelude.Unit
 
 M.Location = schema.new({
     id = id.from(_N, "Location"),
@@ -5971,10 +6011,7 @@ M.DescribeTagsOutput = schema.new({
     },
 })
 
-M.DescribeVirtualGatewaysInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeVirtualGatewaysInput = prelude.Unit
 
 M.VirtualGateway = schema.new({
     id = id.from(_N, "VirtualGateway"),

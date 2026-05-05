@@ -7,6 +7,96 @@ local _N = "com.amazonaws.cloudtrail"
 
 local M = {}
 
+M.TagsList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Destinations = schema.new({ type = "list", list_member = M.Destination })
+
+M.RequestWidgetList = schema.new({ type = "list", list_member = M.RequestWidget })
+
+M.WidgetList = schema.new({ type = "list", list_member = M.Widget })
+
+M.AdvancedEventSelectors = schema.new({ type = "list", list_member = M.AdvancedEventSelector })
+
+M.TrailNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrailList = schema.new({ type = "list", list_member = M.Trail })
+
+M.EventDataStoreList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextKeySelectors = schema.new({ type = "list", list_member = M.ContextKeySelector })
+
+M.AggregationConfigurations = schema.new({ type = "list", list_member = M.AggregationConfiguration })
+
+M.PartitionKeyList = schema.new({ type = "list", list_member = M.PartitionKey })
+
+M.EventSelectors = schema.new({ type = "list", list_member = M.EventSelector })
+
+M.ImportDestinations = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightSelectors = schema.new({ type = "list", list_member = M.InsightSelector })
+
+M.QueryResultRows = schema.new({ type = "list", list_member = M.QueryResultRow })
+
+M.Channels = schema.new({ type = "list", list_member = M.Channel })
+
+M.Dashboards = schema.new({ type = "list", list_member = M.DashboardDetail })
+
+M.EventDataStores = schema.new({ type = "list", list_member = M.EventDataStore })
+
+M.ImportFailureList = schema.new({ type = "list", list_member = M.ImportFailureListItem })
+
+M.ImportsList = schema.new({ type = "list", list_member = M.ImportsListItem })
+
+M.ListInsightsDataDimensions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventsList = schema.new({ type = "list", list_member = M.Event })
+
+M.Timestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.InsightsMetricValues = schema.new({ type = "list", list_member = prelude.Double })
+
+M.PublicKeyList = schema.new({ type = "list", list_member = M.PublicKey })
+
+M.Queries = schema.new({ type = "list", list_member = M.Query })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.Trails = schema.new({ type = "list", list_member = M.TrailInfo })
+
+M.LookupAttributesList = schema.new({ type = "list", list_member = M.LookupAttribute })
+
+M.SearchSampleQueriesSearchResults = schema.new({ type = "list", list_member = M.SearchSampleQueriesSearchResult })
+
+M.QueryParameterValues = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QueryParameters = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryResultRow = schema.new({ type = "list", list_member = M.QueryResultColumn })
+
+M.ViewPropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdvancedFieldSelectors = schema.new({ type = "list", list_member = M.AdvancedFieldSelector })
+
+M.OperatorTargetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Templates = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataResources = schema.new({ type = "list", list_member = M.DataResource })
+
+M.ExcludeManagementEventSources = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceEventCategories = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryResultColumn = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.Operator = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataResourceValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -3426,7 +3516,7 @@ M.GetQueryResultsOutput = schema.new({
             type = "list",
             name = "QueryResultRows",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.QueryResultColumn }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "GetQueryResultsOutput", "NextToken"),

@@ -7,6 +7,100 @@ local _N = "com.amazonaws.forecast"
 
 local M = {}
 
+M.ForecastTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ForecastDimensions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrainingParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TimeSeriesTransformations = schema.new({ type = "list", list_member = M.TimeSeriesTransformation })
+
+M.WhatIfForecastArnListForExport = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldStatistics = schema.new({ type = "map", map_key = prelude.String, map_value = M.Statistics })
+
+M.LongArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PredictorEvaluationResults = schema.new({ type = "list", list_member = M.EvaluationResult })
+
+M.DatasetGroups = schema.new({ type = "list", list_member = M.DatasetGroupSummary })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.DatasetImportJobs = schema.new({ type = "list", list_member = M.DatasetImportJobSummary })
+
+M.Datasets = schema.new({ type = "list", list_member = M.DatasetSummary })
+
+M.Explainabilities = schema.new({ type = "list", list_member = M.ExplainabilitySummary })
+
+M.ExplainabilityExports = schema.new({ type = "list", list_member = M.ExplainabilityExportSummary })
+
+M.ForecastExportJobs = schema.new({ type = "list", list_member = M.ForecastExportJobSummary })
+
+M.Forecasts = schema.new({ type = "list", list_member = M.ForecastSummary })
+
+M.PredictorMonitorEvaluations = schema.new({ type = "list", list_member = M.PredictorMonitorEvaluation })
+
+M.Monitors = schema.new({ type = "list", list_member = M.MonitorSummary })
+
+M.PredictorBacktestExportJobs = schema.new({ type = "list", list_member = M.PredictorBacktestExportJobSummary })
+
+M.Predictors = schema.new({ type = "list", list_member = M.PredictorSummary })
+
+M.WhatIfAnalyses = schema.new({ type = "list", list_member = M.WhatIfAnalysisSummary })
+
+M.WhatIfForecastExports = schema.new({ type = "list", list_member = M.WhatIfForecastExportSummary })
+
+M.WhatIfForecasts = schema.new({ type = "list", list_member = M.WhatIfForecastSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeConfigs = schema.new({ type = "list", list_member = M.AttributeConfig })
+
+M.AdditionalDatasets = schema.new({ type = "list", list_member = M.AdditionalDataset })
+
+M.SchemaAttributes = schema.new({ type = "list", list_member = M.SchemaAttribute })
+
+M.SupplementaryFeatures = schema.new({ type = "list", list_member = M.SupplementaryFeature })
+
+M.Featurizations = schema.new({ type = "list", list_member = M.Featurization })
+
+M.PredictorExecutions = schema.new({ type = "list", list_member = M.PredictorExecution })
+
+M.CategoricalParameterRanges = schema.new({ type = "list", list_member = M.CategoricalParameterRange })
+
+M.ContinuousParameterRanges = schema.new({ type = "list", list_member = M.ContinuousParameterRange })
+
+M.IntegerParameterRanges = schema.new({ type = "list", list_member = M.IntegerParameterRange })
+
+M.TimeSeriesConditions = schema.new({ type = "list", list_member = M.TimeSeriesCondition })
+
+M.BaselineMetrics = schema.new({ type = "list", list_member = M.BaselineMetric })
+
+M.TestWindows = schema.new({ type = "list", list_member = M.WindowSummary })
+
+M.MetricResults = schema.new({ type = "list", list_member = M.MetricResult })
+
+M.Transformations = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Configuration = schema.new({ type = "map", map_key = prelude.String, map_value = M.Values })
+
+M.FeaturizationPipeline = schema.new({ type = "list", list_member = M.FeaturizationMethod })
+
+M.TestWindowDetails = schema.new({ type = "list", list_member = M.TestWindowSummary })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.FeaturizationMethodParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.WeightedQuantileLosses = schema.new({ type = "list", list_member = M.WeightedQuantileLoss })
+
+M.ErrorMetrics = schema.new({ type = "list", list_member = M.ErrorMetric })
+
 M.Action = schema.new({
     id = id.from(_N, "Action"),
     type = "structure",
@@ -1874,10 +1968,7 @@ M.DeleteDatasetInput = schema.new({
     },
 })
 
-M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatasetOutput = prelude.Unit
 
 M.DeleteDatasetGroupInput = schema.new({
     id = id.from(_N, "DeleteDatasetGroupRequest"),
@@ -1895,10 +1986,7 @@ M.DeleteDatasetGroupInput = schema.new({
     },
 })
 
-M.DeleteDatasetGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatasetGroupOutput = prelude.Unit
 
 M.DeleteDatasetImportJobInput = schema.new({
     id = id.from(_N, "DeleteDatasetImportJobRequest"),
@@ -1916,10 +2004,7 @@ M.DeleteDatasetImportJobInput = schema.new({
     },
 })
 
-M.DeleteDatasetImportJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDatasetImportJobOutput = prelude.Unit
 
 M.DeleteExplainabilityInput = schema.new({
     id = id.from(_N, "DeleteExplainabilityRequest"),
@@ -1937,10 +2022,7 @@ M.DeleteExplainabilityInput = schema.new({
     },
 })
 
-M.DeleteExplainabilityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteExplainabilityOutput = prelude.Unit
 
 M.DeleteExplainabilityExportInput = schema.new({
     id = id.from(_N, "DeleteExplainabilityExportRequest"),
@@ -1958,10 +2040,7 @@ M.DeleteExplainabilityExportInput = schema.new({
     },
 })
 
-M.DeleteExplainabilityExportOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteExplainabilityExportOutput = prelude.Unit
 
 M.DeleteForecastInput = schema.new({
     id = id.from(_N, "DeleteForecastRequest"),
@@ -1979,10 +2058,7 @@ M.DeleteForecastInput = schema.new({
     },
 })
 
-M.DeleteForecastOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteForecastOutput = prelude.Unit
 
 M.DeleteForecastExportJobInput = schema.new({
     id = id.from(_N, "DeleteForecastExportJobRequest"),
@@ -2000,10 +2076,7 @@ M.DeleteForecastExportJobInput = schema.new({
     },
 })
 
-M.DeleteForecastExportJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteForecastExportJobOutput = prelude.Unit
 
 M.DeleteMonitorInput = schema.new({
     id = id.from(_N, "DeleteMonitorRequest"),
@@ -2021,10 +2094,7 @@ M.DeleteMonitorInput = schema.new({
     },
 })
 
-M.DeleteMonitorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMonitorOutput = prelude.Unit
 
 M.DeletePredictorInput = schema.new({
     id = id.from(_N, "DeletePredictorRequest"),
@@ -2042,10 +2112,7 @@ M.DeletePredictorInput = schema.new({
     },
 })
 
-M.DeletePredictorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePredictorOutput = prelude.Unit
 
 M.DeletePredictorBacktestExportJobInput = schema.new({
     id = id.from(_N, "DeletePredictorBacktestExportJobRequest"),
@@ -2063,10 +2130,7 @@ M.DeletePredictorBacktestExportJobInput = schema.new({
     },
 })
 
-M.DeletePredictorBacktestExportJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePredictorBacktestExportJobOutput = prelude.Unit
 
 M.DeleteResourceTreeInput = schema.new({
     id = id.from(_N, "DeleteResourceTreeRequest"),
@@ -2084,10 +2148,7 @@ M.DeleteResourceTreeInput = schema.new({
     },
 })
 
-M.DeleteResourceTreeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceTreeOutput = prelude.Unit
 
 M.DeleteWhatIfAnalysisInput = schema.new({
     id = id.from(_N, "DeleteWhatIfAnalysisRequest"),
@@ -2105,10 +2166,7 @@ M.DeleteWhatIfAnalysisInput = schema.new({
     },
 })
 
-M.DeleteWhatIfAnalysisOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWhatIfAnalysisOutput = prelude.Unit
 
 M.DeleteWhatIfForecastInput = schema.new({
     id = id.from(_N, "DeleteWhatIfForecastRequest"),
@@ -2126,10 +2184,7 @@ M.DeleteWhatIfForecastInput = schema.new({
     },
 })
 
-M.DeleteWhatIfForecastOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWhatIfForecastOutput = prelude.Unit
 
 M.DeleteWhatIfForecastExportInput = schema.new({
     id = id.from(_N, "DeleteWhatIfForecastExportRequest"),
@@ -2147,10 +2202,7 @@ M.DeleteWhatIfForecastExportInput = schema.new({
     },
 })
 
-M.DeleteWhatIfForecastExportOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWhatIfForecastExportOutput = prelude.Unit
 
 M.DescribeAutoPredictorInput = schema.new({
     id = id.from(_N, "DescribeAutoPredictorRequest"),
@@ -5512,10 +5564,7 @@ M.ResumeResourceInput = schema.new({
     },
 })
 
-M.ResumeResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResumeResourceOutput = prelude.Unit
 
 M.StopResourceInput = schema.new({
     id = id.from(_N, "StopResourceRequest"),
@@ -5533,10 +5582,7 @@ M.StopResourceInput = schema.new({
     },
 })
 
-M.StopResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopResourceOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),

@@ -24,10 +24,7 @@ M.DeleteConnectionInput = schema.new({
     },
 })
 
-M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectionOutput = prelude.Unit
 
 M.ForbiddenException = schema.new({
     id = id.from(_N, "ForbiddenException"),
@@ -186,10 +183,7 @@ M.PostToConnectionInput = schema.new({
     },
 })
 
-M.PostToConnectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PostToConnectionOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

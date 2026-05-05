@@ -7,6 +7,182 @@ local _N = "com.amazonaws.iotsitewise"
 
 local M = {}
 
+M.IDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchAssociateProjectAssetsErrors = schema.new({ type = "list", list_member = M.AssetErrorDetails })
+
+M.BatchDisassociateProjectAssetsErrors = schema.new({ type = "list", list_member = M.AssetErrorDetails })
+
+M.BatchGetAssetPropertyAggregatesEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyAggregatesEntry })
+
+M.BatchGetAssetPropertyAggregatesErrorEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyAggregatesErrorEntry })
+
+M.BatchGetAssetPropertyAggregatesSuccessEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyAggregatesSuccessEntry })
+
+M.BatchGetAssetPropertyAggregatesSkippedEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyAggregatesSkippedEntry })
+
+M.BatchGetAssetPropertyValueEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueEntry })
+
+M.BatchGetAssetPropertyValueErrorEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueErrorEntry })
+
+M.BatchGetAssetPropertyValueSuccessEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueSuccessEntry })
+
+M.BatchGetAssetPropertyValueSkippedEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueSkippedEntry })
+
+M.BatchGetAssetPropertyValueHistoryEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueHistoryEntry })
+
+M.BatchGetAssetPropertyValueHistoryErrorEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueHistoryErrorEntry })
+
+M.BatchGetAssetPropertyValueHistorySuccessEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueHistorySuccessEntry })
+
+M.BatchGetAssetPropertyValueHistorySkippedEntries = schema.new({ type = "list", list_member = M.BatchGetAssetPropertyValueHistorySkippedEntry })
+
+M.PutAssetPropertyValueEntries = schema.new({ type = "list", list_member = M.PutAssetPropertyValueEntry })
+
+M.BatchPutAssetPropertyErrorEntries = schema.new({ type = "list", list_member = M.BatchPutAssetPropertyErrorEntry })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AssetModelPropertyDefinitions = schema.new({ type = "list", list_member = M.AssetModelPropertyDefinition })
+
+M.AssetModelHierarchyDefinitions = schema.new({ type = "list", list_member = M.AssetModelHierarchyDefinition })
+
+M.AssetModelCompositeModelDefinitions = schema.new({ type = "list", list_member = M.AssetModelCompositeModelDefinition })
+
+M.AssetModelCompositeModelPath = schema.new({ type = "list", list_member = M.AssetModelCompositeModelPathSegment })
+
+M.Files = schema.new({ type = "list", list_member = M.File })
+
+M.ComputationModelDataBinding = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComputationModelDataBindingValue })
+
+M.PortalTypeConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = M.PortalTypeEntry })
+
+M.AssetProperties = schema.new({ type = "list", list_member = M.AssetProperty })
+
+M.AssetHierarchies = schema.new({ type = "list", list_member = M.AssetHierarchy })
+
+M.AssetCompositeModels = schema.new({ type = "list", list_member = M.AssetCompositeModel })
+
+M.AssetCompositeModelSummaries = schema.new({ type = "list", list_member = M.AssetCompositeModelSummary })
+
+M.AssetCompositeModelPath = schema.new({ type = "list", list_member = M.AssetCompositeModelPathSegment })
+
+M.ActionDefinitions = schema.new({ type = "list", list_member = M.ActionDefinition })
+
+M.AssetModelProperties = schema.new({ type = "list", list_member = M.AssetModelProperty })
+
+M.AssetModelHierarchies = schema.new({ type = "list", list_member = M.AssetModelHierarchy })
+
+M.AssetModelCompositeModels = schema.new({ type = "list", list_member = M.AssetModelCompositeModel })
+
+M.AssetModelCompositeModelSummaries = schema.new({ type = "list", list_member = M.AssetModelCompositeModelSummary })
+
+M.InterfaceDetails = schema.new({ type = "list", list_member = M.InterfaceRelationship })
+
+M.PropertyMappings = schema.new({ type = "list", list_member = M.PropertyMapping })
+
+M.HierarchyMappings = schema.new({ type = "list", list_member = M.HierarchyMapping })
+
+M.ComputationModelExecutionSummary = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExecutionResult = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExecutionDetails = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GatewayCapabilitySummaries = schema.new({ type = "list", list_member = M.GatewayCapabilitySummary })
+
+M.ColumnsList = schema.new({ type = "list", list_member = M.ColumnInfo })
+
+M.Rows = schema.new({ type = "list", list_member = M.Row })
+
+M.AggregateTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.Qualities = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregatedValues = schema.new({ type = "list", list_member = M.AggregatedValue })
+
+M.AssetPropertyValueHistory = schema.new({ type = "list", list_member = M.AssetPropertyValue })
+
+M.InterpolatedAssetPropertyValues = schema.new({ type = "list", list_member = M.InterpolatedAssetPropertyValue })
+
+M.AccessPolicySummaries = schema.new({ type = "list", list_member = M.AccessPolicySummary })
+
+M.ActionSummaries = schema.new({ type = "list", list_member = M.ActionSummary })
+
+M.AssetModelPropertySummaries = schema.new({ type = "list", list_member = M.AssetModelPropertySummary })
+
+M.ListAssetModelsTypeFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetModelSummaries = schema.new({ type = "list", list_member = M.AssetModelSummary })
+
+M.AssetPropertySummaries = schema.new({ type = "list", list_member = M.AssetPropertySummary })
+
+M.AssetRelationshipSummaries = schema.new({ type = "list", list_member = M.AssetRelationshipSummary })
+
+M.AssetSummaries = schema.new({ type = "list", list_member = M.AssetSummary })
+
+M.AssociatedAssetsSummaries = schema.new({ type = "list", list_member = M.AssociatedAssetsSummary })
+
+M.JobSummaries = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.CompositionRelationshipSummaries = schema.new({ type = "list", list_member = M.CompositionRelationshipSummary })
+
+M.ComputationModelDataBindingUsageSummaries = schema.new({ type = "list", list_member = M.ComputationModelDataBindingUsageSummary })
+
+M.ComputationModelResolveToResourceSummaries = schema.new({ type = "list", list_member = M.ComputationModelResolveToResourceSummary })
+
+M.ComputationModelSummaries = schema.new({ type = "list", list_member = M.ComputationModelSummary })
+
+M.DashboardSummaries = schema.new({ type = "list", list_member = M.DashboardSummary })
+
+M.DatasetSummaries = schema.new({ type = "list", list_member = M.DatasetSummary })
+
+M.ExecutionSummaries = schema.new({ type = "list", list_member = M.ExecutionSummary })
+
+M.GatewaySummaries = schema.new({ type = "list", list_member = M.GatewaySummary })
+
+M.InterfaceRelationshipSummaries = schema.new({ type = "list", list_member = M.InterfaceRelationshipSummary })
+
+M.PortalSummaries = schema.new({ type = "list", list_member = M.PortalSummary })
+
+M.AssetIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProjectSummaries = schema.new({ type = "list", list_member = M.ProjectSummary })
+
+M.TimeSeriesSummaries = schema.new({ type = "list", list_member = M.TimeSeriesSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompositionRelationship = schema.new({ type = "list", list_member = M.CompositionRelationshipItem })
+
+M.AssetPropertyPath = schema.new({ type = "list", list_member = M.AssetPropertyPathSegment })
+
+M.AssetPropertyValues = schema.new({ type = "list", list_member = M.AssetPropertyValue })
+
+M.BatchPutAssetPropertyErrors = schema.new({ type = "list", list_member = M.BatchPutAssetPropertyError })
+
+M.DetailedErrors = schema.new({ type = "list", list_member = M.DetailedError })
+
+M.BindingValueList = schema.new({ type = "list", list_member = M.ComputationModelDataBindingValue })
+
+M.PortalTools = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetModelPropertyPath = schema.new({ type = "list", list_member = M.AssetModelPropertyPathSegment })
+
+M.DatumList = schema.new({ type = "list", list_member = M.Datum })
+
+M.Citations = schema.new({ type = "list", list_member = M.Citation })
+
+M.InterfaceSummaries = schema.new({ type = "list", list_member = M.InterfaceSummary })
+
+M.ComputationModelIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExpressionVariables = schema.new({ type = "list", list_member = M.ExpressionVariable })
+
+M.Timestamps = schema.new({ type = "list", list_member = M.TimeInNanos })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -2214,10 +2390,7 @@ M.AssociateAssetsInput = schema.new({
     },
 })
 
-M.AssociateAssetsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateAssetsOutput = prelude.Unit
 
 M.ConflictingOperationException = schema.new({
     id = id.from(_N, "ConflictingOperationException"),
@@ -2527,10 +2700,7 @@ M.AssociateTimeSeriesToAssetPropertyInput = schema.new({
     },
 })
 
-M.AssociateTimeSeriesToAssetPropertyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateTimeSeriesToAssetPropertyOutput = prelude.Unit
 
 M.BatchAssociateProjectAssetsInput = schema.new({
     id = id.from(_N, "BatchAssociateProjectAssetsRequest"),
@@ -5475,10 +5645,7 @@ M.DeleteGatewayInput = schema.new({
     },
 })
 
-M.DeleteGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGatewayOutput = prelude.Unit
 
 M.DeletePortalInput = schema.new({
     id = id.from(_N, "DeletePortalRequest"),
@@ -5599,10 +5766,7 @@ M.DeleteTimeSeriesInput = schema.new({
     },
 })
 
-M.DeleteTimeSeriesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTimeSeriesOutput = prelude.Unit
 
 M.DescribeAccessPolicyInput = schema.new({
     id = id.from(_N, "DescribeAccessPolicyRequest"),
@@ -8143,10 +8307,7 @@ M.DisassociateAssetsInput = schema.new({
     },
 })
 
-M.DisassociateAssetsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateAssetsOutput = prelude.Unit
 
 M.DisassociateTimeSeriesFromAssetPropertyInput = schema.new({
     id = id.from(_N, "DisassociateTimeSeriesFromAssetPropertyRequest"),
@@ -8194,10 +8355,7 @@ M.DisassociateTimeSeriesFromAssetPropertyInput = schema.new({
     },
 })
 
-M.DisassociateTimeSeriesFromAssetPropertyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateTimeSeriesFromAssetPropertyOutput = prelude.Unit
 
 M.ExecuteActionInput = schema.new({
     id = id.from(_N, "ExecuteActionRequest"),
@@ -12205,10 +12363,7 @@ M.UpdateAssetPropertyInput = schema.new({
     },
 })
 
-M.UpdateAssetPropertyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAssetPropertyOutput = prelude.Unit
 
 M.UpdateComputationModelOutput = schema.new({
     id = id.from(_N, "UpdateComputationModelResponse"),
@@ -12385,10 +12540,7 @@ M.UpdateGatewayInput = schema.new({
     },
 })
 
-M.UpdateGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateGatewayOutput = prelude.Unit
 
 M.UpdateGatewayCapabilityConfigurationInput = schema.new({
     id = id.from(_N, "UpdateGatewayCapabilityConfigurationRequest"),

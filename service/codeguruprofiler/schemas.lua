@@ -7,6 +7,54 @@ local _N = "com.amazonaws.codeguruprofiler"
 
 local M = {}
 
+M.FindingsReportSummaries = schema.new({ type = "list", list_member = M.FindingsReportSummary })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfilingGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfilingGroupDescriptions = schema.new({ type = "list", list_member = M.ProfilingGroupDescription })
+
+M.Channels = schema.new({ type = "list", list_member = M.Channel })
+
+M.FrameMetrics = schema.new({ type = "list", list_member = M.FrameMetric })
+
+M.ListOfTimestamps = schema.new({ type = "list", list_member = M.TimestampStructure })
+
+M.UnprocessedEndTimeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListOfTimestamps })
+
+M.FrameMetricData = schema.new({ type = "list", list_member = M.FrameMetricDatum })
+
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Recommendations = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.Anomalies = schema.new({ type = "list", list_member = M.Anomaly })
+
+M.ProfileTimes = schema.new({ type = "list", list_member = M.ProfileTime })
+
+M.Principals = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventPublishers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThreadStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.FrameMetricValues = schema.new({ type = "list", list_member = prelude.Double })
+
+M.Matches = schema.new({ type = "list", list_member = M.Match })
+
+M.AnomalyInstances = schema.new({ type = "list", list_member = M.AnomalyInstance })
+
+M.TargetFrames = schema.new({ type = "list", list_member = M.TargetFrame })
+
+M.Strings = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetFrame = schema.new({ type = "list", list_member = prelude.String })
+
 M.Channel = schema.new({
     id = id.from(_N, "Channel"),
     type = "structure",

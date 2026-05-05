@@ -7,6 +7,32 @@ local _N = "com.amazonaws.servicequotas"
 
 local M = {}
 
+M.ExclusionQuotaList = schema.new({ type = "map", map_key = prelude.String, map_value = M.QuotaInfoList })
+
+M.QuotaUtilizationInfoList = schema.new({ type = "list", list_member = M.QuotaUtilizationInfo })
+
+M.ServiceQuotaListDefinition = schema.new({ type = "list", list_member = M.ServiceQuota })
+
+M.RequestedServiceQuotaChangeHistoryListDefinition = schema.new({ type = "list", list_member = M.RequestedServiceQuotaChange })
+
+M.ServiceQuotaIncreaseRequestInTemplateList = schema.new({ type = "list", list_member = M.ServiceQuotaIncreaseRequestInTemplate })
+
+M.ServiceInfoListDefinition = schema.new({ type = "list", list_member = M.ServiceInfo })
+
+M.OutputTags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ExclusionList = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExcludedQuotaList })
+
+M.InputTags = schema.new({ type = "list", list_member = M.Tag })
+
+M.InputTagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.QuotaInfoList = schema.new({ type = "list", list_member = M.QuotaInfo })
+
+M.ExcludedQuotaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDimensionsMapDefinition = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,48 @@ local _N = "com.amazonaws.neptunedata"
 
 local M = {}
 
+M.StringValuedMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DocumentValuedMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.MlModels = schema.new({ type = "list", list_member = M.MlConfigDefinition })
+
+M.Models = schema.new({ type = "list", list_member = M.MlConfigDefinition })
+
+M.PropertygraphRecordsList = schema.new({ type = "list", list_member = M.PropertygraphRecord })
+
+M.SparqlRecordsList = schema.new({ type = "list", list_member = M.SparqlRecord })
+
+M.GremlinQueries = schema.new({ type = "list", list_member = M.GremlinQueryStatus })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpenCypherQueries = schema.new({ type = "list", list_member = M.GremlinQueryStatus })
+
+M.NodeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.EdgeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.LongValuedMapList = schema.new({ type = "list", list_member = M.LongValuedMap })
+
+M.NodeStructures = schema.new({ type = "list", list_member = M.NodeStructure })
+
+M.EdgeStructures = schema.new({ type = "list", list_member = M.EdgeStructure })
+
+M.Classes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubjectStructures = schema.new({ type = "list", list_member = M.SubjectStructure })
+
+M.LongValuedMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.NodeProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutgoingEdgeLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.EdgeProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.Predicates = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1130,10 +1172,7 @@ M.DeleteMLEndpointOutput = schema.new({
     },
 })
 
-M.DeletePropertygraphStatisticsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePropertygraphStatisticsInput = prelude.Unit
 
 M.DeleteStatisticsValueMap = schema.new({
     id = id.from(_N, "DeleteStatisticsValueMap"),
@@ -1257,10 +1296,7 @@ M.StatisticsNotAvailableException = schema.new({
     },
 })
 
-M.DeleteSparqlStatisticsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSparqlStatisticsInput = prelude.Unit
 
 M.DeleteSparqlStatisticsOutput = schema.new({
     id = id.from(_N, "DeleteSparqlStatisticsOutput"),
@@ -1927,10 +1963,7 @@ M.ExecuteOpenCypherQueryOutput = schema.new({
     },
 })
 
-M.GetEngineStatusInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetEngineStatusInput = prelude.Unit
 
 M.QueryLanguageVersion = schema.new({
     id = id.from(_N, "QueryLanguageVersion"),
@@ -2549,10 +2582,7 @@ M.GetOpenCypherQueryStatusOutput = schema.new({
     },
 })
 
-M.GetPropertygraphStatisticsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetPropertygraphStatisticsInput = prelude.Unit
 
 M.StatisticsSummary = schema.new({
     id = id.from(_N, "StatisticsSummary"),
@@ -3102,14 +3132,14 @@ M.PropertygraphSummary = schema.new({
             type = "list",
             name = "nodeProperties",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.LongValuedMap,
         }),
         edgeProperties = schema.new({
             id = id.from(_N, "PropertygraphSummary", "edgeProperties"),
             type = "list",
             name = "edgeProperties",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.LongValuedMap,
         }),
         totalNodePropertyValues = schema.new({
             id = id.from(_N, "PropertygraphSummary", "totalNodePropertyValues"),
@@ -3269,7 +3299,7 @@ M.RDFGraphSummary = schema.new({
             type = "list",
             name = "predicates",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.LongValuedMap,
         }),
         subjectStructures = schema.new({
             id = id.from(_N, "RDFGraphSummary", "subjectStructures"),
@@ -3333,10 +3363,7 @@ M.GetRDFGraphSummaryOutput = schema.new({
     },
 })
 
-M.GetSparqlStatisticsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetSparqlStatisticsInput = prelude.Unit
 
 M.GetSparqlStatisticsOutput = schema.new({
     id = id.from(_N, "GetSparqlStatisticsOutput"),

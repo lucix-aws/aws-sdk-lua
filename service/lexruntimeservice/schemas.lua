@@ -7,6 +7,20 @@ local _N = "com.amazonaws.lexruntimeservice"
 
 local M = {}
 
+M.IntentSummaryList = schema.new({ type = "list", list_member = M.IntentSummary })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ActiveContextsList = schema.new({ type = "list", list_member = M.ActiveContext })
+
+M.IntentList = schema.new({ type = "list", list_member = M.PredictedIntent })
+
+M.genericAttachmentList = schema.new({ type = "list", list_member = M.GenericAttachment })
+
+M.ActiveContextParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.listOfButtons = schema.new({ type = "list", list_member = M.Button })
+
 M.ActiveContextTimeToLive = schema.new({
     id = id.from(_N, "ActiveContextTimeToLive"),
     type = "structure",

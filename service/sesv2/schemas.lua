@@ -7,6 +7,142 @@ local _N = "com.amazonaws.sesv2"
 
 local M = {}
 
+M.BatchGetMetricDataQueries = schema.new({ type = "list", list_member = M.BatchGetMetricDataQuery })
+
+M.MetricDataResultList = schema.new({ type = "list", list_member = M.MetricDataResult })
+
+M.MetricDataErrorList = schema.new({ type = "list", list_member = M.MetricDataError })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TopicPreferenceList = schema.new({ type = "list", list_member = M.TopicPreference })
+
+M.Topics = schema.new({ type = "list", list_member = M.Topic })
+
+M.BlacklistItemNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlacklistReport = schema.new({ type = "map", map_key = prelude.String, map_value = M.BlacklistEntries })
+
+M.EventDestinations = schema.new({ type = "list", list_member = M.EventDestination })
+
+M.DedicatedIpList = schema.new({ type = "list", list_member = M.DedicatedIp })
+
+M.DomainDeliverabilityTrackingOptions = schema.new({ type = "list", list_member = M.DomainDeliverabilityTrackingOption })
+
+M.IspPlacements = schema.new({ type = "list", list_member = M.IspPlacement })
+
+M.DailyVolumes = schema.new({ type = "list", list_member = M.DailyVolume })
+
+M.PolicyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MessageTagList = schema.new({ type = "list", list_member = M.MessageTag })
+
+M.EmailInsightsList = schema.new({ type = "list", list_member = M.EmailInsights })
+
+M.Routes = schema.new({ type = "list", list_member = M.Route })
+
+M.ConfigurationSetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfContactLists = schema.new({ type = "list", list_member = M.ContactList })
+
+M.ListOfContacts = schema.new({ type = "list", list_member = M.Contact })
+
+M.CustomVerificationEmailTemplatesList = schema.new({ type = "list", list_member = M.CustomVerificationEmailTemplateMetadata })
+
+M.ListOfDedicatedIpPools = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeliverabilityTestReports = schema.new({ type = "list", list_member = M.DeliverabilityTestReport })
+
+M.DomainDeliverabilityCampaignList = schema.new({ type = "list", list_member = M.DomainDeliverabilityCampaign })
+
+M.IdentityInfoList = schema.new({ type = "list", list_member = M.IdentityInfo })
+
+M.EmailTemplateMetadataList = schema.new({ type = "list", list_member = M.EmailTemplateMetadata })
+
+M.ExportJobSummaryList = schema.new({ type = "list", list_member = M.ExportJobSummary })
+
+M.ImportJobSummaryList = schema.new({ type = "list", list_member = M.ImportJobSummary })
+
+M.MultiRegionEndpoints = schema.new({ type = "list", list_member = M.MultiRegionEndpoint })
+
+M.ListRecommendationsFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RecommendationsList = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.ReputationEntityFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReputationEntitiesList = schema.new({ type = "list", list_member = M.ReputationEntity })
+
+M.ResourceTenantMetadataList = schema.new({ type = "list", list_member = M.ResourceTenantMetadata })
+
+M.SuppressionListReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuppressedDestinationSummaries = schema.new({ type = "list", list_member = M.SuppressedDestinationSummary })
+
+M.ListTenantResourcesFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TenantResourceList = schema.new({ type = "list", list_member = M.TenantResource })
+
+M.TenantInfoList = schema.new({ type = "list", list_member = M.TenantInfo })
+
+M.AdditionalContactEmailAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsTokenList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BulkEmailEntryList = schema.new({ type = "list", list_member = M.BulkEmailEntry })
+
+M.BulkEmailEntryResultList = schema.new({ type = "list", list_member = M.BulkEmailEntryResult })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoutesDetails = schema.new({ type = "list", list_member = M.RouteDetails })
+
+M.BlacklistEntries = schema.new({ type = "list", list_member = M.BlacklistEntry })
+
+M.IpList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Esps = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainIspPlacements = schema.new({ type = "list", list_member = M.DomainIspPlacement })
+
+M.Dimensions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TimestampList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.MetricValueList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.CloudWatchDimensionConfigurations = schema.new({ type = "list", list_member = M.CloudWatchDimensionConfiguration })
+
+M.MessageHeaderList = schema.new({ type = "list", list_member = M.MessageHeader })
+
+M.AttachmentList = schema.new({ type = "list", list_member = M.Attachment })
+
+M.ExportDimensions = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExportDimensionValue })
+
+M.ExportMetrics = schema.new({ type = "list", list_member = M.ExportMetric })
+
+M.InsightsEvents = schema.new({ type = "list", list_member = M.InsightsEvent })
+
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportDimensionValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailAddressFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailSubjectFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IspFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LastDeliveryEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LastEngagementEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IspNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ReviewDetails = schema.new({
     id = id.from(_N, "ReviewDetails"),
     type = "structure",

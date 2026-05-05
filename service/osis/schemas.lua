@@ -7,6 +7,38 @@ local _N = "com.amazonaws.osis"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ChangeProgressStatusList = schema.new({ type = "list", list_member = M.ChangeProgressStatus })
+
+M.PipelineBlueprintsSummaryList = schema.new({ type = "list", list_member = M.PipelineBlueprintSummary })
+
+M.PipelineEndpointConnectionsSummaryList = schema.new({ type = "list", list_member = M.PipelineEndpointConnection })
+
+M.PipelineEndpointsSummaryList = schema.new({ type = "list", list_member = M.PipelineEndpoint })
+
+M.PipelineSummaryList = schema.new({ type = "list", list_member = M.PipelineSummary })
+
+M.PipelineEndpointIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationMessageList = schema.new({ type = "list", list_member = M.ValidationMessage })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.IngestEndpointUrlsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpointsList = schema.new({ type = "list", list_member = M.VpcEndpoint })
+
+M.ServiceVpcEndpointsList = schema.new({ type = "list", list_member = M.ServiceVpcEndpoint })
+
+M.PipelineDestinationList = schema.new({ type = "list", list_member = M.PipelineDestination })
+
+M.ChangeProgressStageList = schema.new({ type = "list", list_member = M.ChangeProgressStage })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

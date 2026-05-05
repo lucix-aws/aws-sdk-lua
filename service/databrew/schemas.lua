@@ -7,6 +7,70 @@ local _N = "com.amazonaws.databrew"
 
 local M = {}
 
+M.RecipeVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecipeErrorList = schema.new({ type = "list", list_member = M.RecipeVersionErrorDetail })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationConfigurationList = schema.new({ type = "list", list_member = M.ValidationConfiguration })
+
+M.RecipeStepList = schema.new({ type = "list", list_member = M.RecipeStep })
+
+M.OutputList = schema.new({ type = "list", list_member = M.Output })
+
+M.DataCatalogOutputList = schema.new({ type = "list", list_member = M.DataCatalogOutput })
+
+M.DatabaseOutputList = schema.new({ type = "list", list_member = M.DatabaseOutput })
+
+M.RuleList = schema.new({ type = "list", list_member = M.Rule })
+
+M.JobNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatasetList = schema.new({ type = "list", list_member = M.Dataset })
+
+M.JobRunList = schema.new({ type = "list", list_member = M.JobRun })
+
+M.JobList = schema.new({ type = "list", list_member = M.Job })
+
+M.ProjectList = schema.new({ type = "list", list_member = M.Project })
+
+M.RecipeList = schema.new({ type = "list", list_member = M.Recipe })
+
+M.RulesetItemList = schema.new({ type = "list", list_member = M.RulesetItem })
+
+M.ScheduleList = schema.new({ type = "list", list_member = M.Schedule })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DatasetParameter })
+
+M.ColumnSelectorList = schema.new({ type = "list", list_member = M.ColumnSelector })
+
+M.ColumnStatisticsConfigurationList = schema.new({ type = "list", list_member = M.ColumnStatisticsConfiguration })
+
+M.ConditionExpressionList = schema.new({ type = "list", list_member = M.ConditionExpression })
+
+M.HiddenColumnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SheetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SheetIndexList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ValuesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StatisticList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatisticOverrideList = schema.new({ type = "list", list_member = M.StatisticOverride })
+
+M.EntityTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedStatisticList = schema.new({ type = "list", list_member = M.AllowedStatistics })
+
+M.ColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

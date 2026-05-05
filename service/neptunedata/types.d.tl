@@ -3952,7 +3952,7 @@ local record UnsupportedOperationException
     code: string
 end
 
-local type Format = "csv" | "opencypher" | "ntriples" | "nquads" | "rdfxml" | "turtle"
+local type Mode = "RESUME" | "NEW" | "AUTO"
 
 local type GraphSummaryType = "basic" | "detailed"
 
@@ -3960,17 +3960,17 @@ local type Encoding = "gzip"
 
 local type StatisticsAutoGenerationMode = "disableAutoCompute" | "enableAutoCompute" | "refresh"
 
-local type S3BucketRegion = "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2" | "ca-central-1" | "sa-east-1" | "eu-north-1" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "eu-central-1" | "me-south-1" | "af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-south-1" | "cn-north-1" | "cn-northwest-1" | "us-gov-west-1" | "us-gov-east-1" | "ca-west-1" | "eu-south-2" | "il-central-1" | "me-central-1" | "ap-northeast-3" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ap-southeast-7" | "mx-central-1" | "ap-east-2" | "ap-south-2" | "eu-central-2"
+local type OpenCypherExplainMode = "static" | "dynamic" | "details"
+
+local type Format = "csv" | "opencypher" | "ntriples" | "nquads" | "rdfxml" | "turtle"
 
 local type Parallelism = "LOW" | "MEDIUM" | "HIGH" | "OVERSUBSCRIBE"
 
-local type IteratorType = "AT_SEQUENCE_NUMBER" | "AFTER_SEQUENCE_NUMBER" | "TRIM_HORIZON" | "LATEST"
-
 local type Action = "initiateDatabaseReset" | "performDatabaseReset"
 
-local type Mode = "RESUME" | "NEW" | "AUTO"
+local type IteratorType = "AT_SEQUENCE_NUMBER" | "AFTER_SEQUENCE_NUMBER" | "TRIM_HORIZON" | "LATEST"
 
-local type OpenCypherExplainMode = "static" | "dynamic" | "details"
+local type S3BucketRegion = "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2" | "ca-central-1" | "sa-east-1" | "eu-north-1" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "eu-central-1" | "me-south-1" | "af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-south-1" | "cn-north-1" | "cn-northwest-1" | "us-gov-west-1" | "us-gov-east-1" | "ca-west-1" | "eu-south-2" | "il-central-1" | "me-central-1" | "ap-northeast-3" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ap-southeast-7" | "mx-central-1" | "ap-east-2" | "ap-south-2" | "eu-central-2"
 
 local record M
     CancelGremlinQueryInput: CancelGremlinQueryInput

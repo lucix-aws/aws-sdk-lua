@@ -7,6 +7,8 @@ local _N = "com.amazonaws.marketplacecommerceanalytics"
 
 local M = {}
 
+M.CustomerDefinedValues = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.GenerateDataSetInput = schema.new({
     id = id.from(_N, "GenerateDataSetRequest"),
     type = "structure",

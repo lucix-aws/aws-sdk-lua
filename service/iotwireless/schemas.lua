@@ -7,6 +7,126 @@ local _N = "com.amazonaws.iotwireless"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.WirelessDeviceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WirelessGatewayList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkAnalyzerMulticastGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WirelessGatewayLogOptionList = schema.new({ type = "list", list_member = M.WirelessGatewayLogOption })
+
+M.WirelessDeviceLogOptionList = schema.new({ type = "list", list_member = M.WirelessDeviceLogOption })
+
+M.FuotaTaskLogOptionList = schema.new({ type = "list", list_member = M.FuotaTaskLogOption })
+
+M.SummaryMetricQueries = schema.new({ type = "list", list_member = M.SummaryMetricQuery })
+
+M.SummaryMetricQueryResults = schema.new({ type = "list", list_member = M.SummaryMetricQueryResult })
+
+M.PositionCoordinate = schema.new({ type = "list", list_member = prelude.Float })
+
+M.WiFiAccessPoints = schema.new({ type = "list", list_member = M.WiFiAccessPoint })
+
+M.DestinationList = schema.new({ type = "list", list_member = M.Destinations })
+
+M.DeviceProfileList = schema.new({ type = "list", list_member = M.DeviceProfile })
+
+M.ImportedWirelessDeviceList = schema.new({ type = "list", list_member = M.ImportedWirelessDevice })
+
+M.EventConfigurationsList = schema.new({ type = "list", list_member = M.EventConfigurationItem })
+
+M.FuotaTaskList = schema.new({ type = "list", list_member = M.FuotaTask })
+
+M.MulticastGroupList = schema.new({ type = "list", list_member = M.MulticastGroup })
+
+M.MulticastGroupListByFuotaTask = schema.new({ type = "list", list_member = M.MulticastGroupByFuotaTask })
+
+M.NetworkAnalyzerConfigurationList = schema.new({ type = "list", list_member = M.NetworkAnalyzerConfigurations })
+
+M.SidewalkAccountList = schema.new({ type = "list", list_member = M.SidewalkAccountInfoWithFingerprint })
+
+M.PositionConfigurationList = schema.new({ type = "list", list_member = M.PositionConfigurationItem })
+
+M.DownlinkQueueMessagesList = schema.new({ type = "list", list_member = M.DownlinkQueueMessage })
+
+M.ServiceProfileList = schema.new({ type = "list", list_member = M.ServiceProfile })
+
+M.WirelessDeviceImportTaskList = schema.new({ type = "list", list_member = M.WirelessDeviceImportTask })
+
+M.WirelessDeviceStatisticsList = schema.new({ type = "list", list_member = M.WirelessDeviceStatistics })
+
+M.WirelessGatewayStatisticsList = schema.new({ type = "list", list_member = M.WirelessGatewayStatistics })
+
+M.WirelessGatewayTaskDefinitionList = schema.new({ type = "list", list_member = M.UpdateWirelessGatewayTaskEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JoinEuiFilters = schema.new({ type = "list", list_member = M.JoinEuiRange })
+
+M.NetIdFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.FactoryPresetFreqsList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.SubBands = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.DakCertificateMetadataList = schema.new({ type = "list", list_member = M.DakCertificateMetadata })
+
+M.GsmList = schema.new({ type = "list", list_member = M.GsmObj })
+
+M.WcdmaList = schema.new({ type = "list", list_member = M.WcdmaObj })
+
+M.TdscdmaList = schema.new({ type = "list", list_member = M.TdscdmaObj })
+
+M.LteList = schema.new({ type = "list", list_member = M.LteObj })
+
+M.CdmaList = schema.new({ type = "list", list_member = M.CdmaObj })
+
+M.AssistPosition = schema.new({ type = "list", list_member = prelude.Float })
+
+M.DeviceCertificateList = schema.new({ type = "list", list_member = M.CertificateList })
+
+M.PrivateKeysList = schema.new({ type = "list", list_member = M.CertificateList })
+
+M.DeviceCreationFileList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoRaWANGatewayMetadataList = schema.new({ type = "list", list_member = M.LoRaWANGatewayMetadata })
+
+M.LoRaWANPublicGatewayMetadataList = schema.new({ type = "list", list_member = M.LoRaWANPublicGatewayMetadata })
+
+M.JoinEuiRange = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewayListMulticast = schema.new({ type = "list", list_member = prelude.String })
+
+M.Applications = schema.new({ type = "list", list_member = M.ApplicationConfig })
+
+M.BeaconingFrequencies = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.WirelessGatewayEventLogOptionList = schema.new({ type = "list", list_member = M.WirelessGatewayEventLogOption })
+
+M.WirelessDeviceEventLogOptionList = schema.new({ type = "list", list_member = M.WirelessDeviceEventLogOption })
+
+M.FuotaTaskEventLogOptionList = schema.new({ type = "list", list_member = M.FuotaTaskEventLogOption })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
+M.MetricQueryTimestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.MetricQueryValues = schema.new({ type = "list", list_member = M.MetricQueryValue })
+
+M.GsmNmrList = schema.new({ type = "list", list_member = M.GsmNmrObj })
+
+M.WcdmaNmrList = schema.new({ type = "list", list_member = M.WcdmaNmrObj })
+
+M.TdscdmaNmrList = schema.new({ type = "list", list_member = M.TdscdmaNmrObj })
+
+M.LteNmrList = schema.new({ type = "list", list_member = M.LteNmrObj })
+
+M.CdmaNmrList = schema.new({ type = "list", list_member = M.CdmaNmrObj })
+
+M.GatewayList = schema.new({ type = "list", list_member = M.GatewayListItem })
+
 M.SessionKeysAbpV1_0_x = schema.new({
     id = id.from(_N, "SessionKeysAbpV1_0_x"),
     type = "structure",

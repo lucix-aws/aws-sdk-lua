@@ -7,6 +7,26 @@ local _N = "com.amazonaws.codestarnotifications"
 
 local M = {}
 
+M.EventTypeIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Targets = schema.new({ type = "list", list_member = M.Target })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventTypeBatch = schema.new({ type = "list", list_member = M.EventTypeSummary })
+
+M.TargetsBatch = schema.new({ type = "list", list_member = M.TargetSummary })
+
+M.ListEventTypesFilters = schema.new({ type = "list", list_member = M.ListEventTypesFilter })
+
+M.ListNotificationRulesFilters = schema.new({ type = "list", list_member = M.ListNotificationRulesFilter })
+
+M.NotificationRuleBatch = schema.new({ type = "list", list_member = M.NotificationRuleSummary })
+
+M.ListTargetsFilters = schema.new({ type = "list", list_member = M.ListTargetsFilter })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,138 @@ local _N = "com.amazonaws.opensearch"
 
 local M = {}
 
+M.DirectQueryOpenSearchARNList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.PackageIDList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PackageDetailsForAssociationList = schema.new({ type = "list", list_member = M.PackageDetailsForAssociation })
+
+M.DomainPackageDetailsList = schema.new({ type = "list", list_member = M.DomainPackageDetails })
+
+M.GUIDList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CancelledChangePropertyList = schema.new({ type = "list", list_member = M.CancelledChangeProperty })
+
+M.DataSources = schema.new({ type = "list", list_member = M.DataSource })
+
+M.AppConfigs = schema.new({ type = "list", list_member = M.AppConfig })
+
+M.AdvancedOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogPublishingOptions = schema.new({ type = "map", map_key = prelude.String, map_value = M.LogPublishingOption })
+
+M.AutoTuneList = schema.new({ type = "list", list_member = M.AutoTune })
+
+M.EnvironmentInfoList = schema.new({ type = "list", list_member = M.EnvironmentInfo })
+
+M.DomainNodesStatusList = schema.new({ type = "list", list_member = M.DomainNodesStatus })
+
+M.DomainNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainStatusList = schema.new({ type = "list", list_member = M.DomainStatus })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.InboundConnections = schema.new({ type = "list", list_member = M.InboundConnection })
+
+M.InsightFieldList = schema.new({ type = "list", list_member = M.InsightField })
+
+M.LimitsByRole = schema.new({ type = "map", map_key = prelude.String, map_value = M.Limits })
+
+M.OutboundConnections = schema.new({ type = "list", list_member = M.OutboundConnection })
+
+M.DescribePackagesFilterList = schema.new({ type = "list", list_member = M.DescribePackagesFilter })
+
+M.PackageDetailsList = schema.new({ type = "list", list_member = M.PackageDetails })
+
+M.ReservedInstanceOfferingList = schema.new({ type = "list", list_member = M.ReservedInstanceOffering })
+
+M.ReservedInstanceList = schema.new({ type = "list", list_member = M.ReservedInstance })
+
+M.VpcEndpointIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpoints = schema.new({ type = "list", list_member = M.VpcEndpoint })
+
+M.VpcEndpointErrorList = schema.new({ type = "list", list_member = M.VpcEndpointError })
+
+M.CapabilityFailures = schema.new({ type = "list", list_member = M.CapabilityFailure })
+
+M.CompatibleVersionsList = schema.new({ type = "list", list_member = M.CompatibleVersionsMap })
+
+M.PackageVersionHistoryList = schema.new({ type = "list", list_member = M.PackageVersionHistory })
+
+M.UpgradeHistoryList = schema.new({ type = "list", list_member = M.UpgradeHistory })
+
+M.ApplicationStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationSummaries = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.DataSourceList = schema.new({ type = "list", list_member = M.DataSourceDetails })
+
+M.DirectQueryDataSourceList = schema.new({ type = "list", list_member = M.DirectQueryDataSource })
+
+M.DomainMaintenanceList = schema.new({ type = "list", list_member = M.DomainMaintenanceDetails })
+
+M.DomainInfoList = schema.new({ type = "list", list_member = M.DomainInfo })
+
+M.InsightList = schema.new({ type = "list", list_member = M.Insight })
+
+M.InstanceTypeDetailsList = schema.new({ type = "list", list_member = M.InstanceTypeDetails })
+
+M.ScheduledActionsList = schema.new({ type = "list", list_member = M.ScheduledAction })
+
+M.VersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizedPrincipalList = schema.new({ type = "list", list_member = M.AuthorizedPrincipal })
+
+M.VpcEndpointSummaryList = schema.new({ type = "list", list_member = M.VpcEndpointSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PackageUserList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SlotList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.RegionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeOptionsList = schema.new({ type = "list", list_member = M.NodeOption })
+
+M.AutoTuneMaintenanceScheduleList = schema.new({ type = "list", list_member = M.AutoTuneMaintenanceSchedule })
+
+M.EndpointsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ModifyingPropertiesList = schema.new({ type = "list", list_member = M.ModifyingProperties })
+
+M.ChangeProgressStageList = schema.new({ type = "list", list_member = M.ChangeProgressStage })
+
+M.ValidationFailures = schema.new({ type = "list", list_member = M.ValidationFailure })
+
+M.AvailabilityZoneInfoList = schema.new({ type = "list", list_member = M.AvailabilityZoneInfo })
+
+M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageTypeList = schema.new({ type = "list", list_member = M.StorageType })
+
+M.AdditionalLimitList = schema.new({ type = "list", list_member = M.AdditionalLimit })
+
+M.DescribePackagesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecurringChargeList = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.UpgradeStepsList = schema.new({ type = "list", list_member = M.UpgradeStepItem })
+
+M.InstanceRoleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StorageTypeLimitList = schema.new({ type = "list", list_member = M.StorageTypeLimit })
+
+M.LimitValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Issues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptInboundConnectionInput = schema.new({
     id = id.from(_N, "AcceptInboundConnectionRequest"),
     type = "structure",
@@ -645,10 +777,7 @@ M.AddTagsInput = schema.new({
     },
 })
 
-M.AddTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsOutput = prelude.Unit
 
 M.AdvancedOptionsStatus = schema.new({
     id = id.from(_N, "AdvancedOptionsStatus"),
@@ -3875,10 +4004,7 @@ M.DeleteDirectQueryDataSourceInput = schema.new({
     },
 })
 
-M.DeleteDirectQueryDataSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDirectQueryDataSourceOutput = prelude.Unit
 
 M.DeleteDomainInput = schema.new({
     id = id.from(_N, "DeleteDomainRequest"),
@@ -8720,10 +8846,7 @@ M.RemoveTagsInput = schema.new({
     },
 })
 
-M.RemoveTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsOutput = prelude.Unit
 
 M.RevokeVpcEndpointAccessInput = schema.new({
     id = id.from(_N, "RevokeVpcEndpointAccessRequest"),

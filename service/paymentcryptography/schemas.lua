@@ -7,6 +7,20 @@ local _N = "com.amazonaws.paymentcryptography"
 
 local M = {}
 
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Aliases = schema.new({ type = "list", list_member = M.Alias })
+
+M.KeySummaryList = schema.new({ type = "list", list_member = M.KeySummary })
+
+M.ReplicationStatus = schema.new({ type = "map", map_key = prelude.String, map_value = M.ReplicationStatusType })
+
+M.OptionalBlocks = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

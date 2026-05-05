@@ -3264,33 +3264,33 @@ local record ServiceUnavailableException
     message: string
 end
 
-local type ContainerType = "DOCKER"
-
-local type WorkflowStepExecutionStatus = "PENDING" | "SKIPPED" | "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
-
-local type Ownership = "Self" | "Shared" | "Amazon" | "ThirdParty" | "AWSMarketplace"
+local type WorkflowType = "BUILD" | "TEST" | "DISTRIBUTION"
 
 local type LifecyclePolicyResourceType = "AMI_IMAGE" | "CONTAINER_IMAGE"
 
+local type WorkflowStepExecutionRollbackStatus = "RUNNING" | "COMPLETED" | "SKIPPED" | "FAILED"
+
+local type MarketplaceResourceType = "COMPONENT_DATA" | "COMPONENT_ARTIFACT"
+
+local type Ownership = "Self" | "Shared" | "Amazon" | "ThirdParty" | "AWSMarketplace"
+
+local type ContainerType = "DOCKER"
+
 local type LifecyclePolicyStatus = "DISABLED" | "ENABLED"
-
-local type PipelineStatus = "DISABLED" | "ENABLED"
-
-local type Platform = "Windows" | "Linux" | "macOS"
 
 local type ComponentFormat = "SHELL"
 
-local type WorkflowType = "BUILD" | "TEST" | "DISTRIBUTION"
-
-local type WorkflowStepActionType = "RESUME" | "STOP"
+local type PipelineStatus = "DISABLED" | "ENABLED"
 
 local type ComponentType = "BUILD" | "TEST"
 
 local type WorkflowExecutionStatus = "PENDING" | "SKIPPED" | "RUNNING" | "COMPLETED" | "FAILED" | "ROLLBACK_IN_PROGRESS" | "ROLLBACK_COMPLETED" | "CANCELLED"
 
-local type MarketplaceResourceType = "COMPONENT_DATA" | "COMPONENT_ARTIFACT"
+local type WorkflowStepExecutionStatus = "PENDING" | "SKIPPED" | "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
 
-local type WorkflowStepExecutionRollbackStatus = "RUNNING" | "COMPLETED" | "SKIPPED" | "FAILED"
+local type Platform = "Windows" | "Linux" | "macOS"
+
+local type WorkflowStepActionType = "RESUME" | "STOP"
 
 local record M
     CancelImageCreationInput: CancelImageCreationInput

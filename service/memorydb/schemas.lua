@@ -7,6 +7,90 @@ local _N = "com.amazonaws.memorydb"
 
 local M = {}
 
+M.ClusterNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterList = schema.new({ type = "list", list_member = M.Cluster })
+
+M.UnprocessedClusterList = schema.new({ type = "list", list_member = M.UnprocessedCluster })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.UserNameListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ACLList = schema.new({ type = "list", list_member = M.ACL })
+
+M.EngineVersionInfoList = schema.new({ type = "list", list_member = M.EngineVersionInfo })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.MultiRegionClusterList = schema.new({ type = "list", list_member = M.MultiRegionCluster })
+
+M.MultiRegionParameterGroupList = schema.new({ type = "list", list_member = M.MultiRegionParameterGroup })
+
+M.MultiRegionParametersList = schema.new({ type = "list", list_member = M.MultiRegionParameter })
+
+M.ParameterGroupList = schema.new({ type = "list", list_member = M.ParameterGroup })
+
+M.ParametersList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.ReservedNodeList = schema.new({ type = "list", list_member = M.ReservedNode })
+
+M.ReservedNodesOfferingList = schema.new({ type = "list", list_member = M.ReservedNodesOffering })
+
+M.ServiceUpdateStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceUpdateList = schema.new({ type = "list", list_member = M.ServiceUpdate })
+
+M.SnapshotList = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.SubnetGroupList = schema.new({ type = "list", list_member = M.SubnetGroup })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.NodeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterNameValueList = schema.new({ type = "list", list_member = M.ParameterNameValue })
+
+M.UserNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ACLClusterNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ShardList = schema.new({ type = "list", list_member = M.Shard })
+
+M.SecurityGroupMembershipList = schema.new({ type = "list", list_member = M.SecurityGroupMembership })
+
+M.RegionalClusterList = schema.new({ type = "list", list_member = M.RegionalCluster })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.NetworkTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PasswordListInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.ACLNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecurringChargeList = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.ShardDetails = schema.new({ type = "list", list_member = M.ShardDetail })
+
+M.PendingModifiedServiceUpdateList = schema.new({ type = "list", list_member = M.PendingModifiedServiceUpdate })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeList = schema.new({ type = "list", list_member = M.Node })
+
 M.ACLPendingChanges = schema.new({
     id = id.from(_N, "ACLPendingChanges"),
     type = "structure",

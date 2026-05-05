@@ -7,6 +7,60 @@ local _N = "com.amazonaws.computeoptimizerautomation"
 
 local M = {}
 
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendedActionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AccountInfoList = schema.new({ type = "list", list_member = M.AccountInfo })
+
+M.AutomationEventFilterList = schema.new({ type = "list", list_member = M.AutomationEventFilter })
+
+M.AutomationEvents = schema.new({ type = "list", list_member = M.AutomationEvent })
+
+M.AutomationEventSteps = schema.new({ type = "list", list_member = M.AutomationEventStep })
+
+M.AutomationEventSummaryList = schema.new({ type = "list", list_member = M.AutomationEventSummary })
+
+M.PreviewResults = schema.new({ type = "list", list_member = M.PreviewResult })
+
+M.PreviewResultSummaries = schema.new({ type = "list", list_member = M.PreviewResultSummary })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.AutomationRules = schema.new({ type = "list", list_member = M.AutomationRule })
+
+M.RecommendedActionFilterList = schema.new({ type = "list", list_member = M.RecommendedActionFilter })
+
+M.RecommendedActions = schema.new({ type = "list", list_member = M.RecommendedAction })
+
+M.RecommendedActionSummaries = schema.new({ type = "list", list_member = M.RecommendedActionSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationConfigurationAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringCriteriaConditionList = schema.new({ type = "list", list_member = M.StringCriteriaCondition })
+
+M.IntegerCriteriaConditionList = schema.new({ type = "list", list_member = M.IntegerCriteriaCondition })
+
+M.DoubleCriteriaConditionList = schema.new({ type = "list", list_member = M.DoubleCriteriaCondition })
+
+M.ResourceTagsCriteriaConditionList = schema.new({ type = "list", list_member = M.ResourceTagsCriteriaCondition })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SummaryDimensions = schema.new({ type = "list", list_member = M.SummaryDimension })
+
+M.StringCriteriaValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.DoubleList = schema.new({ type = "list", list_member = prelude.Double })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

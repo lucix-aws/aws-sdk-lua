@@ -7,6 +7,50 @@ local _N = "com.amazonaws.appconfig"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidatorList = schema.new({ type = "list", list_member = M.Validator })
+
+M.MonitorList = schema.new({ type = "list", list_member = M.Monitor })
+
+M.ActionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ActionList })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Parameter })
+
+M.ParameterValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DeploymentEvents = schema.new({ type = "list", list_member = M.DeploymentEvent })
+
+M.AppliedExtensions = schema.new({ type = "list", list_member = M.AppliedExtension })
+
+M.ApplicationList = schema.new({ type = "list", list_member = M.Application })
+
+M.ConfigurationProfileSummaryList = schema.new({ type = "list", list_member = M.ConfigurationProfileSummary })
+
+M.DeploymentList = schema.new({ type = "list", list_member = M.DeploymentSummary })
+
+M.DeploymentStrategyList = schema.new({ type = "list", list_member = M.DeploymentStrategy })
+
+M.EnvironmentList = schema.new({ type = "list", list_member = M.Environment })
+
+M.ExtensionAssociationSummaries = schema.new({ type = "list", list_member = M.ExtensionAssociationSummary })
+
+M.ExtensionSummaries = schema.new({ type = "list", list_member = M.ExtensionSummary })
+
+M.HostedConfigurationVersionSummaryList = schema.new({ type = "list", list_member = M.HostedConfigurationVersionSummary })
+
+M.DynamicParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InvalidConfigurationDetailList = schema.new({ type = "list", list_member = M.InvalidConfigurationDetail })
+
+M.ActionList = schema.new({ type = "list", list_member = M.Action })
+
+M.ActionInvocations = schema.new({ type = "list", list_member = M.ActionInvocation })
+
+M.ValidatorTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.DeletionProtectionSettings = schema.new({
     id = id.from(_N, "DeletionProtectionSettings"),
     type = "structure",
@@ -1181,10 +1225,7 @@ M.DeleteApplicationInput = schema.new({
     },
 })
 
-M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationOutput = prelude.Unit
 
 M.DeleteConfigurationProfileInput = schema.new({
     id = id.from(_N, "DeleteConfigurationProfileRequest"),
@@ -1222,10 +1263,7 @@ M.DeleteConfigurationProfileInput = schema.new({
     },
 })
 
-M.DeleteConfigurationProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigurationProfileOutput = prelude.Unit
 
 M.DeleteDeploymentStrategyInput = schema.new({
     id = id.from(_N, "DeleteDeploymentStrategyRequest"),
@@ -1244,10 +1282,7 @@ M.DeleteDeploymentStrategyInput = schema.new({
     },
 })
 
-M.DeleteDeploymentStrategyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeploymentStrategyOutput = prelude.Unit
 
 M.DeleteEnvironmentInput = schema.new({
     id = id.from(_N, "DeleteEnvironmentRequest"),
@@ -1285,10 +1320,7 @@ M.DeleteEnvironmentInput = schema.new({
     },
 })
 
-M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEnvironmentOutput = prelude.Unit
 
 M.DeleteExtensionInput = schema.new({
     id = id.from(_N, "DeleteExtensionRequest"),
@@ -1317,10 +1349,7 @@ M.DeleteExtensionInput = schema.new({
     },
 })
 
-M.DeleteExtensionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteExtensionOutput = prelude.Unit
 
 M.DeleteExtensionAssociationInput = schema.new({
     id = id.from(_N, "DeleteExtensionAssociationRequest"),
@@ -1339,10 +1368,7 @@ M.DeleteExtensionAssociationInput = schema.new({
     },
 })
 
-M.DeleteExtensionAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteExtensionAssociationOutput = prelude.Unit
 
 M.DeleteHostedConfigurationVersionInput = schema.new({
     id = id.from(_N, "DeleteHostedConfigurationVersionRequest"),
@@ -1382,15 +1408,9 @@ M.DeleteHostedConfigurationVersionInput = schema.new({
     },
 })
 
-M.DeleteHostedConfigurationVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHostedConfigurationVersionOutput = prelude.Unit
 
-M.GetAccountSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountSettingsInput = prelude.Unit
 
 M.GetAccountSettingsOutput = schema.new({
     id = id.from(_N, "AccountSettings"),
@@ -3681,10 +3701,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -3714,10 +3731,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAccountSettingsInput = schema.new({
     id = id.from(_N, "UpdateAccountSettingsRequest"),
@@ -4345,10 +4359,7 @@ M.ValidateConfigurationInput = schema.new({
     },
 })
 
-M.ValidateConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ValidateConfigurationOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

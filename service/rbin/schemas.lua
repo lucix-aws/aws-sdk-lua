@@ -7,6 +7,16 @@ local _N = "com.amazonaws.rbin"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ResourceTags = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.ExcludeResourceTags = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.RuleSummaryList = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ResourceTag = schema.new({
     id = id.from(_N, "ResourceTag"),
     type = "structure",

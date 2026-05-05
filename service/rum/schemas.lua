@@ -7,6 +7,42 @@ local _N = "com.amazonaws.rum"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RumEventList = schema.new({ type = "list", list_member = M.RumEvent })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppMonitorSummaryList = schema.new({ type = "list", list_member = M.AppMonitorSummary })
+
+M.AppMonitorDomainList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDefinitionsRequest = schema.new({ type = "list", list_member = M.MetricDefinitionRequest })
+
+M.BatchCreateRumMetricDefinitionsErrors = schema.new({ type = "list", list_member = M.BatchCreateRumMetricDefinitionsError })
+
+M.MetricDefinitions = schema.new({ type = "list", list_member = M.MetricDefinition })
+
+M.MetricDefinitionIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteRumMetricDefinitionsErrors = schema.new({ type = "list", list_member = M.BatchDeleteRumMetricDefinitionsError })
+
+M.QueryFilters = schema.new({ type = "list", list_member = M.QueryFilter })
+
+M.EventDataList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDestinationSummaryList = schema.new({ type = "list", list_member = M.MetricDestinationSummary })
+
+M.Pages = schema.new({ type = "list", list_member = prelude.String })
+
+M.FavoritePages = schema.new({ type = "list", list_member = prelude.String })
+
+M.Telemetries = schema.new({ type = "list", list_member = prelude.String })
+
+M.DimensionKeysMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QueryFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

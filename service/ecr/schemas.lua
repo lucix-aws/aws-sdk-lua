@@ -7,6 +7,110 @@ local _N = "com.amazonaws.ecr"
 
 local M = {}
 
+M.BatchedOperationLayerDigestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LayerList = schema.new({ type = "list", list_member = M.Layer })
+
+M.LayerFailureList = schema.new({ type = "list", list_member = M.LayerFailure })
+
+M.ImageIdentifierList = schema.new({ type = "list", list_member = M.ImageIdentifier })
+
+M.ImageFailureList = schema.new({ type = "list", list_member = M.ImageFailure })
+
+M.MediaTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageList = schema.new({ type = "list", list_member = M.Image })
+
+M.ScanningConfigurationRepositoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryScanningConfigurationList = schema.new({ type = "list", list_member = M.RepositoryScanningConfiguration })
+
+M.RepositoryScanningConfigurationFailureList = schema.new({ type = "list", list_member = M.RepositoryScanningConfigurationFailure })
+
+M.LayerDigestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ImageTagMutabilityExclusionFilters = schema.new({ type = "list", list_member = M.ImageTagMutabilityExclusionFilter })
+
+M.RCTAppliedForList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageReplicationStatusList = schema.new({ type = "list", list_member = M.ImageReplicationStatus })
+
+M.ImageDetailList = schema.new({ type = "list", list_member = M.ImageDetail })
+
+M.ImageSigningStatusList = schema.new({ type = "list", list_member = M.ImageSigningStatus })
+
+M.PullThroughCacheRuleRepositoryPrefixList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PullThroughCacheRuleList = schema.new({ type = "list", list_member = M.PullThroughCacheRule })
+
+M.RepositoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryList = schema.new({ type = "list", list_member = M.Repository })
+
+M.PrefixList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryCreationTemplateList = schema.new({ type = "list", list_member = M.RepositoryCreationTemplate })
+
+M.GetAuthorizationTokenRegistryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizationDataList = schema.new({ type = "list", list_member = M.AuthorizationData })
+
+M.LifecyclePolicyPreviewResultList = schema.new({ type = "list", list_member = M.LifecyclePolicyPreviewResult })
+
+M.ImageReferrerList = schema.new({ type = "list", list_member = M.ImageReferrer })
+
+M.PullTimeUpdateExclusionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistryScanningRuleList = schema.new({ type = "list", list_member = M.RegistryScanningRule })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SigningRuleList = schema.new({ type = "list", list_member = M.SigningRule })
+
+M.FindingSeverityCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ImageScanFindingList = schema.new({ type = "list", list_member = M.ImageScanFinding })
+
+M.EnhancedImageScanFindingList = schema.new({ type = "list", list_member = M.EnhancedImageScanFinding })
+
+M.ReplicationRuleList = schema.new({ type = "list", list_member = M.ReplicationRule })
+
+M.TransitioningImageTotalCounts = schema.new({ type = "list", list_member = M.TransitioningImageTotalCount })
+
+M.ArtifactTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScanningRepositoryFilterList = schema.new({ type = "list", list_member = M.ScanningRepositoryFilter })
+
+M.ImageTagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Annotations = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SigningRepositoryFilterList = schema.new({ type = "list", list_member = M.SigningRepositoryFilter })
+
+M.AttributeList = schema.new({ type = "list", list_member = M.Attribute })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.ReplicationDestinationList = schema.new({ type = "list", list_member = M.ReplicationDestination })
+
+M.RepositoryFilterList = schema.new({ type = "list", list_member = M.RepositoryFilter })
+
+M.CvssScoreList = schema.new({ type = "list", list_member = M.CvssScore })
+
+M.ReferenceUrlsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelatedVulnerabilitiesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VulnerablePackagesList = schema.new({ type = "list", list_member = M.VulnerablePackage })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CvssScoreAdjustmentList = schema.new({ type = "list", list_member = M.CvssScoreAdjustment })
+
+M.ImageTagsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.BatchCheckLayerAvailabilityInput = schema.new({
     id = id.from(_N, "BatchCheckLayerAvailabilityRequest"),
     type = "structure",

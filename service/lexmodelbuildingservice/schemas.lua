@@ -7,6 +7,72 @@ local _N = "com.amazonaws.lexmodelbuildingservice"
 
 local M = {}
 
+M.IntentList = schema.new({ type = "list", list_member = M.Intent })
+
+M.SlotList = schema.new({ type = "list", list_member = M.Slot })
+
+M.IntentUtteranceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InputContextList = schema.new({ type = "list", list_member = M.InputContext })
+
+M.OutputContextList = schema.new({ type = "list", list_member = M.OutputContext })
+
+M.EnumerationValues = schema.new({ type = "list", list_member = M.EnumerationValue })
+
+M.SlotTypeConfigurations = schema.new({ type = "list", list_member = M.SlotTypeConfiguration })
+
+M.BotAliasMetadataList = schema.new({ type = "list", list_member = M.BotAliasMetadata })
+
+M.ChannelConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.BotChannelAssociationList = schema.new({ type = "list", list_member = M.BotChannelAssociation })
+
+M.BotMetadataList = schema.new({ type = "list", list_member = M.BotMetadata })
+
+M.LocaleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BuiltinIntentSlotList = schema.new({ type = "list", list_member = M.BuiltinIntentSlot })
+
+M.BuiltinIntentMetadataList = schema.new({ type = "list", list_member = M.BuiltinIntentMetadata })
+
+M.BuiltinSlotTypeMetadataList = schema.new({ type = "list", list_member = M.BuiltinSlotTypeMetadata })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntentMetadataList = schema.new({ type = "list", list_member = M.IntentMetadata })
+
+M.MigrationAlerts = schema.new({ type = "list", list_member = M.MigrationAlert })
+
+M.MigrationSummaryList = schema.new({ type = "list", list_member = M.MigrationSummary })
+
+M.SlotTypeMetadataList = schema.new({ type = "list", list_member = M.SlotTypeMetadata })
+
+M.BotVersions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListsOfUtterances = schema.new({ type = "list", list_member = M.UtteranceList })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageList = schema.new({ type = "list", list_member = M.Message })
+
+M.LogSettingsResponseList = schema.new({ type = "list", list_member = M.LogSettingsResponse })
+
+M.LogSettingsRequestList = schema.new({ type = "list", list_member = M.LogSettingsRequest })
+
+M.SlotUtteranceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SynonymList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MigrationAlertDetails = schema.new({ type = "list", list_member = prelude.String })
+
+M.MigrationAlertReferenceURLs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfUtterance = schema.new({ type = "list", list_member = M.UtteranceData })
+
+M.SlotDefaultValueList = schema.new({ type = "list", list_member = M.SlotDefaultValue })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -956,10 +1022,7 @@ M.DeleteBotInput = schema.new({
     },
 })
 
-M.DeleteBotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBotOutput = prelude.Unit
 
 M.ResourceReference = schema.new({
     id = id.from(_N, "ResourceReference"),
@@ -1030,10 +1093,7 @@ M.DeleteBotAliasInput = schema.new({
     },
 })
 
-M.DeleteBotAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBotAliasOutput = prelude.Unit
 
 M.DeleteBotChannelAssociationInput = schema.new({
     id = id.from(_N, "DeleteBotChannelAssociationRequest"),
@@ -1072,10 +1132,7 @@ M.DeleteBotChannelAssociationInput = schema.new({
     },
 })
 
-M.DeleteBotChannelAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBotChannelAssociationOutput = prelude.Unit
 
 M.DeleteBotVersionInput = schema.new({
     id = id.from(_N, "DeleteBotVersionRequest"),
@@ -1104,10 +1161,7 @@ M.DeleteBotVersionInput = schema.new({
     },
 })
 
-M.DeleteBotVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBotVersionOutput = prelude.Unit
 
 M.DeleteIntentInput = schema.new({
     id = id.from(_N, "DeleteIntentRequest"),
@@ -1126,10 +1180,7 @@ M.DeleteIntentInput = schema.new({
     },
 })
 
-M.DeleteIntentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntentOutput = prelude.Unit
 
 M.DeleteIntentVersionInput = schema.new({
     id = id.from(_N, "DeleteIntentVersionRequest"),
@@ -1158,10 +1209,7 @@ M.DeleteIntentVersionInput = schema.new({
     },
 })
 
-M.DeleteIntentVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntentVersionOutput = prelude.Unit
 
 M.DeleteSlotTypeInput = schema.new({
     id = id.from(_N, "DeleteSlotTypeRequest"),
@@ -1180,10 +1228,7 @@ M.DeleteSlotTypeInput = schema.new({
     },
 })
 
-M.DeleteSlotTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSlotTypeOutput = prelude.Unit
 
 M.DeleteSlotTypeVersionInput = schema.new({
     id = id.from(_N, "DeleteSlotTypeVersionRequest"),
@@ -1212,10 +1257,7 @@ M.DeleteSlotTypeVersionInput = schema.new({
     },
 })
 
-M.DeleteSlotTypeVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSlotTypeVersionOutput = prelude.Unit
 
 M.DeleteUtterancesInput = schema.new({
     id = id.from(_N, "DeleteUtterancesRequest"),
@@ -1244,10 +1286,7 @@ M.DeleteUtterancesInput = schema.new({
     },
 })
 
-M.DeleteUtterancesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUtterancesOutput = prelude.Unit
 
 M.GetBotInput = schema.new({
     id = id.from(_N, "GetBotRequest"),

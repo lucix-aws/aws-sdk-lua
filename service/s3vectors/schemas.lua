@@ -7,6 +7,32 @@ local _N = "com.amazonaws.s3vectors"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListVectorBucketsOutputList = schema.new({ type = "list", list_member = M.VectorBucketSummary })
+
+M.ListIndexesOutputList = schema.new({ type = "list", list_member = M.IndexSummary })
+
+M.DeleteVectorsInputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GetVectorsInputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GetVectorsOutputList = schema.new({ type = "list", list_member = M.GetOutputVector })
+
+M.ListVectorsOutputList = schema.new({ type = "list", list_member = M.ListOutputVector })
+
+M.PutVectorsInputList = schema.new({ type = "list", list_member = M.PutInputVector })
+
+M.QueryVectorsOutputList = schema.new({ type = "list", list_member = M.QueryOutputVector })
+
+M.NonFilterableMetadataKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Float32VectorData = schema.new({ type = "list", list_member = prelude.Float })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

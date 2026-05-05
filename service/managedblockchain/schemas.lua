@@ -7,6 +7,30 @@ local _N = "com.amazonaws.managedblockchain"
 
 local M = {}
 
+M.InputTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AccessorSummaryList = schema.new({ type = "list", list_member = M.AccessorSummary })
+
+M.InvitationList = schema.new({ type = "list", list_member = M.Invitation })
+
+M.MemberSummaryList = schema.new({ type = "list", list_member = M.MemberSummary })
+
+M.NetworkSummaryList = schema.new({ type = "list", list_member = M.NetworkSummary })
+
+M.NodeSummaryList = schema.new({ type = "list", list_member = M.NodeSummary })
+
+M.ProposalSummaryList = schema.new({ type = "list", list_member = M.ProposalSummary })
+
+M.ProposalVoteList = schema.new({ type = "list", list_member = M.VoteSummary })
+
+M.OutputTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InviteActionList = schema.new({ type = "list", list_member = M.InviteAction })
+
+M.RemoveActionList = schema.new({ type = "list", list_member = M.RemoveAction })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

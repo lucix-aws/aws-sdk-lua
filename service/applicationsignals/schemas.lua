@@ -7,6 +7,80 @@ local _N = "com.amazonaws.applicationsignals"
 
 local M = {}
 
+M.ServiceLevelObjectiveIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceLevelObjectiveBudgetReports = schema.new({ type = "list", list_member = M.ServiceLevelObjectiveBudgetReport })
+
+M.ServiceLevelObjectiveBudgetReportErrors = schema.new({ type = "list", list_member = M.ServiceLevelObjectiveBudgetReportError })
+
+M.ExclusionWindows = schema.new({ type = "list", list_member = M.ExclusionWindow })
+
+M.BatchUpdateExclusionWindowsErrors = schema.new({ type = "list", list_member = M.BatchUpdateExclusionWindowsError })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogGroupReferences = schema.new({ type = "list", list_member = M.Attributes })
+
+M.Auditors = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuditTargets = schema.new({ type = "list", list_member = M.AuditTarget })
+
+M.AuditFindings = schema.new({ type = "list", list_member = M.AuditFinding })
+
+M.ChangeEvents = schema.new({ type = "list", list_member = M.ChangeEvent })
+
+M.GroupingAttributeDefinitions = schema.new({ type = "list", list_member = M.GroupingAttributeDefinition })
+
+M.ServiceDependencies = schema.new({ type = "list", list_member = M.ServiceDependency })
+
+M.ServiceDependents = schema.new({ type = "list", list_member = M.ServiceDependent })
+
+M.ServiceOperations = schema.new({ type = "list", list_member = M.ServiceOperation })
+
+M.ServiceSummaries = schema.new({ type = "list", list_member = M.ServiceSummary })
+
+M.AttributeFilters = schema.new({ type = "list", list_member = M.AttributeFilter })
+
+M.ServiceStates = schema.new({ type = "list", list_member = M.ServiceState })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricSourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceLevelObjectiveSummaries = schema.new({ type = "list", list_member = M.ServiceLevelObjectiveSummary })
+
+M.BurnRateConfigurations = schema.new({ type = "list", list_member = M.BurnRateConfiguration })
+
+M.AttributeMaps = schema.new({ type = "list", list_member = M.AttributeMap })
+
+M.ServiceGroups = schema.new({ type = "list", list_member = M.ServiceGroup })
+
+M.MetricReferences = schema.new({ type = "list", list_member = M.MetricReference })
+
+M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AuditorResults = schema.new({ type = "list", list_member = M.AuditorResult })
+
+M.GroupingSourceKeyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.LatestChangeEvents = schema.new({ type = "list", list_member = M.ChangeEvent })
+
+M.MetricDataQueries = schema.new({ type = "list", list_member = M.MetricDataQuery })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
+M.Nodes = schema.new({ type = "list", list_member = M.Node })
+
+M.Edges = schema.new({ type = "list", list_member = M.Edge })
+
+M.CompositeSliComponents = schema.new({ type = "list", list_member = M.CompositeSliComponent })
+
+M.DataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1040,10 +1114,7 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
-M.DeleteGroupingConfigurationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGroupingConfigurationInput = prelude.Unit
 
 M.DeleteGroupingConfigurationOutput = schema.new({
     id = id.from(_N, "DeleteGroupingConfigurationOutput"),
@@ -1198,7 +1269,7 @@ M.Service = schema.new({
             type = "list",
             name = "AttributeMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.AttributeMap,
         }),
         ServiceGroups = schema.new({
             id = id.from(_N, "Service", "ServiceGroups"),
@@ -1222,7 +1293,7 @@ M.Service = schema.new({
             type = "list",
             name = "LogGroupReferences",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.Attributes,
         }),
     },
 })
@@ -1264,7 +1335,7 @@ M.GetServiceOutput = schema.new({
             type = "list",
             name = "LogGroupReferences",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.Attributes,
         }),
     },
 })
@@ -2555,7 +2626,7 @@ M.ServiceSummary = schema.new({
             type = "list",
             name = "AttributeMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.AttributeMap,
         }),
         MetricReferences = schema.new({
             id = id.from(_N, "ServiceSummary", "MetricReferences"),

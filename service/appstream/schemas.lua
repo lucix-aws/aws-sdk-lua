@@ -7,6 +7,116 @@ local _N = "com.amazonaws.appstream"
 
 local M = {}
 
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserStackAssociationList = schema.new({ type = "list", list_member = M.UserStackAssociation })
+
+M.UserStackAssociationErrorList = schema.new({ type = "list", list_member = M.UserStackAssociationError })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AccessEndpointList = schema.new({ type = "list", list_member = M.AccessEndpoint })
+
+M.Platforms = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitDistinguishedNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntitlementAttributeList = schema.new({ type = "list", list_member = M.EntitlementAttribute })
+
+M.UsbDeviceFilterStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppCatalogConfig = schema.new({ type = "list", list_member = M.ApplicationConfig })
+
+M.StorageConnectorList = schema.new({ type = "list", list_member = M.StorageConnector })
+
+M.UserSettingList = schema.new({ type = "list", list_member = M.UserSetting })
+
+M.EmbedHostDomains = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThemeFooterLinks = schema.new({ type = "list", list_member = M.ThemeFooterLink })
+
+M.AppBlockBuilderAppBlockAssociationsList = schema.new({ type = "list", list_member = M.AppBlockBuilderAppBlockAssociation })
+
+M.AppBlockBuilderList = schema.new({ type = "list", list_member = M.AppBlockBuilder })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppBlocks = schema.new({ type = "list", list_member = M.AppBlock })
+
+M.ApplicationFleetAssociationList = schema.new({ type = "list", list_member = M.ApplicationFleetAssociation })
+
+M.Applications = schema.new({ type = "list", list_member = M.Application })
+
+M.AdminAppLicenseUsageList = schema.new({ type = "list", list_member = M.AdminAppLicenseUsageRecord })
+
+M.DirectoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DirectoryConfigList = schema.new({ type = "list", list_member = M.DirectoryConfig })
+
+M.EntitlementList = schema.new({ type = "list", list_member = M.Entitlement })
+
+M.FleetList = schema.new({ type = "list", list_member = M.Fleet })
+
+M.ImageBuilderList = schema.new({ type = "list", list_member = M.ImageBuilder })
+
+M.AwsAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SharedImagePermissionsList = schema.new({ type = "list", list_member = M.SharedImagePermissions })
+
+M.ImageList = schema.new({ type = "list", list_member = M.Image })
+
+M.SessionList = schema.new({ type = "list", list_member = M.Session })
+
+M.SoftwareAssociationsList = schema.new({ type = "list", list_member = M.SoftwareAssociations })
+
+M.StackList = schema.new({ type = "list", list_member = M.Stack })
+
+M.UsageReportSubscriptionList = schema.new({ type = "list", list_member = M.UsageReportSubscription })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
+M.EntitledApplicationList = schema.new({ type = "list", list_member = M.EntitledApplication })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.ExportImageTasks = schema.new({ type = "list", list_member = M.ExportImageTask })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppBlockBuilderAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FleetAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThemeAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ErrorDetailsList = schema.new({ type = "list", list_member = M.ErrorDetails })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceErrors = schema.new({ type = "list", list_member = M.ResourceError })
+
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FleetErrors = schema.new({ type = "list", list_member = M.FleetError })
+
+M.AgentAccessSettingList = schema.new({ type = "list", list_member = M.AgentAccessSetting })
+
+M.StackErrors = schema.new({ type = "list", list_member = M.StackError })
+
+M.DomainList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UrlPatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LastReportGenerationExecutionErrors = schema.new({ type = "list", list_member = M.LastReportGenerationExecutionError })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessEndpoint = schema.new({
     id = id.from(_N, "AccessEndpoint"),
     type = "structure",

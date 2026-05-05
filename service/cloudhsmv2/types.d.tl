@@ -567,11 +567,11 @@ local record CloudHsmTagException
     Message: string
 end
 
-local type ClusterState = "CREATE_IN_PROGRESS" | "UNINITIALIZED" | "INITIALIZE_IN_PROGRESS" | "INITIALIZED" | "ACTIVE" | "UPDATE_IN_PROGRESS" | "MODIFY_IN_PROGRESS" | "ROLLBACK_IN_PROGRESS" | "DELETE_IN_PROGRESS" | "DELETED" | "DEGRADED"
+local type NetworkType = "IPV4" | "DUALSTACK"
 
 local type ClusterMode = "FIPS" | "NON_FIPS"
 
-local type NetworkType = "IPV4" | "DUALSTACK"
+local type ClusterState = "CREATE_IN_PROGRESS" | "UNINITIALIZED" | "INITIALIZE_IN_PROGRESS" | "INITIALIZED" | "ACTIVE" | "UPDATE_IN_PROGRESS" | "MODIFY_IN_PROGRESS" | "ROLLBACK_IN_PROGRESS" | "DELETE_IN_PROGRESS" | "DELETED" | "DEGRADED"
 
 local record M
     CopyBackupToRegionInput: CopyBackupToRegionInput

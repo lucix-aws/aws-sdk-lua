@@ -7,6 +7,226 @@ local _N = "com.amazonaws.medialive"
 
 local M = {}
 
+M.__listOfValidationError = schema.new({ type = "list", list_member = M.ValidationError })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfBatchFailedResultModel = schema.new({ type = "list", list_member = M.BatchFailedResultModel })
+
+M.__listOfBatchSuccessfulResultModel = schema.new({ type = "list", list_member = M.BatchSuccessfulResultModel })
+
+M.__listOfOutputDestination = schema.new({ type = "list", list_member = M.OutputDestination })
+
+M.__listOfInputAttachment = schema.new({ type = "list", list_member = M.InputAttachment })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfEventBridgeRuleTemplateTarget = schema.new({ type = "list", list_member = M.EventBridgeRuleTemplateTarget })
+
+M.__listOfInputDestinationRequest = schema.new({ type = "list", list_member = M.InputDestinationRequest })
+
+M.__listOfInputDeviceSettings = schema.new({ type = "list", list_member = M.InputDeviceSettings })
+
+M.__listOfMediaConnectFlowRequest = schema.new({ type = "list", list_member = M.MediaConnectFlowRequest })
+
+M.__listOfInputSourceRequest = schema.new({ type = "list", list_member = M.InputSourceRequest })
+
+M.InputSdiSources = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfInputWhitelistRuleCidr = schema.new({ type = "list", list_member = M.InputWhitelistRuleCidr })
+
+M.__listOfIpPoolCreateRequest = schema.new({ type = "list", list_member = M.IpPoolCreateRequest })
+
+M.__listOfRouteCreateRequest = schema.new({ type = "list", list_member = M.RouteCreateRequest })
+
+M.__listOfIpPool = schema.new({ type = "list", list_member = M.IpPool })
+
+M.__listOfRoute = schema.new({ type = "list", list_member = M.Route })
+
+M.__listOfNodeInterfaceMappingCreateRequest = schema.new({ type = "list", list_member = M.NodeInterfaceMappingCreateRequest })
+
+M.__listOfNodeInterfaceMapping = schema.new({ type = "list", list_member = M.NodeInterfaceMapping })
+
+M.SdiSourceMappings = schema.new({ type = "list", list_member = M.SdiSourceMapping })
+
+M.__listOf__stringPatternS = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__stringMin7Max11PatternAws097 = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedMediaResourceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MediaResource })
+
+M.MediaResourceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MediaResource })
+
+M.__listOfChannelEgressEndpoint = schema.new({ type = "list", list_member = M.ChannelEgressEndpoint })
+
+M.__listOfPipelineDetail = schema.new({ type = "list", list_member = M.PipelineDetail })
+
+M.__listOfMultiplexOutputDestination = schema.new({ type = "list", list_member = M.MultiplexOutputDestination })
+
+M.__listOfMultiplexProgramPipelineDetail = schema.new({ type = "list", list_member = M.MultiplexProgramPipelineDetail })
+
+M.__listOfInputDestination = schema.new({ type = "list", list_member = M.InputDestination })
+
+M.__listOfMediaConnectFlow = schema.new({ type = "list", list_member = M.MediaConnectFlow })
+
+M.__listOfInputSource = schema.new({ type = "list", list_member = M.InputSource })
+
+M.__listOfInputWhitelistRule = schema.new({ type = "list", list_member = M.InputWhitelistRule })
+
+M.__listOfScheduleAction = schema.new({ type = "list", list_member = M.ScheduleAction })
+
+M.__listOfThumbnailDetail = schema.new({ type = "list", list_member = M.ThumbnailDetail })
+
+M.__listOfChannelAlert = schema.new({ type = "list", list_member = M.ChannelAlert })
+
+M.__listOfDescribeChannelPlacementGroupSummary = schema.new({ type = "list", list_member = M.DescribeChannelPlacementGroupSummary })
+
+M.__listOfChannelSummary = schema.new({ type = "list", list_member = M.ChannelSummary })
+
+M.__listOfCloudWatchAlarmTemplateGroupSummary = schema.new({ type = "list", list_member = M.CloudWatchAlarmTemplateGroupSummary })
+
+M.__listOfCloudWatchAlarmTemplateSummary = schema.new({ type = "list", list_member = M.CloudWatchAlarmTemplateSummary })
+
+M.__listOfClusterAlert = schema.new({ type = "list", list_member = M.ClusterAlert })
+
+M.__listOfDescribeClusterSummary = schema.new({ type = "list", list_member = M.DescribeClusterSummary })
+
+M.__listOfEventBridgeRuleTemplateGroupSummary = schema.new({ type = "list", list_member = M.EventBridgeRuleTemplateGroupSummary })
+
+M.__listOfEventBridgeRuleTemplateSummary = schema.new({ type = "list", list_member = M.EventBridgeRuleTemplateSummary })
+
+M.__listOfInputDeviceSummary = schema.new({ type = "list", list_member = M.InputDeviceSummary })
+
+M.__listOfTransferringInputDeviceSummary = schema.new({ type = "list", list_member = M.TransferringInputDeviceSummary })
+
+M.__listOfInput = schema.new({ type = "list", list_member = M.Input })
+
+M.__listOfInputSecurityGroup = schema.new({ type = "list", list_member = M.InputSecurityGroup })
+
+M.__listOfMultiplexAlert = schema.new({ type = "list", list_member = M.MultiplexAlert })
+
+M.__listOfMultiplexSummary = schema.new({ type = "list", list_member = M.MultiplexSummary })
+
+M.__listOfMultiplexProgramSummary = schema.new({ type = "list", list_member = M.MultiplexProgramSummary })
+
+M.__listOfDescribeNetworkSummary = schema.new({ type = "list", list_member = M.DescribeNetworkSummary })
+
+M.__listOfDescribeNodeSummary = schema.new({ type = "list", list_member = M.DescribeNodeSummary })
+
+M.__listOfOffering = schema.new({ type = "list", list_member = M.Offering })
+
+M.__listOfReservation = schema.new({ type = "list", list_member = M.Reservation })
+
+M.__listOfSdiSourceSummary = schema.new({ type = "list", list_member = M.SdiSourceSummary })
+
+M.__listOfSignalMapSummary = schema.new({ type = "list", list_member = M.SignalMapSummary })
+
+M.__listOfChannelEngineVersionResponse = schema.new({ type = "list", list_member = M.ChannelEngineVersionResponse })
+
+M.__listOfChannelPipelineIdToRestart = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfInputDeviceRequest = schema.new({ type = "list", list_member = M.InputDeviceRequest })
+
+M.MultiplexPacketIdentifiersMapping = schema.new({ type = "map", map_key = prelude.String, map_value = M.MultiplexProgramPacketIdentifiersMap })
+
+M.__listOfIpPoolUpdateRequest = schema.new({ type = "list", list_member = M.IpPoolUpdateRequest })
+
+M.__listOfRouteUpdateRequest = schema.new({ type = "list", list_member = M.RouteUpdateRequest })
+
+M.SdiSourceMappingsUpdateRequest = schema.new({ type = "list", list_member = M.SdiSourceMappingUpdateRequest })
+
+M.__listOfAudioDescription = schema.new({ type = "list", list_member = M.AudioDescription })
+
+M.__listOfCaptionDescription = schema.new({ type = "list", list_member = M.CaptionDescription })
+
+M.__listOfOutputGroup = schema.new({ type = "list", list_member = M.OutputGroup })
+
+M.__listOfVideoDescription = schema.new({ type = "list", list_member = M.VideoDescription })
+
+M.__listOfInterfaceMappingCreateRequest = schema.new({ type = "list", list_member = M.InterfaceMappingCreateRequest })
+
+M.__listOfInterfaceMapping = schema.new({ type = "list", list_member = M.InterfaceMapping })
+
+M.__listOfSrtCallerSourceRequest = schema.new({ type = "list", list_member = M.SrtCallerSourceRequest })
+
+M.__listOfMulticastSourceCreateRequest = schema.new({ type = "list", list_member = M.MulticastSourceCreateRequest })
+
+M.__listOfSmpte2110ReceiverGroup = schema.new({ type = "list", list_member = M.Smpte2110ReceiverGroup })
+
+M.__listOfRouterDestinationSettings = schema.new({ type = "list", list_member = M.RouterDestinationSettings })
+
+M.__listOf__integer = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOfSrtCallerSource = schema.new({ type = "list", list_member = M.SrtCallerSource })
+
+M.__listOfMulticastSource = schema.new({ type = "list", list_member = M.MulticastSource })
+
+M.__listOfRouterDestination = schema.new({ type = "list", list_member = M.RouterDestination })
+
+M.__listOfInputDeviceUhdAudioChannelPairConfig = schema.new({ type = "list", list_member = M.InputDeviceUhdAudioChannelPairConfig })
+
+M.__listOfInterfaceMappingUpdateRequest = schema.new({ type = "list", list_member = M.InterfaceMappingUpdateRequest })
+
+M.__listOfMulticastSourceUpdateRequest = schema.new({ type = "list", list_member = M.MulticastSourceUpdateRequest })
+
+M.__listOfInputDeviceConfigurableAudioChannelPairConfig = schema.new({ type = "list", list_member = M.InputDeviceConfigurableAudioChannelPairConfig })
+
+M.__listOfMediaPackageOutputDestinationSettings = schema.new({ type = "list", list_member = M.MediaPackageOutputDestinationSettings })
+
+M.__listOfOutputDestinationSettings = schema.new({ type = "list", list_member = M.OutputDestinationSettings })
+
+M.__listOfSrtOutputDestinationSettings = schema.new({ type = "list", list_member = M.SrtOutputDestinationSettings })
+
+M.__listOfMediaConnectRouterOutputDestinationSettings = schema.new({ type = "list", list_member = M.MediaConnectRouterOutputDestinationSettings })
+
+M.__listOfColorCorrection = schema.new({ type = "list", list_member = M.ColorCorrection })
+
+M.__listOfInputRequestDestinationRoute = schema.new({ type = "list", list_member = M.InputRequestDestinationRoute })
+
+M.__listOfMediaResourceNeighbor = schema.new({ type = "list", list_member = M.MediaResourceNeighbor })
+
+M.__listOfInputDestinationRoute = schema.new({ type = "list", list_member = M.InputDestinationRoute })
+
+M.__listOfThumbnail = schema.new({ type = "list", list_member = M.Thumbnail })
+
+M.__listOfDashRoleAudio = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfDashRoleCaption = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfOutput = schema.new({ type = "list", list_member = M.Output })
+
+M.__listOfFailoverCondition = schema.new({ type = "list", list_member = M.FailoverCondition })
+
+M.__listOfAudioSelector = schema.new({ type = "list", list_member = M.AudioSelector })
+
+M.__listOfCaptionSelector = schema.new({ type = "list", list_member = M.CaptionSelector })
+
+M.__listOfAudioChannelMapping = schema.new({ type = "list", list_member = M.AudioChannelMapping })
+
+M.__listOfInputSdpLocation = schema.new({ type = "list", list_member = M.InputSdpLocation })
+
+M.__listOfPipelinePauseStateSettings = schema.new({ type = "list", list_member = M.PipelinePauseStateSettings })
+
+M.__listOfScte35Descriptor = schema.new({ type = "list", list_member = M.Scte35Descriptor })
+
+M.__listOfHlsAdMarkers = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfCaptionLanguageMapping = schema.new({ type = "list", list_member = M.CaptionLanguageMapping })
+
+M.__listOfRtmpAdMarkers = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfCmafIngestCaptionLanguageMapping = schema.new({ type = "list", list_member = M.CmafIngestCaptionLanguageMapping })
+
+M.__listOfAdditionalDestinations = schema.new({ type = "list", list_member = M.AdditionalDestinations })
+
+M.__listOfInputChannelLevel = schema.new({ type = "list", list_member = M.InputChannelLevel })
+
+M.__listOfMediaPackageAdditionalDestinations = schema.new({ type = "list", list_member = M.MediaPackageAdditionalDestinations })
+
+M.__listOfAudioTrack = schema.new({ type = "list", list_member = M.AudioTrack })
+
 M.OutputLocationRef = schema.new({
     id = id.from(_N, "OutputLocationRef"),
     type = "structure",
@@ -19306,10 +19526,7 @@ M.CreateTagsInput = schema.new({
     },
 })
 
-M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTagsOutput = prelude.Unit
 
 M.DeleteChannelInput = schema.new({
     id = id.from(_N, "DeleteChannelRequest"),
@@ -19674,10 +19891,7 @@ M.DeleteCloudWatchAlarmTemplateInput = schema.new({
     },
 })
 
-M.DeleteCloudWatchAlarmTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCloudWatchAlarmTemplateOutput = prelude.Unit
 
 M.DeleteCloudWatchAlarmTemplateGroupInput = schema.new({
     id = id.from(_N, "DeleteCloudWatchAlarmTemplateGroupRequest"),
@@ -19696,10 +19910,7 @@ M.DeleteCloudWatchAlarmTemplateGroupInput = schema.new({
     },
 })
 
-M.DeleteCloudWatchAlarmTemplateGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCloudWatchAlarmTemplateGroupOutput = prelude.Unit
 
 M.DeleteClusterInput = schema.new({
     id = id.from(_N, "DeleteClusterRequest"),
@@ -19816,10 +20027,7 @@ M.DeleteEventBridgeRuleTemplateInput = schema.new({
     },
 })
 
-M.DeleteEventBridgeRuleTemplateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventBridgeRuleTemplateOutput = prelude.Unit
 
 M.DeleteEventBridgeRuleTemplateGroupInput = schema.new({
     id = id.from(_N, "DeleteEventBridgeRuleTemplateGroupRequest"),
@@ -19838,10 +20046,7 @@ M.DeleteEventBridgeRuleTemplateGroupInput = schema.new({
     },
 })
 
-M.DeleteEventBridgeRuleTemplateGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventBridgeRuleTemplateGroupOutput = prelude.Unit
 
 M.DeleteInputInput = schema.new({
     id = id.from(_N, "DeleteInputRequest"),
@@ -20586,10 +20791,7 @@ M.DeleteSignalMapInput = schema.new({
     },
 })
 
-M.DeleteSignalMapOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSignalMapOutput = prelude.Unit
 
 M.DeleteTagsInput = schema.new({
     id = id.from(_N, "DeleteTagsRequest"),
@@ -20619,10 +20821,7 @@ M.DeleteTagsInput = schema.new({
     },
 })
 
-M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTagsOutput = prelude.Unit
 
 M.DescribeAccountConfigurationInput = schema.new({
     id = id.from(_N, "DescribeAccountConfigurationRequest"),

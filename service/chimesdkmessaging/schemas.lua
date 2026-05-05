@@ -7,6 +7,54 @@ local _N = "com.amazonaws.chimesdkmessaging"
 
 local M = {}
 
+M.MemberArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchCreateChannelMembershipErrors = schema.new({ type = "list", list_member = M.BatchCreateChannelMembershipError })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ChannelMemberArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelModeratorArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProcessorList = schema.new({ type = "list", list_member = M.Processor })
+
+M.StreamingConfigurationList = schema.new({ type = "list", list_member = M.StreamingConfiguration })
+
+M.ChannelBanSummaryList = schema.new({ type = "list", list_member = M.ChannelBanSummary })
+
+M.ChannelFlowSummaryList = schema.new({ type = "list", list_member = M.ChannelFlowSummary })
+
+M.ChannelMembershipSummaryList = schema.new({ type = "list", list_member = M.ChannelMembershipSummary })
+
+M.ChannelMembershipForAppInstanceUserSummaryList = schema.new({ type = "list", list_member = M.ChannelMembershipForAppInstanceUserSummary })
+
+M.ChannelMessageSummaryList = schema.new({ type = "list", list_member = M.ChannelMessageSummary })
+
+M.ChannelModeratorSummaryList = schema.new({ type = "list", list_member = M.ChannelModeratorSummary })
+
+M.ChannelSummaryList = schema.new({ type = "list", list_member = M.ChannelSummary })
+
+M.ChannelAssociatedWithFlowSummaryList = schema.new({ type = "list", list_member = M.ChannelAssociatedWithFlowSummary })
+
+M.ChannelModeratedByAppInstanceUserSummaryList = schema.new({ type = "list", list_member = M.ChannelModeratedByAppInstanceUserSummary })
+
+M.SubChannelSummaryList = schema.new({ type = "list", list_member = M.SubChannelSummary })
+
+M.SearchFields = schema.new({ type = "list", list_member = M.SearchField })
+
+M.MessageAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MessageAttributeValue })
+
+M.TargetList = schema.new({ type = "list", list_member = M.Target })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Members = schema.new({ type = "list", list_member = M.Identity })
+
+M.SearchFieldValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageAttributeStringValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AppInstanceUserMembershipSummary = schema.new({
     id = id.from(_N, "AppInstanceUserMembershipSummary"),
     type = "structure",
@@ -68,10 +116,7 @@ M.AssociateChannelFlowInput = schema.new({
     },
 })
 
-M.AssociateChannelFlowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateChannelFlowOutput = prelude.Unit
 
 M.BadRequestException = schema.new({
     id = id.from(_N, "BadRequestException"),
@@ -1843,10 +1888,7 @@ M.DeleteChannelInput = schema.new({
     },
 })
 
-M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelOutput = prelude.Unit
 
 M.DeleteChannelBanInput = schema.new({
     id = id.from(_N, "DeleteChannelBanRequest"),
@@ -1885,10 +1927,7 @@ M.DeleteChannelBanInput = schema.new({
     },
 })
 
-M.DeleteChannelBanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelBanOutput = prelude.Unit
 
 M.DeleteChannelFlowInput = schema.new({
     id = id.from(_N, "DeleteChannelFlowRequest"),
@@ -1907,10 +1946,7 @@ M.DeleteChannelFlowInput = schema.new({
     },
 })
 
-M.DeleteChannelFlowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelFlowOutput = prelude.Unit
 
 M.DeleteChannelMembershipInput = schema.new({
     id = id.from(_N, "DeleteChannelMembershipRequest"),
@@ -1958,10 +1994,7 @@ M.DeleteChannelMembershipInput = schema.new({
     },
 })
 
-M.DeleteChannelMembershipOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelMembershipOutput = prelude.Unit
 
 M.DeleteChannelMessageInput = schema.new({
     id = id.from(_N, "DeleteChannelMessageRequest"),
@@ -2009,10 +2042,7 @@ M.DeleteChannelMessageInput = schema.new({
     },
 })
 
-M.DeleteChannelMessageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelMessageOutput = prelude.Unit
 
 M.DeleteChannelModeratorInput = schema.new({
     id = id.from(_N, "DeleteChannelModeratorRequest"),
@@ -2051,10 +2081,7 @@ M.DeleteChannelModeratorInput = schema.new({
     },
 })
 
-M.DeleteChannelModeratorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelModeratorOutput = prelude.Unit
 
 M.DeleteMessagingStreamingConfigurationsInput = schema.new({
     id = id.from(_N, "DeleteMessagingStreamingConfigurationsRequest"),
@@ -2073,10 +2100,7 @@ M.DeleteMessagingStreamingConfigurationsInput = schema.new({
     },
 })
 
-M.DeleteMessagingStreamingConfigurationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMessagingStreamingConfigurationsOutput = prelude.Unit
 
 M.DescribeChannelInput = schema.new({
     id = id.from(_N, "DescribeChannelRequest"),
@@ -2451,10 +2475,7 @@ M.DisassociateChannelFlowInput = schema.new({
     },
 })
 
-M.DisassociateChannelFlowOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateChannelFlowOutput = prelude.Unit
 
 M.GetChannelMembershipPreferencesInput = schema.new({
     id = id.from(_N, "GetChannelMembershipPreferencesRequest"),
@@ -4013,10 +4034,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -4044,10 +4062,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateChannelInput = schema.new({
     id = id.from(_N, "UpdateChannelRequest"),

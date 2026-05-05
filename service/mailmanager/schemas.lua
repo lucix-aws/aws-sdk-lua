@@ -7,6 +7,72 @@ local _N = "com.amazonaws.mailmanager"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.Rules = schema.new({ type = "list", list_member = M.Rule })
+
+M.RowsList = schema.new({ type = "list", list_member = M.Row })
+
+M.ImportJobs = schema.new({ type = "list", list_member = M.ImportJob })
+
+M.ExportSummaryList = schema.new({ type = "list", list_member = M.ExportSummary })
+
+M.SearchSummaryList = schema.new({ type = "list", list_member = M.SearchSummary })
+
+M.SavedAddresses = schema.new({ type = "list", list_member = M.SavedAddress })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddonInstances = schema.new({ type = "list", list_member = M.AddonInstance })
+
+M.AddonSubscriptions = schema.new({ type = "list", list_member = M.AddonSubscription })
+
+M.AddressLists = schema.new({ type = "list", list_member = M.AddressList })
+
+M.ArchivesList = schema.new({ type = "list", list_member = M.Archive })
+
+M.IngressPointsList = schema.new({ type = "list", list_member = M.IngressPoint })
+
+M.Relays = schema.new({ type = "list", list_member = M.Relay })
+
+M.RuleSets = schema.new({ type = "list", list_member = M.RuleSet })
+
+M.TrafficPolicyList = schema.new({ type = "list", list_member = M.TrafficPolicy })
+
+M.PolicyStatementList = schema.new({ type = "list", list_member = M.PolicyStatement })
+
+M.ArchiveFilterConditions = schema.new({ type = "list", list_member = M.ArchiveFilterCondition })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleConditions = schema.new({ type = "list", list_member = M.RuleCondition })
+
+M.RuleActions = schema.new({ type = "list", list_member = M.RuleAction })
+
+M.EmailReceivedHeadersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyConditions = schema.new({ type = "list", list_member = M.PolicyCondition })
+
+M.StringValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleIpValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleVerdictValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleDmarcValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Recipients = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ipv4Cidrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ipv6Cidrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleAddressListArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IngressAddressListArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,30 @@ local _N = "com.amazonaws.voiceid"
 
 local M = {}
 
+M.FraudsterRegistrationJobSummaries = schema.new({ type = "list", list_member = M.FraudsterRegistrationJobSummary })
+
+M.FraudsterSummaries = schema.new({ type = "list", list_member = M.FraudsterSummary })
+
+M.SpeakerEnrollmentJobSummaries = schema.new({ type = "list", list_member = M.SpeakerEnrollmentJobSummary })
+
+M.SpeakerSummaries = schema.new({ type = "list", list_member = M.SpeakerSummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.WatchlistSummaries = schema.new({ type = "list", list_member = M.WatchlistSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainSummaries = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.ResponseWatchlistIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.FraudDetectionReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationConfigWatchlistIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnrollmentJobFraudDetectionConfigWatchlistIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -619,10 +643,7 @@ M.DeleteDomainInput = schema.new({
     },
 })
 
-M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDomainOutput = prelude.Unit
 
 M.DeleteFraudsterInput = schema.new({
     id = id.from(_N, "DeleteFraudsterRequest"),
@@ -649,10 +670,7 @@ M.DeleteFraudsterInput = schema.new({
     },
 })
 
-M.DeleteFraudsterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFraudsterOutput = prelude.Unit
 
 M.DeleteSpeakerInput = schema.new({
     id = id.from(_N, "DeleteSpeakerRequest"),
@@ -679,10 +697,7 @@ M.DeleteSpeakerInput = schema.new({
     },
 })
 
-M.DeleteSpeakerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSpeakerOutput = prelude.Unit
 
 M.DeleteWatchlistInput = schema.new({
     id = id.from(_N, "DeleteWatchlistRequest"),
@@ -709,10 +724,7 @@ M.DeleteWatchlistInput = schema.new({
     },
 })
 
-M.DeleteWatchlistOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteWatchlistOutput = prelude.Unit
 
 M.DescribeDomainInput = schema.new({
     id = id.from(_N, "DescribeDomainRequest"),

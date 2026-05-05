@@ -7,6 +7,400 @@ local _N = "com.amazonaws.ssm"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.OpsItemParameterNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationMetadataList = schema.new({ type = "list", list_member = M.RegistrationMetadataItem })
+
+M.Parameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterValueList })
+
+M.Targets = schema.new({ type = "list", list_member = M.Target })
+
+M.CalendarNameOrARNList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetLocations = schema.new({ type = "list", list_member = M.TargetLocation })
+
+M.TargetMaps = schema.new({ type = "list", list_member = M.TargetMap })
+
+M.CreateAssociationBatchRequestEntries = schema.new({ type = "list", list_member = M.CreateAssociationBatchRequestEntry })
+
+M.AssociationDescriptionList = schema.new({ type = "list", list_member = M.AssociationDescription })
+
+M.FailedCreateAssociationList = schema.new({ type = "list", list_member = M.FailedCreateAssociation })
+
+M.DocumentRequiresList = schema.new({ type = "list", list_member = M.DocumentRequires })
+
+M.AttachmentsSourceList = schema.new({ type = "list", list_member = M.AttachmentsSource })
+
+M.OpsItemOperationalData = schema.new({ type = "map", map_key = prelude.String, map_value = M.OpsItemDataValue })
+
+M.OpsItemNotifications = schema.new({ type = "list", list_member = M.OpsItemNotification })
+
+M.RelatedOpsItems = schema.new({ type = "list", list_member = M.RelatedOpsItem })
+
+M.MetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetadataValue })
+
+M.PatchIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchSourceList = schema.new({ type = "list", list_member = M.PatchSource })
+
+M.ParameterNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourcePolicyParameterNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeActivationsFilterList = schema.new({ type = "list", list_member = M.DescribeActivationsFilter })
+
+M.ActivationList = schema.new({ type = "list", list_member = M.Activation })
+
+M.AssociationExecutionFilterList = schema.new({ type = "list", list_member = M.AssociationExecutionFilter })
+
+M.AssociationExecutionsList = schema.new({ type = "list", list_member = M.AssociationExecution })
+
+M.AssociationExecutionTargetsFilterList = schema.new({ type = "list", list_member = M.AssociationExecutionTargetsFilter })
+
+M.AssociationExecutionTargetsList = schema.new({ type = "list", list_member = M.AssociationExecutionTarget })
+
+M.AutomationExecutionFilterList = schema.new({ type = "list", list_member = M.AutomationExecutionFilter })
+
+M.AutomationExecutionMetadataList = schema.new({ type = "list", list_member = M.AutomationExecutionMetadata })
+
+M.StepExecutionFilterList = schema.new({ type = "list", list_member = M.StepExecutionFilter })
+
+M.StepExecutionList = schema.new({ type = "list", list_member = M.StepExecution })
+
+M.PatchOrchestratorFilterList = schema.new({ type = "list", list_member = M.PatchOrchestratorFilter })
+
+M.PatchList = schema.new({ type = "list", list_member = M.Patch })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountSharingInfoList = schema.new({ type = "list", list_member = M.AccountSharingInfo })
+
+M.InstanceAssociationList = schema.new({ type = "list", list_member = M.InstanceAssociation })
+
+M.EffectivePatchList = schema.new({ type = "list", list_member = M.EffectivePatch })
+
+M.InstanceAssociationStatusInfos = schema.new({ type = "list", list_member = M.InstanceAssociationStatusInfo })
+
+M.InstanceInformationFilterList = schema.new({ type = "list", list_member = M.InstanceInformationFilter })
+
+M.InstanceInformationStringFilterList = schema.new({ type = "list", list_member = M.InstanceInformationStringFilter })
+
+M.InstanceInformationList = schema.new({ type = "list", list_member = M.InstanceInformation })
+
+M.PatchComplianceDataList = schema.new({ type = "list", list_member = M.PatchComplianceData })
+
+M.InstancePatchStateList = schema.new({ type = "list", list_member = M.InstancePatchState })
+
+M.InstancePatchStateFilterList = schema.new({ type = "list", list_member = M.InstancePatchStateFilter })
+
+M.InstancePatchStatesList = schema.new({ type = "list", list_member = M.InstancePatchState })
+
+M.InstancePropertyFilterList = schema.new({ type = "list", list_member = M.InstancePropertyFilter })
+
+M.InstancePropertyStringFilterList = schema.new({ type = "list", list_member = M.InstancePropertyStringFilter })
+
+M.InstanceProperties = schema.new({ type = "list", list_member = M.InstanceProperty })
+
+M.InventoryDeletionsList = schema.new({ type = "list", list_member = M.InventoryDeletionStatusItem })
+
+M.MaintenanceWindowFilterList = schema.new({ type = "list", list_member = M.MaintenanceWindowFilter })
+
+M.MaintenanceWindowExecutionList = schema.new({ type = "list", list_member = M.MaintenanceWindowExecution })
+
+M.MaintenanceWindowExecutionTaskInvocationIdentityList = schema.new({ type = "list", list_member = M.MaintenanceWindowExecutionTaskInvocationIdentity })
+
+M.MaintenanceWindowExecutionTaskIdentityList = schema.new({ type = "list", list_member = M.MaintenanceWindowExecutionTaskIdentity })
+
+M.MaintenanceWindowIdentityList = schema.new({ type = "list", list_member = M.MaintenanceWindowIdentity })
+
+M.ScheduledWindowExecutionList = schema.new({ type = "list", list_member = M.ScheduledWindowExecution })
+
+M.MaintenanceWindowsForTargetList = schema.new({ type = "list", list_member = M.MaintenanceWindowIdentityForTarget })
+
+M.MaintenanceWindowTargetList = schema.new({ type = "list", list_member = M.MaintenanceWindowTarget })
+
+M.MaintenanceWindowTaskList = schema.new({ type = "list", list_member = M.MaintenanceWindowTask })
+
+M.OpsItemFilters = schema.new({ type = "list", list_member = M.OpsItemFilter })
+
+M.OpsItemSummaries = schema.new({ type = "list", list_member = M.OpsItemSummary })
+
+M.ParametersFilterList = schema.new({ type = "list", list_member = M.ParametersFilter })
+
+M.ParameterStringFilterList = schema.new({ type = "list", list_member = M.ParameterStringFilter })
+
+M.ParameterMetadataList = schema.new({ type = "list", list_member = M.ParameterMetadata })
+
+M.PatchBaselineIdentityList = schema.new({ type = "list", list_member = M.PatchBaselineIdentity })
+
+M.PatchGroupPatchBaselineMappingList = schema.new({ type = "list", list_member = M.PatchGroupPatchBaselineMapping })
+
+M.PatchPropertiesList = schema.new({ type = "list", list_member = M.PatchPropertyEntry })
+
+M.SessionFilterList = schema.new({ type = "list", list_member = M.SessionFilter })
+
+M.SessionList = schema.new({ type = "list", list_member = M.Session })
+
+M.AttachmentContentList = schema.new({ type = "list", list_member = M.AttachmentContent })
+
+M.InventoryFilterList = schema.new({ type = "list", list_member = M.InventoryFilter })
+
+M.InventoryAggregatorList = schema.new({ type = "list", list_member = M.InventoryAggregator })
+
+M.ResultAttributeList = schema.new({ type = "list", list_member = M.ResultAttribute })
+
+M.InventoryResultEntityList = schema.new({ type = "list", list_member = M.InventoryResultEntity })
+
+M.InventoryItemSchemaResultList = schema.new({ type = "list", list_member = M.InventoryItemSchema })
+
+M.MaintenanceWindowExecutionTaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MaintenanceWindowTaskParametersList = schema.new({ type = "list", list_member = M.MaintenanceWindowTaskParameters })
+
+M.AlarmStateInformationList = schema.new({ type = "list", list_member = M.AlarmStateInformation })
+
+M.MaintenanceWindowTaskParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.MaintenanceWindowTaskParameterValueExpression })
+
+M.OpsFilterList = schema.new({ type = "list", list_member = M.OpsFilter })
+
+M.OpsAggregatorList = schema.new({ type = "list", list_member = M.OpsAggregator })
+
+M.OpsResultAttributeList = schema.new({ type = "list", list_member = M.OpsResultAttribute })
+
+M.OpsEntityList = schema.new({ type = "list", list_member = M.OpsEntity })
+
+M.ParameterHistoryList = schema.new({ type = "list", list_member = M.ParameterHistory })
+
+M.ParameterList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.PatchGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GetResourcePoliciesResponseEntries = schema.new({ type = "list", list_member = M.GetResourcePoliciesResponseEntry })
+
+M.ParameterLabelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociationFilterList = schema.new({ type = "list", list_member = M.AssociationFilter })
+
+M.AssociationList = schema.new({ type = "list", list_member = M.Association })
+
+M.AssociationVersionList = schema.new({ type = "list", list_member = M.AssociationVersionInfo })
+
+M.CommandFilterList = schema.new({ type = "list", list_member = M.CommandFilter })
+
+M.CommandInvocationList = schema.new({ type = "list", list_member = M.CommandInvocation })
+
+M.CommandList = schema.new({ type = "list", list_member = M.Command })
+
+M.ComplianceStringFilterList = schema.new({ type = "list", list_member = M.ComplianceStringFilter })
+
+M.ComplianceResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceItemList = schema.new({ type = "list", list_member = M.ComplianceItem })
+
+M.ComplianceSummaryItemList = schema.new({ type = "list", list_member = M.ComplianceSummaryItem })
+
+M.DocumentFilterList = schema.new({ type = "list", list_member = M.DocumentFilter })
+
+M.DocumentKeyValuesFilterList = schema.new({ type = "list", list_member = M.DocumentKeyValuesFilter })
+
+M.DocumentIdentifierList = schema.new({ type = "list", list_member = M.DocumentIdentifier })
+
+M.DocumentVersionList = schema.new({ type = "list", list_member = M.DocumentVersionInfo })
+
+M.InventoryItemEntryList = schema.new({ type = "list", list_member = M.InventoryItemEntry })
+
+M.NodeFilterList = schema.new({ type = "list", list_member = M.NodeFilter })
+
+M.NodeList = schema.new({ type = "list", list_member = M.Node })
+
+M.NodeAggregatorList = schema.new({ type = "list", list_member = M.NodeAggregator })
+
+M.NodeSummaryList = schema.new({ type = "list", list_member = M.NodeSummary })
+
+M.OpsItemEventFilters = schema.new({ type = "list", list_member = M.OpsItemEventFilter })
+
+M.OpsItemEventSummaries = schema.new({ type = "list", list_member = M.OpsItemEventSummary })
+
+M.OpsItemRelatedItemsFilters = schema.new({ type = "list", list_member = M.OpsItemRelatedItemsFilter })
+
+M.OpsItemRelatedItemSummaries = schema.new({ type = "list", list_member = M.OpsItemRelatedItemSummary })
+
+M.OpsMetadataFilterList = schema.new({ type = "list", list_member = M.OpsMetadataFilter })
+
+M.OpsMetadataList = schema.new({ type = "list", list_member = M.OpsMetadata })
+
+M.ResourceComplianceSummaryItemList = schema.new({ type = "list", list_member = M.ResourceComplianceSummaryItem })
+
+M.ResourceDataSyncItemList = schema.new({ type = "list", list_member = M.ResourceDataSyncItem })
+
+M.ComplianceItemEntryList = schema.new({ type = "list", list_member = M.ComplianceItemEntry })
+
+M.InventoryItemList = schema.new({ type = "list", list_member = M.InventoryItem })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomationParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AutomationParameterValueList })
+
+M.AssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Runbooks = schema.new({ type = "list", list_member = M.Runbook })
+
+M.SessionManagerParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.SessionManagerParameterValueList })
+
+M.OpsItemOpsDataKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetadataKeysToDeleteList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TargetMapValueList })
+
+M.AlarmList = schema.new({ type = "list", list_member = M.Alarm })
+
+M.DocumentParameterList = schema.new({ type = "list", list_member = M.DocumentParameter })
+
+M.PlatformTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachmentInformationList = schema.new({ type = "list", list_member = M.AttachmentInformation })
+
+M.ReviewInformationList = schema.new({ type = "list", list_member = M.ReviewInformation })
+
+M.CategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoryEnumList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchFilterList = schema.new({ type = "list", list_member = M.PatchFilter })
+
+M.PatchRuleList = schema.new({ type = "list", list_member = M.PatchRule })
+
+M.ResourceDataSyncSourceRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InventoryDeletionSummaryItems = schema.new({ type = "list", list_member = M.InventoryDeletionSummaryItem })
+
+M.PatchPropertyEntry = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DocumentReviewerResponseList = schema.new({ type = "list", list_member = M.DocumentReviewerResponseSource })
+
+M.InventoryItemEntry = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NodeSummary = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AutomationParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SessionManagerParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentReviewCommentList = schema.new({ type = "list", list_member = M.DocumentReviewCommentSource })
+
+M.TargetValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Accounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludeAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetMapValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociationStatusAggregatedCount = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.AttachmentsSourceValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchSourceProductList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceDataSyncOrganizationalUnitList = schema.new({ type = "list", list_member = M.ResourceDataSyncOrganizationalUnit })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomationExecutionFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StepExecutionFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NormalStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidNextStepList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchOrchestratorFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchAdvisoryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchBugzillaIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PatchCVEIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceInformationFilterValueSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstancePatchStateFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstancePropertyFilterValueSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.MaintenanceWindowFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpsItemFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParametersFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterStringFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterPolicyList = schema.new({ type = "list", list_member = M.ParameterInlinePolicy })
+
+M.TargetParameterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StepPreviewMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetPreviewList = schema.new({ type = "list", list_member = M.TargetPreview })
+
+M.InventoryFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InventoryGroupList = schema.new({ type = "list", list_member = M.InventoryGroup })
+
+M.InventoryResultItemMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.InventoryResultItem })
+
+M.InventoryItemAttributeList = schema.new({ type = "list", list_member = M.InventoryItemAttribute })
+
+M.MaintenanceWindowTaskParameterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpsFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpsAggregatorValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.OpsEntityItemMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.OpsEntityItem })
+
+M.CommandPluginList = schema.new({ type = "list", list_member = M.CommandPlugin })
+
+M.ComplianceStringFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceItemDetails = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DocumentKeyValuesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpsItemEventFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpsItemRelatedItemsFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.OpsMetadataFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InventoryItemContentContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PatchFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceAssociationStatusAggregatedCount = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.OpsEntityItemEntryList = schema.new({ type = "list", list_member = M.OpsEntityItemEntry })
+
+M.OpsEntityItemEntry = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1001,7 +1395,7 @@ M.CreateAssociationInput = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateAssociationInput", "Tags"),
@@ -1269,7 +1663,7 @@ M.AssociationDescription = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         AlarmConfiguration = schema.new({
             id = id.from(_N, "AssociationDescription", "AlarmConfiguration"),
@@ -1557,7 +1951,7 @@ M.CreateAssociationBatchRequestEntry = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         AlarmConfiguration = schema.new({
             id = id.from(_N, "CreateAssociationBatchRequestEntry", "AlarmConfiguration"),
@@ -4687,7 +5081,7 @@ M.Runbook = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         MaxConcurrency = schema.new({
             id = id.from(_N, "Runbook", "MaxConcurrency"),
@@ -4819,7 +5213,7 @@ M.AutomationExecutionMetadata = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         ResolvedTargets = schema.new({
             id = id.from(_N, "AutomationExecutionMetadata", "ResolvedTargets"),
@@ -8898,7 +9292,7 @@ M.DescribePatchPropertiesOutput = schema.new({
             type = "list",
             name = "Properties",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.PatchPropertyEntry,
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribePatchPropertiesOutput", "NextToken"),
@@ -9460,7 +9854,7 @@ M.AutomationExecution = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         ResolvedTargets = schema.new({
             id = id.from(_N, "AutomationExecution", "ResolvedTargets"),
@@ -10477,7 +10871,7 @@ M.InventoryResultItem = schema.new({
             type = "list",
             name = "Content",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.InventoryItemEntry,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -10946,7 +11340,7 @@ M.GetMaintenanceWindowExecutionTaskOutput = schema.new({
             type = "list",
             name = "TaskParameters",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.MaintenanceWindowTaskParameters,
         }),
         Priority = schema.new({
             id = id.from(_N, "GetMaintenanceWindowExecutionTaskOutput", "Priority"),
@@ -11760,7 +12154,7 @@ M.OpsEntityItem = schema.new({
             type = "list",
             name = "Content",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.OpsEntityItemEntry,
         }),
     },
 })
@@ -12753,7 +13147,7 @@ M.Association = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
     },
 })
@@ -12938,7 +13332,7 @@ M.AssociationVersionInfo = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         AssociationDispatchAssumeRole = schema.new({
             id = id.from(_N, "AssociationVersionInfo", "AssociationDispatchAssumeRole"),
@@ -14393,7 +14787,7 @@ M.ListInventoryEntriesOutput = schema.new({
             type = "list",
             name = "Entries",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.InventoryItemEntry,
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListInventoryEntriesOutput", "NextToken"),
@@ -14658,7 +15052,7 @@ M.ListNodesSummaryOutput = schema.new({
             type = "list",
             name = "Summary",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.NodeSummary,
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListNodesSummaryOutput", "NextToken"),
@@ -15734,7 +16128,7 @@ M.InventoryItem = schema.new({
             type = "list",
             name = "Content",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.InventoryItemEntry,
         }),
         Context = schema.new({
             id = id.from(_N, "InventoryItem", "Context"),
@@ -17139,7 +17533,7 @@ M.StartAutomationExecutionInput = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         MaxConcurrency = schema.new({
             id = id.from(_N, "StartAutomationExecutionInput", "MaxConcurrency"),
@@ -17341,7 +17735,7 @@ M.AutomationExecutionInputs = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         TargetLocations = schema.new({
             id = id.from(_N, "AutomationExecutionInputs", "TargetLocations"),
@@ -17788,7 +18182,7 @@ M.UpdateAssociationInput = schema.new({
             type = "list",
             name = "TargetMaps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TargetMap,
         }),
         AlarmConfiguration = schema.new({
             id = id.from(_N, "UpdateAssociationInput", "AlarmConfiguration"),

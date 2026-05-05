@@ -7,6 +7,40 @@ local _N = "com.amazonaws.migrationhuborchestrator"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MigrationWorkflowSummaryList = schema.new({ type = "list", list_member = M.MigrationWorkflowSummary })
+
+M.StepInputParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.StepInput })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ToolsList = schema.new({ type = "list", list_member = M.Tool })
+
+M.TemplateSummaryList = schema.new({ type = "list", list_member = M.TemplateSummary })
+
+M.TemplateInputList = schema.new({ type = "list", list_member = M.TemplateInput })
+
+M.PluginSummaries = schema.new({ type = "list", list_member = M.PluginSummary })
+
+M.TemplateStepSummaryList = schema.new({ type = "list", list_member = M.TemplateStepSummary })
+
+M.StepOutputList = schema.new({ type = "list", list_member = M.StepOutput })
+
+M.TemplateStepGroupSummaryList = schema.new({ type = "list", list_member = M.TemplateStepGroupSummary })
+
+M.WorkflowStepsSummaryList = schema.new({ type = "list", list_member = M.WorkflowStepSummary })
+
+M.WorkflowStepOutputList = schema.new({ type = "list", list_member = M.WorkflowStepOutput })
+
+M.WorkflowStepGroupsSummaryList = schema.new({ type = "list", list_member = M.WorkflowStepGroupSummary })
+
+M.MaxStringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

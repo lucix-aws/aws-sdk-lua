@@ -7,6 +7,226 @@ local _N = "com.amazonaws.deadline"
 
 local M = {}
 
+M.BatchGetJobIdentifiers = schema.new({ type = "list", list_member = M.BatchGetJobIdentifier })
+
+M.BatchGetJobItems = schema.new({ type = "list", list_member = M.BatchGetJobItem })
+
+M.BatchGetJobErrors = schema.new({ type = "list", list_member = M.BatchGetJobError })
+
+M.ExceptionContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.BatchGetSessionIdentifiers = schema.new({ type = "list", list_member = M.BatchGetSessionIdentifier })
+
+M.BatchGetSessionItems = schema.new({ type = "list", list_member = M.BatchGetSessionItem })
+
+M.BatchGetSessionErrors = schema.new({ type = "list", list_member = M.BatchGetSessionError })
+
+M.BatchGetSessionActionIdentifiers = schema.new({ type = "list", list_member = M.BatchGetSessionActionIdentifier })
+
+M.BatchGetSessionActionItems = schema.new({ type = "list", list_member = M.BatchGetSessionActionItem })
+
+M.BatchGetSessionActionErrors = schema.new({ type = "list", list_member = M.BatchGetSessionActionError })
+
+M.BatchGetStepIdentifiers = schema.new({ type = "list", list_member = M.BatchGetStepIdentifier })
+
+M.BatchGetStepItems = schema.new({ type = "list", list_member = M.BatchGetStepItem })
+
+M.BatchGetStepErrors = schema.new({ type = "list", list_member = M.BatchGetStepError })
+
+M.BatchGetTaskIdentifiers = schema.new({ type = "list", list_member = M.BatchGetTaskIdentifier })
+
+M.BatchGetTaskItems = schema.new({ type = "list", list_member = M.BatchGetTaskItem })
+
+M.BatchGetTaskErrors = schema.new({ type = "list", list_member = M.BatchGetTaskError })
+
+M.BatchGetWorkerIdentifiers = schema.new({ type = "list", list_member = M.BatchGetWorkerIdentifier })
+
+M.BatchGetWorkerItems = schema.new({ type = "list", list_member = M.BatchGetWorkerItem })
+
+M.BatchGetWorkerErrors = schema.new({ type = "list", list_member = M.BatchGetWorkerError })
+
+M.BatchUpdateJobItems = schema.new({ type = "list", list_member = M.BatchUpdateJobItem })
+
+M.BatchUpdateJobErrors = schema.new({ type = "list", list_member = M.BatchUpdateJobError })
+
+M.BatchUpdateTaskItems = schema.new({ type = "list", list_member = M.BatchUpdateTaskItem })
+
+M.BatchUpdateTaskErrors = schema.new({ type = "list", list_member = M.BatchUpdateTaskError })
+
+M.StatisticsList = schema.new({ type = "list", list_member = M.Statistics })
+
+M.MeteredProductSummaryList = schema.new({ type = "list", list_member = M.MeteredProductSummary })
+
+M.QueueFleetAssociationSummaries = schema.new({ type = "list", list_member = M.QueueFleetAssociationSummary })
+
+M.QueueLimitAssociationSummaries = schema.new({ type = "list", list_member = M.QueueLimitAssociationSummary })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SearchSortExpressions = schema.new({ type = "list", list_member = M.SearchSortExpression })
+
+M.QueueIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobSearchSummaries = schema.new({ type = "list", list_member = M.JobSearchSummary })
+
+M.StepSearchSummaries = schema.new({ type = "list", list_member = M.StepSearchSummary })
+
+M.TaskSearchSummaries = schema.new({ type = "list", list_member = M.TaskSearchSummary })
+
+M.FleetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkerSearchSummaries = schema.new({ type = "list", list_member = M.WorkerSearchSummary })
+
+M.UsageGroupBy = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageStatistics = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FarmSummaries = schema.new({ type = "list", list_member = M.FarmSummary })
+
+M.FileSystemLocationsList = schema.new({ type = "list", list_member = M.FileSystemLocation })
+
+M.FarmMembers = schema.new({ type = "list", list_member = M.FarmMember })
+
+M.LimitSummaries = schema.new({ type = "list", list_member = M.LimitSummary })
+
+M.StorageProfileSummaries = schema.new({ type = "list", list_member = M.StorageProfileSummary })
+
+M.LicenseEndpointSummaries = schema.new({ type = "list", list_member = M.LicenseEndpointSummary })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MonitorSummaries = schema.new({ type = "list", list_member = M.MonitorSummary })
+
+M.SettingsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SearchFilterExpressions = schema.new({ type = "list", list_member = M.SearchFilterExpression })
+
+M.BudgetSummaries = schema.new({ type = "list", list_member = M.BudgetSummary })
+
+M.BudgetActionsToAdd = schema.new({ type = "list", list_member = M.BudgetActionToAdd })
+
+M.ResponseBudgetActionList = schema.new({ type = "list", list_member = M.ResponseBudgetAction })
+
+M.BudgetActionsToRemove = schema.new({ type = "list", list_member = M.BudgetActionToRemove })
+
+M.FleetSummaries = schema.new({ type = "list", list_member = M.FleetSummary })
+
+M.FleetMembers = schema.new({ type = "list", list_member = M.FleetMember })
+
+M.QueueSummaries = schema.new({ type = "list", list_member = M.QueueSummary })
+
+M.RequiredFileSystemLocationNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedStorageProfileIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueueEnvironmentSummaries = schema.new({ type = "list", list_member = M.QueueEnvironmentSummary })
+
+M.QueueMemberList = schema.new({ type = "list", list_member = M.QueueMember })
+
+M.WorkerSummaries = schema.new({ type = "list", list_member = M.WorkerSummary })
+
+M.JobEntityIdentifiers = schema.new({ type = "list", list_member = M.JobEntityIdentifiersUnion })
+
+M.BatchGetJobEntityList = schema.new({ type = "list", list_member = M.JobEntity })
+
+M.BatchGetJobEntityErrors = schema.new({ type = "list", list_member = M.GetJobEntityError })
+
+M.ListSessionsForWorkerSummaries = schema.new({ type = "list", list_member = M.WorkerSessionSummary })
+
+M.UpdatedSessionActions = schema.new({ type = "map", map_key = prelude.String, map_value = M.UpdatedSessionActionInfo })
+
+M.AssignedSessions = schema.new({ type = "map", map_key = prelude.String, map_value = M.AssignedSession })
+
+M.CancelSessionActions = schema.new({ type = "map", map_key = prelude.String, map_value = M.SessionActionIdList })
+
+M.JobSummaries = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.JobParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.JobParameter })
+
+M.TaskRunStatusCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.TaskRunManifestPropertiesListResponse = schema.new({ type = "list", list_member = M.TaskRunManifestPropertiesResponse })
+
+M.AcquiredLimits = schema.new({ type = "list", list_member = M.AcquiredLimit })
+
+M.TaskParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.TaskParameterValue })
+
+M.JobMembers = schema.new({ type = "list", list_member = M.JobMember })
+
+M.JobParameterDefinitions = schema.new({ type = "list", list_member = prelude.Document })
+
+M.SessionActionSummaries = schema.new({ type = "list", list_member = M.SessionActionSummary })
+
+M.SessionSummaries = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.StepConsumers = schema.new({ type = "list", list_member = M.StepConsumer })
+
+M.StepDependencies = schema.new({ type = "list", list_member = M.StepDependency })
+
+M.StepSummaries = schema.new({ type = "list", list_member = M.StepSummary })
+
+M.TaskSummaries = schema.new({ type = "list", list_member = M.TaskSummary })
+
+M.FleetAmountCapabilities = schema.new({ type = "list", list_member = M.FleetAmountCapability })
+
+M.FleetAttributeCapabilities = schema.new({ type = "list", list_member = M.FleetAttributeCapability })
+
+M.LogOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.WorkerAmountCapabilityList = schema.new({ type = "list", list_member = M.WorkerAmountCapability })
+
+M.WorkerAttributeCapabilityList = schema.new({ type = "list", list_member = M.WorkerAttributeCapability })
+
+M.SessionActionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManifestPropertiesList = schema.new({ type = "list", list_member = M.ManifestProperties })
+
+M.StepAttributeCapabilities = schema.new({ type = "list", list_member = M.StepAttributeCapability })
+
+M.StepAmountCapabilities = schema.new({ type = "list", list_member = M.StepAmountCapability })
+
+M.StepParameterList = schema.new({ type = "list", list_member = M.StepParameter })
+
+M.IpV4Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpV6Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskRunManifestPropertiesListRequest = schema.new({ type = "list", list_member = M.TaskRunManifestPropertiesRequest })
+
+M.AssignedSessionActions = schema.new({ type = "list", list_member = M.AssignedSessionAction })
+
+M.StringFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomFleetAmountCapabilities = schema.new({ type = "list", list_member = M.FleetAmountCapability })
+
+M.CustomFleetAttributeCapabilities = schema.new({ type = "list", list_member = M.FleetAttributeCapability })
+
+M.InstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcResourceConfigurationArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeCapabilityValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathMappingRules = schema.new({ type = "list", list_member = M.PathMappingRule })
+
+M.DependenciesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutputRelativeDirectoriesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListAttributeCapabilityValue = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorSelections = schema.new({ type = "list", list_member = M.AcceleratorSelection })
+
 M.AcceleratorCountRange = schema.new({
     id = id.from(_N, "AcceleratorCountRange"),
     type = "structure",

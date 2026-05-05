@@ -7,6 +7,24 @@ local _N = "com.amazonaws.keyspacesstreams"
 
 local M = {}
 
+M.RecordList = schema.new({ type = "list", list_member = M.Record })
+
+M.ShardDescriptionList = schema.new({ type = "list", list_member = M.Shard })
+
+M.StreamList = schema.new({ type = "list", list_member = M.Stream })
+
+M.KeyspacesKeysMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.KeyspacesCellValue })
+
+M.ShardIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyspacesCells = schema.new({ type = "map", map_key = prelude.String, map_value = M.KeyspacesCell })
+
+M.KeyspacesCellList = schema.new({ type = "list", list_member = M.KeyspacesCell })
+
+M.KeyspacesCellMap = schema.new({ type = "list", list_member = M.KeyspacesCellMapDefinition })
+
+M.KeyspacesUdtMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.KeyspacesCell })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

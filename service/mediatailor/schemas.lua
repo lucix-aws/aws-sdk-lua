@@ -7,6 +7,70 @@ local _N = "com.amazonaws.mediatailor"
 
 local M = {}
 
+M.__listOfLoggingStrategies = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfAlert = schema.new({ type = "list", list_member = M.Alert })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfChannel = schema.new({ type = "list", list_member = M.Channel })
+
+M.RequestOutputs = schema.new({ type = "list", list_member = M.RequestOutputItem })
+
+M.Audiences = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseOutputs = schema.new({ type = "list", list_member = M.ResponseOutputItem })
+
+M.LogTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfScheduleEntry = schema.new({ type = "list", list_member = M.ScheduleEntry })
+
+M.__listOfLiveSource = schema.new({ type = "list", list_member = M.LiveSource })
+
+M.HttpPackageConfigurations = schema.new({ type = "list", list_member = M.HttpPackageConfiguration })
+
+M.__listOfPlaybackConfiguration = schema.new({ type = "list", list_member = M.PlaybackConfiguration })
+
+M.ConfigurationAliasesRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.__mapOf__string })
+
+M.ConfigurationAliasesResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.__mapOf__string })
+
+M.__listOfPrefetchSchedule = schema.new({ type = "list", list_member = M.PrefetchSchedule })
+
+M.__listOfSourceLocation = schema.new({ type = "list", list_member = M.SourceLocation })
+
+M.__listOfSegmentDeliveryConfiguration = schema.new({ type = "list", list_member = M.SegmentDeliveryConfiguration })
+
+M.__listOfVodSource = schema.new({ type = "list", list_member = M.VodSource })
+
+M.AdBreakOpportunities = schema.new({ type = "list", list_member = M.AdBreakOpportunity })
+
+M.__adsInteractionPublishOptInEventTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.__adsInteractionExcludeEventTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.__manifestServiceExcludeEventTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfAdBreak = schema.new({ type = "list", list_member = M.AdBreak })
+
+M.__listOfAudienceMedia = schema.new({ type = "list", list_member = M.AudienceMedia })
+
+M.__listOfAvailMatchingCriteria = schema.new({ type = "list", list_member = M.AvailMatchingCriteria })
+
+M.__listOfScheduleAdBreak = schema.new({ type = "list", list_member = M.ScheduleAdBreak })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdBreakMetadataList = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.__listOfAlternateMedia = schema.new({ type = "list", list_member = M.AlternateMedia })
+
+M.adMarkupTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SegmentationDescriptorList = schema.new({ type = "list", list_member = M.SegmentationDescriptor })
+
 M.KeyValuePair = schema.new({
     id = id.from(_N, "KeyValuePair"),
     type = "structure",
@@ -5465,10 +5529,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -5498,10 +5559,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateVodSourceInput = schema.new({
     id = id.from(_N, "UpdateVodSourceRequest"),

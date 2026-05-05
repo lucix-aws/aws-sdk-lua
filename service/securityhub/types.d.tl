@@ -3830,27 +3830,21 @@ local record ResourceNotFoundException
     Code: string
 end
 
-local type RuleStatus = "ENABLED" | "DISABLED"
-
-local type ConnectorProviderName = "JIRA_CLOUD" | "SERVICENOW"
-
-local type RecordState = "ACTIVE" | "ARCHIVED"
-
-local type SortOrder = "asc" | "desc"
-
-local type AutoEnableStandards = "NONE" | "DEFAULT"
-
-local type VerificationState = "UNKNOWN" | "TRUE_POSITIVE" | "FALSE_POSITIVE" | "BENIGN_POSITIVE"
-
-local type TargetType = "ACCOUNT" | "ORGANIZATIONAL_UNIT" | "ROOT"
-
-local type ControlFindingGenerator = "STANDARD_CONTROL" | "SECURITY_CONTROL"
-
 local type ConfigurationPolicyAssociationStatus = "PENDING" | "SUCCESS" | "FAILED"
 
 local type SecurityHubFeature = "SecurityHub" | "SecurityHubV2"
 
+local type AutoEnableStandards = "NONE" | "DEFAULT"
+
 local type RuleStatusV2 = "ENABLED" | "DISABLED"
+
+local type VerificationState = "UNKNOWN" | "TRUE_POSITIVE" | "FALSE_POSITIVE" | "BENIGN_POSITIVE"
+
+local type ControlFindingGenerator = "STANDARD_CONTROL" | "SECURITY_CONTROL"
+
+local type ConnectorStatus = "CONNECTED" | "FAILED_TO_CONNECT" | "PENDING_CONFIGURATION" | "PENDING_AUTHORIZATION"
+
+local type SortOrder = "asc" | "desc"
 
 local type ControlStatus = "ENABLED" | "DISABLED"
 
@@ -3858,9 +3852,15 @@ local type AssociationType = "INHERITED" | "APPLIED"
 
 local type GranularityField = "Daily" | "Weekly" | "Monthly"
 
+local type RecordState = "ACTIVE" | "ARCHIVED"
+
 local type TicketCreationMode = "DRYRUN"
 
-local type ConnectorStatus = "CONNECTED" | "FAILED_TO_CONNECT" | "PENDING_CONFIGURATION" | "PENDING_AUTHORIZATION"
+local type TargetType = "ACCOUNT" | "ORGANIZATIONAL_UNIT" | "ROOT"
+
+local type RuleStatus = "ENABLED" | "DISABLED"
+
+local type ConnectorProviderName = "JIRA_CLOUD" | "SERVICENOW"
 
 local record M
     AcceptAdministratorInvitationInput: AcceptAdministratorInvitationInput

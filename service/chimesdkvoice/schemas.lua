@@ -7,6 +7,90 @@ local _N = "com.amazonaws.chimesdkvoice"
 
 local M = {}
 
+M.E164PhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberErrorList = schema.new({ type = "list", list_member = M.PhoneNumberError })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdatePhoneNumberRequestItemList = schema.new({ type = "list", list_member = M.UpdatePhoneNumberRequestItem })
+
+M.ParticipantPhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SipMediaApplicationEndpointList = schema.new({ type = "list", list_member = M.SipMediaApplicationEndpoint })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SipHeadersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SMACreateCallArgumentsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SipRuleTargetApplicationList = schema.new({ type = "list", list_member = M.SipRuleTargetApplication })
+
+M.VoiceConnectorItemList = schema.new({ type = "list", list_member = M.VoiceConnectorItem })
+
+M.SensitiveStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VoiceConnectorAwsRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberOrderList = schema.new({ type = "list", list_member = M.PhoneNumberOrder })
+
+M.PhoneNumberList = schema.new({ type = "list", list_member = M.PhoneNumber })
+
+M.ProxySessions = schema.new({ type = "list", list_member = M.ProxySession })
+
+M.SipMediaApplicationList = schema.new({ type = "list", list_member = M.SipMediaApplication })
+
+M.SipRuleList = schema.new({ type = "list", list_member = M.SipRule })
+
+M.PhoneNumberCountriesList = schema.new({ type = "list", list_member = M.PhoneNumberCountry })
+
+M.VoiceConnectorGroupList = schema.new({ type = "list", list_member = M.VoiceConnectorGroup })
+
+M.VoiceConnectorList = schema.new({ type = "list", list_member = M.VoiceConnector })
+
+M.VoiceProfileDomainSummaryList = schema.new({ type = "list", list_member = M.VoiceProfileDomainSummary })
+
+M.VoiceProfileSummaryList = schema.new({ type = "list", list_member = M.VoiceProfileSummary })
+
+M.SessionBorderControllerTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactCenterSystemTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CountryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CredentialList = schema.new({ type = "list", list_member = M.Credential })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SMAUpdateCallArgumentsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CandidateAddressList = schema.new({ type = "list", list_member = M.CandidateAddress })
+
+M.OrderedPhoneNumberList = schema.new({ type = "list", list_member = M.OrderedPhoneNumber })
+
+M.Participants = schema.new({ type = "list", list_member = M.Participant })
+
+M.PhoneNumberAssociationList = schema.new({ type = "list", list_member = M.PhoneNumberAssociation })
+
+M.AlexaSkillIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DNISEmergencyCallingConfigurationList = schema.new({ type = "list", list_member = M.DNISEmergencyCallingConfiguration })
+
+M.OriginationRouteList = schema.new({ type = "list", list_member = M.OriginationRoute })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamingNotificationTargetList = schema.new({ type = "list", list_member = M.StreamingNotificationTarget })
+
+M.CallingRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpeakerSearchResultList = schema.new({ type = "list", list_member = M.SpeakerSearchResult })
+
+M.PhoneNumberTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1813,10 +1897,7 @@ M.DeletePhoneNumberInput = schema.new({
     },
 })
 
-M.DeletePhoneNumberOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePhoneNumberOutput = prelude.Unit
 
 M.DeleteProxySessionInput = schema.new({
     id = id.from(_N, "DeleteProxySessionRequest"),
@@ -1845,10 +1926,7 @@ M.DeleteProxySessionInput = schema.new({
     },
 })
 
-M.DeleteProxySessionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProxySessionOutput = prelude.Unit
 
 M.DeleteSipMediaApplicationInput = schema.new({
     id = id.from(_N, "DeleteSipMediaApplicationRequest"),
@@ -1867,10 +1945,7 @@ M.DeleteSipMediaApplicationInput = schema.new({
     },
 })
 
-M.DeleteSipMediaApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSipMediaApplicationOutput = prelude.Unit
 
 M.DeleteSipRuleInput = schema.new({
     id = id.from(_N, "DeleteSipRuleRequest"),
@@ -1889,10 +1964,7 @@ M.DeleteSipRuleInput = schema.new({
     },
 })
 
-M.DeleteSipRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSipRuleOutput = prelude.Unit
 
 M.DeleteVoiceConnectorInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorRequest"),
@@ -1911,10 +1983,7 @@ M.DeleteVoiceConnectorInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorOutput = prelude.Unit
 
 M.DeleteVoiceConnectorEmergencyCallingConfigurationInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorEmergencyCallingConfigurationRequest"),
@@ -1933,10 +2002,7 @@ M.DeleteVoiceConnectorEmergencyCallingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorEmergencyCallingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorEmergencyCallingConfigurationOutput = prelude.Unit
 
 M.DeleteVoiceConnectorExternalSystemsConfigurationInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorExternalSystemsConfigurationRequest"),
@@ -1955,10 +2021,7 @@ M.DeleteVoiceConnectorExternalSystemsConfigurationInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorExternalSystemsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorExternalSystemsConfigurationOutput = prelude.Unit
 
 M.DeleteVoiceConnectorGroupInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorGroupRequest"),
@@ -1977,10 +2040,7 @@ M.DeleteVoiceConnectorGroupInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorGroupOutput = prelude.Unit
 
 M.DeleteVoiceConnectorOriginationInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorOriginationRequest"),
@@ -1999,10 +2059,7 @@ M.DeleteVoiceConnectorOriginationInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorOriginationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorOriginationOutput = prelude.Unit
 
 M.DeleteVoiceConnectorProxyInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorProxyRequest"),
@@ -2021,10 +2078,7 @@ M.DeleteVoiceConnectorProxyInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorProxyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorProxyOutput = prelude.Unit
 
 M.DeleteVoiceConnectorStreamingConfigurationInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorStreamingConfigurationRequest"),
@@ -2043,10 +2097,7 @@ M.DeleteVoiceConnectorStreamingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorStreamingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorStreamingConfigurationOutput = prelude.Unit
 
 M.DeleteVoiceConnectorTerminationInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorTerminationRequest"),
@@ -2065,10 +2116,7 @@ M.DeleteVoiceConnectorTerminationInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorTerminationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorTerminationOutput = prelude.Unit
 
 M.DeleteVoiceConnectorTerminationCredentialsInput = schema.new({
     id = id.from(_N, "DeleteVoiceConnectorTerminationCredentialsRequest"),
@@ -2097,10 +2145,7 @@ M.DeleteVoiceConnectorTerminationCredentialsInput = schema.new({
     },
 })
 
-M.DeleteVoiceConnectorTerminationCredentialsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceConnectorTerminationCredentialsOutput = prelude.Unit
 
 M.DeleteVoiceProfileInput = schema.new({
     id = id.from(_N, "DeleteVoiceProfileRequest"),
@@ -2119,10 +2164,7 @@ M.DeleteVoiceProfileInput = schema.new({
     },
 })
 
-M.DeleteVoiceProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceProfileOutput = prelude.Unit
 
 M.DeleteVoiceProfileDomainInput = schema.new({
     id = id.from(_N, "DeleteVoiceProfileDomainRequest"),
@@ -2141,10 +2183,7 @@ M.DeleteVoiceProfileDomainInput = schema.new({
     },
 })
 
-M.DeleteVoiceProfileDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVoiceProfileDomainOutput = prelude.Unit
 
 M.DisassociatePhoneNumbersFromVoiceConnectorInput = schema.new({
     id = id.from(_N, "DisassociatePhoneNumbersFromVoiceConnectorRequest"),
@@ -2228,10 +2267,7 @@ M.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput = schema.new({
     },
 })
 
-M.GetGlobalSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetGlobalSettingsInput = prelude.Unit
 
 M.VoiceConnectorSettings = schema.new({
     id = id.from(_N, "VoiceConnectorSettings"),
@@ -2501,10 +2537,7 @@ M.GetPhoneNumberOrderOutput = schema.new({
     },
 })
 
-M.GetPhoneNumberSettingsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetPhoneNumberSettingsInput = prelude.Unit
 
 M.GetPhoneNumberSettingsOutput = schema.new({
     id = id.from(_N, "GetPhoneNumberSettingsResponse"),
@@ -3669,10 +3702,7 @@ M.GetVoiceToneAnalysisTaskOutput = schema.new({
     },
 })
 
-M.ListAvailableVoiceConnectorRegionsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ListAvailableVoiceConnectorRegionsInput = prelude.Unit
 
 M.ListAvailableVoiceConnectorRegionsOutput = schema.new({
     id = id.from(_N, "ListAvailableVoiceConnectorRegionsResponse"),
@@ -4812,10 +4842,7 @@ M.PutVoiceConnectorTerminationCredentialsInput = schema.new({
     },
 })
 
-M.PutVoiceConnectorTerminationCredentialsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutVoiceConnectorTerminationCredentialsOutput = prelude.Unit
 
 M.RestorePhoneNumberInput = schema.new({
     id = id.from(_N, "RestorePhoneNumberRequest"),
@@ -5112,10 +5139,7 @@ M.StopSpeakerSearchTaskInput = schema.new({
     },
 })
 
-M.StopSpeakerSearchTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopSpeakerSearchTaskOutput = prelude.Unit
 
 M.StopVoiceToneAnalysisTaskInput = schema.new({
     id = id.from(_N, "StopVoiceToneAnalysisTaskRequest"),
@@ -5144,10 +5168,7 @@ M.StopVoiceToneAnalysisTaskInput = schema.new({
     },
 })
 
-M.StopVoiceToneAnalysisTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopVoiceToneAnalysisTaskOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -5175,10 +5196,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -5206,10 +5224,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateGlobalSettingsInput = schema.new({
     id = id.from(_N, "UpdateGlobalSettingsRequest"),
@@ -5225,10 +5240,7 @@ M.UpdateGlobalSettingsInput = schema.new({
     },
 })
 
-M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateGlobalSettingsOutput = prelude.Unit
 
 M.UpdatePhoneNumberInput = schema.new({
     id = id.from(_N, "UpdatePhoneNumberRequest"),
@@ -5295,10 +5307,7 @@ M.UpdatePhoneNumberSettingsInput = schema.new({
     },
 })
 
-M.UpdatePhoneNumberSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdatePhoneNumberSettingsOutput = prelude.Unit
 
 M.UpdateProxySessionInput = schema.new({
     id = id.from(_N, "UpdateProxySessionRequest"),

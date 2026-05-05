@@ -7,6 +7,118 @@ local _N = "com.amazonaws.devopsguru"
 
 local M = {}
 
+M.ValidationExceptionFields = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudFormationHealths = schema.new({ type = "list", list_member = M.CloudFormationHealth })
+
+M.ServiceHealths = schema.new({ type = "list", list_member = M.ServiceHealth })
+
+M.AccountHealths = schema.new({ type = "list", list_member = M.AccountHealth })
+
+M.TagHealths = schema.new({ type = "list", list_member = M.TagHealth })
+
+M.ServiceResourceCosts = schema.new({ type = "list", list_member = M.ServiceResourceCost })
+
+M.ProactiveAnomalies = schema.new({ type = "list", list_member = M.ProactiveAnomalySummary })
+
+M.ReactiveAnomalies = schema.new({ type = "list", list_member = M.ReactiveAnomalySummary })
+
+M.AnomalousLogGroups = schema.new({ type = "list", list_member = M.AnomalousLogGroup })
+
+M.Events = schema.new({ type = "list", list_member = M.Event })
+
+M.ProactiveInsights = schema.new({ type = "list", list_member = M.ProactiveInsightSummary })
+
+M.ReactiveInsights = schema.new({ type = "list", list_member = M.ReactiveInsightSummary })
+
+M.MonitoredResourceIdentifiers = schema.new({ type = "list", list_member = M.MonitoredResourceIdentifier })
+
+M.Channels = schema.new({ type = "list", list_member = M.NotificationChannel })
+
+M.ListInsightsAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListInsightsOrganizationalUnitIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProactiveOrganizationInsights = schema.new({ type = "list", list_member = M.ProactiveOrganizationInsightSummary })
+
+M.ReactiveOrganizationInsights = schema.new({ type = "list", list_member = M.ReactiveOrganizationInsightSummary })
+
+M.Recommendations = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.SearchInsightsAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnomalyResources = schema.new({ type = "list", list_member = M.AnomalyResource })
+
+M.TagCostEstimationResourceCollectionFilters = schema.new({ type = "list", list_member = M.TagCostEstimationResourceCollectionFilter })
+
+M.TagCollectionFilters = schema.new({ type = "list", list_member = M.TagCollectionFilter })
+
+M.ResourceTypeFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightSeverities = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateTagCollectionFilters = schema.new({ type = "list", list_member = M.UpdateTagCollectionFilter })
+
+M.NotificationMessageTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudWatchMetricsDetails = schema.new({ type = "list", list_member = M.CloudWatchMetricsDetail })
+
+M.PerformanceInsightsMetricsDetails = schema.new({ type = "list", list_member = M.PerformanceInsightsMetricsDetail })
+
+M.TagCollections = schema.new({ type = "list", list_member = M.TagCollection })
+
+M.CostEstimationStackNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.StackNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogAnomalyShowcases = schema.new({ type = "list", list_member = M.LogAnomalyShowcase })
+
+M.EventResources = schema.new({ type = "list", list_member = M.EventResource })
+
+M.AssociatedResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationRelatedEvents = schema.new({ type = "list", list_member = M.RecommendationRelatedEvent })
+
+M.RecommendationRelatedAnomalies = schema.new({ type = "list", list_member = M.RecommendationRelatedAnomaly })
+
+M.UpdateStackNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CostEstimationTagValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateTagValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudWatchMetricsDimensions = schema.new({ type = "list", list_member = M.CloudWatchMetricsDimension })
+
+M.PerformanceInsightsReferenceDataList = schema.new({ type = "list", list_member = M.PerformanceInsightsReferenceData })
+
+M.PerformanceInsightsStats = schema.new({ type = "list", list_member = M.PerformanceInsightsStat })
+
+M.LogAnomalyClasses = schema.new({ type = "list", list_member = M.LogAnomalyClass })
+
+M.RecommendationRelatedEventResources = schema.new({ type = "list", list_member = M.RecommendationRelatedEventResource })
+
+M.RecommendationRelatedAnomalyResources = schema.new({ type = "list", list_member = M.RecommendationRelatedAnomalyResource })
+
+M.RelatedAnomalySourceDetails = schema.new({ type = "list", list_member = M.RecommendationRelatedAnomalySourceDetail })
+
+M.TimestampMetricValuePairList = schema.new({ type = "list", list_member = M.TimestampMetricValuePair })
+
+M.PerformanceInsightsMetricFilterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PerformanceInsightsMetricDimensions = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationRelatedCloudWatchMetricsSourceDetails = schema.new({ type = "list", list_member = M.RecommendationRelatedCloudWatchMetricsSourceDetail })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,16 @@ local _N = "com.amazonaws.healthlake"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.DatastorePropertiesList = schema.new({ type = "list", list_member = M.DatastoreProperties })
+
+M.ExportJobPropertiesList = schema.new({ type = "list", list_member = M.ExportJobProperties })
+
+M.ImportJobPropertiesList = schema.new({ type = "list", list_member = M.ImportJobProperties })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

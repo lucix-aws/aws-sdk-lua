@@ -7,6 +7,72 @@ local _N = "com.amazonaws.workspacesweb"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EncryptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdentityProviderDetails = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IpRuleList = schema.new({ type = "list", list_member = M.IpRule })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateList = schema.new({ type = "list", list_member = prelude.Blob })
+
+M.CertificateSummaryList = schema.new({ type = "list", list_member = M.CertificateSummary })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.SessionSummaryList = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockedCategories = schema.new({ type = "list", list_member = prelude.String })
+
+M.UrlPatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InlineRedactionPatterns = schema.new({ type = "list", list_member = M.InlineRedactionPattern })
+
+M.GlobalInlineRedactionUrls = schema.new({ type = "list", list_member = prelude.String })
+
+M.Events = schema.new({ type = "list", list_member = prelude.String })
+
+M.CookieSpecifications = schema.new({ type = "list", list_member = M.CookieSpecification })
+
+M.HiddenToolbarItemList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalizedBrandingStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.LocalizedBrandingStrings })
+
+M.BrowserSettingsList = schema.new({ type = "list", list_member = M.BrowserSettingsSummary })
+
+M.DataProtectionSettingsList = schema.new({ type = "list", list_member = M.DataProtectionSettingsSummary })
+
+M.IdentityProviderList = schema.new({ type = "list", list_member = M.IdentityProviderSummary })
+
+M.IpAccessSettingsList = schema.new({ type = "list", list_member = M.IpAccessSettingsSummary })
+
+M.NetworkSettingsList = schema.new({ type = "list", list_member = M.NetworkSettingsSummary })
+
+M.PortalList = schema.new({ type = "list", list_member = M.PortalSummary })
+
+M.SessionLoggerList = schema.new({ type = "list", list_member = M.SessionLoggerSummary })
+
+M.TrustStoreSummaryList = schema.new({ type = "list", list_member = M.TrustStoreSummary })
+
+M.CertificateThumbprintList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserAccessLoggingSettingsList = schema.new({ type = "list", list_member = M.UserAccessLoggingSettingsSummary })
+
+M.UserSettingsList = schema.new({ type = "list", list_member = M.UserSettingsSummary })
+
+M.IpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InlineRedactionUrls = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -3450,10 +3516,7 @@ M.UpdatePortalOutput = schema.new({
     },
 })
 
-M.Unit = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.Unit = prelude.Unit
 
 M.EventFilter = schema.new({
     id = id.from(_N, "EventFilter"),

@@ -7,6 +7,14 @@ local _N = "com.amazonaws.artifact"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.CustomerAgreementList = schema.new({ type = "list", list_member = M.CustomerAgreementSummary })
+
+M.ReportsList = schema.new({ type = "list", list_member = M.ReportSummary })
+
+M.AgreementTerms = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

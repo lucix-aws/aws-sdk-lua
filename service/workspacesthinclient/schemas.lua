@@ -7,6 +7,24 @@ local _N = "com.amazonaws.workspacesthinclient"
 
 local M = {}
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DeviceCreationTagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.DeviceList = schema.new({ type = "list", list_member = M.DeviceSummary })
+
+M.EnvironmentList = schema.new({ type = "list", list_member = M.EnvironmentSummary })
+
+M.SoftwareSetList = schema.new({ type = "list", list_member = M.SoftwareSetSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.DayOfWeekList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SoftwareList = schema.new({ type = "list", list_member = M.Software })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,56 @@ local _N = "com.amazonaws.ivs"
 
 local M = {}
 
+M.ChannelArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Channels = schema.new({ type = "list", list_member = M.Channel })
+
+M.BatchErrors = schema.new({ type = "list", list_member = M.BatchError })
+
+M.StreamKeyArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamKeys = schema.new({ type = "list", list_member = M.StreamKey })
+
+M.BatchStartViewerSessionRevocationViewerSessionList = schema.new({ type = "list", list_member = M.BatchStartViewerSessionRevocationViewerSession })
+
+M.BatchStartViewerSessionRevocationErrors = schema.new({ type = "list", list_member = M.BatchStartViewerSessionRevocationError })
+
+M.MediaTailorPlaybackConfigurationsList = schema.new({ type = "list", list_member = M.MediaTailorPlaybackConfiguration })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PlaybackRestrictionPolicyAllowedCountryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlaybackRestrictionPolicyAllowedOriginList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdConfigurationList = schema.new({ type = "list", list_member = M.AdConfigurationSummary })
+
+M.ChannelList = schema.new({ type = "list", list_member = M.ChannelSummary })
+
+M.PlaybackKeyPairList = schema.new({ type = "list", list_member = M.PlaybackKeyPairSummary })
+
+M.PlaybackRestrictionPolicyList = schema.new({ type = "list", list_member = M.PlaybackRestrictionPolicySummary })
+
+M.RecordingConfigurationList = schema.new({ type = "list", list_member = M.RecordingConfigurationSummary })
+
+M.StreamKeyList = schema.new({ type = "list", list_member = M.StreamKeySummary })
+
+M.StreamList = schema.new({ type = "list", list_member = M.StreamSummary })
+
+M.StreamSessionList = schema.new({ type = "list", list_member = M.StreamSessionSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThumbnailConfigurationStorageList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RenditionConfigurationRenditionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamEvents = schema.new({ type = "list", list_member = M.StreamEvent })
+
+M.VideoConfigurationList = schema.new({ type = "list", list_member = M.VideoConfiguration })
+
+M.AudioConfigurationList = schema.new({ type = "list", list_member = M.AudioConfiguration })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -2021,10 +2071,7 @@ M.DeleteAdConfigurationInput = schema.new({
     },
 })
 
-M.DeleteAdConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAdConfigurationOutput = prelude.Unit
 
 M.DeleteChannelInput = schema.new({
     id = id.from(_N, "DeleteChannelRequest"),
@@ -2042,10 +2089,7 @@ M.DeleteChannelInput = schema.new({
     },
 })
 
-M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChannelOutput = prelude.Unit
 
 M.DeletePlaybackKeyPairInput = schema.new({
     id = id.from(_N, "DeletePlaybackKeyPairRequest"),
@@ -2084,10 +2128,7 @@ M.DeletePlaybackRestrictionPolicyInput = schema.new({
     },
 })
 
-M.DeletePlaybackRestrictionPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePlaybackRestrictionPolicyOutput = prelude.Unit
 
 M.DeleteRecordingConfigurationInput = schema.new({
     id = id.from(_N, "DeleteRecordingConfigurationRequest"),
@@ -2105,10 +2146,7 @@ M.DeleteRecordingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteRecordingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRecordingConfigurationOutput = prelude.Unit
 
 M.DeleteStreamKeyInput = schema.new({
     id = id.from(_N, "DeleteStreamKeyRequest"),
@@ -2126,10 +2164,7 @@ M.DeleteStreamKeyInput = schema.new({
     },
 })
 
-M.DeleteStreamKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStreamKeyOutput = prelude.Unit
 
 M.GetAdConfigurationInput = schema.new({
     id = id.from(_N, "GetAdConfigurationRequest"),
@@ -3701,10 +3736,7 @@ M.PutMetadataInput = schema.new({
     },
 })
 
-M.PutMetadataOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutMetadataOutput = prelude.Unit
 
 M.StartViewerSessionRevocationInput = schema.new({
     id = id.from(_N, "StartViewerSessionRevocationRequest"),

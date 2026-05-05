@@ -7,6 +7,24 @@ local _N = "com.amazonaws.ivschat"
 
 local M = {}
 
+M.ChatTokenCapabilities = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChatTokenAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LoggingConfigurationIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoggingConfigurationList = schema.new({ type = "list", list_member = M.LoggingConfigurationSummary })
+
+M.RoomList = schema.new({ type = "list", list_member = M.RoomSummary })
+
+M.EventAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -633,10 +651,7 @@ M.DeleteLoggingConfigurationInput = schema.new({
     },
 })
 
-M.DeleteLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLoggingConfigurationOutput = prelude.Unit
 
 M.DeleteMessageInput = schema.new({
     id = id.from(_N, "DeleteMessageRequest"),
@@ -745,10 +760,7 @@ M.DeleteRoomInput = schema.new({
     },
 })
 
-M.DeleteRoomOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRoomOutput = prelude.Unit
 
 M.DisconnectUserInput = schema.new({
     id = id.from(_N, "DisconnectUserRequest"),

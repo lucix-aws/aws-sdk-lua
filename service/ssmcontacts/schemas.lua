@@ -7,6 +7,58 @@ local _N = "com.amazonaws.ssmcontacts"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagsList = schema.new({ type = "list", list_member = M.Tag })
+
+M.DependentEntityList = schema.new({ type = "list", list_member = M.DependentEntity })
+
+M.RotationContactsArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RotationOverrideContactsArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SsmContactsArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactChannelList = schema.new({ type = "list", list_member = M.ContactChannel })
+
+M.ContactsList = schema.new({ type = "list", list_member = M.Contact })
+
+M.EngagementsList = schema.new({ type = "list", list_member = M.Engagement })
+
+M.ReceiptsList = schema.new({ type = "list", list_member = M.Receipt })
+
+M.ResolutionList = schema.new({ type = "list", list_member = M.ResolutionContact })
+
+M.PagesList = schema.new({ type = "list", list_member = M.Page })
+
+M.RotationPreviewMemberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OverrideList = schema.new({ type = "list", list_member = M.PreviewOverride })
+
+M.RotationShifts = schema.new({ type = "list", list_member = M.RotationShift })
+
+M.RotationOverrides = schema.new({ type = "list", list_member = M.RotationOverride })
+
+M.Rotations = schema.new({ type = "list", list_member = M.Rotation })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StagesList = schema.new({ type = "list", list_member = M.Stage })
+
+M.MonthlySettings = schema.new({ type = "list", list_member = M.MonthlySetting })
+
+M.WeeklySettings = schema.new({ type = "list", list_member = M.WeeklySetting })
+
+M.DailySettings = schema.new({ type = "list", list_member = M.HandOffTime })
+
+M.ShiftCoveragesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CoverageTimes })
+
+M.CoverageTimes = schema.new({ type = "list", list_member = M.CoverageTime })
+
+M.RotationOverridePreviewMemberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetsList = schema.new({ type = "list", list_member = M.Target })
+
 M.AcceptPageInput = schema.new({
     id = id.from(_N, "AcceptPageRequest"),
     type = "structure",

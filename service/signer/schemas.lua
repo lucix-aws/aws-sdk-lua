@@ -7,6 +7,34 @@ local _N = "com.amazonaws.signer"
 
 local M = {}
 
+M.SigningParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CertificateHashes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RevokedEntities = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Permissions = schema.new({ type = "list", list_member = M.Permission })
+
+M.SigningJobs = schema.new({ type = "list", list_member = M.SigningJob })
+
+M.SigningPlatforms = schema.new({ type = "list", list_member = M.SigningPlatform })
+
+M.Statuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.SigningProfiles = schema.new({ type = "list", list_member = M.SigningProfile })
+
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageFormats = schema.new({ type = "list", list_member = prelude.String })
+
+M.EncryptionAlgorithms = schema.new({ type = "list", list_member = prelude.String })
+
+M.HashAlgorithms = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -269,10 +297,7 @@ M.CancelSigningProfileInput = schema.new({
     },
 })
 
-M.CancelSigningProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelSigningProfileOutput = prelude.Unit
 
 M.DescribeSigningJobInput = schema.new({
     id = id.from(_N, "DescribeSigningJobRequest"),
@@ -1864,10 +1889,7 @@ M.RevokeSignatureInput = schema.new({
     },
 })
 
-M.RevokeSignatureOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RevokeSignatureOutput = prelude.Unit
 
 M.RevokeSigningProfileInput = schema.new({
     id = id.from(_N, "RevokeSigningProfileRequest"),
@@ -1913,10 +1935,7 @@ M.RevokeSigningProfileInput = schema.new({
     },
 })
 
-M.RevokeSigningProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RevokeSigningProfileOutput = prelude.Unit
 
 M.SignPayloadInput = schema.new({
     id = id.from(_N, "SignPayloadRequest"),

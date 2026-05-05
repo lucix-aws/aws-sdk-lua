@@ -7,6 +7,22 @@ local _N = "com.amazonaws.oam"
 
 local M = {}
 
+M.ResourceTypesInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMapInput = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceTypesOutput = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagMapOutput = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListAttachedLinksItems = schema.new({ type = "list", list_member = M.ListAttachedLinksItem })
+
+M.ListLinksItems = schema.new({ type = "list", list_member = M.ListLinksItem })
+
+M.ListSinksItems = schema.new({ type = "list", list_member = M.ListSinksItem })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",

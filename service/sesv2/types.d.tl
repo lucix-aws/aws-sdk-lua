@@ -2556,43 +2556,43 @@ local record TooManyRequestsException
     message: string
 end
 
-local type SendingStatus = "ENABLED" | "REINSTATED" | "DISABLED"
+local type DkimSigningAttributesOrigin = "AWS_SES" | "EXTERNAL" | "AWS_SES_AF_SOUTH_1" | "AWS_SES_EU_NORTH_1" | "AWS_SES_AP_SOUTH_1" | "AWS_SES_EU_WEST_3" | "AWS_SES_EU_WEST_2" | "AWS_SES_EU_SOUTH_1" | "AWS_SES_EU_WEST_1" | "AWS_SES_AP_NORTHEAST_3" | "AWS_SES_AP_NORTHEAST_2" | "AWS_SES_ME_SOUTH_1" | "AWS_SES_AP_NORTHEAST_1" | "AWS_SES_IL_CENTRAL_1" | "AWS_SES_SA_EAST_1" | "AWS_SES_CA_CENTRAL_1" | "AWS_SES_AP_SOUTHEAST_1" | "AWS_SES_AP_SOUTHEAST_2" | "AWS_SES_AP_SOUTHEAST_3" | "AWS_SES_EU_CENTRAL_1" | "AWS_SES_US_EAST_1" | "AWS_SES_US_EAST_2" | "AWS_SES_US_WEST_1" | "AWS_SES_US_WEST_2" | "AWS_SES_ME_CENTRAL_1" | "AWS_SES_AP_SOUTH_2" | "AWS_SES_EU_CENTRAL_2" | "AWS_SES_AP_SOUTHEAST_5" | "AWS_SES_CA_WEST_1"
 
-local type ExportSourceType = "METRICS_DATA" | "MESSAGE_INSIGHTS"
+local type ContactLanguage = "EN" | "JA"
 
-local type ReputationEntityType = "RESOURCE"
+local type Status = "CREATING" | "READY" | "FAILED" | "DELETING"
 
-local type ScalingMode = "STANDARD" | "MANAGED"
-
-local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
-
-local type VerificationStatus = "PENDING" | "SUCCESS" | "FAILED" | "TEMPORARY_FAILURE" | "NOT_STARTED"
-
-local type SuppressionListReason = "BOUNCE" | "COMPLAINT"
-
-local type TlsPolicy = "REQUIRE" | "OPTIONAL"
-
-local type JobStatus = "CREATED" | "PROCESSING" | "COMPLETED" | "FAILED" | "CANCELLED"
+local type DeliverabilityDashboardAccountStatus = "ACTIVE" | "PENDING_EXPIRATION" | "DISABLED"
 
 local type HttpsPolicy = "REQUIRE" | "REQUIRE_OPEN_ONLY" | "OPTIONAL"
 
 local type DkimStatus = "PENDING" | "SUCCESS" | "FAILED" | "TEMPORARY_FAILURE" | "NOT_STARTED"
 
-local type DeliverabilityDashboardAccountStatus = "ACTIVE" | "PENDING_EXPIRATION" | "DISABLED"
-
-local type Status = "CREATING" | "READY" | "FAILED" | "DELETING"
-
-local type ImportDestinationType = "SUPPRESSION_LIST" | "CONTACT_LIST"
-
-local type DkimSigningAttributesOrigin = "AWS_SES" | "EXTERNAL" | "AWS_SES_AF_SOUTH_1" | "AWS_SES_EU_NORTH_1" | "AWS_SES_AP_SOUTH_1" | "AWS_SES_EU_WEST_3" | "AWS_SES_EU_WEST_2" | "AWS_SES_EU_SOUTH_1" | "AWS_SES_EU_WEST_1" | "AWS_SES_AP_NORTHEAST_3" | "AWS_SES_AP_NORTHEAST_2" | "AWS_SES_ME_SOUTH_1" | "AWS_SES_AP_NORTHEAST_1" | "AWS_SES_IL_CENTRAL_1" | "AWS_SES_SA_EAST_1" | "AWS_SES_CA_CENTRAL_1" | "AWS_SES_AP_SOUTHEAST_1" | "AWS_SES_AP_SOUTHEAST_2" | "AWS_SES_AP_SOUTHEAST_3" | "AWS_SES_EU_CENTRAL_1" | "AWS_SES_US_EAST_1" | "AWS_SES_US_EAST_2" | "AWS_SES_US_WEST_1" | "AWS_SES_US_WEST_2" | "AWS_SES_ME_CENTRAL_1" | "AWS_SES_AP_SOUTH_2" | "AWS_SES_EU_CENTRAL_2" | "AWS_SES_AP_SOUTHEAST_5" | "AWS_SES_CA_WEST_1"
-
-local type ContactLanguage = "EN" | "JA"
-
-local type BehaviorOnMxFailure = "USE_DEFAULT_VALUE" | "REJECT_MESSAGE"
+local type MailType = "MARKETING" | "TRANSACTIONAL"
 
 local type DeliverabilityTestStatus = "IN_PROGRESS" | "COMPLETED"
 
-local type MailType = "MARKETING" | "TRANSACTIONAL"
+local type SuppressionListReason = "BOUNCE" | "COMPLAINT"
+
+local type ImportDestinationType = "SUPPRESSION_LIST" | "CONTACT_LIST"
+
+local type BehaviorOnMxFailure = "USE_DEFAULT_VALUE" | "REJECT_MESSAGE"
+
+local type ExportSourceType = "METRICS_DATA" | "MESSAGE_INSIGHTS"
+
+local type ScalingMode = "STANDARD" | "MANAGED"
+
+local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
+
+local type SendingStatus = "ENABLED" | "REINSTATED" | "DISABLED"
+
+local type TlsPolicy = "REQUIRE" | "OPTIONAL"
+
+local type JobStatus = "CREATED" | "PROCESSING" | "COMPLETED" | "FAILED" | "CANCELLED"
+
+local type ReputationEntityType = "RESOURCE"
+
+local type VerificationStatus = "PENDING" | "SUCCESS" | "FAILED" | "TEMPORARY_FAILURE" | "NOT_STARTED"
 
 local record M
     BatchGetMetricDataInput: BatchGetMetricDataInput

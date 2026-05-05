@@ -7,6 +7,88 @@ local _N = "com.amazonaws.marketplacediscovery"
 
 local M = {}
 
+M.ListingAssociatedEntityList = schema.new({ type = "list", list_member = M.ListingAssociatedEntity })
+
+M.ListingBadgeList = schema.new({ type = "list", list_member = M.ListingBadge })
+
+M.CategoryList = schema.new({ type = "list", list_member = M.Category })
+
+M.FulfillmentOptionSummaryList = schema.new({ type = "list", list_member = M.FulfillmentOptionSummary })
+
+M.HighlightList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PricingModelList = schema.new({ type = "list", list_member = M.PricingModel })
+
+M.PricingUnitList = schema.new({ type = "list", list_member = M.PricingUnit })
+
+M.PromotionalMediaList = schema.new({ type = "list", list_member = M.PromotionalMedia })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.SellerEngagementList = schema.new({ type = "list", list_member = M.SellerEngagement })
+
+M.UseCaseList = schema.new({ type = "list", list_member = M.UseCaseEntry })
+
+M.PurchaseOptionBadgeList = schema.new({ type = "list", list_member = M.PurchaseOptionBadge })
+
+M.OfferAssociatedEntityList = schema.new({ type = "list", list_member = M.OfferAssociatedEntity })
+
+M.OfferSetAssociatedEntityList = schema.new({ type = "list", list_member = M.OfferSetAssociatedEntity })
+
+M.OfferTermsList = schema.new({ type = "list", list_member = M.OfferTerm })
+
+M.FulfillmentOptionsList = schema.new({ type = "list", list_member = M.FulfillmentOption })
+
+M.PurchaseOptionFilterList = schema.new({ type = "list", list_member = M.PurchaseOptionFilter })
+
+M.PurchaseOptionSummaryList = schema.new({ type = "list", list_member = M.PurchaseOptionSummary })
+
+M.SearchFilterList = schema.new({ type = "list", list_member = M.SearchFilter })
+
+M.FacetTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TypeToFacetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListingFacetList })
+
+M.ListingSummaryList = schema.new({ type = "list", list_member = M.ListingSummary })
+
+M.ReviewSourceSummaryList = schema.new({ type = "list", list_member = M.ReviewSourceSummary })
+
+M.ListingFacetList = schema.new({ type = "list", list_member = M.ListingFacet })
+
+M.PurchaseOptionFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PurchaseOptionAssociatedEntityList = schema.new({ type = "list", list_member = M.PurchaseOptionAssociatedEntity })
+
+M.SearchFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListingSummaryAssociatedEntityList = schema.new({ type = "list", list_member = M.ListingSummaryAssociatedEntity })
+
+M.ConfigurableUpfrontRateCardList = schema.new({ type = "list", list_member = M.ConfigurableUpfrontRateCardItem })
+
+M.GrantList = schema.new({ type = "list", list_member = M.GrantItem })
+
+M.DocumentList = schema.new({ type = "list", list_member = M.DocumentItem })
+
+M.ScheduleList = schema.new({ type = "list", list_member = M.ScheduleItem })
+
+M.UsageBasedRateCardList = schema.new({ type = "list", list_member = M.UsageBasedRateCardItem })
+
+M.AmazonMachineImageOperatingSystemList = schema.new({ type = "list", list_member = M.AmazonMachineImageOperatingSystem })
+
+M.AwsSupportedServiceList = schema.new({ type = "list", list_member = M.AwsSupportedService })
+
+M.ContainerOperatingSystemList = schema.new({ type = "list", list_member = M.ContainerOperatingSystem })
+
+M.HelmOperatingSystemList = schema.new({ type = "list", list_member = M.HelmOperatingSystem })
+
+M.EksAddOnOperatingSystemList = schema.new({ type = "list", list_member = M.EksAddOnOperatingSystem })
+
+M.DataArtifactList = schema.new({ type = "list", list_member = M.DataArtifact })
+
+M.RateCardList = schema.new({ type = "list", list_member = M.RateCardItem })
+
+M.DimensionLabelList = schema.new({ type = "list", list_member = M.DimensionLabel })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

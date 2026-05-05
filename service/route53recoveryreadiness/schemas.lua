@@ -7,6 +7,34 @@ local _N = "com.amazonaws.route53recoveryreadiness"
 
 local M = {}
 
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfResource = schema.new({ type = "list", list_member = M.Resource })
+
+M.__listOfRecommendation = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.__listOfReadinessCheckSummary = schema.new({ type = "list", list_member = M.ReadinessCheckSummary })
+
+M.__listOfRuleResult = schema.new({ type = "list", list_member = M.RuleResult })
+
+M.__listOfMessage = schema.new({ type = "list", list_member = M.Message })
+
+M.__listOfResourceResult = schema.new({ type = "list", list_member = M.ResourceResult })
+
+M.__listOfCellOutput = schema.new({ type = "list", list_member = M.CellOutput })
+
+M.__listOfCrossAccountAuthorization = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfReadinessCheckOutput = schema.new({ type = "list", list_member = M.ReadinessCheckOutput })
+
+M.__listOfRecoveryGroupOutput = schema.new({ type = "list", list_member = M.RecoveryGroupOutput })
+
+M.__listOfResourceSetOutput = schema.new({ type = "list", list_member = M.ResourceSetOutput })
+
+M.__listOfListRulesOutput = schema.new({ type = "list", list_member = M.ListRulesOutput })
+
 M.CellOutput = schema.new({
     id = id.from(_N, "CellOutput"),
     type = "structure",
@@ -1096,10 +1124,7 @@ M.DeleteCellInput = schema.new({
     },
 })
 
-M.DeleteCellOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCellOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -1159,10 +1184,7 @@ M.DeleteReadinessCheckInput = schema.new({
     },
 })
 
-M.DeleteReadinessCheckOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteReadinessCheckOutput = prelude.Unit
 
 M.DeleteRecoveryGroupInput = schema.new({
     id = id.from(_N, "DeleteRecoveryGroupRequest"),
@@ -1181,10 +1203,7 @@ M.DeleteRecoveryGroupInput = schema.new({
     },
 })
 
-M.DeleteRecoveryGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRecoveryGroupOutput = prelude.Unit
 
 M.DeleteResourceSetInput = schema.new({
     id = id.from(_N, "DeleteResourceSetRequest"),
@@ -1203,10 +1222,7 @@ M.DeleteResourceSetInput = schema.new({
     },
 })
 
-M.DeleteResourceSetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceSetOutput = prelude.Unit
 
 M.GetArchitectureRecommendationsInput = schema.new({
     id = id.from(_N, "GetArchitectureRecommendationsRequest"),
@@ -2264,10 +2280,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateCellInput = schema.new({
     id = id.from(_N, "UpdateCellRequest"),

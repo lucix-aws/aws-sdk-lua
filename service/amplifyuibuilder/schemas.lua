@@ -7,6 +7,94 @@ local _N = "com.amazonaws.amplifyuibuilder"
 
 local M = {}
 
+M.FeaturesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodegenJobSummaryList = schema.new({ type = "list", list_member = M.CodegenJobSummary })
+
+M.ComponentSummaryList = schema.new({ type = "list", list_member = M.ComponentSummary })
+
+M.ComponentList = schema.new({ type = "list", list_member = M.Component })
+
+M.FormSummaryList = schema.new({ type = "list", list_member = M.FormSummary })
+
+M.FormList = schema.new({ type = "list", list_member = M.Form })
+
+M.ThemeSummaryList = schema.new({ type = "list", list_member = M.ThemeSummary })
+
+M.ThemeList = schema.new({ type = "list", list_member = M.Theme })
+
+M.CodegenDependencies = schema.new({ type = "list", list_member = M.CodegenDependency })
+
+M.ComponentProperties = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentProperty })
+
+M.ComponentChildList = schema.new({ type = "list", list_member = M.ComponentChild })
+
+M.ComponentVariants = schema.new({ type = "list", list_member = M.ComponentVariant })
+
+M.ComponentOverrides = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentOverridesValue })
+
+M.ComponentBindingProperties = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentBindingPropertiesValue })
+
+M.ComponentCollectionProperties = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentDataConfiguration })
+
+M.ComponentEvents = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComponentEvent })
+
+M.FieldsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldConfig })
+
+M.SectionalElementMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SectionalElement })
+
+M.ThemeValuesList = schema.new({ type = "list", list_member = M.ThemeValues })
+
+M.CodegenGenericDataModels = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodegenGenericDataModel })
+
+M.CodegenGenericDataEnums = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodegenGenericDataEnum })
+
+M.CodegenGenericDataNonModels = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodegenGenericDataNonModel })
+
+M.ComponentOverridesValue = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReactCodegenDependencies = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FormBindings = schema.new({ type = "map", map_key = prelude.String, map_value = M.FormBindingElement })
+
+M.ComponentPropertyList = schema.new({ type = "list", list_member = M.ComponentProperty })
+
+M.ComponentVariantValues = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SortPropertyList = schema.new({ type = "list", list_member = M.SortProperty })
+
+M.IdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationsList = schema.new({ type = "list", list_member = M.FieldValidationConfiguration })
+
+M.CodegenGenericDataFields = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodegenGenericDataField })
+
+M.CodegenPrimaryKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodegenGenericDataEnumValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodegenGenericDataNonModelFields = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodegenGenericDataField })
+
+M.PredicateList = schema.new({ type = "list", list_member = M.Predicate })
+
+M.ValueMappingList = schema.new({ type = "list", list_member = M.ValueMapping })
+
+M.FormInputBindingProperties = schema.new({ type = "map", map_key = prelude.String, map_value = M.FormInputBindingPropertiesValue })
+
+M.StrValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumValues = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.RelatedModelFieldsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedFieldsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FormInputValuePropertyList = schema.new({ type = "list", list_member = M.FormInputValueProperty })
+
 M.ComponentPropertyBindingProperties = schema.new({
     id = id.from(_N, "ComponentPropertyBindingProperties"),
     type = "structure",
@@ -1104,10 +1192,7 @@ M.DeleteComponentInput = schema.new({
     },
 })
 
-M.DeleteComponentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteComponentOutput = prelude.Unit
 
 M.ExportComponentsInput = schema.new({
     id = id.from(_N, "ExportComponentsRequest"),
@@ -1778,10 +1863,7 @@ M.DeleteFormInput = schema.new({
     },
 })
 
-M.DeleteFormOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFormOutput = prelude.Unit
 
 M.ExportFormsInput = schema.new({
     id = id.from(_N, "ExportFormsRequest"),
@@ -2147,10 +2229,7 @@ M.PutMetadataFlagInput = schema.new({
     },
 })
 
-M.PutMetadataFlagOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutMetadataFlagOutput = prelude.Unit
 
 M.RefreshTokenRequestBody = schema.new({
     id = id.from(_N, "RefreshTokenRequestBody"),
@@ -2297,10 +2376,7 @@ M.DeleteThemeInput = schema.new({
     },
 })
 
-M.DeleteThemeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteThemeOutput = prelude.Unit
 
 M.ExportThemesInput = schema.new({
     id = id.from(_N, "ExportThemesRequest"),

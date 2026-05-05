@@ -7,6 +7,44 @@ local _N = "com.amazonaws.s3tables"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NamespaceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NamespaceSummaryList = schema.new({ type = "list", list_member = M.NamespaceSummary })
+
+M.TableBucketMaintenanceConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = M.TableBucketMaintenanceConfigurationValue })
+
+M.TableBucketSummaryList = schema.new({ type = "list", list_member = M.TableBucketSummary })
+
+M.ReplicationDestinationStatuses = schema.new({ type = "list", list_member = M.ReplicationDestinationStatusModel })
+
+M.TableMaintenanceConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = M.TableMaintenanceConfigurationValue })
+
+M.TableMaintenanceJobStatus = schema.new({ type = "map", map_key = prelude.String, map_value = M.TableMaintenanceJobStatusValue })
+
+M.TableSummaryList = schema.new({ type = "list", list_member = M.TableSummary })
+
+M.TableBucketReplicationRules = schema.new({ type = "list", list_member = M.TableBucketReplicationRule })
+
+M.TableReplicationRules = schema.new({ type = "list", list_member = M.TableReplicationRule })
+
+M.TableProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReplicationDestinations = schema.new({ type = "list", list_member = M.ReplicationDestination })
+
+M.SchemaFieldList = schema.new({ type = "list", list_member = M.SchemaField })
+
+M.SchemaV2FieldList = schema.new({ type = "list", list_member = M.SchemaV2Field })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.IcebergPartitionFieldList = schema.new({ type = "list", list_member = M.IcebergPartitionField })
+
+M.IcebergSortFieldList = schema.new({ type = "list", list_member = M.IcebergSortField })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -740,10 +778,7 @@ M.DeleteNamespaceInput = schema.new({
     },
 })
 
-M.DeleteNamespaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNamespaceOutput = prelude.Unit
 
 M.DeleteTableInput = schema.new({
     id = id.from(_N, "DeleteTableRequest"),
@@ -791,10 +826,7 @@ M.DeleteTableInput = schema.new({
     },
 })
 
-M.DeleteTableOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableOutput = prelude.Unit
 
 M.DeleteTableBucketInput = schema.new({
     id = id.from(_N, "DeleteTableBucketRequest"),
@@ -813,10 +845,7 @@ M.DeleteTableBucketInput = schema.new({
     },
 })
 
-M.DeleteTableBucketOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableBucketOutput = prelude.Unit
 
 M.DeleteTableBucketEncryptionInput = schema.new({
     id = id.from(_N, "DeleteTableBucketEncryptionRequest"),
@@ -835,10 +864,7 @@ M.DeleteTableBucketEncryptionInput = schema.new({
     },
 })
 
-M.DeleteTableBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableBucketEncryptionOutput = prelude.Unit
 
 M.DeleteTableBucketMetricsConfigurationInput = schema.new({
     id = id.from(_N, "DeleteTableBucketMetricsConfigurationRequest"),
@@ -857,10 +883,7 @@ M.DeleteTableBucketMetricsConfigurationInput = schema.new({
     },
 })
 
-M.DeleteTableBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableBucketMetricsConfigurationOutput = prelude.Unit
 
 M.DeleteTableBucketPolicyInput = schema.new({
     id = id.from(_N, "DeleteTableBucketPolicyRequest"),
@@ -879,10 +902,7 @@ M.DeleteTableBucketPolicyInput = schema.new({
     },
 })
 
-M.DeleteTableBucketPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableBucketPolicyOutput = prelude.Unit
 
 M.DeleteTableBucketReplicationInput = schema.new({
     id = id.from(_N, "DeleteTableBucketReplicationRequest"),
@@ -910,10 +930,7 @@ M.DeleteTableBucketReplicationInput = schema.new({
     },
 })
 
-M.DeleteTableBucketReplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableBucketReplicationOutput = prelude.Unit
 
 M.DeleteTablePolicyInput = schema.new({
     id = id.from(_N, "DeleteTablePolicyRequest"),
@@ -952,10 +969,7 @@ M.DeleteTablePolicyInput = schema.new({
     },
 })
 
-M.DeleteTablePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTablePolicyOutput = prelude.Unit
 
 M.DeleteTableReplicationInput = schema.new({
     id = id.from(_N, "DeleteTableReplicationRequest"),
@@ -984,10 +998,7 @@ M.DeleteTableReplicationInput = schema.new({
     },
 })
 
-M.DeleteTableReplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTableReplicationOutput = prelude.Unit
 
 M.GetNamespaceInput = schema.new({
     id = id.from(_N, "GetNamespaceRequest"),
@@ -3002,10 +3013,7 @@ M.PutTableBucketEncryptionInput = schema.new({
     },
 })
 
-M.PutTableBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableBucketEncryptionOutput = prelude.Unit
 
 M.PutTableBucketMaintenanceConfigurationInput = schema.new({
     id = id.from(_N, "PutTableBucketMaintenanceConfigurationRequest"),
@@ -3044,10 +3052,7 @@ M.PutTableBucketMaintenanceConfigurationInput = schema.new({
     },
 })
 
-M.PutTableBucketMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableBucketMaintenanceConfigurationOutput = prelude.Unit
 
 M.PutTableBucketMetricsConfigurationInput = schema.new({
     id = id.from(_N, "PutTableBucketMetricsConfigurationRequest"),
@@ -3066,10 +3071,7 @@ M.PutTableBucketMetricsConfigurationInput = schema.new({
     },
 })
 
-M.PutTableBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableBucketMetricsConfigurationOutput = prelude.Unit
 
 M.PutTableBucketPolicyInput = schema.new({
     id = id.from(_N, "PutTableBucketPolicyRequest"),
@@ -3097,10 +3099,7 @@ M.PutTableBucketPolicyInput = schema.new({
     },
 })
 
-M.PutTableBucketPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableBucketPolicyOutput = prelude.Unit
 
 M.PutTableBucketReplicationInput = schema.new({
     id = id.from(_N, "PutTableBucketReplicationRequest"),
@@ -3190,10 +3189,7 @@ M.PutTableBucketStorageClassInput = schema.new({
     },
 })
 
-M.PutTableBucketStorageClassOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableBucketStorageClassOutput = prelude.Unit
 
 M.PutTableMaintenanceConfigurationInput = schema.new({
     id = id.from(_N, "PutTableMaintenanceConfigurationRequest"),
@@ -3252,10 +3248,7 @@ M.PutTableMaintenanceConfigurationInput = schema.new({
     },
 })
 
-M.PutTableMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableMaintenanceConfigurationOutput = prelude.Unit
 
 M.PutTablePolicyInput = schema.new({
     id = id.from(_N, "PutTablePolicyRequest"),
@@ -3303,10 +3296,7 @@ M.PutTablePolicyInput = schema.new({
     },
 })
 
-M.PutTablePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTablePolicyOutput = prelude.Unit
 
 M.PutTableRecordExpirationConfigurationInput = schema.new({
     id = id.from(_N, "PutTableRecordExpirationConfigurationRequest"),
@@ -3335,10 +3325,7 @@ M.PutTableRecordExpirationConfigurationInput = schema.new({
     },
 })
 
-M.PutTableRecordExpirationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutTableRecordExpirationConfigurationOutput = prelude.Unit
 
 M.PutTableReplicationInput = schema.new({
     id = id.from(_N, "PutTableReplicationRequest"),
@@ -3456,10 +3443,7 @@ M.RenameTableInput = schema.new({
     },
 })
 
-M.RenameTableOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RenameTableOutput = prelude.Unit
 
 M.UpdateTableMetadataLocationInput = schema.new({
     id = id.from(_N, "UpdateTableMetadataLocationRequest"),

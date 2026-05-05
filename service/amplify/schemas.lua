@@ -7,6 +7,48 @@ local _N = "com.amazonaws.amplify"
 
 local M = {}
 
+M.EnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CustomRules = schema.new({ type = "list", list_member = M.CustomRule })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AutoBranchCreationPatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FileUploadUrls = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SubDomainSettings = schema.new({ type = "list", list_member = M.SubDomainSetting })
+
+M.AutoSubDomainCreationPatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.Apps = schema.new({ type = "list", list_member = M.App })
+
+M.Artifacts = schema.new({ type = "list", list_member = M.Artifact })
+
+M.BackendEnvironments = schema.new({ type = "list", list_member = M.BackendEnvironment })
+
+M.Branches = schema.new({ type = "list", list_member = M.Branch })
+
+M.DomainAssociations = schema.new({ type = "list", list_member = M.DomainAssociation })
+
+M.JobSummaries = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.Webhooks = schema.new({ type = "list", list_member = M.Webhook })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomDomains = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedResources = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubDomains = schema.new({ type = "list", list_member = M.SubDomain })
+
+M.Steps = schema.new({ type = "list", list_member = M.Step })
+
+M.Screenshots = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.BadRequestException = schema.new({
     id = id.from(_N, "BadRequestException"),
     type = "structure",

@@ -7,6 +7,88 @@ local _N = "com.amazonaws.entityresolution"
 
 local M = {}
 
+M.StatementActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatementPrincipalList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UniqueIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteUniqueIdErrorsList = schema.new({ type = "list", list_member = M.DeleteUniqueIdError })
+
+M.DeletedUniqueIdList = schema.new({ type = "list", list_member = M.DeletedUniqueId })
+
+M.DisconnectedUniqueIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdMappingWorkflowInputSourceConfig = schema.new({ type = "list", list_member = M.IdMappingWorkflowInputSource })
+
+M.IdMappingWorkflowOutputSourceConfig = schema.new({ type = "list", list_member = M.IdMappingWorkflowOutputSource })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IdNamespaceInputSourceConfig = schema.new({ type = "list", list_member = M.IdNamespaceInputSource })
+
+M.IdNamespaceIdMappingWorkflowPropertiesList = schema.new({ type = "list", list_member = M.IdNamespaceIdMappingWorkflowProperties })
+
+M.InputSourceConfig = schema.new({ type = "list", list_member = M.InputSource })
+
+M.OutputSourceConfig = schema.new({ type = "list", list_member = M.OutputSource })
+
+M.SchemaInputAttributes = schema.new({ type = "list", list_member = M.SchemaInputAttribute })
+
+M.RecordList = schema.new({ type = "list", list_member = M.Record })
+
+M.MatchGroupsList = schema.new({ type = "list", list_member = M.MatchGroup })
+
+M.FailedRecordsList = schema.new({ type = "list", list_member = M.FailedRecord })
+
+M.IdMappingJobOutputSourceConfig = schema.new({ type = "list", list_member = M.IdMappingJobOutputSource })
+
+M.RecordAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.JobOutputSourceConfig = schema.new({ type = "list", list_member = M.JobOutputSource })
+
+M.JobList = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.IdMappingWorkflowList = schema.new({ type = "list", list_member = M.IdMappingWorkflowSummary })
+
+M.IdNamespaceList = schema.new({ type = "list", list_member = M.IdNamespaceSummary })
+
+M.MatchingWorkflowList = schema.new({ type = "list", list_member = M.MatchingWorkflowSummary })
+
+M.ProviderServiceList = schema.new({ type = "list", list_member = M.ProviderServiceSummary })
+
+M.SchemaMappingList = schema.new({ type = "list", list_member = M.SchemaMappingSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RequiredBucketActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Schemas = schema.new({ type = "list", list_member = M.SchemaList })
+
+M.ProviderSchemaAttributes = schema.new({ type = "list", list_member = M.ProviderSchemaAttribute })
+
+M.RuleList = schema.new({ type = "list", list_member = M.Rule })
+
+M.OutputAttributes = schema.new({ type = "list", list_member = M.OutputAttribute })
+
+M.RuleConditionList = schema.new({ type = "list", list_member = M.RuleCondition })
+
+M.RecordAttributeMapString255 = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MatchedRecordsList = schema.new({ type = "list", list_member = M.MatchedRecord })
+
+M.SchemaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdNamespaceIdMappingWorkflowMetadataList = schema.new({ type = "list", list_member = M.IdNamespaceIdMappingWorkflowMetadata })
+
+M.IdMappingWorkflowRuleDefinitionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecordMatchingModelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchingKeys = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

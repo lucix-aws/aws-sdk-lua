@@ -7,6 +7,56 @@ local _N = "com.amazonaws.codeartifact"
 
 local M = {}
 
+M.PackageVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PackageVersionRevisionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SuccessfulPackageVersionInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SuccessfulPackageVersionInfo })
+
+M.PackageVersionErrorMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PackageVersionError })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.UpstreamRepositoryList = schema.new({ type = "list", list_member = M.UpstreamRepository })
+
+M.RepositoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedPackageList = schema.new({ type = "list", list_member = M.AssociatedPackage })
+
+M.DomainSummaryList = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.PackageGroupSummaryList = schema.new({ type = "list", list_member = M.PackageGroupSummary })
+
+M.PackageSummaryList = schema.new({ type = "list", list_member = M.PackageSummary })
+
+M.AssetSummaryList = schema.new({ type = "list", list_member = M.AssetSummary })
+
+M.PackageDependencyList = schema.new({ type = "list", list_member = M.PackageDependency })
+
+M.PackageVersionSummaryList = schema.new({ type = "list", list_member = M.PackageVersionSummary })
+
+M.RepositorySummaryList = schema.new({ type = "list", list_member = M.RepositorySummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OriginRestrictions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PackageGroupAllowedRepositoryList = schema.new({ type = "list", list_member = M.PackageGroupAllowedRepository })
+
+M.PackageGroupAllowedRepositoryUpdates = schema.new({ type = "map", map_key = prelude.String, map_value = M.PackageGroupAllowedRepositoryUpdate })
+
+M.UpstreamRepositoryInfoList = schema.new({ type = "list", list_member = M.UpstreamRepositoryInfo })
+
+M.RepositoryExternalConnectionInfoList = schema.new({ type = "list", list_member = M.RepositoryExternalConnectionInfo })
+
+M.LicenseInfoList = schema.new({ type = "list", list_member = M.LicenseInfo })
+
+M.AssetHashes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PackageGroupAllowedRepositoryUpdate = schema.new({ type = "map", map_key = prelude.String, map_value = M.RepositoryNameList })
+
+M.PackageGroupOriginRestrictions = schema.new({ type = "map", map_key = prelude.String, map_value = M.PackageGroupOriginRestriction })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4610,7 +4660,7 @@ M.UpdatePackageGroupOriginConfigurationOutput = schema.new({
             name = "allowedRepositoryUpdates",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.RepositoryNameList }),
         }),
     },
 })

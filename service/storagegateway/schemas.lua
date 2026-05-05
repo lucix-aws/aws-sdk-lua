@@ -7,6 +7,96 @@ local _N = "com.amazonaws.storagegateway"
 
 local M = {}
 
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.DiskIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileShareClientList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TapeARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.BandwidthRateLimitIntervals = schema.new({ type = "list", list_member = M.BandwidthRateLimitInterval })
+
+M.VolumeARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.CachediSCSIVolumes = schema.new({ type = "list", list_member = M.CachediSCSIVolume })
+
+M.ChapCredentials = schema.new({ type = "list", list_member = M.ChapInfo })
+
+M.FileSystemAssociationARNList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileSystemAssociationInfoList = schema.new({ type = "list", list_member = M.FileSystemAssociationInfo })
+
+M.GatewayNetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.SupportedGatewayCapacities = schema.new({ type = "list", list_member = prelude.String })
+
+M.FileShareARNList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NFSFileShareInfoList = schema.new({ type = "list", list_member = M.NFSFileShareInfo })
+
+M.SMBFileShareInfoList = schema.new({ type = "list", list_member = M.SMBFileShareInfo })
+
+M.StorediSCSIVolumes = schema.new({ type = "list", list_member = M.StorediSCSIVolume })
+
+M.TapeArchives = schema.new({ type = "list", list_member = M.TapeArchive })
+
+M.TapeRecoveryPointInfos = schema.new({ type = "list", list_member = M.TapeRecoveryPointInfo })
+
+M.Tapes = schema.new({ type = "list", list_member = M.Tape })
+
+M.VTLDeviceARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.VTLDevices = schema.new({ type = "list", list_member = M.VTLDevice })
+
+M.Hosts = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomaticTapeCreationPolicyInfos = schema.new({ type = "list", list_member = M.AutomaticTapeCreationPolicyInfo })
+
+M.CacheReportList = schema.new({ type = "list", list_member = M.CacheReportInfo })
+
+M.FileShareInfoList = schema.new({ type = "list", list_member = M.FileShareInfo })
+
+M.FileSystemAssociationSummaryList = schema.new({ type = "list", list_member = M.FileSystemAssociationSummary })
+
+M.Gateways = schema.new({ type = "list", list_member = M.GatewayInfo })
+
+M.Disks = schema.new({ type = "list", list_member = M.Disk })
+
+M.PoolARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.PoolInfos = schema.new({ type = "list", list_member = M.PoolInfo })
+
+M.TapeInfos = schema.new({ type = "list", list_member = M.TapeInfo })
+
+M.Initiators = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeRecoveryPointInfos = schema.new({ type = "list", list_member = M.VolumeRecoveryPointInfo })
+
+M.VolumeInfos = schema.new({ type = "list", list_member = M.VolumeInfo })
+
+M.FolderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheReportFilterList = schema.new({ type = "list", list_member = M.CacheReportFilter })
+
+M.AutomaticTapeCreationRules = schema.new({ type = "list", list_member = M.AutomaticTapeCreationRule })
+
+M.errorDetails = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DaysOfWeek = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.FileSystemAssociationStatusDetails = schema.new({ type = "list", list_member = M.FileSystemAssociationStatusDetail })
+
+M.DiskAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CacheReportFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",

@@ -7,6 +7,52 @@ local _N = "com.amazonaws.sqs"
 
 local M = {}
 
+M.AWSAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChangeMessageVisibilityBatchRequestEntryList = schema.new({ type = "list", list_member = M.ChangeMessageVisibilityBatchRequestEntry })
+
+M.ChangeMessageVisibilityBatchResultEntryList = schema.new({ type = "list", list_member = M.ChangeMessageVisibilityBatchResultEntry })
+
+M.BatchResultErrorEntryList = schema.new({ type = "list", list_member = M.BatchResultErrorEntry })
+
+M.QueueAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DeleteMessageBatchRequestEntryList = schema.new({ type = "list", list_member = M.DeleteMessageBatchRequestEntry })
+
+M.DeleteMessageBatchResultEntryList = schema.new({ type = "list", list_member = M.DeleteMessageBatchResultEntry })
+
+M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueueUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListMessageMoveTasksResultEntryList = schema.new({ type = "list", list_member = M.ListMessageMoveTasksResultEntry })
+
+M.MessageSystemAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageAttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageList = schema.new({ type = "list", list_member = M.Message })
+
+M.MessageBodyAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MessageAttributeValue })
+
+M.MessageBodySystemAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MessageSystemAttributeValue })
+
+M.SendMessageBatchRequestEntryList = schema.new({ type = "list", list_member = M.SendMessageBatchRequestEntry })
+
+M.SendMessageBatchResultEntryList = schema.new({ type = "list", list_member = M.SendMessageBatchResultEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageSystemAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BinaryList = schema.new({ type = "list", list_member = prelude.Blob })
+
 M.AddPermissionInput = schema.new({
     id = id.from(_N, "AddPermissionRequest"),
     type = "structure",
@@ -56,10 +102,7 @@ M.AddPermissionInput = schema.new({
     },
 })
 
-M.AddPermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddPermissionOutput = prelude.Unit
 
 M.InvalidAddress = schema.new({
     id = id.from(_N, "InvalidAddress"),
@@ -239,10 +282,7 @@ M.ChangeMessageVisibilityInput = schema.new({
     },
 })
 
-M.ChangeMessageVisibilityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ChangeMessageVisibilityOutput = prelude.Unit
 
 M.MessageNotInflight = schema.new({
     id = id.from(_N, "MessageNotInflight"),
@@ -621,10 +661,7 @@ M.DeleteMessageInput = schema.new({
     },
 })
 
-M.DeleteMessageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMessageOutput = prelude.Unit
 
 M.InvalidIdFormat = schema.new({
     id = id.from(_N, "InvalidIdFormat"),
@@ -750,10 +787,7 @@ M.DeleteQueueInput = schema.new({
     },
 })
 
-M.DeleteQueueOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteQueueOutput = prelude.Unit
 
 M.GetQueueAttributesInput = schema.new({
     id = id.from(_N, "GetQueueAttributesRequest"),
@@ -1115,10 +1149,7 @@ M.PurgeQueueInput = schema.new({
     },
 })
 
-M.PurgeQueueOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PurgeQueueOutput = prelude.Unit
 
 M.KmsAccessDenied = schema.new({
     id = id.from(_N, "KmsAccessDenied"),
@@ -1459,10 +1490,7 @@ M.RemovePermissionInput = schema.new({
     },
 })
 
-M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemovePermissionOutput = prelude.Unit
 
 M.InvalidMessageContents = schema.new({
     id = id.from(_N, "InvalidMessageContents"),
@@ -1857,10 +1885,7 @@ M.SetQueueAttributesInput = schema.new({
     },
 })
 
-M.SetQueueAttributesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetQueueAttributesOutput = prelude.Unit
 
 M.StartMessageMoveTaskInput = schema.new({
     id = id.from(_N, "StartMessageMoveTaskRequest"),
@@ -1932,10 +1957,7 @@ M.TagQueueInput = schema.new({
     },
 })
 
-M.TagQueueOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagQueueOutput = prelude.Unit
 
 M.UntagQueueInput = schema.new({
     id = id.from(_N, "UntagQueueRequest"),
@@ -1965,10 +1987,7 @@ M.UntagQueueInput = schema.new({
     },
 })
 
-M.UntagQueueOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagQueueOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

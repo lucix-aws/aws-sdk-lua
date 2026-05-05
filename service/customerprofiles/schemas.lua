@@ -7,6 +7,210 @@ local _N = "com.amazonaws.customerprofiles"
 
 local M = {}
 
+M.requestValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchGetCalculatedAttributeForProfileIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchGetCalculatedAttributeForProfileErrorList = schema.new({ type = "list", list_member = M.BatchGetCalculatedAttributeForProfileError })
+
+M.CalculatedAttributeValueList = schema.new({ type = "list", list_member = M.CalculatedAttributeValue })
+
+M.BatchGetProfileIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchGetProfileErrorList = schema.new({ type = "list", list_member = M.BatchGetProfileError })
+
+M.ProfileList = schema.new({ type = "list", list_member = M.Profile })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventTriggerConditions = schema.new({ type = "list", list_member = M.EventTriggerCondition })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RecommenderSchemaFields = schema.new({ type = "map", map_key = prelude.String, map_value = M.RecommenderSchemaFieldList })
+
+M.FieldMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ObjectTypeField })
+
+M.Objects = schema.new({ type = "list", list_member = prelude.String })
+
+M.DetectedProfileObjectTypes = schema.new({ type = "list", list_member = M.DetectedProfileObjectType })
+
+M.DomainObjectTypeFields = schema.new({ type = "map", map_key = prelude.String, map_value = M.DomainObjectTypeField })
+
+M.ObjectTypeNames = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventTriggerNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchesList = schema.new({ type = "list", list_member = M.MatchItem })
+
+M.KeyMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ObjectTypeKeyList })
+
+M.RecommenderContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RecommenderFilters = schema.new({ type = "list", list_member = M.RecommenderFilter })
+
+M.RecommenderPromotionalFilters = schema.new({ type = "list", list_member = M.RecommenderPromotionalFilter })
+
+M.CandidateIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Recommendations = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.TrainingMetricsList = schema.new({ type = "list", list_member = M.TrainingMetrics })
+
+M.ProfileIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Profiles = schema.new({ type = "list", list_member = M.ProfileQueryResult })
+
+M.Failures = schema.new({ type = "list", list_member = M.ProfileQueryFailures })
+
+M.ProfileIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkflowStepsList = schema.new({ type = "list", list_member = M.WorkflowStepItem })
+
+M.IntegrationList = schema.new({ type = "list", list_member = M.ListIntegrationItem })
+
+M.CalculatedAttributeDefinitionsList = schema.new({ type = "list", list_member = M.ListCalculatedAttributeDefinitionItem })
+
+M.CalculatedAttributesForProfileList = schema.new({ type = "list", list_member = M.ListCalculatedAttributeForProfileItem })
+
+M.LayoutList = schema.new({ type = "list", list_member = M.LayoutItem })
+
+M.DomainObjectTypesList = schema.new({ type = "list", list_member = M.DomainObjectTypesListItem })
+
+M.DomainList = schema.new({ type = "list", list_member = M.ListDomainItem })
+
+M.EventStreamSummaryList = schema.new({ type = "list", list_member = M.EventStreamSummary })
+
+M.EventTriggerSummaryList = schema.new({ type = "list", list_member = M.EventTriggerSummaryItem })
+
+M.IdentityResolutionJobsList = schema.new({ type = "list", list_member = M.IdentityResolutionJob })
+
+M.ListObjectTypeAttributesList = schema.new({ type = "list", list_member = M.ListObjectTypeAttributeItem })
+
+M.ListObjectTypeAttributeValuesList = schema.new({ type = "list", list_member = M.ListObjectTypeAttributeValuesItem })
+
+M.AttributeValueItemList = schema.new({ type = "list", list_member = M.AttributeValueItem })
+
+M.ProfileHistoryRecords = schema.new({ type = "list", list_member = M.ProfileHistoryRecord })
+
+M.ProfileObjectList = schema.new({ type = "list", list_member = M.ListProfileObjectsItem })
+
+M.ProfileObjectTypeList = schema.new({ type = "list", list_member = M.ListProfileObjectTypeItem })
+
+M.ProfileObjectTypeTemplateList = schema.new({ type = "list", list_member = M.ListProfileObjectTypeTemplateItem })
+
+M.RecommenderFilterSummaryList = schema.new({ type = "list", list_member = M.RecommenderFilterSummary })
+
+M.RecommenderRecipesList = schema.new({ type = "list", list_member = M.RecommenderRecipe })
+
+M.RecommenderSummaryList = schema.new({ type = "list", list_member = M.RecommenderSummary })
+
+M.RecommenderSchemaSummaryList = schema.new({ type = "list", list_member = M.RecommenderSchemaSummary })
+
+M.MatchIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SegmentDefinitionsList = schema.new({ type = "list", list_member = M.SegmentDefinitionItem })
+
+M.UploadJobsList = schema.new({ type = "list", list_member = M.UploadJobItem })
+
+M.WorkflowList = schema.new({ type = "list", list_member = M.ListWorkflowsItem })
+
+M.ProfileIdToBeMergedList = schema.new({ type = "list", list_member = prelude.String })
+
+M.additionalSearchKeysList = schema.new({ type = "list", list_member = M.AdditionalSearchKey })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AttributeList = schema.new({ type = "list", list_member = M.AttributeItem })
+
+M.GroupList = schema.new({ type = "list", list_member = M.FilterGroup })
+
+M.MatchingRules = schema.new({ type = "list", list_member = M.MatchingRule })
+
+M.Periods = schema.new({ type = "list", list_member = M.Period })
+
+M.PhonePreferenceList = schema.new({ type = "list", list_member = M.ContactPreference })
+
+M.EmailPreferenceList = schema.new({ type = "list", list_member = M.ContactPreference })
+
+M.IncludedColumns = schema.new({ type = "map", map_key = prelude.String, map_value = M.ColumnNamesList })
+
+M.RecommenderSchemaFieldList = schema.new({ type = "list", list_member = M.RecommenderSchemaField })
+
+M.SegmentGroupList = schema.new({ type = "list", list_member = M.Group })
+
+M.SortAttributeList = schema.new({ type = "list", list_member = M.SortAttribute })
+
+M.MatchingAttributesList = schema.new({ type = "list", list_member = M.MatchingAttributes })
+
+M.ObjectTypeKeyList = schema.new({ type = "list", list_member = M.ObjectTypeKey })
+
+M.MetadataColumnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeSourceIdMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Tasks = schema.new({ type = "list", list_member = M.Task })
+
+M.foundByList = schema.new({ type = "list", list_member = M.FoundByKeyValue })
+
+M.AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTriggerDimensions = schema.new({ type = "list", list_member = M.EventTriggerDimension })
+
+M.Batches = schema.new({ type = "list", list_member = M.Batch })
+
+M.EventParametersList = schema.new({ type = "list", list_member = M.EventParameters })
+
+M.ColumnNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchingAttributes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommenderFilterValues = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Metrics = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.FilterDimensionList = schema.new({ type = "list", list_member = M.FilterDimension })
+
+M.MatchingRuleAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DimensionList = schema.new({ type = "list", list_member = M.Dimension })
+
+M.SourceSegmentList = schema.new({ type = "list", list_member = M.SourceSegment })
+
+M.StandardIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskPropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ObjectAttributes = schema.new({ type = "list", list_member = M.ObjectAttribute })
+
+M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FilterAttributeDimension })
+
+M.CalculatedCustomAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.CalculatedAttributeDimension })
+
+M.EventTriggerValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeDimension })
+
+M.ValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExtraLengthValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DateValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileTypeValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

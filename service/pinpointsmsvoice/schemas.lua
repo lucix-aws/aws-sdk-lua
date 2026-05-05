@@ -7,6 +7,12 @@ local _N = "com.amazonaws.pinpointsmsvoice"
 
 local M = {}
 
+M.EventDestinations = schema.new({ type = "list", list_member = M.EventDestination })
+
+M.ConfigurationSets = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventTypes = schema.new({ type = "list", list_member = prelude.String })
+
 M.AlreadyExistsException = schema.new({
     id = id.from(_N, "AlreadyExistsException"),
     type = "structure",

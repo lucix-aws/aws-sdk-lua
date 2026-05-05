@@ -7,6 +7,92 @@ local _N = "com.amazonaws.licensemanager"
 
 local M = {}
 
+M.EntitlementDataList = schema.new({ type = "list", list_member = M.EntitlementData })
+
+M.MetadataList = schema.new({ type = "list", list_member = M.Metadata })
+
+M.PrincipalArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedOperationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EntitlementList = schema.new({ type = "list", list_member = M.Entitlement })
+
+M.LicenseAssetGroupConfigurationList = schema.new({ type = "list", list_member = M.LicenseAssetGroupConfiguration })
+
+M.LicenseAssetRulesetArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LicenseAssetGroupPropertyList = schema.new({ type = "list", list_member = M.LicenseAssetGroupProperty })
+
+M.LicenseAssetRuleList = schema.new({ type = "list", list_member = M.LicenseAssetRule })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductInformationList = schema.new({ type = "list", list_member = M.ProductInformation })
+
+M.ReportTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MaxSize3StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConsumedLicenseSummaryList = schema.new({ type = "list", list_member = M.ConsumedLicenseSummary })
+
+M.ManagedResourceSummaryList = schema.new({ type = "list", list_member = M.ManagedResourceSummary })
+
+M.AssetList = schema.new({ type = "list", list_member = M.Asset })
+
+M.LicenseConfigurationAssociations = schema.new({ type = "list", list_member = M.LicenseConfigurationAssociation })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.GrantList = schema.new({ type = "list", list_member = M.Grant })
+
+M.LicenseOperationFailureList = schema.new({ type = "list", list_member = M.LicenseOperationFailure })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.LicenseAssetGroupList = schema.new({ type = "list", list_member = M.LicenseAssetGroup })
+
+M.LicenseAssetRulesetList = schema.new({ type = "list", list_member = M.LicenseAssetRuleset })
+
+M.LicenseConfigurations = schema.new({ type = "list", list_member = M.LicenseConfiguration })
+
+M.LicenseConversionTasks = schema.new({ type = "list", list_member = M.LicenseConversionTask })
+
+M.ReportGeneratorList = schema.new({ type = "list", list_member = M.ReportGenerator })
+
+M.LicenseList = schema.new({ type = "list", list_member = M.License })
+
+M.LicenseSpecifications = schema.new({ type = "list", list_member = M.LicenseSpecification })
+
+M.GrantedLicenseList = schema.new({ type = "list", list_member = M.GrantedLicense })
+
+M.InventoryFilterList = schema.new({ type = "list", list_member = M.InventoryFilter })
+
+M.ResourceInventoryList = schema.new({ type = "list", list_member = M.ResourceInventory })
+
+M.TokenList = schema.new({ type = "list", list_member = M.TokenData })
+
+M.LicenseConfigurationUsageList = schema.new({ type = "list", list_member = M.LicenseConfigurationUsage })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductCodeList = schema.new({ type = "list", list_member = M.ProductCodeListItem })
+
+M.EntitlementUsageList = schema.new({ type = "list", list_member = M.EntitlementUsage })
+
+M.ProductInformationFilterList = schema.new({ type = "list", list_member = M.ProductInformationFilter })
+
+M.RegionStatusMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionStatus })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchingRuleStatementList = schema.new({ type = "list", list_member = M.MatchingRuleStatement })
+
+M.ScriptRuleStatementList = schema.new({ type = "list", list_member = M.ScriptRuleStatement })
+
 M.AcceptGrantInput = schema.new({
     id = id.from(_N, "AcceptGrantRequest"),
     type = "structure",

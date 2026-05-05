@@ -7,6 +7,214 @@ local _N = "com.amazonaws.redshift"
 
 local M = {}
 
+M.DataShareAssociationList = schema.new({ type = "list", list_member = M.DataShareAssociation })
+
+M.VpcIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteClusterSnapshotMessageList = schema.new({ type = "list", list_member = M.DeleteClusterSnapshotMessage })
+
+M.SnapshotIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchSnapshotOperationErrorList = schema.new({ type = "list", list_member = M.SnapshotErrorMessage })
+
+M.BatchSnapshotOperationErrors = schema.new({ type = "list", list_member = M.SnapshotErrorMessage })
+
+M.ImportTablesCompleted = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportTablesInProgress = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportTablesNotStarted = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterSecurityGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.IamRoleArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.VpcSecurityGroupMembership })
+
+M.SourceIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventCategoriesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EncryptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IntegrationErrorList = schema.new({ type = "list", list_member = M.IntegrationError })
+
+M.AuthorizedTokenIssuerList = schema.new({ type = "list", list_member = M.AuthorizedTokenIssuer })
+
+M.ServiceIntegrationList = schema.new({ type = "list", list_member = M.ServiceIntegrationsUnion })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledActionTimeList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.ScheduleDefinitionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledSnapshotTimeList = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.AssociatedClusterList = schema.new({ type = "list", list_member = M.ClusterAssociatedToSchedule })
+
+M.ConsumerIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeList = schema.new({ type = "list", list_member = M.AccountAttribute })
+
+M.AuthenticationProfileList = schema.new({ type = "list", list_member = M.AuthenticationProfile })
+
+M.ClusterDbRevisionsList = schema.new({ type = "list", list_member = M.ClusterDbRevision })
+
+M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterGroupList = schema.new({ type = "list", list_member = M.ClusterParameterGroup })
+
+M.ParametersList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.ClusterList = schema.new({ type = "list", list_member = M.Cluster })
+
+M.ClusterSecurityGroups = schema.new({ type = "list", list_member = M.ClusterSecurityGroup })
+
+M.SnapshotSortingEntityList = schema.new({ type = "list", list_member = M.SnapshotSortingEntity })
+
+M.SnapshotList = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.ClusterSubnetGroups = schema.new({ type = "list", list_member = M.ClusterSubnetGroup })
+
+M.TrackList = schema.new({ type = "list", list_member = M.MaintenanceTrack })
+
+M.ClusterVersionList = schema.new({ type = "list", list_member = M.ClusterVersion })
+
+M.AssociationList = schema.new({ type = "list", list_member = M.Association })
+
+M.DataShareList = schema.new({ type = "list", list_member = M.DataShare })
+
+M.EndpointAccesses = schema.new({ type = "list", list_member = M.EndpointAccess })
+
+M.EndpointAuthorizations = schema.new({ type = "list", list_member = M.EndpointAuthorization })
+
+M.EventCategoriesMapList = schema.new({ type = "list", list_member = M.EventCategoriesMap })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.EventSubscriptionsList = schema.new({ type = "list", list_member = M.EventSubscription })
+
+M.HsmClientCertificateList = schema.new({ type = "list", list_member = M.HsmClientCertificate })
+
+M.HsmConfigurationList = schema.new({ type = "list", list_member = M.HsmConfiguration })
+
+M.InboundIntegrationList = schema.new({ type = "list", list_member = M.InboundIntegration })
+
+M.DescribeIntegrationsFilterList = schema.new({ type = "list", list_member = M.DescribeIntegrationsFilter })
+
+M.IntegrationList = schema.new({ type = "list", list_member = M.Integration })
+
+M.LogTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeConfigurationOptionsFilterList = schema.new({ type = "list", list_member = M.NodeConfigurationOptionsFilter })
+
+M.NodeConfigurationOptionList = schema.new({ type = "list", list_member = M.NodeConfigurationOption })
+
+M.OrderableClusterOptionsList = schema.new({ type = "list", list_member = M.OrderableClusterOption })
+
+M.PartnerIntegrationInfoList = schema.new({ type = "list", list_member = M.PartnerIntegrationInfo })
+
+M.RedshiftIdcApplicationList = schema.new({ type = "list", list_member = M.RedshiftIdcApplication })
+
+M.ReservedNodeExchangeStatusList = schema.new({ type = "list", list_member = M.ReservedNodeExchangeStatus })
+
+M.ReservedNodeOfferingList = schema.new({ type = "list", list_member = M.ReservedNodeOffering })
+
+M.ReservedNodeList = schema.new({ type = "list", list_member = M.ReservedNode })
+
+M.ScheduledActionFilterList = schema.new({ type = "list", list_member = M.ScheduledActionFilter })
+
+M.ScheduledActionList = schema.new({ type = "list", list_member = M.ScheduledAction })
+
+M.SnapshotCopyGrantList = schema.new({ type = "list", list_member = M.SnapshotCopyGrant })
+
+M.SnapshotScheduleList = schema.new({ type = "list", list_member = M.SnapshotSchedule })
+
+M.TableRestoreStatusList = schema.new({ type = "list", list_member = M.TableRestoreStatus })
+
+M.TaggedResourceList = schema.new({ type = "list", list_member = M.TaggedResource })
+
+M.UsageLimits = schema.new({ type = "list", list_member = M.UsageLimit })
+
+M.DbGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedNodeConfigurationOptionList = schema.new({ type = "list", list_member = M.ReservedNodeConfigurationOption })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.RecurringChargeList = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.EC2SecurityGroupList = schema.new({ type = "list", list_member = M.EC2SecurityGroup })
+
+M.IPRangeList = schema.new({ type = "list", list_member = M.IPRange })
+
+M.AccountsWithRestoreAccessList = schema.new({ type = "list", list_member = M.AccountWithRestoreAccess })
+
+M.RestorableNodeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClusterSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.ClusterSecurityGroupMembership })
+
+M.ClusterParameterGroupStatusList = schema.new({ type = "list", list_member = M.ClusterParameterGroupStatus })
+
+M.ClusterNodesList = schema.new({ type = "list", list_member = M.ClusterNode })
+
+M.ClusterIamRoleList = schema.new({ type = "list", list_member = M.ClusterIamRole })
+
+M.PendingActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeferredMaintenanceWindowsList = schema.new({ type = "list", list_member = M.DeferredMaintenanceWindow })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.VpcEndpointsList = schema.new({ type = "list", list_member = M.VpcEndpoint })
+
+M.AuthorizedAudienceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LakeFormationServiceIntegrations = schema.new({ type = "list", list_member = M.LakeFormationScopeUnion })
+
+M.S3AccessGrantsServiceIntegrations = schema.new({ type = "list", list_member = M.S3AccessGrantsScopeUnion })
+
+M.RedshiftServiceIntegrations = schema.new({ type = "list", list_member = M.RedshiftScopeUnion })
+
+M.AttributeValueList = schema.new({ type = "list", list_member = M.AttributeValueTarget })
+
+M.RevisionTargetsList = schema.new({ type = "list", list_member = M.RevisionTarget })
+
+M.EligibleTracksToUpdateList = schema.new({ type = "list", list_member = M.UpdateTarget })
+
+M.CertificateAssociationList = schema.new({ type = "list", list_member = M.CertificateAssociation })
+
+M.EventInfoMapList = schema.new({ type = "list", list_member = M.EventInfoMap })
+
+M.DescribeIntegrationsFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.RecommendedActionList = schema.new({ type = "list", list_member = M.RecommendedAction })
+
+M.ReferenceLinkList = schema.new({ type = "list", list_member = M.ReferenceLink })
+
+M.ClusterParameterStatusList = schema.new({ type = "list", list_member = M.ClusterParameterStatus })
+
+M.SupportedPlatformsList = schema.new({ type = "list", list_member = M.SupportedPlatform })
+
+M.SupportedOperationList = schema.new({ type = "list", list_member = M.SupportedOperation })
+
 M.AcceptReservedNodeExchangeInput = schema.new({
     id = id.from(_N, "AcceptReservedNodeExchangeInputMessage"),
     type = "structure",
@@ -6251,10 +6459,7 @@ M.CreateTagsInput = schema.new({
     },
 })
 
-M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTagsOutput = prelude.Unit
 
 M.ResourceNotFoundFault = schema.new({
     id = id.from(_N, "ResourceNotFoundFault"),
@@ -6731,10 +6936,7 @@ M.DeleteClusterParameterGroupInput = schema.new({
     },
 })
 
-M.DeleteClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteClusterParameterGroupOutput = prelude.Unit
 
 M.InvalidClusterParameterGroupStateFault = schema.new({
     id = id.from(_N, "InvalidClusterParameterGroupStateFault"),
@@ -6768,10 +6970,7 @@ M.DeleteClusterSecurityGroupInput = schema.new({
     },
 })
 
-M.DeleteClusterSecurityGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteClusterSecurityGroupOutput = prelude.Unit
 
 M.DeleteClusterSnapshotInput = schema.new({
     id = id.from(_N, "DeleteClusterSnapshotMessage"),
@@ -6825,10 +7024,7 @@ M.DeleteClusterSubnetGroupInput = schema.new({
     },
 })
 
-M.DeleteClusterSubnetGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteClusterSubnetGroupOutput = prelude.Unit
 
 M.InvalidClusterSubnetStateFault = schema.new({
     id = id.from(_N, "InvalidClusterSubnetStateFault"),
@@ -6871,10 +7067,7 @@ M.DeleteCustomDomainAssociationInput = schema.new({
     },
 })
 
-M.DeleteCustomDomainAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomDomainAssociationOutput = prelude.Unit
 
 M.DeleteEndpointAccessInput = schema.new({
     id = id.from(_N, "DeleteEndpointAccessMessage"),
@@ -7009,10 +7202,7 @@ M.DeleteEventSubscriptionInput = schema.new({
     },
 })
 
-M.DeleteEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventSubscriptionOutput = prelude.Unit
 
 M.InvalidSubscriptionStateFault = schema.new({
     id = id.from(_N, "InvalidSubscriptionStateFault"),
@@ -7062,10 +7252,7 @@ M.DeleteHsmClientCertificateInput = schema.new({
     },
 })
 
-M.DeleteHsmClientCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHsmClientCertificateOutput = prelude.Unit
 
 M.InvalidHsmClientCertificateStateFault = schema.new({
     id = id.from(_N, "InvalidHsmClientCertificateStateFault"),
@@ -7099,10 +7286,7 @@ M.DeleteHsmConfigurationInput = schema.new({
     },
 })
 
-M.DeleteHsmConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteHsmConfigurationOutput = prelude.Unit
 
 M.InvalidHsmConfigurationStateFault = schema.new({
     id = id.from(_N, "InvalidHsmConfigurationStateFault"),
@@ -7323,10 +7507,7 @@ M.DeleteRedshiftIdcApplicationInput = schema.new({
     },
 })
 
-M.DeleteRedshiftIdcApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRedshiftIdcApplicationOutput = prelude.Unit
 
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyMessage"),
@@ -7344,10 +7525,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DeleteScheduledActionInput = schema.new({
     id = id.from(_N, "DeleteScheduledActionMessage"),
@@ -7365,10 +7543,7 @@ M.DeleteScheduledActionInput = schema.new({
     },
 })
 
-M.DeleteScheduledActionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteScheduledActionOutput = prelude.Unit
 
 M.ScheduledActionNotFoundFault = schema.new({
     id = id.from(_N, "ScheduledActionNotFoundFault"),
@@ -7402,10 +7577,7 @@ M.DeleteSnapshotCopyGrantInput = schema.new({
     },
 })
 
-M.DeleteSnapshotCopyGrantOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSnapshotCopyGrantOutput = prelude.Unit
 
 M.InvalidSnapshotCopyGrantStateFault = schema.new({
     id = id.from(_N, "InvalidSnapshotCopyGrantStateFault"),
@@ -7455,10 +7627,7 @@ M.DeleteSnapshotScheduleInput = schema.new({
     },
 })
 
-M.DeleteSnapshotScheduleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSnapshotScheduleOutput = prelude.Unit
 
 M.InvalidClusterSnapshotScheduleStateFault = schema.new({
     id = id.from(_N, "InvalidClusterSnapshotScheduleStateFault"),
@@ -7502,10 +7671,7 @@ M.DeleteTagsInput = schema.new({
     },
 })
 
-M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTagsOutput = prelude.Unit
 
 M.DeleteUsageLimitInput = schema.new({
     id = id.from(_N, "DeleteUsageLimitMessage"),
@@ -7523,10 +7689,7 @@ M.DeleteUsageLimitInput = schema.new({
     },
 })
 
-M.DeleteUsageLimitOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUsageLimitOutput = prelude.Unit
 
 M.UsageLimitNotFoundFault = schema.new({
     id = id.from(_N, "UsageLimitNotFoundFault"),
@@ -10562,10 +10725,7 @@ M.DescribeSnapshotSchedulesOutput = schema.new({
     },
 })
 
-M.DescribeStorageInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeStorageInput = prelude.Unit
 
 M.DescribeStorageOutput = schema.new({
     id = id.from(_N, "CustomerStorageMessage"),
@@ -12658,10 +12818,7 @@ M.ModifyClusterSnapshotScheduleInput = schema.new({
     },
 })
 
-M.ModifyClusterSnapshotScheduleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyClusterSnapshotScheduleOutput = prelude.Unit
 
 M.ModifyClusterSubnetGroupInput = schema.new({
     id = id.from(_N, "ModifyClusterSubnetGroupMessage"),

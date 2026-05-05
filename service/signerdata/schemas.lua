@@ -7,6 +7,10 @@ local _N = "com.amazonaws.signerdata"
 
 local M = {}
 
+M.CertificateHashes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RevokedEntities = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

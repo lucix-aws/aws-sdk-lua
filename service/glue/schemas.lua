@@ -7,6 +7,512 @@ local _N = "com.amazonaws.glue"
 
 local M = {}
 
+M.PartitionInputList = schema.new({ type = "list", list_member = M.PartitionInput })
+
+M.PartitionErrors = schema.new({ type = "list", list_member = M.PartitionError })
+
+M.DeleteConnectionNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ErrorByName = schema.new({ type = "map", map_key = prelude.String, map_value = M.ErrorDetail })
+
+M.BatchDeletePartitionValueList = schema.new({ type = "list", list_member = M.PartitionValueList })
+
+M.BatchDeleteTableNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableErrors = schema.new({ type = "list", list_member = M.TableError })
+
+M.BatchDeleteTableVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableVersionErrors = schema.new({ type = "list", list_member = M.TableVersionError })
+
+M.BatchGetBlueprintNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Blueprints = schema.new({ type = "list", list_member = M.Blueprint })
+
+M.BlueprintNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrawlerNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrawlerList = schema.new({ type = "list", list_member = M.Crawler })
+
+M.CustomEntityTypeNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomEntityTypes = schema.new({ type = "list", list_member = M.CustomEntityType })
+
+M.DataQualityResultIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataQualityResultsList = schema.new({ type = "list", list_member = M.DataQualityResult })
+
+M.DevEndpointNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.DevEndpointList = schema.new({ type = "list", list_member = M.DevEndpoint })
+
+M.JobNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobList = schema.new({ type = "list", list_member = M.Job })
+
+M.BatchGetPartitionValueList = schema.new({ type = "list", list_member = M.PartitionValueList })
+
+M.PartitionList = schema.new({ type = "list", list_member = M.Partition })
+
+M.BatchGetTableOptimizerEntries = schema.new({ type = "list", list_member = M.BatchGetTableOptimizerEntry })
+
+M.BatchTableOptimizers = schema.new({ type = "list", list_member = M.BatchTableOptimizer })
+
+M.BatchGetTableOptimizerErrors = schema.new({ type = "list", list_member = M.BatchGetTableOptimizerError })
+
+M.TriggerNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerList = schema.new({ type = "list", list_member = M.Trigger })
+
+M.WorkflowNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Workflows = schema.new({ type = "list", list_member = M.Workflow })
+
+M.InclusionAnnotationList = schema.new({ type = "list", list_member = M.DatapointInclusionAnnotation })
+
+M.AnnotationErrorList = schema.new({ type = "list", list_member = M.AnnotationError })
+
+M.BatchStopJobRunJobRunIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchStopJobRunSuccessfulSubmissionList = schema.new({ type = "list", list_member = M.BatchStopJobRunSuccessfulSubmission })
+
+M.BatchStopJobRunErrorList = schema.new({ type = "list", list_member = M.BatchStopJobRunError })
+
+M.BatchUpdatePartitionRequestEntryList = schema.new({ type = "list", list_member = M.BatchUpdatePartitionRequestEntry })
+
+M.BatchUpdatePartitionFailureList = schema.new({ type = "list", list_member = M.BatchUpdatePartitionFailureEntry })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClassifierNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextWords = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PublicKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MapValue = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IdentityCenterScopesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegrationAdditionalEncryptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IntegrationTagsList = schema.new({ type = "list", list_member = M.Tag })
+
+M.IntegrationErrorList = schema.new({ type = "list", list_member = M.IntegrationError })
+
+M.GenericMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CodeGenConfigurationNodes = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodeGenConfigurationNode })
+
+M.GlueTables = schema.new({ type = "list", list_member = M.GlueTable })
+
+M.DagNodes = schema.new({ type = "list", list_member = M.CodeGenNode })
+
+M.DagEdges = schema.new({ type = "list", list_member = M.CodeGenEdge })
+
+M.OrchestrationArgumentsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PartitionIndexList = schema.new({ type = "list", list_member = M.PartitionIndex })
+
+M.ActionList = schema.new({ type = "list", list_member = M.Action })
+
+M.WorkflowRunProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchemaVersionErrorList = schema.new({ type = "list", list_member = M.SchemaVersionErrorItem })
+
+M.PropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Property })
+
+M.ComputeEnvironmentConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ComputeEnvironmentConfiguration })
+
+M.FieldsList = schema.new({ type = "list", list_member = M.Field })
+
+M.InboundIntegrationsList = schema.new({ type = "list", list_member = M.InboundIntegration })
+
+M.IntegrationFilterList = schema.new({ type = "list", list_member = M.IntegrationFilter })
+
+M.IntegrationsList = schema.new({ type = "list", list_member = M.Integration })
+
+M.BlueprintRuns = schema.new({ type = "list", list_member = M.BlueprintRun })
+
+M.CatalogList = schema.new({ type = "list", list_member = M.Catalog })
+
+M.ClassifierList = schema.new({ type = "list", list_member = M.Classifier })
+
+M.GetColumnNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnStatisticsList = schema.new({ type = "list", list_member = M.ColumnStatistics })
+
+M.ColumnErrors = schema.new({ type = "list", list_member = M.ColumnError })
+
+M.ColumnStatisticsTaskRunsList = schema.new({ type = "list", list_member = M.ColumnStatisticsTaskRun })
+
+M.ConnectionList = schema.new({ type = "list", list_member = M.Connection })
+
+M.CrawlerMetricsList = schema.new({ type = "list", list_member = M.CrawlerMetrics })
+
+M.DatabaseAttributesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseList = schema.new({ type = "list", list_member = M.Database })
+
+M.StatisticModelResults = schema.new({ type = "list", list_member = M.StatisticModelResult })
+
+M.DataQualityRuleResults = schema.new({ type = "list", list_member = M.DataQualityRuleResult })
+
+M.DataQualityAnalyzerResults = schema.new({ type = "list", list_member = M.DataQualityAnalyzerResult })
+
+M.DataQualityObservations = schema.new({ type = "list", list_member = M.DataQualityObservation })
+
+M.RulesetNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataQualityResultIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DataSource })
+
+M.ConnectionOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SelectedFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.Records = schema.new({ type = "list", list_member = prelude.Document })
+
+M.OrchestrationStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobRunList = schema.new({ type = "list", list_member = M.JobRun })
+
+M.CatalogEntries = schema.new({ type = "list", list_member = M.CatalogEntry })
+
+M.MappingList = schema.new({ type = "list", list_member = M.MappingEntry })
+
+M.TaskRunList = schema.new({ type = "list", list_member = M.TaskRun })
+
+M.TransformSchema = schema.new({ type = "list", list_member = M.SchemaColumn })
+
+M.TransformList = schema.new({ type = "list", list_member = M.MLTransform })
+
+M.PartitionIndexDescriptorList = schema.new({ type = "list", list_member = M.PartitionIndexDescriptor })
+
+M.AdditionalPlanOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GetResourcePoliciesResponseList = schema.new({ type = "list", list_member = M.GluePolicy })
+
+M.SecurityConfigurationList = schema.new({ type = "list", list_member = M.SecurityConfiguration })
+
+M.TableAttributesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableList = schema.new({ type = "list", list_member = M.Table })
+
+M.GetTableVersionsList = schema.new({ type = "list", list_member = M.TableVersion })
+
+M.PermissionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnfilteredPartitionList = schema.new({ type = "list", list_member = M.UnfilteredPartition })
+
+M.PermissionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnRowFilterList = schema.new({ type = "list", list_member = M.ColumnRowFilter })
+
+M.UserDefinedFunctionList = schema.new({ type = "list", list_member = M.UserDefinedFunction })
+
+M.WorkflowRuns = schema.new({ type = "list", list_member = M.WorkflowRun })
+
+M.ColumnStatisticsTaskRunIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionTypeList = schema.new({ type = "list", list_member = M.ConnectionTypeBrief })
+
+M.CrawlsFilterList = schema.new({ type = "list", list_member = M.CrawlsFilter })
+
+M.CrawlerHistoryList = schema.new({ type = "list", list_member = M.CrawlerHistory })
+
+M.DataQualityResultDescriptionList = schema.new({ type = "list", list_member = M.DataQualityResultDescription })
+
+M.DataQualityRuleRecommendationRunList = schema.new({ type = "list", list_member = M.DataQualityRuleRecommendationRunDescription })
+
+M.DataQualityRulesetEvaluationRunList = schema.new({ type = "list", list_member = M.DataQualityRulesetEvaluationRunDescription })
+
+M.DataQualityRulesetList = schema.new({ type = "list", list_member = M.DataQualityRulesetListDetails })
+
+M.AnnotationList = schema.new({ type = "list", list_member = M.StatisticAnnotation })
+
+M.StatisticSummaryList = schema.new({ type = "list", list_member = M.StatisticSummary })
+
+M.DevEndpointNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityList = schema.new({ type = "list", list_member = M.Entity })
+
+M.IntegrationResourcePropertyFilterList = schema.new({ type = "list", list_member = M.IntegrationResourcePropertyFilter })
+
+M.IntegrationResourcePropertyList = schema.new({ type = "list", list_member = M.IntegrationResourceProperty })
+
+M.MaterializedViewRefreshTaskRunsList = schema.new({ type = "list", list_member = M.MaterializedViewRefreshTaskRun })
+
+M.TransformIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistryListDefinition = schema.new({ type = "list", list_member = M.RegistryListItem })
+
+M.SchemaListDefinition = schema.new({ type = "list", list_member = M.SchemaListItem })
+
+M.SchemaVersionList = schema.new({ type = "list", list_member = M.SchemaVersionListItem })
+
+M.SessionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SessionList = schema.new({ type = "list", list_member = M.Session })
+
+M.StatementList = schema.new({ type = "list", list_member = M.Statement })
+
+M.TableOptimizerRuns = schema.new({ type = "list", list_member = M.TableOptimizerRun })
+
+M.UsageProfileDefinitionList = schema.new({ type = "list", list_member = M.UsageProfileDefinition })
+
+M.MetadataList = schema.new({ type = "list", list_member = M.MetadataKeyValuePair })
+
+M.MetadataInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetadataInfo })
+
+M.NodeIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchPropertyPredicates = schema.new({ type = "list", list_member = M.PropertyPredicate })
+
+M.SortCriteria = schema.new({ type = "list", list_member = M.SortCriterion })
+
+M.TagKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateColumnStatisticsList = schema.new({ type = "list", list_member = M.ColumnStatistics })
+
+M.ColumnStatisticsErrors = schema.new({ type = "list", list_member = M.ColumnStatisticsError })
+
+M.BoundedPartitionValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuditColumnNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PrincipalPermissionsList = schema.new({ type = "list", list_member = M.PrincipalPermissions })
+
+M.CsvHeader = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomDatatypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchCriteria = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ComputeEnvironmentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3TargetList = schema.new({ type = "list", list_member = M.S3Target })
+
+M.JdbcTargetList = schema.new({ type = "list", list_member = M.JdbcTarget })
+
+M.MongoDBTargetList = schema.new({ type = "list", list_member = M.MongoDBTarget })
+
+M.DynamoDBTargetList = schema.new({ type = "list", list_member = M.DynamoDBTarget })
+
+M.CatalogTargetList = schema.new({ type = "list", list_member = M.CatalogTarget })
+
+M.DeltaTargetList = schema.new({ type = "list", list_member = M.DeltaTarget })
+
+M.IcebergTargetList = schema.new({ type = "list", list_member = M.IcebergTarget })
+
+M.HudiTargetList = schema.new({ type = "list", list_member = M.HudiTarget })
+
+M.IntegrationSourcePropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SourceTableFieldsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrimaryKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegrationPartitionSpecList = schema.new({ type = "list", list_member = M.IntegrationPartition })
+
+M.ConnectionStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.S3EncryptionList = schema.new({ type = "list", list_member = M.S3Encryption })
+
+M.ColumnList = schema.new({ type = "list", list_member = M.Column })
+
+M.ConditionList = schema.new({ type = "list", list_member = M.Condition })
+
+M.ConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConfigurationObject })
+
+M.ResourceUriList = schema.new({ type = "list", list_member = M.ResourceUri })
+
+M.AuthenticationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataOperations = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComputeEnvironments = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntityConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EntityConfiguration })
+
+M.PredecessorList = schema.new({ type = "list", list_member = M.Predecessor })
+
+M.CodeGenNodeArgs = schema.new({ type = "list", list_member = M.CodeGenNodeArg })
+
+M.ConnectorPropertyList = schema.new({ type = "list", list_member = M.ConnectorProperty })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CredentialMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GlueTableAdditionalOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LocationStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrderList = schema.new({ type = "list", list_member = M.Order })
+
+M.ViewRepresentationInputList = schema.new({ type = "list", list_member = M.ViewRepresentationInput })
+
+M.ViewSubObjectsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ViewSubObjectVersionIdsList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.PropertyTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedValues = schema.new({ type = "list", list_member = M.AllowedValue })
+
+M.PropertyNameOverrides = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfString = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldFilterOperatorsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IntegrationFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluatedMetricsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.RuleMetricsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.Labels = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ColumnImportanceList = schema.new({ type = "list", list_member = M.ColumnImportance })
+
+M.KeySchemaElementList = schema.new({ type = "list", list_member = M.KeySchemaElement })
+
+M.BackfillErrors = schema.new({ type = "list", list_member = M.BackfillError })
+
+M.ViewRepresentationList = schema.new({ type = "list", list_member = M.ViewRepresentation })
+
+M.NodeList = schema.new({ type = "list", list_member = M.Node })
+
+M.EdgeList = schema.new({ type = "list", list_member = M.Edge })
+
+M.ConnectionTypeVariantList = schema.new({ type = "list", list_member = M.ConnectionTypeVariant })
+
+M.ReferenceDatasetsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatisticPropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IntegrationResourcePropertyFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.OtherMetadataValueList = schema.new({ type = "list", list_member = M.OtherMetadataValueListItem })
+
+M.TokenUrlParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnableAdditionalMetadata = schema.new({ type = "list", list_member = prelude.String })
+
+M.CatalogTablesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GlueSchemas = schema.new({ type = "list", list_member = M.GlueSchema })
+
+M.AdditionalOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EnclosedInStringProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.OneInput = schema.new({ type = "list", list_member = prelude.String })
+
+M.GlueStudioPathList = schema.new({ type = "list", list_member = M.EnclosedInStringProperties })
+
+M.Mappings = schema.new({ type = "list", list_member = M.Mapping })
+
+M.TwoInputs = schema.new({ type = "list", list_member = prelude.String })
+
+M.JoinColumns = schema.new({ type = "list", list_member = M.JoinColumn })
+
+M.FilterExpressions = schema.new({ type = "list", list_member = M.FilterExpression })
+
+M.ManyInputs = schema.new({ type = "list", list_member = prelude.String })
+
+M.SqlAliases = schema.new({ type = "list", list_member = M.SqlAlias })
+
+M.NullValueFields = schema.new({ type = "list", list_member = M.NullValueField })
+
+M.AggregateOperations = schema.new({ type = "list", list_member = M.AggregateOperation })
+
+M.LimitedPathList = schema.new({ type = "list", list_member = M.LimitedStringList })
+
+M.GroupFiltersList = schema.new({ type = "list", list_member = M.GroupFilters })
+
+M.TransformConfigParameterList = schema.new({ type = "list", list_member = M.TransformConfigParameter })
+
+M.DQDLAliases = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DQAdditionalOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RecipeSteps = schema.new({ type = "list", list_member = M.RecipeStep })
+
+M.ConnectorOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ColumnValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringToStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AllowedValuesStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldDefinitionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldDefinition })
+
+M.NewRules = schema.new({ type = "list", list_member = prelude.String })
+
+M.ViewValidationList = schema.new({ type = "list", list_member = M.ViewValidation })
+
+M.IcebergTableUpdateList = schema.new({ type = "list", list_member = M.IcebergTableUpdate })
+
+M.JDBCDataTypeMapping = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EnclosedInStringPropertiesMinOne = schema.new({ type = "list", list_member = prelude.String })
+
+M.LimitedStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmazonRedshiftAdvancedOptions = schema.new({ type = "list", list_member = M.AmazonRedshiftAdvancedOption })
+
+M.OptionList = schema.new({ type = "list", list_member = M.Option })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.IcebergStructFieldList = schema.new({ type = "list", list_member = M.IcebergStructField })
+
+M.IcebergPartitionSpecFieldList = schema.new({ type = "list", list_member = M.IcebergPartitionField })
+
+M.IcebergSortOrderFieldList = schema.new({ type = "list", list_member = M.IcebergSortField })
+
+M.BackfillErroredPartitionsList = schema.new({ type = "list", list_member = M.PartitionValueList })
+
+M.GlueStudioSchemaColumnList = schema.new({ type = "list", list_member = M.GlueStudioSchemaColumn })
+
+M.FilterValues = schema.new({ type = "list", list_member = M.FilterValue })
+
+M.ConditionExpressionList = schema.new({ type = "list", list_member = M.ConditionExpression })
+
+M.CrawlList = schema.new({ type = "list", list_member = M.Crawl })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,1482 @@ local _N = "com.amazonaws.ec2"
 
 local M = {}
 
+M.TagSpecificationList = schema.new({ type = "list", list_member = M.TagSpecification })
+
+M.ReservedInstanceIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetConfigurationRequestSet = schema.new({ type = "list", list_member = M.TargetConfigurationRequest })
+
+M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpointIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnsuccessfulItemSet = schema.new({ type = "list", list_member = M.UnsuccessfulItem })
+
+M.AssetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseHostIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpamPoolAllocationAllowedCidrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpamPoolAllocationDisallowedCidrs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClientVpnSecurityGroupIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpPrefixList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ipv6AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrivateIpAddressStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssignedPrivateIpAddressList = schema.new({ type = "list", list_member = M.AssignedPrivateIpAddress })
+
+M.Ipv4PrefixesList = schema.new({ type = "list", list_member = M.Ipv4PrefixSpecification })
+
+M.IpList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NatGatewayAddressList = schema.new({ type = "list", list_member = M.NatGatewayAddress })
+
+M.AllocationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewaySubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpPermissionList = schema.new({ type = "list", list_member = M.IpPermission })
+
+M.SecurityGroupRuleList = schema.new({ type = "list", list_member = M.SecurityGroupRule })
+
+M.CapacityReservationFleetIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityReservationFleetCancellationStateSet = schema.new({ type = "list", list_member = M.CapacityReservationFleetCancellationState })
+
+M.FailedCapacityReservationFleetCancellationResultSet = schema.new({ type = "list", list_member = M.FailedCapacityReservationFleetCancellationResult })
+
+M.ReservedInstancesListingList = schema.new({ type = "list", list_member = M.ReservedInstancesListing })
+
+M.SpotFleetRequestIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CancelSpotFleetRequestsSuccessSet = schema.new({ type = "list", list_member = M.CancelSpotFleetRequestsSuccessItem })
+
+M.CancelSpotFleetRequestsErrorSet = schema.new({ type = "list", list_member = M.CancelSpotFleetRequestsErrorItem })
+
+M.SpotInstanceRequestIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CancelledSpotInstanceRequestList = schema.new({ type = "list", list_member = M.CancelledSpotInstanceRequest })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.VolumeList = schema.new({ type = "list", list_member = M.Volume })
+
+M.ReservationFleetInstanceSpecificationList = schema.new({ type = "list", list_member = M.ReservationFleetInstanceSpecification })
+
+M.FleetCapacityReservationSet = schema.new({ type = "list", list_member = M.FleetCapacityReservation })
+
+M.ClientVpnAuthenticationRequestList = schema.new({ type = "list", list_member = M.ClientVpnAuthenticationRequest })
+
+M.NewDhcpConfigurationList = schema.new({ type = "list", list_member = M.NewDhcpConfiguration })
+
+M.FleetLaunchTemplateConfigListRequest = schema.new({ type = "list", list_member = M.FleetLaunchTemplateConfigRequest })
+
+M.CreateFleetErrorsSet = schema.new({ type = "list", list_member = M.CreateFleetError })
+
+M.CreateFleetInstancesSet = schema.new({ type = "list", list_member = M.CreateFleetInstance })
+
+M.FlowLogResourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockDeviceMappingRequestList = schema.new({ type = "list", list_member = M.BlockDeviceMapping })
+
+M.ImageUsageResourceTypeRequestList = schema.new({ type = "list", list_member = M.ImageUsageResourceTypeRequest })
+
+M.ImageUsageReportUserIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdStringListRequest = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceEventWindowTimeRangeRequestSet = schema.new({ type = "list", list_member = M.InstanceEventWindowTimeRangeRequest })
+
+M.AddIpamOperatingRegionSet = schema.new({ type = "list", list_member = M.AddIpamOperatingRegion })
+
+M.RequestIpamResourceTagList = schema.new({ type = "list", list_member = M.RequestIpamResourceTag })
+
+M.IpamPrefixListResolverRuleRequestSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleRequest })
+
+M.AddPrefixListEntries = schema.new({ type = "list", list_member = M.AddPrefixListEntry })
+
+M.AvailabilityZoneAddresses = schema.new({ type = "list", list_member = M.AvailabilityZoneAddress })
+
+M.AccessScopePathListRequest = schema.new({ type = "list", list_member = M.AccessScopePathRequest })
+
+M.Ipv4PrefixList = schema.new({ type = "list", list_member = M.Ipv4PrefixSpecificationRequest })
+
+M.Ipv6PrefixList = schema.new({ type = "list", list_member = M.Ipv6PrefixSpecificationRequest })
+
+M.SecurityGroupIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrivateIpAddressSpecificationList = schema.new({ type = "list", list_member = M.PrivateIpAddressSpecification })
+
+M.InstanceIpv6AddressList = schema.new({ type = "list", list_member = M.InstanceIpv6Address })
+
+M.PriceScheduleSpecificationList = schema.new({ type = "list", list_member = M.PriceScheduleSpecification })
+
+M.SnapshotSet = schema.new({ type = "list", list_member = M.SnapshotInfo })
+
+M.S3ObjectTagList = schema.new({ type = "list", list_member = M.S3ObjectTag })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsideCidrBlocksStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayAttachmentIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeAttachmentList = schema.new({ type = "list", list_member = M.VolumeAttachment })
+
+M.VpcEndpointRouteTableIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpointSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpointSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetConfigurationsList = schema.new({ type = "list", list_member = M.SubnetConfiguration })
+
+M.FleetIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteFleetSuccessSet = schema.new({ type = "list", list_member = M.DeleteFleetSuccessItem })
+
+M.DeleteFleetErrorSet = schema.new({ type = "list", list_member = M.DeleteFleetErrorItem })
+
+M.FlowLogIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VersionStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteLaunchTemplateVersionsResponseSuccessSet = schema.new({ type = "list", list_member = M.DeleteLaunchTemplateVersionsResponseSuccessItem })
+
+M.DeleteLaunchTemplateVersionsResponseErrorSet = schema.new({ type = "list", list_member = M.DeleteLaunchTemplateVersionsResponseErrorItem })
+
+M.DeleteQueuedReservedInstancesIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuccessfulQueuedPurchaseDeletionSet = schema.new({ type = "list", list_member = M.SuccessfulQueuedPurchaseDeletion })
+
+M.FailedQueuedPurchaseDeletionSet = schema.new({ type = "list", list_member = M.FailedQueuedPurchaseDeletion })
+
+M.ConnectionNotificationIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpointServiceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeprovisionedAddressSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteSnapshotResultSet = schema.new({ type = "list", list_member = M.DeleteSnapshotReturnCode })
+
+M.TransitGatewayNetworkInterfaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountAttributeNameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountAttributeList = schema.new({ type = "list", list_member = M.AccountAttribute })
+
+M.PublicIpStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.AddressList = schema.new({ type = "list", list_member = M.Address })
+
+M.AllocationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddressSet = schema.new({ type = "list", list_member = M.AddressAttribute })
+
+M.AddressTransferList = schema.new({ type = "list", list_member = M.AddressTransfer })
+
+M.IdFormatList = schema.new({ type = "list", list_member = M.IdFormat })
+
+M.ZoneNameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ZoneIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.BundleIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BundleTaskList = schema.new({ type = "list", list_member = M.BundleTask })
+
+M.ByoipCidrSet = schema.new({ type = "list", list_member = M.ByoipCidr })
+
+M.CapacityReservationIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityBlockExtensionSet = schema.new({ type = "list", list_member = M.CapacityBlockExtension })
+
+M.CapacityBlockExtensionOfferingSet = schema.new({ type = "list", list_member = M.CapacityBlockExtensionOffering })
+
+M.CapacityBlockOfferingSet = schema.new({ type = "list", list_member = M.CapacityBlockOffering })
+
+M.CapacityBlockIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityBlockSet = schema.new({ type = "list", list_member = M.CapacityBlock })
+
+M.CapacityBlockStatusSet = schema.new({ type = "list", list_member = M.CapacityBlockStatus })
+
+M.CapacityManagerDataExportIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityManagerDataExportResponseSet = schema.new({ type = "list", list_member = M.CapacityManagerDataExportResponse })
+
+M.CapacityReservationBillingRequestSet = schema.new({ type = "list", list_member = M.CapacityReservationBillingRequest })
+
+M.CapacityReservationFleetSet = schema.new({ type = "list", list_member = M.CapacityReservationFleet })
+
+M.CapacityReservationSet = schema.new({ type = "list", list_member = M.CapacityReservation })
+
+M.CapacityReservationTopologySet = schema.new({ type = "list", list_member = M.CapacityReservationTopology })
+
+M.CarrierGatewayIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CarrierGatewaySet = schema.new({ type = "list", list_member = M.CarrierGateway })
+
+M.InstanceIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClassicLinkInstanceList = schema.new({ type = "list", list_member = M.ClassicLinkInstance })
+
+M.AuthorizationRuleSet = schema.new({ type = "list", list_member = M.AuthorizationRule })
+
+M.ClientVpnConnectionSet = schema.new({ type = "list", list_member = M.ClientVpnConnection })
+
+M.ClientVpnEndpointIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EndpointSet = schema.new({ type = "list", list_member = M.ClientVpnEndpoint })
+
+M.ClientVpnRouteSet = schema.new({ type = "list", list_member = M.ClientVpnRoute })
+
+M.TargetNetworkSet = schema.new({ type = "list", list_member = M.TargetNetwork })
+
+M.CoipPoolIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CoipPoolSet = schema.new({ type = "list", list_member = M.CoipPool })
+
+M.ConversionIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeConversionTaskList = schema.new({ type = "list", list_member = M.ConversionTask })
+
+M.CustomerGatewayIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomerGatewayList = schema.new({ type = "list", list_member = M.CustomerGateway })
+
+M.DeclarativePoliciesReportList = schema.new({ type = "list", list_member = M.DeclarativePoliciesReport })
+
+M.DhcpOptionsIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DhcpOptionsList = schema.new({ type = "list", list_member = M.DhcpOptions })
+
+M.EgressOnlyInternetGatewayIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EgressOnlyInternetGatewayList = schema.new({ type = "list", list_member = M.EgressOnlyInternetGateway })
+
+M.ElasticGpuIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ElasticGpuSet = schema.new({ type = "list", list_member = M.ElasticGpus })
+
+M.ExportImageTaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportImageTaskList = schema.new({ type = "list", list_member = M.ExportImageTask })
+
+M.ExportTaskIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportTaskList = schema.new({ type = "list", list_member = M.ExportTask })
+
+M.FastLaunchImageIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeFastLaunchImagesSuccessSet = schema.new({ type = "list", list_member = M.DescribeFastLaunchImagesSuccessItem })
+
+M.DescribeFastSnapshotRestoreSuccessSet = schema.new({ type = "list", list_member = M.DescribeFastSnapshotRestoreSuccessItem })
+
+M.HistoryRecordSet = schema.new({ type = "list", list_member = M.HistoryRecordEntry })
+
+M.ActiveInstanceSet = schema.new({ type = "list", list_member = M.ActiveInstance })
+
+M.FleetSet = schema.new({ type = "list", list_member = M.FleetData })
+
+M.FlowLogSet = schema.new({ type = "list", list_member = M.FlowLog })
+
+M.FpgaImageIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OwnerStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FpgaImageList = schema.new({ type = "list", list_member = M.FpgaImage })
+
+M.HostOfferingSet = schema.new({ type = "list", list_member = M.HostOffering })
+
+M.HostReservationIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.HostReservationSet = schema.new({ type = "list", list_member = M.HostReservation })
+
+M.RequestHostIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HostList = schema.new({ type = "list", list_member = M.Host })
+
+M.AssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IamInstanceProfileAssociationSet = schema.new({ type = "list", list_member = M.IamInstanceProfileAssociation })
+
+M.LaunchPermissionList = schema.new({ type = "list", list_member = M.LaunchPermission })
+
+M.ProductCodeList = schema.new({ type = "list", list_member = M.ProductCode })
+
+M.BlockDeviceMappingList = schema.new({ type = "list", list_member = M.BlockDeviceMapping })
+
+M.DescribeImageReferencesImageIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeRequestList = schema.new({ type = "list", list_member = M.ResourceTypeRequest })
+
+M.ImageReferenceList = schema.new({ type = "list", list_member = M.ImageReference })
+
+M.ExecutableByStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageList = schema.new({ type = "list", list_member = M.Image })
+
+M.DescribeImageUsageReportsImageIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageUsageReportIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageUsageReportEntryList = schema.new({ type = "list", list_member = M.ImageUsageReportEntry })
+
+M.ImageUsageReportList = schema.new({ type = "list", list_member = M.ImageUsageReport })
+
+M.ImportTaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportImageTaskList = schema.new({ type = "list", list_member = M.ImportImageTask })
+
+M.ImportSnapshotTaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportSnapshotTaskList = schema.new({ type = "list", list_member = M.ImportSnapshotTask })
+
+M.InstanceBlockDeviceMappingList = schema.new({ type = "list", list_member = M.InstanceBlockDeviceMapping })
+
+M.GroupIdentifierList = schema.new({ type = "list", list_member = M.GroupIdentifier })
+
+M.InstanceConnectEndpointSet = schema.new({ type = "list", list_member = M.Ec2InstanceConnectEndpoint })
+
+M.InstanceCreditSpecificationList = schema.new({ type = "list", list_member = M.InstanceCreditSpecification })
+
+M.InstanceEventWindowIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceEventWindowSet = schema.new({ type = "list", list_member = M.InstanceEventWindow })
+
+M.InstanceImageMetadataList = schema.new({ type = "list", list_member = M.InstanceImageMetadata })
+
+M.ReservationList = schema.new({ type = "list", list_member = M.Reservation })
+
+M.RegisteredInstanceList = schema.new({ type = "list", list_member = M.RegisteredInstance })
+
+M.InstanceStatusList = schema.new({ type = "list", list_member = M.InstanceStatus })
+
+M.DescribeInstanceTopologyInstanceIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeInstanceTopologyGroupNameSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceSet = schema.new({ type = "list", list_member = M.InstanceTopology })
+
+M.InstanceTypeOfferingsList = schema.new({ type = "list", list_member = M.InstanceTypeOffering })
+
+M.RequestInstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceTypeInfoList = schema.new({ type = "list", list_member = M.InstanceTypeInfo })
+
+M.InternetGatewayIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InternetGatewayList = schema.new({ type = "list", list_member = M.InternetGateway })
+
+M.ByoasnSet = schema.new({ type = "list", list_member = M.Byoasn })
+
+M.IpamExternalResourceVerificationTokenSet = schema.new({ type = "list", list_member = M.IpamExternalResourceVerificationToken })
+
+M.IpamPolicySet = schema.new({ type = "list", list_member = M.IpamPolicy })
+
+M.IpamPoolSet = schema.new({ type = "list", list_member = M.IpamPool })
+
+M.IpamPrefixListResolverSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolver })
+
+M.IpamPrefixListResolverTargetSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverTarget })
+
+M.IpamResourceDiscoverySet = schema.new({ type = "list", list_member = M.IpamResourceDiscovery })
+
+M.IpamResourceDiscoveryAssociationSet = schema.new({ type = "list", list_member = M.IpamResourceDiscoveryAssociation })
+
+M.IpamSet = schema.new({ type = "list", list_member = M.Ipam })
+
+M.IpamScopeSet = schema.new({ type = "list", list_member = M.IpamScope })
+
+M.Ipv6PoolIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Ipv6PoolSet = schema.new({ type = "list", list_member = M.Ipv6Pool })
+
+M.KeyNameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyPairIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyPairList = schema.new({ type = "list", list_member = M.KeyPairInfo })
+
+M.LaunchTemplateIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchTemplateNameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchTemplateSet = schema.new({ type = "list", list_member = M.LaunchTemplate })
+
+M.LaunchTemplateVersionSet = schema.new({ type = "list", list_member = M.LaunchTemplateVersion })
+
+M.LocalGatewayRouteTableIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewayRouteTableSet = schema.new({ type = "list", list_member = M.LocalGatewayRouteTable })
+
+M.LocalGatewayRouteTableVirtualInterfaceGroupAssociationIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewayRouteTableVirtualInterfaceGroupAssociationSet = schema.new({ type = "list", list_member = M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation })
+
+M.LocalGatewayRouteTableVpcAssociationIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewayRouteTableVpcAssociationSet = schema.new({ type = "list", list_member = M.LocalGatewayRouteTableVpcAssociation })
+
+M.LocalGatewayIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewaySet = schema.new({ type = "list", list_member = M.LocalGateway })
+
+M.LocalGatewayVirtualInterfaceGroupIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewayVirtualInterfaceGroupSet = schema.new({ type = "list", list_member = M.LocalGatewayVirtualInterfaceGroup })
+
+M.LocalGatewayVirtualInterfaceIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewayVirtualInterfaceSet = schema.new({ type = "list", list_member = M.LocalGatewayVirtualInterface })
+
+M.SnapshotIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LockedSnapshotsInfoList = schema.new({ type = "list", list_member = M.LockedSnapshotsInfo })
+
+M.MacHostList = schema.new({ type = "list", list_member = M.MacHost })
+
+M.MacModificationTaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MacModificationTaskList = schema.new({ type = "list", list_member = M.MacModificationTask })
+
+M.ManagedPrefixListSet = schema.new({ type = "list", list_member = M.ManagedPrefixList })
+
+M.MovingAddressStatusSet = schema.new({ type = "list", list_member = M.MovingAddressStatus })
+
+M.NatGatewayIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NatGatewayList = schema.new({ type = "list", list_member = M.NatGateway })
+
+M.NetworkAclIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkAclList = schema.new({ type = "list", list_member = M.NetworkAcl })
+
+M.NetworkInsightsAccessScopeAnalysisIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInsightsAccessScopeAnalysisList = schema.new({ type = "list", list_member = M.NetworkInsightsAccessScopeAnalysis })
+
+M.NetworkInsightsAccessScopeIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInsightsAccessScopeList = schema.new({ type = "list", list_member = M.NetworkInsightsAccessScope })
+
+M.NetworkInsightsAnalysisIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInsightsAnalysisList = schema.new({ type = "list", list_member = M.NetworkInsightsAnalysis })
+
+M.NetworkInsightsPathIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInsightsPathList = schema.new({ type = "list", list_member = M.NetworkInsightsPath })
+
+M.NetworkInterfacePermissionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfacePermissionList = schema.new({ type = "list", list_member = M.NetworkInterfacePermission })
+
+M.NetworkInterfaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.OutpostLagIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.OutpostLagSet = schema.new({ type = "list", list_member = M.OutpostLag })
+
+M.PlacementGroupIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlacementGroupStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlacementGroupList = schema.new({ type = "list", list_member = M.PlacementGroup })
+
+M.PrefixListResourceIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrefixListSet = schema.new({ type = "list", list_member = M.PrefixList })
+
+M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrincipalIdFormatList = schema.new({ type = "list", list_member = M.PrincipalIdFormat })
+
+M.PublicIpv4PoolIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PublicIpv4PoolSet = schema.new({ type = "list", list_member = M.PublicIpv4Pool })
+
+M.RegionNameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionList = schema.new({ type = "list", list_member = M.Region })
+
+M.ReplaceRootVolumeTaskIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplaceRootVolumeTasks = schema.new({ type = "list", list_member = M.ReplaceRootVolumeTask })
+
+M.ReservedInstancesIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedInstancesList = schema.new({ type = "list", list_member = M.ReservedInstances })
+
+M.ReservedInstancesModificationIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedInstancesModificationList = schema.new({ type = "list", list_member = M.ReservedInstancesModification })
+
+M.ReservedInstancesOfferingIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedInstancesOfferingList = schema.new({ type = "list", list_member = M.ReservedInstancesOffering })
+
+M.RouteServerEndpointIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteServerEndpointsList = schema.new({ type = "list", list_member = M.RouteServerEndpoint })
+
+M.RouteServerPeerIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteServerPeersList = schema.new({ type = "list", list_member = M.RouteServerPeer })
+
+M.RouteServerIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteServersList = schema.new({ type = "list", list_member = M.RouteServer })
+
+M.RouteTableIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTableList = schema.new({ type = "list", list_member = M.RouteTable })
+
+M.ScheduledInstanceAvailabilitySet = schema.new({ type = "list", list_member = M.ScheduledInstanceAvailability })
+
+M.ScheduledInstanceIdRequestSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledInstanceSet = schema.new({ type = "list", list_member = M.ScheduledInstance })
+
+M.SecondaryInterfaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecondaryInterfaceList = schema.new({ type = "list", list_member = M.SecondaryInterface })
+
+M.SecondaryNetworkIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecondaryNetworkList = schema.new({ type = "list", list_member = M.SecondaryNetwork })
+
+M.SecondarySubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecondarySubnetList = schema.new({ type = "list", list_member = M.SecondarySubnet })
+
+M.GroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupReferences = schema.new({ type = "list", list_member = M.SecurityGroupReference })
+
+M.SecurityGroupRuleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupNameStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupList = schema.new({ type = "list", list_member = M.SecurityGroup })
+
+M.SecurityGroupVpcAssociationList = schema.new({ type = "list", list_member = M.SecurityGroupVpcAssociation })
+
+M.ServiceLinkVirtualInterfaceIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceLinkVirtualInterfaceSet = schema.new({ type = "list", list_member = M.ServiceLinkVirtualInterface })
+
+M.CreateVolumePermissionList = schema.new({ type = "list", list_member = M.CreateVolumePermission })
+
+M.RestorableByStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SnapshotList = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.snapshotTierStatusSet = schema.new({ type = "list", list_member = M.SnapshotTierStatus })
+
+M.HistoryRecords = schema.new({ type = "list", list_member = M.HistoryRecord })
+
+M.SpotFleetRequestConfigSet = schema.new({ type = "list", list_member = M.SpotFleetRequestConfig })
+
+M.SpotInstanceRequestList = schema.new({ type = "list", list_member = M.SpotInstanceRequest })
+
+M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductDescriptionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpotPriceHistoryList = schema.new({ type = "list", list_member = M.SpotPrice })
+
+M.StaleSecurityGroupSet = schema.new({ type = "list", list_member = M.StaleSecurityGroup })
+
+M.ImageIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StoreImageTaskResultSet = schema.new({ type = "list", list_member = M.StoreImageTaskResult })
+
+M.SubnetIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.TagDescriptionList = schema.new({ type = "list", list_member = M.TagDescription })
+
+M.TrafficMirrorFilterRuleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficMirrorFilterRuleSet = schema.new({ type = "list", list_member = M.TrafficMirrorFilterRule })
+
+M.TrafficMirrorFilterIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficMirrorFilterSet = schema.new({ type = "list", list_member = M.TrafficMirrorFilter })
+
+M.TrafficMirrorSessionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficMirrorSessionSet = schema.new({ type = "list", list_member = M.TrafficMirrorSession })
+
+M.TrafficMirrorTargetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficMirrorTargetSet = schema.new({ type = "list", list_member = M.TrafficMirrorTarget })
+
+M.TransitGatewayAttachmentList = schema.new({ type = "list", list_member = M.TransitGatewayAttachment })
+
+M.TransitGatewayConnectPeerIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayConnectPeerList = schema.new({ type = "list", list_member = M.TransitGatewayConnectPeer })
+
+M.TransitGatewayConnectList = schema.new({ type = "list", list_member = M.TransitGatewayConnect })
+
+M.TransitGatewayMeteringPolicyIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayMeteringPolicyList = schema.new({ type = "list", list_member = M.TransitGatewayMeteringPolicy })
+
+M.TransitGatewayMulticastDomainIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayMulticastDomainList = schema.new({ type = "list", list_member = M.TransitGatewayMulticastDomain })
+
+M.TransitGatewayPeeringAttachmentList = schema.new({ type = "list", list_member = M.TransitGatewayPeeringAttachment })
+
+M.TransitGatewayPolicyTableIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayPolicyTableList = schema.new({ type = "list", list_member = M.TransitGatewayPolicyTable })
+
+M.TransitGatewayRouteTableAnnouncementIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayRouteTableAnnouncementList = schema.new({ type = "list", list_member = M.TransitGatewayRouteTableAnnouncement })
+
+M.TransitGatewayRouteTableIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayRouteTableList = schema.new({ type = "list", list_member = M.TransitGatewayRouteTable })
+
+M.TransitGatewayIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayList = schema.new({ type = "list", list_member = M.TransitGateway })
+
+M.TransitGatewayVpcAttachmentList = schema.new({ type = "list", list_member = M.TransitGatewayVpcAttachment })
+
+M.TrunkInterfaceAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrunkInterfaceAssociationList = schema.new({ type = "list", list_member = M.TrunkInterfaceAssociation })
+
+M.VerifiedAccessEndpointIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedAccessEndpointList = schema.new({ type = "list", list_member = M.VerifiedAccessEndpoint })
+
+M.VerifiedAccessGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedAccessGroupList = schema.new({ type = "list", list_member = M.VerifiedAccessGroup })
+
+M.VerifiedAccessInstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedAccessInstanceLoggingConfigurationList = schema.new({ type = "list", list_member = M.VerifiedAccessInstanceLoggingConfiguration })
+
+M.VerifiedAccessInstanceList = schema.new({ type = "list", list_member = M.VerifiedAccessInstance })
+
+M.VerifiedAccessTrustProviderIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedAccessTrustProviderList = schema.new({ type = "list", list_member = M.VerifiedAccessTrustProvider })
+
+M.VolumeIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VolumeModificationList = schema.new({ type = "list", list_member = M.VolumeModification })
+
+M.VolumeStatusList = schema.new({ type = "list", list_member = M.VolumeStatusItem })
+
+M.VpcBlockPublicAccessExclusionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcBlockPublicAccessExclusionList = schema.new({ type = "list", list_member = M.VpcBlockPublicAccessExclusion })
+
+M.VpcClassicLinkIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcClassicLinkList = schema.new({ type = "list", list_member = M.VpcClassicLink })
+
+M.ClassicLinkDnsSupportList = schema.new({ type = "list", list_member = M.ClassicLinkDnsSupport })
+
+M.VpcEncryptionControlIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEncryptionControlList = schema.new({ type = "list", list_member = M.VpcEncryptionControl })
+
+M.VpcEndpointAssociationSet = schema.new({ type = "list", list_member = M.VpcEndpointAssociation })
+
+M.ConnectionNotificationSet = schema.new({ type = "list", list_member = M.ConnectionNotification })
+
+M.VpcEndpointConnectionSet = schema.new({ type = "list", list_member = M.VpcEndpointConnection })
+
+M.VpcEndpointSet = schema.new({ type = "list", list_member = M.VpcEndpoint })
+
+M.ServiceConfigurationSet = schema.new({ type = "list", list_member = M.ServiceConfiguration })
+
+M.AllowedPrincipalSet = schema.new({ type = "list", list_member = M.AllowedPrincipal })
+
+M.ServiceDetailSet = schema.new({ type = "list", list_member = M.ServiceDetail })
+
+M.VpcPeeringConnectionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcPeeringConnectionList = schema.new({ type = "list", list_member = M.VpcPeeringConnection })
+
+M.VpcList = schema.new({ type = "list", list_member = M.Vpc })
+
+M.VpnConcentratorIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpnConcentratorList = schema.new({ type = "list", list_member = M.VpnConcentrator })
+
+M.VpnConnectionIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpnConnectionList = schema.new({ type = "list", list_member = M.VpnConnection })
+
+M.VpnGatewayIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpnGatewayList = schema.new({ type = "list", list_member = M.VpnGateway })
+
+M.AvailabilityZoneStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisableFastSnapshotRestoreSuccessSet = schema.new({ type = "list", list_member = M.DisableFastSnapshotRestoreSuccessItem })
+
+M.DisableFastSnapshotRestoreErrorSet = schema.new({ type = "list", list_member = M.DisableFastSnapshotRestoreErrorItem })
+
+M.InstanceIdUpdateStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EipAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnableFastSnapshotRestoreSuccessSet = schema.new({ type = "list", list_member = M.EnableFastSnapshotRestoreSuccessItem })
+
+M.EnableFastSnapshotRestoreErrorSet = schema.new({ type = "list", list_member = M.EnableFastSnapshotRestoreErrorItem })
+
+M.DeviceTrustProviderTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedAccessInstanceOpenVpnClientConfigurationList = schema.new({ type = "list", list_member = M.VerifiedAccessInstanceOpenVpnClientConfiguration })
+
+M.ImageCriterionList = schema.new({ type = "list", list_member = M.ImageCriterion })
+
+M.AssociatedRolesList = schema.new({ type = "list", list_member = M.AssociatedRole })
+
+M.Ipv6CidrAssociationSet = schema.new({ type = "list", list_member = M.Ipv6CidrAssociation })
+
+M.DataQueries = schema.new({ type = "list", list_member = M.DataQuery })
+
+M.DataResponses = schema.new({ type = "list", list_member = M.DataResponse })
+
+M.MetricSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupBySet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityManagerConditionSet = schema.new({ type = "list", list_member = M.CapacityManagerCondition })
+
+M.MetricDataResultSet = schema.new({ type = "list", list_member = M.MetricDataResult })
+
+M.MetricDimensionResultSet = schema.new({ type = "list", list_member = M.CapacityManagerDimension })
+
+M.CapacityManagerMonitoredTagKeyList = schema.new({ type = "list", list_member = M.CapacityManagerMonitoredTagKey })
+
+M.InstanceUsageSet = schema.new({ type = "list", list_member = M.InstanceUsage })
+
+M.CoipAddressUsageSet = schema.new({ type = "list", list_member = M.CoipAddressUsage })
+
+M.AttributeSummaryList = schema.new({ type = "list", list_member = M.AttributeSummary })
+
+M.CapacityReservationGroupSet = schema.new({ type = "list", list_member = M.CapacityReservationGroup })
+
+M.RequestHostIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.PurchaseSet = schema.new({ type = "list", list_member = M.Purchase })
+
+M.ImageAncestryEntryList = schema.new({ type = "list", list_member = M.ImageAncestryEntry })
+
+M.ArchitectureTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.VirtualizationTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceTypeInfoFromInstanceRequirementsSet = schema.new({ type = "list", list_member = M.InstanceTypeInfoFromInstanceRequirements })
+
+M.IpamAddressHistoryRecordSet = schema.new({ type = "list", list_member = M.IpamAddressHistoryRecord })
+
+M.IpamDiscoveredAccountSet = schema.new({ type = "list", list_member = M.IpamDiscoveredAccount })
+
+M.IpamDiscoveredPublicAddressSet = schema.new({ type = "list", list_member = M.IpamDiscoveredPublicAddress })
+
+M.IpamDiscoveredResourceCidrSet = schema.new({ type = "list", list_member = M.IpamDiscoveredResourceCidr })
+
+M.IpamPolicyDocumentSet = schema.new({ type = "list", list_member = M.IpamPolicyDocument })
+
+M.IpamPolicyOrganizationTargetSet = schema.new({ type = "list", list_member = M.IpamPolicyOrganizationTarget })
+
+M.IpamPoolAllocationSet = schema.new({ type = "list", list_member = M.IpamPoolAllocation })
+
+M.IpamPoolCidrSet = schema.new({ type = "list", list_member = M.IpamPoolCidr })
+
+M.IpamPrefixListResolverRuleSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRule })
+
+M.IpamPrefixListResolverVersionEntrySet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverVersionEntry })
+
+M.IpamPrefixListResolverVersionNumberSet = schema.new({ type = "list", list_member = prelude.Long })
+
+M.IpamPrefixListResolverVersionSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverVersion })
+
+M.IpamResourceCidrSet = schema.new({ type = "list", list_member = M.IpamResourceCidr })
+
+M.PrefixListAssociationSet = schema.new({ type = "list", list_member = M.PrefixListAssociation })
+
+M.PrefixListEntrySet = schema.new({ type = "list", list_member = M.PrefixListEntry })
+
+M.AccessScopeAnalysisFindingList = schema.new({ type = "list", list_member = M.AccessScopeAnalysisFinding })
+
+M.ReservedInstanceReservationValueSet = schema.new({ type = "list", list_member = M.ReservedInstanceReservationValue })
+
+M.TargetReservationValueSet = schema.new({ type = "list", list_member = M.TargetReservationValue })
+
+M.RouteServerAssociationsList = schema.new({ type = "list", list_member = M.RouteServerAssociation })
+
+M.RouteServerPropagationsList = schema.new({ type = "list", list_member = M.RouteServerPropagation })
+
+M.RouteServerRouteList = schema.new({ type = "list", list_member = M.RouteServerRoute })
+
+M.SecurityGroupForVpcList = schema.new({ type = "list", list_member = M.SecurityGroupForVpc })
+
+M.InstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpotPlacementScores = schema.new({ type = "list", list_member = M.SpotPlacementScore })
+
+M.SubnetCidrReservationList = schema.new({ type = "list", list_member = M.SubnetCidrReservation })
+
+M.TransitGatewayAttachmentPropagationList = schema.new({ type = "list", list_member = M.TransitGatewayAttachmentPropagation })
+
+M.TransitGatewayMeteringPolicyEntryList = schema.new({ type = "list", list_member = M.TransitGatewayMeteringPolicyEntry })
+
+M.TransitGatewayMulticastDomainAssociationList = schema.new({ type = "list", list_member = M.TransitGatewayMulticastDomainAssociation })
+
+M.TransitGatewayPolicyTableAssociationList = schema.new({ type = "list", list_member = M.TransitGatewayPolicyTableAssociation })
+
+M.TransitGatewayPolicyTableEntryList = schema.new({ type = "list", list_member = M.TransitGatewayPolicyTableEntry })
+
+M.TransitGatewayPrefixListReferenceSet = schema.new({ type = "list", list_member = M.TransitGatewayPrefixListReference })
+
+M.TransitGatewayRouteTableAssociationList = schema.new({ type = "list", list_member = M.TransitGatewayRouteTableAssociation })
+
+M.TransitGatewayRouteTablePropagationList = schema.new({ type = "list", list_member = M.TransitGatewayRouteTablePropagation })
+
+M.VerifiedAccessEndpointTargetList = schema.new({ type = "list", list_member = M.VerifiedAccessEndpointTarget })
+
+M.VpcEncryptionNonCompliantResourceList = schema.new({ type = "list", list_member = M.VpcEncryptionNonCompliantResource })
+
+M.VpnConnectionDeviceTypeList = schema.new({ type = "list", list_member = M.VpnConnectionDeviceType })
+
+M.ImageDiskContainerList = schema.new({ type = "list", list_member = M.ImageDiskContainer })
+
+M.ImportImageLicenseSpecificationListRequest = schema.new({ type = "list", list_member = M.ImportImageLicenseConfigurationRequest })
+
+M.SnapshotDetailList = schema.new({ type = "list", list_member = M.SnapshotDetail })
+
+M.ImportImageLicenseSpecificationListResponse = schema.new({ type = "list", list_member = M.ImportImageLicenseConfigurationResponse })
+
+M.DiskImageList = schema.new({ type = "list", list_member = M.DiskImage })
+
+M.ImageRecycleBinInfoList = schema.new({ type = "list", list_member = M.ImageRecycleBinInfo })
+
+M.SnapshotRecycleBinInfoList = schema.new({ type = "list", list_member = M.SnapshotRecycleBinInfo })
+
+M.VolumeRecycleBinInfoList = schema.new({ type = "list", list_member = M.VolumeRecycleBinInfo })
+
+M.UserIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserGroupStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductCodeStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnsuccessfulItemList = schema.new({ type = "list", list_member = M.UnsuccessfulItem })
+
+M.OrganizationArnStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitArnStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceBlockDeviceMappingSpecificationList = schema.new({ type = "list", list_member = M.InstanceBlockDeviceMappingSpecification })
+
+M.InstanceCreditSpecificationListRequest = schema.new({ type = "list", list_member = M.InstanceCreditSpecificationRequest })
+
+M.SuccessfulInstanceCreditSpecificationSet = schema.new({ type = "list", list_member = M.SuccessfulInstanceCreditSpecificationItem })
+
+M.UnsuccessfulInstanceCreditSpecificationSet = schema.new({ type = "list", list_member = M.UnsuccessfulInstanceCreditSpecificationItem })
+
+M.RemoveIpamOperatingRegionSet = schema.new({ type = "list", list_member = M.RemoveIpamOperatingRegion })
+
+M.IpamPolicyAllocationRuleListRequest = schema.new({ type = "list", list_member = M.IpamPolicyAllocationRuleRequest })
+
+M.AddIpamOrganizationalUnitExclusionSet = schema.new({ type = "list", list_member = M.AddIpamOrganizationalUnitExclusion })
+
+M.RemoveIpamOrganizationalUnitExclusionSet = schema.new({ type = "list", list_member = M.RemoveIpamOrganizationalUnitExclusion })
+
+M.RemovePrefixListEntries = schema.new({ type = "list", list_member = M.RemovePrefixListEntry })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedInstancesConfigurationList = schema.new({ type = "list", list_member = M.ReservedInstancesConfiguration })
+
+M.SecurityGroupRuleUpdateList = schema.new({ type = "list", list_member = M.SecurityGroupRuleUpdate })
+
+M.LaunchTemplateConfigList = schema.new({ type = "list", list_member = M.LaunchTemplateConfig })
+
+M.TrafficMirrorNetworkServiceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficMirrorFilterRuleFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficMirrorSessionFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddedPrincipalSet = schema.new({ type = "list", list_member = M.AddedPrincipal })
+
+M.InstanceMonitoringList = schema.new({ type = "list", list_member = M.InstanceMonitoring })
+
+M.PurchaseRequestSet = schema.new({ type = "list", list_member = M.PurchaseRequest })
+
+M.PurchasedScheduledInstanceSet = schema.new({ type = "list", list_member = M.ScheduledInstance })
+
+M.BillingProductList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageCriterionRequestList = schema.new({ type = "list", list_member = M.ImageCriterionRequest })
+
+M.ReasonCodesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RevokedSecurityGroupRuleList = schema.new({ type = "list", list_member = M.RevokedSecurityGroupRule })
+
+M.SecurityGroupStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ElasticGpuSpecifications = schema.new({ type = "list", list_member = M.ElasticGpuSpecification })
+
+M.ElasticInferenceAccelerators = schema.new({ type = "list", list_member = M.ElasticInferenceAccelerator })
+
+M.LicenseSpecificationListRequest = schema.new({ type = "list", list_member = M.LicenseConfigurationRequest })
+
+M.InstanceSecondaryInterfaceSpecificationListRequest = schema.new({ type = "list", list_member = M.InstanceSecondaryInterfaceSpecificationRequest })
+
+M.InstanceNetworkInterfaceSpecificationList = schema.new({ type = "list", list_member = M.InstanceNetworkInterfaceSpecification })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.InstanceIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalGatewayRouteList = schema.new({ type = "list", list_member = M.LocalGatewayRoute })
+
+M.TransitGatewayMulticastGroupList = schema.new({ type = "list", list_member = M.TransitGatewayMulticastGroup })
+
+M.TransitGatewayRouteList = schema.new({ type = "list", list_member = M.TransitGatewayRoute })
+
+M.InstanceStateChangeList = schema.new({ type = "list", list_member = M.InstanceStateChange })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TerminateConnectionStatusSet = schema.new({ type = "list", list_member = M.TerminateConnectionStatus })
+
+M.SecurityGroupRuleDescriptionList = schema.new({ type = "list", list_member = M.SecurityGroupRuleDescription })
+
+M.SubnetAssociationList = schema.new({ type = "list", list_member = M.SubnetAssociation })
+
+M.AsnAssociationSet = schema.new({ type = "list", list_member = M.AsnAssociation })
+
+M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DedicatedHostIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceEventWindowTimeRangeList = schema.new({ type = "list", list_member = M.InstanceEventWindowTimeRange })
+
+M.VerifiedAccessTrustProviderCondensedList = schema.new({ type = "list", list_member = M.VerifiedAccessTrustProviderCondensed })
+
+M.CapacityAllocations = schema.new({ type = "list", list_member = M.CapacityAllocation })
+
+M.ClientVpnAvailabilityZoneSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClientVpnAvailabilityZoneIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIpv6CidrBlockAssociationSet = schema.new({ type = "list", list_member = M.SubnetIpv6CidrBlockAssociation })
+
+M.VpcIpv6CidrBlockAssociationSet = schema.new({ type = "list", list_member = M.VpcIpv6CidrBlockAssociation })
+
+M.VpcCidrBlockAssociationSet = schema.new({ type = "list", list_member = M.VpcCidrBlockAssociation })
+
+M.DhcpConfigurationList = schema.new({ type = "list", list_member = M.DhcpConfiguration })
+
+M.InternetGatewayAttachmentList = schema.new({ type = "list", list_member = M.InternetGatewayAttachment })
+
+M.ReservationTypeListRequest = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpamOperatingRegionSet = schema.new({ type = "list", list_member = M.IpamOperatingRegion })
+
+M.IpamResourceTagList = schema.new({ type = "list", list_member = M.IpamResourceTag })
+
+M.IpamOrganizationalUnitExclusionSet = schema.new({ type = "list", list_member = M.IpamOrganizationalUnitExclusion })
+
+M.LaunchTemplateBlockDeviceMappingRequestList = schema.new({ type = "list", list_member = M.LaunchTemplateBlockDeviceMappingRequest })
+
+M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequestList = schema.new({ type = "list", list_member = M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequest })
+
+M.LaunchTemplateTagSpecificationRequestList = schema.new({ type = "list", list_member = M.LaunchTemplateTagSpecificationRequest })
+
+M.ElasticGpuSpecificationList = schema.new({ type = "list", list_member = M.ElasticGpuSpecification })
+
+M.LaunchTemplateElasticInferenceAcceleratorList = schema.new({ type = "list", list_member = M.LaunchTemplateElasticInferenceAccelerator })
+
+M.LaunchTemplateLicenseSpecificationListRequest = schema.new({ type = "list", list_member = M.LaunchTemplateLicenseConfigurationRequest })
+
+M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequestList = schema.new({ type = "list", list_member = M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest })
+
+M.ErrorSet = schema.new({ type = "list", list_member = M.ValidationError })
+
+M.NatGatewayAttachedApplianceList = schema.new({ type = "list", list_member = M.NatGatewayAttachedAppliance })
+
+M.NetworkAclAssociationList = schema.new({ type = "list", list_member = M.NetworkAclAssociation })
+
+M.NetworkAclEntryList = schema.new({ type = "list", list_member = M.NetworkAclEntry })
+
+M.AccessScopePathList = schema.new({ type = "list", list_member = M.AccessScopePath })
+
+M.NetworkInterfaceIpv6AddressesList = schema.new({ type = "list", list_member = M.NetworkInterfaceIpv6Address })
+
+M.NetworkInterfacePrivateIpAddressList = schema.new({ type = "list", list_member = M.NetworkInterfacePrivateIpAddress })
+
+M.Ipv6PrefixesList = schema.new({ type = "list", list_member = M.Ipv6PrefixSpecification })
+
+M.AssociatedSubnetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTableAssociationList = schema.new({ type = "list", list_member = M.RouteTableAssociation })
+
+M.PropagatingVgwList = schema.new({ type = "list", list_member = M.PropagatingVgw })
+
+M.RouteList = schema.new({ type = "list", list_member = M.Route })
+
+M.SecondaryNetworkIpv4CidrBlockAssociationList = schema.new({ type = "list", list_member = M.SecondaryNetworkIpv4CidrBlockAssociation })
+
+M.SecondarySubnetIpv4CidrBlockAssociationList = schema.new({ type = "list", list_member = M.SecondarySubnetIpv4CidrBlockAssociation })
+
+M.TrafficMirrorFilterRuleList = schema.new({ type = "list", list_member = M.TrafficMirrorFilterRule })
+
+M.TransitGatewayCidrBlockStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayRouteAttachmentList = schema.new({ type = "list", list_member = M.TransitGatewayRouteAttachment })
+
+M.CreateVerifiedAccessEndpointSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CreateVerifiedAccessEndpointPortRangeList = schema.new({ type = "list", list_member = M.CreateVerifiedAccessEndpointPortRange })
+
+M.PrivateDnsSpecifiedDomainSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.GroupIdentifierSet = schema.new({ type = "list", list_member = M.SecurityGroupIdentifier })
+
+M.DnsEntrySet = schema.new({ type = "list", list_member = M.DnsEntry })
+
+M.SubnetIpPrefixesList = schema.new({ type = "list", list_member = M.SubnetIpPrefixes })
+
+M.ServiceTypeDetailSet = schema.new({ type = "list", list_member = M.ServiceTypeDetail })
+
+M.SupportedIpAddressTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedRegionSet = schema.new({ type = "list", list_member = M.SupportedRegionDetail })
+
+M.VpnTunnelOptionsSpecificationsList = schema.new({ type = "list", list_member = M.VpnTunnelOptionsSpecification })
+
+M.VpnStaticRouteList = schema.new({ type = "list", list_member = M.VpnStaticRoute })
+
+M.VgwTelemetryList = schema.new({ type = "list", list_member = M.VgwTelemetry })
+
+M.VpcAttachmentList = schema.new({ type = "list", list_member = M.VpcAttachment })
+
+M.InstanceTagKeySet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadPermissionList = schema.new({ type = "list", list_member = M.LoadPermission })
+
+M.OccurrenceDayRequestSet = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.AthenaIntegrationsSet = schema.new({ type = "list", list_member = M.AthenaIntegration })
+
+M.CpuManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceGenerationSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalStorageTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorNameSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchTemplateBlockDeviceMappingList = schema.new({ type = "list", list_member = M.LaunchTemplateBlockDeviceMapping })
+
+M.LaunchTemplateInstanceNetworkInterfaceSpecificationList = schema.new({ type = "list", list_member = M.LaunchTemplateInstanceNetworkInterfaceSpecification })
+
+M.LaunchTemplateTagSpecificationList = schema.new({ type = "list", list_member = M.LaunchTemplateTagSpecification })
+
+M.ElasticGpuSpecificationResponseList = schema.new({ type = "list", list_member = M.ElasticGpuSpecificationResponse })
+
+M.LaunchTemplateElasticInferenceAcceleratorResponseList = schema.new({ type = "list", list_member = M.LaunchTemplateElasticInferenceAcceleratorResponse })
+
+M.LaunchTemplateLicenseList = schema.new({ type = "list", list_member = M.LaunchTemplateLicenseConfiguration })
+
+M.LaunchTemplateInstanceSecondaryInterfaceSpecificationList = schema.new({ type = "list", list_member = M.LaunchTemplateInstanceSecondaryInterfaceSpecification })
+
+M.LoadPermissionListRequest = schema.new({ type = "list", list_member = M.LoadPermissionRequest })
+
+M.IpamPolicyAllocationRuleList = schema.new({ type = "list", list_member = M.IpamPolicyAllocationRule })
+
+M.ModifyVerifiedAccessEndpointSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ModifyVerifiedAccessEndpointPortRangeList = schema.new({ type = "list", list_member = M.ModifyVerifiedAccessEndpointPortRange })
+
+M.Phase1EncryptionAlgorithmsRequestList = schema.new({ type = "list", list_member = M.Phase1EncryptionAlgorithmsRequestListValue })
+
+M.Phase2EncryptionAlgorithmsRequestList = schema.new({ type = "list", list_member = M.Phase2EncryptionAlgorithmsRequestListValue })
+
+M.Phase1IntegrityAlgorithmsRequestList = schema.new({ type = "list", list_member = M.Phase1IntegrityAlgorithmsRequestListValue })
+
+M.Phase2IntegrityAlgorithmsRequestList = schema.new({ type = "list", list_member = M.Phase2IntegrityAlgorithmsRequestListValue })
+
+M.Phase1DHGroupNumbersRequestList = schema.new({ type = "list", list_member = M.Phase1DHGroupNumbersRequestListValue })
+
+M.Phase2DHGroupNumbersRequestList = schema.new({ type = "list", list_member = M.Phase2DHGroupNumbersRequestListValue })
+
+M.IKEVersionsRequestList = schema.new({ type = "list", list_member = M.IKEVersionsRequestListValue })
+
+M.LaunchSpecsList = schema.new({ type = "list", list_member = M.SpotFleetLaunchSpecification })
+
+M.RequestSpotLaunchSpecificationSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RequestSpotLaunchSpecificationSecurityGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduledInstancesBlockDeviceMappingSet = schema.new({ type = "list", list_member = M.ScheduledInstancesBlockDeviceMapping })
+
+M.ScheduledInstancesNetworkInterfaceSet = schema.new({ type = "list", list_member = M.ScheduledInstancesNetworkInterface })
+
+M.ScheduledInstancesSecurityGroupIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathComponentList = schema.new({ type = "list", list_member = M.PathComponent })
+
+M.ExplanationList = schema.new({ type = "list", list_member = M.Explanation })
+
+M.AlternatePathHintList = schema.new({ type = "list", list_member = M.AlternatePathHint })
+
+M.Ipv6CidrBlockSet = schema.new({ type = "list", list_member = M.Ipv6CidrBlock })
+
+M.CidrBlockSet = schema.new({ type = "list", list_member = M.CidrBlock })
+
+M.UserIdGroupPairList = schema.new({ type = "list", list_member = M.UserIdGroupPair })
+
+M.IpRangeList = schema.new({ type = "list", list_member = M.IpRange })
+
+M.Ipv6RangeList = schema.new({ type = "list", list_member = M.Ipv6Range })
+
+M.PrefixListIdList = schema.new({ type = "list", list_member = M.PrefixListId })
+
+M.InstanceCountList = schema.new({ type = "list", list_member = M.InstanceCount })
+
+M.PriceScheduleList = schema.new({ type = "list", list_member = M.PriceSchedule })
+
+M.FleetLaunchTemplateOverridesListRequest = schema.new({ type = "list", list_member = M.FleetLaunchTemplateOverridesRequest })
+
+M.InstanceIdsSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageUsageResourceTypeOptionRequestList = schema.new({ type = "list", list_member = M.ImageUsageResourceTypeOptionRequest })
+
+M.IpamPrefixListResolverRuleConditionRequestSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleConditionRequest })
+
+M.ThroughResourcesStatementRequestList = schema.new({ type = "list", list_member = M.ThroughResourcesStatementRequest })
+
+M.TransitGatewayAttachmentBgpConfigurationList = schema.new({ type = "list", list_member = M.TransitGatewayAttachmentBgpConfiguration })
+
+M.VerifiedAccessEndpointSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedAccessEndpointPortRangeList = schema.new({ type = "list", list_member = M.VerifiedAccessEndpointPortRange })
+
+M.TunnelOptionsList = schema.new({ type = "list", list_member = M.TunnelOption })
+
+M.AccountAttributeValueList = schema.new({ type = "list", list_member = M.AccountAttributeValue })
+
+M.AvailabilityZoneMessageList = schema.new({ type = "list", list_member = M.AvailabilityZoneMessage })
+
+M.AvailabilityZoneGeographyList = schema.new({ type = "list", list_member = M.AvailabilityZoneGeography })
+
+M.AvailabilityZoneSubGeographyList = schema.new({ type = "list", list_member = M.AvailabilityZoneSubGeography })
+
+M.CapacityReservationStatusSet = schema.new({ type = "list", list_member = M.CapacityReservationStatus })
+
+M.NetworkNodeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedTargetNetworkSet = schema.new({ type = "list", list_member = M.AssociatedTargetNetwork })
+
+M.ClientVpnAuthenticationList = schema.new({ type = "list", list_member = M.ClientVpnAuthentication })
+
+M.FleetLaunchTemplateConfigList = schema.new({ type = "list", list_member = M.FleetLaunchTemplateConfig })
+
+M.DescribeFleetsErrorSet = schema.new({ type = "list", list_member = M.DescribeFleetError })
+
+M.DescribeFleetsInstancesSet = schema.new({ type = "list", list_member = M.DescribeFleetsInstances })
+
+M.InstanceTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponseHostIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.HostInstanceList = schema.new({ type = "list", list_member = M.HostInstance })
+
+M.ResourceTypeOptionList = schema.new({ type = "list", list_member = M.ResourceTypeOption })
+
+M.ImageUsageResourceTypeList = schema.new({ type = "list", list_member = M.ImageUsageResourceType })
+
+M.UserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceStatusEventList = schema.new({ type = "list", list_member = M.InstanceStatusEvent })
+
+M.NetworkNodesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UsageClassTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RootDeviceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VirtualizationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BootModeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PoolCidrBlocksSet = schema.new({ type = "list", list_member = M.PoolCidrBlock })
+
+M.MacOSVersionStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PublicIpv4PoolRangeSet = schema.new({ type = "list", list_member = M.PublicIpv4PoolRange })
+
+M.RegionGeographyList = schema.new({ type = "list", list_member = M.RegionGeography })
+
+M.RecurringChargesList = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.ReservedInstancesModificationResultList = schema.new({ type = "list", list_member = M.ReservedInstancesModificationResult })
+
+M.ReservedIntancesIds = schema.new({ type = "list", list_member = M.ReservedInstancesId })
+
+M.PricingDetailsList = schema.new({ type = "list", list_member = M.PricingDetail })
+
+M.SecondaryInterfaceIpv4AddressList = schema.new({ type = "list", list_member = M.SecondaryInterfaceIpv4Address })
+
+M.StaleIpPermissionSet = schema.new({ type = "list", list_member = M.StaleIpPermission })
+
+M.VolumeStatusActionsList = schema.new({ type = "list", list_member = M.VolumeStatusAction })
+
+M.VolumeStatusEventsList = schema.new({ type = "list", list_member = M.VolumeStatusEvent })
+
+M.VolumeStatusAttachmentStatusList = schema.new({ type = "list", list_member = M.VolumeStatusAttachmentStatus })
+
+M.PrivateDnsDetailsSet = schema.new({ type = "list", list_member = M.PrivateDnsDetails })
+
+M.DisableFastSnapshotRestoreStateErrorSet = schema.new({ type = "list", list_member = M.DisableFastSnapshotRestoreStateErrorItem })
+
+M.EnableFastSnapshotRestoreStateErrorSet = schema.new({ type = "list", list_member = M.EnableFastSnapshotRestoreStateErrorItem })
+
+M.VerifiedAccessInstanceOpenVpnClientConfigurationRouteList = schema.new({ type = "list", list_member = M.VerifiedAccessInstanceOpenVpnClientConfigurationRoute })
+
+M.ImageProviderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MarketplaceProductCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricPoints = schema.new({ type = "list", list_member = M.MetricPoint })
+
+M.MetricValueSet = schema.new({ type = "list", list_member = M.MetricValue })
+
+M.CapacityManagerTagDimensionSet = schema.new({ type = "list", list_member = M.CapacityManagerTagDimension })
+
+M.RegionalSummaryList = schema.new({ type = "list", list_member = M.RegionalSummary })
+
+M.IpamPublicAddressSecurityGroupList = schema.new({ type = "list", list_member = M.IpamPublicAddressSecurityGroup })
+
+M.IpamPrefixListResolverRuleConditionSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleCondition })
+
+M.RouteServerRouteInstallationDetails = schema.new({ type = "list", list_member = M.RouteServerRouteInstallationDetail })
+
+M.AsPath = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportInstanceVolumeDetailSet = schema.new({ type = "list", list_member = M.ImportInstanceVolumeDetailItem })
+
+M.LaunchTemplateOverridesList = schema.new({ type = "list", list_member = M.LaunchTemplateOverrides })
+
+M.ImageProviderRequestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MarketplaceProductCodeRequestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageNameRequestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceSecondaryInterfacePrivateIpAddressListRequest = schema.new({ type = "list", list_member = M.InstanceSecondaryInterfacePrivateIpAddressRequest })
+
+M.ElasticGpuAssociationList = schema.new({ type = "list", list_member = M.ElasticGpuAssociation })
+
+M.ElasticInferenceAcceleratorAssociationList = schema.new({ type = "list", list_member = M.ElasticInferenceAcceleratorAssociation })
+
+M.InstanceNetworkInterfaceList = schema.new({ type = "list", list_member = M.InstanceNetworkInterface })
+
+M.LicenseList = schema.new({ type = "list", list_member = M.LicenseConfiguration })
+
+M.InstanceSecondaryInterfaceList = schema.new({ type = "list", list_member = M.InstanceSecondaryInterface })
+
+M.CapacityAllocationMetadataList = schema.new({ type = "list", list_member = M.CapacityAllocationMetadataEntry })
+
+M.DhcpConfigurationValueList = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.InstanceIpv6AddressListRequest = schema.new({ type = "list", list_member = M.InstanceIpv6AddressRequest })
+
+M.SecondaryInterfacePrivateIpAddressSpecificationListRequest = schema.new({ type = "list", list_member = M.SecondaryInterfacePrivateIpAddressSpecificationRequest })
+
+M.ThroughResourcesStatementList = schema.new({ type = "list", list_member = M.ThroughResourcesStatement })
+
+M.ReservationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailableInstanceCapacityList = schema.new({ type = "list", list_member = M.InstanceCapacity })
+
+M.InstanceStatusDetailsList = schema.new({ type = "list", list_member = M.InstanceStatusDetails })
+
+M.EbsStatusDetailsList = schema.new({ type = "list", list_member = M.EbsStatusDetails })
+
+M.ArchitectureTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedAdditionalProcessorFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CoreCountList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ThreadsPerCoreList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.DiskInfoList = schema.new({ type = "list", list_member = M.DiskInfo })
+
+M.EbsCardInfoList = schema.new({ type = "list", list_member = M.EbsCardInfo })
+
+M.NetworkCardInfoList = schema.new({ type = "list", list_member = M.NetworkCardInfo })
+
+M.BandwidthWeightingTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GpuDeviceInfoList = schema.new({ type = "list", list_member = M.GpuDeviceInfo })
+
+M.FpgaDeviceInfoList = schema.new({ type = "list", list_member = M.FpgaDeviceInfo })
+
+M.PlacementGroupStrategyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InferenceDeviceInfoList = schema.new({ type = "list", list_member = M.InferenceDeviceInfo })
+
+M.NitroTpmSupportedVersionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MediaDeviceInfoList = schema.new({ type = "list", list_member = M.MediaDeviceInfo })
+
+M.NeuronDeviceInfoList = schema.new({ type = "list", list_member = M.NeuronDeviceInfo })
+
+M.OccurrenceDaySet = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.VolumeStatusDetailsList = schema.new({ type = "list", list_member = M.VolumeStatusDetails })
+
+M.ConditionValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PerformanceFactorReferenceSetRequest = schema.new({ type = "list", list_member = M.PerformanceFactorReferenceRequest })
+
+M.IpamPublicAddressTagList = schema.new({ type = "list", list_member = M.IpamPublicAddressTag })
+
+M.Ipv4PrefixListResponse = schema.new({ type = "list", list_member = M.Ipv4PrefixSpecificationResponse })
+
+M.Ipv6PrefixListResponse = schema.new({ type = "list", list_member = M.Ipv6PrefixSpecificationResponse })
+
+M.SecondaryInterfacePrivateIpAddressSpecificationList = schema.new({ type = "list", list_member = M.SecondaryInterfacePrivateIpAddressSpecification })
+
+M.SpotFleetTagSpecificationList = schema.new({ type = "list", list_member = M.SpotFleetTagSpecification })
+
+M.ClassicLoadBalancers = schema.new({ type = "list", list_member = M.ClassicLoadBalancer })
+
+M.TargetGroups = schema.new({ type = "list", list_member = M.TargetGroup })
+
+M.ScheduledInstancesIpv6AddressList = schema.new({ type = "list", list_member = M.ScheduledInstancesIpv6Address })
+
+M.PrivateIpAddressConfigSet = schema.new({ type = "list", list_member = M.ScheduledInstancesPrivateIpAddressConfig })
+
+M.AdditionalDetailList = schema.new({ type = "list", list_member = M.AdditionalDetail })
+
+M.IpAddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisComponentList = schema.new({ type = "list", list_member = M.AnalysisComponent })
+
+M.PortRangeList = schema.new({ type = "list", list_member = M.PortRange })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FleetBlockDeviceMappingRequestList = schema.new({ type = "list", list_member = M.FleetBlockDeviceMappingRequest })
+
+M.BlockDeviceMappingResponseList = schema.new({ type = "list", list_member = M.BlockDeviceMappingResponse })
+
+M.ImageUsageResourceTypeOptionValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtocolList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Phase1EncryptionAlgorithmsList = schema.new({ type = "list", list_member = M.Phase1EncryptionAlgorithmsListValue })
+
+M.Phase2EncryptionAlgorithmsList = schema.new({ type = "list", list_member = M.Phase2EncryptionAlgorithmsListValue })
+
+M.Phase1IntegrityAlgorithmsList = schema.new({ type = "list", list_member = M.Phase1IntegrityAlgorithmsListValue })
+
+M.Phase2IntegrityAlgorithmsList = schema.new({ type = "list", list_member = M.Phase2IntegrityAlgorithmsListValue })
+
+M.Phase1DHGroupNumbersList = schema.new({ type = "list", list_member = M.Phase1DHGroupNumbersListValue })
+
+M.Phase2DHGroupNumbersList = schema.new({ type = "list", list_member = M.Phase2DHGroupNumbersListValue })
+
+M.IKEVersionsList = schema.new({ type = "list", list_member = M.IKEVersionsListValue })
+
+M.FleetLaunchTemplateOverridesList = schema.new({ type = "list", list_member = M.FleetLaunchTemplateOverrides })
+
+M.ResourceTypeOptionValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageUsageResourceTypeOptionList = schema.new({ type = "list", list_member = M.ImageUsageResourceTypeOption })
+
+M.IpRanges = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrefixListIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserIdGroupPairSet = schema.new({ type = "list", list_member = M.UserIdGroupPair })
+
+M.PerformanceFactorReferenceSet = schema.new({ type = "list", list_member = M.PerformanceFactorReference })
+
+M.InstancePrivateIpAddressList = schema.new({ type = "list", list_member = M.InstancePrivateIpAddress })
+
+M.InstanceIpv4PrefixList = schema.new({ type = "list", list_member = M.InstanceIpv4Prefix })
+
+M.InstanceIpv6PrefixList = schema.new({ type = "list", list_member = M.InstanceIpv6Prefix })
+
+M.InstanceSecondaryInterfacePrivateIpAddressList = schema.new({ type = "list", list_member = M.InstanceSecondaryInterfacePrivateIpAddress })
+
+M.ProtocolIntList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.WorkloadsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleOptionList = schema.new({ type = "list", list_member = M.RuleOption })
+
+M.RuleGroupTypePairList = schema.new({ type = "list", list_member = M.RuleGroupTypePair })
+
+M.RuleGroupRuleOptionsPairList = schema.new({ type = "list", list_member = M.RuleGroupRuleOptionsPair })
+
 M.AcceleratorCount = schema.new({
     id = id.from(_N, "AcceleratorCount"),
     type = "structure",
@@ -5594,10 +7070,7 @@ M.AssociateDhcpOptionsInput = schema.new({
     },
 })
 
-M.AssociateDhcpOptionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateDhcpOptionsOutput = prelude.Unit
 
 M.AssociateEnclaveCertificateIamRoleInput = schema.new({
     id = id.from(_N, "AssociateEnclaveCertificateIamRoleRequest"),
@@ -7580,10 +9053,7 @@ M.AttachInternetGatewayInput = schema.new({
     },
 })
 
-M.AttachInternetGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachInternetGatewayOutput = prelude.Unit
 
 M.EnaSrdUdpSpecification = schema.new({
     id = id.from(_N, "EnaSrdUdpSpecification"),
@@ -9836,10 +11306,7 @@ M.CancelConversionTaskInput = schema.new({
     },
 })
 
-M.CancelConversionTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelConversionTaskOutput = prelude.Unit
 
 M.CancelDeclarativePoliciesReportInput = schema.new({
     id = id.from(_N, "CancelDeclarativePoliciesReportRequest"),
@@ -9898,10 +11365,7 @@ M.CancelExportTaskInput = schema.new({
     },
 })
 
-M.CancelExportTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelExportTaskOutput = prelude.Unit
 
 M.CancelImageLaunchPermissionInput = schema.new({
     id = id.from(_N, "CancelImageLaunchPermissionRequest"),
@@ -26074,10 +27538,7 @@ M.CreateNetworkAclEntryInput = schema.new({
     },
 })
 
-M.CreateNetworkAclEntryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateNetworkAclEntryOutput = prelude.Unit
 
 M.CreateNetworkInsightsAccessScopeInput = schema.new({
     id = id.from(_N, "CreateNetworkInsightsAccessScopeRequest"),
@@ -31242,10 +32703,7 @@ M.CreateTagsInput = schema.new({
     },
 })
 
-M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateTagsOutput = prelude.Unit
 
 M.CreateTrafficMirrorFilterInput = schema.new({
     id = id.from(_N, "CreateTrafficMirrorFilterRequest"),
@@ -39309,10 +40767,7 @@ M.CreateVpnConnectionRouteInput = schema.new({
     },
 })
 
-M.CreateVpnConnectionRouteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateVpnConnectionRouteOutput = prelude.Unit
 
 M.CreateVpnGatewayInput = schema.new({
     id = id.from(_N, "CreateVpnGatewayRequest"),
@@ -39748,10 +41203,7 @@ M.DeleteCustomerGatewayInput = schema.new({
     },
 })
 
-M.DeleteCustomerGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCustomerGatewayOutput = prelude.Unit
 
 M.DeleteDhcpOptionsInput = schema.new({
     id = id.from(_N, "DeleteDhcpOptionsRequest"),
@@ -39779,10 +41231,7 @@ M.DeleteDhcpOptionsInput = schema.new({
     },
 })
 
-M.DeleteDhcpOptionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDhcpOptionsOutput = prelude.Unit
 
 M.DeleteEgressOnlyInternetGatewayInput = schema.new({
     id = id.from(_N, "DeleteEgressOnlyInternetGatewayRequest"),
@@ -40239,10 +41688,7 @@ M.DeleteInternetGatewayInput = schema.new({
     },
 })
 
-M.DeleteInternetGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInternetGatewayOutput = prelude.Unit
 
 M.DeleteIpamInput = schema.new({
     id = id.from(_N, "DeleteIpamRequest"),
@@ -41212,10 +42658,7 @@ M.DeleteNetworkAclInput = schema.new({
     },
 })
 
-M.DeleteNetworkAclOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNetworkAclOutput = prelude.Unit
 
 M.DeleteNetworkAclEntryInput = schema.new({
     id = id.from(_N, "DeleteNetworkAclEntryRequest"),
@@ -41267,10 +42710,7 @@ M.DeleteNetworkAclEntryInput = schema.new({
     },
 })
 
-M.DeleteNetworkAclEntryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNetworkAclEntryOutput = prelude.Unit
 
 M.DeleteNetworkInsightsAccessScopeInput = schema.new({
     id = id.from(_N, "DeleteNetworkInsightsAccessScopeRequest"),
@@ -41456,10 +42896,7 @@ M.DeleteNetworkInterfaceInput = schema.new({
     },
 })
 
-M.DeleteNetworkInterfaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNetworkInterfaceOutput = prelude.Unit
 
 M.DeleteNetworkInterfacePermissionInput = schema.new({
     id = id.from(_N, "DeleteNetworkInterfacePermissionRequest"),
@@ -41534,10 +42971,7 @@ M.DeletePlacementGroupInput = schema.new({
     },
 })
 
-M.DeletePlacementGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePlacementGroupOutput = prelude.Unit
 
 M.DeletePublicIpv4PoolInput = schema.new({
     id = id.from(_N, "DeletePublicIpv4PoolRequest"),
@@ -41763,10 +43197,7 @@ M.DeleteRouteInput = schema.new({
     },
 })
 
-M.DeleteRouteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRouteOutput = prelude.Unit
 
 M.DeleteRouteServerInput = schema.new({
     id = id.from(_N, "DeleteRouteServerRequest"),
@@ -41916,10 +43347,7 @@ M.DeleteRouteTableInput = schema.new({
     },
 })
 
-M.DeleteRouteTableOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRouteTableOutput = prelude.Unit
 
 M.DeleteSecondaryNetworkInput = schema.new({
     id = id.from(_N, "DeleteSecondaryNetworkRequest"),
@@ -42121,10 +43549,7 @@ M.DeleteSnapshotInput = schema.new({
     },
 })
 
-M.DeleteSnapshotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSnapshotOutput = prelude.Unit
 
 M.DeleteSpotDatafeedSubscriptionInput = schema.new({
     id = id.from(_N, "DeleteSpotDatafeedSubscriptionRequest"),
@@ -42143,10 +43568,7 @@ M.DeleteSpotDatafeedSubscriptionInput = schema.new({
     },
 })
 
-M.DeleteSpotDatafeedSubscriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSpotDatafeedSubscriptionOutput = prelude.Unit
 
 M.DeleteSubnetInput = schema.new({
     id = id.from(_N, "DeleteSubnetRequest"),
@@ -42174,10 +43596,7 @@ M.DeleteSubnetInput = schema.new({
     },
 })
 
-M.DeleteSubnetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSubnetOutput = prelude.Unit
 
 M.DeleteSubnetCidrReservationInput = schema.new({
     id = id.from(_N, "DeleteSubnetCidrReservationRequest"),
@@ -42259,10 +43678,7 @@ M.DeleteTagsInput = schema.new({
     },
 })
 
-M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTagsOutput = prelude.Unit
 
 M.DeleteTrafficMirrorFilterInput = schema.new({
     id = id.from(_N, "DeleteTrafficMirrorFilterRequest"),
@@ -43229,10 +44645,7 @@ M.DeleteVolumeInput = schema.new({
     },
 })
 
-M.DeleteVolumeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVolumeOutput = prelude.Unit
 
 M.DeleteVpcInput = schema.new({
     id = id.from(_N, "DeleteVpcRequest"),
@@ -43260,10 +44673,7 @@ M.DeleteVpcInput = schema.new({
     },
 })
 
-M.DeleteVpcOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVpcOutput = prelude.Unit
 
 M.DeleteVpcBlockPublicAccessExclusionInput = schema.new({
     id = id.from(_N, "DeleteVpcBlockPublicAccessExclusionRequest"),
@@ -43581,10 +44991,7 @@ M.DeleteVpnConnectionInput = schema.new({
     },
 })
 
-M.DeleteVpnConnectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVpnConnectionOutput = prelude.Unit
 
 M.DeleteVpnConnectionRouteInput = schema.new({
     id = id.from(_N, "DeleteVpnConnectionRouteRequest"),
@@ -43611,10 +45018,7 @@ M.DeleteVpnConnectionRouteInput = schema.new({
     },
 })
 
-M.DeleteVpnConnectionRouteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVpnConnectionRouteOutput = prelude.Unit
 
 M.DeleteVpnGatewayInput = schema.new({
     id = id.from(_N, "DeleteVpnGatewayRequest"),
@@ -43642,10 +45046,7 @@ M.DeleteVpnGatewayInput = schema.new({
     },
 })
 
-M.DeleteVpnGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVpnGatewayOutput = prelude.Unit
 
 M.DeprovisionByoipCidrInput = schema.new({
     id = id.from(_N, "DeprovisionByoipCidrRequest"),
@@ -75757,10 +77158,7 @@ M.DetachInternetGatewayInput = schema.new({
     },
 })
 
-M.DetachInternetGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachInternetGatewayOutput = prelude.Unit
 
 M.DetachNetworkInterfaceInput = schema.new({
     id = id.from(_N, "DetachNetworkInterfaceRequest"),
@@ -75800,10 +77198,7 @@ M.DetachNetworkInterfaceInput = schema.new({
     },
 })
 
-M.DetachNetworkInterfaceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachNetworkInterfaceOutput = prelude.Unit
 
 M.DetachVerifiedAccessTrustProviderInput = schema.new({
     id = id.from(_N, "DetachVerifiedAccessTrustProviderRequest"),
@@ -76050,10 +77445,7 @@ M.DetachVpnGatewayInput = schema.new({
     },
 })
 
-M.DetachVpnGatewayOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachVpnGatewayOutput = prelude.Unit
 
 M.DisableAddressTransferInput = schema.new({
     id = id.from(_N, "DisableAddressTransferRequest"),
@@ -77247,10 +78639,7 @@ M.DisableVgwRoutePropagationInput = schema.new({
     },
 })
 
-M.DisableVgwRoutePropagationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableVgwRoutePropagationOutput = prelude.Unit
 
 M.DisableVpcClassicLinkInput = schema.new({
     id = id.from(_N, "DisableVpcClassicLinkRequest"),
@@ -77359,10 +78748,7 @@ M.DisassociateAddressInput = schema.new({
     },
 })
 
-M.DisassociateAddressOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateAddressOutput = prelude.Unit
 
 M.DisassociateCapacityReservationBillingOwnerInput = schema.new({
     id = id.from(_N, "DisassociateCapacityReservationBillingOwnerRequest"),
@@ -77873,10 +79259,7 @@ M.DisassociateRouteTableInput = schema.new({
     },
 })
 
-M.DisassociateRouteTableOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateRouteTableOutput = prelude.Unit
 
 M.DisassociateSecurityGroupVpcInput = schema.new({
     id = id.from(_N, "DisassociateSecurityGroupVpcRequest"),
@@ -79486,10 +80869,7 @@ M.EnableVgwRoutePropagationInput = schema.new({
     },
 })
 
-M.EnableVgwRoutePropagationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableVgwRoutePropagationOutput = prelude.Unit
 
 M.EnableVolumeIOInput = schema.new({
     id = id.from(_N, "EnableVolumeIORequest"),
@@ -79519,10 +80899,7 @@ M.EnableVolumeIOInput = schema.new({
     },
 })
 
-M.EnableVolumeIOOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableVolumeIOOutput = prelude.Unit
 
 M.EnableVpcClassicLinkInput = schema.new({
     id = id.from(_N, "EnableVpcClassicLinkRequest"),
@@ -90739,10 +92116,7 @@ M.ModifyIdentityIdFormatInput = schema.new({
     },
 })
 
-M.ModifyIdentityIdFormatOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyIdentityIdFormatOutput = prelude.Unit
 
 M.ModifyIdFormatInput = schema.new({
     id = id.from(_N, "ModifyIdFormatRequest"),
@@ -90769,10 +92143,7 @@ M.ModifyIdFormatInput = schema.new({
     },
 })
 
-M.ModifyIdFormatOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyIdFormatOutput = prelude.Unit
 
 M.LaunchPermissionModifications = schema.new({
     id = id.from(_N, "LaunchPermissionModifications"),
@@ -90910,10 +92281,7 @@ M.ModifyImageAttributeInput = schema.new({
     },
 })
 
-M.ModifyImageAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyImageAttributeOutput = prelude.Unit
 
 M.EbsInstanceBlockDeviceSpecification = schema.new({
     id = id.from(_N, "EbsInstanceBlockDeviceSpecification"),
@@ -91189,10 +92557,7 @@ M.ModifyInstanceAttributeInput = schema.new({
     },
 })
 
-M.ModifyInstanceAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyInstanceAttributeOutput = prelude.Unit
 
 M.CapacityReservationSpecification = schema.new({
     id = id.from(_N, "CapacityReservationSpecification"),
@@ -93081,10 +94446,7 @@ M.ModifyNetworkInterfaceAttributeInput = schema.new({
     },
 })
 
-M.ModifyNetworkInterfaceAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyNetworkInterfaceAttributeOutput = prelude.Unit
 
 M.ModifyPrivateDnsNameOptionsInput = schema.new({
     id = id.from(_N, "ModifyPrivateDnsNameOptionsRequest"),
@@ -93519,10 +94881,7 @@ M.ModifySnapshotAttributeInput = schema.new({
     },
 })
 
-M.ModifySnapshotAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifySnapshotAttributeOutput = prelude.Unit
 
 M.ModifySnapshotTierInput = schema.new({
     id = id.from(_N, "ModifySnapshotTierRequest"),
@@ -93741,10 +95100,7 @@ M.ModifySubnetAttributeInput = schema.new({
     },
 })
 
-M.ModifySubnetAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifySubnetAttributeOutput = prelude.Unit
 
 M.ModifyTrafficMirrorFilterNetworkServicesInput = schema.new({
     id = id.from(_N, "ModifyTrafficMirrorFilterNetworkServicesRequest"),
@@ -95345,10 +96701,7 @@ M.ModifyVolumeAttributeInput = schema.new({
     },
 })
 
-M.ModifyVolumeAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyVolumeAttributeOutput = prelude.Unit
 
 M.ModifyVpcAttributeInput = schema.new({
     id = id.from(_N, "ModifyVpcAttributeRequest"),
@@ -95389,10 +96742,7 @@ M.ModifyVpcAttributeInput = schema.new({
     },
 })
 
-M.ModifyVpcAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ModifyVpcAttributeOutput = prelude.Unit
 
 M.ModifyVpcBlockPublicAccessExclusionInput = schema.new({
     id = id.from(_N, "ModifyVpcBlockPublicAccessExclusionRequest"),
@@ -97660,10 +99010,7 @@ M.RebootInstancesInput = schema.new({
     },
 })
 
-M.RebootInstancesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RebootInstancesOutput = prelude.Unit
 
 M.RegisterImageInput = schema.new({
     id = id.from(_N, "RegisterImageRequest"),
@@ -98442,10 +99789,7 @@ M.ReleaseAddressInput = schema.new({
     },
 })
 
-M.ReleaseAddressOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ReleaseAddressOutput = prelude.Unit
 
 M.ReleaseHostsInput = schema.new({
     id = id.from(_N, "ReleaseHostsRequest"),
@@ -98882,10 +100226,7 @@ M.ReplaceNetworkAclEntryInput = schema.new({
     },
 })
 
-M.ReplaceNetworkAclEntryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ReplaceNetworkAclEntryOutput = prelude.Unit
 
 M.ReplaceRouteInput = schema.new({
     id = id.from(_N, "ReplaceRouteRequest"),
@@ -99043,10 +100384,7 @@ M.ReplaceRouteInput = schema.new({
     },
 })
 
-M.ReplaceRouteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ReplaceRouteOutput = prelude.Unit
 
 M.ReplaceRouteTableAssociationInput = schema.new({
     id = id.from(_N, "ReplaceRouteTableAssociationRequest"),
@@ -99312,10 +100650,7 @@ M.ReportInstanceStatusInput = schema.new({
     },
 })
 
-M.ReportInstanceStatusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ReportInstanceStatusOutput = prelude.Unit
 
 M.RequestSpotFleetInput = schema.new({
     id = id.from(_N, "RequestSpotFleetRequest"),
@@ -99841,10 +101176,7 @@ M.ResetImageAttributeInput = schema.new({
     },
 })
 
-M.ResetImageAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResetImageAttributeOutput = prelude.Unit
 
 M.ResetInstanceAttributeInput = schema.new({
     id = id.from(_N, "ResetInstanceAttributeRequest"),
@@ -99885,10 +101217,7 @@ M.ResetInstanceAttributeInput = schema.new({
     },
 })
 
-M.ResetInstanceAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResetInstanceAttributeOutput = prelude.Unit
 
 M.ResetNetworkInterfaceAttributeInput = schema.new({
     id = id.from(_N, "ResetNetworkInterfaceAttributeRequest"),
@@ -99928,10 +101257,7 @@ M.ResetNetworkInterfaceAttributeInput = schema.new({
     },
 })
 
-M.ResetNetworkInterfaceAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResetNetworkInterfaceAttributeOutput = prelude.Unit
 
 M.ResetSnapshotAttributeInput = schema.new({
     id = id.from(_N, "ResetSnapshotAttributeRequest"),
@@ -99968,10 +101294,7 @@ M.ResetSnapshotAttributeInput = schema.new({
     },
 })
 
-M.ResetSnapshotAttributeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResetSnapshotAttributeOutput = prelude.Unit
 
 M.RestoreAddressToClassicInput = schema.new({
     id = id.from(_N, "RestoreAddressToClassicRequest"),
@@ -102373,10 +103696,7 @@ M.SendDiagnosticInterruptInput = schema.new({
     },
 })
 
-M.SendDiagnosticInterruptOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SendDiagnosticInterruptOutput = prelude.Unit
 
 M.StartDeclarativePoliciesReportInput = schema.new({
     id = id.from(_N, "StartDeclarativePoliciesReportRequest"),
@@ -103080,10 +104400,7 @@ M.UnassignPrivateIpAddressesInput = schema.new({
     },
 })
 
-M.UnassignPrivateIpAddressesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UnassignPrivateIpAddressesOutput = prelude.Unit
 
 M.UnassignPrivateNatGatewayAddressInput = schema.new({
     id = id.from(_N, "UnassignPrivateNatGatewayAddressRequest"),

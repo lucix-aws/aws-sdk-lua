@@ -1259,19 +1259,19 @@ local record ServiceTemporarilyUnavailableException
     canRetry: boolean
 end
 
-local type ReportType = "FINDING" | "FULL"
-
-local type StopAction = "START_EVALUATION" | "SKIP_EVALUATION"
-
-local type InspectorEvent = "ASSESSMENT_RUN_STARTED" | "ASSESSMENT_RUN_COMPLETED" | "ASSESSMENT_RUN_STATE_CHANGED" | "FINDING_REPORTED" | "OTHER"
-
 local type ReportStatus = "WORK_IN_PROGRESS" | "FAILED" | "COMPLETED"
 
-local type ReportFileFormat = "HTML" | "PDF"
+local type PreviewStatus = "WORK_IN_PROGRESS" | "COMPLETED"
+
+local type ReportType = "FINDING" | "FULL"
 
 local type Locale = "EN_US"
 
-local type PreviewStatus = "WORK_IN_PROGRESS" | "COMPLETED"
+local type InspectorEvent = "ASSESSMENT_RUN_STARTED" | "ASSESSMENT_RUN_COMPLETED" | "ASSESSMENT_RUN_STATE_CHANGED" | "FINDING_REPORTED" | "OTHER"
+
+local type ReportFileFormat = "HTML" | "PDF"
+
+local type StopAction = "START_EVALUATION" | "SKIP_EVALUATION"
 
 local record M
     AddAttributesToFindingsInput: AddAttributesToFindingsInput

@@ -2294,31 +2294,31 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type ThemeState = "ENABLED" | "DISABLED"
-
-local type AgentSoftwareVersion = "CURRENT_LATEST" | "ALWAYS_LATEST"
-
-local type UsageReportSchedule = "DAILY"
-
-local type AuthenticationType = "API" | "SAML" | "USERPOOL" | "AWS_AD"
-
-local type AppVisibility = "ALL" | "ASSOCIATED"
-
-local type PlatformType = "WINDOWS" | "WINDOWS_SERVER_2016" | "WINDOWS_SERVER_2019" | "WINDOWS_SERVER_2022" | "WINDOWS_SERVER_2025" | "AMAZON_LINUX2" | "RHEL8" | "ROCKY_LINUX8" | "UBUNTU_PRO_2404"
-
-local type FleetType = "ALWAYS_ON" | "ON_DEMAND" | "ELASTIC"
+local type PackagingType = "CUSTOM" | "APPSTREAM2"
 
 local type AppBlockBuilderPlatformType = "WINDOWS_SERVER_2019"
-
-local type ThemeStyling = "LIGHT_BLUE" | "BLUE" | "PINK" | "RED"
-
-local type StreamView = "APP" | "DESKTOP"
 
 local type VisibilityType = "PUBLIC" | "PRIVATE" | "SHARED"
 
 local type MessageAction = "SUPPRESS" | "RESEND"
 
-local type PackagingType = "CUSTOM" | "APPSTREAM2"
+local type UsageReportSchedule = "DAILY"
+
+local type ThemeStyling = "LIGHT_BLUE" | "BLUE" | "PINK" | "RED"
+
+local type FleetType = "ALWAYS_ON" | "ON_DEMAND" | "ELASTIC"
+
+local type ThemeState = "ENABLED" | "DISABLED"
+
+local type AgentSoftwareVersion = "CURRENT_LATEST" | "ALWAYS_LATEST"
+
+local type AuthenticationType = "API" | "SAML" | "USERPOOL" | "AWS_AD"
+
+local type PlatformType = "WINDOWS" | "WINDOWS_SERVER_2016" | "WINDOWS_SERVER_2019" | "WINDOWS_SERVER_2022" | "WINDOWS_SERVER_2025" | "AMAZON_LINUX2" | "RHEL8" | "ROCKY_LINUX8" | "UBUNTU_PRO_2404"
+
+local type StreamView = "APP" | "DESKTOP"
+
+local type AppVisibility = "ALL" | "ASSOCIATED"
 
 local record M
     AssociateAppBlockBuilderAppBlockInput: AssociateAppBlockBuilderAppBlockInput

@@ -7,6 +7,10 @@ local _N = "com.amazonaws.supportapp"
 
 local M = {}
 
+M.slackChannelConfigurationList = schema.new({ type = "list", list_member = M.SlackChannelConfiguration })
+
+M.SlackWorkspaceConfigurationList = schema.new({ type = "list", list_member = M.SlackWorkspaceConfiguration })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

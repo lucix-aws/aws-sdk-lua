@@ -7,6 +7,32 @@ local _N = "com.amazonaws.licensemanagerusersubscriptions"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.IdentityProviderSummaryList = schema.new({ type = "list", list_member = M.IdentityProviderSummary })
+
+M.InstanceSummaryList = schema.new({ type = "list", list_member = M.InstanceSummary })
+
+M.LicenseServerEndpointList = schema.new({ type = "list", list_member = M.LicenseServerEndpoint })
+
+M.ProductUserSummaryList = schema.new({ type = "list", list_member = M.ProductUserSummary })
+
+M.InstanceUserSummaryList = schema.new({ type = "list", list_member = M.InstanceUserSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LicenseServerList = schema.new({ type = "list", list_member = M.LicenseServer })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpV4List = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpV6List = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

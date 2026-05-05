@@ -7,6 +7,84 @@ local _N = "com.amazonaws.eventbridge"
 
 local M = {}
 
+M.EndpointEventBusList = schema.new({ type = "list", list_member = M.EndpointEventBus })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ApiDestinationResponseList = schema.new({ type = "list", list_member = M.ApiDestination })
+
+M.ArchiveResponseList = schema.new({ type = "list", list_member = M.Archive })
+
+M.ConnectionResponseList = schema.new({ type = "list", list_member = M.Connection })
+
+M.EndpointList = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.EventBusList = schema.new({ type = "list", list_member = M.EventBus })
+
+M.EventSourceList = schema.new({ type = "list", list_member = M.EventSource })
+
+M.PartnerEventSourceAccountList = schema.new({ type = "list", list_member = M.PartnerEventSourceAccount })
+
+M.PartnerEventSourceList = schema.new({ type = "list", list_member = M.PartnerEventSource })
+
+M.ReplayList = schema.new({ type = "list", list_member = M.Replay })
+
+M.RuleNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleResponseList = schema.new({ type = "list", list_member = M.Rule })
+
+M.TargetList = schema.new({ type = "list", list_member = M.Target })
+
+M.PutEventsRequestEntryList = schema.new({ type = "list", list_member = M.PutEventsRequestEntry })
+
+M.PutEventsResultEntryList = schema.new({ type = "list", list_member = M.PutEventsResultEntry })
+
+M.PutPartnerEventsRequestEntryList = schema.new({ type = "list", list_member = M.PutPartnerEventsRequestEntry })
+
+M.PutPartnerEventsResultEntryList = schema.new({ type = "list", list_member = M.PutPartnerEventsResultEntry })
+
+M.PutTargetsResultEntryList = schema.new({ type = "list", list_member = M.PutTargetsResultEntry })
+
+M.TargetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RemoveTargetsResultEntryList = schema.new({ type = "list", list_member = M.RemoveTargetsResultEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplayDestinationFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionHeaderParametersList = schema.new({ type = "list", list_member = M.ConnectionHeaderParameter })
+
+M.ConnectionQueryStringParametersList = schema.new({ type = "list", list_member = M.ConnectionQueryStringParameter })
+
+M.ConnectionBodyParametersList = schema.new({ type = "list", list_member = M.ConnectionBodyParameter })
+
+M.EventResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransformerPaths = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RunCommandTargets = schema.new({ type = "list", list_member = M.RunCommandTarget })
+
+M.CapacityProviderStrategy = schema.new({ type = "list", list_member = M.CapacityProviderStrategyItem })
+
+M.PlacementConstraints = schema.new({ type = "list", list_member = M.PlacementConstraint })
+
+M.PlacementStrategies = schema.new({ type = "list", list_member = M.PlacementStrategy })
+
+M.PathParameterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HeaderParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QueryStringParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Sqls = schema.new({ type = "list", list_member = prelude.String })
+
+M.SageMakerPipelineParameterList = schema.new({ type = "list", list_member = M.SageMakerPipelineParameter })
+
+M.RunCommandTargetValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -39,10 +117,7 @@ M.ActivateEventSourceInput = schema.new({
     },
 })
 
-M.ActivateEventSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ActivateEventSourceOutput = prelude.Unit
 
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),
@@ -1352,10 +1427,7 @@ M.DeactivateEventSourceInput = schema.new({
     },
 })
 
-M.DeactivateEventSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeactivateEventSourceOutput = prelude.Unit
 
 M.DeauthorizeConnectionInput = schema.new({
     id = id.from(_N, "DeauthorizeConnectionRequest"),
@@ -1542,10 +1614,7 @@ M.DeleteEventBusInput = schema.new({
     },
 })
 
-M.DeleteEventBusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventBusOutput = prelude.Unit
 
 M.DeletePartnerEventSourceInput = schema.new({
     id = id.from(_N, "DeletePartnerEventSourceRequest"),
@@ -1572,10 +1641,7 @@ M.DeletePartnerEventSourceInput = schema.new({
     },
 })
 
-M.DeletePartnerEventSourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePartnerEventSourceOutput = prelude.Unit
 
 M.DeleteRuleInput = schema.new({
     id = id.from(_N, "DeleteRuleRequest"),
@@ -1608,10 +1674,7 @@ M.DeleteRuleInput = schema.new({
     },
 })
 
-M.DeleteRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRuleOutput = prelude.Unit
 
 M.ManagedRuleException = schema.new({
     id = id.from(_N, "ManagedRuleException"),
@@ -2582,10 +2645,7 @@ M.DisableRuleInput = schema.new({
     },
 })
 
-M.DisableRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableRuleOutput = prelude.Unit
 
 M.EnableRuleInput = schema.new({
     id = id.from(_N, "EnableRuleRequest"),
@@ -2609,10 +2669,7 @@ M.EnableRuleInput = schema.new({
     },
 })
 
-M.EnableRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableRuleOutput = prelude.Unit
 
 M.ListApiDestinationsInput = schema.new({
     id = id.from(_N, "ListApiDestinationsRequest"),
@@ -4634,10 +4691,7 @@ M.PutPermissionInput = schema.new({
     },
 })
 
-M.PutPermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutPermissionOutput = prelude.Unit
 
 M.PutRuleInput = schema.new({
     id = id.from(_N, "PutRuleRequest"),
@@ -4819,10 +4873,7 @@ M.RemovePermissionInput = schema.new({
     },
 })
 
-M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemovePermissionOutput = prelude.Unit
 
 M.RemoveTargetsInput = schema.new({
     id = id.from(_N, "RemoveTargetsRequest"),

@@ -7,6 +7,78 @@ local _N = "com.amazonaws.devopsagent"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TaskList = schema.new({ type = "list", list_member = M.Task })
+
+M.ChatExecutionList = schema.new({ type = "list", list_member = M.ChatExecution })
+
+M.ExecutionList = schema.new({ type = "list", list_member = M.Execution })
+
+M.GoalList = schema.new({ type = "list", list_member = M.Goal })
+
+M.JournalRecordList = schema.new({ type = "list", list_member = M.JournalRecord })
+
+M.PendingMessages = schema.new({ type = "list", list_member = M.PendingMessage })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentSpaceList = schema.new({ type = "list", list_member = M.AgentSpace })
+
+M.PrivateConnectionSummaryList = schema.new({ type = "list", list_member = M.PrivateConnectionSummary })
+
+M.RegisteredServicesList = schema.new({ type = "list", list_member = M.RegisteredService })
+
+M.PriorityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WebhooksList = schema.new({ type = "list", list_member = M.Webhook })
+
+M.AssociationsList = schema.new({ type = "list", list_member = M.Association })
+
+M.DocumentList = schema.new({ type = "list", list_member = prelude.Document })
+
+M.ListOfSubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PortRanges = schema.new({ type = "list", list_member = prelude.String })
+
+M.PagerDutyScopes = schema.new({ type = "list", list_member = prelude.String })
+
+M.WebIdentityTokenAudienceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserMessage = schema.new({ type = "list", list_member = M.UserMessageBlock })
+
+M.AssistantMessage = schema.new({ type = "list", list_member = M.AssistantMessageBlock })
+
+M.DynatraceResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceNowAuthenticationScopeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MCPToolsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PagerDutyServicesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PagerDutyScopesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExchangeParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Scopes = schema.new({ type = "list", list_member = prelude.String })
+
+M.NewRelicApplicationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.NewRelicEntityGuids = schema.new({ type = "list", list_member = prelude.String })
+
+M.NewRelicAlertPolicyIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1825,10 +1897,7 @@ M.DisableOperatorAppInput = schema.new({
     },
 })
 
-M.DisableOperatorAppOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableOperatorAppOutput = prelude.Unit
 
 M.IdentityCenterServiceException = schema.new({
     id = id.from(_N, "IdentityCenterServiceException"),

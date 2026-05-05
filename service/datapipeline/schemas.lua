@@ -7,6 +7,36 @@ local _N = "com.amazonaws.datapipeline"
 
 local M = {}
 
+M.ParameterValueList = schema.new({ type = "list", list_member = M.ParameterValue })
+
+M.tagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.idList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PipelineObjectList = schema.new({ type = "list", list_member = M.PipelineObject })
+
+M.PipelineDescriptionList = schema.new({ type = "list", list_member = M.PipelineDescription })
+
+M.ParameterObjectList = schema.new({ type = "list", list_member = M.ParameterObject })
+
+M.pipelineList = schema.new({ type = "list", list_member = M.PipelineIdName })
+
+M.ValidationErrors = schema.new({ type = "list", list_member = M.ValidationError })
+
+M.ValidationWarnings = schema.new({ type = "list", list_member = M.ValidationWarning })
+
+M.stringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.fieldList = schema.new({ type = "list", list_member = M.Field })
+
+M.PipelineObjectMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PipelineObject })
+
+M.SelectorList = schema.new({ type = "list", list_member = M.Selector })
+
+M.ParameterAttributeList = schema.new({ type = "list", list_member = M.ParameterAttribute })
+
+M.validationMessages = schema.new({ type = "list", list_member = prelude.String })
+
 M.ParameterValue = schema.new({
     id = id.from(_N, "ParameterValue"),
     type = "structure",
@@ -283,10 +313,7 @@ M.DeletePipelineInput = schema.new({
     },
 })
 
-M.DeletePipelineOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePipelineOutput = prelude.Unit
 
 M.DescribeObjectsInput = schema.new({
     id = id.from(_N, "DescribeObjectsInput"),
@@ -1221,10 +1248,7 @@ M.SetStatusInput = schema.new({
     },
 })
 
-M.SetStatusOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetStatusOutput = prelude.Unit
 
 M.SetTaskStatusInput = schema.new({
     id = id.from(_N, "SetTaskStatusInput"),

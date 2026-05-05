@@ -7,6 +7,200 @@ local _N = "com.amazonaws.lightsail"
 
 local M = {}
 
+M.OperationList = schema.new({ type = "list", list_member = M.Operation })
+
+M.ResourceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SubjectAlternativeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceEntryList = schema.new({ type = "list", list_member = M.InstanceEntry })
+
+M.ContainerServicePublicDomains = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContainerServicePublicDomainsList })
+
+M.ContainerMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Container })
+
+M.AddOnRequestList = schema.new({ type = "list", list_member = M.AddOnRequest })
+
+M.CacheBehaviorList = schema.new({ type = "list", list_member = M.CacheBehaviorPerPath })
+
+M.Sessions = schema.new({ type = "list", list_member = M.Session })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachedDiskMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DiskMapList })
+
+M.DomainNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AlarmsList = schema.new({ type = "list", list_member = M.Alarm })
+
+M.AutoSnapshotDetailsList = schema.new({ type = "list", list_member = M.AutoSnapshotDetails })
+
+M.BlueprintList = schema.new({ type = "list", list_member = M.Blueprint })
+
+M.AccessKeyList = schema.new({ type = "list", list_member = M.AccessKey })
+
+M.BucketBundleList = schema.new({ type = "list", list_member = M.BucketBundle })
+
+M.MetricStatisticList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDatapointList = schema.new({ type = "list", list_member = M.MetricDatapoint })
+
+M.BucketList = schema.new({ type = "list", list_member = M.Bucket })
+
+M.BundleList = schema.new({ type = "list", list_member = M.Bundle })
+
+M.CertificateStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateSummaryList = schema.new({ type = "list", list_member = M.CertificateSummary })
+
+M.CloudFormationStackRecordList = schema.new({ type = "list", list_member = M.CloudFormationStackRecord })
+
+M.ContactProtocolsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactMethodsList = schema.new({ type = "list", list_member = M.ContactMethod })
+
+M.ContainerServiceMetadataEntryList = schema.new({ type = "list", list_member = M.ContainerServiceMetadataEntry })
+
+M.ContainerImageList = schema.new({ type = "list", list_member = M.ContainerImage })
+
+M.ContainerServiceLogEventList = schema.new({ type = "list", list_member = M.ContainerServiceLogEvent })
+
+M.ContainerServiceDeploymentList = schema.new({ type = "list", list_member = M.ContainerServiceDeployment })
+
+M.ContainerServicePowerList = schema.new({ type = "list", list_member = M.ContainerServicePower })
+
+M.ContainerServiceList = schema.new({ type = "list", list_member = M.ContainerService })
+
+M.ResourcesBudgetEstimate = schema.new({ type = "list", list_member = M.ResourceBudgetEstimate })
+
+M.DiskList = schema.new({ type = "list", list_member = M.Disk })
+
+M.DiskSnapshotList = schema.new({ type = "list", list_member = M.DiskSnapshot })
+
+M.DistributionBundleList = schema.new({ type = "list", list_member = M.DistributionBundle })
+
+M.DistributionList = schema.new({ type = "list", list_member = M.LightsailDistribution })
+
+M.DomainList = schema.new({ type = "list", list_member = M.Domain })
+
+M.ExportSnapshotRecordList = schema.new({ type = "list", list_member = M.ExportSnapshotRecord })
+
+M.InstancePortStateList = schema.new({ type = "list", list_member = M.InstancePortState })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.Instance })
+
+M.InstanceSnapshotList = schema.new({ type = "list", list_member = M.InstanceSnapshot })
+
+M.KeyPairList = schema.new({ type = "list", list_member = M.KeyPair })
+
+M.LoadBalancerList = schema.new({ type = "list", list_member = M.LoadBalancer })
+
+M.LoadBalancerTlsCertificateList = schema.new({ type = "list", list_member = M.LoadBalancerTlsCertificate })
+
+M.LoadBalancerTlsPolicyList = schema.new({ type = "list", list_member = M.LoadBalancerTlsPolicy })
+
+M.RegionList = schema.new({ type = "list", list_member = M.Region })
+
+M.RelationalDatabaseBlueprintList = schema.new({ type = "list", list_member = M.RelationalDatabaseBlueprint })
+
+M.RelationalDatabaseBundleList = schema.new({ type = "list", list_member = M.RelationalDatabaseBundle })
+
+M.RelationalDatabaseEventList = schema.new({ type = "list", list_member = M.RelationalDatabaseEvent })
+
+M.LogEventList = schema.new({ type = "list", list_member = M.LogEvent })
+
+M.RelationalDatabaseParameterList = schema.new({ type = "list", list_member = M.RelationalDatabaseParameter })
+
+M.RelationalDatabaseList = schema.new({ type = "list", list_member = M.RelationalDatabase })
+
+M.RelationalDatabaseSnapshotList = schema.new({ type = "list", list_member = M.RelationalDatabaseSnapshot })
+
+M.setupHistoryList = schema.new({ type = "list", list_member = M.SetupHistory })
+
+M.StaticIpList = schema.new({ type = "list", list_member = M.StaticIp })
+
+M.NotificationTriggerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PortInfoList = schema.new({ type = "list", list_member = M.PortInfo })
+
+M.SetupDomainNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PartnerIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessReceiverList = schema.new({ type = "list", list_member = M.ResourceReceivingAccess })
+
+M.ContainerServicePublicDomainsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainEntryOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DiskMapList = schema.new({ type = "list", list_member = M.DiskMap })
+
+M.ContainerServiceMetadataEntry = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AddOnList = schema.new({ type = "list", list_member = M.AddOn })
+
+M.DomainEntryList = schema.new({ type = "list", list_member = M.DomainEntry })
+
+M.Ipv6AddressList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HostKeysList = schema.new({ type = "list", list_member = M.HostKeyAttributes })
+
+M.PortList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.InstanceHealthSummaryList = schema.new({ type = "list", list_member = M.InstanceHealthSummary })
+
+M.LoadBalancerTlsCertificateSummaryList = schema.new({ type = "list", list_member = M.LoadBalancerTlsCertificateSummary })
+
+M.LoadBalancerConfigurationOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PendingMaintenanceActionList = schema.new({ type = "list", list_member = M.PendingMaintenanceAction })
+
+M.BucketCorsRules = schema.new({ type = "list", list_member = M.BucketCorsRule })
+
+M.DomainValidationRecordList = schema.new({ type = "list", list_member = M.DomainValidationRecord })
+
+M.Environment = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PortMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.HeaderForwardList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachedDiskList = schema.new({ type = "list", list_member = M.AttachedDisk })
+
+M.InstancePlatformList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudFormationStackRecordSourceInfoList = schema.new({ type = "list", list_member = M.CloudFormationStackRecordSourceInfo })
+
+M.CostEstimates = schema.new({ type = "list", list_member = M.CostEstimate })
+
+M.InstancePortInfoList = schema.new({ type = "list", list_member = M.InstancePortInfo })
+
+M.LoadBalancerTlsCertificateDomainValidationRecordList = schema.new({ type = "list", list_member = M.LoadBalancerTlsCertificateDomainValidationRecord })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.SetupExecutionDetailsList = schema.new({ type = "list", list_member = M.SetupExecutionDetails })
+
+M.LoadBalancerTlsCertificateDomainValidationOptionList = schema.new({ type = "list", list_member = M.LoadBalancerTlsCertificateDomainValidationOption })
+
+M.BucketCorsAllowedMethods = schema.new({ type = "list", list_member = prelude.String })
+
+M.BucketCorsAllowedOrigins = schema.new({ type = "list", list_member = prelude.String })
+
+M.BucketCorsAllowedHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.BucketCorsExposeHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.EstimatesByTime = schema.new({ type = "list", list_member = M.EstimateByTime })
+
+M.DiskInfoList = schema.new({ type = "list", list_member = M.DiskInfo })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -6956,7 +7150,7 @@ M.GetContainerAPIMetadataOutput = schema.new({
             type = "list",
             name = "metadata",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.ContainerServiceMetadataEntry,
         }),
     },
 })

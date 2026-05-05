@@ -7,6 +7,62 @@ local _N = "com.amazonaws.appmesh"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.TagRef })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MeshList = schema.new({ type = "list", list_member = M.MeshRef })
+
+M.VirtualGatewayList = schema.new({ type = "list", list_member = M.VirtualGatewayRef })
+
+M.VirtualNodeList = schema.new({ type = "list", list_member = M.VirtualNodeRef })
+
+M.VirtualRouterList = schema.new({ type = "list", list_member = M.VirtualRouterRef })
+
+M.VirtualServiceList = schema.new({ type = "list", list_member = M.VirtualServiceRef })
+
+M.GatewayRouteList = schema.new({ type = "list", list_member = M.GatewayRouteRef })
+
+M.RouteList = schema.new({ type = "list", list_member = M.RouteRef })
+
+M.VirtualGatewayListeners = schema.new({ type = "list", list_member = M.VirtualGatewayListener })
+
+M.Listeners = schema.new({ type = "list", list_member = M.Listener })
+
+M.Backends = schema.new({ type = "list", list_member = M.Backend })
+
+M.VirtualRouterListeners = schema.new({ type = "list", list_member = M.VirtualRouterListener })
+
+M.AwsCloudMapInstanceAttributes = schema.new({ type = "list", list_member = M.AwsCloudMapInstanceAttribute })
+
+M.HttpQueryParameters = schema.new({ type = "list", list_member = M.HttpQueryParameter })
+
+M.HttpGatewayRouteHeaders = schema.new({ type = "list", list_member = M.HttpGatewayRouteHeader })
+
+M.GrpcGatewayRouteMetadataList = schema.new({ type = "list", list_member = M.GrpcGatewayRouteMetadata })
+
+M.HttpRouteHeaders = schema.new({ type = "list", list_member = M.HttpRouteHeader })
+
+M.WeightedTargets = schema.new({ type = "list", list_member = M.WeightedTarget })
+
+M.HttpRetryPolicyEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.TcpRetryPolicyEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.GrpcRouteMetadataList = schema.new({ type = "list", list_member = M.GrpcRouteMetadata })
+
+M.GrpcRetryPolicyEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.PortSet = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.JsonFormat = schema.new({ type = "list", list_member = M.JsonFormatRef })
+
+M.VirtualGatewayCertificateAuthorityArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubjectAlternativeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateAuthorityArns = schema.new({ type = "list", list_member = prelude.String })
+
 M.JsonFormatRef = schema.new({
     id = id.from(_N, "JsonFormatRef"),
     type = "structure",

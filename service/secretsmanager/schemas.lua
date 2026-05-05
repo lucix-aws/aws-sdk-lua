@@ -7,6 +7,40 @@ local _N = "com.amazonaws.secretsmanager"
 
 local M = {}
 
+M.SecretIdListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.FiltersListType = schema.new({ type = "list", list_member = M.Filter })
+
+M.SecretValuesType = schema.new({ type = "list", list_member = M.SecretValueEntry })
+
+M.APIErrorListType = schema.new({ type = "list", list_member = M.APIErrorType })
+
+M.TagListType = schema.new({ type = "list", list_member = M.Tag })
+
+M.AddReplicaRegionListType = schema.new({ type = "list", list_member = M.ReplicaRegionType })
+
+M.ReplicationStatusListType = schema.new({ type = "list", list_member = M.ReplicationStatusType })
+
+M.ExternalSecretRotationMetadataType = schema.new({ type = "list", list_member = M.ExternalSecretRotationMetadataItem })
+
+M.SecretVersionsToStagesMapType = schema.new({ type = "map", map_key = prelude.String, map_value = M.SecretVersionStagesType })
+
+M.SecretVersionStagesType = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecretListType = schema.new({ type = "list", list_member = M.SecretListEntry })
+
+M.SecretVersionsListType = schema.new({ type = "list", list_member = M.SecretVersionsListEntry })
+
+M.RemoveReplicaRegionListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationErrorsType = schema.new({ type = "list", list_member = M.ValidationErrorsEntry })
+
+M.FilterValuesStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KmsKeyIdListType = schema.new({ type = "list", list_member = prelude.String })
+
 M.ReplicaRegionType = schema.new({
     id = id.from(_N, "ReplicaRegionType"),
     type = "structure",
@@ -1802,10 +1836,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -1833,10 +1864,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateSecretInput = schema.new({
     id = id.from(_N, "UpdateSecretRequest"),

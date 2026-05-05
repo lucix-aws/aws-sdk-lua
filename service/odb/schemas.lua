@@ -7,6 +7,66 @@ local _N = "com.amazonaws.odb"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.DbSystemShapeList = schema.new({ type = "list", list_member = M.DbSystemShapeSummary })
+
+M.GiVersionList = schema.new({ type = "list", list_member = M.GiVersionSummary })
+
+M.SystemVersionList = schema.new({ type = "list", list_member = M.SystemVersionSummary })
+
+M.ResponseTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudAutonomousVmClusterList = schema.new({ type = "list", list_member = M.CloudAutonomousVmClusterSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutonomousVirtualMachineList = schema.new({ type = "list", list_member = M.AutonomousVirtualMachineSummary })
+
+M.CloudExadataInfrastructureList = schema.new({ type = "list", list_member = M.CloudExadataInfrastructureSummary })
+
+M.CustomerContacts = schema.new({ type = "list", list_member = M.CustomerContact })
+
+M.DbServerList = schema.new({ type = "list", list_member = M.DbServerSummary })
+
+M.CloudVmClusterList = schema.new({ type = "list", list_member = M.CloudVmClusterSummary })
+
+M.DbNodeList = schema.new({ type = "list", list_member = M.DbNodeSummary })
+
+M.OdbNetworkList = schema.new({ type = "list", list_member = M.OdbNetworkSummary })
+
+M.OdbPeeringConnectionList = schema.new({ type = "list", list_member = M.OdbPeeringConnectionSummary })
+
+M.PeeredCidrList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PeerNetworkRouteTableIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DaysOfWeek = schema.new({ type = "list", list_member = M.DayOfWeek })
+
+M.HoursOfDay = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.Months = schema.new({ type = "list", list_member = M.Month })
+
+M.WeeksOfMonth = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.IamRoleList = schema.new({ type = "list", list_member = M.IamRole })
+
+M.CloudAutonomousVmClusterResourceDetailsList = schema.new({ type = "list", list_member = M.CloudAutonomousVmClusterResourceDetails })
+
+M.SensitiveStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OciDnsForwardingConfigList = schema.new({ type = "list", list_member = M.OciDnsForwardingConfig })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbIormConfigList = schema.new({ type = "list", list_member = M.DbIormConfig })
+
+M.CrossRegionS3RestoreSourcesAccessList = schema.new({ type = "list", list_member = M.CrossRegionS3RestoreSourcesAccess })
+
 M.AcceptMarketplaceRegistrationInput = schema.new({
     id = id.from(_N, "AcceptMarketplaceRegistrationInput"),
     type = "structure",

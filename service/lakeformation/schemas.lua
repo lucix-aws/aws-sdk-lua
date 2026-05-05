@@ -7,6 +7,90 @@ local _N = "com.amazonaws.lakeformation"
 
 local M = {}
 
+M.LFTagsList = schema.new({ type = "list", list_member = M.LFTagPair })
+
+M.LFTagErrors = schema.new({ type = "list", list_member = M.LFTagError })
+
+M.BatchPermissionsRequestEntryList = schema.new({ type = "list", list_member = M.BatchPermissionsRequestEntry })
+
+M.BatchPermissionsFailureList = schema.new({ type = "list", list_member = M.BatchPermissionsFailureEntry })
+
+M.DataLakePrincipalList = schema.new({ type = "list", list_member = M.DataLakePrincipal })
+
+M.ServiceIntegrationList = schema.new({ type = "list", list_member = M.ServiceIntegrationUnion })
+
+M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Expression = schema.new({ type = "list", list_member = M.LFTag })
+
+M.VirtualObjectList = schema.new({ type = "list", list_member = M.VirtualObject })
+
+M.PrincipalResourcePermissionsList = schema.new({ type = "list", list_member = M.PrincipalResourcePermissions })
+
+M.ColumnLFTagsList = schema.new({ type = "list", list_member = M.ColumnLFTag })
+
+M.PartitionedTableObjectsList = schema.new({ type = "list", list_member = M.PartitionObjects })
+
+M.PathStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkUnitRangeList = schema.new({ type = "list", list_member = M.WorkUnitRange })
+
+M.DataCellsFilterList = schema.new({ type = "list", list_member = M.DataCellsFilter })
+
+M.LakeFormationOptInsInfoList = schema.new({ type = "list", list_member = M.LakeFormationOptInsInfo })
+
+M.LFTagExpressionsList = schema.new({ type = "list", list_member = M.LFTagExpression })
+
+M.FilterConditionList = schema.new({ type = "list", list_member = M.FilterCondition })
+
+M.ResourceInfoList = schema.new({ type = "list", list_member = M.ResourceInfo })
+
+M.StorageOptimizerList = schema.new({ type = "list", list_member = M.StorageOptimizer })
+
+M.TransactionDescriptionList = schema.new({ type = "list", list_member = M.TransactionDescription })
+
+M.DatabaseLFTagsList = schema.new({ type = "list", list_member = M.TaggedDatabase })
+
+M.TableLFTagsList = schema.new({ type = "list", list_member = M.TaggedTable })
+
+M.WriteOperationList = schema.new({ type = "list", list_member = M.WriteOperation })
+
+M.StorageOptimizerConfigMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.StorageOptimizerConfig })
+
+M.ColumnNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScopeTargets = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrincipalPermissionsList = schema.new({ type = "list", list_member = M.PrincipalPermissions })
+
+M.ParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TrustedResourceOwners = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizedSessionTagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdditionalContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QueryParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StorageOptimizerConfig = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RedshiftServiceIntegrations = schema.new({ type = "list", list_member = M.RedshiftScopeUnion })
+
+M.PartitionValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TableObjectList = schema.new({ type = "list", list_member = M.TableObject })
+
+M.StringValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceShareList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

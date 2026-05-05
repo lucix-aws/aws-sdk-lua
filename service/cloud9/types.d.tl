@@ -611,9 +611,9 @@ local record TooManyRequestsException
     code: number
 end
 
-local type ManagedCredentialsAction = "ENABLE" | "DISABLE"
-
 local type EnvironmentStatus = "error" | "creating" | "connecting" | "ready" | "stopping" | "stopped" | "deleting"
+
+local type ManagedCredentialsAction = "ENABLE" | "DISABLE"
 
 local type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM"
 

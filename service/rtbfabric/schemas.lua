@@ -7,6 +7,38 @@ local _N = "com.amazonaws.rtbfabric"
 
 local M = {}
 
+M.GatewayIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LinkList = schema.new({ type = "list", list_member = M.ListLinksResponseStructure })
+
+M.ModuleConfigurationList = schema.new({ type = "list", list_member = M.ModuleConfiguration })
+
+M.ProtocolList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateAuthorityCertificates = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponderErrorMasking = schema.new({ type = "list", list_member = M.ResponderErrorMaskingForHttpCode })
+
+M.AutoScalingGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlowModuleNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponderErrorMaskingLoggingTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterConfiguration = schema.new({ type = "list", list_member = M.Filter })
+
+M.FilterCriteria = schema.new({ type = "list", list_member = M.FilterCriterion })
+
+M.ValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ResponderErrorMaskingForHttpCode = schema.new({
     id = id.from(_N, "ResponderErrorMaskingForHttpCode"),
     type = "structure",

@@ -7,6 +7,86 @@ local _N = "com.amazonaws.apigatewayv2"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.IdentitySourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DomainNameConfigurations = schema.new({ type = "list", list_member = M.DomainNameConfiguration })
+
+M.IntegrationParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TemplateMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResponseParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.IntegrationParameters })
+
+M.__listOf__stringMin20Max2048 = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthorizationScopes = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteModels = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RouteParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterConstraints })
+
+M.__listOfRoutingRuleAction = schema.new({ type = "list", list_member = M.RoutingRuleAction })
+
+M.__listOfRoutingRuleCondition = schema.new({ type = "list", list_member = M.RoutingRuleCondition })
+
+M.RouteSettingsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RouteSettings })
+
+M.StageVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfApiMapping = schema.new({ type = "list", list_member = M.ApiMapping })
+
+M.__listOfApi = schema.new({ type = "list", list_member = M.Api })
+
+M.__listOfAuthorizer = schema.new({ type = "list", list_member = M.Authorizer })
+
+M.__listOfDeployment = schema.new({ type = "list", list_member = M.Deployment })
+
+M.__listOfDomainName = schema.new({ type = "list", list_member = M.DomainName })
+
+M.__listOfIntegrationResponse = schema.new({ type = "list", list_member = M.IntegrationResponse })
+
+M.__listOfIntegration = schema.new({ type = "list", list_member = M.Integration })
+
+M.__listOfModel = schema.new({ type = "list", list_member = M.Model })
+
+M.__listOfRouteResponse = schema.new({ type = "list", list_member = M.RouteResponse })
+
+M.__listOfRoute = schema.new({ type = "list", list_member = M.Route })
+
+M.__listOfStage = schema.new({ type = "list", list_member = M.Stage })
+
+M.__listOfVpcLink = schema.new({ type = "list", list_member = M.VpcLink })
+
+M.__listOfPortalProductSummary = schema.new({ type = "list", list_member = M.PortalProductSummary })
+
+M.__listOfPortalSummary = schema.new({ type = "list", list_member = M.PortalSummary })
+
+M.__listOfProductPageSummaryNoBody = schema.new({ type = "list", list_member = M.ProductPageSummaryNoBody })
+
+M.__listOfProductRestEndpointPageSummaryNoBody = schema.new({ type = "list", list_member = M.ProductRestEndpointPageSummaryNoBody })
+
+M.__listOfRoutingRule = schema.new({ type = "list", list_member = M.RoutingRule })
+
+M.CorsHeaderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CorsMethodList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CorsOriginList = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfSection = schema.new({ type = "list", list_member = M.Section })
+
+M.__listOfSelectionKey = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfRoutingRuleMatchHeaderValue = schema.new({ type = "list", list_member = M.RoutingRuleMatchHeaderValue })
+
 M.Cors = schema.new({
     id = id.from(_N, "Cors"),
     type = "structure",
@@ -5852,10 +5932,7 @@ M.DeleteAccessLogSettingsInput = schema.new({
     },
 })
 
-M.DeleteAccessLogSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessLogSettingsOutput = prelude.Unit
 
 M.DeleteApiInput = schema.new({
     id = id.from(_N, "DeleteApiRequest"),
@@ -5874,10 +5951,7 @@ M.DeleteApiInput = schema.new({
     },
 })
 
-M.DeleteApiOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApiOutput = prelude.Unit
 
 M.DeleteApiMappingInput = schema.new({
     id = id.from(_N, "DeleteApiMappingRequest"),
@@ -5906,10 +5980,7 @@ M.DeleteApiMappingInput = schema.new({
     },
 })
 
-M.DeleteApiMappingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApiMappingOutput = prelude.Unit
 
 M.DeleteAuthorizerInput = schema.new({
     id = id.from(_N, "DeleteAuthorizerRequest"),
@@ -5938,10 +6009,7 @@ M.DeleteAuthorizerInput = schema.new({
     },
 })
 
-M.DeleteAuthorizerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAuthorizerOutput = prelude.Unit
 
 M.DeleteCorsConfigurationInput = schema.new({
     id = id.from(_N, "DeleteCorsConfigurationRequest"),
@@ -5960,10 +6028,7 @@ M.DeleteCorsConfigurationInput = schema.new({
     },
 })
 
-M.DeleteCorsConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCorsConfigurationOutput = prelude.Unit
 
 M.DeleteDeploymentInput = schema.new({
     id = id.from(_N, "DeleteDeploymentRequest"),
@@ -5992,10 +6057,7 @@ M.DeleteDeploymentInput = schema.new({
     },
 })
 
-M.DeleteDeploymentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeploymentOutput = prelude.Unit
 
 M.DeleteDomainNameInput = schema.new({
     id = id.from(_N, "DeleteDomainNameRequest"),
@@ -6014,10 +6076,7 @@ M.DeleteDomainNameInput = schema.new({
     },
 })
 
-M.DeleteDomainNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDomainNameOutput = prelude.Unit
 
 M.DeleteIntegrationInput = schema.new({
     id = id.from(_N, "DeleteIntegrationRequest"),
@@ -6046,10 +6105,7 @@ M.DeleteIntegrationInput = schema.new({
     },
 })
 
-M.DeleteIntegrationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntegrationOutput = prelude.Unit
 
 M.DeleteIntegrationResponseInput = schema.new({
     id = id.from(_N, "DeleteIntegrationResponseRequest"),
@@ -6088,10 +6144,7 @@ M.DeleteIntegrationResponseInput = schema.new({
     },
 })
 
-M.DeleteIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntegrationResponseOutput = prelude.Unit
 
 M.DeleteModelInput = schema.new({
     id = id.from(_N, "DeleteModelRequest"),
@@ -6120,10 +6173,7 @@ M.DeleteModelInput = schema.new({
     },
 })
 
-M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteModelOutput = prelude.Unit
 
 M.DeletePortalInput = schema.new({
     id = id.from(_N, "DeletePortalRequest"),
@@ -6142,10 +6192,7 @@ M.DeletePortalInput = schema.new({
     },
 })
 
-M.DeletePortalOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePortalOutput = prelude.Unit
 
 M.DeletePortalProductInput = schema.new({
     id = id.from(_N, "DeletePortalProductRequest"),
@@ -6164,10 +6211,7 @@ M.DeletePortalProductInput = schema.new({
     },
 })
 
-M.DeletePortalProductOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePortalProductOutput = prelude.Unit
 
 M.DeletePortalProductSharingPolicyInput = schema.new({
     id = id.from(_N, "DeletePortalProductSharingPolicyRequest"),
@@ -6186,10 +6230,7 @@ M.DeletePortalProductSharingPolicyInput = schema.new({
     },
 })
 
-M.DeletePortalProductSharingPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePortalProductSharingPolicyOutput = prelude.Unit
 
 M.DeleteProductPageInput = schema.new({
     id = id.from(_N, "DeleteProductPageRequest"),
@@ -6218,10 +6259,7 @@ M.DeleteProductPageInput = schema.new({
     },
 })
 
-M.DeleteProductPageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProductPageOutput = prelude.Unit
 
 M.DeleteProductRestEndpointPageInput = schema.new({
     id = id.from(_N, "DeleteProductRestEndpointPageRequest"),
@@ -6250,10 +6288,7 @@ M.DeleteProductRestEndpointPageInput = schema.new({
     },
 })
 
-M.DeleteProductRestEndpointPageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProductRestEndpointPageOutput = prelude.Unit
 
 M.DeleteRouteInput = schema.new({
     id = id.from(_N, "DeleteRouteRequest"),
@@ -6282,10 +6317,7 @@ M.DeleteRouteInput = schema.new({
     },
 })
 
-M.DeleteRouteOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRouteOutput = prelude.Unit
 
 M.DeleteRouteRequestParameterInput = schema.new({
     id = id.from(_N, "DeleteRouteRequestParameterRequest"),
@@ -6324,10 +6356,7 @@ M.DeleteRouteRequestParameterInput = schema.new({
     },
 })
 
-M.DeleteRouteRequestParameterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRouteRequestParameterOutput = prelude.Unit
 
 M.DeleteRouteResponseInput = schema.new({
     id = id.from(_N, "DeleteRouteResponseRequest"),
@@ -6366,10 +6395,7 @@ M.DeleteRouteResponseInput = schema.new({
     },
 })
 
-M.DeleteRouteResponseOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRouteResponseOutput = prelude.Unit
 
 M.DeleteRouteSettingsInput = schema.new({
     id = id.from(_N, "DeleteRouteSettingsRequest"),
@@ -6408,10 +6434,7 @@ M.DeleteRouteSettingsInput = schema.new({
     },
 })
 
-M.DeleteRouteSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRouteSettingsOutput = prelude.Unit
 
 M.DeleteRoutingRuleInput = schema.new({
     id = id.from(_N, "DeleteRoutingRuleRequest"),
@@ -6449,10 +6472,7 @@ M.DeleteRoutingRuleInput = schema.new({
     },
 })
 
-M.DeleteRoutingRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRoutingRuleOutput = prelude.Unit
 
 M.DeleteStageInput = schema.new({
     id = id.from(_N, "DeleteStageRequest"),
@@ -6481,10 +6501,7 @@ M.DeleteStageInput = schema.new({
     },
 })
 
-M.DeleteStageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStageOutput = prelude.Unit
 
 M.DeleteVpcLinkInput = schema.new({
     id = id.from(_N, "DeleteVpcLinkRequest"),
@@ -6525,10 +6542,7 @@ M.DisablePortalInput = schema.new({
     },
 })
 
-M.DisablePortalOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisablePortalOutput = prelude.Unit
 
 M.ExportApiInput = schema.new({
     id = id.from(_N, "ExportApiRequest"),
@@ -10522,10 +10536,7 @@ M.ResetAuthorizersCacheInput = schema.new({
     },
 })
 
-M.ResetAuthorizersCacheOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResetAuthorizersCacheOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -10588,10 +10599,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateApiInput = schema.new({
     id = id.from(_N, "UpdateApiRequest"),

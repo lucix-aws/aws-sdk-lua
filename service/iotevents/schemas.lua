@@ -7,6 +7,48 @@ local _N = "com.amazonaws.iotevents"
 
 local M = {}
 
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.AnalysisResults = schema.new({ type = "list", list_member = M.AnalysisResult })
+
+M.AlarmModelSummaries = schema.new({ type = "list", list_member = M.AlarmModelSummary })
+
+M.AlarmModelVersionSummaries = schema.new({ type = "list", list_member = M.AlarmModelVersionSummary })
+
+M.DetectorModelSummaries = schema.new({ type = "list", list_member = M.DetectorModelSummary })
+
+M.DetectorModelVersionSummaries = schema.new({ type = "list", list_member = M.DetectorModelVersionSummary })
+
+M.RoutedResources = schema.new({ type = "list", list_member = M.RoutedResource })
+
+M.InputSummaries = schema.new({ type = "list", list_member = M.InputSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationActions = schema.new({ type = "list", list_member = M.NotificationAction })
+
+M.AlarmActions = schema.new({ type = "list", list_member = M.AlarmAction })
+
+M.States = schema.new({ type = "list", list_member = M.State })
+
+M.Attributes = schema.new({ type = "list", list_member = M.Attribute })
+
+M.DetectorDebugOptions = schema.new({ type = "list", list_member = M.DetectorDebugOption })
+
+M.AnalysisResultLocations = schema.new({ type = "list", list_member = M.AnalysisResultLocation })
+
+M.SMSConfigurations = schema.new({ type = "list", list_member = M.SMSConfiguration })
+
+M.EmailConfigurations = schema.new({ type = "list", list_member = M.EmailConfiguration })
+
+M.Events = schema.new({ type = "list", list_member = M.Event })
+
+M.TransitionEvents = schema.new({ type = "list", list_member = M.TransitionEvent })
+
+M.RecipientDetails = schema.new({ type = "list", list_member = M.RecipientDetail })
+
+M.Actions = schema.new({ type = "list", list_member = M.Action })
+
 M.AcknowledgeFlow = schema.new({
     id = id.from(_N, "AcknowledgeFlow"),
     type = "structure",
@@ -2883,10 +2925,7 @@ M.PutLoggingOptionsInput = schema.new({
     },
 })
 
-M.PutLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutLoggingOptionsOutput = prelude.Unit
 
 M.StartDetectorModelAnalysisInput = schema.new({
     id = id.from(_N, "StartDetectorModelAnalysisRequest"),

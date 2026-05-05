@@ -7,6 +7,16 @@ local _N = "com.amazonaws.connectcontactlens"
 
 local M = {}
 
+M.RealtimeContactAnalysisSegments = schema.new({ type = "list", list_member = M.RealtimeContactAnalysisSegment })
+
+M.IssuesDetected = schema.new({ type = "list", list_member = M.IssueDetected })
+
+M.MatchedCategories = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchedDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.CategoryDetails })
+
+M.PointsOfInterest = schema.new({ type = "list", list_member = M.PointOfInterest })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,26 @@ local _N = "com.amazonaws.serverlessapplicationrepository"
 
 local M = {}
 
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfParameterDefinition = schema.new({ type = "list", list_member = M.ParameterDefinition })
+
+M.__listOfCapability = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfParameterValue = schema.new({ type = "list", list_member = M.ParameterValue })
+
+M.__listOfTag = schema.new({ type = "list", list_member = M.Tag })
+
+M.__listOfApplicationPolicyStatement = schema.new({ type = "list", list_member = M.ApplicationPolicyStatement })
+
+M.__listOfApplicationDependencySummary = schema.new({ type = "list", list_member = M.ApplicationDependencySummary })
+
+M.__listOfApplicationSummary = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.__listOfVersionSummary = schema.new({ type = "list", list_member = M.VersionSummary })
+
+M.__listOfRollbackTrigger = schema.new({ type = "list", list_member = M.RollbackTrigger })
+
 M.ApplicationDependencySummary = schema.new({
     id = id.from(_N, "ApplicationDependencySummary"),
     type = "structure",
@@ -1425,10 +1445,7 @@ M.DeleteApplicationInput = schema.new({
     },
 })
 
-M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteApplicationOutput = prelude.Unit
 
 M.GetApplicationInput = schema.new({
     id = id.from(_N, "GetApplicationRequest"),
@@ -1967,10 +1984,7 @@ M.UnshareApplicationInput = schema.new({
     },
 })
 
-M.UnshareApplicationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UnshareApplicationOutput = prelude.Unit
 
 M.UpdateApplicationInput = schema.new({
     id = id.from(_N, "UpdateApplicationRequest"),

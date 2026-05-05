@@ -7,6 +7,32 @@ local _N = "com.amazonaws.snowdevicemanagement"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceSummaryList = schema.new({ type = "list", list_member = M.DeviceSummary })
+
+M.PhysicalNetworkInterfaceList = schema.new({ type = "list", list_member = M.PhysicalNetworkInterface })
+
+M.CapacityList = schema.new({ type = "list", list_member = M.Capacity })
+
+M.InstanceIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceSummaryList = schema.new({ type = "list", list_member = M.InstanceSummary })
+
+M.ResourceSummaryList = schema.new({ type = "list", list_member = M.ResourceSummary })
+
+M.TaskSummaryList = schema.new({ type = "list", list_member = M.TaskSummary })
+
+M.TargetList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExecutionSummaryList = schema.new({ type = "list", list_member = M.ExecutionSummary })
+
+M.InstanceBlockDeviceMappingList = schema.new({ type = "list", list_member = M.InstanceBlockDeviceMapping })
+
+M.SecurityGroupIdentifierList = schema.new({ type = "list", list_member = M.SecurityGroupIdentifier })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1290,10 +1316,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -1323,10 +1346,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

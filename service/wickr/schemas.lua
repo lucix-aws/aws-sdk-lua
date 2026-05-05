@@ -7,6 +7,58 @@ local _N = "com.amazonaws.wickr"
 
 local M = {}
 
+M.BatchCreateUserRequestItems = schema.new({ type = "list", list_member = M.BatchCreateUserRequestItem })
+
+M.Users = schema.new({ type = "list", list_member = M.User })
+
+M.BatchUserErrorResponseItems = schema.new({ type = "list", list_member = M.BatchUserErrorResponseItem })
+
+M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.UserIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchUserSuccessResponseItems = schema.new({ type = "list", list_member = M.BatchUserSuccessResponseItem })
+
+M.Unames = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchUnameSuccessResponseItems = schema.new({ type = "list", list_member = M.BatchUnameSuccessResponseItem })
+
+M.BatchUnameErrorResponseItems = schema.new({ type = "list", list_member = M.BatchUnameErrorResponseItem })
+
+M.AppIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeviceSuccessResponseItems = schema.new({ type = "list", list_member = M.BatchDeviceSuccessResponseItem })
+
+M.BatchDeviceErrorResponseItems = schema.new({ type = "list", list_member = M.BatchDeviceErrorResponseItem })
+
+M.GuestUserHistoryCountList = schema.new({ type = "list", list_member = M.GuestUserHistoryCount })
+
+M.SettingsList = schema.new({ type = "list", list_member = M.Setting })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockedGuestUserList = schema.new({ type = "list", list_member = M.BlockedGuestUser })
+
+M.Bots = schema.new({ type = "list", list_member = M.Bot })
+
+M.Devices = schema.new({ type = "list", list_member = M.BasicDeviceObject })
+
+M.GuestUserList = schema.new({ type = "list", list_member = M.GuestUser })
+
+M.NetworkList = schema.new({ type = "list", list_member = M.Network })
+
+M.SecurityGroupList = schema.new({ type = "list", list_member = M.SecurityGroup })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermittedNetworksList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WickrAwsNetworksList = schema.new({ type = "list", list_member = M.WickrAwsNetworks })
+
+M.PermittedWickrEnterpriseNetworksList = schema.new({ type = "list", list_member = M.PermittedWickrEnterpriseNetwork })
+
+M.SecurityGroupStringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.BadRequestError = schema.new({
     id = id.from(_N, "BadRequestError"),
     type = "structure",

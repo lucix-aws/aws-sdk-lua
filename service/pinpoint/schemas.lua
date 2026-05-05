@@ -7,6 +7,104 @@ local _N = "com.amazonaws.pinpoint"
 
 local M = {}
 
+M.ListOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.MapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListOfWriteTreatmentResource = schema.new({ type = "list", list_member = M.WriteTreatmentResource })
+
+M.ListOfTreatmentResource = schema.new({ type = "list", list_member = M.TreatmentResource })
+
+M.ListOfMessageHeader = schema.new({ type = "list", list_member = M.MessageHeader })
+
+M.ListOfInAppMessageContent = schema.new({ type = "list", list_member = M.InAppMessageContent })
+
+M.MapOfActivity = schema.new({ type = "map", map_key = prelude.String, map_value = M.Activity })
+
+M.ListOf__TimezoneEstimationMethodsElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.MapOfListOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListOf__string })
+
+M.MapOf__double = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Double })
+
+M.ListOfEndpointResponse = schema.new({ type = "list", list_member = M.EndpointResponse })
+
+M.ListOfApplicationResponse = schema.new({ type = "list", list_member = M.ApplicationResponse })
+
+M.ListOfActivityResponse = schema.new({ type = "list", list_member = M.ActivityResponse })
+
+M.ListOfCampaignResponse = schema.new({ type = "list", list_member = M.CampaignResponse })
+
+M.MapOfChannelResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.ChannelResponse })
+
+M.ListOfExportJobResponse = schema.new({ type = "list", list_member = M.ExportJobResponse })
+
+M.ListOfImportJobResponse = schema.new({ type = "list", list_member = M.ImportJobResponse })
+
+M.ListOfInAppMessageCampaign = schema.new({ type = "list", list_member = M.InAppMessageCampaign })
+
+M.ListOfJourneyRunResponse = schema.new({ type = "list", list_member = M.JourneyRunResponse })
+
+M.ListOfRecommenderConfigurationResponse = schema.new({ type = "list", list_member = M.RecommenderConfigurationResponse })
+
+M.ListOfSegmentResponse = schema.new({ type = "list", list_member = M.SegmentResponse })
+
+M.ListOfJourneyResponse = schema.new({ type = "list", list_member = M.JourneyResponse })
+
+M.ListOfTemplateResponse = schema.new({ type = "list", list_member = M.TemplateResponse })
+
+M.ListOfTemplateVersionResponse = schema.new({ type = "list", list_member = M.TemplateVersionResponse })
+
+M.MapOfEventsBatch = schema.new({ type = "map", map_key = prelude.String, map_value = M.EventsBatch })
+
+M.MapOfItemResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.ItemResponse })
+
+M.MapOfAddressConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = M.AddressConfiguration })
+
+M.MapOfEndpointSendConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = M.EndpointSendConfiguration })
+
+M.MapOfEndpointMessageResult = schema.new({ type = "map", map_key = prelude.String, map_value = M.EndpointMessageResult })
+
+M.MapOfMessageResult = schema.new({ type = "map", map_key = prelude.String, map_value = M.MessageResult })
+
+M.MapOfMapOfEndpointMessageResult = schema.new({ type = "map", map_key = prelude.String, map_value = M.MapOfEndpointMessageResult })
+
+M.ListOfEndpointBatchItem = schema.new({ type = "list", list_member = M.EndpointBatchItem })
+
+M.ListOf__EndpointTypesElement = schema.new({ type = "list", list_member = prelude.String })
+
+M.MapOfListOfOpenHoursRules = schema.new({ type = "map", map_key = prelude.String, map_value = M.ListOfOpenHoursRules })
+
+M.ListOfClosedDaysRules = schema.new({ type = "list", list_member = M.ClosedDaysRule })
+
+M.MapOfAttributeDimension = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeDimension })
+
+M.MapOfMetricDimension = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetricDimension })
+
+M.ListOfSegmentGroup = schema.new({ type = "list", list_member = M.SegmentGroup })
+
+M.MapOf__integer = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ListOfResultRow = schema.new({ type = "list", list_member = M.ResultRow })
+
+M.ListOfOpenHoursRules = schema.new({ type = "list", list_member = M.OpenHoursRule })
+
+M.MapOfEvent = schema.new({ type = "map", map_key = prelude.String, map_value = M.Event })
+
+M.MapOfEventItemResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.EventItemResponse })
+
+M.ListOfMultiConditionalBranch = schema.new({ type = "list", list_member = M.MultiConditionalBranch })
+
+M.ListOfRandomSplitEntry = schema.new({ type = "list", list_member = M.RandomSplitEntry })
+
+M.ListOfSegmentDimensions = schema.new({ type = "list", list_member = M.SegmentDimensions })
+
+M.ListOfSegmentReference = schema.new({ type = "list", list_member = M.SegmentReference })
+
+M.ListOfResultRowValue = schema.new({ type = "list", list_member = M.ResultRowValue })
+
+M.ListOfSimpleCondition = schema.new({ type = "list", list_member = M.SimpleCondition })
+
 M.ActivityResponse = schema.new({
     id = id.from(_N, "ActivityResponse"),
     type = "structure",
@@ -14088,10 +14186,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -14121,10 +14216,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAdmChannelInput = schema.new({
     id = id.from(_N, "UpdateAdmChannelRequest"),

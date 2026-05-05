@@ -7,6 +7,110 @@ local _N = "com.amazonaws.neptune"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DBSecurityGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventCategoriesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.DBClusterEndpointList = schema.new({ type = "list", list_member = M.DBClusterEndpoint })
+
+M.DBClusterParameterGroupList = schema.new({ type = "list", list_member = M.DBClusterParameterGroup })
+
+M.ParametersList = schema.new({ type = "list", list_member = M.Parameter })
+
+M.DBClusterList = schema.new({ type = "list", list_member = M.DBCluster })
+
+M.DBClusterSnapshotList = schema.new({ type = "list", list_member = M.DBClusterSnapshot })
+
+M.DBEngineVersionList = schema.new({ type = "list", list_member = M.DBEngineVersion })
+
+M.DBInstanceList = schema.new({ type = "list", list_member = M.DBInstance })
+
+M.DBParameterGroupList = schema.new({ type = "list", list_member = M.DBParameterGroup })
+
+M.DBSubnetGroups = schema.new({ type = "list", list_member = M.DBSubnetGroup })
+
+M.EventCategoriesMapList = schema.new({ type = "list", list_member = M.EventCategoriesMap })
+
+M.EventList = schema.new({ type = "list", list_member = M.Event })
+
+M.EventSubscriptionsList = schema.new({ type = "list", list_member = M.EventSubscription })
+
+M.GlobalClusterList = schema.new({ type = "list", list_member = M.GlobalCluster })
+
+M.OrderableDBInstanceOptionsList = schema.new({ type = "list", list_member = M.OrderableDBInstanceOption })
+
+M.PendingMaintenanceActions = schema.new({ type = "list", list_member = M.ResourcePendingMaintenanceActions })
+
+M.AttributeValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PendingMaintenanceActionDetails = schema.new({ type = "list", list_member = M.PendingMaintenanceAction })
+
+M.DBClusterOptionGroupMemberships = schema.new({ type = "list", list_member = M.DBClusterOptionGroupStatus })
+
+M.ReadReplicaIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DBClusterMemberList = schema.new({ type = "list", list_member = M.DBClusterMember })
+
+M.VpcSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.VpcSecurityGroupMembership })
+
+M.DBClusterRoles = schema.new({ type = "list", list_member = M.DBClusterRole })
+
+M.DBSecurityGroupMembershipList = schema.new({ type = "list", list_member = M.DBSecurityGroupMembership })
+
+M.DBParameterGroupStatusList = schema.new({ type = "list", list_member = M.DBParameterGroupStatus })
+
+M.ReadReplicaDBInstanceIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReadReplicaDBClusterIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OptionGroupMembershipList = schema.new({ type = "list", list_member = M.OptionGroupMembership })
+
+M.DBInstanceStatusInfoList = schema.new({ type = "list", list_member = M.DBInstanceStatusInfo })
+
+M.DomainMembershipList = schema.new({ type = "list", list_member = M.DomainMembership })
+
+M.SubnetList = schema.new({ type = "list", list_member = M.Subnet })
+
+M.GlobalClusterMemberList = schema.new({ type = "list", list_member = M.GlobalClusterMember })
+
+M.DBClusterSnapshotAttributeList = schema.new({ type = "list", list_member = M.DBClusterSnapshotAttribute })
+
+M.ValidStorageOptionsList = schema.new({ type = "list", list_member = M.ValidStorageOptions })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedCharacterSetsList = schema.new({ type = "list", list_member = M.CharacterSet })
+
+M.ValidUpgradeTargetList = schema.new({ type = "list", list_member = M.UpgradeTarget })
+
+M.SupportedTimezonesList = schema.new({ type = "list", list_member = M.Timezone })
+
+M.AvailabilityZoneList = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.ReadersArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RangeList = schema.new({ type = "list", list_member = M.Range })
+
+M.DoubleRangeList = schema.new({ type = "list", list_member = M.DoubleRange })
+
 M.AddRoleToDBClusterInput = schema.new({
     id = id.from(_N, "AddRoleToDBClusterMessage"),
     type = "structure",
@@ -38,10 +142,7 @@ M.AddRoleToDBClusterInput = schema.new({
     },
 })
 
-M.AddRoleToDBClusterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddRoleToDBClusterOutput = prelude.Unit
 
 M.DBClusterNotFoundFault = schema.new({
     id = id.from(_N, "DBClusterNotFoundFault"),
@@ -292,10 +393,7 @@ M.AddTagsToResourceInput = schema.new({
     },
 })
 
-M.AddTagsToResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsToResourceOutput = prelude.Unit
 
 M.DBInstanceNotFoundFault = schema.new({
     id = id.from(_N, "DBInstanceNotFoundFault"),
@@ -3955,10 +4053,7 @@ M.DeleteDBClusterParameterGroupInput = schema.new({
     },
 })
 
-M.DeleteDBClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDBClusterParameterGroupOutput = prelude.Unit
 
 M.InvalidDBParameterGroupStateFault = schema.new({
     id = id.from(_N, "InvalidDBParameterGroupStateFault"),
@@ -4080,10 +4175,7 @@ M.DeleteDBParameterGroupInput = schema.new({
     },
 })
 
-M.DeleteDBParameterGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDBParameterGroupOutput = prelude.Unit
 
 M.DeleteDBSubnetGroupInput = schema.new({
     id = id.from(_N, "DeleteDBSubnetGroupMessage"),
@@ -4101,10 +4193,7 @@ M.DeleteDBSubnetGroupInput = schema.new({
     },
 })
 
-M.DeleteDBSubnetGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDBSubnetGroupOutput = prelude.Unit
 
 M.InvalidDBSubnetStateFault = schema.new({
     id = id.from(_N, "InvalidDBSubnetStateFault"),
@@ -7143,10 +7232,7 @@ M.RemoveRoleFromDBClusterInput = schema.new({
     },
 })
 
-M.RemoveRoleFromDBClusterOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveRoleFromDBClusterOutput = prelude.Unit
 
 M.RemoveSourceIdentifierFromSubscriptionInput = schema.new({
     id = id.from(_N, "RemoveSourceIdentifierFromSubscriptionMessage"),
@@ -7213,10 +7299,7 @@ M.RemoveTagsFromResourceInput = schema.new({
     },
 })
 
-M.RemoveTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsFromResourceOutput = prelude.Unit
 
 M.ResetDBClusterParameterGroupInput = schema.new({
     id = id.from(_N, "ResetDBClusterParameterGroupMessage"),

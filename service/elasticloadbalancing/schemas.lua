@@ -7,6 +7,58 @@ local _N = "com.amazonaws.elasticloadbalancing"
 
 local M = {}
 
+M.LoadBalancerNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.Listeners = schema.new({ type = "list", list_member = M.Listener })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyAttributes = schema.new({ type = "list", list_member = M.PolicyAttribute })
+
+M.Ports = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.Instances = schema.new({ type = "list", list_member = M.Instance })
+
+M.Limits = schema.new({ type = "list", list_member = M.Limit })
+
+M.InstanceStates = schema.new({ type = "list", list_member = M.InstanceState })
+
+M.PolicyNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyDescriptions = schema.new({ type = "list", list_member = M.PolicyDescription })
+
+M.PolicyTypeNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyTypeDescriptions = schema.new({ type = "list", list_member = M.PolicyTypeDescription })
+
+M.LoadBalancerDescriptions = schema.new({ type = "list", list_member = M.LoadBalancerDescription })
+
+M.LoadBalancerNamesMax20 = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagDescriptions = schema.new({ type = "list", list_member = M.TagDescription })
+
+M.TagKeyList = schema.new({ type = "list", list_member = M.TagKeyOnly })
+
+M.AdditionalAttributes = schema.new({ type = "list", list_member = M.AdditionalAttribute })
+
+M.PolicyAttributeDescriptions = schema.new({ type = "list", list_member = M.PolicyAttributeDescription })
+
+M.PolicyAttributeTypeDescriptions = schema.new({ type = "list", list_member = M.PolicyAttributeTypeDescription })
+
+M.ListenerDescriptions = schema.new({ type = "list", list_member = M.ListenerDescription })
+
+M.BackendServerDescriptions = schema.new({ type = "list", list_member = M.BackendServerDescription })
+
+M.AppCookieStickinessPolicies = schema.new({ type = "list", list_member = M.AppCookieStickinessPolicy })
+
+M.LBCookieStickinessPolicies = schema.new({ type = "list", list_member = M.LBCookieStickinessPolicy })
+
 M.AccessLog = schema.new({
     id = id.from(_N, "AccessLog"),
     type = "structure",

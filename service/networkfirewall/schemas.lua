@@ -7,6 +7,146 @@ local _N = "com.amazonaws.networkfirewall"
 
 local M = {}
 
+M.AvailabilityZoneMappings = schema.new({ type = "list", list_member = M.AvailabilityZoneMapping })
+
+M.SubnetMappings = schema.new({ type = "list", list_member = M.SubnetMapping })
+
+M.ProxyRuleGroupAttachmentList = schema.new({ type = "list", list_member = M.ProxyRuleGroupAttachment })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EnabledAnalysisTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListenerPropertiesRequest = schema.new({ type = "list", list_member = M.ListenerPropertyRequest })
+
+M.ResourceNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedAvailabilityZones = schema.new({ type = "map", map_key = prelude.String, map_value = M.AvailabilityZoneMetadata })
+
+M.AzSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisReportResults = schema.new({ type = "list", list_member = M.AnalysisTypeReportResult })
+
+M.AnalysisReports = schema.new({ type = "list", list_member = M.AnalysisReport })
+
+M.FirewallPolicies = schema.new({ type = "list", list_member = M.FirewallPolicyMetadata })
+
+M.VpcIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Firewalls = schema.new({ type = "list", list_member = M.FirewallMetadata })
+
+M.Flows = schema.new({ type = "list", list_member = M.Flow })
+
+M.FlowOperations = schema.new({ type = "list", list_member = M.FlowOperationMetadata })
+
+M.Proxies = schema.new({ type = "list", list_member = M.ProxyMetadata })
+
+M.ProxyConfigurations = schema.new({ type = "list", list_member = M.ProxyConfigurationMetadata })
+
+M.ProxyRuleGroups = schema.new({ type = "list", list_member = M.ProxyRuleGroupMetadata })
+
+M.RuleGroups = schema.new({ type = "list", list_member = M.RuleGroupMetadata })
+
+M.TLSInspectionConfigurations = schema.new({ type = "list", list_member = M.TLSInspectionConfigurationMetadata })
+
+M.VpcEndpointAssociations = schema.new({ type = "list", list_member = M.VpcEndpointAssociationMetadata })
+
+M.FlowFilters = schema.new({ type = "list", list_member = M.FlowFilter })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProxyRuleConditionList = schema.new({ type = "list", list_member = M.ProxyRuleCondition })
+
+M.ProxyRuleGroupPriorityList = schema.new({ type = "list", list_member = M.ProxyRuleGroupPriority })
+
+M.ProxyRuleGroupPriorityResultList = schema.new({ type = "list", list_member = M.ProxyRuleGroupPriorityResult })
+
+M.ProxyRulePriorityList = schema.new({ type = "list", list_member = M.ProxyRulePriority })
+
+M.ProxyConfigRuleGroupSet = schema.new({ type = "list", list_member = M.ProxyConfigRuleGroup })
+
+M.SyncStates = schema.new({ type = "map", map_key = prelude.String, map_value = M.SyncState })
+
+M.StatelessRuleGroupReferences = schema.new({ type = "list", list_member = M.StatelessRuleGroupReference })
+
+M.StatelessActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomActions = schema.new({ type = "list", list_member = M.CustomAction })
+
+M.StatefulRuleGroupReferences = schema.new({ type = "list", list_member = M.StatefulRuleGroupReference })
+
+M.StatefulActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListenerProperties = schema.new({ type = "list", list_member = M.ListenerProperty })
+
+M.ProxyRuleList = schema.new({ type = "list", list_member = M.ProxyRule })
+
+M.CreateProxyRuleList = schema.new({ type = "list", list_member = M.CreateProxyRule })
+
+M.SummaryRuleOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisResultList = schema.new({ type = "list", list_member = M.AnalysisResult })
+
+M.ServerCertificateConfigurations = schema.new({ type = "list", list_member = M.ServerCertificateConfiguration })
+
+M.Certificates = schema.new({ type = "list", list_member = M.TlsCertificateData })
+
+M.AssociationSyncState = schema.new({ type = "map", map_key = prelude.String, map_value = M.AZSyncState })
+
+M.LogDestinationConfigs = schema.new({ type = "list", list_member = M.LogDestinationConfig })
+
+M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.IPSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSet })
+
+M.PortSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.PortSet })
+
+M.IPSetReferenceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSetReference })
+
+M.StatefulRules = schema.new({ type = "list", list_member = M.StatefulRule })
+
+M.ProtocolStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProxyConditionValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SyncStateConfig = schema.new({ type = "map", map_key = prelude.String, map_value = M.PerObjectStatus })
+
+M.IPSetMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSetMetadata })
+
+M.RuleTargets = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatelessRules = schema.new({ type = "list", list_member = M.StatelessRule })
+
+M.RuleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServerCertificates = schema.new({ type = "list", list_member = M.ServerCertificate })
+
+M.ServerCertificateScopes = schema.new({ type = "list", list_member = M.ServerCertificateScope })
+
+M.LogDestinationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VariableDefinitionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleOptions = schema.new({ type = "list", list_member = M.RuleOption })
+
+M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
+
+M.Addresses = schema.new({ type = "list", list_member = M.Address })
+
+M.PortRanges = schema.new({ type = "list", list_member = M.PortRange })
+
+M.ProtocolNumbers = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.Settings = schema.new({ type = "list", list_member = prelude.String })
+
+M.TCPFlags = schema.new({ type = "list", list_member = M.TCPFlagField })
+
+M.Flags = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptNetworkFirewallTransitGatewayAttachmentInput = schema.new({
     id = id.from(_N, "AcceptNetworkFirewallTransitGatewayAttachmentRequest"),
     type = "structure",

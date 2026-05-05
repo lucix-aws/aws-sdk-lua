@@ -7,6 +7,46 @@ local _N = "com.amazonaws.workspacesinstances"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagSpecifications = schema.new({ type = "list", list_member = M.TagSpecification })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.WorkspaceInstanceErrors = schema.new({ type = "list", list_member = M.WorkspaceInstanceError })
+
+M.EC2InstanceErrors = schema.new({ type = "list", list_member = M.EC2InstanceError })
+
+M.InstanceTypes = schema.new({ type = "list", list_member = M.InstanceTypeInfo })
+
+M.RegionList = schema.new({ type = "list", list_member = M.Region })
+
+M.ProvisionStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkspaceInstances = schema.new({ type = "list", list_member = M.WorkspaceInstance })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockDeviceMappings = schema.new({ type = "list", list_member = M.BlockDeviceMappingRequest })
+
+M.Ipv6Addresses = schema.new({ type = "list", list_member = M.InstanceIpv6Address })
+
+M.LicenseSpecifications = schema.new({ type = "list", list_member = M.LicenseConfigurationRequest })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.InstanceNetworkInterfaceSpecification })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportedInstanceConfigurations = schema.new({ type = "list", list_member = M.SupportedInstanceConfiguration })
+
+M.Ipv4Prefixes = schema.new({ type = "list", list_member = M.Ipv4PrefixSpecificationRequest })
+
+M.Ipv6Prefixes = schema.new({ type = "list", list_member = M.Ipv6PrefixSpecificationRequest })
+
+M.PrivateIpAddresses = schema.new({ type = "list", list_member = M.PrivateIpAddressSpecification })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

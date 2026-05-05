@@ -7,6 +7,74 @@ local _N = "com.amazonaws.kinesisanalyticsv2"
 
 local M = {}
 
+M.CloudWatchLoggingOptionDescriptions = schema.new({ type = "list", list_member = M.CloudWatchLoggingOptionDescription })
+
+M.InputDescriptions = schema.new({ type = "list", list_member = M.InputDescription })
+
+M.OutputDescriptions = schema.new({ type = "list", list_member = M.OutputDescription })
+
+M.ReferenceDataSourceDescriptions = schema.new({ type = "list", list_member = M.ReferenceDataSourceDescription })
+
+M.CloudWatchLoggingOptions = schema.new({ type = "list", list_member = M.CloudWatchLoggingOption })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.ParsedInputRecords = schema.new({ type = "list", list_member = M.ParsedInputRecord })
+
+M.ProcessedInputRecords = schema.new({ type = "list", list_member = prelude.String })
+
+M.RawInputRecords = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationOperationInfoList = schema.new({ type = "list", list_member = M.ApplicationOperationInfo })
+
+M.ApplicationSummaries = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.SnapshotSummaries = schema.new({ type = "list", list_member = M.SnapshotDetails })
+
+M.ApplicationVersionSummaries = schema.new({ type = "list", list_member = M.ApplicationVersionSummary })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudWatchLoggingOptionUpdates = schema.new({ type = "list", list_member = M.CloudWatchLoggingOptionUpdate })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcConfigurations = schema.new({ type = "list", list_member = M.VpcConfiguration })
+
+M.RecordColumns = schema.new({ type = "list", list_member = M.RecordColumn })
+
+M.ParsedInputRecord = schema.new({ type = "list", list_member = prelude.String })
+
+M.SqlRunConfigurations = schema.new({ type = "list", list_member = M.SqlRunConfiguration })
+
+M.VpcConfigurationUpdates = schema.new({ type = "list", list_member = M.VpcConfigurationUpdate })
+
+M.InAppStreamNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Inputs = schema.new({ type = "list", list_member = M.Input })
+
+M.Outputs = schema.new({ type = "list", list_member = M.Output })
+
+M.ReferenceDataSources = schema.new({ type = "list", list_member = M.ReferenceDataSource })
+
+M.PropertyGroups = schema.new({ type = "list", list_member = M.PropertyGroup })
+
+M.CustomArtifactsConfigurationList = schema.new({ type = "list", list_member = M.CustomArtifactConfiguration })
+
+M.VpcConfigurationDescriptions = schema.new({ type = "list", list_member = M.VpcConfigurationDescription })
+
+M.InputUpdates = schema.new({ type = "list", list_member = M.InputUpdate })
+
+M.OutputUpdates = schema.new({ type = "list", list_member = M.OutputUpdate })
+
+M.ReferenceDataSourceUpdates = schema.new({ type = "list", list_member = M.ReferenceDataSourceUpdate })
+
+M.CustomArtifactsConfigurationDescriptionList = schema.new({ type = "list", list_member = M.CustomArtifactConfigurationDescription })
+
+M.PropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.CloudWatchLoggingOption = schema.new({
     id = id.from(_N, "CloudWatchLoggingOption"),
     type = "structure",

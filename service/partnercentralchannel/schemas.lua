@@ -7,6 +7,38 @@ local _N = "com.amazonaws.partnercentralchannel"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HandshakeStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociatedResourceIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelHandshakeSummaries = schema.new({ type = "list", list_member = M.ChannelHandshakeSummary })
+
+M.ProgramManagementAccountDisplayNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProgramList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProgramManagementAccountStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProgramManagementAccountSummaries = schema.new({ type = "list", list_member = M.ProgramManagementAccountSummary })
+
+M.AssociationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelationshipDisplayNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProgramManagementAccountIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelationshipSummaries = schema.new({ type = "list", list_member = M.RelationshipSummary })
+
+M.ServicePeriodTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptChannelHandshakeInput = schema.new({
     id = id.from(_N, "AcceptChannelHandshakeRequest"),
     type = "structure",

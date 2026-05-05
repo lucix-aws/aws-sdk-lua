@@ -7,6 +7,44 @@ local _N = "com.amazonaws.socialmessaging"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LinkedWhatsAppBusinessAccountSummaryList = schema.new({ type = "list", list_member = M.LinkedWhatsAppBusinessAccountSummary })
+
+M.TemplateSummaryList = schema.new({ type = "list", list_member = M.TemplateSummary })
+
+M.Filter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetaLibraryTemplatesList = schema.new({ type = "list", list_member = M.MetaLibraryTemplateDefinition })
+
+M.WhatsAppBusinessAccountEventDestinations = schema.new({ type = "list", list_member = M.WhatsAppBusinessAccountEventDestination })
+
+M.WabaPhoneNumberSetupFinalizationList = schema.new({ type = "list", list_member = M.WabaPhoneNumberSetupFinalization })
+
+M.LinkedAccountWithIncompleteSetup = schema.new({ type = "map", map_key = prelude.String, map_value = M.LinkedWhatsAppBusinessAccountIdMetaData })
+
+M.WhatsAppPhoneNumberSummaryList = schema.new({ type = "list", list_member = M.WhatsAppPhoneNumberSummary })
+
+M.MetaLibraryTemplateButtonInputs = schema.new({ type = "list", list_member = M.LibraryTemplateButtonInput })
+
+M.Headers = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetaIndustries = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetaLibraryTemplateButtonList = schema.new({ type = "list", list_member = M.LibraryTemplateButtonList })
+
+M.MetaTemplateBodyExampleParams = schema.new({ type = "list", list_member = prelude.String })
+
+M.WhatsAppPhoneNumberDetailList = schema.new({ type = "list", list_member = M.WhatsAppPhoneNumberDetail })
+
+M.MetaUrlWithSuffixExample = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SupportedApps = schema.new({ type = "list", list_member = M.SupportedApp })
+
+M.SupportedApp = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedByMetaException = schema.new({
     id = id.from(_N, "AccessDeniedByMetaException"),
     type = "structure",
@@ -619,7 +657,7 @@ M.LibraryTemplateButtonInput = schema.new({
             type = "list",
             name = "supportedApps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.SupportedApp,
         }),
     },
 })
@@ -1306,7 +1344,7 @@ M.LibraryTemplateButtonList = schema.new({
             type = "list",
             name = "supportedApps",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.SupportedApp,
         }),
     },
 })

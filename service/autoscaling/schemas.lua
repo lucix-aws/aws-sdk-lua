@@ -7,6 +7,156 @@ local _N = "com.amazonaws.autoscaling"
 
 local M = {}
 
+M.InstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadBalancerNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetGroupARNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrafficSources = schema.new({ type = "list", list_member = M.TrafficSourceIdentifier })
+
+M.ScheduledActionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedScheduledUpdateGroupActionRequests = schema.new({ type = "list", list_member = M.FailedScheduledUpdateGroupActionRequest })
+
+M.ScheduledUpdateGroupActionRequests = schema.new({ type = "list", list_member = M.ScheduledUpdateGroupActionRequest })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TerminationPolicies = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecycleHookSpecifications = schema.new({ type = "list", list_member = M.LifecycleHookSpecification })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClassicLinkVPCSecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockDeviceMappings = schema.new({ type = "list", list_member = M.BlockDeviceMapping })
+
+M.AdjustmentTypes = schema.new({ type = "list", list_member = M.AdjustmentType })
+
+M.AutoScalingGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.AutoScalingGroups = schema.new({ type = "list", list_member = M.AutoScalingGroup })
+
+M.AutoScalingInstances = schema.new({ type = "list", list_member = M.AutoScalingInstanceDetails })
+
+M.AutoScalingNotificationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceRefreshIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceRefreshes = schema.new({ type = "list", list_member = M.InstanceRefresh })
+
+M.LaunchConfigurationNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchConfigurations = schema.new({ type = "list", list_member = M.LaunchConfiguration })
+
+M.LifecycleHookNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecycleHooks = schema.new({ type = "list", list_member = M.LifecycleHook })
+
+M.LoadBalancerStates = schema.new({ type = "list", list_member = M.LoadBalancerState })
+
+M.LoadBalancerTargetGroupStates = schema.new({ type = "list", list_member = M.LoadBalancerTargetGroupState })
+
+M.MetricCollectionTypes = schema.new({ type = "list", list_member = M.MetricCollectionType })
+
+M.MetricGranularityTypes = schema.new({ type = "list", list_member = M.MetricGranularityType })
+
+M.NotificationConfigurations = schema.new({ type = "list", list_member = M.NotificationConfiguration })
+
+M.PolicyNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScalingPolicies = schema.new({ type = "list", list_member = M.ScalingPolicy })
+
+M.ActivityIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Activities = schema.new({ type = "list", list_member = M.Activity })
+
+M.Processes = schema.new({ type = "list", list_member = M.ProcessType })
+
+M.ScheduledUpdateGroupActions = schema.new({ type = "list", list_member = M.ScheduledUpdateGroupAction })
+
+M.TagDescriptionList = schema.new({ type = "list", list_member = M.TagDescription })
+
+M.TrafficSourceStates = schema.new({ type = "list", list_member = M.TrafficSourceState })
+
+M.Instances = schema.new({ type = "list", list_member = M.Instance })
+
+M.Metrics = schema.new({ type = "list", list_member = prelude.String })
+
+M.LoadForecasts = schema.new({ type = "list", list_member = M.LoadForecast })
+
+M.AvailabilityZonesLimit1 = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailabilityZoneIdsLimit1 = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIdsLimit1 = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceCollections = schema.new({ type = "list", list_member = M.InstanceCollection })
+
+M.LaunchInstancesErrors = schema.new({ type = "list", list_member = M.LaunchInstancesError })
+
+M.StepAdjustments = schema.new({ type = "list", list_member = M.StepAdjustment })
+
+M.Alarms = schema.new({ type = "list", list_member = M.Alarm })
+
+M.ProcessNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.PredictiveScalingForecastTimestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
+
+M.PredictiveScalingForecastValues = schema.new({ type = "list", list_member = prelude.Double })
+
+M.PredictiveScalingMetricSpecifications = schema.new({ type = "list", list_member = M.PredictiveScalingMetricSpecification })
+
+M.CheckpointPercentages = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.Overrides = schema.new({ type = "list", list_member = M.LaunchTemplateOverrides })
+
+M.CapacityReservationIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityReservationResourceGroupArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuspendedProcesses = schema.new({ type = "list", list_member = M.SuspendedProcess })
+
+M.EnabledMetrics = schema.new({ type = "list", list_member = M.EnabledMetric })
+
+M.MetricDimensions = schema.new({ type = "list", list_member = M.MetricDimension })
+
+M.TargetTrackingMetricDataQueries = schema.new({ type = "list", list_member = M.TargetTrackingMetricDataQuery })
+
+M.AlarmList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricDataQueries = schema.new({ type = "list", list_member = M.MetricDataQuery })
+
+M.CpuManufacturers = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceGenerations = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalStorageTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorManufacturers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.PerformanceFactorReferenceSetRequest = schema.new({ type = "list", list_member = M.PerformanceFactorReferenceRequest })
+
 M.AcceleratorCountRequest = schema.new({
     id = id.from(_N, "AcceleratorCountRequest"),
     type = "structure",
@@ -240,10 +390,7 @@ M.AttachInstancesInput = schema.new({
     },
 })
 
-M.AttachInstancesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachInstancesOutput = prelude.Unit
 
 M.ResourceContentionFault = schema.new({
     id = id.from(_N, "ResourceContentionFault"),
@@ -1650,10 +1797,7 @@ M.CreateAutoScalingGroupInput = schema.new({
     },
 })
 
-M.CreateAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateAutoScalingGroupOutput = prelude.Unit
 
 M.Ebs = schema.new({
     id = id.from(_N, "Ebs"),
@@ -1906,10 +2050,7 @@ M.CreateLaunchConfigurationInput = schema.new({
     },
 })
 
-M.CreateLaunchConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateLaunchConfigurationOutput = prelude.Unit
 
 M.CreateOrUpdateTagsInput = schema.new({
     id = id.from(_N, "CreateOrUpdateTagsType"),
@@ -1928,10 +2069,7 @@ M.CreateOrUpdateTagsInput = schema.new({
     },
 })
 
-M.CreateOrUpdateTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateOrUpdateTagsOutput = prelude.Unit
 
 M.ResourceInUseFault = schema.new({
     id = id.from(_N, "ResourceInUseFault"),
@@ -1971,10 +2109,7 @@ M.DeleteAutoScalingGroupInput = schema.new({
     },
 })
 
-M.DeleteAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAutoScalingGroupOutput = prelude.Unit
 
 M.ScalingActivityInProgressFault = schema.new({
     id = id.from(_N, "ScalingActivityInProgressFault"),
@@ -2008,10 +2143,7 @@ M.DeleteLaunchConfigurationInput = schema.new({
     },
 })
 
-M.DeleteLaunchConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLaunchConfigurationOutput = prelude.Unit
 
 M.DeleteLifecycleHookInput = schema.new({
     id = id.from(_N, "DeleteLifecycleHookType"),
@@ -2068,10 +2200,7 @@ M.DeleteNotificationConfigurationInput = schema.new({
     },
 })
 
-M.DeleteNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNotificationConfigurationOutput = prelude.Unit
 
 M.DeletePolicyInput = schema.new({
     id = id.from(_N, "DeletePolicyType"),
@@ -2095,10 +2224,7 @@ M.DeletePolicyInput = schema.new({
     },
 })
 
-M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyOutput = prelude.Unit
 
 M.DeleteScheduledActionInput = schema.new({
     id = id.from(_N, "DeleteScheduledActionType"),
@@ -2125,10 +2251,7 @@ M.DeleteScheduledActionInput = schema.new({
     },
 })
 
-M.DeleteScheduledActionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteScheduledActionOutput = prelude.Unit
 
 M.DeleteTagsInput = schema.new({
     id = id.from(_N, "DeleteTagsType"),
@@ -2147,10 +2270,7 @@ M.DeleteTagsInput = schema.new({
     },
 })
 
-M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTagsOutput = prelude.Unit
 
 M.DeleteWarmPoolInput = schema.new({
     id = id.from(_N, "DeleteWarmPoolType"),
@@ -2179,10 +2299,7 @@ M.DeleteWarmPoolOutput = schema.new({
     type = "structure",
 })
 
-M.DescribeAccountLimitsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeAccountLimitsInput = prelude.Unit
 
 M.DescribeAccountLimitsOutput = schema.new({
     id = id.from(_N, "DescribeAccountLimitsAnswer"),
@@ -2215,10 +2332,7 @@ M.DescribeAccountLimitsOutput = schema.new({
     },
 })
 
-M.DescribeAdjustmentTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeAdjustmentTypesInput = prelude.Unit
 
 M.DescribeAdjustmentTypesOutput = schema.new({
     id = id.from(_N, "DescribeAdjustmentTypesAnswer"),
@@ -2986,10 +3100,7 @@ M.DescribeAutoScalingInstancesOutput = schema.new({
     },
 })
 
-M.DescribeAutoScalingNotificationTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeAutoScalingNotificationTypesInput = prelude.Unit
 
 M.DescribeAutoScalingNotificationTypesOutput = schema.new({
     id = id.from(_N, "DescribeAutoScalingNotificationTypesAnswer"),
@@ -3633,10 +3744,7 @@ M.DescribeLifecycleHooksOutput = schema.new({
     },
 })
 
-M.DescribeLifecycleHookTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeLifecycleHookTypesInput = prelude.Unit
 
 M.DescribeLifecycleHookTypesOutput = schema.new({
     id = id.from(_N, "DescribeLifecycleHookTypesAnswer"),
@@ -3786,10 +3894,7 @@ M.DescribeLoadBalancerTargetGroupsOutput = schema.new({
     },
 })
 
-M.DescribeMetricCollectionTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeMetricCollectionTypesInput = prelude.Unit
 
 M.MetricGranularityType = schema.new({
     id = id.from(_N, "MetricGranularityType"),
@@ -4714,10 +4819,7 @@ M.DescribeScalingActivitiesOutput = schema.new({
     },
 })
 
-M.DescribeScalingProcessTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeScalingProcessTypesInput = prelude.Unit
 
 M.ProcessType = schema.new({
     id = id.from(_N, "ProcessType"),
@@ -4932,10 +5034,7 @@ M.DescribeTagsOutput = schema.new({
     },
 })
 
-M.DescribeTerminationPolicyTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DescribeTerminationPolicyTypesInput = prelude.Unit
 
 M.DescribeTerminationPolicyTypesOutput = schema.new({
     id = id.from(_N, "DescribeTerminationPolicyTypesAnswer"),
@@ -5253,10 +5352,7 @@ M.DisableMetricsCollectionInput = schema.new({
     },
 })
 
-M.DisableMetricsCollectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableMetricsCollectionOutput = prelude.Unit
 
 M.EnableMetricsCollectionInput = schema.new({
     id = id.from(_N, "EnableMetricsCollectionQuery"),
@@ -5290,10 +5386,7 @@ M.EnableMetricsCollectionInput = schema.new({
     },
 })
 
-M.EnableMetricsCollectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableMetricsCollectionOutput = prelude.Unit
 
 M.EnterStandbyInput = schema.new({
     id = id.from(_N, "EnterStandbyQuery"),
@@ -5381,10 +5474,7 @@ M.ExecutePolicyInput = schema.new({
     },
 })
 
-M.ExecutePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ExecutePolicyOutput = prelude.Unit
 
 M.ExitStandbyInput = schema.new({
     id = id.from(_N, "ExitStandbyQuery"),
@@ -5871,10 +5961,7 @@ M.PutNotificationConfigurationInput = schema.new({
     },
 })
 
-M.PutNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutNotificationConfigurationOutput = prelude.Unit
 
 M.PutScalingPolicyInput = schema.new({
     id = id.from(_N, "PutScalingPolicyType"),
@@ -6069,10 +6156,7 @@ M.PutScheduledUpdateGroupActionInput = schema.new({
     },
 })
 
-M.PutScheduledUpdateGroupActionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutScheduledUpdateGroupActionOutput = prelude.Unit
 
 M.PutWarmPoolInput = schema.new({
     id = id.from(_N, "PutWarmPoolType"),
@@ -6185,10 +6269,7 @@ M.ResumeProcessesInput = schema.new({
     },
 })
 
-M.ResumeProcessesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResumeProcessesOutput = prelude.Unit
 
 M.IrreversibleInstanceRefreshFault = schema.new({
     id = id.from(_N, "IrreversibleInstanceRefreshFault"),
@@ -6266,10 +6347,7 @@ M.SetDesiredCapacityInput = schema.new({
     },
 })
 
-M.SetDesiredCapacityOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetDesiredCapacityOutput = prelude.Unit
 
 M.SetInstanceHealthInput = schema.new({
     id = id.from(_N, "SetInstanceHealthQuery"),
@@ -6302,10 +6380,7 @@ M.SetInstanceHealthInput = schema.new({
     },
 })
 
-M.SetInstanceHealthOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetInstanceHealthOutput = prelude.Unit
 
 M.SetInstanceProtectionInput = schema.new({
     id = id.from(_N, "SetInstanceProtectionQuery"),
@@ -6419,10 +6494,7 @@ M.SuspendProcessesInput = schema.new({
     },
 })
 
-M.SuspendProcessesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SuspendProcessesOutput = prelude.Unit
 
 M.TerminateInstanceInAutoScalingGroupInput = schema.new({
     id = id.from(_N, "TerminateInstanceInAutoScalingGroupType"),
@@ -6657,10 +6729,7 @@ M.UpdateAutoScalingGroupInput = schema.new({
     },
 })
 
-M.UpdateAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAutoScalingGroupOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

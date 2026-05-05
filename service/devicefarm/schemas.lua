@@ -7,6 +7,104 @@ local _N = "com.amazonaws.devicefarm"
 
 local M = {}
 
+M.Rules = schema.new({ type = "list", list_member = M.Rule })
+
+M.PackageIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentVariables = schema.new({ type = "list", list_member = M.EnvironmentVariable })
+
+M.DevicePoolCompatibilityResults = schema.new({ type = "list", list_member = M.DevicePoolCompatibilityResult })
+
+M.OfferingStatusMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.OfferingStatus })
+
+M.Artifacts = schema.new({ type = "list", list_member = M.Artifact })
+
+M.DeviceInstances = schema.new({ type = "list", list_member = M.DeviceInstance })
+
+M.DevicePools = schema.new({ type = "list", list_member = M.DevicePool })
+
+M.DeviceFilters = schema.new({ type = "list", list_member = M.DeviceFilter })
+
+M.Devices = schema.new({ type = "list", list_member = M.Device })
+
+M.InstanceProfiles = schema.new({ type = "list", list_member = M.InstanceProfile })
+
+M.Jobs = schema.new({ type = "list", list_member = M.Job })
+
+M.NetworkProfiles = schema.new({ type = "list", list_member = M.NetworkProfile })
+
+M.OfferingPromotions = schema.new({ type = "list", list_member = M.OfferingPromotion })
+
+M.Offerings = schema.new({ type = "list", list_member = M.Offering })
+
+M.OfferingTransactions = schema.new({ type = "list", list_member = M.OfferingTransaction })
+
+M.Projects = schema.new({ type = "list", list_member = M.Project })
+
+M.RemoteAccessSessions = schema.new({ type = "list", list_member = M.RemoteAccessSession })
+
+M.Runs = schema.new({ type = "list", list_member = M.Run })
+
+M.Samples = schema.new({ type = "list", list_member = M.Sample })
+
+M.Suites = schema.new({ type = "list", list_member = M.Suite })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TestGridProjects = schema.new({ type = "list", list_member = M.TestGridProject })
+
+M.TestGridSessionActions = schema.new({ type = "list", list_member = M.TestGridSessionAction })
+
+M.TestGridSessionArtifacts = schema.new({ type = "list", list_member = M.TestGridSessionArtifact })
+
+M.TestGridSessions = schema.new({ type = "list", list_member = M.TestGridSession })
+
+M.Tests = schema.new({ type = "list", list_member = M.Test })
+
+M.UniqueProblemsByExecutionResultMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.UniqueProblems })
+
+M.Uploads = schema.new({ type = "list", list_member = M.Upload })
+
+M.VPCEConfigurations = schema.new({ type = "list", list_member = M.VPCEConfiguration })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceLabels = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcSubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuxiliaryAppArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmazonResourceNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PurchasedDevicesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.MaxSlotMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.TestParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.UniqueProblems = schema.new({ type = "list", list_member = M.UniqueProblem })
+
+M.IosPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.AndroidPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeviceHostPaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.IncompatibilityMessages = schema.new({ type = "list", list_member = M.IncompatibilityMessage })
+
+M.DeviceFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecurringCharges = schema.new({ type = "list", list_member = M.RecurringCharge })
+
+M.Problems = schema.new({ type = "list", list_member = M.Problem })
+
 M.TrialMinutes = schema.new({
     id = id.from(_N, "TrialMinutes"),
     type = "structure",

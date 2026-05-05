@@ -1644,41 +1644,41 @@ local record VolumeNotFound
     Message: string
 end
 
-local type DataRepositoryTaskLifecycle = "PENDING" | "EXECUTING" | "FAILED" | "SUCCEEDED" | "CANCELED" | "CANCELING"
+local type BackupLifecycle = "AVAILABLE" | "CREATING" | "TRANSFERRING" | "DELETED" | "FAILED" | "PENDING" | "COPYING"
 
-local type StorageType = "SSD" | "HDD" | "INTELLIGENT_TIERING"
-
-local type FileSystemLifecycle = "AVAILABLE" | "CREATING" | "FAILED" | "DELETING" | "MISCONFIGURED" | "UPDATING" | "MISCONFIGURED_UNAVAILABLE"
-
-local type StorageVirtualMachineRootVolumeSecurityStyle = "UNIX" | "NTFS" | "MIXED"
-
-local type NetworkType = "IPV4" | "DUAL"
+local type DataRepositoryTaskType = "EXPORT_TO_REPOSITORY" | "IMPORT_METADATA_FROM_REPOSITORY" | "RELEASE_DATA_FROM_FILESYSTEM" | "AUTO_RELEASE_DATA"
 
 local type SnapshotLifecycle = "PENDING" | "CREATING" | "DELETING" | "AVAILABLE"
 
-local type VolumeType = "ONTAP" | "OPENZFS"
-
-local type BackupLifecycle = "AVAILABLE" | "CREATING" | "TRANSFERRING" | "DELETED" | "FAILED" | "PENDING" | "COPYING"
-
-local type StorageVirtualMachineLifecycle = "CREATED" | "CREATING" | "DELETING" | "FAILED" | "MISCONFIGURED" | "PENDING"
-
-local type FileCacheLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED"
-
-local type FileSystemType = "WINDOWS" | "LUSTRE" | "ONTAP" | "OPENZFS"
-
-local type FileCacheType = "LUSTRE"
-
-local type S3AccessPointAttachmentType = "OPENZFS" | "ONTAP"
+local type S3AccessPointAttachmentLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED" | "MISCONFIGURED"
 
 local type VolumeLifecycle = "CREATING" | "CREATED" | "DELETING" | "FAILED" | "MISCONFIGURED" | "PENDING" | "AVAILABLE"
 
+local type S3AccessPointAttachmentType = "OPENZFS" | "ONTAP"
+
+local type NetworkType = "IPV4" | "DUAL"
+
+local type StorageType = "SSD" | "HDD" | "INTELLIGENT_TIERING"
+
+local type StorageVirtualMachineRootVolumeSecurityStyle = "UNIX" | "NTFS" | "MIXED"
+
 local type OpenZFSCopyStrategy = "CLONE" | "FULL_COPY" | "INCREMENTAL_COPY"
 
-local type S3AccessPointAttachmentLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED" | "MISCONFIGURED"
+local type FileSystemType = "WINDOWS" | "LUSTRE" | "ONTAP" | "OPENZFS"
+
+local type StorageVirtualMachineLifecycle = "CREATED" | "CREATING" | "DELETING" | "FAILED" | "MISCONFIGURED" | "PENDING"
+
+local type VolumeType = "ONTAP" | "OPENZFS"
 
 local type DataRepositoryLifecycle = "CREATING" | "AVAILABLE" | "MISCONFIGURED" | "UPDATING" | "DELETING" | "FAILED"
 
-local type DataRepositoryTaskType = "EXPORT_TO_REPOSITORY" | "IMPORT_METADATA_FROM_REPOSITORY" | "RELEASE_DATA_FROM_FILESYSTEM" | "AUTO_RELEASE_DATA"
+local type FileCacheType = "LUSTRE"
+
+local type FileCacheLifecycle = "AVAILABLE" | "CREATING" | "DELETING" | "UPDATING" | "FAILED"
+
+local type DataRepositoryTaskLifecycle = "PENDING" | "EXECUTING" | "FAILED" | "SUCCEEDED" | "CANCELED" | "CANCELING"
+
+local type FileSystemLifecycle = "AVAILABLE" | "CREATING" | "FAILED" | "DELETING" | "MISCONFIGURED" | "UPDATING" | "MISCONFIGURED_UNAVAILABLE"
 
 local record M
     AssociateFileSystemAliasesInput: AssociateFileSystemAliasesInput

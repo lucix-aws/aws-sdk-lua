@@ -7,6 +7,170 @@ local _N = "com.amazonaws.georoutes"
 
 local M = {}
 
+M.Position = schema.new({ type = "list", list_member = prelude.Double })
+
+M.IsolineList = schema.new({ type = "list", list_member = M.Isoline })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.RouteMatrixDestinationList = schema.new({ type = "list", list_member = M.RouteMatrixDestination })
+
+M.RouteMatrixOriginList = schema.new({ type = "list", list_member = M.RouteMatrixOrigin })
+
+M.RouteMatrix = schema.new({ type = "list", list_member = M.RouteMatrixRow })
+
+M.LanguageTagList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteLegAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteSpanAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteWaypointList = schema.new({ type = "list", list_member = M.RouteWaypoint })
+
+M.RouteResponseNoticeList = schema.new({ type = "list", list_member = M.RouteResponseNotice })
+
+M.RouteList = schema.new({ type = "list", list_member = M.Route })
+
+M.WaypointOptimizationWaypointList = schema.new({ type = "list", list_member = M.WaypointOptimizationWaypoint })
+
+M.WaypointOptimizationConnectionList = schema.new({ type = "list", list_member = M.WaypointOptimizationConnection })
+
+M.WaypointOptimizationImpedingWaypointList = schema.new({ type = "list", list_member = M.WaypointOptimizationImpedingWaypoint })
+
+M.WaypointOptimizationOptimizedWaypointList = schema.new({ type = "list", list_member = M.WaypointOptimizationOptimizedWaypoint })
+
+M.RoadSnapTracePointList = schema.new({ type = "list", list_member = M.RoadSnapTracePoint })
+
+M.RoadSnapNoticeList = schema.new({ type = "list", list_member = M.RoadSnapNotice })
+
+M.RoadSnapSnappedTracePointList = schema.new({ type = "list", list_member = M.RoadSnapSnappedTracePoint })
+
+M.IsolineAvoidanceAreaList = schema.new({ type = "list", list_member = M.IsolineAvoidanceArea })
+
+M.TruckRoadTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IsolineAvoidanceZoneCategoryList = schema.new({ type = "list", list_member = M.IsolineAvoidanceZoneCategory })
+
+M.DistanceThresholdList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.TimeThresholdList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.RouteMatrixAvoidanceAreaList = schema.new({ type = "list", list_member = M.RouteMatrixAvoidanceArea })
+
+M.RouteMatrixAvoidanceZoneCategoryList = schema.new({ type = "list", list_member = M.RouteMatrixAvoidanceZoneCategory })
+
+M.CountryCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteMatrixRow = schema.new({ type = "list", list_member = M.RouteMatrixEntry })
+
+M.RouteAvoidanceAreaList = schema.new({ type = "list", list_member = M.RouteAvoidanceArea })
+
+M.RouteAvoidanceZoneCategoryList = schema.new({ type = "list", list_member = M.RouteAvoidanceZoneCategory })
+
+M.RouteDriverScheduleIntervalList = schema.new({ type = "list", list_member = M.RouteDriverScheduleInterval })
+
+M.WaypointOptimizationAvoidanceAreaList = schema.new({ type = "list", list_member = M.WaypointOptimizationAvoidanceArea })
+
+M.LineString = schema.new({ type = "list", list_member = M.Position })
+
+M.IsolineHazardousCargoTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IsolineConnectionList = schema.new({ type = "list", list_member = M.IsolineConnection })
+
+M.IsolineShapeGeometryList = schema.new({ type = "list", list_member = M.IsolineShapeGeometry })
+
+M.BoundingBox = schema.new({ type = "list", list_member = prelude.Double })
+
+M.LinearRings = schema.new({ type = "list", list_member = M.LinearRing })
+
+M.RouteMatrixHazardousCargoTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteHazardousCargoTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteLegList = schema.new({ type = "list", list_member = M.RouteLeg })
+
+M.RouteMajorRoadLabelList = schema.new({ type = "list", list_member = M.RouteMajorRoadLabel })
+
+M.WaypointOptimizationHazardousCargoTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BeforeWaypointsList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.WaypointOptimizationFailedConstraintList = schema.new({ type = "list", list_member = M.WaypointOptimizationFailedConstraint })
+
+M.RoadSnapHazardousCargoTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoadSnapTracePointIndexList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.IsolineAvoidanceAreaGeometryList = schema.new({ type = "list", list_member = M.IsolineAvoidanceAreaGeometry })
+
+M.LinearRing = schema.new({ type = "list", list_member = M.Position })
+
+M.RouteAvoidanceAreaGeometryList = schema.new({ type = "list", list_member = M.RouteAvoidanceAreaGeometry })
+
+M.PolylineRingList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteFerryAfterTravelStepList = schema.new({ type = "list", list_member = M.RouteFerryAfterTravelStep })
+
+M.RouteFerryBeforeTravelStepList = schema.new({ type = "list", list_member = M.RouteFerryBeforeTravelStep })
+
+M.RouteFerryNoticeList = schema.new({ type = "list", list_member = M.RouteFerryNotice })
+
+M.RoutePassThroughWaypointList = schema.new({ type = "list", list_member = M.RoutePassThroughWaypoint })
+
+M.RouteFerrySpanList = schema.new({ type = "list", list_member = M.RouteFerrySpan })
+
+M.RouteFerryTravelStepList = schema.new({ type = "list", list_member = M.RouteFerryTravelStep })
+
+M.RoutePedestrianNoticeList = schema.new({ type = "list", list_member = M.RoutePedestrianNotice })
+
+M.RoutePedestrianSpanList = schema.new({ type = "list", list_member = M.RoutePedestrianSpan })
+
+M.RoutePedestrianTravelStepList = schema.new({ type = "list", list_member = M.RoutePedestrianTravelStep })
+
+M.RouteVehicleIncidentList = schema.new({ type = "list", list_member = M.RouteVehicleIncident })
+
+M.RouteVehicleNoticeList = schema.new({ type = "list", list_member = M.RouteVehicleNotice })
+
+M.RouteVehicleSpanList = schema.new({ type = "list", list_member = M.RouteVehicleSpan })
+
+M.RouteTollList = schema.new({ type = "list", list_member = M.RouteToll })
+
+M.RouteTollSystemList = schema.new({ type = "list", list_member = M.RouteTollSystem })
+
+M.RouteVehicleTravelStepList = schema.new({ type = "list", list_member = M.RouteVehicleTravelStep })
+
+M.RouteZoneList = schema.new({ type = "list", list_member = M.RouteZone })
+
+M.Position23 = schema.new({ type = "list", list_member = prelude.Double })
+
+M.LocalizedStringList = schema.new({ type = "list", list_member = M.LocalizedString })
+
+M.IndexList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.RouteSpanPedestrianAccessAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteSpanRoadAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteNumberList = schema.new({ type = "list", list_member = M.RouteNumber })
+
+M.RouteVehicleNoticeDetailList = schema.new({ type = "list", list_member = M.RouteVehicleNoticeDetail })
+
+M.RouteSpanCarAccessAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteSpanScooterAccessAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteSpanTruckAccessAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTollPaymentSiteList = schema.new({ type = "list", list_member = M.RouteTollPaymentSite })
+
+M.RouteTollRateList = schema.new({ type = "list", list_member = M.RouteTollRate })
+
+M.RouteSignpostLabelList = schema.new({ type = "list", list_member = M.RouteSignpostLabel })
+
+M.RouteTollPaymentMethodList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTransponderList = schema.new({ type = "list", list_member = M.RouteTransponder })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -120,7 +284,7 @@ M.IsolineAvoidanceAreaGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
         PolylineCorridor = schema.new({
             id = id.from(_N, "IsolineAvoidanceAreaGeometry", "PolylineCorridor"),
@@ -1014,7 +1178,7 @@ M.IsolineShapeGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
         PolylinePolygon = schema.new({
             id = id.from(_N, "IsolineShapeGeometry", "PolylinePolygon"),
@@ -1276,7 +1440,7 @@ M.RouteMatrixAvoidanceAreaGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
         PolylinePolygon = schema.new({
             id = id.from(_N, "RouteMatrixAvoidanceAreaGeometry", "PolylinePolygon"),
@@ -1678,7 +1842,7 @@ M.RouteMatrixBoundaryGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
     },
 })
@@ -2203,7 +2367,7 @@ M.RouteAvoidanceAreaGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
         PolylineCorridor = schema.new({
             id = id.from(_N, "RouteAvoidanceAreaGeometry", "PolylineCorridor"),

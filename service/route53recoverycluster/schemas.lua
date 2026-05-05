@@ -7,6 +7,14 @@ local _N = "com.amazonaws.route53recoverycluster"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.RoutingControls = schema.new({ type = "list", list_member = M.RoutingControl })
+
+M.Arns = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateRoutingControlStateEntries = schema.new({ type = "list", list_member = M.UpdateRoutingControlStateEntry })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

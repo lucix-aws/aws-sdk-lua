@@ -7,6 +7,68 @@ local _N = "com.amazonaws.mediapackagev2"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelGroupsList = schema.new({ type = "list", list_member = M.ChannelGroupListConfiguration })
+
+M.ChannelList = schema.new({ type = "list", list_member = M.ChannelListConfiguration })
+
+M.IngestEndpointList = schema.new({ type = "list", list_member = M.IngestEndpoint })
+
+M.HarvestJobsList = schema.new({ type = "list", list_member = M.HarvestJob })
+
+M.OriginEndpointsList = schema.new({ type = "list", list_member = M.OriginEndpointListConfiguration })
+
+M.CreateHlsManifests = schema.new({ type = "list", list_member = M.CreateHlsManifestConfiguration })
+
+M.CreateLowLatencyHlsManifests = schema.new({ type = "list", list_member = M.CreateLowLatencyHlsManifestConfiguration })
+
+M.CreateDashManifests = schema.new({ type = "list", list_member = M.CreateDashManifestConfiguration })
+
+M.CreateMssManifests = schema.new({ type = "list", list_member = M.CreateMssManifestConfiguration })
+
+M.GetHlsManifests = schema.new({ type = "list", list_member = M.GetHlsManifestConfiguration })
+
+M.GetLowLatencyHlsManifests = schema.new({ type = "list", list_member = M.GetLowLatencyHlsManifestConfiguration })
+
+M.GetDashManifests = schema.new({ type = "list", list_member = M.GetDashManifestConfiguration })
+
+M.GetMssManifests = schema.new({ type = "list", list_member = M.GetMssManifestConfiguration })
+
+M.HarvestedHlsManifestsList = schema.new({ type = "list", list_member = M.HarvestedHlsManifest })
+
+M.HarvestedDashManifestsList = schema.new({ type = "list", list_member = M.HarvestedDashManifest })
+
+M.HarvestedLowLatencyHlsManifestsList = schema.new({ type = "list", list_member = M.HarvestedLowLatencyHlsManifest })
+
+M.EndpointErrorConditions = schema.new({ type = "list", list_member = prelude.String })
+
+M.CdnIdentifierSecretArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListHlsManifests = schema.new({ type = "list", list_member = M.ListHlsManifestConfiguration })
+
+M.ListLowLatencyHlsManifests = schema.new({ type = "list", list_member = M.ListLowLatencyHlsManifestConfiguration })
+
+M.ListDashManifests = schema.new({ type = "list", list_member = M.ListDashManifestConfiguration })
+
+M.ListMssManifests = schema.new({ type = "list", list_member = M.ListMssManifestConfiguration })
+
+M.ScteFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomAdTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DashPeriodTriggers = schema.new({ type = "list", list_member = prelude.String })
+
+M.DashProfiles = schema.new({ type = "list", list_member = prelude.String })
+
+M.DashBaseUrls = schema.new({ type = "list", list_member = M.DashBaseUrl })
+
+M.DrmSystems = schema.new({ type = "list", list_member = prelude.String })
+
+M.DashDvbErrorMetrics = schema.new({ type = "list", list_member = M.DashDvbMetricsReporting })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4841,10 +4903,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -4874,10 +4933,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

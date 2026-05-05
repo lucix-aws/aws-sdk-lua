@@ -932,15 +932,15 @@ local type OptInType = "NotifyOnly" | "NotifyAndAdjust"
 
 local type ServiceQuotaTemplateAssociationStatus = "ASSOCIATED" | "DISASSOCIATED"
 
-local type OptInLevel = "ACCOUNT"
-
-local type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL"
-
-local type RequestStatus = "PENDING" | "CASE_OPENED" | "APPROVED" | "DENIED" | "CASE_CLOSED" | "NOT_APPROVED" | "INVALID_REQUEST"
+local type ReportStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
 
 local type OptInStatus = "ENABLED" | "DISABLED"
 
-local type ReportStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
+local type RequestStatus = "PENDING" | "CASE_OPENED" | "APPROVED" | "DENIED" | "CASE_CLOSED" | "NOT_APPROVED" | "INVALID_REQUEST"
+
+local type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL"
+
+local type OptInLevel = "ACCOUNT"
 
 local record M
     AssociateServiceQuotaTemplateInput: AssociateServiceQuotaTemplateInput

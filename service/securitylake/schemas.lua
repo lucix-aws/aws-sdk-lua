@@ -7,6 +7,42 @@ local _N = "com.amazonaws.securitylake"
 
 local M = {}
 
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataLakeExceptionList = schema.new({ type = "list", list_member = M.DataLakeException })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsLogSourceConfigurationList = schema.new({ type = "list", list_member = M.AwsLogSourceConfiguration })
+
+M.AccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OcsfEventClassList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataLakeConfigurationList = schema.new({ type = "list", list_member = M.DataLakeConfiguration })
+
+M.DataLakeResourceList = schema.new({ type = "list", list_member = M.DataLakeResource })
+
+M.DataLakeAutoEnableNewAccountConfigurationList = schema.new({ type = "list", list_member = M.DataLakeAutoEnableNewAccountConfiguration })
+
+M.DataLakeSourceList = schema.new({ type = "list", list_member = M.DataLakeSource })
+
+M.LogSourceResourceList = schema.new({ type = "list", list_member = M.LogSourceResource })
+
+M.LogSourceList = schema.new({ type = "list", list_member = M.LogSource })
+
+M.SubscriberResourceList = schema.new({ type = "list", list_member = M.SubscriberResource })
+
+M.AccessTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsLogSourceResourceList = schema.new({ type = "list", list_member = M.AwsLogSourceResource })
+
+M.DataLakeSourceStatusList = schema.new({ type = "list", list_member = M.DataLakeSourceStatus })
+
+M.DataLakeLifecycleTransitionList = schema.new({ type = "list", list_member = M.DataLakeLifecycleTransition })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,50 @@ local _N = "com.amazonaws.budgets"
 
 local M = {}
 
+M.NotificationWithSubscribersList = schema.new({ type = "list", list_member = M.NotificationWithSubscribers })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.Subscribers = schema.new({ type = "list", list_member = M.Subscriber })
+
+M.ActionHistories = schema.new({ type = "list", list_member = M.ActionHistory })
+
+M.Actions = schema.new({ type = "list", list_member = M.Action })
+
+M.BudgetNotificationsForAccountList = schema.new({ type = "list", list_member = M.BudgetNotificationsForAccount })
+
+M.Budgets = schema.new({ type = "list", list_member = M.Budget })
+
+M.Notifications = schema.new({ type = "list", list_member = M.Notification })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlannedBudgetLimits = schema.new({ type = "map", map_key = prelude.String, map_value = M.Spend })
+
+M.CostFilters = schema.new({ type = "map", map_key = prelude.String, map_value = M.DimensionValues })
+
+M.Metrics = schema.new({ type = "list", list_member = prelude.String })
+
+M.BudgetedAndActualAmountsList = schema.new({ type = "list", list_member = M.BudgetedAndActualAmounts })
+
+M.DimensionValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.Expressions = schema.new({ type = "list", list_member = M.Expression })
+
+M.Roles = schema.new({ type = "list", list_member = prelude.String })
+
+M.Groups = schema.new({ type = "list", list_member = prelude.String })
+
+M.Users = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchOptions = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

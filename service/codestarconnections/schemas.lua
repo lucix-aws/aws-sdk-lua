@@ -7,6 +7,32 @@ local _N = "com.amazonaws.codestarconnections"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ConnectionList = schema.new({ type = "list", list_member = M.Connection })
+
+M.HostList = schema.new({ type = "list", list_member = M.Host })
+
+M.RepositoryLinkList = schema.new({ type = "list", list_member = M.RepositoryLinkInfo })
+
+M.RepositorySyncDefinitionList = schema.new({ type = "list", list_member = M.RepositorySyncDefinition })
+
+M.SyncConfigurationList = schema.new({ type = "list", list_member = M.SyncConfiguration })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositorySyncEventList = schema.new({ type = "list", list_member = M.RepositorySyncEvent })
+
+M.ResourceSyncEventList = schema.new({ type = "list", list_member = M.ResourceSyncEvent })
+
+M.LatestSyncBlockerList = schema.new({ type = "list", list_member = M.SyncBlocker })
+
+M.SyncBlockerContextList = schema.new({ type = "list", list_member = M.SyncBlockerContext })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,26 @@ local _N = "com.amazonaws.connectcampaigns"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CampaignIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuccessfulCampaignStateResponseList = schema.new({ type = "list", list_member = M.SuccessfulCampaignStateResponse })
+
+M.FailedCampaignStateResponseList = schema.new({ type = "list", list_member = M.FailedCampaignStateResponse })
+
+M.CampaignSummaryList = schema.new({ type = "list", list_member = M.CampaignSummary })
+
+M.DialRequestList = schema.new({ type = "list", list_member = M.DialRequest })
+
+M.SuccessfulRequestList = schema.new({ type = "list", list_member = M.SuccessfulRequest })
+
+M.FailedRequestList = schema.new({ type = "list", list_member = M.FailedRequest })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -445,10 +465,7 @@ M.DeleteCampaignInput = schema.new({
     },
 })
 
-M.DeleteCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCampaignOutput = prelude.Unit
 
 M.DeleteConnectInstanceConfigInput = schema.new({
     id = id.from(_N, "DeleteConnectInstanceConfigRequest"),
@@ -467,10 +484,7 @@ M.DeleteConnectInstanceConfigInput = schema.new({
     },
 })
 
-M.DeleteConnectInstanceConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectInstanceConfigOutput = prelude.Unit
 
 M.InvalidStateException = schema.new({
     id = id.from(_N, "InvalidStateException"),
@@ -517,10 +531,7 @@ M.DeleteInstanceOnboardingJobInput = schema.new({
     },
 })
 
-M.DeleteInstanceOnboardingJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInstanceOnboardingJobOutput = prelude.Unit
 
 M.DescribeCampaignInput = schema.new({
     id = id.from(_N, "DescribeCampaignRequest"),
@@ -1101,10 +1112,7 @@ M.PauseCampaignInput = schema.new({
     },
 })
 
-M.PauseCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PauseCampaignOutput = prelude.Unit
 
 M.DialRequest = schema.new({
     id = id.from(_N, "DialRequest"),
@@ -1264,10 +1272,7 @@ M.ResumeCampaignInput = schema.new({
     },
 })
 
-M.ResumeCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResumeCampaignOutput = prelude.Unit
 
 M.StartCampaignInput = schema.new({
     id = id.from(_N, "StartCampaignRequest"),
@@ -1286,10 +1291,7 @@ M.StartCampaignInput = schema.new({
     },
 })
 
-M.StartCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartCampaignOutput = prelude.Unit
 
 M.StartInstanceOnboardingJobInput = schema.new({
     id = id.from(_N, "StartInstanceOnboardingJobRequest"),
@@ -1349,10 +1351,7 @@ M.StopCampaignInput = schema.new({
     },
 })
 
-M.StopCampaignOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopCampaignOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -1382,10 +1381,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -1415,10 +1411,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateCampaignDialerConfigInput = schema.new({
     id = id.from(_N, "UpdateCampaignDialerConfigRequest"),
@@ -1447,10 +1440,7 @@ M.UpdateCampaignDialerConfigInput = schema.new({
     },
 })
 
-M.UpdateCampaignDialerConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignDialerConfigOutput = prelude.Unit
 
 M.UpdateCampaignNameInput = schema.new({
     id = id.from(_N, "UpdateCampaignNameRequest"),
@@ -1478,10 +1468,7 @@ M.UpdateCampaignNameInput = schema.new({
     },
 })
 
-M.UpdateCampaignNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignNameOutput = prelude.Unit
 
 M.UpdateCampaignOutboundCallConfigInput = schema.new({
     id = id.from(_N, "UpdateCampaignOutboundCallConfigRequest"),
@@ -1519,10 +1506,7 @@ M.UpdateCampaignOutboundCallConfigInput = schema.new({
     },
 })
 
-M.UpdateCampaignOutboundCallConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCampaignOutboundCallConfigOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

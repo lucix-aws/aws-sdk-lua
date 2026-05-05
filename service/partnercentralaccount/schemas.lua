@@ -7,6 +7,32 @@ local _N = "com.amazonaws.partnercentralaccount"
 
 local M = {}
 
+M.ValidationErrorList = schema.new({ type = "list", list_member = M.ValidationError })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParticipantIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionInvitationSummaryList = schema.new({ type = "list", list_member = M.ConnectionInvitationSummary })
+
+M.ConnectionSummaryList = schema.new({ type = "list", list_member = M.ConnectionSummary })
+
+M.ConnectionTypeDetailMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConnectionTypeDetail })
+
+M.PartnerSummaryList = schema.new({ type = "list", list_member = M.PartnerSummary })
+
+M.PartnerDomainList = schema.new({ type = "list", list_member = M.PartnerDomain })
+
+M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.IndustrySegmentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalizedContentList = schema.new({ type = "list", list_member = M.LocalizedContent })
+
+M.ConnectionTypeSummaryMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConnectionTypeSummary })
+
 M.AcceptConnectionInvitationInput = schema.new({
     id = id.from(_N, "AcceptConnectionInvitationRequest"),
     type = "structure",

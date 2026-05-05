@@ -7,6 +7,46 @@ local _N = "com.amazonaws.braket"
 
 local M = {}
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ProgramSetValidationFailuresList = schema.new({ type = "list", list_member = M.ProgramSetValidationFailure })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchDevicesFilterList = schema.new({ type = "list", list_member = M.SearchDevicesFilter })
+
+M.DeviceSummaryList = schema.new({ type = "list", list_member = M.DeviceSummary })
+
+M.DeviceQueueInfoList = schema.new({ type = "list", list_member = M.DeviceQueueInfo })
+
+M.InputConfigList = schema.new({ type = "list", list_member = M.InputFileConfig })
+
+M.HyperParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Associations = schema.new({ type = "list", list_member = M.Association })
+
+M.HybridJobAdditionalAttributeNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobEvents = schema.new({ type = "list", list_member = M.JobEventDetails })
+
+M.SearchJobsFilterList = schema.new({ type = "list", list_member = M.SearchJobsFilter })
+
+M.JobSummaryList = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.SearchQuantumTasksFilterList = schema.new({ type = "list", list_member = M.SearchQuantumTasksFilter })
+
+M.QuantumTaskSummaryList = schema.new({ type = "list", list_member = M.QuantumTaskSummary })
+
+M.QuantumTaskAdditionalAttributeNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchSpendingLimitsFilterList = schema.new({ type = "list", list_member = M.SearchSpendingLimitsFilter })
+
+M.SpendingLimitSummaryList = schema.new({ type = "list", list_member = M.SpendingLimitSummary })
+
+M.ProgramValidationFailuresList = schema.new({ type = "list", list_member = prelude.String })
+
+M.String256List = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

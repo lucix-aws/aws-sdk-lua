@@ -71,10 +71,7 @@ M.JoinStorageSessionInput = schema.new({
     },
 })
 
-M.JoinStorageSessionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.JoinStorageSessionOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -117,10 +114,7 @@ M.JoinStorageSessionAsViewerInput = schema.new({
     },
 })
 
-M.JoinStorageSessionAsViewerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.JoinStorageSessionAsViewerOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

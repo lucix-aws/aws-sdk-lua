@@ -7,6 +7,20 @@ local _N = "com.amazonaws.aiops"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyBoundaries = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChatbotNotificationChannel = schema.new({ type = "map", map_key = prelude.String, map_value = M.ChatConfigurationArns })
+
+M.CrossAccountConfigurations = schema.new({ type = "list", list_member = M.CrossAccountConfiguration })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChatConfigurationArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.InvestigationGroups = schema.new({ type = "list", list_member = M.ListInvestigationGroupsModel })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -295,10 +309,7 @@ M.DeleteInvestigationGroupInput = schema.new({
     },
 })
 
-M.DeleteInvestigationGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInvestigationGroupOutput = prelude.Unit
 
 M.GetInvestigationGroupInput = schema.new({
     id = id.from(_N, "GetInvestigationGroupRequest"),

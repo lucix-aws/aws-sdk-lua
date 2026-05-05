@@ -7,6 +7,12 @@ local _N = "com.amazonaws.ebs"
 
 local M = {}
 
+M.ChangedBlocks = schema.new({ type = "list", list_member = M.ChangedBlock })
+
+M.Blocks = schema.new({ type = "list", list_member = M.Block })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

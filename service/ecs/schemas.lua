@@ -7,6 +7,244 @@ local _N = "com.amazonaws.ecs"
 
 local M = {}
 
+M.TaskDefinitionFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.Settings = schema.new({ type = "list", list_member = M.Setting })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityProviderFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityProviders = schema.new({ type = "list", list_member = M.CapacityProvider })
+
+M.Failures = schema.new({ type = "list", list_member = M.Failure })
+
+M.ClusterSettings = schema.new({ type = "list", list_member = M.ClusterSetting })
+
+M.CapacityProviderStrategy = schema.new({ type = "list", list_member = M.CapacityProviderStrategyItem })
+
+M.ClusterFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Clusters = schema.new({ type = "list", list_member = M.Cluster })
+
+M.Attributes = schema.new({ type = "list", list_member = M.Attribute })
+
+M.AttachmentStateChanges = schema.new({ type = "list", list_member = M.AttachmentStateChange })
+
+M.NetworkBindings = schema.new({ type = "list", list_member = M.NetworkBinding })
+
+M.ContainerStateChanges = schema.new({ type = "list", list_member = M.ContainerStateChange })
+
+M.ManagedAgentStateChanges = schema.new({ type = "list", list_member = M.ManagedAgentStateChange })
+
+M.ContainerInstanceFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContainerInstances = schema.new({ type = "list", list_member = M.ContainerInstance })
+
+M.Resources = schema.new({ type = "list", list_member = M.Resource })
+
+M.PlatformDevices = schema.new({ type = "list", list_member = M.PlatformDevice })
+
+M.DaemonDeploymentList = schema.new({ type = "list", list_member = M.DaemonDeployment })
+
+M.DaemonDeploymentStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DaemonDeploymentSummaryList = schema.new({ type = "list", list_member = M.DaemonDeploymentSummary })
+
+M.DaemonSummariesList = schema.new({ type = "list", list_member = M.DaemonSummary })
+
+M.DaemonRevisions = schema.new({ type = "list", list_member = M.DaemonRevision })
+
+M.DaemonTaskDefinitionSummaries = schema.new({ type = "list", list_member = M.DaemonTaskDefinitionSummary })
+
+M.DaemonContainerDefinitionList = schema.new({ type = "list", list_member = M.DaemonContainerDefinition })
+
+M.DaemonVolumeList = schema.new({ type = "list", list_member = M.DaemonVolume })
+
+M.ServiceDeployments = schema.new({ type = "list", list_member = M.ServiceDeployment })
+
+M.LoadBalancers = schema.new({ type = "list", list_member = M.LoadBalancer })
+
+M.ServiceRegistries = schema.new({ type = "list", list_member = M.ServiceRegistry })
+
+M.PlacementConstraints = schema.new({ type = "list", list_member = M.PlacementConstraint })
+
+M.PlacementStrategies = schema.new({ type = "list", list_member = M.PlacementStrategy })
+
+M.ServiceVolumeConfigurations = schema.new({ type = "list", list_member = M.ServiceVolumeConfiguration })
+
+M.VpcLatticeConfigurations = schema.new({ type = "list", list_member = M.VpcLatticeConfiguration })
+
+M.ExpressGatewayServiceIncludeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Services = schema.new({ type = "list", list_member = M.Service })
+
+M.ServiceDeploymentStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceDeploymentsBrief = schema.new({ type = "list", list_member = M.ServiceDeploymentBrief })
+
+M.ResourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceRevisions = schema.new({ type = "list", list_member = M.ServiceRevision })
+
+M.TaskDefinitionList = schema.new({ type = "list", list_member = M.TaskDefinition })
+
+M.ContainerDefinitions = schema.new({ type = "list", list_member = M.ContainerDefinition })
+
+M.VolumeList = schema.new({ type = "list", list_member = M.Volume })
+
+M.TaskDefinitionPlacementConstraints = schema.new({ type = "list", list_member = M.TaskDefinitionPlacementConstraint })
+
+M.CompatibilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InferenceAccelerators = schema.new({ type = "list", list_member = M.InferenceAccelerator })
+
+M.TaskFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Tasks = schema.new({ type = "list", list_member = M.Task })
+
+M.ProtectedTasks = schema.new({ type = "list", list_member = M.ProtectedTask })
+
+M.TaskVolumeConfigurations = schema.new({ type = "list", list_member = M.TaskVolumeConfiguration })
+
+M.TaskSetFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskSets = schema.new({ type = "list", list_member = M.TaskSet })
+
+M.RequiresAttributes = schema.new({ type = "list", list_member = M.Attribute })
+
+M.Statistics = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.Attachments = schema.new({ type = "list", list_member = M.Attachment })
+
+M.DaemonRevisionDetailList = schema.new({ type = "list", list_member = M.DaemonRevisionDetail })
+
+M.EnvironmentVariables = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.SecretList = schema.new({ type = "list", list_member = M.Secret })
+
+M.ExpressGatewayServiceConfigurations = schema.new({ type = "list", list_member = M.ExpressGatewayServiceConfiguration })
+
+M.DeploymentLifecycleHookList = schema.new({ type = "list", list_member = M.DeploymentLifecycleHook })
+
+M.ServiceConnectServiceList = schema.new({ type = "list", list_member = M.ServiceConnectService })
+
+M.Deployments = schema.new({ type = "list", list_member = M.Deployment })
+
+M.ServiceEvents = schema.new({ type = "list", list_member = M.ServiceEvent })
+
+M.ServiceCurrentRevisionSummaryList = schema.new({ type = "list", list_member = M.ServiceCurrentRevisionSummary })
+
+M.ProxyConfigurationProperties = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.ContainerOverrides = schema.new({ type = "list", list_member = M.ContainerOverride })
+
+M.InferenceAcceleratorOverrides = schema.new({ type = "list", list_member = M.InferenceAcceleratorOverride })
+
+M.Containers = schema.new({ type = "list", list_member = M.Container })
+
+M.InstanceHealthCheckResultList = schema.new({ type = "list", list_member = M.InstanceHealthCheckResult })
+
+M.DaemonDeploymentRevisionDetailList = schema.new({ type = "list", list_member = M.DaemonDeploymentRevisionDetail })
+
+M.DaemonContainerImages = schema.new({ type = "list", list_member = M.DaemonContainerImage })
+
+M.EnvironmentFiles = schema.new({ type = "list", list_member = M.EnvironmentFile })
+
+M.MountPointList = schema.new({ type = "list", list_member = M.MountPoint })
+
+M.UlimitList = schema.new({ type = "list", list_member = M.Ulimit })
+
+M.ContainerDependencies = schema.new({ type = "list", list_member = M.ContainerDependency })
+
+M.SystemControls = schema.new({ type = "list", list_member = M.SystemControl })
+
+M.ServiceRevisionsSummaryList = schema.new({ type = "list", list_member = M.ServiceRevisionSummary })
+
+M.LogConfigurationOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IngressPathSummaries = schema.new({ type = "list", list_member = M.IngressPathSummary })
+
+M.ContainerImages = schema.new({ type = "list", list_member = M.ContainerImage })
+
+M.PortMappingList = schema.new({ type = "list", list_member = M.PortMapping })
+
+M.VolumeFromList = schema.new({ type = "list", list_member = M.VolumeFrom })
+
+M.HostEntryList = schema.new({ type = "list", list_member = M.HostEntry })
+
+M.DockerLabelsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceRequirements = schema.new({ type = "list", list_member = M.ResourceRequirement })
+
+M.CpuManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceGenerationSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalStorageTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorNameSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttachmentDetails = schema.new({ type = "list", list_member = M.KeyValuePair })
+
+M.DaemonDeploymentCapacityProviderList = schema.new({ type = "list", list_member = M.DaemonDeploymentCapacityProvider })
+
+M.DaemonCapacityProviderList = schema.new({ type = "list", list_member = M.DaemonCapacityProvider })
+
+M.FirelensConfigurationOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DevicesList = schema.new({ type = "list", list_member = M.Device })
+
+M.TmpfsList = schema.new({ type = "list", list_member = M.Tmpfs })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.DeploymentLifecycleHookStageList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceConnectClientAliasList = schema.new({ type = "list", list_member = M.ServiceConnectClientAlias })
+
+M.EBSTagSpecifications = schema.new({ type = "list", list_member = M.EBSTagSpecification })
+
+M.ServiceConnectServiceResourceList = schema.new({ type = "list", list_member = M.ServiceConnectServiceResource })
+
+M.ServiceRevisionLoadBalancers = schema.new({ type = "list", list_member = M.ServiceRevisionLoadBalancer })
+
+M.ManagedIngressPaths = schema.new({ type = "list", list_member = M.ManagedIngressPath })
+
+M.ManagedMetricAlarms = schema.new({ type = "list", list_member = M.ManagedMetricAlarm })
+
+M.ManagedSecurityGroups = schema.new({ type = "list", list_member = M.ManagedSecurityGroup })
+
+M.ManagedLogGroups = schema.new({ type = "list", list_member = M.ManagedLogGroup })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.ManagedAgents = schema.new({ type = "list", list_member = M.ManagedAgent })
+
+M.GpuIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManagedApplicationAutoScalingPolicies = schema.new({ type = "list", list_member = M.ManagedApplicationAutoScalingPolicy })
+
+M.DeviceCgroupPermissions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ManagedTargetGroups = schema.new({ type = "list", list_member = M.ManagedTargetGroup })
+
 M.AcceleratorCountRequest = schema.new({
     id = id.from(_N, "AcceleratorCountRequest"),
     type = "structure",

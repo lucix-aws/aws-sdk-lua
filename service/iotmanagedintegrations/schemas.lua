@@ -7,6 +7,112 @@ local _N = "com.amazonaws.iotmanagedintegrations"
 
 local M = {}
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Devices = schema.new({ type = "list", list_member = M.Device })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountAssociationListDefinition = schema.new({ type = "list", list_member = M.AccountAssociationItem })
+
+M.ConnectorList = schema.new({ type = "list", list_member = M.ConnectorItem })
+
+M.ConnectorDestinationListDefinition = schema.new({ type = "list", list_member = M.ConnectorDestinationSummary })
+
+M.CredentialLockerListDefinition = schema.new({ type = "list", list_member = M.CredentialLockerSummary })
+
+M.DestinationListDefinition = schema.new({ type = "list", list_member = M.DestinationSummary })
+
+M.DeviceDiscoveryListDefinition = schema.new({ type = "list", list_member = M.DeviceDiscoverySummary })
+
+M.CustomProtocolDetail = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConnectorDeviceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DiscoveredDeviceListDefinition = schema.new({ type = "list", list_member = M.DiscoveredDeviceSummary })
+
+M.EventLogConfigurationListDefinition = schema.new({ type = "list", list_member = M.EventLogConfigurationSummary })
+
+M.ManagedThingAssociationList = schema.new({ type = "list", list_member = M.ManagedThingAssociation })
+
+M.CommandEndpoints = schema.new({ type = "list", list_member = M.CommandEndpoint })
+
+M.ManagedThingListDefinition = schema.new({ type = "list", list_member = M.ManagedThingSummary })
+
+M.CapabilitySchemas = schema.new({ type = "list", list_member = M.CapabilitySchemaItem })
+
+M.MetaData = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ManagedThingSchemaListDefinition = schema.new({ type = "list", list_member = M.ManagedThingSchemaListItem })
+
+M.StateEndpoints = schema.new({ type = "list", list_member = M.StateEndpoint })
+
+M.NotificationConfigurationListDefinition = schema.new({ type = "list", list_member = M.NotificationConfigurationSummary })
+
+M.OtaTaskConfigurationListDefinition = schema.new({ type = "list", list_member = M.OtaTaskConfigurationSummary })
+
+M.OtaTaskListDefinition = schema.new({ type = "list", list_member = M.OtaTaskSummary })
+
+M.Target = schema.new({ type = "list", list_member = prelude.String })
+
+M.OtaTaskExecutionSummariesListDefinition = schema.new({ type = "list", list_member = M.OtaTaskExecutionSummaries })
+
+M.ProvisioningProfileListDefinition = schema.new({ type = "list", list_member = M.ProvisioningProfileSummary })
+
+M.SchemaVersionList = schema.new({ type = "list", list_member = M.SchemaVersionListItem })
+
+M.MatterClusters = schema.new({ type = "list", list_member = M.MatterCluster })
+
+M.AuthMaterials = schema.new({ type = "list", list_member = M.AuthMaterial })
+
+M.CapabilityReportEndpoints = schema.new({ type = "list", list_member = M.CapabilityReportEndpoint })
+
+M.ScheduleMaintenanceWindowList = schema.new({ type = "list", list_member = M.ScheduleMaintenanceWindow })
+
+M.RetryConfigCriteriaList = schema.new({ type = "list", list_member = M.RetryConfigCriteria })
+
+M.DeviceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommandCapabilities = schema.new({ type = "list", list_member = M.CommandCapability })
+
+M.StateCapabilities = schema.new({ type = "list", list_member = M.StateCapability })
+
+M.AbortConfigCriteriaList = schema.new({ type = "list", list_member = M.AbortConfigCriteria })
+
+M.MatterCapabilityReportEndpoints = schema.new({ type = "list", list_member = M.MatterCapabilityReportEndpoint })
+
+M.MatterCommands = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.MatterEvents = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.DeviceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityReportCapabilities = schema.new({ type = "list", list_member = M.CapabilityReportCapability })
+
+M.CapabilityActions = schema.new({ type = "list", list_member = M.CapabilityAction })
+
+M.MatterCapabilityReportClusters = schema.new({ type = "list", list_member = M.MatterCapabilityReportCluster })
+
+M.MatterCapabilityReportEndpointParts = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatterCapabilityReportEndpointSemanticTags = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatterCapabilityReportEndpointClientClusters = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityReportProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityReportActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapabilityReportEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatterCapabilityReportAttributes = schema.new({ type = "list", list_member = M.MatterCapabilityReportAttribute })
+
+M.MatterCapabilityReportCommands = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatterCapabilityReportEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatterCapabilityReportGeneratedCommands = schema.new({ type = "list", list_member = prelude.String })
+
 M.AbortConfigCriteria = schema.new({
     id = id.from(_N, "AbortConfigCriteria"),
     type = "structure",
@@ -356,10 +462,7 @@ M.DeleteAccountAssociationInput = schema.new({
     },
 })
 
-M.DeleteAccountAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccountAssociationOutput = prelude.Unit
 
 M.GetAccountAssociationInput = schema.new({
     id = id.from(_N, "GetAccountAssociationRequest"),
@@ -575,10 +678,7 @@ M.UpdateAccountAssociationInput = schema.new({
     },
 })
 
-M.UpdateAccountAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAccountAssociationOutput = prelude.Unit
 
 M.SecretsManager = schema.new({
     id = id.from(_N, "SecretsManager"),
@@ -1111,10 +1211,7 @@ M.DeleteCloudConnectorInput = schema.new({
     },
 })
 
-M.DeleteCloudConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCloudConnectorOutput = prelude.Unit
 
 M.GetCloudConnectorInput = schema.new({
     id = id.from(_N, "GetCloudConnectorRequest"),
@@ -1325,10 +1422,7 @@ M.UpdateCloudConnectorInput = schema.new({
     },
 })
 
-M.UpdateCloudConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateCloudConnectorOutput = prelude.Unit
 
 M.CommandCapability = schema.new({
     id = id.from(_N, "CommandCapability"),
@@ -1563,10 +1657,7 @@ M.DeleteConnectorDestinationInput = schema.new({
     },
 })
 
-M.DeleteConnectorDestinationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectorDestinationOutput = prelude.Unit
 
 M.GetConnectorDestinationInput = schema.new({
     id = id.from(_N, "GetConnectorDestinationRequest"),
@@ -1745,10 +1836,7 @@ M.UpdateConnectorDestinationInput = schema.new({
     },
 })
 
-M.UpdateConnectorDestinationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateConnectorDestinationOutput = prelude.Unit
 
 M.CreateCredentialLockerInput = schema.new({
     id = id.from(_N, "CreateCredentialLockerRequest"),
@@ -2704,10 +2792,7 @@ M.DeleteCredentialLockerInput = schema.new({
     },
 })
 
-M.DeleteCredentialLockerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteCredentialLockerOutput = prelude.Unit
 
 M.GetCredentialLockerInput = schema.new({
     id = id.from(_N, "GetCredentialLockerRequest"),
@@ -2827,10 +2912,7 @@ M.DeleteDestinationInput = schema.new({
     },
 })
 
-M.DeleteDestinationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDestinationOutput = prelude.Unit
 
 M.DeleteEventLogConfigurationInput = schema.new({
     id = id.from(_N, "DeleteEventLogConfigurationRequest"),
@@ -2849,10 +2931,7 @@ M.DeleteEventLogConfigurationInput = schema.new({
     },
 })
 
-M.DeleteEventLogConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteEventLogConfigurationOutput = prelude.Unit
 
 M.DeleteManagedThingInput = schema.new({
     id = id.from(_N, "DeleteManagedThingRequest"),
@@ -2880,10 +2959,7 @@ M.DeleteManagedThingInput = schema.new({
     },
 })
 
-M.DeleteManagedThingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteManagedThingOutput = prelude.Unit
 
 M.DeleteNotificationConfigurationInput = schema.new({
     id = id.from(_N, "DeleteNotificationConfigurationRequest"),
@@ -2902,10 +2978,7 @@ M.DeleteNotificationConfigurationInput = schema.new({
     },
 })
 
-M.DeleteNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNotificationConfigurationOutput = prelude.Unit
 
 M.DeleteOtaTaskInput = schema.new({
     id = id.from(_N, "DeleteOtaTaskRequest"),
@@ -2924,10 +2997,7 @@ M.DeleteOtaTaskInput = schema.new({
     },
 })
 
-M.DeleteOtaTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOtaTaskOutput = prelude.Unit
 
 M.LimitExceededException = schema.new({
     id = id.from(_N, "LimitExceededException"),
@@ -2962,10 +3032,7 @@ M.DeleteOtaTaskConfigurationInput = schema.new({
     },
 })
 
-M.DeleteOtaTaskConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOtaTaskConfigurationOutput = prelude.Unit
 
 M.DeleteProvisioningProfileInput = schema.new({
     id = id.from(_N, "DeleteProvisioningProfileRequest"),
@@ -2984,10 +3051,7 @@ M.DeleteProvisioningProfileInput = schema.new({
     },
 })
 
-M.DeleteProvisioningProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProvisioningProfileOutput = prelude.Unit
 
 M.DeregisterAccountAssociationInput = schema.new({
     id = id.from(_N, "DeregisterAccountAssociationRequest"),
@@ -3014,10 +3078,7 @@ M.DeregisterAccountAssociationInput = schema.new({
     },
 })
 
-M.DeregisterAccountAssociationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterAccountAssociationOutput = prelude.Unit
 
 M.DestinationSummary = schema.new({
     id = id.from(_N, "DestinationSummary"),
@@ -3216,10 +3277,7 @@ M.UpdateDestinationInput = schema.new({
     },
 })
 
-M.UpdateDestinationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDestinationOutput = prelude.Unit
 
 M.MatterCapabilityReportAttribute = schema.new({
     id = id.from(_N, "MatterCapabilityReportAttribute"),
@@ -4025,10 +4083,7 @@ M.UpdateEventLogConfigurationInput = schema.new({
     },
 })
 
-M.UpdateEventLogConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateEventLogConfigurationOutput = prelude.Unit
 
 M.GetCustomEndpointInput = schema.new({
     id = id.from(_N, "GetCustomEndpointRequest"),
@@ -5909,10 +5964,7 @@ M.UpdateManagedThingInput = schema.new({
     },
 })
 
-M.UpdateManagedThingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateManagedThingOutput = prelude.Unit
 
 M.ListNotificationConfigurationsInput = schema.new({
     id = id.from(_N, "ListNotificationConfigurationsRequest"),
@@ -6004,10 +6056,7 @@ M.UpdateNotificationConfigurationInput = schema.new({
     },
 })
 
-M.UpdateNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateNotificationConfigurationOutput = prelude.Unit
 
 M.ListOtaTaskConfigurationsInput = schema.new({
     id = id.from(_N, "ListOtaTaskConfigurationsRequest"),
@@ -6314,10 +6363,7 @@ M.UpdateOtaTaskInput = schema.new({
     },
 })
 
-M.UpdateOtaTaskOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateOtaTaskOutput = prelude.Unit
 
 M.ListProvisioningProfilesInput = schema.new({
     id = id.from(_N, "ListProvisioningProfilesRequest"),
@@ -6449,10 +6495,7 @@ M.PutRuntimeLogConfigurationInput = schema.new({
     },
 })
 
-M.PutRuntimeLogConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutRuntimeLogConfigurationOutput = prelude.Unit
 
 M.ResetRuntimeLogConfigurationInput = schema.new({
     id = id.from(_N, "ResetRuntimeLogConfigurationRequest"),
@@ -6471,10 +6514,7 @@ M.ResetRuntimeLogConfigurationInput = schema.new({
     },
 })
 
-M.ResetRuntimeLogConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResetRuntimeLogConfigurationOutput = prelude.Unit
 
 M.ListSchemaVersionsInput = schema.new({
     id = id.from(_N, "ListSchemaVersionsRequest"),

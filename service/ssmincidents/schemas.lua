@@ -7,6 +7,64 @@ local _N = "com.amazonaws.ssmincidents"
 
 local M = {}
 
+M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingList = schema.new({ type = "list", list_member = M.Finding })
+
+M.BatchGetIncidentFindingsErrorList = schema.new({ type = "list", list_member = M.BatchGetIncidentFindingsError })
+
+M.RegionMapInput = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionMapInputValue })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EngagementSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionsList = schema.new({ type = "list", list_member = M.Action })
+
+M.Integrations = schema.new({ type = "list", list_member = M.Integration })
+
+M.EventReferenceList = schema.new({ type = "list", list_member = M.EventReference })
+
+M.ResourcePolicyList = schema.new({ type = "list", list_member = M.ResourcePolicy })
+
+M.FindingSummaryList = schema.new({ type = "list", list_member = M.FindingSummary })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.IncidentRecordSummaryList = schema.new({ type = "list", list_member = M.IncidentRecordSummary })
+
+M.RelatedItemList = schema.new({ type = "list", list_member = M.RelatedItem })
+
+M.ReplicationSetArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResponsePlanSummaryList = schema.new({ type = "list", list_member = M.ResponsePlanSummary })
+
+M.EventSummaryList = schema.new({ type = "list", list_member = M.EventSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationTargetSet = schema.new({ type = "list", list_member = M.NotificationTargetItem })
+
+M.UpdateActionList = schema.new({ type = "list", list_member = M.UpdateReplicationSetAction })
+
+M.TagMapUpdate = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ChatbotSnsConfigurationSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AutomationExecutionSet = schema.new({ type = "list", list_member = M.AutomationExecution })
+
+M.RegionInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionInfo })
+
+M.SsmParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.SsmParameterValues })
+
+M.DynamicSsmParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.DynamicSsmParameterValue })
+
+M.SsmParameterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

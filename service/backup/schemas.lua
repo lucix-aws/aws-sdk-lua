@@ -7,6 +7,132 @@ local _N = "com.amazonaws.backup"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdvancedBackupSettings = schema.new({ type = "list", list_member = M.AdvancedBackupSetting })
+
+M.FrameworkControls = schema.new({ type = "list", list_member = M.FrameworkControl })
+
+M.stringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SensitiveStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.BackupOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.BackupJobChildJobsInState = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.GlobalSettings = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ScanResults = schema.new({ type = "list", list_member = M.ScanResult })
+
+M.ResourceTypeOptInPreference = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Boolean })
+
+M.ResourceTypeManagementPreference = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Boolean })
+
+M.ScheduledRunsPreview = schema.new({ type = "list", list_member = M.ScheduledPlanExecutionMember })
+
+M.BackupVaultEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.BackupJobsList = schema.new({ type = "list", list_member = M.BackupJob })
+
+M.BackupJobSummaryList = schema.new({ type = "list", list_member = M.BackupJobSummary })
+
+M.BackupPlansList = schema.new({ type = "list", list_member = M.BackupPlansListMember })
+
+M.BackupPlanTemplatesList = schema.new({ type = "list", list_member = M.BackupPlanTemplatesListMember })
+
+M.BackupPlanVersionsList = schema.new({ type = "list", list_member = M.BackupPlansListMember })
+
+M.BackupSelectionsList = schema.new({ type = "list", list_member = M.BackupSelectionsListMember })
+
+M.BackupVaultList = schema.new({ type = "list", list_member = M.BackupVaultListMember })
+
+M.CopyJobsList = schema.new({ type = "list", list_member = M.CopyJob })
+
+M.CopyJobSummaryList = schema.new({ type = "list", list_member = M.CopyJobSummary })
+
+M.FrameworkList = schema.new({ type = "list", list_member = M.Framework })
+
+M.IndexedRecoveryPointList = schema.new({ type = "list", list_member = M.IndexedRecoveryPoint })
+
+M.LegalHoldsList = schema.new({ type = "list", list_member = M.LegalHold })
+
+M.ProtectedResourcesList = schema.new({ type = "list", list_member = M.ProtectedResource })
+
+M.RecoveryPointByBackupVaultList = schema.new({ type = "list", list_member = M.RecoveryPointByBackupVault })
+
+M.RecoveryPointsList = schema.new({ type = "list", list_member = M.RecoveryPointMember })
+
+M.RecoveryPointByResourceList = schema.new({ type = "list", list_member = M.RecoveryPointByResource })
+
+M.ReportJobList = schema.new({ type = "list", list_member = M.ReportJob })
+
+M.ReportPlanList = schema.new({ type = "list", list_member = M.ReportPlan })
+
+M.RestoreAccessBackupVaultList = schema.new({ type = "list", list_member = M.RestoreAccessBackupVaultListMember })
+
+M.RestoreJobsList = schema.new({ type = "list", list_member = M.RestoreJobsListMember })
+
+M.RestoreJobSummaryList = schema.new({ type = "list", list_member = M.RestoreJobSummary })
+
+M.RestoreTestingPlans = schema.new({ type = "list", list_member = M.RestoreTestingPlanForList })
+
+M.RestoreTestingSelections = schema.new({ type = "list", list_member = M.RestoreTestingSelectionForList })
+
+M.ScanJobs = schema.new({ type = "list", list_member = M.ScanJob })
+
+M.ScanJobSummaryList = schema.new({ type = "list", list_member = M.ScanJobSummary })
+
+M.TieringConfigurationsList = schema.new({ type = "list", list_member = M.TieringConfigurationsListMember })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScanSettings = schema.new({ type = "list", list_member = M.ScanSetting })
+
+M.BackupRulesInput = schema.new({ type = "list", list_member = M.BackupRuleInput })
+
+M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListOfTags = schema.new({ type = "list", list_member = M.Condition })
+
+M.VaultNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.FormatList = schema.new({ type = "list", list_member = prelude.String })
+
+M.stringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceSelections = schema.new({ type = "list", list_member = M.ResourceSelection })
+
+M.CopyJobChildJobsInState = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
+
+M.BackupRules = schema.new({ type = "list", list_member = M.BackupRule })
+
+M.ConditionParameters = schema.new({ type = "list", list_member = M.ConditionParameter })
+
+M.ControlInputParameters = schema.new({ type = "list", list_member = M.ControlInputParameter })
+
+M.RestoreTestingRecoveryPointTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyValueList = schema.new({ type = "list", list_member = M.KeyValue })
+
+M.ScanFindings = schema.new({ type = "list", list_member = prelude.String })
+
+M.CopyActions = schema.new({ type = "list", list_member = M.CopyAction })
+
+M.IndexActions = schema.new({ type = "list", list_member = M.IndexAction })
+
+M.ScanActions = schema.new({ type = "list", list_member = M.ScanAction })
+
+M.ComplianceResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AdvancedBackupSetting = schema.new({
     id = id.from(_N, "AdvancedBackupSetting"),
     type = "structure",
@@ -132,10 +258,7 @@ M.AssociateBackupVaultMpaApprovalTeamInput = schema.new({
     },
 })
 
-M.AssociateBackupVaultMpaApprovalTeamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateBackupVaultMpaApprovalTeamOutput = prelude.Unit
 
 M.InvalidParameterValueException = schema.new({
     id = id.from(_N, "InvalidParameterValueException"),
@@ -3135,10 +3258,7 @@ M.DeleteBackupSelectionInput = schema.new({
     },
 })
 
-M.DeleteBackupSelectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBackupSelectionOutput = prelude.Unit
 
 M.DeleteBackupVaultInput = schema.new({
     id = id.from(_N, "DeleteBackupVaultInput"),
@@ -3157,10 +3277,7 @@ M.DeleteBackupVaultInput = schema.new({
     },
 })
 
-M.DeleteBackupVaultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBackupVaultOutput = prelude.Unit
 
 M.DeleteBackupVaultAccessPolicyInput = schema.new({
     id = id.from(_N, "DeleteBackupVaultAccessPolicyInput"),
@@ -3179,10 +3296,7 @@ M.DeleteBackupVaultAccessPolicyInput = schema.new({
     },
 })
 
-M.DeleteBackupVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBackupVaultAccessPolicyOutput = prelude.Unit
 
 M.DeleteBackupVaultLockConfigurationInput = schema.new({
     id = id.from(_N, "DeleteBackupVaultLockConfigurationInput"),
@@ -3201,10 +3315,7 @@ M.DeleteBackupVaultLockConfigurationInput = schema.new({
     },
 })
 
-M.DeleteBackupVaultLockConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBackupVaultLockConfigurationOutput = prelude.Unit
 
 M.DeleteBackupVaultNotificationsInput = schema.new({
     id = id.from(_N, "DeleteBackupVaultNotificationsInput"),
@@ -3223,10 +3334,7 @@ M.DeleteBackupVaultNotificationsInput = schema.new({
     },
 })
 
-M.DeleteBackupVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteBackupVaultNotificationsOutput = prelude.Unit
 
 M.DeleteFrameworkInput = schema.new({
     id = id.from(_N, "DeleteFrameworkInput"),
@@ -3245,10 +3353,7 @@ M.DeleteFrameworkInput = schema.new({
     },
 })
 
-M.DeleteFrameworkOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteFrameworkOutput = prelude.Unit
 
 M.DeleteRecoveryPointInput = schema.new({
     id = id.from(_N, "DeleteRecoveryPointInput"),
@@ -3277,10 +3382,7 @@ M.DeleteRecoveryPointInput = schema.new({
     },
 })
 
-M.DeleteRecoveryPointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRecoveryPointOutput = prelude.Unit
 
 M.DeleteReportPlanInput = schema.new({
     id = id.from(_N, "DeleteReportPlanInput"),
@@ -3299,10 +3401,7 @@ M.DeleteReportPlanInput = schema.new({
     },
 })
 
-M.DeleteReportPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteReportPlanOutput = prelude.Unit
 
 M.DeleteRestoreTestingPlanInput = schema.new({
     id = id.from(_N, "DeleteRestoreTestingPlanInput"),
@@ -3321,10 +3420,7 @@ M.DeleteRestoreTestingPlanInput = schema.new({
     },
 })
 
-M.DeleteRestoreTestingPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRestoreTestingPlanOutput = prelude.Unit
 
 M.DeleteRestoreTestingSelectionInput = schema.new({
     id = id.from(_N, "DeleteRestoreTestingSelectionInput"),
@@ -3353,10 +3449,7 @@ M.DeleteRestoreTestingSelectionInput = schema.new({
     },
 })
 
-M.DeleteRestoreTestingSelectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRestoreTestingSelectionOutput = prelude.Unit
 
 M.DeleteTieringConfigurationInput = schema.new({
     id = id.from(_N, "DeleteTieringConfigurationInput"),
@@ -4966,10 +5059,7 @@ M.DisassociateBackupVaultMpaApprovalTeamInput = schema.new({
     },
 })
 
-M.DisassociateBackupVaultMpaApprovalTeamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateBackupVaultMpaApprovalTeamOutput = prelude.Unit
 
 M.DisassociateRecoveryPointInput = schema.new({
     id = id.from(_N, "DisassociateRecoveryPointInput"),
@@ -4998,10 +5088,7 @@ M.DisassociateRecoveryPointInput = schema.new({
     },
 })
 
-M.DisassociateRecoveryPointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateRecoveryPointOutput = prelude.Unit
 
 M.DisassociateRecoveryPointFromParentInput = schema.new({
     id = id.from(_N, "DisassociateRecoveryPointFromParentInput"),
@@ -5030,10 +5117,7 @@ M.DisassociateRecoveryPointFromParentInput = schema.new({
     },
 })
 
-M.DisassociateRecoveryPointFromParentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateRecoveryPointFromParentOutput = prelude.Unit
 
 M.ExportBackupPlanTemplateInput = schema.new({
     id = id.from(_N, "ExportBackupPlanTemplateInput"),
@@ -6000,10 +6084,7 @@ M.GetRestoreTestingSelectionOutput = schema.new({
     },
 })
 
-M.GetSupportedResourceTypesInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetSupportedResourceTypesInput = prelude.Unit
 
 M.GetSupportedResourceTypesOutput = schema.new({
     id = id.from(_N, "GetSupportedResourceTypesOutput"),
@@ -9542,10 +9623,7 @@ M.PutBackupVaultAccessPolicyInput = schema.new({
     },
 })
 
-M.PutBackupVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBackupVaultAccessPolicyOutput = prelude.Unit
 
 M.PutBackupVaultLockConfigurationInput = schema.new({
     id = id.from(_N, "PutBackupVaultLockConfigurationInput"),
@@ -9582,10 +9660,7 @@ M.PutBackupVaultLockConfigurationInput = schema.new({
     },
 })
 
-M.PutBackupVaultLockConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBackupVaultLockConfigurationOutput = prelude.Unit
 
 M.PutBackupVaultNotificationsInput = schema.new({
     id = id.from(_N, "PutBackupVaultNotificationsInput"),
@@ -9623,10 +9698,7 @@ M.PutBackupVaultNotificationsInput = schema.new({
     },
 })
 
-M.PutBackupVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutBackupVaultNotificationsOutput = prelude.Unit
 
 M.PutRestoreValidationResultInput = schema.new({
     id = id.from(_N, "PutRestoreValidationResultInput"),
@@ -9660,10 +9732,7 @@ M.PutRestoreValidationResultInput = schema.new({
     },
 })
 
-M.PutRestoreValidationResultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutRestoreValidationResultOutput = prelude.Unit
 
 M.RevokeRestoreAccessBackupVaultInput = schema.new({
     id = id.from(_N, "RevokeRestoreAccessBackupVaultInput"),
@@ -9701,10 +9770,7 @@ M.RevokeRestoreAccessBackupVaultInput = schema.new({
     },
 })
 
-M.RevokeRestoreAccessBackupVaultOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RevokeRestoreAccessBackupVaultOutput = prelude.Unit
 
 M.StartBackupJobInput = schema.new({
     id = id.from(_N, "StartBackupJobInput"),
@@ -10141,10 +10207,7 @@ M.StopBackupJobInput = schema.new({
     },
 })
 
-M.StopBackupJobOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopBackupJobOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceInput"),
@@ -10174,10 +10237,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -10206,10 +10266,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateBackupPlanInput = schema.new({
     id = id.from(_N, "UpdateBackupPlanInput"),
@@ -10362,10 +10419,7 @@ M.UpdateGlobalSettingsInput = schema.new({
     },
 })
 
-M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateGlobalSettingsOutput = prelude.Unit
 
 M.UpdateRecoveryPointIndexSettingsInput = schema.new({
     id = id.from(_N, "UpdateRecoveryPointIndexSettingsInput"),
@@ -10530,10 +10584,7 @@ M.UpdateRegionSettingsInput = schema.new({
     },
 })
 
-M.UpdateRegionSettingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRegionSettingsOutput = prelude.Unit
 
 M.UpdateReportPlanInput = schema.new({
     id = id.from(_N, "UpdateReportPlanInput"),

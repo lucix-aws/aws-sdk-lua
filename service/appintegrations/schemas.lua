@@ -7,6 +7,42 @@ local _N = "com.amazonaws.appintegrations"
 
 local M = {}
 
+M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
+
+M.PublicationList = schema.new({ type = "list", list_member = M.Publication })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PermissionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldsMap })
+
+M.ClientAssociationMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ApplicationAssociationsList = schema.new({ type = "list", list_member = M.ApplicationAssociationSummary })
+
+M.ApplicationsList = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.DataIntegrationAssociationsList = schema.new({ type = "list", list_member = M.DataIntegrationAssociationSummary })
+
+M.DataIntegrationsList = schema.new({ type = "list", list_member = M.DataIntegrationSummary })
+
+M.EventIntegrationAssociationsList = schema.new({ type = "list", list_member = M.EventIntegrationAssociation })
+
+M.EventIntegrationsList = schema.new({ type = "list", list_member = M.EventIntegration })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IframePermissionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FolderList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldsList })
+
+M.ApplicationApprovedOrigins = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -514,7 +550,7 @@ M.CreateDataIntegrationInput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldsList }),
         }),
     },
 })
@@ -593,7 +629,7 @@ M.CreateDataIntegrationOutput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldsList }),
         }),
     },
 })
@@ -676,7 +712,7 @@ M.CreateDataIntegrationAssociationInput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldsList }),
         }),
         DestinationURI = schema.new({
             id = id.from(_N, "CreateDataIntegrationAssociationInput", "DestinationURI"),
@@ -1121,7 +1157,7 @@ M.GetDataIntegrationOutput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldsList }),
         }),
     },
 })

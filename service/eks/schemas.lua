@@ -7,6 +7,102 @@ local _N = "com.amazonaws.eks"
 
 local M = {}
 
+M.EncryptionConfigList = schema.new({ type = "list", list_member = M.EncryptionConfig })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddonPodIdentityAssociationsList = schema.new({ type = "list", list_member = M.AddonPodIdentityAssociations })
+
+M.FargateProfileSelectors = schema.new({ type = "list", list_member = M.FargateProfileSelector })
+
+M.labelsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.taintsList = schema.new({ type = "list", list_member = M.Taint })
+
+M.AddonPodIdentityConfigurationList = schema.new({ type = "list", list_member = M.AddonPodIdentityConfiguration })
+
+M.Addons = schema.new({ type = "list", list_member = M.AddonInfo })
+
+M.ClusterVersionList = schema.new({ type = "list", list_member = M.ClusterVersionInformation })
+
+M.AccessPoliciesList = schema.new({ type = "list", list_member = M.AccessPolicy })
+
+M.AssociatedAccessPoliciesList = schema.new({ type = "list", list_member = M.AssociatedAccessPolicy })
+
+M.CapabilitySummaryList = schema.new({ type = "list", list_member = M.CapabilitySummary })
+
+M.IncludeClustersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EksAnywhereSubscriptionStatusValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.EksAnywhereSubscriptionList = schema.new({ type = "list", list_member = M.EksAnywhereSubscription })
+
+M.IdentityProviderConfigs = schema.new({ type = "list", list_member = M.IdentityProviderConfig })
+
+M.InsightSummaries = schema.new({ type = "list", list_member = M.InsightSummary })
+
+M.PodIdentityAssociationSummaries = schema.new({ type = "list", list_member = M.PodIdentityAssociationSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateParams = schema.new({ type = "list", list_member = M.UpdateParam })
+
+M.ErrorDetails = schema.new({ type = "list", list_member = M.ErrorDetail })
+
+M.requiredClaimsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogSetups = schema.new({ type = "list", list_member = M.LogSetup })
+
+M.RemoteNodeNetworkList = schema.new({ type = "list", list_member = M.RemoteNodeNetwork })
+
+M.RemotePodNetworkList = schema.new({ type = "list", list_member = M.RemotePodNetwork })
+
+M.LicenseList = schema.new({ type = "list", list_member = M.License })
+
+M.NodeRepairConfigOverridesList = schema.new({ type = "list", list_member = M.NodeRepairConfigOverrides })
+
+M.AdditionalInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InsightResourceDetails = schema.new({ type = "list", list_member = M.InsightResourceDetail })
+
+M.CategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightStatusValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.labelsKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddonIssueList = schema.new({ type = "list", list_member = M.AddonIssue })
+
+M.ArgoCdRoleMappingList = schema.new({ type = "list", list_member = M.ArgoCdRoleMapping })
+
+M.CapabilityIssueList = schema.new({ type = "list", list_member = M.CapabilityIssue })
+
+M.ClusterIssueList = schema.new({ type = "list", list_member = M.ClusterIssue })
+
+M.FargateProfileLabel = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FargateProfileIssueList = schema.new({ type = "list", list_member = M.FargateProfileIssue })
+
+M.AutoScalingGroupList = schema.new({ type = "list", list_member = M.AutoScalingGroup })
+
+M.IssueList = schema.new({ type = "list", list_member = M.Issue })
+
+M.AddonVersionInfoList = schema.new({ type = "list", list_member = M.AddonVersionInfo })
+
+M.DeprecationDetails = schema.new({ type = "list", list_member = M.DeprecationDetail })
+
+M.AddonCompatibilityDetails = schema.new({ type = "list", list_member = M.AddonCompatibilityDetail })
+
+M.LogTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SsoIdentityList = schema.new({ type = "list", list_member = M.SsoIdentity })
+
+M.Compatibilities = schema.new({ type = "list", list_member = M.Compatibility })
+
+M.ClientStats = schema.new({ type = "list", list_member = M.ClientStat })
+
 M.AccessConfigResponse = schema.new({
     id = id.from(_N, "AccessConfigResponse"),
     type = "structure",

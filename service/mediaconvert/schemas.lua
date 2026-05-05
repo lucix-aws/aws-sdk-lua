@@ -7,6 +7,132 @@ local _N = "com.amazonaws.mediaconvert"
 
 local M = {}
 
+M.__listOfHopDestination = schema.new({ type = "list", list_member = M.HopDestination })
+
+M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfEndpoint = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.__listOfJob = schema.new({ type = "list", list_member = M.Job })
+
+M.__listOfJobTemplate = schema.new({ type = "list", list_member = M.JobTemplate })
+
+M.__listOfPreset = schema.new({ type = "list", list_member = M.Preset })
+
+M.__listOfQueue = schema.new({ type = "list", list_member = M.Queue })
+
+M.__listOfJobEngineVersion = schema.new({ type = "list", list_member = M.JobEngineVersion })
+
+M.__listOfProbeInputFile = schema.new({ type = "list", list_member = M.ProbeInputFile })
+
+M.__listOfProbeResult = schema.new({ type = "list", list_member = M.ProbeResult })
+
+M.__listOfJobsQueryFilter = schema.new({ type = "list", list_member = M.JobsQueryFilter })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfColorConversion3DLUTSetting = schema.new({ type = "list", list_member = M.ColorConversion3DLUTSetting })
+
+M.__listOfInput = schema.new({ type = "list", list_member = M.Input })
+
+M.__listOfOutputGroup = schema.new({ type = "list", list_member = M.OutputGroup })
+
+M.__listOfOutputGroupDetail = schema.new({ type = "list", list_member = M.OutputGroupDetail })
+
+M.__listOfQueueTransition = schema.new({ type = "list", list_member = M.QueueTransition })
+
+M.__listOfWarningGroup = schema.new({ type = "list", list_member = M.WarningGroup })
+
+M.__listOfInputTemplate = schema.new({ type = "list", list_member = M.InputTemplate })
+
+M.__listOfAudioDescription = schema.new({ type = "list", list_member = M.AudioDescription })
+
+M.__listOfCaptionDescriptionPreset = schema.new({ type = "list", list_member = M.CaptionDescriptionPreset })
+
+M.__listOfServiceOverride = schema.new({ type = "list", list_member = M.ServiceOverride })
+
+M.__listOfId3Insertion = schema.new({ type = "list", list_member = M.Id3Insertion })
+
+M.__listOfElementalInferenceFeature = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfElementalInferenceFeed = schema.new({ type = "list", list_member = M.ElementalInferenceFeed })
+
+M.__listOfTrackMapping = schema.new({ type = "list", list_member = M.TrackMapping })
+
+M.__listOf__stringMax100 = schema.new({ type = "list", list_member = prelude.String })
+
+M.__mapOfAudioSelectorGroup = schema.new({ type = "map", map_key = prelude.String, map_value = M.AudioSelectorGroup })
+
+M.__mapOfAudioSelector = schema.new({ type = "map", map_key = prelude.String, map_value = M.AudioSelector })
+
+M.__mapOfCaptionSelector = schema.new({ type = "map", map_key = prelude.String, map_value = M.CaptionSelector })
+
+M.__mapOfDynamicAudioSelector = schema.new({ type = "map", map_key = prelude.String, map_value = M.DynamicAudioSelector })
+
+M.__listOfInputClipping = schema.new({ type = "list", list_member = M.InputClipping })
+
+M.__listOfMultiViewSettings = schema.new({ type = "list", list_member = M.MultiViewSettings })
+
+M.__listOf__stringPatternS3ASSETMAPXml = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfVideoOverlay = schema.new({ type = "list", list_member = M.VideoOverlay })
+
+M.__listOfOutput = schema.new({ type = "list", list_member = M.Output })
+
+M.__listOfOutputDetail = schema.new({ type = "list", list_member = M.OutputDetail })
+
+M.__listOf__integerMin32Max8182 = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOfTrack = schema.new({ type = "list", list_member = M.Track })
+
+M.__listOfInsertableImage = schema.new({ type = "list", list_member = M.InsertableImage })
+
+M.__listOf__integerMin1Max2147483647 = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOfFrameMetricType = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfAudioChannelTag = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__integer = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOf__stringMin1 = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfVideoOverlayTransition = schema.new({ type = "list", list_member = M.VideoOverlayTransition })
+
+M.__listOfAutomatedAbrRule = schema.new({ type = "list", list_member = M.AutomatedAbrRule })
+
+M.__listOfCmafAdditionalManifest = schema.new({ type = "list", list_member = M.CmafAdditionalManifest })
+
+M.__listOfDashAdditionalManifest = schema.new({ type = "list", list_member = M.DashAdditionalManifest })
+
+M.__listOfHlsAdMarkers = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfHlsAdditionalManifest = schema.new({ type = "list", list_member = M.HlsAdditionalManifest })
+
+M.__listOfHlsCaptionLanguageMapping = schema.new({ type = "list", list_member = M.HlsCaptionLanguageMapping })
+
+M.__listOfMsSmoothAdditionalManifest = schema.new({ type = "list", list_member = M.MsSmoothAdditionalManifest })
+
+M.__listOfCaptionDescription = schema.new({ type = "list", list_member = M.CaptionDescription })
+
+M.__listOfOutputChannelMapping = schema.new({ type = "list", list_member = M.OutputChannelMapping })
+
+M.__listOfTeletextPageType = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfVideoOverlayInputClipping = schema.new({ type = "list", list_member = M.VideoOverlayInputClipping })
+
+M.__listOfAllowedRenditionSize = schema.new({ type = "list", list_member = M.AllowedRenditionSize })
+
+M.__listOfForceIncludeRenditionSize = schema.new({ type = "list", list_member = M.ForceIncludeRenditionSize })
+
+M.__listOf__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12 = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__stringPattern09aFAF809aFAF409aFAF409aFAF409aFAF12 = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOf__integerMinNegative60Max6 = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOf__doubleMinNegative60Max6 = schema.new({ type = "list", list_member = prelude.Double })
+
 M.AllowedRenditionSize = schema.new({
     id = id.from(_N, "AllowedRenditionSize"),
     type = "structure",

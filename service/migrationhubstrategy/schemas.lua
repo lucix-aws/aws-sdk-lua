@@ -7,6 +7,74 @@ local _N = "com.amazonaws.migrationhubstrategy"
 
 local M = {}
 
+M.AssociatedApplications = schema.new({ type = "list", list_member = M.AssociatedApplication })
+
+M.AssociatedServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationComponentStrategies = schema.new({ type = "list", list_member = M.ApplicationComponentStrategy })
+
+M.AssessmentTargets = schema.new({ type = "list", list_member = M.AssessmentTarget })
+
+M.ServerStrategies = schema.new({ type = "list", list_member = M.ServerStrategy })
+
+M.AnalyzableServerSummaryList = schema.new({ type = "list", list_member = M.AnalyzableServerSummary })
+
+M.GroupIds = schema.new({ type = "list", list_member = M.Group })
+
+M.ApplicationComponentDetails = schema.new({ type = "list", list_member = M.ApplicationComponentDetail })
+
+M.Collectors = schema.new({ type = "list", list_member = M.Collector })
+
+M.ListImportFileTaskInformation = schema.new({ type = "list", list_member = M.ImportFileTaskInformation })
+
+M.ServerDetails = schema.new({ type = "list", list_member = M.ServerDetail })
+
+M.SourceCodeList = schema.new({ type = "list", list_member = M.SourceCode })
+
+M.ListAntipatternSeveritySummary = schema.new({ type = "list", list_member = M.AntipatternSeveritySummary })
+
+M.SourceCodeRepositories = schema.new({ type = "list", list_member = M.SourceCodeRepository })
+
+M.ResultList = schema.new({ type = "list", list_member = M.Result })
+
+M.ListStrategySummary = schema.new({ type = "list", list_member = M.StrategySummary })
+
+M.ListApplicationComponentSummary = schema.new({ type = "list", list_member = M.ApplicationComponentSummary })
+
+M.ListServerSummary = schema.new({ type = "list", list_member = M.ServerSummary })
+
+M.ListApplicationComponentStatusSummary = schema.new({ type = "list", list_member = M.ApplicationComponentStatusSummary })
+
+M.ListServerStatusSummary = schema.new({ type = "list", list_member = M.ServerStatusSummary })
+
+M.S3Keys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssessmentTargetValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInfoList = schema.new({ type = "list", list_member = M.NetworkInfo })
+
+M.AntipatternReportResultList = schema.new({ type = "list", list_member = M.AntipatternReportResult })
+
+M.AwsManagedTargetDestinations = schema.new({ type = "list", list_member = prelude.String })
+
+M.SelfManageTargetDestinations = schema.new({ type = "list", list_member = prelude.String })
+
+M.NoPreferenceTargetDestinations = schema.new({ type = "list", list_member = prelude.String })
+
+M.HeterogeneousTargetDatabaseEngines = schema.new({ type = "list", list_member = prelude.String })
+
+M.HomogeneousTargetDatabaseEngines = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetDatabaseEngines = schema.new({ type = "list", list_member = prelude.String })
+
+M.VcenterBasedRemoteInfoList = schema.new({ type = "list", list_member = M.VcenterBasedRemoteInfo })
+
+M.IPAddressBasedRemoteInfoList = schema.new({ type = "list", list_member = M.IPAddressBasedRemoteInfo })
+
+M.VersionControlInfoList = schema.new({ type = "list", list_member = M.VersionControlInfo })
+
+M.PipelineInfoList = schema.new({ type = "list", list_member = M.PipelineInfo })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

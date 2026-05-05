@@ -7,6 +7,258 @@ local _N = "com.amazonaws.lexmodelsv2"
 
 local M = {}
 
+M.CreateCustomVocabularyItemsList = schema.new({ type = "list", list_member = M.NewCustomVocabularyItem })
+
+M.FailedCustomVocabularyItems = schema.new({ type = "list", list_member = M.FailedCustomVocabularyItem })
+
+M.CustomVocabularyItems = schema.new({ type = "list", list_member = M.CustomVocabularyItem })
+
+M.DeleteCustomVocabularyItemsList = schema.new({ type = "list", list_member = M.CustomVocabularyEntryId })
+
+M.UpdateCustomVocabularyItemsList = schema.new({ type = "list", list_member = M.CustomVocabularyItem })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.BotMembers = schema.new({ type = "list", list_member = M.BotMember })
+
+M.BotAliasLocaleSettingsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.BotAliasLocaleSettings })
+
+M.BotVersionLocaleSpecification = schema.new({ type = "map", map_key = prelude.String, map_value = M.BotVersionLocaleDetails })
+
+M.SampleUtterancesList = schema.new({ type = "list", list_member = M.SampleUtterance })
+
+M.InputContextsList = schema.new({ type = "list", list_member = M.InputContext })
+
+M.OutputContextsList = schema.new({ type = "list", list_member = M.OutputContext })
+
+M.PrincipalList = schema.new({ type = "list", list_member = M.Principal })
+
+M.OperationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConditionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConditionKeyValueMap })
+
+M.SlotTypeValues = schema.new({ type = "list", list_member = M.SlotTypeValue })
+
+M.FailureReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.BotAliasHistoryEventsList = schema.new({ type = "list", list_member = M.BotAliasHistoryEvent })
+
+M.ParentBotNetworks = schema.new({ type = "list", list_member = M.ParentBotNetwork })
+
+M.BotAnalyzerRecommendationList = schema.new({ type = "list", list_member = M.BotAnalyzerRecommendation })
+
+M.BotLocaleHistoryEventsList = schema.new({ type = "list", list_member = M.BotLocaleHistoryEvent })
+
+M.RecommendedActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.SlotPrioritiesList = schema.new({ type = "list", list_member = M.SlotPriority })
+
+M.AggregatedUtterancesFilters = schema.new({ type = "list", list_member = M.AggregatedUtterancesFilter })
+
+M.AggregatedUtterancesSummaryList = schema.new({ type = "list", list_member = M.AggregatedUtterancesSummary })
+
+M.BotAliasSummaryList = schema.new({ type = "list", list_member = M.BotAliasSummary })
+
+M.BotAliasReplicaSummaryList = schema.new({ type = "list", list_member = M.BotAliasReplicaSummary })
+
+M.BotAnalyzerHistoryList = schema.new({ type = "list", list_member = M.BotAnalyzerHistorySummary })
+
+M.BotLocaleFilters = schema.new({ type = "list", list_member = M.BotLocaleFilter })
+
+M.BotLocaleSummaryList = schema.new({ type = "list", list_member = M.BotLocaleSummary })
+
+M.BotRecommendationSummaryList = schema.new({ type = "list", list_member = M.BotRecommendationSummary })
+
+M.BotReplicaSummaryList = schema.new({ type = "list", list_member = M.BotReplicaSummary })
+
+M.GenerationSummaryList = schema.new({ type = "list", list_member = M.GenerationSummary })
+
+M.BotFilters = schema.new({ type = "list", list_member = M.BotFilter })
+
+M.BotSummaryList = schema.new({ type = "list", list_member = M.BotSummary })
+
+M.BotVersionReplicaSummaryList = schema.new({ type = "list", list_member = M.BotVersionReplicaSummary })
+
+M.BotVersionSummaryList = schema.new({ type = "list", list_member = M.BotVersionSummary })
+
+M.BuiltInIntentSummaryList = schema.new({ type = "list", list_member = M.BuiltInIntentSummary })
+
+M.BuiltInSlotTypeSummaryList = schema.new({ type = "list", list_member = M.BuiltInSlotTypeSummary })
+
+M.ExportFilters = schema.new({ type = "list", list_member = M.ExportFilter })
+
+M.ExportSummaryList = schema.new({ type = "list", list_member = M.ExportSummary })
+
+M.ImportFilters = schema.new({ type = "list", list_member = M.ImportFilter })
+
+M.ImportSummaryList = schema.new({ type = "list", list_member = M.ImportSummary })
+
+M.AnalyticsIntentMetrics = schema.new({ type = "list", list_member = M.AnalyticsIntentMetric })
+
+M.AnalyticsBinByList = schema.new({ type = "list", list_member = M.AnalyticsBinBySpecification })
+
+M.AnalyticsIntentGroupByList = schema.new({ type = "list", list_member = M.AnalyticsIntentGroupBySpecification })
+
+M.AnalyticsIntentFilters = schema.new({ type = "list", list_member = M.AnalyticsIntentFilter })
+
+M.AnalyticsIntentResults = schema.new({ type = "list", list_member = M.AnalyticsIntentResult })
+
+M.AnalyticsPathFilters = schema.new({ type = "list", list_member = M.AnalyticsPathFilter })
+
+M.AnalyticsIntentNodeSummaries = schema.new({ type = "list", list_member = M.AnalyticsIntentNodeSummary })
+
+M.IntentFilters = schema.new({ type = "list", list_member = M.IntentFilter })
+
+M.IntentSummaryList = schema.new({ type = "list", list_member = M.IntentSummary })
+
+M.AnalyticsIntentStageMetrics = schema.new({ type = "list", list_member = M.AnalyticsIntentStageMetric })
+
+M.AnalyticsIntentStageGroupByList = schema.new({ type = "list", list_member = M.AnalyticsIntentStageGroupBySpecification })
+
+M.AnalyticsIntentStageFilters = schema.new({ type = "list", list_member = M.AnalyticsIntentStageFilter })
+
+M.AnalyticsIntentStageResults = schema.new({ type = "list", list_member = M.AnalyticsIntentStageResult })
+
+M.RecommendedIntentSummaryList = schema.new({ type = "list", list_member = M.RecommendedIntentSummary })
+
+M.AnalyticsSessionFilters = schema.new({ type = "list", list_member = M.AnalyticsSessionFilter })
+
+M.SessionSpecifications = schema.new({ type = "list", list_member = M.SessionSpecification })
+
+M.AnalyticsSessionMetrics = schema.new({ type = "list", list_member = M.AnalyticsSessionMetric })
+
+M.AnalyticsSessionGroupByList = schema.new({ type = "list", list_member = M.AnalyticsSessionGroupBySpecification })
+
+M.AnalyticsSessionResults = schema.new({ type = "list", list_member = M.AnalyticsSessionResult })
+
+M.SlotFilters = schema.new({ type = "list", list_member = M.SlotFilter })
+
+M.SlotSummaryList = schema.new({ type = "list", list_member = M.SlotSummary })
+
+M.SlotTypeFilters = schema.new({ type = "list", list_member = M.SlotTypeFilter })
+
+M.SlotTypeSummaryList = schema.new({ type = "list", list_member = M.SlotTypeSummary })
+
+M.TestExecutionSummaryList = schema.new({ type = "list", list_member = M.TestExecutionSummary })
+
+M.TestSetTurnRecordList = schema.new({ type = "list", list_member = M.TestSetTurnRecord })
+
+M.TestSetSummaryList = schema.new({ type = "list", list_member = M.TestSetSummary })
+
+M.AnalyticsUtteranceFilters = schema.new({ type = "list", list_member = M.AnalyticsUtteranceFilter })
+
+M.UtteranceSpecifications = schema.new({ type = "list", list_member = M.UtteranceSpecification })
+
+M.AnalyticsUtteranceMetrics = schema.new({ type = "list", list_member = M.AnalyticsUtteranceMetric })
+
+M.AnalyticsUtteranceGroupByList = schema.new({ type = "list", list_member = M.AnalyticsUtteranceGroupBySpecification })
+
+M.AnalyticsUtteranceAttributes = schema.new({ type = "list", list_member = M.AnalyticsUtteranceAttribute })
+
+M.AnalyticsUtteranceResults = schema.new({ type = "list", list_member = M.AnalyticsUtteranceResult })
+
+M.AssociatedTranscriptFilters = schema.new({ type = "list", list_member = M.AssociatedTranscriptFilter })
+
+M.AssociatedTranscriptList = schema.new({ type = "list", list_member = M.AssociatedTranscript })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TextLogSettingsList = schema.new({ type = "list", list_member = M.TextLogSetting })
+
+M.AudioLogSettingsList = schema.new({ type = "list", list_member = M.AudioLogSetting })
+
+M.ConditionKeyValueMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SubSlotSpecificationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Specifications })
+
+M.SubSlotTypeList = schema.new({ type = "list", list_member = M.SubSlotTypeComposition })
+
+M.TestSetIntentDiscrepancyList = schema.new({ type = "list", list_member = M.TestSetIntentDiscrepancyItem })
+
+M.TestSetSlotDiscrepancyList = schema.new({ type = "list", list_member = M.TestSetSlotDiscrepancyItem })
+
+M.MessageGroupsList = schema.new({ type = "list", list_member = M.MessageGroup })
+
+M.PromptAttemptsSpecificationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PromptAttemptSpecification })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConditionalBranches = schema.new({ type = "list", list_member = M.ConditionalBranch })
+
+M.SlotDefaultValueList = schema.new({ type = "list", list_member = M.SlotDefaultValue })
+
+M.SynonymList = schema.new({ type = "list", list_member = M.SampleValue })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalyticsFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalyticsBinKeys = schema.new({ type = "list", list_member = M.AnalyticsBinKey })
+
+M.AnalyticsIntentGroupByKeys = schema.new({ type = "list", list_member = M.AnalyticsIntentGroupByKey })
+
+M.AnalyticsIntentMetricResults = schema.new({ type = "list", list_member = M.AnalyticsIntentMetricResult })
+
+M.AnalyticsIntentStageGroupByKeys = schema.new({ type = "list", list_member = M.AnalyticsIntentStageGroupByKey })
+
+M.AnalyticsIntentStageMetricResults = schema.new({ type = "list", list_member = M.AnalyticsIntentStageMetricResult })
+
+M.InvokedIntentSamples = schema.new({ type = "list", list_member = M.InvokedIntentSample })
+
+M.AnalyticsSessionGroupByKeys = schema.new({ type = "list", list_member = M.AnalyticsSessionGroupByKey })
+
+M.AnalyticsSessionMetricResults = schema.new({ type = "list", list_member = M.AnalyticsSessionMetricResult })
+
+M.OverallTestResultItemList = schema.new({ type = "list", list_member = M.OverallTestResultItem })
+
+M.ConversationLevelTestResultItemList = schema.new({ type = "list", list_member = M.ConversationLevelTestResultItem })
+
+M.IntentClassificationTestResultItemList = schema.new({ type = "list", list_member = M.IntentClassificationTestResultItem })
+
+M.IntentLevelSlotResolutionTestResultItemList = schema.new({ type = "list", list_member = M.IntentLevelSlotResolutionTestResultItem })
+
+M.UtteranceLevelTestResultItemList = schema.new({ type = "list", list_member = M.UtteranceLevelTestResultItem })
+
+M.UtteranceBotResponses = schema.new({ type = "list", list_member = M.UtteranceBotResponse })
+
+M.AnalyticsUtteranceGroupByKeys = schema.new({ type = "list", list_member = M.AnalyticsUtteranceGroupByKey })
+
+M.AnalyticsUtteranceMetricResults = schema.new({ type = "list", list_member = M.AnalyticsUtteranceMetricResult })
+
+M.AnalyticsUtteranceAttributeResults = schema.new({ type = "list", list_member = M.AnalyticsUtteranceAttributeResult })
+
+M.SlotValueOverrideMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SlotValueOverride })
+
+M.OSIncludeFields = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObjectPrefixes = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageVariationsList = schema.new({ type = "list", list_member = M.Message })
+
+M.TestResultMatchStatusCountMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ConversationLevelIntentClassificationResults = schema.new({ type = "list", list_member = M.ConversationLevelIntentClassificationResultItem })
+
+M.ConversationLevelSlotResolutionResults = schema.new({ type = "list", list_member = M.ConversationLevelSlotResolutionResultItem })
+
+M.SlotResolutionTestResultItems = schema.new({ type = "list", list_member = M.SlotResolutionTestResultItem })
+
+M.SlotValues = schema.new({ type = "list", list_member = M.SlotValueOverride })
+
+M.ActiveContextList = schema.new({ type = "list", list_member = M.ActiveContext })
+
+M.ButtonsList = schema.new({ type = "list", list_member = M.Button })
+
+M.UserTurnSlotOutputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.UserTurnSlotOutput })
+
+M.SlotHintsIntentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SlotHintsSlotMap })
+
+M.SlotHintsSlotMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RuntimeHintDetails })
+
+M.UserTurnSlotOutputList = schema.new({ type = "list", list_member = M.UserTurnSlotOutput })
+
+M.RuntimeHintValuesList = schema.new({ type = "list", list_member = M.RuntimeHintValue })
+
 M.ActiveContext = schema.new({
     id = id.from(_N, "ActiveContext"),
     type = "structure",
@@ -6783,10 +7035,7 @@ M.DeleteIntentInput = schema.new({
     },
 })
 
-M.DeleteIntentOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteIntentOutput = prelude.Unit
 
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyRequest"),
@@ -6945,10 +7194,7 @@ M.DeleteSlotInput = schema.new({
     },
 })
 
-M.DeleteSlotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSlotOutput = prelude.Unit
 
 M.DeleteSlotTypeInput = schema.new({
     id = id.from(_N, "DeleteSlotTypeRequest"),
@@ -7007,10 +7253,7 @@ M.DeleteSlotTypeInput = schema.new({
     },
 })
 
-M.DeleteSlotTypeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSlotTypeOutput = prelude.Unit
 
 M.DeleteTestSetInput = schema.new({
     id = id.from(_N, "DeleteTestSetRequest"),
@@ -7029,10 +7272,7 @@ M.DeleteTestSetInput = schema.new({
     },
 })
 
-M.DeleteTestSetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteTestSetOutput = prelude.Unit
 
 M.DeleteUtterancesInput = schema.new({
     id = id.from(_N, "DeleteUtterancesRequest"),

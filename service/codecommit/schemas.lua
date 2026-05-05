@@ -7,6 +7,110 @@ local _N = "com.amazonaws.codecommit"
 
 local M = {}
 
+M.RepositoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchAssociateApprovalRuleTemplateWithRepositoriesErrorsList = schema.new({ type = "list", list_member = M.BatchAssociateApprovalRuleTemplateWithRepositoriesError })
+
+M.FilePaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.Conflicts = schema.new({ type = "list", list_member = M.Conflict })
+
+M.BatchDescribeMergeConflictsErrors = schema.new({ type = "list", list_member = M.BatchDescribeMergeConflictsError })
+
+M.BatchDisassociateApprovalRuleTemplateFromRepositoriesErrorsList = schema.new({ type = "list", list_member = M.BatchDisassociateApprovalRuleTemplateFromRepositoriesError })
+
+M.CommitIdsInputList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CommitObjectsList = schema.new({ type = "list", list_member = M.Commit })
+
+M.BatchGetCommitsErrorsList = schema.new({ type = "list", list_member = M.BatchGetCommitsError })
+
+M.RepositoryMetadataList = schema.new({ type = "list", list_member = M.RepositoryMetadata })
+
+M.RepositoryNotFoundList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchGetRepositoriesErrorsList = schema.new({ type = "list", list_member = M.BatchGetRepositoriesError })
+
+M.PutFileEntries = schema.new({ type = "list", list_member = M.PutFileEntry })
+
+M.DeleteFileEntries = schema.new({ type = "list", list_member = M.DeleteFileEntry })
+
+M.SetFileModeEntries = schema.new({ type = "list", list_member = M.SetFileModeEntry })
+
+M.FilesMetadata = schema.new({ type = "list", list_member = M.FileMetadata })
+
+M.TargetList = schema.new({ type = "list", list_member = M.Target })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MergeHunks = schema.new({ type = "list", list_member = M.MergeHunk })
+
+M.PullRequestEventList = schema.new({ type = "list", list_member = M.PullRequestEvent })
+
+M.ReactionsForCommentList = schema.new({ type = "list", list_member = M.ReactionForComment })
+
+M.CommentsForComparedCommitData = schema.new({ type = "list", list_member = M.CommentsForComparedCommit })
+
+M.CommentsForPullRequestData = schema.new({ type = "list", list_member = M.CommentsForPullRequest })
+
+M.DifferenceList = schema.new({ type = "list", list_member = M.Difference })
+
+M.FolderList = schema.new({ type = "list", list_member = M.Folder })
+
+M.FileList = schema.new({ type = "list", list_member = M.File })
+
+M.SymbolicLinkList = schema.new({ type = "list", list_member = M.SymbolicLink })
+
+M.SubModuleList = schema.new({ type = "list", list_member = M.SubModule })
+
+M.ConflictMetadataList = schema.new({ type = "list", list_member = M.ConflictMetadata })
+
+M.MergeOptions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApprovalList = schema.new({ type = "list", list_member = M.Approval })
+
+M.RepositoryTriggersList = schema.new({ type = "list", list_member = M.RepositoryTrigger })
+
+M.ApprovalRuleTemplateNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BranchNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RevisionDag = schema.new({ type = "list", list_member = M.FileVersion })
+
+M.PullRequestIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryNameIdPairList = schema.new({ type = "list", list_member = M.RepositoryNameIdPair })
+
+M.RepositoryTriggerNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RepositoryTriggerExecutionFailureList = schema.new({ type = "list", list_member = M.RepositoryTriggerExecutionFailure })
+
+M.TagKeysList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PullRequestTargetList = schema.new({ type = "list", list_member = M.PullRequestTarget })
+
+M.ApprovalRulesList = schema.new({ type = "list", list_member = M.ApprovalRule })
+
+M.ReplaceContentEntries = schema.new({ type = "list", list_member = M.ReplaceContentEntry })
+
+M.CallerReactions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReactionCountsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.ApprovalRulesSatisfiedList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApprovalRulesNotSatisfiedList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReactionUsersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Comments = schema.new({ type = "list", list_member = M.Comment })
+
+M.RepositoryTriggerEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RevisionChildren = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActorDoesNotExistException = schema.new({
     id = id.from(_N, "ActorDoesNotExistException"),
     type = "structure",
@@ -420,10 +524,7 @@ M.AssociateApprovalRuleTemplateWithRepositoryInput = schema.new({
     },
 })
 
-M.AssociateApprovalRuleTemplateWithRepositoryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateApprovalRuleTemplateWithRepositoryOutput = prelude.Unit
 
 M.EncryptionIntegrityChecksFailedException = schema.new({
     id = id.from(_N, "EncryptionIntegrityChecksFailedException"),
@@ -2140,10 +2241,7 @@ M.CreateBranchInput = schema.new({
     },
 })
 
-M.CreateBranchOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateBranchOutput = prelude.Unit
 
 M.InvalidBranchNameException = schema.new({
     id = id.from(_N, "InvalidBranchNameException"),
@@ -4919,10 +5017,7 @@ M.DisassociateApprovalRuleTemplateFromRepositoryInput = schema.new({
     },
 })
 
-M.DisassociateApprovalRuleTemplateFromRepositoryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateApprovalRuleTemplateFromRepositoryOutput = prelude.Unit
 
 M.EvaluatePullRequestApprovalRulesInput = schema.new({
     id = id.from(_N, "EvaluatePullRequestApprovalRulesInput"),
@@ -7820,10 +7915,7 @@ M.OverridePullRequestApprovalRulesInput = schema.new({
     },
 })
 
-M.OverridePullRequestApprovalRulesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.OverridePullRequestApprovalRulesOutput = prelude.Unit
 
 M.OverrideStatusRequiredException = schema.new({
     id = id.from(_N, "OverrideStatusRequiredException"),
@@ -8242,10 +8334,7 @@ M.PutCommentReactionInput = schema.new({
     },
 })
 
-M.PutCommentReactionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutCommentReactionOutput = prelude.Unit
 
 M.ReactionLimitExceededException = schema.new({
     id = id.from(_N, "ReactionLimitExceededException"),
@@ -8692,10 +8781,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.TagsMapRequiredException = schema.new({
     id = id.from(_N, "TagsMapRequiredException"),
@@ -8837,10 +8923,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.InvalidRuleContentSha256Exception = schema.new({
     id = id.from(_N, "InvalidRuleContentSha256Exception"),
@@ -9070,10 +9153,7 @@ M.UpdateDefaultBranchInput = schema.new({
     },
 })
 
-M.UpdateDefaultBranchOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDefaultBranchOutput = prelude.Unit
 
 M.UpdatePullRequestApprovalRuleContentInput = schema.new({
     id = id.from(_N, "UpdatePullRequestApprovalRuleContentInput"),
@@ -9214,10 +9294,7 @@ M.UpdatePullRequestApprovalStateInput = schema.new({
     },
 })
 
-M.UpdatePullRequestApprovalStateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdatePullRequestApprovalStateOutput = prelude.Unit
 
 M.UpdatePullRequestDescriptionInput = schema.new({
     id = id.from(_N, "UpdatePullRequestDescriptionInput"),
@@ -9399,10 +9476,7 @@ M.UpdateRepositoryDescriptionInput = schema.new({
     },
 })
 
-M.UpdateRepositoryDescriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRepositoryDescriptionOutput = prelude.Unit
 
 M.EncryptionKeyRequiredException = schema.new({
     id = id.from(_N, "EncryptionKeyRequiredException"),
@@ -9495,10 +9569,7 @@ M.UpdateRepositoryNameInput = schema.new({
     },
 })
 
-M.UpdateRepositoryNameOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRepositoryNameOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

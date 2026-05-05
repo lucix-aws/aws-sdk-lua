@@ -7,6 +7,170 @@ local _N = "com.amazonaws.workspaces"
 
 local M = {}
 
+M.IpGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpRuleList = schema.new({ type = "list", list_member = M.IpRuleItem })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.StandbyWorkspacesList = schema.new({ type = "list", list_member = M.StandbyWorkspace })
+
+M.FailedCreateStandbyWorkspacesRequestList = schema.new({ type = "list", list_member = M.FailedCreateStandbyWorkspacesRequest })
+
+M.PendingCreateStandbyWorkspacesRequestList = schema.new({ type = "list", list_member = M.PendingCreateStandbyWorkspacesRequest })
+
+M.WorkspaceRequestList = schema.new({ type = "list", list_member = M.WorkspaceRequest })
+
+M.FailedCreateWorkspaceRequests = schema.new({ type = "list", list_member = M.FailedCreateWorkspaceRequest })
+
+M.WorkspaceList = schema.new({ type = "list", list_member = M.Workspace })
+
+M.ClientDeviceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountModificationList = schema.new({ type = "list", list_member = M.AccountModification })
+
+M.ApplicationAssociatedResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationResourceAssociationList = schema.new({ type = "list", list_member = M.ApplicationResourceAssociation })
+
+M.WorkSpaceApplicationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComputeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperatingSystemNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkSpaceApplicationList = schema.new({ type = "list", list_member = M.WorkSpaceApplication })
+
+M.BundleAssociatedResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BundleResourceAssociationList = schema.new({ type = "list", list_member = M.BundleResourceAssociation })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClientPropertiesList = schema.new({ type = "list", list_member = M.ClientPropertiesResult })
+
+M.ConnectClientAddInList = schema.new({ type = "list", list_member = M.ConnectClientAddIn })
+
+M.ConnectionAliasIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionAliasList = schema.new({ type = "list", list_member = M.ConnectionAlias })
+
+M.ConnectionAliasPermissions = schema.new({ type = "list", list_member = M.ConnectionAliasPermission })
+
+M.CustomWorkspaceImageImportErrorDetailsList = schema.new({ type = "list", list_member = M.CustomWorkspaceImageImportErrorDetails })
+
+M.ImageAssociatedResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageResourceAssociationList = schema.new({ type = "list", list_member = M.ImageResourceAssociation })
+
+M.WorkspacesIpGroupsList = schema.new({ type = "list", list_member = M.WorkspacesIpGroup })
+
+M.WorkSpaceAssociatedResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkspaceResourceAssociationList = schema.new({ type = "list", list_member = M.WorkspaceResourceAssociation })
+
+M.BundleIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BundleList = schema.new({ type = "list", list_member = M.WorkspaceBundle })
+
+M.DirectoryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkspaceDirectoryNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeWorkspaceDirectoriesFilterList = schema.new({ type = "list", list_member = M.DescribeWorkspaceDirectoriesFilter })
+
+M.DirectoryList = schema.new({ type = "list", list_member = M.WorkspaceDirectory })
+
+M.ImagePermissions = schema.new({ type = "list", list_member = M.ImagePermission })
+
+M.WorkspaceImageIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkspaceImageList = schema.new({ type = "list", list_member = M.WorkspaceImage })
+
+M.WorkspaceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkspaceConnectionStatusList = schema.new({ type = "list", list_member = M.WorkspaceConnectionStatus })
+
+M.SnapshotList = schema.new({ type = "list", list_member = M.Snapshot })
+
+M.WorkspacesPoolIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeWorkspacesPoolsFilters = schema.new({ type = "list", list_member = M.DescribeWorkspacesPoolsFilter })
+
+M.WorkspacesPools = schema.new({ type = "list", list_member = M.WorkspacesPool })
+
+M.WorkspacesPoolSessions = schema.new({ type = "list", list_member = M.WorkspacesPoolSession })
+
+M.ApplicationList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LinkStatusFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountLinkList = schema.new({ type = "list", list_member = M.AccountLink })
+
+M.DedicatedTenancyCidrRangeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeletableCertificateBasedAuthPropertiesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeletableSamlPropertiesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RebootWorkspaceRequests = schema.new({ type = "list", list_member = M.RebootRequest })
+
+M.FailedRebootWorkspaceRequests = schema.new({ type = "list", list_member = M.FailedWorkspaceChangeRequest })
+
+M.RebuildWorkspaceRequests = schema.new({ type = "list", list_member = M.RebuildRequest })
+
+M.FailedRebuildWorkspaceRequests = schema.new({ type = "list", list_member = M.FailedWorkspaceChangeRequest })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpRevokedRuleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StartWorkspaceRequests = schema.new({ type = "list", list_member = M.StartRequest })
+
+M.FailedStartWorkspaceRequests = schema.new({ type = "list", list_member = M.FailedWorkspaceChangeRequest })
+
+M.StopWorkspaceRequests = schema.new({ type = "list", list_member = M.StopRequest })
+
+M.FailedStopWorkspaceRequests = schema.new({ type = "list", list_member = M.FailedWorkspaceChangeRequest })
+
+M.TerminateWorkspaceRequests = schema.new({ type = "list", list_member = M.TerminateRequest })
+
+M.FailedTerminateWorkspaceRequests = schema.new({ type = "list", list_member = M.FailedWorkspaceChangeRequest })
+
+M.WorkspacesPoolErrors = schema.new({ type = "list", list_member = M.WorkspacesPoolError })
+
+M.LoginMessage = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.UserSettings = schema.new({ type = "list", list_member = M.UserSetting })
+
+M.StorageConnectors = schema.new({ type = "list", list_member = M.StorageConnector })
+
+M.ProtocolList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ModificationStateList = schema.new({ type = "list", list_member = M.ModificationState })
+
+M.RelatedWorkspaces = schema.new({ type = "list", list_member = M.RelatedWorkspaceProperties })
+
+M.StandbyWorkspacesPropertiesList = schema.new({ type = "list", list_member = M.StandbyWorkspacesProperties })
+
+M.ConnectionAliasAssociationList = schema.new({ type = "list", list_member = M.ConnectionAliasAssociation })
+
+M.DescribeWorkspaceDirectoriesFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsIpAddresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnsIpv6Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.ErrorDetailsList = schema.new({ type = "list", list_member = M.ErrorDetails })
+
+M.DescribeWorkspacesPoolsFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessEndpointList = schema.new({ type = "list", list_member = M.AccessEndpoint })
+
+M.InternetFallbackProtocolList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptAccountLinkInvitationInput = schema.new({
     id = id.from(_N, "AcceptAccountLinkInvitationRequest"),
     type = "structure",

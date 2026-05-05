@@ -7,6 +7,34 @@ local _N = "com.amazonaws.kinesis"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MetricsNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecordList = schema.new({ type = "list", list_member = M.Record })
+
+M.ChildShardList = schema.new({ type = "list", list_member = M.ChildShard })
+
+M.ShardList = schema.new({ type = "list", list_member = M.Shard })
+
+M.ConsumerList = schema.new({ type = "list", list_member = M.Consumer })
+
+M.StreamNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StreamSummaryList = schema.new({ type = "list", list_member = M.StreamSummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.PutRecordsRequestEntryList = schema.new({ type = "list", list_member = M.PutRecordsRequestEntry })
+
+M.PutRecordsResultEntryList = schema.new({ type = "list", list_member = M.PutRecordsResultEntry })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnhancedMonitoringList = schema.new({ type = "list", list_member = M.EnhancedMetrics })
+
+M.ShardIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -59,10 +87,7 @@ M.AddTagsToStreamInput = schema.new({
     },
 })
 
-M.AddTagsToStreamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddTagsToStreamOutput = prelude.Unit
 
 M.InvalidArgumentException = schema.new({
     id = id.from(_N, "InvalidArgumentException"),
@@ -349,10 +374,7 @@ M.CreateStreamInput = schema.new({
     },
 })
 
-M.CreateStreamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateStreamOutput = prelude.Unit
 
 M.ValidationException = schema.new({
     id = id.from(_N, "ValidationException"),
@@ -404,10 +426,7 @@ M.DecreaseStreamRetentionPeriodInput = schema.new({
     },
 })
 
-M.DecreaseStreamRetentionPeriodOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DecreaseStreamRetentionPeriodOutput = prelude.Unit
 
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyInput"),
@@ -431,10 +450,7 @@ M.DeleteResourcePolicyInput = schema.new({
     },
 })
 
-M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourcePolicyOutput = prelude.Unit
 
 M.DeleteStreamInput = schema.new({
     id = id.from(_N, "DeleteStreamInput"),
@@ -467,10 +483,7 @@ M.DeleteStreamInput = schema.new({
     },
 })
 
-M.DeleteStreamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteStreamOutput = prelude.Unit
 
 M.DeregisterStreamConsumerInput = schema.new({
     id = id.from(_N, "DeregisterStreamConsumerInput"),
@@ -503,10 +516,7 @@ M.DeregisterStreamConsumerInput = schema.new({
     },
 })
 
-M.DeregisterStreamConsumerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterStreamConsumerOutput = prelude.Unit
 
 M.DescribeAccountSettingsInput = schema.new({
     id = id.from(_N, "DescribeAccountSettingsInput"),
@@ -1623,10 +1633,7 @@ M.IncreaseStreamRetentionPeriodInput = schema.new({
     },
 })
 
-M.IncreaseStreamRetentionPeriodOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.IncreaseStreamRetentionPeriodOutput = prelude.Unit
 
 M.ShardFilter = schema.new({
     id = id.from(_N, "ShardFilter"),
@@ -2067,10 +2074,7 @@ M.MergeShardsInput = schema.new({
     },
 })
 
-M.MergeShardsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.MergeShardsOutput = prelude.Unit
 
 M.PutRecordInput = schema.new({
     id = id.from(_N, "PutRecordInput"),
@@ -2315,10 +2319,7 @@ M.PutResourcePolicyInput = schema.new({
     },
 })
 
-M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutResourcePolicyOutput = prelude.Unit
 
 M.RegisterStreamConsumerInput = schema.new({
     id = id.from(_N, "RegisterStreamConsumerInput"),
@@ -2411,10 +2412,7 @@ M.RemoveTagsFromStreamInput = schema.new({
     },
 })
 
-M.RemoveTagsFromStreamOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveTagsFromStreamOutput = prelude.Unit
 
 M.SplitShardInput = schema.new({
     id = id.from(_N, "SplitShardInput"),
@@ -2459,10 +2457,7 @@ M.SplitShardInput = schema.new({
     },
 })
 
-M.SplitShardOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SplitShardOutput = prelude.Unit
 
 M.StartStreamEncryptionInput = schema.new({
     id = id.from(_N, "StartStreamEncryptionInput"),
@@ -2507,10 +2502,7 @@ M.StartStreamEncryptionInput = schema.new({
     },
 })
 
-M.StartStreamEncryptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartStreamEncryptionOutput = prelude.Unit
 
 M.StopStreamEncryptionInput = schema.new({
     id = id.from(_N, "StopStreamEncryptionInput"),
@@ -2555,10 +2547,7 @@ M.StopStreamEncryptionInput = schema.new({
     },
 })
 
-M.StopStreamEncryptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopStreamEncryptionOutput = prelude.Unit
 
 M.StartingPosition = schema.new({
     id = id.from(_N, "StartingPosition"),
@@ -2798,10 +2787,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceInput"),
@@ -2835,10 +2821,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.MinimumThroughputBillingCommitmentInput = schema.new({
     id = id.from(_N, "MinimumThroughputBillingCommitmentInput"),
@@ -2915,10 +2898,7 @@ M.UpdateMaxRecordSizeInput = schema.new({
     },
 })
 
-M.UpdateMaxRecordSizeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateMaxRecordSizeOutput = prelude.Unit
 
 M.UpdateShardCountInput = schema.new({
     id = id.from(_N, "UpdateShardCountInput"),
@@ -3032,10 +3012,7 @@ M.UpdateStreamModeInput = schema.new({
     },
 })
 
-M.UpdateStreamModeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateStreamModeOutput = prelude.Unit
 
 M.UpdateStreamWarmThroughputInput = schema.new({
     id = id.from(_N, "UpdateStreamWarmThroughputInput"),

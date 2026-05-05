@@ -7,6 +7,30 @@ local _N = "com.amazonaws.scheduler"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScheduleList = schema.new({ type = "list", list_member = M.ScheduleSummary })
+
+M.ScheduleGroupList = schema.new({ type = "list", list_member = M.ScheduleGroupSummary })
+
+M.CapacityProviderStrategy = schema.new({ type = "list", list_member = M.CapacityProviderStrategyItem })
+
+M.PlacementConstraints = schema.new({ type = "list", list_member = M.PlacementConstraint })
+
+M.PlacementStrategies = schema.new({ type = "list", list_member = M.PlacementStrategy })
+
+M.Tags = schema.new({ type = "list", list_member = M.TagMap })
+
+M.SageMakerPipelineParameterList = schema.new({ type = "list", list_member = M.SageMakerPipelineParameter })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
     type = "structure",
@@ -403,7 +427,7 @@ M.EcsParameters = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TagMap,
         }),
     },
 })

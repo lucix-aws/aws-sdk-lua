@@ -7,6 +7,40 @@ local _N = "com.amazonaws.comprehendmedical"
 
 local M = {}
 
+M.EntityList = schema.new({ type = "list", list_member = M.Entity })
+
+M.UnmappedAttributeList = schema.new({ type = "list", list_member = M.UnmappedAttribute })
+
+M.ICD10CMEntityList = schema.new({ type = "list", list_member = M.ICD10CMEntity })
+
+M.RxNormEntityList = schema.new({ type = "list", list_member = M.RxNormEntity })
+
+M.SNOMEDCTEntityList = schema.new({ type = "list", list_member = M.SNOMEDCTEntity })
+
+M.ComprehendMedicalAsyncJobPropertiesList = schema.new({ type = "list", list_member = M.ComprehendMedicalAsyncJobProperties })
+
+M.TraitList = schema.new({ type = "list", list_member = M.Trait })
+
+M.AttributeList = schema.new({ type = "list", list_member = M.Attribute })
+
+M.ICD10CMAttributeList = schema.new({ type = "list", list_member = M.ICD10CMAttribute })
+
+M.ICD10CMTraitList = schema.new({ type = "list", list_member = M.ICD10CMTrait })
+
+M.ICD10CMConceptList = schema.new({ type = "list", list_member = M.ICD10CMConcept })
+
+M.RxNormAttributeList = schema.new({ type = "list", list_member = M.RxNormAttribute })
+
+M.RxNormTraitList = schema.new({ type = "list", list_member = M.RxNormTrait })
+
+M.RxNormConceptList = schema.new({ type = "list", list_member = M.RxNormConcept })
+
+M.SNOMEDCTAttributeList = schema.new({ type = "list", list_member = M.SNOMEDCTAttribute })
+
+M.SNOMEDCTTraitList = schema.new({ type = "list", list_member = M.SNOMEDCTTrait })
+
+M.SNOMEDCTConceptList = schema.new({ type = "list", list_member = M.SNOMEDCTConcept })
+
 M.Trait = schema.new({
     id = id.from(_N, "Trait"),
     type = "structure",

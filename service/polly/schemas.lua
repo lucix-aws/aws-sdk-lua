@@ -7,6 +7,24 @@ local _N = "com.amazonaws.polly"
 
 local M = {}
 
+M.VoiceList = schema.new({ type = "list", list_member = M.Voice })
+
+M.LexiconDescriptionList = schema.new({ type = "list", list_member = M.LexiconDescription })
+
+M.SynthesisTasks = schema.new({ type = "list", list_member = M.SynthesisTask })
+
+M.LexiconNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ThrottlingReasonList = schema.new({ type = "list", list_member = M.ThrottlingReason })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.SpeechMarkTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LanguageCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngineList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AudioEvent = schema.new({
     id = id.from(_N, "AudioEvent"),
     type = "structure",

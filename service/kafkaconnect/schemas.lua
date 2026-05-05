@@ -7,6 +7,30 @@ local _N = "com.amazonaws.kafkaconnect"
 
 local M = {}
 
+M.ConnectorConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfPlugin = schema.new({ type = "list", list_member = M.Plugin })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfPluginDescription = schema.new({ type = "list", list_member = M.PluginDescription })
+
+M.__listOfConnectorOperationStep = schema.new({ type = "list", list_member = M.ConnectorOperationStep })
+
+M.__listOfConnectorOperationSummary = schema.new({ type = "list", list_member = M.ConnectorOperationSummary })
+
+M.__listOfConnectorSummary = schema.new({ type = "list", list_member = M.ConnectorSummary })
+
+M.__listOfCustomPluginSummary = schema.new({ type = "list", list_member = M.CustomPluginSummary })
+
+M.__listOfWorkerConfigurationSummary = schema.new({ type = "list", list_member = M.WorkerConfigurationSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorConfigurationUpdate = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
+
 M.ConnectorOperationStep = schema.new({
     id = id.from(_N, "ConnectorOperationStep"),
     type = "structure",

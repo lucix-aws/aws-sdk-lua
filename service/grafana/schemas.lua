@@ -7,6 +7,48 @@ local _N = "com.amazonaws.grafana"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.GrafanaVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AuthenticationProviders = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionEntryList = schema.new({ type = "list", list_member = M.PermissionEntry })
+
+M.UpdateInstructionBatch = schema.new({ type = "list", list_member = M.UpdateInstruction })
+
+M.UpdateErrorList = schema.new({ type = "list", list_member = M.UpdateError })
+
+M.ServiceAccountList = schema.new({ type = "list", list_member = M.ServiceAccountSummary })
+
+M.ServiceAccountTokenList = schema.new({ type = "list", list_member = M.ServiceAccountTokenSummary })
+
+M.WorkspaceList = schema.new({ type = "list", list_member = M.WorkspaceSummary })
+
+M.DataSourceTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotificationDestinationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedOrganizations = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrefixListIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoleValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserList = schema.new({ type = "list", list_member = M.User })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

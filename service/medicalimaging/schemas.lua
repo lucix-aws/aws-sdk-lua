@@ -7,6 +7,22 @@ local _N = "com.amazonaws.medicalimaging"
 
 local M = {}
 
+M.DICOMImportJobSummaries = schema.new({ type = "list", list_member = M.DICOMImportJobSummary })
+
+M.ImageSetPropertiesList = schema.new({ type = "list", list_member = M.ImageSetProperties })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ImageSetsMetadataSummaries = schema.new({ type = "list", list_member = M.ImageSetsMetadataSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatastoreSummaries = schema.new({ type = "list", list_member = M.DatastoreSummary })
+
+M.SearchFilters = schema.new({ type = "list", list_member = M.SearchFilter })
+
+M.SearchByAttributeValues = schema.new({ type = "list", list_member = M.SearchByAttributeValue })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

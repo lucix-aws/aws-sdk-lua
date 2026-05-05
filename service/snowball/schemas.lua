@@ -7,6 +7,38 @@ local _N = "com.amazonaws.snowball"
 
 local M = {}
 
+M.LongTermPricingIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobListEntryList = schema.new({ type = "list", list_member = M.JobListEntry })
+
+M.AddressList = schema.new({ type = "list", list_member = M.Address })
+
+M.JobMetadataList = schema.new({ type = "list", list_member = M.JobMetadata })
+
+M.ClusterListEntryList = schema.new({ type = "list", list_member = M.ClusterListEntry })
+
+M.CompatibleImageList = schema.new({ type = "list", list_member = M.CompatibleImage })
+
+M.LongTermPricingEntryList = schema.new({ type = "list", list_member = M.LongTermPricingListEntry })
+
+M.DependentServiceList = schema.new({ type = "list", list_member = M.DependentService })
+
+M.ServiceVersionList = schema.new({ type = "list", list_member = M.ServiceVersion })
+
+M.S3ResourceList = schema.new({ type = "list", list_member = M.S3Resource })
+
+M.LambdaResourceList = schema.new({ type = "list", list_member = M.LambdaResource })
+
+M.Ec2AmiResourceList = schema.new({ type = "list", list_member = M.Ec2AmiResource })
+
+M.JobStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LongTermPricingAssociatedJobIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetOnDeviceServiceList = schema.new({ type = "list", list_member = M.TargetOnDeviceService })
+
+M.EventTriggerDefinitionList = schema.new({ type = "list", list_member = M.EventTriggerDefinition })
+
 M.Address = schema.new({
     id = id.from(_N, "Address"),
     type = "structure",

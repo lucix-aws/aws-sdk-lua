@@ -7,6 +7,190 @@ local _N = "com.amazonaws.mgn"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ImportFileEnrichmentsList = schema.new({ type = "list", list_member = M.ImportFileEnrichment })
+
+M.ManagedAccounts = schema.new({ type = "list", list_member = M.ManagedAccount })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConflictExceptionErrors = schema.new({ type = "list", list_member = M.ErrorDetails })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationsList = schema.new({ type = "list", list_member = M.Application })
+
+M.AssociateSourceServersRequestSourceServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisassociateSourceServersRequestSourceServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorsList = schema.new({ type = "list", list_member = M.Connector })
+
+M.ExportsList = schema.new({ type = "list", list_member = M.ExportTask })
+
+M.ExportErrors = schema.new({ type = "list", list_member = M.ExportTaskError })
+
+M.ImportList = schema.new({ type = "list", list_member = M.ImportTask })
+
+M.ImportErrors = schema.new({ type = "list", list_member = M.ImportTaskError })
+
+M.JobsList = schema.new({ type = "list", list_member = M.Job })
+
+M.JobLogs = schema.new({ type = "list", list_member = M.JobLog })
+
+M.LaunchConfigurationTemplateIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.LaunchConfigurationTemplates = schema.new({ type = "list", list_member = M.LaunchConfigurationTemplate })
+
+M.TemplateActionDocuments = schema.new({ type = "list", list_member = M.TemplateActionDocument })
+
+M.SsmDocumentParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.SsmParameterStoreParameters })
+
+M.SsmDocumentExternalParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.SsmExternalParameter })
+
+M.NetworkMigrationDefinitionSummariesList = schema.new({ type = "list", list_member = M.NetworkMigrationDefinitionSummary })
+
+M.SourceConfigurationList = schema.new({ type = "list", list_member = M.SourceConfiguration })
+
+M.ScopeTagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NetworkMigrationAnalysesList = schema.new({ type = "list", list_member = M.NetworkMigrationAnalysisJobDetails })
+
+M.NetworkMigrationAnalysisResultsList = schema.new({ type = "list", list_member = M.NetworkMigrationAnalysisResult })
+
+M.NetworkMigrationCodeGenerationsList = schema.new({ type = "list", list_member = M.NetworkMigrationCodeGenerationJobDetails })
+
+M.NetworkMigrationCodeGenerationSegmentsList = schema.new({ type = "list", list_member = M.NetworkMigrationCodeGenerationSegment })
+
+M.NetworkMigrationDeployedStacksList = schema.new({ type = "list", list_member = M.NetworkMigrationDeployedStackDetails })
+
+M.NetworkMigrationDeployerJobList = schema.new({ type = "list", list_member = M.NetworkMigrationDeployerJobDetails })
+
+M.NetworkMigrationExecutionsList = schema.new({ type = "list", list_member = M.NetworkMigrationExecution })
+
+M.NetworkMigrationMapperSegmentConstructs = schema.new({ type = "list", list_member = M.NetworkMigrationMapperSegmentConstruct })
+
+M.NetworkMigrationMapperSegmentsList = schema.new({ type = "list", list_member = M.NetworkMigrationMapperSegment })
+
+M.NetworkMigrationMappingsList = schema.new({ type = "list", list_member = M.NetworkMigrationMappingJobDetails })
+
+M.NetworkMigrationMappingUpdatesList = schema.new({ type = "list", list_member = M.NetworkMigrationMappingUpdateJobDetails })
+
+M.CodeGenerationOutputFormatTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.StartNetworkMigrationMappingUpdateConstructs = schema.new({ type = "list", list_member = M.StartNetworkMigrationMappingUpdateConstruct })
+
+M.StartNetworkMigrationMappingUpdateSegments = schema.new({ type = "list", list_member = M.StartNetworkMigrationMappingUpdateSegment })
+
+M.referencedSegmentsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationConfigurationTemplateIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationConfigurationTemplates = schema.new({ type = "list", list_member = M.ReplicationConfigurationTemplate })
+
+M.ReplicationServersSecurityGroupsIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceServersList = schema.new({ type = "list", list_member = M.SourceServer })
+
+M.ReplicationConfigurationReplicatedDisks = schema.new({ type = "list", list_member = M.ReplicationConfigurationReplicatedDisk })
+
+M.SourceServerActionDocuments = schema.new({ type = "list", list_member = M.SourceServerActionDocument })
+
+M.StartCutoverRequestSourceServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.StartTestRequestSourceServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.TerminateTargetInstancesRequestSourceServerIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.VcenterClientList = schema.new({ type = "list", list_member = M.VcenterClient })
+
+M.WavesList = schema.new({ type = "list", list_member = M.Wave })
+
+M.ApplicationIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportFileEnrichmentsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.WaveIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListExportsRequestFiltersExportIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImportIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeJobsRequestFiltersJobIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.SsmDocuments = schema.new({ type = "list", list_member = M.SsmDocument })
+
+M.ActionIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.SsmParameterStoreParameters = schema.new({ type = "list", list_member = M.SsmParameterStoreParameter })
+
+M.NetworkMigrationDefintionsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConstructProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListNetworkMigrationAnalysesIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationCodeGenerationsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationCodeGenerationSegmentsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationDeployerJobIDsFilters = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkMigrationExecutionIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkMigrationExecutionStatusesFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationMapperSegmentConstructsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationMapperSegmentConstructTypesFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationMapperSegmentsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationMappingsIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListNetworkMigrationMappingUpdatesIDsFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeSourceServersRequestFiltersIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifeCycleStates = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeSourceServersRequestApplicationIDs = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataReplicationInfoReplicatedDisks = schema.new({ type = "list", list_member = M.DataReplicationInfoReplicatedDisk })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.Disks = schema.new({ type = "list", list_member = M.Disk })
+
+M.Cpus = schema.new({ type = "list", list_member = M.CPU })
+
+M.ParticipatingServers = schema.new({ type = "list", list_member = M.ParticipatingServer })
+
+M.CodeGenerationOutputFormatStatusDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CodeGenerationOutputFormatStatusDetails })
+
+M.NetworkMigrationCodeGenerationArtifacts = schema.new({ type = "list", list_member = M.NetworkMigrationCodeGenerationArtifact })
+
+M.NetworkMigrationFailedResourcesList = schema.new({ type = "list", list_member = M.NetworkMigrationFailedResourceDetails })
+
+M.DataReplicationInitiationSteps = schema.new({ type = "list", list_member = M.DataReplicationInitiationStep })
+
+M.IPsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MergeConstructs = schema.new({ type = "list", list_member = M.MergeConstruct })
+
+M.SplitConstructs = schema.new({ type = "list", list_member = M.SplitConstruct })
+
+M.PostLaunchActionsLaunchStatusList = schema.new({ type = "list", list_member = M.JobPostLaunchActionsLaunchStatus })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1080,10 +1264,7 @@ M.DeleteConnectorInput = schema.new({
     },
 })
 
-M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectorOutput = prelude.Unit
 
 M.ListConnectorsRequestFilters = schema.new({
     id = id.from(_N, "ListConnectorsRequestFilters"),
@@ -11161,10 +11342,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -11194,10 +11372,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.DeleteVcenterClientInput = schema.new({
     id = id.from(_N, "DeleteVcenterClientRequest"),
@@ -11215,10 +11390,7 @@ M.DeleteVcenterClientInput = schema.new({
     },
 })
 
-M.DeleteVcenterClientOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVcenterClientOutput = prelude.Unit
 
 M.DescribeVcenterClientsInput = schema.new({
     id = id.from(_N, "DescribeVcenterClientsRequest"),

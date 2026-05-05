@@ -7,6 +7,18 @@ local _N = "com.amazonaws.freetier"
 
 local M = {}
 
+M.FreeTierUsages = schema.new({ type = "list", list_member = M.FreeTierUsage })
+
+M.FilterActivityStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.Activities = schema.new({ type = "list", list_member = M.ActivitySummary })
+
+M.Expressions = schema.new({ type = "list", list_member = M.Expression })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchOptions = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

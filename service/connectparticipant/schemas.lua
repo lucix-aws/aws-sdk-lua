@@ -7,6 +7,20 @@ local _N = "com.amazonaws.connectparticipant"
 
 local M = {}
 
+M.AttachmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Transcript = schema.new({ type = "list", list_member = M.Item })
+
+M.UploadMetadataSignedHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ViewActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Attachments = schema.new({ type = "list", list_member = M.AttachmentItem })
+
+M.Receipts = schema.new({ type = "list", list_member = M.Receipt })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

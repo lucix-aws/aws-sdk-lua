@@ -651,15 +651,15 @@ local record ValidationException
     message: string
 end
 
-local type ImageSetWorkflowStatus = "CREATED" | "COPIED" | "COPYING" | "COPYING_WITH_READ_ONLY_ACCESS" | "COPY_FAILED" | "UPDATING" | "UPDATING_FOR_STUDY_CONSISTENCY" | "UPDATED" | "UPDATE_FAILED" | "DELETING" | "DELETED" | "IMPORTING" | "IMPORTED" | "IMPORT_FAILED"
-
 local type LosslessStorageFormat = "HTJ2K" | "JPEG_2000_LOSSLESS"
 
 local type DatastoreStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETED"
 
+local type ImageSetState = "ACTIVE" | "LOCKED" | "DELETED"
+
 local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
 
-local type ImageSetState = "ACTIVE" | "LOCKED" | "DELETED"
+local type ImageSetWorkflowStatus = "CREATED" | "COPIED" | "COPYING" | "COPYING_WITH_READ_ONLY_ACCESS" | "COPY_FAILED" | "UPDATING" | "UPDATING_FOR_STUDY_CONSISTENCY" | "UPDATED" | "UPDATE_FAILED" | "DELETING" | "DELETED" | "IMPORTING" | "IMPORTED" | "IMPORT_FAILED"
 
 local type StorageTier = "FREQUENT_ACCESS" | "ARCHIVE_INSTANT_ACCESS"
 

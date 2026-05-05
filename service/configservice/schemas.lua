@@ -7,6 +7,208 @@ local _N = "com.amazonaws.configservice"
 
 local M = {}
 
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceIdentifiersList = schema.new({ type = "list", list_member = M.AggregateResourceIdentifier })
+
+M.BaseConfigurationItems = schema.new({ type = "list", list_member = M.BaseConfigurationItem })
+
+M.UnprocessedResourceIdentifierList = schema.new({ type = "list", list_member = M.AggregateResourceIdentifier })
+
+M.ResourceKeys = schema.new({ type = "list", list_member = M.ResourceKey })
+
+M.RemediationExceptionResourceKeys = schema.new({ type = "list", list_member = M.RemediationExceptionResourceKey })
+
+M.FailedDeleteRemediationExceptionsBatches = schema.new({ type = "list", list_member = M.FailedDeleteRemediationExceptionsBatch })
+
+M.AggregateComplianceByConfigRuleList = schema.new({ type = "list", list_member = M.AggregateComplianceByConfigRule })
+
+M.AggregateComplianceByConformancePackList = schema.new({ type = "list", list_member = M.AggregateComplianceByConformancePack })
+
+M.AggregationAuthorizationList = schema.new({ type = "list", list_member = M.AggregationAuthorization })
+
+M.ConfigRuleNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceByConfigRules = schema.new({ type = "list", list_member = M.ComplianceByConfigRule })
+
+M.ComplianceByResources = schema.new({ type = "list", list_member = M.ComplianceByResource })
+
+M.ConfigRuleEvaluationStatusList = schema.new({ type = "list", list_member = M.ConfigRuleEvaluationStatus })
+
+M.ConfigRules = schema.new({ type = "list", list_member = M.ConfigRule })
+
+M.ConfigurationAggregatorNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurationAggregatorList = schema.new({ type = "list", list_member = M.ConfigurationAggregator })
+
+M.AggregatedSourceStatusTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregatedSourceStatusList = schema.new({ type = "list", list_member = M.AggregatedSourceStatus })
+
+M.ConfigurationRecorderNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurationRecorderList = schema.new({ type = "list", list_member = M.ConfigurationRecorder })
+
+M.ConfigurationRecorderStatusList = schema.new({ type = "list", list_member = M.ConfigurationRecorderStatus })
+
+M.ConformancePackRuleComplianceList = schema.new({ type = "list", list_member = M.ConformancePackRuleCompliance })
+
+M.ConformancePackNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConformancePackDetailList = schema.new({ type = "list", list_member = M.ConformancePackDetail })
+
+M.ConformancePackStatusDetailsList = schema.new({ type = "list", list_member = M.ConformancePackStatusDetail })
+
+M.DeliveryChannelNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeliveryChannelList = schema.new({ type = "list", list_member = M.DeliveryChannel })
+
+M.DeliveryChannelStatusList = schema.new({ type = "list", list_member = M.DeliveryChannelStatus })
+
+M.OrganizationConfigRuleNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationConfigRules = schema.new({ type = "list", list_member = M.OrganizationConfigRule })
+
+M.OrganizationConfigRuleStatuses = schema.new({ type = "list", list_member = M.OrganizationConfigRuleStatus })
+
+M.OrganizationConformancePackNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationConformancePacks = schema.new({ type = "list", list_member = M.OrganizationConformancePack })
+
+M.OrganizationConformancePackStatuses = schema.new({ type = "list", list_member = M.OrganizationConformancePackStatus })
+
+M.PendingAggregationRequestList = schema.new({ type = "list", list_member = M.PendingAggregationRequest })
+
+M.RemediationConfigurations = schema.new({ type = "list", list_member = M.RemediationConfiguration })
+
+M.RemediationExceptions = schema.new({ type = "list", list_member = M.RemediationException })
+
+M.RemediationExecutionStatuses = schema.new({ type = "list", list_member = M.RemediationExecutionStatus })
+
+M.RetentionConfigurationNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RetentionConfigurationList = schema.new({ type = "list", list_member = M.RetentionConfiguration })
+
+M.AggregateEvaluationResultList = schema.new({ type = "list", list_member = M.AggregateEvaluationResult })
+
+M.AggregateComplianceCountList = schema.new({ type = "list", list_member = M.AggregateComplianceCount })
+
+M.AggregateConformancePackComplianceSummaryList = schema.new({ type = "list", list_member = M.AggregateConformancePackComplianceSummary })
+
+M.GroupedResourceCountList = schema.new({ type = "list", list_member = M.GroupedResourceCount })
+
+M.EvaluationResults = schema.new({ type = "list", list_member = M.EvaluationResult })
+
+M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceSummariesByResourceType = schema.new({ type = "list", list_member = M.ComplianceSummaryByResourceType })
+
+M.ConformancePackRuleEvaluationResultsList = schema.new({ type = "list", list_member = M.ConformancePackEvaluationResult })
+
+M.ConformancePackNamesToSummarizeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConformancePackComplianceSummaryList = schema.new({ type = "list", list_member = M.ConformancePackComplianceSummary })
+
+M.ResourceCounts = schema.new({ type = "list", list_member = M.ResourceCount })
+
+M.OrganizationConfigRuleDetailedStatus = schema.new({ type = "list", list_member = M.MemberAccountStatus })
+
+M.OrganizationConformancePackDetailedStatuses = schema.new({ type = "list", list_member = M.OrganizationConformancePackDetailedStatus })
+
+M.ConfigurationItemList = schema.new({ type = "list", list_member = M.ConfigurationItem })
+
+M.DiscoveredResourceIdentifierList = schema.new({ type = "list", list_member = M.AggregateResourceIdentifier })
+
+M.ConfigurationRecorderFilterList = schema.new({ type = "list", list_member = M.ConfigurationRecorderFilter })
+
+M.ConfigurationRecorderSummaries = schema.new({ type = "list", list_member = M.ConfigurationRecorderSummary })
+
+M.ConformancePackComplianceScores = schema.new({ type = "list", list_member = M.ConformancePackComplianceScore })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceIdentifierList = schema.new({ type = "list", list_member = M.ResourceIdentifier })
+
+M.ResourceEvaluations = schema.new({ type = "list", list_member = M.ResourceEvaluation })
+
+M.StoredQueryMetadataList = schema.new({ type = "list", list_member = M.StoredQueryMetadata })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagsList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AccountAggregationSourceList = schema.new({ type = "list", list_member = M.AccountAggregationSource })
+
+M.ConformancePackInputParameters = schema.new({ type = "list", list_member = M.ConformancePackInputParameter })
+
+M.Evaluations = schema.new({ type = "list", list_member = M.Evaluation })
+
+M.ExcludedAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedRemediationBatches = schema.new({ type = "list", list_member = M.FailedRemediationBatch })
+
+M.FailedRemediationExceptionBatches = schema.new({ type = "list", list_member = M.FailedRemediationExceptionBatch })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Results = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReevaluateConfigRuleNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConformancePackConfigRuleNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelatedEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelationshipList = schema.new({ type = "list", list_member = M.Relationship })
+
+M.SupplementaryConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConformancePackComplianceResourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConformancePackNameFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationModes = schema.new({ type = "list", list_member = M.EvaluationModeConfiguration })
+
+M.AggregatorRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypesScope = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationConfigRuleTriggerTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationConfigRuleTriggerTypeNoSNs = schema.new({ type = "list", list_member = prelude.String })
+
+M.DebugLogDeliveryAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldInfoList = schema.new({ type = "list", list_member = M.FieldInfo })
+
+M.RecordingModeOverrides = schema.new({ type = "list", list_member = M.RecordingModeOverride })
+
+M.ControlsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RemediationParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.RemediationParameterValue })
+
+M.RemediationExecutionSteps = schema.new({ type = "list", list_member = M.RemediationExecutionStep })
+
+M.ConfigurationRecorderFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ComplianceResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceDetails = schema.new({ type = "list", list_member = M.SourceDetail })
+
+M.AccountAggregationSourceAccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTypeValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServicePrincipalValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecordingModeResourceTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StaticParameterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccountAggregationSource = schema.new({
     id = id.from(_N, "AccountAggregationSource"),
     type = "structure",
@@ -2480,10 +2682,7 @@ M.DeleteAggregationAuthorizationInput = schema.new({
     },
 })
 
-M.DeleteAggregationAuthorizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAggregationAuthorizationOutput = prelude.Unit
 
 M.InvalidParameterValueException = schema.new({
     id = id.from(_N, "InvalidParameterValueException"),
@@ -2517,10 +2716,7 @@ M.DeleteConfigRuleInput = schema.new({
     },
 })
 
-M.DeleteConfigRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigRuleOutput = prelude.Unit
 
 M.NoSuchConfigRuleException = schema.new({
     id = id.from(_N, "NoSuchConfigRuleException"),
@@ -2570,10 +2766,7 @@ M.DeleteConfigurationAggregatorInput = schema.new({
     },
 })
 
-M.DeleteConfigurationAggregatorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigurationAggregatorOutput = prelude.Unit
 
 M.DeleteConfigurationRecorderInput = schema.new({
     id = id.from(_N, "DeleteConfigurationRecorderRequest"),
@@ -2591,10 +2784,7 @@ M.DeleteConfigurationRecorderInput = schema.new({
     },
 })
 
-M.DeleteConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConfigurationRecorderOutput = prelude.Unit
 
 M.UnmodifiableEntityException = schema.new({
     id = id.from(_N, "UnmodifiableEntityException"),
@@ -2628,10 +2818,7 @@ M.DeleteConformancePackInput = schema.new({
     },
 })
 
-M.DeleteConformancePackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConformancePackOutput = prelude.Unit
 
 M.NoSuchConformancePackException = schema.new({
     id = id.from(_N, "NoSuchConformancePackException"),
@@ -2665,10 +2852,7 @@ M.DeleteDeliveryChannelInput = schema.new({
     },
 })
 
-M.DeleteDeliveryChannelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteDeliveryChannelOutput = prelude.Unit
 
 M.LastDeliveryChannelDeleteFailedException = schema.new({
     id = id.from(_N, "LastDeliveryChannelDeleteFailedException"),
@@ -2739,10 +2923,7 @@ M.DeleteOrganizationConfigRuleInput = schema.new({
     },
 })
 
-M.DeleteOrganizationConfigRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOrganizationConfigRuleOutput = prelude.Unit
 
 M.NoSuchOrganizationConfigRuleException = schema.new({
     id = id.from(_N, "NoSuchOrganizationConfigRuleException"),
@@ -2792,10 +2973,7 @@ M.DeleteOrganizationConformancePackInput = schema.new({
     },
 })
 
-M.DeleteOrganizationConformancePackOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOrganizationConformancePackOutput = prelude.Unit
 
 M.NoSuchOrganizationConformancePackException = schema.new({
     id = id.from(_N, "NoSuchOrganizationConformancePackException"),
@@ -2838,10 +3016,7 @@ M.DeletePendingAggregationRequestInput = schema.new({
     },
 })
 
-M.DeletePendingAggregationRequestOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePendingAggregationRequestOutput = prelude.Unit
 
 M.DeleteRemediationConfigurationInput = schema.new({
     id = id.from(_N, "DeleteRemediationConfigurationRequest"),
@@ -3038,10 +3213,7 @@ M.DeleteResourceConfigInput = schema.new({
     },
 })
 
-M.DeleteResourceConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceConfigOutput = prelude.Unit
 
 M.NoRunningConfigurationRecorderException = schema.new({
     id = id.from(_N, "NoRunningConfigurationRecorderException"),
@@ -3075,10 +3247,7 @@ M.DeleteRetentionConfigurationInput = schema.new({
     },
 })
 
-M.DeleteRetentionConfigurationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRetentionConfigurationOutput = prelude.Unit
 
 M.NoSuchRetentionConfigurationException = schema.new({
     id = id.from(_N, "NoSuchRetentionConfigurationException"),
@@ -6106,10 +6275,7 @@ M.GetComplianceDetailsByResourceOutput = schema.new({
     },
 })
 
-M.GetComplianceSummaryByConfigRuleInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetComplianceSummaryByConfigRuleInput = prelude.Unit
 
 M.GetComplianceSummaryByConfigRuleOutput = schema.new({
     id = id.from(_N, "GetComplianceSummaryByConfigRuleResponse"),
@@ -8078,10 +8244,7 @@ M.PutConfigRuleInput = schema.new({
     },
 })
 
-M.PutConfigRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutConfigRuleOutput = prelude.Unit
 
 M.PutConfigurationAggregatorInput = schema.new({
     id = id.from(_N, "PutConfigurationAggregatorRequest"),
@@ -8165,10 +8328,7 @@ M.PutConfigurationRecorderInput = schema.new({
     },
 })
 
-M.PutConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutConfigurationRecorderOutput = prelude.Unit
 
 M.PutConformancePackInput = schema.new({
     id = id.from(_N, "PutConformancePackRequest"),
@@ -8261,10 +8421,7 @@ M.PutDeliveryChannelInput = schema.new({
     },
 })
 
-M.PutDeliveryChannelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutDeliveryChannelOutput = prelude.Unit
 
 M.PutEvaluationsInput = schema.new({
     id = id.from(_N, "PutEvaluationsRequest"),
@@ -8607,10 +8764,7 @@ M.PutResourceConfigInput = schema.new({
     },
 })
 
-M.PutResourceConfigOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutResourceConfigOutput = prelude.Unit
 
 M.PutRetentionConfigurationInput = schema.new({
     id = id.from(_N, "PutRetentionConfigurationRequest"),
@@ -8936,10 +9090,7 @@ M.StartConfigurationRecorderInput = schema.new({
     },
 })
 
-M.StartConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartConfigurationRecorderOutput = prelude.Unit
 
 M.StartRemediationExecutionInput = schema.new({
     id = id.from(_N, "StartRemediationExecutionRequest"),
@@ -9064,10 +9215,7 @@ M.StopConfigurationRecorderInput = schema.new({
     },
 })
 
-M.StopConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopConfigurationRecorderOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -9095,10 +9243,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -9126,10 +9271,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

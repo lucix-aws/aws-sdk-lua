@@ -7,6 +7,36 @@ local _N = "com.amazonaws.keyspaces"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ReplicaSpecificationList = schema.new({ type = "list", list_member = M.ReplicaSpecification })
+
+M.FieldList = schema.new({ type = "list", list_member = M.FieldDefinition })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicationGroupStatusList = schema.new({ type = "list", list_member = M.ReplicationGroupStatus })
+
+M.ReplicaSpecificationSummaryList = schema.new({ type = "list", list_member = M.ReplicaSpecificationSummary })
+
+M.ReplicaAutoScalingSpecificationList = schema.new({ type = "list", list_member = M.ReplicaAutoScalingSpecification })
+
+M.TableNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TypeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeyspaceSummaryList = schema.new({ type = "list", list_member = M.KeyspaceSummary })
+
+M.TableSummaryList = schema.new({ type = "list", list_member = M.TableSummary })
+
+M.ColumnDefinitionList = schema.new({ type = "list", list_member = M.ColumnDefinition })
+
+M.PartitionKeyList = schema.new({ type = "list", list_member = M.PartitionKey })
+
+M.ClusteringKeyList = schema.new({ type = "list", list_member = M.ClusteringKey })
+
+M.StaticColumnList = schema.new({ type = "list", list_member = M.StaticColumn })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

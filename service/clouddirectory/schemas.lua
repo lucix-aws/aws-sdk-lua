@@ -7,6 +7,74 @@ local _N = "com.amazonaws.clouddirectory"
 
 local M = {}
 
+M.AttributeKeyAndValueList = schema.new({ type = "list", list_member = M.AttributeKeyAndValue })
+
+M.AttributeNameAndValueList = schema.new({ type = "list", list_member = M.AttributeNameAndValue })
+
+M.BatchReadOperationList = schema.new({ type = "list", list_member = M.BatchReadOperation })
+
+M.BatchReadOperationResponseList = schema.new({ type = "list", list_member = M.BatchReadOperationResponse })
+
+M.BatchWriteOperationList = schema.new({ type = "list", list_member = M.BatchWriteOperation })
+
+M.BatchWriteOperationResponseList = schema.new({ type = "list", list_member = M.BatchWriteOperationResponse })
+
+M.FacetAttributeList = schema.new({ type = "list", list_member = M.FacetAttribute })
+
+M.AttributeKeyList = schema.new({ type = "list", list_member = M.AttributeKey })
+
+M.SchemaFacetList = schema.new({ type = "list", list_member = M.SchemaFacet })
+
+M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Arns = schema.new({ type = "list", list_member = prelude.String })
+
+M.IndexAttachmentList = schema.new({ type = "list", list_member = M.IndexAttachment })
+
+M.DirectoryList = schema.new({ type = "list", list_member = M.Directory })
+
+M.FacetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TypedLinkAttributeRangeList = schema.new({ type = "list", list_member = M.TypedLinkAttributeRange })
+
+M.TypedLinkSpecifierList = schema.new({ type = "list", list_member = M.TypedLinkSpecifier })
+
+M.ObjectAttributeRangeList = schema.new({ type = "list", list_member = M.ObjectAttributeRange })
+
+M.LinkNameToObjectIdentifierMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PathToObjectIdentifiersList = schema.new({ type = "list", list_member = M.PathToObjectIdentifiers })
+
+M.ObjectIdentifierToLinkNameMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ObjectIdentifierAndLinkNameList = schema.new({ type = "list", list_member = M.ObjectIdentifierAndLinkNameTuple })
+
+M.ObjectIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TypedLinkAttributeDefinitionList = schema.new({ type = "list", list_member = M.TypedLinkAttributeDefinition })
+
+M.TypedLinkNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyToPathList = schema.new({ type = "list", list_member = M.PolicyToPath })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FacetAttributeUpdateList = schema.new({ type = "list", list_member = M.FacetAttributeUpdate })
+
+M.LinkAttributeUpdateList = schema.new({ type = "list", list_member = M.LinkAttributeUpdate })
+
+M.ObjectAttributeUpdateList = schema.new({ type = "list", list_member = M.ObjectAttributeUpdate })
+
+M.TypedLinkFacetAttributeUpdateList = schema.new({ type = "list", list_member = M.TypedLinkFacetAttributeUpdate })
+
+M.RuleMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Rule })
+
+M.PolicyAttachmentList = schema.new({ type = "list", list_member = M.PolicyAttachment })
+
+M.RuleParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -4010,10 +4078,7 @@ M.DetachTypedLinkInput = schema.new({
     },
 })
 
-M.DetachTypedLinkOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachTypedLinkOutput = prelude.Unit
 
 M.DisableDirectoryInput = schema.new({
     id = id.from(_N, "DisableDirectoryRequest"),

@@ -7,6 +7,28 @@ local _N = "com.amazonaws.bcmdataexports"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TableProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ColumnList = schema.new({ type = "list", list_member = M.Column })
+
+M.ExecutionReferenceList = schema.new({ type = "list", list_member = M.ExecutionReference })
+
+M.TableList = schema.new({ type = "list", list_member = M.Table })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportReferenceList = schema.new({ type = "list", list_member = M.ExportReference })
+
+M.TableConfigurations = schema.new({ type = "map", map_key = prelude.String, map_value = M.TableProperties })
+
+M.TablePropertyDescriptionList = schema.new({ type = "list", list_member = M.TablePropertyDescription })
+
+M.GenericStringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

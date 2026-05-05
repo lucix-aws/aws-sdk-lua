@@ -7,6 +7,126 @@ local _N = "com.amazonaws.accessanalyzer"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.AccessList = schema.new({ type = "list", list_member = M.Access })
+
+M.ReasonSummaryList = schema.new({ type = "list", list_member = M.ReasonSummary })
+
+M.ConfigurationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Configuration })
+
+M.RecommendedStepList = schema.new({ type = "list", list_member = M.RecommendedStep })
+
+M.FindingsStatisticsList = schema.new({ type = "list", list_member = M.FindingsStatistics })
+
+M.FindingDetailsList = schema.new({ type = "list", list_member = M.FindingDetails })
+
+M.FilterCriteriaMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Criterion })
+
+M.AccessPreviewFindingsList = schema.new({ type = "list", list_member = M.AccessPreviewFinding })
+
+M.AccessPreviewsList = schema.new({ type = "list", list_member = M.AccessPreviewSummary })
+
+M.AnalyzedResourcesList = schema.new({ type = "list", list_member = M.AnalyzedResourceSummary })
+
+M.FindingsList = schema.new({ type = "list", list_member = M.FindingSummary })
+
+M.FindingsListV2 = schema.new({ type = "list", list_member = M.FindingSummaryV2 })
+
+M.PolicyGenerationList = schema.new({ type = "list", list_member = M.PolicyGeneration })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidatePolicyFindingList = schema.new({ type = "list", list_member = M.ValidatePolicyFinding })
+
+M.AnalyzersList = schema.new({ type = "list", list_member = M.AnalyzerSummary })
+
+M.InlineArchiveRulesList = schema.new({ type = "list", list_member = M.InlineArchiveRule })
+
+M.ActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SharedViaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PrincipalMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ConditionKeyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FindingSourceList = schema.new({ type = "list", list_member = M.FindingSource })
+
+M.GeneratedPolicyList = schema.new({ type = "list", list_member = M.GeneratedPolicy })
+
+M.TrailList = schema.new({ type = "list", list_member = M.Trail })
+
+M.ArchiveRulesList = schema.new({ type = "list", list_member = M.ArchiveRuleSummary })
+
+M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourcesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocationList = schema.new({ type = "list", list_member = M.Location })
+
+M.EbsUserIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EbsGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KmsKeyPoliciesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.KmsGrantConfigurationsList = schema.new({ type = "list", list_member = M.KmsGrantConfiguration })
+
+M.RdsDbClusterSnapshotAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RdsDbClusterSnapshotAttributeValue })
+
+M.RdsDbSnapshotAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RdsDbSnapshotAttributeValue })
+
+M.S3BucketAclGrantConfigurationsList = schema.new({ type = "list", list_member = M.S3BucketAclGrantConfiguration })
+
+M.S3AccessPointConfigurationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.S3AccessPointConfiguration })
+
+M.S3ExpressDirectoryAccessPointConfigurationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.S3ExpressDirectoryAccessPointConfiguration })
+
+M.ResourceTypeStatisticsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ResourceTypeDetails })
+
+M.InternalAccessResourceTypeStatisticsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.InternalAccessResourceTypeDetails })
+
+M.UnusedAccessTypeStatisticsList = schema.new({ type = "list", list_member = M.UnusedAccessTypeStatistics })
+
+M.AccountAggregations = schema.new({ type = "list", list_member = M.FindingAggregationAccountDetails })
+
+M.UnusedActionList = schema.new({ type = "list", list_member = M.UnusedAction })
+
+M.TrailPropertiesList = schema.new({ type = "list", list_member = M.TrailProperties })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnalysisRuleCriteriaList = schema.new({ type = "list", list_member = M.AnalysisRuleCriteria })
+
+M.InternalAccessAnalysisRuleCriteriaList = schema.new({ type = "list", list_member = M.InternalAccessAnalysisRuleCriteria })
+
+M.PathElementList = schema.new({ type = "list", list_member = M.PathElement })
+
+M.KmsGrantOperationsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RdsDbClusterSnapshotAccountIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RdsDbSnapshotAccountIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingAggregationAccountDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.AccountIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagsList = schema.new({ type = "list", list_member = M.TagsMap })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KmsConstraintsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.Access = schema.new({
     id = id.from(_N, "Access"),
     type = "structure",
@@ -170,10 +290,7 @@ M.CreateArchiveRuleInput = schema.new({
     },
 })
 
-M.CreateArchiveRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateArchiveRuleOutput = prelude.Unit
 
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
@@ -402,10 +519,7 @@ M.DeleteArchiveRuleInput = schema.new({
     },
 })
 
-M.DeleteArchiveRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteArchiveRuleOutput = prelude.Unit
 
 M.GetArchiveRuleInput = schema.new({
     id = id.from(_N, "GetArchiveRuleRequest"),
@@ -609,10 +723,7 @@ M.UpdateArchiveRuleInput = schema.new({
     },
 })
 
-M.UpdateArchiveRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateArchiveRuleOutput = prelude.Unit
 
 M.InlineArchiveRule = schema.new({
     id = id.from(_N, "InlineArchiveRule"),
@@ -713,7 +824,7 @@ M.AnalysisRuleCriteria = schema.new({
             type = "list",
             name = "resourceTags",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.TagsMap,
         }),
     },
 })
@@ -869,10 +980,7 @@ M.DeleteAnalyzerInput = schema.new({
     },
 })
 
-M.DeleteAnalyzerOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAnalyzerOutput = prelude.Unit
 
 M.GetAnalyzerInput = schema.new({
     id = id.from(_N, "GetAnalyzerRequest"),
@@ -1146,10 +1254,7 @@ M.ApplyArchiveRuleInput = schema.new({
     },
 })
 
-M.ApplyArchiveRuleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ApplyArchiveRuleOutput = prelude.Unit
 
 M.CancelPolicyGenerationInput = schema.new({
     id = id.from(_N, "CancelPolicyGenerationRequest"),
@@ -2107,10 +2212,7 @@ M.GenerateFindingRecommendationInput = schema.new({
     },
 })
 
-M.GenerateFindingRecommendationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GenerateFindingRecommendationOutput = prelude.Unit
 
 M.GetAccessPreviewInput = schema.new({
     id = id.from(_N, "GetAccessPreviewRequest"),
@@ -4909,10 +5011,7 @@ M.StartResourceScanInput = schema.new({
     },
 })
 
-M.StartResourceScanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartResourceScanOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -5027,10 +5126,7 @@ M.UpdateFindingsInput = schema.new({
     },
 })
 
-M.UpdateFindingsOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateFindingsOutput = prelude.Unit
 
 M.ValidatePolicyInput = schema.new({
     id = id.from(_N, "ValidatePolicyRequest"),

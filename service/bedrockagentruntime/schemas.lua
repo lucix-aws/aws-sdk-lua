@@ -7,6 +7,156 @@ local _N = "com.amazonaws.bedrockagentruntime"
 
 local M = {}
 
+M.FlowExecutionErrors = schema.new({ type = "list", list_member = M.FlowExecutionError })
+
+M.FlowExecutionEvents = schema.new({ type = "list", list_member = M.FlowExecutionEvent })
+
+M.FlowExecutionSummaries = schema.new({ type = "list", list_member = M.FlowExecutionSummary })
+
+M.FlowInputs = schema.new({ type = "list", list_member = M.FlowInput })
+
+M.GeneratedQueries = schema.new({ type = "list", list_member = M.GeneratedQuery })
+
+M.AgentActionGroups = schema.new({ type = "list", list_member = M.AgentActionGroup })
+
+M.KnowledgeBases = schema.new({ type = "list", list_member = M.KnowledgeBase })
+
+M.CollaboratorConfigurations = schema.new({ type = "list", list_member = M.CollaboratorConfiguration })
+
+M.Collaborators = schema.new({ type = "list", list_member = M.Collaborator })
+
+M.Memories = schema.new({ type = "list", list_member = M.Memory })
+
+M.RerankQueriesList = schema.new({ type = "list", list_member = M.RerankQuery })
+
+M.RerankSourcesList = schema.new({ type = "list", list_member = M.RerankSource })
+
+M.RerankResultsList = schema.new({ type = "list", list_member = M.RerankResult })
+
+M.Citations = schema.new({ type = "list", list_member = M.Citation })
+
+M.KnowledgeBaseRetrievalResults = schema.new({ type = "list", list_member = M.KnowledgeBaseRetrievalResult })
+
+M.SessionSummaries = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.SessionMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InvocationSummaries = schema.new({ type = "list", list_member = M.InvocationSummary })
+
+M.InvocationStepSummaries = schema.new({ type = "list", list_member = M.InvocationStepSummary })
+
+M.SessionAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PromptSessionAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ReturnControlInvocationResults = schema.new({ type = "list", list_member = M.InvocationResultMember })
+
+M.InputFiles = schema.new({ type = "list", list_member = M.InputFile })
+
+M.KnowledgeBaseConfigurations = schema.new({ type = "list", list_member = M.KnowledgeBaseConfiguration })
+
+M.PromptConfigurations = schema.new({ type = "list", list_member = M.PromptConfiguration })
+
+M.BedrockSessionContentBlocks = schema.new({ type = "list", list_member = M.BedrockSessionContentBlock })
+
+M.Messages = schema.new({ type = "list", list_member = M.Message })
+
+M.CallerChain = schema.new({ type = "list", list_member = M.Caller })
+
+M.InvocationInputs = schema.new({ type = "list", list_member = M.InvocationInputMember })
+
+M.OutputFiles = schema.new({ type = "list", list_member = M.OutputFile })
+
+M.ActionGroupSignatureParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ExternalSources = schema.new({ type = "list", list_member = M.ExternalSource })
+
+M.RetrievedReferences = schema.new({ type = "list", list_member = M.RetrievedReference })
+
+M.RetrievalResultMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.FlowInputFields = schema.new({ type = "list", list_member = M.FlowInputField })
+
+M.FlowOutputFields = schema.new({ type = "list", list_member = M.FlowOutputField })
+
+M.NodeInputFields = schema.new({ type = "list", list_member = M.NodeInputField })
+
+M.NodeOutputFields = schema.new({ type = "list", list_member = M.NodeOutputField })
+
+M.SatisfiedConditions = schema.new({ type = "list", list_member = M.SatisfiedCondition })
+
+M.Functions = schema.new({ type = "list", list_member = M.FunctionDefinition })
+
+M.AdditionalModelRequestFields = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.RetrievalFilterList = schema.new({ type = "list", list_member = M.RetrievalFilter })
+
+M.MetadataAttributeSchemaList = schema.new({ type = "list", list_member = M.MetadataAttributeSchema })
+
+M.RetrievalResultContentRow = schema.new({ type = "list", list_member = M.RetrievalResultContentColumn })
+
+M.AgentTraces = schema.new({ type = "list", list_member = M.TracePart })
+
+M.FlowTraceNodeInputFields = schema.new({ type = "list", list_member = M.FlowTraceNodeInputField })
+
+M.FlowTraceNodeOutputFields = schema.new({ type = "list", list_member = M.FlowTraceNodeOutputField })
+
+M.FlowTraceConditions = schema.new({ type = "list", list_member = M.FlowTraceCondition })
+
+M.ResponseBody = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContentBody })
+
+M.ContentBlocks = schema.new({ type = "list", list_member = M.ContentBlock })
+
+M.GuardrailAssessmentList = schema.new({ type = "list", list_member = M.GuardrailAssessment })
+
+M.StopSequences = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodeInputExecutionChain = schema.new({ type = "list", list_member = M.NodeInputExecutionChainItem })
+
+M.NodeOutputNextList = schema.new({ type = "list", list_member = M.NodeOutputNext })
+
+M.ApiParameters = schema.new({ type = "list", list_member = M.ApiParameter })
+
+M.FunctionParameters = schema.new({ type = "list", list_member = M.FunctionParameter })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterDetail })
+
+M.RAGStopSequences = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlowTraceNodeInputExecutionChain = schema.new({ type = "list", list_member = M.FlowTraceNodeInputExecutionChainItem })
+
+M.FlowTraceNodeOutputNextList = schema.new({ type = "list", list_member = M.FlowTraceNodeOutputNext })
+
+M.ImageInputs = schema.new({ type = "list", list_member = M.ImageInput })
+
+M.Parameters = schema.new({ type = "list", list_member = M.Parameter })
+
+M.Files = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApiContentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyParameters })
+
+M.FieldsForReranking = schema.new({ type = "list", list_member = M.FieldForReranking })
+
+M.GuardrailTopicList = schema.new({ type = "list", list_member = M.GuardrailTopic })
+
+M.GuardrailContentFilterList = schema.new({ type = "list", list_member = M.GuardrailContentFilter })
+
+M.GuardrailCustomWordList = schema.new({ type = "list", list_member = M.GuardrailCustomWord })
+
+M.GuardrailManagedWordList = schema.new({ type = "list", list_member = M.GuardrailManagedWord })
+
+M.GuardrailPiiEntityFilterList = schema.new({ type = "list", list_member = M.GuardrailPiiEntityFilter })
+
+M.GuardrailRegexFilterList = schema.new({ type = "list", list_member = M.GuardrailRegexFilter })
+
+M.ContentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Parameters })
+
+M.ParameterList = schema.new({ type = "list", list_member = M.Parameter })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

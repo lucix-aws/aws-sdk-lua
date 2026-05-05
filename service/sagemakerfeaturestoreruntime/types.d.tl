@@ -110,9 +110,9 @@ local record ValidationError
     Message: string
 end
 
-local type DeletionMode = "SoftDelete" | "HardDelete"
-
 local type ExpirationTimeResponse = "Enabled" | "Disabled"
+
+local type DeletionMode = "SoftDelete" | "HardDelete"
 
 local record M
     BatchGetRecordInput: BatchGetRecordInput

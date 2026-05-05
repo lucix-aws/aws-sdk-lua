@@ -7,6 +7,52 @@ local _N = "com.amazonaws.route53globalresolver"
 
 local M = {}
 
+M.Domains = schema.new({ type = "list", list_member = prelude.String })
+
+M.IPv4Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.IPv6Addresses = schema.new({ type = "list", list_member = prelude.String })
+
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "map", map_key = prelude.String, map_value = M.Strings })
+
+M.AccessSources = schema.new({ type = "list", list_member = M.AccessSourcesItem })
+
+M.AccessTokens = schema.new({ type = "list", list_member = M.AccessTokenItem })
+
+M.DNSViews = schema.new({ type = "list", list_member = M.DNSViewSummary })
+
+M.FirewallDomainLists = schema.new({ type = "list", list_member = M.FirewallDomainListsItem })
+
+M.FirewallRules = schema.new({ type = "list", list_member = M.FirewallRulesItem })
+
+M.BatchCreateFirewallRuleInputItems = schema.new({ type = "list", list_member = M.BatchCreateFirewallRuleInputItem })
+
+M.BatchCreateFirewallRuleOutputItems = schema.new({ type = "list", list_member = M.BatchCreateFirewallRuleOutputItem })
+
+M.BatchDeleteFirewallRuleInputItems = schema.new({ type = "list", list_member = M.BatchDeleteFirewallRuleInputItem })
+
+M.BatchDeleteFirewallRuleOutputItems = schema.new({ type = "list", list_member = M.BatchDeleteFirewallRuleOutputItem })
+
+M.BatchUpdateFirewallRuleInputItems = schema.new({ type = "list", list_member = M.BatchUpdateFirewallRuleInputItem })
+
+M.BatchUpdateFirewallRuleOutputItems = schema.new({ type = "list", list_member = M.BatchUpdateFirewallRuleOutputItem })
+
+M.GlobalResolvers = schema.new({ type = "list", list_member = M.GlobalResolversItem })
+
+M.HostedZoneAssociations = schema.new({ type = "list", list_member = M.HostedZoneAssociationSummary })
+
+M.ManagedFirewallDomainLists = schema.new({ type = "list", list_member = M.ManagedFirewallDomainListsItem })
+
+M.Strings = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

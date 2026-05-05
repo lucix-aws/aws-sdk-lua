@@ -1021,19 +1021,19 @@ local record ValidationException
     Message: string
 end
 
-local type JobRunState = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
-
-local type Source = "S3" | "DATA-CATALOG" | "DATABASE"
-
-local type EncryptionMode = "SSE-KMS" | "SSE-S3"
+local type SessionStatus = "ASSIGNED" | "FAILED" | "INITIALIZING" | "PROVISIONING" | "READY" | "RECYCLING" | "ROTATING" | "TERMINATED" | "TERMINATING" | "UPDATING"
 
 local type JobType = "PROFILE" | "RECIPE"
 
-local type SessionStatus = "ASSIGNED" | "FAILED" | "INITIALIZING" | "PROVISIONING" | "READY" | "RECYCLING" | "ROTATING" | "TERMINATED" | "TERMINATING" | "UPDATING"
-
-local type LogSubscription = "ENABLE" | "DISABLE"
+local type Source = "S3" | "DATA-CATALOG" | "DATABASE"
 
 local type InputFormat = "CSV" | "JSON" | "PARQUET" | "EXCEL" | "ORC"
+
+local type JobRunState = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
+
+local type EncryptionMode = "SSE-KMS" | "SSE-S3"
+
+local type LogSubscription = "ENABLE" | "DISABLE"
 
 local record M
     BatchDeleteRecipeVersionInput: BatchDeleteRecipeVersionInput

@@ -7,6 +7,24 @@ local _N = "com.amazonaws.backupgateway"
 
 local M = {}
 
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.Gateways = schema.new({ type = "list", list_member = M.Gateway })
+
+M.Hypervisors = schema.new({ type = "list", list_member = M.Hypervisor })
+
+M.VirtualMachines = schema.new({ type = "list", list_member = M.VirtualMachine })
+
+M.BandwidthRateLimitIntervals = schema.new({ type = "list", list_member = M.BandwidthRateLimitInterval })
+
+M.VmwareToAwsTagMappings = schema.new({ type = "list", list_member = M.VmwareToAwsTagMapping })
+
+M.VmwareTags = schema.new({ type = "list", list_member = M.VmwareTag })
+
+M.DaysOfWeek = schema.new({ type = "list", list_member = prelude.Integer })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

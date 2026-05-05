@@ -7,6 +7,30 @@ local _N = "com.amazonaws.tnb"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GetSolNetworkOperationTasksList = schema.new({ type = "list", list_member = M.GetSolNetworkOperationTaskDetails })
+
+M.VnfPkgIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListSolFunctionInstanceResources = schema.new({ type = "list", list_member = M.ListSolFunctionInstanceInfo })
+
+M.ListSolFunctionPackageResources = schema.new({ type = "list", list_member = M.ListSolFunctionPackageInfo })
+
+M.ListSolNetworkInstanceResources = schema.new({ type = "list", list_member = M.ListSolNetworkInstanceInfo })
+
+M.ListSolNetworkOperationsResources = schema.new({ type = "list", list_member = M.ListSolNetworkOperationsInfo })
+
+M.ListSolNetworkPackageResources = schema.new({ type = "list", list_member = M.ListSolNetworkPackageInfo })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.GetSolVnfcResourceInfoList = schema.new({ type = "list", list_member = M.GetSolVnfcResourceInfo })
+
+M.OverrideList = schema.new({ type = "list", list_member = M.ToscaOverride })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -43,10 +67,7 @@ M.CancelSolNetworkOperationInput = schema.new({
     },
 })
 
-M.CancelSolNetworkOperationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CancelSolNetworkOperationOutput = prelude.Unit
 
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
@@ -400,10 +421,7 @@ M.DeleteSolFunctionPackageInput = schema.new({
     },
 })
 
-M.DeleteSolFunctionPackageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSolFunctionPackageOutput = prelude.Unit
 
 M.DeleteSolNetworkInstanceInput = schema.new({
     id = id.from(_N, "DeleteSolNetworkInstanceInput"),
@@ -422,10 +440,7 @@ M.DeleteSolNetworkInstanceInput = schema.new({
     },
 })
 
-M.DeleteSolNetworkInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSolNetworkInstanceOutput = prelude.Unit
 
 M.DeleteSolNetworkPackageInput = schema.new({
     id = id.from(_N, "DeleteSolNetworkPackageInput"),
@@ -444,10 +459,7 @@ M.DeleteSolNetworkPackageInput = schema.new({
     },
 })
 
-M.DeleteSolNetworkPackageOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSolNetworkPackageOutput = prelude.Unit
 
 M.ErrorInfo = schema.new({
     id = id.from(_N, "ErrorInfo"),

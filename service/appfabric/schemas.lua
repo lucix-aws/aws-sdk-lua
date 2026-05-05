@@ -7,6 +7,26 @@ local _N = "com.amazonaws.appfabric"
 
 local M = {}
 
+M.TaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserAccessResultsList = schema.new({ type = "list", list_member = M.UserAccessResultItem })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AppAuthorizationSummaryList = schema.new({ type = "list", list_member = M.AppAuthorizationSummary })
+
+M.AppBundleSummaryList = schema.new({ type = "list", list_member = M.AppBundleSummary })
+
+M.IngestionDestinationList = schema.new({ type = "list", list_member = M.IngestionDestinationSummary })
+
+M.IngestionList = schema.new({ type = "list", list_member = M.IngestionSummary })
+
+M.UserAccessTasksList = schema.new({ type = "list", list_member = M.UserAccessTaskItem })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

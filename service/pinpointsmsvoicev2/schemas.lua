@@ -7,6 +7,192 @@ local _N = "com.amazonaws.pinpointsmsvoicev2"
 
 local M = {}
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.EventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IsoCountryCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyEnabledChannelsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EventDestinationList = schema.new({ type = "list", list_member = M.EventDestination })
+
+M.SelectChoiceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountAttributeList = schema.new({ type = "list", list_member = M.AccountAttribute })
+
+M.AccountLimitList = schema.new({ type = "list", list_member = M.AccountLimit })
+
+M.ConfigurationSetNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfigurationSetFilterList = schema.new({ type = "list", list_member = M.ConfigurationSetFilter })
+
+M.ConfigurationSetInformationList = schema.new({ type = "list", list_member = M.ConfigurationSetInformation })
+
+M.KeywordList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KeywordFilterList = schema.new({ type = "list", list_member = M.KeywordFilter })
+
+M.KeywordInformationList = schema.new({ type = "list", list_member = M.KeywordInformation })
+
+M.NotifyConfigurationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyConfigurationFilterList = schema.new({ type = "list", list_member = M.NotifyConfigurationFilter })
+
+M.NotifyConfigurationInformationList = schema.new({ type = "list", list_member = M.NotifyConfigurationInformation })
+
+M.NotifyTemplateIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyTemplateFilterList = schema.new({ type = "list", list_member = M.NotifyTemplateFilter })
+
+M.NotifyTemplateInformationList = schema.new({ type = "list", list_member = M.NotifyTemplateInformation })
+
+M.OptedOutNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OptedOutFilterList = schema.new({ type = "list", list_member = M.OptedOutFilter })
+
+M.OptedOutNumberInformationList = schema.new({ type = "list", list_member = M.OptedOutNumberInformation })
+
+M.OptOutListNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OptOutListInformationList = schema.new({ type = "list", list_member = M.OptOutListInformation })
+
+M.PhoneNumberIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PhoneNumberFilterList = schema.new({ type = "list", list_member = M.PhoneNumberFilter })
+
+M.PhoneNumberInformationList = schema.new({ type = "list", list_member = M.PhoneNumberInformation })
+
+M.PoolIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PoolFilterList = schema.new({ type = "list", list_member = M.PoolFilter })
+
+M.PoolInformationList = schema.new({ type = "list", list_member = M.PoolInformation })
+
+M.ProtectConfigurationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtectConfigurationFilterList = schema.new({ type = "list", list_member = M.ProtectConfigurationFilter })
+
+M.ProtectConfigurationInformationList = schema.new({ type = "list", list_member = M.ProtectConfigurationInformation })
+
+M.CountryLaunchStatusFilterList = schema.new({ type = "list", list_member = M.CountryLaunchStatusFilter })
+
+M.CountryLaunchStatusInformationList = schema.new({ type = "list", list_member = M.CountryLaunchStatusInformation })
+
+M.RcsAgentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RcsAgentFilterList = schema.new({ type = "list", list_member = M.RcsAgentFilter })
+
+M.RcsAgentInformationList = schema.new({ type = "list", list_member = M.RcsAgentInformation })
+
+M.RegistrationAttachmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationAttachmentFilterList = schema.new({ type = "list", list_member = M.RegistrationAttachmentFilter })
+
+M.RegistrationAttachmentsInformationList = schema.new({ type = "list", list_member = M.RegistrationAttachmentsInformation })
+
+M.FieldPathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationFieldDefinitionList = schema.new({ type = "list", list_member = M.RegistrationFieldDefinition })
+
+M.RegistrationFieldValueInformationList = schema.new({ type = "list", list_member = M.RegistrationFieldValueInformation })
+
+M.RegistrationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationFilterList = schema.new({ type = "list", list_member = M.RegistrationFilter })
+
+M.RegistrationInformationList = schema.new({ type = "list", list_member = M.RegistrationInformation })
+
+M.SectionPathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationSectionDefinitionList = schema.new({ type = "list", list_member = M.RegistrationSectionDefinition })
+
+M.RegistrationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegistrationTypeFilterList = schema.new({ type = "list", list_member = M.RegistrationTypeFilter })
+
+M.RegistrationTypeDefinitionList = schema.new({ type = "list", list_member = M.RegistrationTypeDefinition })
+
+M.RegistrationVersionNumberList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.RegistrationVersionFilterList = schema.new({ type = "list", list_member = M.RegistrationVersionFilter })
+
+M.RegistrationVersionInformationList = schema.new({ type = "list", list_member = M.RegistrationVersionInformation })
+
+M.SenderIdList = schema.new({ type = "list", list_member = M.SenderIdAndCountry })
+
+M.SenderIdFilterList = schema.new({ type = "list", list_member = M.SenderIdFilter })
+
+M.SenderIdInformationList = schema.new({ type = "list", list_member = M.SenderIdInformation })
+
+M.SpendLimitList = schema.new({ type = "list", list_member = M.SpendLimit })
+
+M.VerifiedDestinationNumberIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationPhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
+M.VerifiedDestinationNumberFilterList = schema.new({ type = "list", list_member = M.VerifiedDestinationNumberFilter })
+
+M.VerifiedDestinationNumberInformationList = schema.new({ type = "list", list_member = M.VerifiedDestinationNumberInformation })
+
+M.ProtectConfigurationCountryRuleSet = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProtectConfigurationCountryRuleSetInformation })
+
+M.NotifyUseCaseList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyCountryInformationList = schema.new({ type = "list", list_member = M.NotifyCountryInformation })
+
+M.PoolOriginationIdentitiesFilterList = schema.new({ type = "list", list_member = M.PoolOriginationIdentitiesFilter })
+
+M.OriginationIdentityMetadataList = schema.new({ type = "list", list_member = M.OriginationIdentityMetadata })
+
+M.ListProtectConfigurationRuleSetNumberOverrideFilter = schema.new({ type = "list", list_member = M.ProtectConfigurationRuleSetNumberOverrideFilterItem })
+
+M.ProtectConfigurationRuleSetNumberOverrideList = schema.new({ type = "list", list_member = M.ProtectConfigurationRuleSetNumberOverride })
+
+M.RegistrationAssociationFilterList = schema.new({ type = "list", list_member = M.RegistrationAssociationFilter })
+
+M.RegistrationAssociationMetadataList = schema.new({ type = "list", list_member = M.RegistrationAssociationMetadata })
+
+M.NumberCapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DestinationCountryParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MediaUrlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TemplateVariableSubstitutionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.NonEmptyTagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyConfigurationTierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TemplateVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TemplateVariableMetadata })
+
+M.VoiceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CarrierStatusInformationList = schema.new({ type = "list", list_member = M.CarrierStatusInformation })
+
+M.SupportedAssociationList = schema.new({ type = "list", list_member = M.SupportedAssociation })
+
+M.RegistrationDeniedReasonInformationList = schema.new({ type = "list", list_member = M.RegistrationDeniedReasonInformation })
+
+M.NotifyTierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SelectOptionDescriptionsList = schema.new({ type = "list", list_member = M.SelectOptionDescription })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

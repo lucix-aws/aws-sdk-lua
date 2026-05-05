@@ -7,6 +7,22 @@ local _N = "com.amazonaws.chimesdkmeetings"
 
 local M = {}
 
+M.CreateAttendeeRequestItemList = schema.new({ type = "list", list_member = M.CreateAttendeeRequestItem })
+
+M.AttendeeList = schema.new({ type = "list", list_member = M.Attendee })
+
+M.BatchCreateAttendeeErrorList = schema.new({ type = "list", list_member = M.CreateAttendeeError })
+
+M.AttendeeIdsList = schema.new({ type = "list", list_member = M.AttendeeIdItem })
+
+M.TenantIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.CreateMeetingWithAttendeesRequestItemList = schema.new({ type = "list", list_member = M.CreateAttendeeRequestItem })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AttendeeCapabilities = schema.new({
     id = id.from(_N, "AttendeeCapabilities"),
     type = "structure",
@@ -509,10 +525,7 @@ M.BatchUpdateAttendeeCapabilitiesExceptInput = schema.new({
     },
 })
 
-M.BatchUpdateAttendeeCapabilitiesExceptOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.BatchUpdateAttendeeCapabilitiesExceptOutput = prelude.Unit
 
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
@@ -1060,10 +1073,7 @@ M.DeleteAttendeeInput = schema.new({
     },
 })
 
-M.DeleteAttendeeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAttendeeOutput = prelude.Unit
 
 M.DeleteMeetingInput = schema.new({
     id = id.from(_N, "DeleteMeetingRequest"),
@@ -1082,10 +1092,7 @@ M.DeleteMeetingInput = schema.new({
     },
 })
 
-M.DeleteMeetingOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteMeetingOutput = prelude.Unit
 
 M.GetAttendeeInput = schema.new({
     id = id.from(_N, "GetAttendeeRequest"),
@@ -1488,10 +1495,7 @@ M.StartMeetingTranscriptionInput = schema.new({
     },
 })
 
-M.StartMeetingTranscriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StartMeetingTranscriptionOutput = prelude.Unit
 
 M.StopMeetingTranscriptionInput = schema.new({
     id = id.from(_N, "StopMeetingTranscriptionRequest"),
@@ -1510,10 +1514,7 @@ M.StopMeetingTranscriptionInput = schema.new({
     },
 })
 
-M.StopMeetingTranscriptionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.StopMeetingTranscriptionOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),

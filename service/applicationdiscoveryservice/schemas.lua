@@ -7,6 +7,74 @@ local _N = "com.amazonaws.applicationdiscoveryservice"
 
 local M = {}
 
+M.ConfigurationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteAgents = schema.new({ type = "list", list_member = M.DeleteAgent })
+
+M.BatchDeleteAgentErrors = schema.new({ type = "list", list_member = M.BatchDeleteAgentError })
+
+M.ToDeleteIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteImportDataErrorList = schema.new({ type = "list", list_member = M.BatchDeleteImportDataError })
+
+M.TagSet = schema.new({ type = "list", list_member = M.Tag })
+
+M.ApplicationIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.AgentsInfo = schema.new({ type = "list", list_member = M.AgentInfo })
+
+M.DescribeConfigurationsAttributes = schema.new({ type = "list", list_member = M.DescribeConfigurationsAttribute })
+
+M.ContinuousExportIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContinuousExportDescriptions = schema.new({ type = "list", list_member = M.ContinuousExportDescription })
+
+M.ExportIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExportsInfo = schema.new({ type = "list", list_member = M.ExportInfo })
+
+M.ExportFilters = schema.new({ type = "list", list_member = M.ExportFilter })
+
+M.DescribeImportTasksFilterList = schema.new({ type = "list", list_member = M.ImportTaskFilter })
+
+M.ImportTaskList = schema.new({ type = "list", list_member = M.ImportTask })
+
+M.TagFilters = schema.new({ type = "list", list_member = M.TagFilter })
+
+M.ConfigurationTagSet = schema.new({ type = "list", list_member = M.ConfigurationTag })
+
+M.OrderByList = schema.new({ type = "list", list_member = M.OrderByElement })
+
+M.Configurations = schema.new({ type = "list", list_member = M.Configuration })
+
+M.NeighborDetailsList = schema.new({ type = "list", list_member = M.NeighborConnectionDetail })
+
+M.SchemaStorageConfig = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AgentConfigurationStatusList = schema.new({ type = "list", list_member = M.AgentConfigurationStatus })
+
+M.ExportDataFormats = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedConfigurationList = schema.new({ type = "list", list_member = M.FailedConfiguration })
+
+M.DeletionWarningsList = schema.new({ type = "list", list_member = M.DeletionWarning })
+
+M.DescribeConfigurationsAttribute = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Configuration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentNetworkInfoList = schema.new({ type = "list", list_member = M.AgentNetworkInfo })
+
+M.ImportTaskFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedInstanceTypes = schema.new({ type = "list", list_member = prelude.String })
+
 M.AgentConfigurationStatus = schema.new({
     id = id.from(_N, "AgentConfigurationStatus"),
     type = "structure",
@@ -821,7 +889,7 @@ M.DescribeConfigurationsOutput = schema.new({
             type = "list",
             name = "configurations",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.DescribeConfigurationsAttribute,
         }),
     },
 })
@@ -1467,10 +1535,7 @@ M.DisassociateConfigurationItemsFromApplicationOutput = schema.new({
     type = "structure",
 })
 
-M.ExportConfigurationsInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ExportConfigurationsInput = prelude.Unit
 
 M.ExportConfigurationsOutput = schema.new({
     id = id.from(_N, "ExportConfigurationsResponse"),
@@ -1945,7 +2010,7 @@ M.ListConfigurationsOutput = schema.new({
             type = "list",
             name = "configurations",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = M.Configuration,
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListConfigurationsOutput", "nextToken"),

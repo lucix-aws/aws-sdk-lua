@@ -7,6 +7,76 @@ local _N = "com.amazonaws.pipes"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PipeList = schema.new({ type = "list", list_member = M.Pipe })
+
+M.IncludeExecutionData = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.KafkaBootstrapServers = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathParameterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HeaderParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QueryStringParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.CapacityProviderStrategy = schema.new({ type = "list", list_member = M.CapacityProviderStrategyItem })
+
+M.PlacementConstraints = schema.new({ type = "list", list_member = M.PlacementConstraint })
+
+M.PlacementStrategies = schema.new({ type = "list", list_member = M.PlacementStrategy })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.BatchDependsOn = schema.new({ type = "list", list_member = M.BatchJobDependency })
+
+M.BatchParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.Sqls = schema.new({ type = "list", list_member = prelude.String })
+
+M.SageMakerPipelineParameterList = schema.new({ type = "list", list_member = M.SageMakerPipelineParameter })
+
+M.EventBridgeEventResourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DimensionMappings = schema.new({ type = "list", list_member = M.DimensionMapping })
+
+M.SingleMeasureMappings = schema.new({ type = "list", list_member = M.SingleMeasureMapping })
+
+M.MultiMeasureMappings = schema.new({ type = "list", list_member = M.MultiMeasureMapping })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EcsContainerOverrideList = schema.new({ type = "list", list_member = M.EcsContainerOverride })
+
+M.EcsInferenceAcceleratorOverrideList = schema.new({ type = "list", list_member = M.EcsInferenceAcceleratorOverride })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchEnvironmentVariableList = schema.new({ type = "list", list_member = M.BatchEnvironmentVariable })
+
+M.BatchResourceRequirementsList = schema.new({ type = "list", list_member = M.BatchResourceRequirement })
+
+M.Subnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.MultiMeasureAttributeMappings = schema.new({ type = "list", list_member = M.MultiMeasureAttributeMapping })
+
+M.EcsEnvironmentVariableList = schema.new({ type = "list", list_member = M.EcsEnvironmentVariable })
+
+M.EcsEnvironmentFileList = schema.new({ type = "list", list_member = M.EcsEnvironmentFile })
+
+M.EcsResourceRequirementsList = schema.new({ type = "list", list_member = M.EcsResourceRequirement })
+
 M.AwsVpcConfiguration = schema.new({
     id = id.from(_N, "AwsVpcConfiguration"),
     type = "structure",

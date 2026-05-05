@@ -7,6 +7,176 @@ local _N = "com.amazonaws.qconnect"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssistantList = schema.new({ type = "list", list_member = M.AssistantSummary })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.RecommendationData })
+
+M.RecommendationTriggerList = schema.new({ type = "list", list_member = M.RecommendationTrigger })
+
+M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NotifyRecommendationsReceivedErrorList = schema.new({ type = "list", list_member = M.NotifyRecommendationsReceivedError })
+
+M.QueryConditionExpression = schema.new({ type = "list", list_member = M.QueryCondition })
+
+M.QueryResultsList = schema.new({ type = "list", list_member = M.ResultData })
+
+M.RetrieveResultList = schema.new({ type = "list", list_member = M.RetrieveResult })
+
+M.SessionSummaries = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.KnowledgeBaseList = schema.new({ type = "list", list_member = M.KnowledgeBaseSummary })
+
+M.ImportJobList = schema.new({ type = "list", list_member = M.ImportJobSummary })
+
+M.ContentSummaryList = schema.new({ type = "list", list_member = M.ContentSummary })
+
+M.MessageTemplateSearchResultsList = schema.new({ type = "list", list_member = M.MessageTemplateSearchResultData })
+
+M.ContactAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.QuickResponseSearchResultsList = schema.new({ type = "list", list_member = M.QuickResponseSearchResultData })
+
+M.Headers = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ContentMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AIAgentSummaryList = schema.new({ type = "list", list_member = M.AIAgentSummary })
+
+M.AIAgentVersionSummariesList = schema.new({ type = "list", list_member = M.AIAgentVersionSummary })
+
+M.AIGuardrailSummariesList = schema.new({ type = "list", list_member = M.AIGuardrailSummary })
+
+M.AIGuardrailVersionSummariesList = schema.new({ type = "list", list_member = M.AIGuardrailVersionSummary })
+
+M.AIPromptSummaryList = schema.new({ type = "list", list_member = M.AIPromptSummary })
+
+M.AIPromptVersionSummariesList = schema.new({ type = "list", list_member = M.AIPromptVersionSummary })
+
+M.AssistantAssociationSummaryList = schema.new({ type = "list", list_member = M.AssistantAssociationSummary })
+
+M.AIAgentConfigurationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AIAgentConfigurationData })
+
+M.OrchestratorConfigurationList = schema.new({ type = "list", list_member = M.OrchestratorConfigurationEntry })
+
+M.RuntimeSessionDataList = schema.new({ type = "list", list_member = M.RuntimeSessionData })
+
+M.MessageList = schema.new({ type = "list", list_member = M.MessageOutput })
+
+M.SpanList = schema.new({ type = "list", list_member = M.Span })
+
+M.MessageMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MessageTemplateSummaryList = schema.new({ type = "list", list_member = M.MessageTemplateSummary })
+
+M.MessageTemplateVersionSummaryList = schema.new({ type = "list", list_member = M.MessageTemplateVersionSummary })
+
+M.MessageTemplateAttributeKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageTemplateAttachmentList = schema.new({ type = "list", list_member = M.MessageTemplateAttachment })
+
+M.QuickResponseSummaryList = schema.new({ type = "list", list_member = M.QuickResponseSummary })
+
+M.Channels = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ContentAssociationSummaryList = schema.new({ type = "list", list_member = M.ContentAssociationSummary })
+
+M.FailureReason = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageTemplateQueryFieldList = schema.new({ type = "list", list_member = M.MessageTemplateQueryField })
+
+M.MessageTemplateFilterFieldList = schema.new({ type = "list", list_member = M.MessageTemplateFilterField })
+
+M.QuickResponseQueryFieldList = schema.new({ type = "list", list_member = M.QuickResponseQueryField })
+
+M.QuickResponseFilterFieldList = schema.new({ type = "list", list_member = M.QuickResponseFilterField })
+
+M.GuardrailTopicsConfig = schema.new({ type = "list", list_member = M.GuardrailTopicConfig })
+
+M.GuardrailContentFiltersConfig = schema.new({ type = "list", list_member = M.GuardrailContentFilterConfig })
+
+M.GuardrailWordsConfig = schema.new({ type = "list", list_member = M.GuardrailWordConfig })
+
+M.GuardrailManagedWordListsConfig = schema.new({ type = "list", list_member = M.GuardrailManagedWordsConfig })
+
+M.GuardrailPiiEntitiesConfig = schema.new({ type = "list", list_member = M.GuardrailPiiEntityConfig })
+
+M.GuardrailRegexesConfig = schema.new({ type = "list", list_member = M.GuardrailRegexConfig })
+
+M.GuardrailContextualGroundingFiltersConfig = schema.new({ type = "list", list_member = M.GuardrailContextualGroundingFilterConfig })
+
+M.AndConditions = schema.new({ type = "list", list_member = M.TagCondition })
+
+M.OrConditions = schema.new({ type = "list", list_member = M.OrCondition })
+
+M.SelfServiceConversationHistoryList = schema.new({ type = "list", list_member = M.SelfServiceConversationHistory })
+
+M.CustomAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.GroupingValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageTemplateAttributeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssistantAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RetrievalFilterList = schema.new({ type = "list", list_member = M.RetrievalFilterConfiguration })
+
+M.ObjectFieldsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactAttributeKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssociationConfigurationList = schema.new({ type = "list", list_member = M.AssociationConfiguration })
+
+M.SuggestedMessagesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ToolConfigurationList = schema.new({ type = "list", list_member = M.ToolConfiguration })
+
+M.EmailHeaders = schema.new({ type = "list", list_member = M.EmailHeader })
+
+M.WhatsAppMessageTemplateComponents = schema.new({ type = "list", list_member = prelude.String })
+
+M.UrlFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HierarchicalChunkingLevelConfigurations = schema.new({ type = "list", list_member = M.HierarchicalChunkingLevelConfiguration })
+
+M.MessageTemplateQueryValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MessageTemplateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QuickResponseQueryValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.QuickResponseFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailTopicExamples = schema.new({ type = "list", list_member = prelude.String })
+
+M.Citations = schema.new({ type = "list", list_member = M.Citation })
+
+M.SpanFinishReasonList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpanMessageList = schema.new({ type = "list", list_member = M.SpanMessage })
+
+M.SpanMessageValueList = schema.new({ type = "list", list_member = M.SpanMessageValue })
+
+M.Highlights = schema.new({ type = "list", list_member = M.Highlight })
+
+M.SeedUrls = schema.new({ type = "list", list_member = M.SeedUrl })
+
+M.ToolOverrideInputValueList = schema.new({ type = "list", list_member = M.ToolOverrideInputValue })
+
+M.ToolOutputFilterList = schema.new({ type = "list", list_member = M.ToolOutputFilter })
+
+M.DataSummaryList = schema.new({ type = "list", list_member = M.DataSummary })
+
+M.ToolExampleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpanCitationList = schema.new({ type = "list", list_member = M.SpanCitation })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

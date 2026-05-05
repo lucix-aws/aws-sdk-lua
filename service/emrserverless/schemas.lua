@@ -7,6 +7,48 @@ local _N = "com.amazonaws.emrserverless"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationStateSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationList = schema.new({ type = "list", list_member = M.ApplicationSummary })
+
+M.InitialCapacityConfigMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.InitialCapacityConfig })
+
+M.WorkerTypeSpecificationInputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkerTypeSpecificationInput })
+
+M.ConfigurationList = schema.new({ type = "list", list_member = M.Configuration })
+
+M.JobRunStateSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobRuns = schema.new({ type = "list", list_member = M.JobRunSummary })
+
+M.JobRunAttempts = schema.new({ type = "list", list_member = M.JobRunAttemptSummary })
+
+M.SessionStateSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.Sessions = schema.new({ type = "list", list_member = M.SessionSummary })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.EncryptionContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.WorkerTypeSpecificationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkerTypeSpecification })
+
+M.PolicyArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SensitivePropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LogTypeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.LogTypeList })
+
+M.EntryPointArguments = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AutoStartConfig = schema.new({
     id = id.from(_N, "AutoStartConfig"),
     type = "structure",

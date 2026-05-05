@@ -7,6 +7,16 @@ local _N = "com.amazonaws.bedrockdataautomationruntime"
 
 local M = {}
 
+M.BlueprintList = schema.new({ type = "list", list_member = M.Blueprint })
+
+M.OutputSegmentList = schema.new({ type = "list", list_member = M.OutputSegment })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EncryptionContextMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

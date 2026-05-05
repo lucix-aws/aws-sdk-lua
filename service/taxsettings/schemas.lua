@@ -7,6 +7,34 @@ local _N = "com.amazonaws.taxsettings"
 
 local M = {}
 
+M.AccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteTaxRegistrationErrors = schema.new({ type = "list", list_member = M.BatchDeleteTaxRegistrationError })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TaxExemptionDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TaxExemptionDetails })
+
+M.BatchPutTaxRegistrationErrors = schema.new({ type = "list", list_member = M.BatchPutTaxRegistrationError })
+
+M.TaxExemptionTypes = schema.new({ type = "list", list_member = M.TaxExemptionType })
+
+M.SupplementalTaxRegistrationList = schema.new({ type = "list", list_member = M.SupplementalTaxRegistration })
+
+M.AccountDetailsList = schema.new({ type = "list", list_member = M.AccountDetails })
+
+M.TaxDocumentMetadatas = schema.new({ type = "list", list_member = M.TaxDocumentMetadata })
+
+M.TaxExemptions = schema.new({ type = "list", list_member = M.TaxExemption })
+
+M.TaxRegistrationDocuments = schema.new({ type = "list", list_member = M.TaxRegistrationDocument })
+
+M.Authorities = schema.new({ type = "list", list_member = M.Authority })
+
+M.MalaysiaServiceTaxCodesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AddressRoleMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Jurisdiction })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

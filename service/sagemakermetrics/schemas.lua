@@ -7,6 +7,18 @@ local _N = "com.amazonaws.sagemakermetrics"
 
 local M = {}
 
+M.MetricQueryList = schema.new({ type = "list", list_member = M.MetricQuery })
+
+M.MetricQueryResultList = schema.new({ type = "list", list_member = M.MetricQueryResult })
+
+M.RawMetricDataList = schema.new({ type = "list", list_member = M.RawMetricData })
+
+M.BatchPutMetricsErrorList = schema.new({ type = "list", list_member = M.BatchPutMetricsError })
+
+M.XAxisValues = schema.new({ type = "list", list_member = prelude.Long })
+
+M.MetricValues = schema.new({ type = "list", list_member = prelude.Double })
+
 M.MetricQuery = schema.new({
     id = id.from(_N, "MetricQuery"),
     type = "structure",

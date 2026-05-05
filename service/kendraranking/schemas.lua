@@ -7,6 +7,20 @@ local _N = "com.amazonaws.kendraranking"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.RescoreExecutionPlanSummaryList = schema.new({ type = "list", list_member = M.RescoreExecutionPlanSummary })
+
+M.DocumentList = schema.new({ type = "list", list_member = M.Document })
+
+M.RescoreResultItemList = schema.new({ type = "list", list_member = M.RescoreResultItem })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TitleTokensList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BodyTokensList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -231,10 +245,7 @@ M.DeleteRescoreExecutionPlanInput = schema.new({
     },
 })
 
-M.DeleteRescoreExecutionPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRescoreExecutionPlanOutput = prelude.Unit
 
 M.ResourceNotFoundException = schema.new({
     id = id.from(_N, "ResourceNotFoundException"),
@@ -689,10 +700,7 @@ M.UpdateRescoreExecutionPlanInput = schema.new({
     },
 })
 
-M.UpdateRescoreExecutionPlanOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateRescoreExecutionPlanOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

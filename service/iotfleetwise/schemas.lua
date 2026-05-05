@@ -7,6 +7,100 @@ local _N = "com.amazonaws.iotfleetwise"
 
 local M = {}
 
+M.createVehicleRequestItems = schema.new({ type = "list", list_member = M.CreateVehicleRequestItem })
+
+M.createVehicleResponses = schema.new({ type = "list", list_member = M.CreateVehicleResponseItem })
+
+M.createVehicleErrors = schema.new({ type = "list", list_member = M.CreateVehicleError })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.updateVehicleRequestItems = schema.new({ type = "list", list_member = M.UpdateVehicleRequestItem })
+
+M.updateVehicleResponseItems = schema.new({ type = "list", list_member = M.UpdateVehicleResponseItem })
+
+M.updateVehicleErrors = schema.new({ type = "list", list_member = M.UpdateVehicleError })
+
+M.VehicleStatusList = schema.new({ type = "list", list_member = M.VehicleStatus })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.campaignSummaries = schema.new({ type = "list", list_member = M.CampaignSummary })
+
+M.SignalInformationList = schema.new({ type = "list", list_member = M.SignalInformation })
+
+M.DataExtraDimensionNodePathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataDestinationConfigs = schema.new({ type = "list", list_member = M.DataDestinationConfig })
+
+M.DataPartitions = schema.new({ type = "list", list_member = M.DataPartition })
+
+M.SignalFetchInformationList = schema.new({ type = "list", list_member = M.SignalFetchInformation })
+
+M.decoderManifestSummaries = schema.new({ type = "list", list_member = M.DecoderManifestSummary })
+
+M.SignalDecoders = schema.new({ type = "list", list_member = M.SignalDecoder })
+
+M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.InvalidSignalDecoders = schema.new({ type = "list", list_member = M.InvalidSignalDecoder })
+
+M.InvalidNetworkInterfaces = schema.new({ type = "list", list_member = M.InvalidNetworkInterface })
+
+M.Fqns = schema.new({ type = "list", list_member = prelude.String })
+
+M.InterfaceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkFileDefinitions = schema.new({ type = "list", list_member = M.NetworkFileDefinition })
+
+M.InvalidSignals = schema.new({ type = "list", list_member = M.InvalidSignal })
+
+M.fleetSummaries = schema.new({ type = "list", list_member = M.FleetSummary })
+
+M.modelManifestSummaries = schema.new({ type = "list", list_member = M.ModelManifestSummary })
+
+M.listOfStrings = schema.new({ type = "list", list_member = prelude.String })
+
+M.NodePaths = schema.new({ type = "list", list_member = prelude.String })
+
+M.Nodes = schema.new({ type = "list", list_member = M.Node })
+
+M.signalCatalogSummaries = schema.new({ type = "list", list_member = M.SignalCatalogSummary })
+
+M.StateTemplateSummaries = schema.new({ type = "list", list_member = M.StateTemplateSummary })
+
+M.StateTemplateProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.StateTemplateDataExtraDimensionNodePathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StateTemplateMetadataExtraDimensionNodePathList = schema.new({ type = "list", list_member = prelude.String })
+
+M.attributeNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.attributeValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.vehicleSummaries = schema.new({ type = "list", list_member = M.VehicleSummary })
+
+M.attributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StateTemplateAssociations = schema.new({ type = "list", list_member = M.StateTemplateAssociation })
+
+M.StateTemplateAssociationIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.vehicles = schema.new({ type = "list", list_member = prelude.String })
+
+M.fleets = schema.new({ type = "list", list_member = prelude.String })
+
+M.EventExpressionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkFilesList = schema.new({ type = "list", list_member = prelude.Blob })
+
+M.ModelSignalsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.StructuredMessageDefinition = schema.new({ type = "list", list_member = M.StructuredMessageFieldNameAndDataTypePair })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

@@ -7,6 +7,66 @@ local _N = "com.amazonaws.opensearchserverless"
 
 local M = {}
 
+M.CollectionIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CollectionNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CollectionDetails = schema.new({ type = "list", list_member = M.CollectionDetail })
+
+M.CollectionErrorDetails = schema.new({ type = "list", list_member = M.CollectionErrorDetail })
+
+M.CollectionGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CollectionGroupNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.CollectionGroupDetails = schema.new({ type = "list", list_member = M.CollectionGroupDetail })
+
+M.CollectionGroupErrorDetails = schema.new({ type = "list", list_member = M.CollectionGroupErrorDetail })
+
+M.LifecyclePolicyResourceIdentifiers = schema.new({ type = "list", list_member = M.LifecyclePolicyResourceIdentifier })
+
+M.EffectiveLifecyclePolicyDetails = schema.new({ type = "list", list_member = M.EffectiveLifecyclePolicyDetail })
+
+M.EffectiveLifecyclePolicyErrorDetails = schema.new({ type = "list", list_member = M.EffectiveLifecyclePolicyErrorDetail })
+
+M.LifecyclePolicyIdentifiers = schema.new({ type = "list", list_member = M.LifecyclePolicyIdentifier })
+
+M.LifecyclePolicyDetails = schema.new({ type = "list", list_member = M.LifecyclePolicyDetail })
+
+M.LifecyclePolicyErrorDetails = schema.new({ type = "list", list_member = M.LifecyclePolicyErrorDetail })
+
+M.VpcEndpointIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.VpcEndpointDetails = schema.new({ type = "list", list_member = M.VpcEndpointDetail })
+
+M.VpcEndpointErrorDetails = schema.new({ type = "list", list_member = M.VpcEndpointErrorDetail })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccessPolicySummaries = schema.new({ type = "list", list_member = M.AccessPolicySummary })
+
+M.CollectionSummaries = schema.new({ type = "list", list_member = M.CollectionSummary })
+
+M.CollectionGroupSummaries = schema.new({ type = "list", list_member = M.CollectionGroupSummary })
+
+M.LifecycleResourceFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.LifecyclePolicySummaries = schema.new({ type = "list", list_member = M.LifecyclePolicySummary })
+
+M.SecurityConfigSummaries = schema.new({ type = "list", list_member = M.SecurityConfigSummary })
+
+M.SecurityPolicySummaries = schema.new({ type = "list", list_member = M.SecurityPolicySummary })
+
+M.VpcEndpointSummaries = schema.new({ type = "list", list_member = M.VpcEndpointSummary })
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",

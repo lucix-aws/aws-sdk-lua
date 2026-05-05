@@ -7,6 +7,14 @@ local _N = "com.amazonaws.notificationscontacts"
 
 local M = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.EmailContacts = schema.new({ type = "list", list_member = M.EmailContact })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

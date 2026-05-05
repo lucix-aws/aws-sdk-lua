@@ -7,6 +7,112 @@ local _N = "com.amazonaws.fms"
 
 local M = {}
 
+M.IdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedItemList = schema.new({ type = "list", list_member = M.FailedItem })
+
+M.AdminAccountSummaryList = schema.new({ type = "list", list_member = M.AdminAccountSummary })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppsListsData = schema.new({ type = "list", list_member = M.AppsListDataSummary })
+
+M.PolicyComplianceStatusList = schema.new({ type = "list", list_member = M.PolicyComplianceStatus })
+
+M.AWSAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DiscoveredResourceList = schema.new({ type = "list", list_member = M.DiscoveredResource })
+
+M.MemberAccounts = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicySummaryList = schema.new({ type = "list", list_member = M.PolicySummary })
+
+M.ProtocolsListsData = schema.new({ type = "list", list_member = M.ProtocolsListDataSummary })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.ResourceSetSummaryList = schema.new({ type = "list", list_member = M.ResourceSetSummary })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ThirdPartyFirewallFirewallPolicies = schema.new({ type = "list", list_member = M.ThirdPartyFirewallFirewallPolicy })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AppsList = schema.new({ type = "list", list_member = M.App })
+
+M.PreviousAppsList = schema.new({ type = "map", map_key = prelude.String, map_value = M.AppsList })
+
+M.ComplianceViolators = schema.new({ type = "list", list_member = M.ComplianceViolator })
+
+M.IssueInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTags = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.CustomerPolicyScopeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CustomerPolicyScopeIdList })
+
+M.ResourceSetIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProtocolsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PreviousProtocolsList = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProtocolsList })
+
+M.ResourceViolations = schema.new({ type = "list", list_member = M.ResourceViolation })
+
+M.OrganizationalUnitIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AWSRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityServiceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomerPolicyScopeIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EvaluationResults = schema.new({ type = "list", list_member = M.EvaluationResult })
+
+M.ComplianceViolatorMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PartialMatches = schema.new({ type = "list", list_member = M.PartialMatch })
+
+M.SecurityGroupRemediationActions = schema.new({ type = "list", list_member = M.SecurityGroupRemediationAction })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsEc2NetworkInterfaceViolations = schema.new({ type = "list", list_member = M.AwsEc2NetworkInterfaceViolation })
+
+M.Routes = schema.new({ type = "list", list_member = M.Route })
+
+M.ExpectedRoutes = schema.new({ type = "list", list_member = M.ExpectedRoute })
+
+M.DnsRuleGroupPriorities = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.EntryViolations = schema.new({ type = "list", list_member = M.EntryViolation })
+
+M.PossibleRemediationActionList = schema.new({ type = "list", list_member = M.PossibleRemediationAction })
+
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkAclEntries = schema.new({ type = "list", list_member = M.NetworkAclEntry })
+
+M.StatelessRuleGroupList = schema.new({ type = "list", list_member = M.StatelessRuleGroup })
+
+M.NetworkFirewallActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatefulRuleGroupList = schema.new({ type = "list", list_member = M.StatefulRuleGroup })
+
+M.TargetViolationReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.LengthBoundedStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EntriesWithConflicts = schema.new({ type = "list", list_member = M.EntryDescription })
+
+M.EntryViolationReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrderedRemediationActions = schema.new({ type = "list", list_member = M.RemediationActionWithOrder })
+
+M.EntriesDescription = schema.new({ type = "list", list_member = M.EntryDescription })
+
 M.AccountScope = schema.new({
     id = id.from(_N, "AccountScope"),
     type = "structure",
@@ -339,10 +445,7 @@ M.AssociateAdminAccountInput = schema.new({
     },
 })
 
-M.AssociateAdminAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateAdminAccountOutput = prelude.Unit
 
 M.InternalErrorException = schema.new({
     id = id.from(_N, "InternalErrorException"),
@@ -632,20 +735,14 @@ M.DeleteAppsListInput = schema.new({
     },
 })
 
-M.DeleteAppsListOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppsListOutput = prelude.Unit
 
 M.DeleteNotificationChannelInput = schema.new({
     id = id.from(_N, "DeleteNotificationChannelRequest"),
     type = "structure",
 })
 
-M.DeleteNotificationChannelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteNotificationChannelOutput = prelude.Unit
 
 M.DeletePolicyInput = schema.new({
     id = id.from(_N, "DeletePolicyRequest"),
@@ -672,10 +769,7 @@ M.DeletePolicyInput = schema.new({
     },
 })
 
-M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyOutput = prelude.Unit
 
 M.DeleteProtocolsListInput = schema.new({
     id = id.from(_N, "DeleteProtocolsListRequest"),
@@ -693,10 +787,7 @@ M.DeleteProtocolsListInput = schema.new({
     },
 })
 
-M.DeleteProtocolsListOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteProtocolsListOutput = prelude.Unit
 
 M.DeleteResourceSetInput = schema.new({
     id = id.from(_N, "DeleteResourceSetRequest"),
@@ -714,20 +805,14 @@ M.DeleteResourceSetInput = schema.new({
     },
 })
 
-M.DeleteResourceSetOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteResourceSetOutput = prelude.Unit
 
 M.DisassociateAdminAccountInput = schema.new({
     id = id.from(_N, "DisassociateAdminAccountRequest"),
     type = "structure",
 })
 
-M.DisassociateAdminAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisassociateAdminAccountOutput = prelude.Unit
 
 M.DisassociateThirdPartyFirewallInput = schema.new({
     id = id.from(_N, "DisassociateThirdPartyFirewallRequest"),
@@ -4860,10 +4945,7 @@ M.PutAdminAccountInput = schema.new({
     },
 })
 
-M.PutAdminAccountOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutAdminAccountOutput = prelude.Unit
 
 M.PutAppsListInput = schema.new({
     id = id.from(_N, "PutAppsListRequest"),
@@ -4934,10 +5016,7 @@ M.PutNotificationChannelInput = schema.new({
     },
 })
 
-M.PutNotificationChannelOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutNotificationChannelOutput = prelude.Unit
 
 M.PutPolicyInput = schema.new({
     id = id.from(_N, "PutPolicyRequest"),

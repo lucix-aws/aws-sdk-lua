@@ -7,6 +7,34 @@ local _N = "com.amazonaws.redshiftdata"
 
 local M = {}
 
+M.SqlList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SqlParametersList = schema.new({ type = "list", list_member = M.SqlParameter })
+
+M.DbGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubStatementList = schema.new({ type = "list", list_member = M.SubStatementData })
+
+M.ColumnList = schema.new({ type = "list", list_member = M.ColumnMetadata })
+
+M.SqlRecords = schema.new({ type = "list", list_member = M.FieldList })
+
+M.ColumnMetadataList = schema.new({ type = "list", list_member = M.ColumnMetadata })
+
+M.FormattedSqlRecords = schema.new({ type = "list", list_member = M.QueryRecords })
+
+M.DatabaseList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SchemaList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatementList = schema.new({ type = "list", list_member = M.StatementData })
+
+M.TableList = schema.new({ type = "list", list_member = M.TableMember })
+
+M.FieldList = schema.new({ type = "list", list_member = M.Field })
+
+M.StatementStringList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActiveSessionsExceededException = schema.new({
     id = id.from(_N, "ActiveSessionsExceededException"),
     type = "structure",

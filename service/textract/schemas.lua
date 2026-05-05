@@ -7,6 +7,86 @@ local _N = "com.amazonaws.textract"
 
 local M = {}
 
+M.FeatureTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.BlockList = schema.new({ type = "list", list_member = M.Block })
+
+M.ExpenseDocumentList = schema.new({ type = "list", list_member = M.ExpenseDocument })
+
+M.DocumentPages = schema.new({ type = "list", list_member = M.Document })
+
+M.IdentityDocumentList = schema.new({ type = "list", list_member = M.IdentityDocument })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AdapterVersionEvaluationMetrics = schema.new({ type = "list", list_member = M.AdapterVersionEvaluationMetric })
+
+M.Warnings = schema.new({ type = "list", list_member = M.Warning })
+
+M.LendingResultList = schema.new({ type = "list", list_member = M.LendingResult })
+
+M.AdapterList = schema.new({ type = "list", list_member = M.AdapterOverview })
+
+M.AdapterVersionList = schema.new({ type = "list", list_member = M.AdapterVersionOverview })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Queries = schema.new({ type = "list", list_member = M.Query })
+
+M.Adapters = schema.new({ type = "list", list_member = M.Adapter })
+
+M.HumanLoopActivationReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.DocumentGroupList = schema.new({ type = "list", list_member = M.DocumentGroup })
+
+M.UndetectedDocumentTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContentClassifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.RelationshipList = schema.new({ type = "list", list_member = M.Relationship })
+
+M.EntityTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExpenseFieldList = schema.new({ type = "list", list_member = M.ExpenseField })
+
+M.LineItemGroupList = schema.new({ type = "list", list_member = M.LineItemGroup })
+
+M.IdentityDocumentFieldList = schema.new({ type = "list", list_member = M.IdentityDocumentField })
+
+M.Pages = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.ExtractionList = schema.new({ type = "list", list_member = M.Extraction })
+
+M.QueryPages = schema.new({ type = "list", list_member = prelude.String })
+
+M.AdapterPages = schema.new({ type = "list", list_member = prelude.String })
+
+M.Polygon = schema.new({ type = "list", list_member = M.Point })
+
+M.PredictionList = schema.new({ type = "list", list_member = M.Prediction })
+
+M.SplitDocumentList = schema.new({ type = "list", list_member = M.SplitDocument })
+
+M.DetectedSignatureList = schema.new({ type = "list", list_member = M.DetectedSignature })
+
+M.UndetectedSignatureList = schema.new({ type = "list", list_member = M.UndetectedSignature })
+
+M.IdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExpenseGroupPropertyList = schema.new({ type = "list", list_member = M.ExpenseGroupProperty })
+
+M.LineItemList = schema.new({ type = "list", list_member = M.LineItemFields })
+
+M.LendingFieldList = schema.new({ type = "list", list_member = M.LendingField })
+
+M.SignatureDetectionList = schema.new({ type = "list", list_member = M.SignatureDetection })
+
+M.PageList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LendingDetectionList = schema.new({ type = "list", list_member = M.LendingDetection })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

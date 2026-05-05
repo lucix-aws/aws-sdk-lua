@@ -7,6 +7,124 @@ local _N = "com.amazonaws.iam"
 
 local M = {}
 
+M.tagListType = schema.new({ type = "list", list_member = M.Tag })
+
+M.clientIDListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.thumbprintListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.FeaturesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.entityListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.userDetailListType = schema.new({ type = "list", list_member = M.UserDetail })
+
+M.groupDetailListType = schema.new({ type = "list", list_member = M.GroupDetail })
+
+M.roleDetailListType = schema.new({ type = "list", list_member = M.RoleDetail })
+
+M.ManagedPolicyDetailListType = schema.new({ type = "list", list_member = M.ManagedPolicyDetail })
+
+M.summaryMapType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.SimulationPolicyListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextKeyNamesResultListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.userListType = schema.new({ type = "list", list_member = M.User })
+
+M.CertificationMapType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AccessDetails = schema.new({ type = "list", list_member = M.AccessDetail })
+
+M.privateKeyList = schema.new({ type = "list", list_member = M.SAMLPrivateKey })
+
+M.ServicesLastAccessed = schema.new({ type = "list", list_member = M.ServiceLastAccessed })
+
+M.entityDetailsListType = schema.new({ type = "list", list_member = M.EntityDetails })
+
+M.accessKeyMetadataListType = schema.new({ type = "list", list_member = M.AccessKeyMetadata })
+
+M.accountAliasListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.attachedPoliciesListType = schema.new({ type = "list", list_member = M.AttachedPolicy })
+
+M.delegationRequestsListType = schema.new({ type = "list", list_member = M.DelegationRequest })
+
+M.PolicyGroupListType = schema.new({ type = "list", list_member = M.PolicyGroup })
+
+M.PolicyUserListType = schema.new({ type = "list", list_member = M.PolicyUser })
+
+M.PolicyRoleListType = schema.new({ type = "list", list_member = M.PolicyRole })
+
+M.policyNameListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.groupListType = schema.new({ type = "list", list_member = M.Group })
+
+M.instanceProfileListType = schema.new({ type = "list", list_member = M.InstanceProfile })
+
+M.mfaDeviceListType = schema.new({ type = "list", list_member = M.MFADevice })
+
+M.OpenIDConnectProviderListType = schema.new({ type = "list", list_member = M.OpenIDConnectProviderListEntry })
+
+M.policyListType = schema.new({ type = "list", list_member = M.Policy })
+
+M.serviceNamespaceListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.listPolicyGrantingServiceAccessResponseListType = schema.new({ type = "list", list_member = M.ListPoliciesGrantingServiceAccessEntry })
+
+M.policyDocumentVersionListType = schema.new({ type = "list", list_member = M.PolicyVersion })
+
+M.roleListType = schema.new({ type = "list", list_member = M.Role })
+
+M.SAMLProviderListType = schema.new({ type = "list", list_member = M.SAMLProviderListEntry })
+
+M.serverCertificateMetadataListType = schema.new({ type = "list", list_member = M.ServerCertificateMetadata })
+
+M.ServiceSpecificCredentialsListType = schema.new({ type = "list", list_member = M.ServiceSpecificCredentialMetadata })
+
+M.certificateListType = schema.new({ type = "list", list_member = M.SigningCertificate })
+
+M.SSHPublicKeyListType = schema.new({ type = "list", list_member = M.SSHPublicKeyMetadata })
+
+M.virtualMFADeviceListType = schema.new({ type = "list", list_member = M.VirtualMFADevice })
+
+M.ActionNameListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceNameListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextEntryListType = schema.new({ type = "list", list_member = M.ContextEntry })
+
+M.EvaluationResultsListType = schema.new({ type = "list", list_member = M.EvaluationResult })
+
+M.tagKeyListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.policyParameterListType = schema.new({ type = "list", list_member = M.PolicyParameter })
+
+M.rolePermissionRestrictionArnListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoleUsageListType = schema.new({ type = "list", list_member = M.RoleUsageType })
+
+M.policyDetailListType = schema.new({ type = "list", list_member = M.PolicyDetail })
+
+M.groupNameListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.TrackedActionsLastAccessed = schema.new({ type = "list", list_member = M.TrackedActionLastAccessed })
+
+M.policyGrantingServiceAccessListType = schema.new({ type = "list", list_member = M.PolicyGrantingServiceAccess })
+
+M.ContextKeyValueListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.StatementListType = schema.new({ type = "list", list_member = M.Statement })
+
+M.EvalDecisionDetailsType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ResourceSpecificResultListType = schema.new({ type = "list", list_member = M.ResourceSpecificResult })
+
+M.policyParameterValuesListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArnListType = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptDelegationRequestInput = schema.new({
     id = id.from(_N, "AcceptDelegationRequestRequest"),
     type = "structure",
@@ -23,10 +141,7 @@ M.AcceptDelegationRequestInput = schema.new({
     },
 })
 
-M.AcceptDelegationRequestOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AcceptDelegationRequestOutput = prelude.Unit
 
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),
@@ -277,10 +392,7 @@ M.AddClientIDToOpenIDConnectProviderInput = schema.new({
     },
 })
 
-M.AddClientIDToOpenIDConnectProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddClientIDToOpenIDConnectProviderOutput = prelude.Unit
 
 M.InvalidInputException = schema.new({
     id = id.from(_N, "InvalidInputException"),
@@ -339,10 +451,7 @@ M.AddRoleToInstanceProfileInput = schema.new({
     },
 })
 
-M.AddRoleToInstanceProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddRoleToInstanceProfileOutput = prelude.Unit
 
 M.EntityAlreadyExistsException = schema.new({
     id = id.from(_N, "EntityAlreadyExistsException"),
@@ -401,10 +510,7 @@ M.AddUserToGroupInput = schema.new({
     },
 })
 
-M.AddUserToGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AddUserToGroupOutput = prelude.Unit
 
 M.AssociateDelegationRequestInput = schema.new({
     id = id.from(_N, "AssociateDelegationRequestRequest"),
@@ -422,10 +528,7 @@ M.AssociateDelegationRequestInput = schema.new({
     },
 })
 
-M.AssociateDelegationRequestOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AssociateDelegationRequestOutput = prelude.Unit
 
 M.AttachedPermissionsBoundary = schema.new({
     id = id.from(_N, "AttachedPermissionsBoundary"),
@@ -490,10 +593,7 @@ M.AttachGroupPolicyInput = schema.new({
     },
 })
 
-M.AttachGroupPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachGroupPolicyOutput = prelude.Unit
 
 M.PolicyNotAttachableException = schema.new({
     id = id.from(_N, "PolicyNotAttachableException"),
@@ -536,10 +636,7 @@ M.AttachRolePolicyInput = schema.new({
     },
 })
 
-M.AttachRolePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachRolePolicyOutput = prelude.Unit
 
 M.AttachUserPolicyInput = schema.new({
     id = id.from(_N, "AttachUserPolicyRequest"),
@@ -566,10 +663,7 @@ M.AttachUserPolicyInput = schema.new({
     },
 })
 
-M.AttachUserPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.AttachUserPolicyOutput = prelude.Unit
 
 M.ChangePasswordInput = schema.new({
     id = id.from(_N, "ChangePasswordRequest"),
@@ -596,10 +690,7 @@ M.ChangePasswordInput = schema.new({
     },
 })
 
-M.ChangePasswordOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ChangePasswordOutput = prelude.Unit
 
 M.EntityTemporarilyUnmodifiableException = schema.new({
     id = id.from(_N, "EntityTemporarilyUnmodifiableException"),
@@ -695,10 +786,7 @@ M.CreateAccountAliasInput = schema.new({
     },
 })
 
-M.CreateAccountAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.CreateAccountAliasOutput = prelude.Unit
 
 M.PolicyParameter = schema.new({
     id = id.from(_N, "PolicyParameter"),
@@ -2142,10 +2230,7 @@ M.DeactivateMFADeviceInput = schema.new({
     },
 })
 
-M.DeactivateMFADeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeactivateMFADeviceOutput = prelude.Unit
 
 M.DeleteAccessKeyInput = schema.new({
     id = id.from(_N, "DeleteAccessKeyRequest"),
@@ -2169,10 +2254,7 @@ M.DeleteAccessKeyInput = schema.new({
     },
 })
 
-M.DeleteAccessKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccessKeyOutput = prelude.Unit
 
 M.DeleteAccountAliasInput = schema.new({
     id = id.from(_N, "DeleteAccountAliasRequest"),
@@ -2190,20 +2272,11 @@ M.DeleteAccountAliasInput = schema.new({
     },
 })
 
-M.DeleteAccountAliasOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccountAliasOutput = prelude.Unit
 
-M.DeleteAccountPasswordPolicyInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccountPasswordPolicyInput = prelude.Unit
 
-M.DeleteAccountPasswordPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAccountPasswordPolicyOutput = prelude.Unit
 
 M.DeleteConflictException = schema.new({
     id = id.from(_N, "DeleteConflictException"),
@@ -2237,10 +2310,7 @@ M.DeleteGroupInput = schema.new({
     },
 })
 
-M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGroupOutput = prelude.Unit
 
 M.DeleteGroupPolicyInput = schema.new({
     id = id.from(_N, "DeleteGroupPolicyRequest"),
@@ -2267,10 +2337,7 @@ M.DeleteGroupPolicyInput = schema.new({
     },
 })
 
-M.DeleteGroupPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteGroupPolicyOutput = prelude.Unit
 
 M.DeleteInstanceProfileInput = schema.new({
     id = id.from(_N, "DeleteInstanceProfileRequest"),
@@ -2288,10 +2355,7 @@ M.DeleteInstanceProfileInput = schema.new({
     },
 })
 
-M.DeleteInstanceProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteInstanceProfileOutput = prelude.Unit
 
 M.DeleteLoginProfileInput = schema.new({
     id = id.from(_N, "DeleteLoginProfileRequest"),
@@ -2306,10 +2370,7 @@ M.DeleteLoginProfileInput = schema.new({
     },
 })
 
-M.DeleteLoginProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteLoginProfileOutput = prelude.Unit
 
 M.DeleteOpenIDConnectProviderInput = schema.new({
     id = id.from(_N, "DeleteOpenIDConnectProviderRequest"),
@@ -2327,10 +2388,7 @@ M.DeleteOpenIDConnectProviderInput = schema.new({
     },
 })
 
-M.DeleteOpenIDConnectProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteOpenIDConnectProviderOutput = prelude.Unit
 
 M.DeletePolicyInput = schema.new({
     id = id.from(_N, "DeletePolicyRequest"),
@@ -2348,10 +2406,7 @@ M.DeletePolicyInput = schema.new({
     },
 })
 
-M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyOutput = prelude.Unit
 
 M.DeletePolicyVersionInput = schema.new({
     id = id.from(_N, "DeletePolicyVersionRequest"),
@@ -2378,10 +2433,7 @@ M.DeletePolicyVersionInput = schema.new({
     },
 })
 
-M.DeletePolicyVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeletePolicyVersionOutput = prelude.Unit
 
 M.DeleteRoleInput = schema.new({
     id = id.from(_N, "DeleteRoleRequest"),
@@ -2399,10 +2451,7 @@ M.DeleteRoleInput = schema.new({
     },
 })
 
-M.DeleteRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRoleOutput = prelude.Unit
 
 M.DeleteRolePermissionsBoundaryInput = schema.new({
     id = id.from(_N, "DeleteRolePermissionsBoundaryRequest"),
@@ -2420,10 +2469,7 @@ M.DeleteRolePermissionsBoundaryInput = schema.new({
     },
 })
 
-M.DeleteRolePermissionsBoundaryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRolePermissionsBoundaryOutput = prelude.Unit
 
 M.DeleteRolePolicyInput = schema.new({
     id = id.from(_N, "DeleteRolePolicyRequest"),
@@ -2450,10 +2496,7 @@ M.DeleteRolePolicyInput = schema.new({
     },
 })
 
-M.DeleteRolePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteRolePolicyOutput = prelude.Unit
 
 M.DeleteSAMLProviderInput = schema.new({
     id = id.from(_N, "DeleteSAMLProviderRequest"),
@@ -2471,10 +2514,7 @@ M.DeleteSAMLProviderInput = schema.new({
     },
 })
 
-M.DeleteSAMLProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSAMLProviderOutput = prelude.Unit
 
 M.DeleteServerCertificateInput = schema.new({
     id = id.from(_N, "DeleteServerCertificateRequest"),
@@ -2492,10 +2532,7 @@ M.DeleteServerCertificateInput = schema.new({
     },
 })
 
-M.DeleteServerCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteServerCertificateOutput = prelude.Unit
 
 M.DeleteServiceLinkedRoleInput = schema.new({
     id = id.from(_N, "DeleteServiceLinkedRoleRequest"),
@@ -2551,10 +2588,7 @@ M.DeleteServiceSpecificCredentialInput = schema.new({
     },
 })
 
-M.DeleteServiceSpecificCredentialOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteServiceSpecificCredentialOutput = prelude.Unit
 
 M.DeleteSigningCertificateInput = schema.new({
     id = id.from(_N, "DeleteSigningCertificateRequest"),
@@ -2578,10 +2612,7 @@ M.DeleteSigningCertificateInput = schema.new({
     },
 })
 
-M.DeleteSigningCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSigningCertificateOutput = prelude.Unit
 
 M.DeleteSSHPublicKeyInput = schema.new({
     id = id.from(_N, "DeleteSSHPublicKeyRequest"),
@@ -2608,10 +2639,7 @@ M.DeleteSSHPublicKeyInput = schema.new({
     },
 })
 
-M.DeleteSSHPublicKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteSSHPublicKeyOutput = prelude.Unit
 
 M.DeleteUserInput = schema.new({
     id = id.from(_N, "DeleteUserRequest"),
@@ -2629,10 +2657,7 @@ M.DeleteUserInput = schema.new({
     },
 })
 
-M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserOutput = prelude.Unit
 
 M.DeleteUserPermissionsBoundaryInput = schema.new({
     id = id.from(_N, "DeleteUserPermissionsBoundaryRequest"),
@@ -2650,10 +2675,7 @@ M.DeleteUserPermissionsBoundaryInput = schema.new({
     },
 })
 
-M.DeleteUserPermissionsBoundaryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserPermissionsBoundaryOutput = prelude.Unit
 
 M.DeleteUserPolicyInput = schema.new({
     id = id.from(_N, "DeleteUserPolicyRequest"),
@@ -2680,10 +2702,7 @@ M.DeleteUserPolicyInput = schema.new({
     },
 })
 
-M.DeleteUserPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteUserPolicyOutput = prelude.Unit
 
 M.DeleteVirtualMFADeviceInput = schema.new({
     id = id.from(_N, "DeleteVirtualMFADeviceRequest"),
@@ -2701,10 +2720,7 @@ M.DeleteVirtualMFADeviceInput = schema.new({
     },
 })
 
-M.DeleteVirtualMFADeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteVirtualMFADeviceOutput = prelude.Unit
 
 M.DetachGroupPolicyInput = schema.new({
     id = id.from(_N, "DetachGroupPolicyRequest"),
@@ -2731,10 +2747,7 @@ M.DetachGroupPolicyInput = schema.new({
     },
 })
 
-M.DetachGroupPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachGroupPolicyOutput = prelude.Unit
 
 M.DetachRolePolicyInput = schema.new({
     id = id.from(_N, "DetachRolePolicyRequest"),
@@ -2761,10 +2774,7 @@ M.DetachRolePolicyInput = schema.new({
     },
 })
 
-M.DetachRolePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachRolePolicyOutput = prelude.Unit
 
 M.DetachUserPolicyInput = schema.new({
     id = id.from(_N, "DetachUserPolicyRequest"),
@@ -2791,10 +2801,7 @@ M.DetachUserPolicyInput = schema.new({
     },
 })
 
-M.DetachUserPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DetachUserPolicyOutput = prelude.Unit
 
 M.DisableOrganizationsRootCredentialsManagementInput = schema.new({
     id = id.from(_N, "DisableOrganizationsRootCredentialsManagementRequest"),
@@ -2894,15 +2901,9 @@ M.DisableOrganizationsRootSessionsOutput = schema.new({
     },
 })
 
-M.DisableOutboundWebIdentityFederationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableOutboundWebIdentityFederationInput = prelude.Unit
 
-M.DisableOutboundWebIdentityFederationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DisableOutboundWebIdentityFederationOutput = prelude.Unit
 
 M.FeatureDisabledException = schema.new({
     id = id.from(_N, "FeatureDisabledException"),
@@ -2963,10 +2964,7 @@ M.EnableMFADeviceInput = schema.new({
     },
 })
 
-M.EnableMFADeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableMFADeviceOutput = prelude.Unit
 
 M.InvalidAuthenticationCodeException = schema.new({
     id = id.from(_N, "InvalidAuthenticationCodeException"),
@@ -3050,10 +3048,7 @@ M.EnableOrganizationsRootSessionsOutput = schema.new({
     },
 })
 
-M.EnableOutboundWebIdentityFederationInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.EnableOutboundWebIdentityFederationInput = prelude.Unit
 
 M.EnableOutboundWebIdentityFederationOutput = schema.new({
     id = id.from(_N, "EnableOutboundWebIdentityFederationResponse"),
@@ -3084,10 +3079,7 @@ M.FeatureEnabledException = schema.new({
     },
 })
 
-M.GenerateCredentialReportInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GenerateCredentialReportInput = prelude.Unit
 
 M.GenerateCredentialReportOutput = schema.new({
     id = id.from(_N, "GenerateCredentialReportResponse"),
@@ -3616,10 +3608,7 @@ M.GetAccountAuthorizationDetailsOutput = schema.new({
     },
 })
 
-M.GetAccountPasswordPolicyInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountPasswordPolicyInput = prelude.Unit
 
 M.PasswordPolicy = schema.new({
     id = id.from(_N, "PasswordPolicy"),
@@ -3723,10 +3712,7 @@ M.GetAccountPasswordPolicyOutput = schema.new({
     },
 })
 
-M.GetAccountSummaryInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetAccountSummaryInput = prelude.Unit
 
 M.GetAccountSummaryOutput = schema.new({
     id = id.from(_N, "GetAccountSummaryResponse"),
@@ -3859,10 +3845,7 @@ M.CredentialReportNotReadyException = schema.new({
     },
 })
 
-M.GetCredentialReportInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetCredentialReportInput = prelude.Unit
 
 M.GetCredentialReportOutput = schema.new({
     id = id.from(_N, "GetCredentialReportResponse"),
@@ -4556,10 +4539,7 @@ M.GetOrganizationsAccessReportOutput = schema.new({
     },
 })
 
-M.GetOutboundWebIdentityFederationInfoInput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.GetOutboundWebIdentityFederationInfoInput = prelude.Unit
 
 M.GetOutboundWebIdentityFederationInfoOutput = schema.new({
     id = id.from(_N, "GetOutboundWebIdentityFederationInfoResponse"),
@@ -8055,10 +8035,7 @@ M.PutGroupPolicyInput = schema.new({
     },
 })
 
-M.PutGroupPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutGroupPolicyOutput = prelude.Unit
 
 M.PutRolePermissionsBoundaryInput = schema.new({
     id = id.from(_N, "PutRolePermissionsBoundaryRequest"),
@@ -8085,10 +8062,7 @@ M.PutRolePermissionsBoundaryInput = schema.new({
     },
 })
 
-M.PutRolePermissionsBoundaryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutRolePermissionsBoundaryOutput = prelude.Unit
 
 M.PutRolePolicyInput = schema.new({
     id = id.from(_N, "PutRolePolicyRequest"),
@@ -8124,10 +8098,7 @@ M.PutRolePolicyInput = schema.new({
     },
 })
 
-M.PutRolePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutRolePolicyOutput = prelude.Unit
 
 M.PutUserPermissionsBoundaryInput = schema.new({
     id = id.from(_N, "PutUserPermissionsBoundaryRequest"),
@@ -8154,10 +8125,7 @@ M.PutUserPermissionsBoundaryInput = schema.new({
     },
 })
 
-M.PutUserPermissionsBoundaryOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutUserPermissionsBoundaryOutput = prelude.Unit
 
 M.PutUserPolicyInput = schema.new({
     id = id.from(_N, "PutUserPolicyRequest"),
@@ -8193,10 +8161,7 @@ M.PutUserPolicyInput = schema.new({
     },
 })
 
-M.PutUserPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PutUserPolicyOutput = prelude.Unit
 
 M.RejectDelegationRequestInput = schema.new({
     id = id.from(_N, "RejectDelegationRequestRequest"),
@@ -8220,10 +8185,7 @@ M.RejectDelegationRequestInput = schema.new({
     },
 })
 
-M.RejectDelegationRequestOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RejectDelegationRequestOutput = prelude.Unit
 
 M.RemoveClientIDFromOpenIDConnectProviderInput = schema.new({
     id = id.from(_N, "RemoveClientIDFromOpenIDConnectProviderRequest"),
@@ -8250,10 +8212,7 @@ M.RemoveClientIDFromOpenIDConnectProviderInput = schema.new({
     },
 })
 
-M.RemoveClientIDFromOpenIDConnectProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveClientIDFromOpenIDConnectProviderOutput = prelude.Unit
 
 M.RemoveRoleFromInstanceProfileInput = schema.new({
     id = id.from(_N, "RemoveRoleFromInstanceProfileRequest"),
@@ -8280,10 +8239,7 @@ M.RemoveRoleFromInstanceProfileInput = schema.new({
     },
 })
 
-M.RemoveRoleFromInstanceProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveRoleFromInstanceProfileOutput = prelude.Unit
 
 M.RemoveUserFromGroupInput = schema.new({
     id = id.from(_N, "RemoveUserFromGroupRequest"),
@@ -8310,10 +8266,7 @@ M.RemoveUserFromGroupInput = schema.new({
     },
 })
 
-M.RemoveUserFromGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.RemoveUserFromGroupOutput = prelude.Unit
 
 M.ResetServiceSpecificCredentialInput = schema.new({
     id = id.from(_N, "ResetServiceSpecificCredentialRequest"),
@@ -8394,10 +8347,7 @@ M.ResyncMFADeviceInput = schema.new({
     },
 })
 
-M.ResyncMFADeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResyncMFADeviceOutput = prelude.Unit
 
 M.SendDelegationTokenInput = schema.new({
     id = id.from(_N, "SendDelegationTokenRequest"),
@@ -8415,10 +8365,7 @@ M.SendDelegationTokenInput = schema.new({
     },
 })
 
-M.SendDelegationTokenOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SendDelegationTokenOutput = prelude.Unit
 
 M.SetDefaultPolicyVersionInput = schema.new({
     id = id.from(_N, "SetDefaultPolicyVersionRequest"),
@@ -8445,10 +8392,7 @@ M.SetDefaultPolicyVersionInput = schema.new({
     },
 })
 
-M.SetDefaultPolicyVersionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetDefaultPolicyVersionOutput = prelude.Unit
 
 M.SetSecurityTokenServicePreferencesInput = schema.new({
     id = id.from(_N, "SetSecurityTokenServicePreferencesRequest"),
@@ -8466,10 +8410,7 @@ M.SetSecurityTokenServicePreferencesInput = schema.new({
     },
 })
 
-M.SetSecurityTokenServicePreferencesOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SetSecurityTokenServicePreferencesOutput = prelude.Unit
 
 M.PolicyEvaluationException = schema.new({
     id = id.from(_N, "PolicyEvaluationException"),
@@ -8989,10 +8930,7 @@ M.TagInstanceProfileInput = schema.new({
     },
 })
 
-M.TagInstanceProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagInstanceProfileOutput = prelude.Unit
 
 M.TagMFADeviceInput = schema.new({
     id = id.from(_N, "TagMFADeviceRequest"),
@@ -9020,10 +8958,7 @@ M.TagMFADeviceInput = schema.new({
     },
 })
 
-M.TagMFADeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagMFADeviceOutput = prelude.Unit
 
 M.TagOpenIDConnectProviderInput = schema.new({
     id = id.from(_N, "TagOpenIDConnectProviderRequest"),
@@ -9051,10 +8986,7 @@ M.TagOpenIDConnectProviderInput = schema.new({
     },
 })
 
-M.TagOpenIDConnectProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagOpenIDConnectProviderOutput = prelude.Unit
 
 M.TagPolicyInput = schema.new({
     id = id.from(_N, "TagPolicyRequest"),
@@ -9082,10 +9014,7 @@ M.TagPolicyInput = schema.new({
     },
 })
 
-M.TagPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagPolicyOutput = prelude.Unit
 
 M.TagRoleInput = schema.new({
     id = id.from(_N, "TagRoleRequest"),
@@ -9113,10 +9042,7 @@ M.TagRoleInput = schema.new({
     },
 })
 
-M.TagRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagRoleOutput = prelude.Unit
 
 M.TagSAMLProviderInput = schema.new({
     id = id.from(_N, "TagSAMLProviderRequest"),
@@ -9144,10 +9070,7 @@ M.TagSAMLProviderInput = schema.new({
     },
 })
 
-M.TagSAMLProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagSAMLProviderOutput = prelude.Unit
 
 M.TagServerCertificateInput = schema.new({
     id = id.from(_N, "TagServerCertificateRequest"),
@@ -9175,10 +9098,7 @@ M.TagServerCertificateInput = schema.new({
     },
 })
 
-M.TagServerCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagServerCertificateOutput = prelude.Unit
 
 M.TagUserInput = schema.new({
     id = id.from(_N, "TagUserRequest"),
@@ -9206,10 +9126,7 @@ M.TagUserInput = schema.new({
     },
 })
 
-M.TagUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagUserOutput = prelude.Unit
 
 M.UntagInstanceProfileInput = schema.new({
     id = id.from(_N, "UntagInstanceProfileRequest"),
@@ -9237,10 +9154,7 @@ M.UntagInstanceProfileInput = schema.new({
     },
 })
 
-M.UntagInstanceProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagInstanceProfileOutput = prelude.Unit
 
 M.UntagMFADeviceInput = schema.new({
     id = id.from(_N, "UntagMFADeviceRequest"),
@@ -9268,10 +9182,7 @@ M.UntagMFADeviceInput = schema.new({
     },
 })
 
-M.UntagMFADeviceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagMFADeviceOutput = prelude.Unit
 
 M.UntagOpenIDConnectProviderInput = schema.new({
     id = id.from(_N, "UntagOpenIDConnectProviderRequest"),
@@ -9299,10 +9210,7 @@ M.UntagOpenIDConnectProviderInput = schema.new({
     },
 })
 
-M.UntagOpenIDConnectProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagOpenIDConnectProviderOutput = prelude.Unit
 
 M.UntagPolicyInput = schema.new({
     id = id.from(_N, "UntagPolicyRequest"),
@@ -9330,10 +9238,7 @@ M.UntagPolicyInput = schema.new({
     },
 })
 
-M.UntagPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagPolicyOutput = prelude.Unit
 
 M.UntagRoleInput = schema.new({
     id = id.from(_N, "UntagRoleRequest"),
@@ -9361,10 +9266,7 @@ M.UntagRoleInput = schema.new({
     },
 })
 
-M.UntagRoleOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagRoleOutput = prelude.Unit
 
 M.UntagSAMLProviderInput = schema.new({
     id = id.from(_N, "UntagSAMLProviderRequest"),
@@ -9392,10 +9294,7 @@ M.UntagSAMLProviderInput = schema.new({
     },
 })
 
-M.UntagSAMLProviderOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagSAMLProviderOutput = prelude.Unit
 
 M.UntagServerCertificateInput = schema.new({
     id = id.from(_N, "UntagServerCertificateRequest"),
@@ -9423,10 +9322,7 @@ M.UntagServerCertificateInput = schema.new({
     },
 })
 
-M.UntagServerCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagServerCertificateOutput = prelude.Unit
 
 M.UntagUserInput = schema.new({
     id = id.from(_N, "UntagUserRequest"),
@@ -9454,10 +9350,7 @@ M.UntagUserInput = schema.new({
     },
 })
 
-M.UntagUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagUserOutput = prelude.Unit
 
 M.UpdateAccessKeyInput = schema.new({
     id = id.from(_N, "UpdateAccessKeyRequest"),
@@ -9490,10 +9383,7 @@ M.UpdateAccessKeyInput = schema.new({
     },
 })
 
-M.UpdateAccessKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAccessKeyOutput = prelude.Unit
 
 M.UpdateAccountPasswordPolicyInput = schema.new({
     id = id.from(_N, "UpdateAccountPasswordPolicyRequest"),
@@ -9571,10 +9461,7 @@ M.UpdateAccountPasswordPolicyInput = schema.new({
     },
 })
 
-M.UpdateAccountPasswordPolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAccountPasswordPolicyOutput = prelude.Unit
 
 M.UpdateAssumeRolePolicyInput = schema.new({
     id = id.from(_N, "UpdateAssumeRolePolicyRequest"),
@@ -9601,10 +9488,7 @@ M.UpdateAssumeRolePolicyInput = schema.new({
     },
 })
 
-M.UpdateAssumeRolePolicyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateAssumeRolePolicyOutput = prelude.Unit
 
 M.UpdateDelegationRequestInput = schema.new({
     id = id.from(_N, "UpdateDelegationRequestRequest"),
@@ -9628,10 +9512,7 @@ M.UpdateDelegationRequestInput = schema.new({
     },
 })
 
-M.UpdateDelegationRequestOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateDelegationRequestOutput = prelude.Unit
 
 M.UpdateGroupInput = schema.new({
     id = id.from(_N, "UpdateGroupRequest"),
@@ -9661,10 +9542,7 @@ M.UpdateGroupInput = schema.new({
     },
 })
 
-M.UpdateGroupOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateGroupOutput = prelude.Unit
 
 M.UpdateLoginProfileInput = schema.new({
     id = id.from(_N, "UpdateLoginProfileRequest"),
@@ -9694,10 +9572,7 @@ M.UpdateLoginProfileInput = schema.new({
     },
 })
 
-M.UpdateLoginProfileOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateLoginProfileOutput = prelude.Unit
 
 M.UpdateOpenIDConnectProviderThumbprintInput = schema.new({
     id = id.from(_N, "UpdateOpenIDConnectProviderThumbprintRequest"),
@@ -9725,10 +9600,7 @@ M.UpdateOpenIDConnectProviderThumbprintInput = schema.new({
     },
 })
 
-M.UpdateOpenIDConnectProviderThumbprintOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateOpenIDConnectProviderThumbprintOutput = prelude.Unit
 
 M.UpdateRoleInput = schema.new({
     id = id.from(_N, "UpdateRoleRequest"),
@@ -9883,10 +9755,7 @@ M.UpdateServerCertificateInput = schema.new({
     },
 })
 
-M.UpdateServerCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateServerCertificateOutput = prelude.Unit
 
 M.UpdateServiceSpecificCredentialInput = schema.new({
     id = id.from(_N, "UpdateServiceSpecificCredentialRequest"),
@@ -9919,10 +9788,7 @@ M.UpdateServiceSpecificCredentialInput = schema.new({
     },
 })
 
-M.UpdateServiceSpecificCredentialOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateServiceSpecificCredentialOutput = prelude.Unit
 
 M.UpdateSigningCertificateInput = schema.new({
     id = id.from(_N, "UpdateSigningCertificateRequest"),
@@ -9955,10 +9821,7 @@ M.UpdateSigningCertificateInput = schema.new({
     },
 })
 
-M.UpdateSigningCertificateOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateSigningCertificateOutput = prelude.Unit
 
 M.UpdateSSHPublicKeyInput = schema.new({
     id = id.from(_N, "UpdateSSHPublicKeyRequest"),
@@ -9994,10 +9857,7 @@ M.UpdateSSHPublicKeyInput = schema.new({
     },
 })
 
-M.UpdateSSHPublicKeyOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateSSHPublicKeyOutput = prelude.Unit
 
 M.UpdateUserInput = schema.new({
     id = id.from(_N, "UpdateUserRequest"),
@@ -10027,10 +9887,7 @@ M.UpdateUserInput = schema.new({
     },
 })
 
-M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UpdateUserOutput = prelude.Unit
 
 M.KeyPairMismatchException = schema.new({
     id = id.from(_N, "KeyPairMismatchException"),

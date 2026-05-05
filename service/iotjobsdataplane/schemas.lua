@@ -7,6 +7,12 @@ local _N = "com.amazonaws.iotjobsdataplane"
 
 local M = {}
 
+M.JobExecutionSummaryList = schema.new({ type = "list", list_member = M.JobExecutionSummary })
+
+M.CommandExecutionParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CommandParameterValue })
+
+M.DetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.CertificateValidationException = schema.new({
     id = id.from(_N, "CertificateValidationException"),
     type = "structure",

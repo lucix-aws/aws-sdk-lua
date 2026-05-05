@@ -7,6 +7,628 @@ local _N = "com.amazonaws.securityhub"
 
 local M = {}
 
+M.AutomationRulesArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnprocessedAutomationRulesList = schema.new({ type = "list", list_member = M.UnprocessedAutomationRule })
+
+M.StandardsSubscriptionArns = schema.new({ type = "list", list_member = prelude.String })
+
+M.StandardsSubscriptions = schema.new({ type = "list", list_member = M.StandardsSubscription })
+
+M.StandardsSubscriptionRequests = schema.new({ type = "list", list_member = M.StandardsSubscriptionRequest })
+
+M.AutomationRulesConfigList = schema.new({ type = "list", list_member = M.AutomationRulesConfig })
+
+M.ConfigurationPolicyAssociationsList = schema.new({ type = "list", list_member = M.ConfigurationPolicyAssociation })
+
+M.ConfigurationPolicyAssociationList = schema.new({ type = "list", list_member = M.ConfigurationPolicyAssociationSummary })
+
+M.UnprocessedConfigurationPolicyAssociationList = schema.new({ type = "list", list_member = M.UnprocessedConfigurationPolicyAssociation })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityControls = schema.new({ type = "list", list_member = M.SecurityControl })
+
+M.UnprocessedSecurityControls = schema.new({ type = "list", list_member = M.UnprocessedSecurityControl })
+
+M.StandardsControlAssociationIds = schema.new({ type = "list", list_member = M.StandardsControlAssociationId })
+
+M.StandardsControlAssociationDetails = schema.new({ type = "list", list_member = M.StandardsControlAssociationDetail })
+
+M.UnprocessedStandardsControlAssociations = schema.new({ type = "list", list_member = M.UnprocessedStandardsControlAssociation })
+
+M.BatchImportFindingsRequestFindingList = schema.new({ type = "list", list_member = M.AwsSecurityFinding })
+
+M.ImportFindingsErrorList = schema.new({ type = "list", list_member = M.ImportFindingsError })
+
+M.UpdateAutomationRulesRequestItemsList = schema.new({ type = "list", list_member = M.UpdateAutomationRulesRequestItem })
+
+M.AwsSecurityFindingIdentifierList = schema.new({ type = "list", list_member = M.AwsSecurityFindingIdentifier })
+
+M.TypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RelatedFindingList = schema.new({ type = "list", list_member = M.RelatedFinding })
+
+M.BatchUpdateFindingsUnprocessedFindingsList = schema.new({ type = "list", list_member = M.BatchUpdateFindingsUnprocessedFinding })
+
+M.MetadataUidList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OcsfFindingIdentifierList = schema.new({ type = "list", list_member = M.OcsfFindingIdentifier })
+
+M.BatchUpdateFindingsV2ProcessedFindingsList = schema.new({ type = "list", list_member = M.BatchUpdateFindingsV2ProcessedFinding })
+
+M.BatchUpdateFindingsV2UnprocessedFindingsList = schema.new({ type = "list", list_member = M.BatchUpdateFindingsV2UnprocessedFinding })
+
+M.StandardsControlAssociationUpdates = schema.new({ type = "list", list_member = M.StandardsControlAssociationUpdate })
+
+M.UnprocessedStandardsControlAssociationUpdates = schema.new({ type = "list", list_member = M.UnprocessedStandardsControlAssociationUpdate })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ActionList = schema.new({ type = "list", list_member = M.AutomationRulesAction })
+
+M.AutomationRulesActionListV2 = schema.new({ type = "list", list_member = M.AutomationRulesActionV2 })
+
+M.AccountDetailsList = schema.new({ type = "list", list_member = M.AccountDetails })
+
+M.ResultList = schema.new({ type = "list", list_member = M.Result })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ActionTargetList = schema.new({ type = "list", list_member = M.ActionTarget })
+
+M.ProductsList = schema.new({ type = "list", list_member = M.Product })
+
+M.ProductsV2List = schema.new({ type = "list", list_member = M.ProductV2 })
+
+M.Standards = schema.new({ type = "list", list_member = M.Standard })
+
+M.StandardsControls = schema.new({ type = "list", list_member = M.StandardsControl })
+
+M.FindingHistoryRecordList = schema.new({ type = "list", list_member = M.FindingHistoryRecord })
+
+M.SortCriteria = schema.new({ type = "list", list_member = M.SortCriterion })
+
+M.AwsSecurityFindingList = schema.new({ type = "list", list_member = M.AwsSecurityFinding })
+
+M.GroupByRules = schema.new({ type = "list", list_member = M.GroupByRule })
+
+M.GroupByResults = schema.new({ type = "list", list_member = M.GroupByResult })
+
+M.TrendsMetrics = schema.new({ type = "list", list_member = M.TrendsMetricsResult })
+
+M.OcsfFindingsList = schema.new({ type = "list", list_member = prelude.Document })
+
+M.InsightList = schema.new({ type = "list", list_member = M.Insight })
+
+M.MemberList = schema.new({ type = "list", list_member = M.Member })
+
+M.ResourceGroupByRules = schema.new({ type = "list", list_member = M.ResourceGroupByRule })
+
+M.ResourcesTrendsMetrics = schema.new({ type = "list", list_member = M.ResourcesTrendsMetricsResult })
+
+M.Resources = schema.new({ type = "list", list_member = M.ResourceResult })
+
+M.AggregatorV2List = schema.new({ type = "list", list_member = M.AggregatorV2 })
+
+M.AutomationRulesMetadataList = schema.new({ type = "list", list_member = M.AutomationRulesMetadata })
+
+M.AutomationRulesMetadataListV2 = schema.new({ type = "list", list_member = M.AutomationRulesMetadataV2 })
+
+M.ConfigurationPolicySummaryList = schema.new({ type = "list", list_member = M.ConfigurationPolicySummary })
+
+M.ConfigurationPolicyAssociationSummaryList = schema.new({ type = "list", list_member = M.ConfigurationPolicyAssociationSummary })
+
+M.ConnectorSummaryList = schema.new({ type = "list", list_member = M.ConnectorSummary })
+
+M.ProductSubscriptionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingAggregatorList = schema.new({ type = "list", list_member = M.FindingAggregator })
+
+M.InvitationList = schema.new({ type = "list", list_member = M.Invitation })
+
+M.AdminAccounts = schema.new({ type = "list", list_member = M.AdminAccount })
+
+M.SecurityControlDefinitions = schema.new({ type = "list", list_member = M.SecurityControlDefinition })
+
+M.StandardsControlAssociationSummaries = schema.new({ type = "list", list_member = M.StandardsControlAssociationSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Parameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterConfiguration })
+
+M.StringFilterList = schema.new({ type = "list", list_member = M.StringFilter })
+
+M.DateFilterList = schema.new({ type = "list", list_member = M.DateFilter })
+
+M.NumberFilterList = schema.new({ type = "list", list_member = M.NumberFilter })
+
+M.MapFilterList = schema.new({ type = "list", list_member = M.MapFilter })
+
+M.IpFilterList = schema.new({ type = "list", list_member = M.IpFilter })
+
+M.KeywordFilterList = schema.new({ type = "list", list_member = M.KeywordFilter })
+
+M.BooleanFilterList = schema.new({ type = "list", list_member = M.BooleanFilter })
+
+M.AwsOrganizationScopeList = schema.new({ type = "list", list_member = M.AwsOrganizationScope })
+
+M.FindingsTrendsCompositeFilterList = schema.new({ type = "list", list_member = M.FindingsTrendsCompositeFilter })
+
+M.CompositeFilterList = schema.new({ type = "list", list_member = M.CompositeFilter })
+
+M.InsightResultValueList = schema.new({ type = "list", list_member = M.InsightResultValue })
+
+M.ResourcesTrendsCompositeFilterList = schema.new({ type = "list", list_member = M.ResourcesTrendsCompositeFilter })
+
+M.ResourcesCompositeFilterList = schema.new({ type = "list", list_member = M.ResourcesCompositeFilter })
+
+M.CustomizableProperties = schema.new({ type = "list", list_member = prelude.String })
+
+M.ParameterDefinitions = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterDefinition })
+
+M.StandardsInputParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RelatedRequirementsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StandardsControlArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MalwareList = schema.new({ type = "list", list_member = M.Malware })
+
+M.NetworkPathList = schema.new({ type = "list", list_member = M.NetworkPathComponent })
+
+M.ThreatList = schema.new({ type = "list", list_member = M.Threat })
+
+M.ThreatIntelIndicatorList = schema.new({ type = "list", list_member = M.ThreatIntelIndicator })
+
+M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
+
+M.VulnerabilityList = schema.new({ type = "list", list_member = M.Vulnerability })
+
+M.EnabledStandardIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegrationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegrationV2TypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingHistoryUpdatesList = schema.new({ type = "list", list_member = M.FindingHistoryUpdate })
+
+M.GroupByValues = schema.new({ type = "list", list_member = M.GroupByValue })
+
+M.ResourceFindingsSummaryList = schema.new({ type = "list", list_member = M.ResourceFindingsSummary })
+
+M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.AutomationRulesActionTypeListV2 = schema.new({ type = "list", list_member = M.AutomationRulesActionTypeObjectV2 })
+
+M.StatusReasonsList = schema.new({ type = "list", list_member = M.StatusReason })
+
+M.AssociatedStandardsList = schema.new({ type = "list", list_member = M.AssociatedStandard })
+
+M.SecurityControlParametersList = schema.new({ type = "list", list_member = M.SecurityControlParameter })
+
+M.EnabledSecurityControlIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DisabledSecurityControlIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityControlCustomParametersList = schema.new({ type = "list", list_member = M.SecurityControlCustomParameter })
+
+M.FindingsTrendsStringFilterList = schema.new({ type = "list", list_member = M.FindingsTrendsStringFilter })
+
+M.OcsfStringFilterList = schema.new({ type = "list", list_member = M.OcsfStringFilter })
+
+M.OcsfDateFilterList = schema.new({ type = "list", list_member = M.OcsfDateFilter })
+
+M.OcsfBooleanFilterList = schema.new({ type = "list", list_member = M.OcsfBooleanFilter })
+
+M.OcsfNumberFilterList = schema.new({ type = "list", list_member = M.OcsfNumberFilter })
+
+M.OcsfMapFilterList = schema.new({ type = "list", list_member = M.OcsfMapFilter })
+
+M.OcsfIpFilterList = schema.new({ type = "list", list_member = M.OcsfIpFilter })
+
+M.ResourcesTrendsStringFilterList = schema.new({ type = "list", list_member = M.ResourcesTrendsStringFilter })
+
+M.ResourcesStringFilterList = schema.new({ type = "list", list_member = M.ResourcesStringFilter })
+
+M.ResourcesDateFilterList = schema.new({ type = "list", list_member = M.ResourcesDateFilter })
+
+M.ResourcesNumberFilterList = schema.new({ type = "list", list_member = M.ResourcesNumberFilter })
+
+M.ResourcesMapFilterList = schema.new({ type = "list", list_member = M.ResourcesMapFilter })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.FilePathList = schema.new({ type = "list", list_member = M.FilePaths })
+
+M.SoftwarePackageList = schema.new({ type = "list", list_member = M.SoftwarePackage })
+
+M.CvssList = schema.new({ type = "list", list_member = M.Cvss })
+
+M.VulnerabilityCodeVulnerabilitiesList = schema.new({ type = "list", list_member = M.VulnerabilityCodeVulnerabilities })
+
+M.PortProbeDetailList = schema.new({ type = "list", list_member = M.PortProbeDetail })
+
+M.ActorsList = schema.new({ type = "list", list_member = M.Actor })
+
+M.NetworkEndpointsList = schema.new({ type = "list", list_member = M.NetworkEndpoint })
+
+M.SignalsList = schema.new({ type = "list", list_member = M.Signal })
+
+M.IndicatorsList = schema.new({ type = "list", list_member = M.Indicator })
+
+M.PortRangeList = schema.new({ type = "list", list_member = M.PortRange })
+
+M.SensitiveDataResultList = schema.new({ type = "list", list_member = M.SensitiveDataResult })
+
+M.AwsAutoScalingAutoScalingGroupAvailabilityZonesList = schema.new({ type = "list", list_member = M.AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails })
+
+M.AwsCodeBuildProjectArtifactsList = schema.new({ type = "list", list_member = M.AwsCodeBuildProjectArtifactsDetails })
+
+M.AwsEc2InstanceNetworkInterfacesList = schema.new({ type = "list", list_member = M.AwsEc2InstanceNetworkInterfacesDetails })
+
+M.AwsEc2NetworkInterfaceSecurityGroupList = schema.new({ type = "list", list_member = M.AwsEc2NetworkInterfaceSecurityGroup })
+
+M.AwsEc2NetworkInterfaceIpV6AddressList = schema.new({ type = "list", list_member = M.AwsEc2NetworkInterfaceIpV6AddressDetail })
+
+M.AwsEc2NetworkInterfacePrivateIpAddressList = schema.new({ type = "list", list_member = M.AwsEc2NetworkInterfacePrivateIpAddressDetail })
+
+M.AwsEc2SecurityGroupIpPermissionList = schema.new({ type = "list", list_member = M.AwsEc2SecurityGroupIpPermission })
+
+M.AwsEc2VolumeAttachmentList = schema.new({ type = "list", list_member = M.AwsEc2VolumeAttachment })
+
+M.CidrBlockAssociationList = schema.new({ type = "list", list_member = M.CidrBlockAssociation })
+
+M.Ipv6CidrBlockAssociationList = schema.new({ type = "list", list_member = M.Ipv6CidrBlockAssociation })
+
+M.AwsEc2NetworkAclAssociationList = schema.new({ type = "list", list_member = M.AwsEc2NetworkAclAssociation })
+
+M.AwsEc2NetworkAclEntryList = schema.new({ type = "list", list_member = M.AwsEc2NetworkAclEntry })
+
+M.AvailabilityZones = schema.new({ type = "list", list_member = M.AvailabilityZone })
+
+M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsElbv2LoadBalancerAttributes = schema.new({ type = "list", list_member = M.AwsElbv2LoadBalancerAttribute })
+
+M.AwsElasticBeanstalkEnvironmentEnvironmentLinks = schema.new({ type = "list", list_member = M.AwsElasticBeanstalkEnvironmentEnvironmentLink })
+
+M.AwsElasticBeanstalkEnvironmentOptionSettings = schema.new({ type = "list", list_member = M.AwsElasticBeanstalkEnvironmentOptionSetting })
+
+M.AwsIamAttachedManagedPolicyList = schema.new({ type = "list", list_member = M.AwsIamAttachedManagedPolicy })
+
+M.AwsIamUserPolicyList = schema.new({ type = "list", list_member = M.AwsIamUserPolicy })
+
+M.AwsIamPolicyVersionList = schema.new({ type = "list", list_member = M.AwsIamPolicyVersion })
+
+M.AwsDynamoDbTableAttributeDefinitionList = schema.new({ type = "list", list_member = M.AwsDynamoDbTableAttributeDefinition })
+
+M.AwsDynamoDbTableGlobalSecondaryIndexList = schema.new({ type = "list", list_member = M.AwsDynamoDbTableGlobalSecondaryIndex })
+
+M.AwsDynamoDbTableKeySchemaList = schema.new({ type = "list", list_member = M.AwsDynamoDbTableKeySchema })
+
+M.AwsDynamoDbTableLocalSecondaryIndexList = schema.new({ type = "list", list_member = M.AwsDynamoDbTableLocalSecondaryIndex })
+
+M.AwsDynamoDbTableReplicaList = schema.new({ type = "list", list_member = M.AwsDynamoDbTableReplica })
+
+M.AwsApiGatewayMethodSettingsList = schema.new({ type = "list", list_member = M.AwsApiGatewayMethodSettings })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsCertificateManagerCertificateDomainValidationOptions = schema.new({ type = "list", list_member = M.AwsCertificateManagerCertificateDomainValidationOption })
+
+M.AwsCertificateManagerCertificateExtendedKeyUsages = schema.new({ type = "list", list_member = M.AwsCertificateManagerCertificateExtendedKeyUsage })
+
+M.AwsCertificateManagerCertificateKeyUsages = schema.new({ type = "list", list_member = M.AwsCertificateManagerCertificateKeyUsage })
+
+M.AwsRedshiftClusterClusterNodes = schema.new({ type = "list", list_member = M.AwsRedshiftClusterClusterNode })
+
+M.AwsRedshiftClusterClusterParameterGroups = schema.new({ type = "list", list_member = M.AwsRedshiftClusterClusterParameterGroup })
+
+M.AwsRedshiftClusterClusterSecurityGroups = schema.new({ type = "list", list_member = M.AwsRedshiftClusterClusterSecurityGroup })
+
+M.AwsRedshiftClusterDeferredMaintenanceWindows = schema.new({ type = "list", list_member = M.AwsRedshiftClusterDeferredMaintenanceWindow })
+
+M.AwsRedshiftClusterIamRoles = schema.new({ type = "list", list_member = M.AwsRedshiftClusterIamRole })
+
+M.AwsRedshiftClusterVpcSecurityGroups = schema.new({ type = "list", list_member = M.AwsRedshiftClusterVpcSecurityGroup })
+
+M.AwsElbLoadBalancerBackendServerDescriptions = schema.new({ type = "list", list_member = M.AwsElbLoadBalancerBackendServerDescription })
+
+M.AwsElbLoadBalancerInstances = schema.new({ type = "list", list_member = M.AwsElbLoadBalancerInstance })
+
+M.AwsElbLoadBalancerListenerDescriptions = schema.new({ type = "list", list_member = M.AwsElbLoadBalancerListenerDescription })
+
+M.AwsIamGroupPolicyList = schema.new({ type = "list", list_member = M.AwsIamGroupPolicy })
+
+M.AwsIamInstanceProfileList = schema.new({ type = "list", list_member = M.AwsIamInstanceProfile })
+
+M.AwsIamRolePolicyList = schema.new({ type = "list", list_member = M.AwsIamRolePolicy })
+
+M.AwsLambdaFunctionLayerList = schema.new({ type = "list", list_member = M.AwsLambdaFunctionLayer })
+
+M.AwsRdsDbInstanceAssociatedRoles = schema.new({ type = "list", list_member = M.AwsRdsDbInstanceAssociatedRole })
+
+M.AwsRdsDbInstanceVpcSecurityGroups = schema.new({ type = "list", list_member = M.AwsRdsDbInstanceVpcSecurityGroup })
+
+M.AwsRdsDbParameterGroups = schema.new({ type = "list", list_member = M.AwsRdsDbParameterGroup })
+
+M.AwsRdsDbOptionGroupMemberships = schema.new({ type = "list", list_member = M.AwsRdsDbOptionGroupMembership })
+
+M.AwsRdsDbStatusInfos = schema.new({ type = "list", list_member = M.AwsRdsDbStatusInfo })
+
+M.AwsRdsDbDomainMemberships = schema.new({ type = "list", list_member = M.AwsRdsDbDomainMembership })
+
+M.AwsRdsDbProcessorFeatures = schema.new({ type = "list", list_member = M.AwsRdsDbProcessorFeature })
+
+M.AwsSnsTopicSubscriptionList = schema.new({ type = "list", list_member = M.AwsSnsTopicSubscription })
+
+M.AwsWafWebAclRuleList = schema.new({ type = "list", list_member = M.AwsWafWebAclRule })
+
+M.AwsRdsDbClusterSnapshotDbClusterSnapshotAttributes = schema.new({ type = "list", list_member = M.AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute })
+
+M.AwsRdsDbClusterAssociatedRoles = schema.new({ type = "list", list_member = M.AwsRdsDbClusterAssociatedRole })
+
+M.AwsRdsDbClusterOptionGroupMemberships = schema.new({ type = "list", list_member = M.AwsRdsDbClusterOptionGroupMembership })
+
+M.AwsRdsDbClusterMembers = schema.new({ type = "list", list_member = M.AwsRdsDbClusterMember })
+
+M.AwsEcsClusterClusterSettingsList = schema.new({ type = "list", list_member = M.AwsEcsClusterClusterSettingsDetails })
+
+M.AwsEcsClusterDefaultCapacityProviderStrategyList = schema.new({ type = "list", list_member = M.AwsEcsClusterDefaultCapacityProviderStrategyDetails })
+
+M.AwsMountPointList = schema.new({ type = "list", list_member = M.AwsMountPoint })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsDetails })
+
+M.AwsEcsTaskDefinitionInferenceAcceleratorsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionInferenceAcceleratorsDetails })
+
+M.AwsEcsTaskDefinitionPlacementConstraintsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionPlacementConstraintsDetails })
+
+M.AwsEcsTaskDefinitionVolumesList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionVolumesDetails })
+
+M.VolumeMountList = schema.new({ type = "list", list_member = M.VolumeMount })
+
+M.AwsEcsServiceCapacityProviderStrategyList = schema.new({ type = "list", list_member = M.AwsEcsServiceCapacityProviderStrategyDetails })
+
+M.AwsEcsServiceLoadBalancersList = schema.new({ type = "list", list_member = M.AwsEcsServiceLoadBalancersDetails })
+
+M.AwsEcsServicePlacementConstraintsList = schema.new({ type = "list", list_member = M.AwsEcsServicePlacementConstraintsDetails })
+
+M.AwsEcsServicePlacementStrategiesList = schema.new({ type = "list", list_member = M.AwsEcsServicePlacementStrategiesDetails })
+
+M.AwsEcsServiceServiceRegistriesList = schema.new({ type = "list", list_member = M.AwsEcsServiceServiceRegistriesDetails })
+
+M.AwsAutoScalingLaunchConfigurationBlockDeviceMappingsList = schema.new({ type = "list", list_member = M.AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails })
+
+M.AwsEc2VpnConnectionVgwTelemetryList = schema.new({ type = "list", list_member = M.AwsEc2VpnConnectionVgwTelemetryDetails })
+
+M.AwsEc2VpnConnectionRoutesList = schema.new({ type = "list", list_member = M.AwsEc2VpnConnectionRoutesDetails })
+
+M.AwsEc2VpcEndpointServiceServiceTypeList = schema.new({ type = "list", list_member = M.AwsEc2VpcEndpointServiceServiceTypeDetails })
+
+M.AwsWafRateBasedRuleMatchPredicateList = schema.new({ type = "list", list_member = M.AwsWafRateBasedRuleMatchPredicate })
+
+M.AwsWafRegionalRateBasedRuleMatchPredicateList = schema.new({ type = "list", list_member = M.AwsWafRegionalRateBasedRuleMatchPredicate })
+
+M.AwsNetworkFirewallFirewallSubnetMappingsList = schema.new({ type = "list", list_member = M.AwsNetworkFirewallFirewallSubnetMappingsDetails })
+
+M.AwsRdsDbSecurityGroupEc2SecurityGroups = schema.new({ type = "list", list_member = M.AwsRdsDbSecurityGroupEc2SecurityGroup })
+
+M.AwsRdsDbSecurityGroupIpRanges = schema.new({ type = "list", list_member = M.AwsRdsDbSecurityGroupIpRange })
+
+M.AwsCloudFormationStackOutputsList = schema.new({ type = "list", list_member = M.AwsCloudFormationStackOutputsDetails })
+
+M.AwsCloudWatchAlarmDimensionsList = schema.new({ type = "list", list_member = M.AwsCloudWatchAlarmDimensionsDetails })
+
+M.AwsWafRegionalRuleGroupRulesList = schema.new({ type = "list", list_member = M.AwsWafRegionalRuleGroupRulesDetails })
+
+M.AwsWafRegionalRulePredicateList = schema.new({ type = "list", list_member = M.AwsWafRegionalRulePredicateListDetails })
+
+M.AwsWafRegionalWebAclRulesList = schema.new({ type = "list", list_member = M.AwsWafRegionalWebAclRulesListDetails })
+
+M.AwsWafRulePredicateList = schema.new({ type = "list", list_member = M.AwsWafRulePredicateListDetails })
+
+M.AwsWafRuleGroupRulesList = schema.new({ type = "list", list_member = M.AwsWafRuleGroupRulesDetails })
+
+M.AwsEcsTaskVolumeDetailsList = schema.new({ type = "list", list_member = M.AwsEcsTaskVolumeDetails })
+
+M.AwsEcsContainerDetailsList = schema.new({ type = "list", list_member = M.AwsEcsContainerDetails })
+
+M.AwsWafv2RulesList = schema.new({ type = "list", list_member = M.AwsWafv2RulesDetails })
+
+M.AssociationSetList = schema.new({ type = "list", list_member = M.AssociationSetDetails })
+
+M.PropagatingVgwSetList = schema.new({ type = "list", list_member = M.PropagatingVgwSetDetails })
+
+M.RouteSetList = schema.new({ type = "list", list_member = M.RouteSetDetails })
+
+M.AwsAmazonMqBrokerUsersList = schema.new({ type = "list", list_member = M.AwsAmazonMqBrokerUsersDetails })
+
+M.AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersList = schema.new({ type = "list", list_member = M.AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails })
+
+M.AwsGuardDutyDetectorFeaturesList = schema.new({ type = "list", list_member = M.AwsGuardDutyDetectorFeaturesDetails })
+
+M.AwsEventsEndpointEventBusesList = schema.new({ type = "list", list_member = M.AwsEventsEndpointEventBusesDetails })
+
+M.AwsDmsReplicationInstanceVpcSecurityGroupsList = schema.new({ type = "list", list_member = M.AwsDmsReplicationInstanceVpcSecurityGroupsDetails })
+
+M.AwsRoute53HostedZoneVpcsList = schema.new({ type = "list", list_member = M.AwsRoute53HostedZoneVpcDetails })
+
+M.AwsRoute53HostedZoneNameServersList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsEc2ClientVpnEndpointAuthenticationOptionsList = schema.new({ type = "list", list_member = M.AwsEc2ClientVpnEndpointAuthenticationOptionsDetails })
+
+M.AdjustmentList = schema.new({ type = "list", list_member = M.Adjustment })
+
+M.CustomDataIdentifiersDetectionsList = schema.new({ type = "list", list_member = M.CustomDataIdentifiersDetections })
+
+M.AwsCodeBuildProjectEnvironmentEnvironmentVariablesList = schema.new({ type = "list", list_member = M.AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails })
+
+M.AwsCloudFrontDistributionCacheBehaviorsItemList = schema.new({ type = "list", list_member = M.AwsCloudFrontDistributionCacheBehavior })
+
+M.AwsCloudFrontDistributionOriginItemList = schema.new({ type = "list", list_member = M.AwsCloudFrontDistributionOriginItem })
+
+M.AwsCloudFrontDistributionOriginGroupsItemList = schema.new({ type = "list", list_member = M.AwsCloudFrontDistributionOriginGroup })
+
+M.AwsS3BucketServerSideEncryptionRules = schema.new({ type = "list", list_member = M.AwsS3BucketServerSideEncryptionRule })
+
+M.AwsS3BucketBucketLifecycleConfigurationRulesList = schema.new({ type = "list", list_member = M.AwsS3BucketBucketLifecycleConfigurationRulesDetails })
+
+M.AwsS3BucketWebsiteConfigurationRoutingRules = schema.new({ type = "list", list_member = M.AwsS3BucketWebsiteConfigurationRoutingRule })
+
+M.AwsS3BucketNotificationConfigurationDetails = schema.new({ type = "list", list_member = M.AwsS3BucketNotificationConfigurationDetail })
+
+M.AwsElbLoadBalancerAdditionalAttributeList = schema.new({ type = "list", list_member = M.AwsElbLoadBalancerAdditionalAttribute })
+
+M.AwsElbAppCookieStickinessPolicies = schema.new({ type = "list", list_member = M.AwsElbAppCookieStickinessPolicy })
+
+M.AwsElbLbCookieStickinessPolicies = schema.new({ type = "list", list_member = M.AwsElbLbCookieStickinessPolicy })
+
+M.AwsRdsDbSubnetGroupSubnets = schema.new({ type = "list", list_member = M.AwsRdsDbSubnetGroupSubnet })
+
+M.AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails })
+
+M.AwsEc2VpnConnectionOptionsTunnelOptionsList = schema.new({ type = "list", list_member = M.AwsEc2VpnConnectionOptionsTunnelOptionsDetails })
+
+M.AwsEksClusterLoggingClusterLoggingList = schema.new({ type = "list", list_member = M.AwsEksClusterLoggingClusterLoggingDetails })
+
+M.FirewallPolicyStatefulRuleGroupReferencesList = schema.new({ type = "list", list_member = M.FirewallPolicyStatefulRuleGroupReferencesDetails })
+
+M.FirewallPolicyStatelessCustomActionsList = schema.new({ type = "list", list_member = M.FirewallPolicyStatelessCustomActionsDetails })
+
+M.FirewallPolicyStatelessRuleGroupReferencesList = schema.new({ type = "list", list_member = M.FirewallPolicyStatelessRuleGroupReferencesDetails })
+
+M.VpcInfoCidrBlockSetList = schema.new({ type = "list", list_member = M.VpcInfoCidrBlockSetDetails })
+
+M.VpcInfoIpv6CidrBlockSetList = schema.new({ type = "list", list_member = M.VpcInfoIpv6CidrBlockSetDetails })
+
+M.AwsBackupBackupPlanAdvancedBackupSettingsList = schema.new({ type = "list", list_member = M.AwsBackupBackupPlanAdvancedBackupSettingsDetails })
+
+M.AwsBackupBackupPlanRuleList = schema.new({ type = "list", list_member = M.AwsBackupBackupPlanRuleDetails })
+
+M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails })
+
+M.AwsEc2LaunchTemplateDataElasticGpuSpecificationSetList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails })
+
+M.AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails })
+
+M.AwsEc2LaunchTemplateDataLicenseSetList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataLicenseSetDetails })
+
+M.AwsEc2LaunchTemplateDataNetworkInterfaceSetList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails })
+
+M.AwsStepFunctionStateMachineLoggingConfigurationDestinationsList = schema.new({ type = "list", list_member = M.AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails })
+
+M.SensitiveDataDetectionsList = schema.new({ type = "list", list_member = M.SensitiveDataDetections })
+
+M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesList = schema.new({ type = "list", list_member = M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesListDetails })
+
+M.AwsEc2SecurityGroupUserIdGroupPairList = schema.new({ type = "list", list_member = M.AwsEc2SecurityGroupUserIdGroupPair })
+
+M.AwsEc2SecurityGroupIpRangeList = schema.new({ type = "list", list_member = M.AwsEc2SecurityGroupIpRange })
+
+M.AwsEc2SecurityGroupIpv6RangeList = schema.new({ type = "list", list_member = M.AwsEc2SecurityGroupIpv6Range })
+
+M.AwsEc2SecurityGroupPrefixListIdList = schema.new({ type = "list", list_member = M.AwsEc2SecurityGroupPrefixListId })
+
+M.AwsDynamoDbTableReplicaGlobalSecondaryIndexList = schema.new({ type = "list", list_member = M.AwsDynamoDbTableReplicaGlobalSecondaryIndex })
+
+M.AwsRedshiftClusterClusterParameterStatusList = schema.new({ type = "list", list_member = M.AwsRedshiftClusterClusterParameterStatus })
+
+M.AwsIamInstanceProfileRoles = schema.new({ type = "list", list_member = M.AwsIamInstanceProfileRole })
+
+M.WafExcludedRuleList = schema.new({ type = "list", list_member = M.WafExcludedRule })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsDependsOnList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsEnvironmentList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsExtraHostsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsMountPointsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsPortMappingsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsSecretsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsSystemControlsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsUlimitsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsVolumesFromList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails })
+
+M.RuleGroupSourceStatefulRulesList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatefulRulesDetails })
+
+M.AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsList = schema.new({ type = "list", list_member = M.AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails })
+
+M.AwsS3BucketBucketLifecycleConfigurationRulesTransitionsList = schema.new({ type = "list", list_member = M.AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails })
+
+M.AwsS3BucketNotificationConfigurationEvents = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails })
+
+M.AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsList = schema.new({ type = "list", list_member = M.AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails })
+
+M.RuleGroupSourceCustomActionsList = schema.new({ type = "list", list_member = M.RuleGroupSourceCustomActionsDetails })
+
+M.RuleGroupSourceStatelessRulesList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatelessRulesDetails })
+
+M.AwsBackupBackupPlanRuleCopyActionsList = schema.new({ type = "list", list_member = M.AwsBackupBackupPlanRuleCopyActionsDetails })
+
+M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails })
+
+M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails })
+
+M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails })
+
+M.AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesList = schema.new({ type = "list", list_member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails })
+
+M.AwsWafv2InsertHeadersList = schema.new({ type = "list", list_member = M.AwsWafv2CustomHttpHeader })
+
+M.Ranges = schema.new({ type = "list", list_member = M.Range })
+
+M.Pages = schema.new({ type = "list", list_member = M.Page })
+
+M.Records = schema.new({ type = "list", list_member = M.Record })
+
+M.Cells = schema.new({ type = "list", list_member = M.Cell })
+
+M.RuleGroupSourceStatefulRulesOptionsList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatefulRulesOptionsDetails })
+
+M.AwsCloudFrontDistributionOriginGroupFailoverStatusCodesItemList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsList = schema.new({ type = "list", list_member = M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails })
+
+M.AwsS3BucketNotificationConfigurationS3KeyFilterRules = schema.new({ type = "list", list_member = M.AwsS3BucketNotificationConfigurationS3KeyFilterRule })
+
+M.StatelessCustomPublishMetricActionDimensionsList = schema.new({ type = "list", list_member = M.StatelessCustomPublishMetricActionDimension })
+
+M.RuleGroupSourceStatefulRulesRuleOptionsSettingsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuleGroupSourceStatelessRuleMatchAttributesDestinationPortsList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatelessRuleMatchAttributesDestinationPorts })
+
+M.RuleGroupSourceStatelessRuleMatchAttributesDestinationsList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatelessRuleMatchAttributesDestinations })
+
+M.RuleGroupSourceStatelessRuleMatchAttributesProtocolsList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.RuleGroupSourceStatelessRuleMatchAttributesSourcePortsList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatelessRuleMatchAttributesSourcePorts })
+
+M.RuleGroupSourceStatelessRuleMatchAttributesSourcesList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatelessRuleMatchAttributesSources })
+
+M.RuleGroupSourceStatelessRuleMatchAttributesTcpFlagsList = schema.new({ type = "list", list_member = M.RuleGroupSourceStatelessRuleMatchAttributesTcpFlags })
+
 M.AcceptAdministratorInvitationInput = schema.new({
     id = id.from(_N, "AcceptAdministratorInvitationRequest"),
     type = "structure",

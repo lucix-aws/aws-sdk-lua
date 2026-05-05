@@ -7,6 +7,40 @@ local _N = "com.amazonaws.pcs"
 
 local M = {}
 
+M.ResponseTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RequestTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
+
+M.ClusterList = schema.new({ type = "list", list_member = M.ClusterSummary })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceList = schema.new({ type = "list", list_member = M.InstanceConfig })
+
+M.ComputeNodeGroupList = schema.new({ type = "list", list_member = M.ComputeNodeGroupSummary })
+
+M.ComputeNodeGroupConfigurationList = schema.new({ type = "list", list_member = M.ComputeNodeGroupConfiguration })
+
+M.QueueList = schema.new({ type = "list", list_member = M.QueueSummary })
+
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SlurmCustomSettings = schema.new({ type = "list", list_member = M.SlurmCustomSetting })
+
+M.SlurmdbdCustomSettings = schema.new({ type = "list", list_member = M.SlurmdbdCustomSetting })
+
+M.CgroupCustomSettings = schema.new({ type = "list", list_member = M.CgroupCustomSetting })
+
+M.ErrorInfoList = schema.new({ type = "list", list_member = M.ErrorInfo })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",

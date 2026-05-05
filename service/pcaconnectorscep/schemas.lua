@@ -7,6 +7,14 @@ local _N = "com.amazonaws.pcaconnectorscep"
 
 local M = {}
 
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChallengeMetadataList = schema.new({ type = "list", list_member = M.ChallengeMetadataSummary })
+
+M.ConnectorList = schema.new({ type = "list", list_member = M.ConnectorSummary })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -391,10 +399,7 @@ M.DeleteChallengeInput = schema.new({
     },
 })
 
-M.DeleteChallengeOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteChallengeOutput = prelude.Unit
 
 M.GetChallengeMetadataInput = schema.new({
     id = id.from(_N, "GetChallengeMetadataRequest"),
@@ -790,10 +795,7 @@ M.DeleteConnectorInput = schema.new({
     },
 })
 
-M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectorOutput = prelude.Unit
 
 M.GetConnectorInput = schema.new({
     id = id.from(_N, "GetConnectorRequest"),
@@ -931,10 +933,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -964,10 +963,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

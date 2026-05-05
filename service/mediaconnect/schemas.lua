@@ -7,6 +7,140 @@ local _N = "com.amazonaws.mediaconnect"
 
 local M = {}
 
+M.__listOfListedEntitlement = schema.new({ type = "list", list_member = M.ListedEntitlement })
+
+M.__mapOfString = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.__listOfString = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfListedBridge = schema.new({ type = "list", list_member = M.ListedBridge })
+
+M.__listOfAddBridgeOutputRequest = schema.new({ type = "list", list_member = M.AddBridgeOutputRequest })
+
+M.__listOfAddBridgeSourceRequest = schema.new({ type = "list", list_member = M.AddBridgeSourceRequest })
+
+M.__listOfBridgeOutput = schema.new({ type = "list", list_member = M.BridgeOutput })
+
+M.__listOfBridgeSource = schema.new({ type = "list", list_member = M.BridgeSource })
+
+M.__listOfListedFlow = schema.new({ type = "list", list_member = M.ListedFlow })
+
+M.__listOfGrantEntitlementRequest = schema.new({ type = "list", list_member = M.GrantEntitlementRequest })
+
+M.__listOfAddMediaStreamRequest = schema.new({ type = "list", list_member = M.AddMediaStreamRequest })
+
+M.__listOfAddOutputRequest = schema.new({ type = "list", list_member = M.AddOutputRequest })
+
+M.__listOfSetSourceRequest = schema.new({ type = "list", list_member = M.SetSourceRequest })
+
+M.__listOfVpcInterfaceRequest = schema.new({ type = "list", list_member = M.VpcInterfaceRequest })
+
+M.__listOfMediaStream = schema.new({ type = "list", list_member = M.MediaStream })
+
+M.__listOfOutput = schema.new({ type = "list", list_member = M.Output })
+
+M.__listOfSource = schema.new({ type = "list", list_member = M.Source })
+
+M.__listOfVpcInterface = schema.new({ type = "list", list_member = M.VpcInterface })
+
+M.__listOfMessageDetail = schema.new({ type = "list", list_member = M.MessageDetail })
+
+M.__listOfEntitlement = schema.new({ type = "list", list_member = M.Entitlement })
+
+M.__listOfMediaStreamOutputConfigurationRequest = schema.new({ type = "list", list_member = M.MediaStreamOutputConfigurationRequest })
+
+M.__listOfMediaStreamSourceConfigurationRequest = schema.new({ type = "list", list_member = M.MediaStreamSourceConfigurationRequest })
+
+M.__listOfListedGatewayInstance = schema.new({ type = "list", list_member = M.ListedGatewayInstance })
+
+M.__listOfListedGateway = schema.new({ type = "list", list_member = M.ListedGateway })
+
+M.__listOfGatewayNetwork = schema.new({ type = "list", list_member = M.GatewayNetwork })
+
+M.__listOfOffering = schema.new({ type = "list", list_member = M.Offering })
+
+M.__listOfReservation = schema.new({ type = "list", list_member = M.Reservation })
+
+M.RouterInputFilterList = schema.new({ type = "list", list_member = M.RouterInputFilter })
+
+M.ListedRouterInputList = schema.new({ type = "list", list_member = M.ListedRouterInput })
+
+M.RouterInputArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouterInputList = schema.new({ type = "list", list_member = M.RouterInput })
+
+M.BatchGetRouterInputErrorList = schema.new({ type = "list", list_member = M.BatchGetRouterInputError })
+
+M.RouterNetworkInterfaceFilterList = schema.new({ type = "list", list_member = M.RouterNetworkInterfaceFilter })
+
+M.ListedRouterNetworkInterfaceList = schema.new({ type = "list", list_member = M.ListedRouterNetworkInterface })
+
+M.RouterNetworkInterfaceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouterNetworkInterfaceList = schema.new({ type = "list", list_member = M.RouterNetworkInterface })
+
+M.BatchGetRouterNetworkInterfaceErrorList = schema.new({ type = "list", list_member = M.BatchGetRouterNetworkInterfaceError })
+
+M.RouterOutputFilterList = schema.new({ type = "list", list_member = M.RouterOutputFilter })
+
+M.ListedRouterOutputList = schema.new({ type = "list", list_member = M.ListedRouterOutput })
+
+M.RouterOutputArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouterOutputList = schema.new({ type = "list", list_member = M.RouterOutput })
+
+M.BatchGetRouterOutputErrorList = schema.new({ type = "list", list_member = M.BatchGetRouterOutputError })
+
+M.__listOfAudioMonitoringSetting = schema.new({ type = "list", list_member = M.AudioMonitoringSetting })
+
+M.__listOfVideoMonitoringSetting = schema.new({ type = "list", list_member = M.VideoMonitoringSetting })
+
+M.__listOfNdiDiscoveryServerConfig = schema.new({ type = "list", list_member = M.NdiDiscoveryServerConfig })
+
+M.__listOfTransportStreamProgram = schema.new({ type = "list", list_member = M.TransportStreamProgram })
+
+M.__listOfNdiSourceInfo = schema.new({ type = "list", list_member = M.NdiSourceInfo })
+
+M.__listOfMediaStreamOutputConfiguration = schema.new({ type = "list", list_member = M.MediaStreamOutputConfiguration })
+
+M.__listOfInteger = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.__listOfMediaStreamSourceConfiguration = schema.new({ type = "list", list_member = M.MediaStreamSourceConfiguration })
+
+M.RouterInputMessages = schema.new({ type = "list", list_member = M.RouterInputMessage })
+
+M.RouterOutputMessages = schema.new({ type = "list", list_member = M.RouterOutputMessage })
+
+M.__listOfNdiMediaStreamInfo = schema.new({ type = "list", list_member = M.NdiMediaStreamInfo })
+
+M.__listOfDestinationConfigurationRequest = schema.new({ type = "list", list_member = M.DestinationConfigurationRequest })
+
+M.__listOfInputConfigurationRequest = schema.new({ type = "list", list_member = M.InputConfigurationRequest })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RoutingScopeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouterInputTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailoverRouterInputProtocolConfigurationList = schema.new({ type = "list", list_member = M.FailoverRouterInputProtocolConfiguration })
+
+M.MergeRouterInputProtocolConfigurationList = schema.new({ type = "list", list_member = M.MergeRouterInputProtocolConfiguration })
+
+M.RouterNetworkInterfaceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkInterfaceRuleList = schema.new({ type = "list", list_member = M.PublicRouterNetworkInterfaceRule })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouterOutputTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.__listOfTransportStream = schema.new({ type = "list", list_member = M.TransportStream })
+
+M.__listOfDestinationConfiguration = schema.new({ type = "list", list_member = M.DestinationConfiguration })
+
+M.__listOfInputConfiguration = schema.new({ type = "list", list_member = M.InputConfiguration })
+
 M.AddBridgeNetworkOutputRequest = schema.new({
     id = id.from(_N, "AddBridgeNetworkOutputRequest"),
     type = "structure",
@@ -13349,10 +13483,7 @@ M.TagGlobalResourceInput = schema.new({
     },
 })
 
-M.TagGlobalResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagGlobalResourceOutput = prelude.Unit
 
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
@@ -13383,10 +13514,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagGlobalResourceInput = schema.new({
     id = id.from(_N, "UntagGlobalResourceRequest"),
@@ -13416,10 +13544,7 @@ M.UntagGlobalResourceInput = schema.new({
     },
 })
 
-M.UntagGlobalResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagGlobalResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -13449,10 +13574,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

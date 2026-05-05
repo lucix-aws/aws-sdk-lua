@@ -7,6 +7,20 @@ local _N = "com.amazonaws.chimesdkidentity"
 
 local M = {}
 
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.AppInstanceAdminList = schema.new({ type = "list", list_member = M.AppInstanceAdminSummary })
+
+M.AppInstanceBotList = schema.new({ type = "list", list_member = M.AppInstanceBotSummary })
+
+M.AppInstanceList = schema.new({ type = "list", list_member = M.AppInstanceSummary })
+
+M.AppInstanceUserEndpointSummaryList = schema.new({ type = "list", list_member = M.AppInstanceUserEndpointSummary })
+
+M.AppInstanceUserList = schema.new({ type = "list", list_member = M.AppInstanceUserSummary })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AppInstance = schema.new({
     id = id.from(_N, "AppInstance"),
     type = "structure",
@@ -1022,10 +1036,7 @@ M.DeleteAppInstanceInput = schema.new({
     },
 })
 
-M.DeleteAppInstanceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppInstanceOutput = prelude.Unit
 
 M.DeleteAppInstanceAdminInput = schema.new({
     id = id.from(_N, "DeleteAppInstanceAdminRequest"),
@@ -1054,10 +1065,7 @@ M.DeleteAppInstanceAdminInput = schema.new({
     },
 })
 
-M.DeleteAppInstanceAdminOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppInstanceAdminOutput = prelude.Unit
 
 M.DeleteAppInstanceBotInput = schema.new({
     id = id.from(_N, "DeleteAppInstanceBotRequest"),
@@ -1076,10 +1084,7 @@ M.DeleteAppInstanceBotInput = schema.new({
     },
 })
 
-M.DeleteAppInstanceBotOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppInstanceBotOutput = prelude.Unit
 
 M.DeleteAppInstanceUserInput = schema.new({
     id = id.from(_N, "DeleteAppInstanceUserRequest"),
@@ -1098,10 +1103,7 @@ M.DeleteAppInstanceUserInput = schema.new({
     },
 })
 
-M.DeleteAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteAppInstanceUserOutput = prelude.Unit
 
 M.DeregisterAppInstanceUserEndpointInput = schema.new({
     id = id.from(_N, "DeregisterAppInstanceUserEndpointRequest"),
@@ -1130,10 +1132,7 @@ M.DeregisterAppInstanceUserEndpointInput = schema.new({
     },
 })
 
-M.DeregisterAppInstanceUserEndpointOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeregisterAppInstanceUserEndpointOutput = prelude.Unit
 
 M.DescribeAppInstanceInput = schema.new({
     id = id.from(_N, "DescribeAppInstanceRequest"),
@@ -1886,10 +1885,7 @@ M.TagResourceInput = schema.new({
     },
 })
 
-M.TagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.TagResourceOutput = prelude.Unit
 
 M.UntagResourceInput = schema.new({
     id = id.from(_N, "UntagResourceRequest"),
@@ -1917,10 +1913,7 @@ M.UntagResourceInput = schema.new({
     },
 })
 
-M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.UntagResourceOutput = prelude.Unit
 
 M.UpdateAppInstanceInput = schema.new({
     id = id.from(_N, "UpdateAppInstanceRequest"),

@@ -7,6 +7,16 @@ local _N = "com.amazonaws.sagemakeredge"
 
 local M = {}
 
+M.EdgeDeployments = schema.new({ type = "list", list_member = M.EdgeDeployment })
+
+M.EdgeMetrics = schema.new({ type = "list", list_member = M.EdgeMetric })
+
+M.Models = schema.new({ type = "list", list_member = M.Model })
+
+M.DeploymentModels = schema.new({ type = "list", list_member = M.DeploymentModel })
+
+M.Definitions = schema.new({ type = "list", list_member = M.Definition })
+
 M.GetDeploymentsInput = schema.new({
     id = id.from(_N, "GetDeploymentsRequest"),
     type = "structure",
@@ -412,10 +422,7 @@ M.SendHeartbeatInput = schema.new({
     },
 })
 
-M.SendHeartbeatOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.SendHeartbeatOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, s in pairs(M) do

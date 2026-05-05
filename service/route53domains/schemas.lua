@@ -7,6 +7,38 @@ local _N = "com.amazonaws.route53domains"
 
 local M = {}
 
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NameserverList = schema.new({ type = "list", list_member = M.Nameserver })
+
+M.DomainStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DnssecKeyList = schema.new({ type = "list", list_member = M.DnssecKey })
+
+M.DomainSuggestionsList = schema.new({ type = "list", list_member = M.DomainSuggestion })
+
+M.FilterConditions = schema.new({ type = "list", list_member = M.FilterCondition })
+
+M.DomainSummaryList = schema.new({ type = "list", list_member = M.DomainSummary })
+
+M.OperationStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperationSummaryList = schema.new({ type = "list", list_member = M.OperationSummary })
+
+M.DomainPriceList = schema.new({ type = "list", list_member = M.DomainPrice })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.BillingRecords = schema.new({ type = "list", list_member = M.BillingRecord })
+
+M.ExtraParamList = schema.new({ type = "list", list_member = M.ExtraParam })
+
+M.GlueIpList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Values = schema.new({ type = "list", list_member = prelude.String })
+
 M.AcceptDomainTransferFromAnotherAwsAccountInput = schema.new({
     id = id.from(_N, "AcceptDomainTransferFromAnotherAwsAccountRequest"),
     type = "structure",
@@ -1607,10 +1639,7 @@ M.PushDomainInput = schema.new({
     },
 })
 
-M.PushDomainOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PushDomainOutput = prelude.Unit
 
 M.RegisterDomainInput = schema.new({
     id = id.from(_N, "RegisterDomainRequest"),
@@ -1851,10 +1880,7 @@ M.ResendOperationAuthorizationInput = schema.new({
     },
 })
 
-M.ResendOperationAuthorizationOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.ResendOperationAuthorizationOutput = prelude.Unit
 
 M.RetrieveDomainAuthCodeInput = schema.new({
     id = id.from(_N, "RetrieveDomainAuthCodeRequest"),

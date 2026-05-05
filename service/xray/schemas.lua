@@ -7,6 +7,118 @@ local _N = "com.amazonaws.xray"
 
 local M = {}
 
+M.TraceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TraceList = schema.new({ type = "list", list_member = M.Trace })
+
+M.UnprocessedTraceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.GroupSummaryList = schema.new({ type = "list", list_member = M.GroupSummary })
+
+M.IndexingRuleList = schema.new({ type = "list", list_member = M.IndexingRule })
+
+M.InsightEventList = schema.new({ type = "list", list_member = M.InsightEvent })
+
+M.InsightImpactGraphServiceList = schema.new({ type = "list", list_member = M.InsightImpactGraphService })
+
+M.InsightStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightSummaryList = schema.new({ type = "list", list_member = M.InsightSummary })
+
+M.RetrievedServicesList = schema.new({ type = "list", list_member = M.RetrievedService })
+
+M.SamplingRuleRecordList = schema.new({ type = "list", list_member = M.SamplingRuleRecord })
+
+M.SamplingStatisticSummaryList = schema.new({ type = "list", list_member = M.SamplingStatisticSummary })
+
+M.SamplingStatisticsDocumentList = schema.new({ type = "list", list_member = M.SamplingStatisticsDocument })
+
+M.SamplingBoostStatisticsDocumentList = schema.new({ type = "list", list_member = M.SamplingBoostStatisticsDocument })
+
+M.SamplingTargetDocumentList = schema.new({ type = "list", list_member = M.SamplingTargetDocument })
+
+M.UnprocessedStatisticsList = schema.new({ type = "list", list_member = M.UnprocessedStatistics })
+
+M.ServiceList = schema.new({ type = "list", list_member = M.Service })
+
+M.TimeSeriesServiceStatisticsList = schema.new({ type = "list", list_member = M.TimeSeriesServiceStatistics })
+
+M.TraceSummaryList = schema.new({ type = "list", list_member = M.TraceSummary })
+
+M.ResourcePolicyList = schema.new({ type = "list", list_member = M.ResourcePolicy })
+
+M.TraceSpanList = schema.new({ type = "list", list_member = M.RetrievedTrace })
+
+M.TelemetryRecordList = schema.new({ type = "list", list_member = M.TelemetryRecord })
+
+M.TraceSegmentDocumentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnprocessedTraceSegmentList = schema.new({ type = "list", list_member = M.UnprocessedTraceSegment })
+
+M.TraceIdListForRetrieval = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.InsightCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AnomalousServiceList = schema.new({ type = "list", list_member = M.AnomalousService })
+
+M.SegmentList = schema.new({ type = "list", list_member = M.Segment })
+
+M.ServiceNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightImpactGraphEdgeList = schema.new({ type = "list", list_member = M.InsightImpactGraphEdge })
+
+M.LinksList = schema.new({ type = "list", list_member = M.GraphLink })
+
+M.EdgeList = schema.new({ type = "list", list_member = M.Edge })
+
+M.Histogram = schema.new({ type = "list", list_member = M.HistogramEntry })
+
+M.Annotations = schema.new({ type = "map", map_key = prelude.String, map_value = M.ValuesWithServiceIds })
+
+M.TraceUsers = schema.new({ type = "list", list_member = M.TraceUser })
+
+M.ServiceIds = schema.new({ type = "list", list_member = M.ServiceId })
+
+M.TraceResourceARNs = schema.new({ type = "list", list_member = M.ResourceARNDetail })
+
+M.TraceInstanceIds = schema.new({ type = "list", list_member = M.InstanceIdDetail })
+
+M.TraceAvailabilityZones = schema.new({ type = "list", list_member = M.AvailabilityZoneDetail })
+
+M.FaultRootCauses = schema.new({ type = "list", list_member = M.FaultRootCause })
+
+M.ErrorRootCauses = schema.new({ type = "list", list_member = M.ErrorRootCause })
+
+M.ResponseTimeRootCauses = schema.new({ type = "list", list_member = M.ResponseTimeRootCause })
+
+M.SpanList = schema.new({ type = "list", list_member = M.Span })
+
+M.ValuesWithServiceIds = schema.new({ type = "list", list_member = M.ValueWithServiceIds })
+
+M.AliasList = schema.new({ type = "list", list_member = M.Alias })
+
+M.FaultRootCauseServices = schema.new({ type = "list", list_member = M.FaultRootCauseService })
+
+M.ErrorRootCauseServices = schema.new({ type = "list", list_member = M.ErrorRootCauseService })
+
+M.ResponseTimeRootCauseServices = schema.new({ type = "list", list_member = M.ResponseTimeRootCauseService })
+
+M.AliasNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.FaultRootCauseEntityPath = schema.new({ type = "list", list_member = M.FaultRootCauseEntity })
+
+M.ErrorRootCauseEntityPath = schema.new({ type = "list", list_member = M.ErrorRootCauseEntity })
+
+M.ResponseTimeRootCauseEntityPath = schema.new({ type = "list", list_member = M.ResponseTimeRootCauseEntity })
+
+M.RootCauseExceptions = schema.new({ type = "list", list_member = M.RootCauseException })
+
 M.Alias = schema.new({
     id = id.from(_N, "Alias"),
     type = "structure",

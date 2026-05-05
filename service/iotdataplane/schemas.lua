@@ -7,6 +7,10 @@ local _N = "com.amazonaws.iotdataplane"
 
 local M = {}
 
+M.NamedShadowList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RetainedMessageList = schema.new({ type = "list", list_member = M.RetainedMessageSummary })
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",
@@ -60,10 +64,7 @@ M.DeleteConnectionInput = schema.new({
     },
 })
 
-M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.DeleteConnectionOutput = prelude.Unit
 
 M.ForbiddenException = schema.new({
     id = id.from(_N, "ForbiddenException"),
@@ -608,10 +609,7 @@ M.PublishInput = schema.new({
     },
 })
 
-M.PublishOutput = schema.new({
-    id = id.from(_N, "Unit"),
-    type = "structure",
-})
+M.PublishOutput = prelude.Unit
 
 M.RequestEntityTooLargeException = schema.new({
     id = id.from(_N, "RequestEntityTooLargeException"),

@@ -7,6 +7,122 @@ local _N = "com.amazonaws.location"
 
 local M = {}
 
+M.ListKeysResponseEntryList = schema.new({ type = "list", list_member = M.ListKeysResponseEntry })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.ListGeofenceCollectionsResponseEntryList = schema.new({ type = "list", list_member = M.ListGeofenceCollectionsResponseEntry })
+
+M.IdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteGeofenceErrorList = schema.new({ type = "list", list_member = M.BatchDeleteGeofenceError })
+
+M.DevicePositionUpdateList = schema.new({ type = "list", list_member = M.DevicePositionUpdate })
+
+M.BatchEvaluateGeofencesErrorList = schema.new({ type = "list", list_member = M.BatchEvaluateGeofencesError })
+
+M.BatchPutGeofenceRequestEntryList = schema.new({ type = "list", list_member = M.BatchPutGeofenceRequestEntry })
+
+M.BatchPutGeofenceSuccessList = schema.new({ type = "list", list_member = M.BatchPutGeofenceSuccess })
+
+M.BatchPutGeofenceErrorList = schema.new({ type = "list", list_member = M.BatchPutGeofenceError })
+
+M.ForecastedEventsList = schema.new({ type = "list", list_member = M.ForecastedEvent })
+
+M.PropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListGeofenceResponseEntryList = schema.new({ type = "list", list_member = M.ListGeofenceResponseEntry })
+
+M.ListJobsResponseEntryList = schema.new({ type = "list", list_member = M.ListJobsResponseEntry })
+
+M.ListMapsResponseEntryList = schema.new({ type = "list", list_member = M.ListMapsResponseEntry })
+
+M.ListPlaceIndexesResponseEntryList = schema.new({ type = "list", list_member = M.ListPlaceIndexesResponseEntry })
+
+M.Position = schema.new({ type = "list", list_member = prelude.Double })
+
+M.SearchForPositionResultList = schema.new({ type = "list", list_member = M.SearchForPositionResult })
+
+M.BoundingBox = schema.new({ type = "list", list_member = prelude.Double })
+
+M.CountryCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterPlaceCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchForSuggestionsResultList = schema.new({ type = "list", list_member = M.SearchForSuggestionsResult })
+
+M.SearchForTextResultList = schema.new({ type = "list", list_member = M.SearchForTextResult })
+
+M.ListRouteCalculatorsResponseEntryList = schema.new({ type = "list", list_member = M.ListRouteCalculatorsResponseEntry })
+
+M.WaypointPositionList = schema.new({ type = "list", list_member = M.Position })
+
+M.LegList = schema.new({ type = "list", list_member = M.Leg })
+
+M.PositionList = schema.new({ type = "list", list_member = M.Position })
+
+M.RouteMatrix = schema.new({ type = "list", list_member = M.RouteMatrixRow })
+
+M.ListTrackersResponseEntryList = schema.new({ type = "list", list_member = M.ListTrackersResponseEntry })
+
+M.DeviceIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteDevicePositionHistoryErrorList = schema.new({ type = "list", list_member = M.BatchDeleteDevicePositionHistoryError })
+
+M.BatchGetDevicePositionErrorList = schema.new({ type = "list", list_member = M.BatchGetDevicePositionError })
+
+M.DevicePositionList = schema.new({ type = "list", list_member = M.DevicePosition })
+
+M.BatchUpdateDevicePositionErrorList = schema.new({ type = "list", list_member = M.BatchUpdateDevicePositionError })
+
+M.PositionPropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ListDevicePositionsResponseEntryList = schema.new({ type = "list", list_member = M.ListDevicePositionsResponseEntry })
+
+M.ArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApiKeyActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GeoArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RefererPatternList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AndroidAppList = schema.new({ type = "list", list_member = M.AndroidApp })
+
+M.AppleAppList = schema.new({ type = "list", list_member = M.AppleApp })
+
+M.LinearRings = schema.new({ type = "list", list_member = M.LinearRing })
+
+M.MultiLinearRings = schema.new({ type = "list", list_member = M.LinearRings })
+
+M.JobErrorMessagesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CustomLayerList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlaceCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PlaceSupplementalCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteMatrixRow = schema.new({ type = "list", list_member = M.RouteMatrixEntry })
+
+M.WiFiAccessPointList = schema.new({ type = "list", list_member = M.WiFiAccessPoint })
+
+M.LinearRing = schema.new({ type = "list", list_member = M.Position })
+
+M.ValidateAddressAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StepList = schema.new({ type = "list", list_member = M.Step })
+
+M.LteCellDetailsList = schema.new({ type = "list", list_member = M.LteCellDetails })
+
+M.LineString = schema.new({ type = "list", list_member = M.Position })
+
+M.LteNetworkMeasurementsList = schema.new({ type = "list", list_member = M.LteNetworkMeasurements })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1278,7 +1394,7 @@ M.GeofenceGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
         Circle = schema.new({
             id = id.from(_N, "GeofenceGeometry", "Circle"),
@@ -1298,7 +1414,7 @@ M.GeofenceGeometry = schema.new({
             type = "list",
             name = "MultiPolygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.LinearRing }),
         }),
     },
 })
@@ -5759,7 +5875,7 @@ M.TrackingFilterGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = schema.new({ type = "list", list_member = prelude.Document }),
+            list_member = schema.new({ type = "list", list_member = M.Position }),
         }),
     },
 })

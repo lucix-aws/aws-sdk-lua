@@ -7,6 +7,12 @@ local _N = "com.amazonaws.uxc"
 
 local M = {}
 
+M.ServiceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
