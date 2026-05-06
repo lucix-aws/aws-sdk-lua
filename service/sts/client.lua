@@ -68,6 +68,7 @@ function Client:assumeRoleWithSAML(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -80,6 +81,7 @@ function Client:assumeRoleWithWebIdentity(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end

@@ -54,6 +54,7 @@ function Client:getRoleCredentials(input, options)
         http_method = "GET",
         http_path = "/federation/credentials",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -66,6 +67,7 @@ function Client:listAccountRoles(input, options)
         http_method = "GET",
         http_path = "/assignment/roles",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -78,6 +80,7 @@ function Client:listAccounts(input, options)
         http_method = "GET",
         http_path = "/assignment/accounts",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -90,6 +93,7 @@ function Client:logout(input, options)
         http_method = "POST",
         http_path = "/logout",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end

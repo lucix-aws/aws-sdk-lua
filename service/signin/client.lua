@@ -54,6 +54,7 @@ function Client:createOAuth2Token(input, options)
         http_method = "POST",
         http_path = "/v1/token",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end

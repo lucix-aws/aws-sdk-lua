@@ -119,6 +119,7 @@ function Client:getCredentialsForIdentity(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -131,6 +132,7 @@ function Client:getId(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -156,6 +158,7 @@ function Client:getOpenIdToken(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -311,6 +314,7 @@ function Client:unlinkIdentity(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end

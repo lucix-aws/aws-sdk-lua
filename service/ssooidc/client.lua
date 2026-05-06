@@ -54,6 +54,7 @@ function Client:createToken(input, options)
         http_method = "POST",
         http_path = "/token",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -79,6 +80,7 @@ function Client:registerClient(input, options)
         http_method = "POST",
         http_path = "/client/register",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -91,6 +93,7 @@ function Client:startDeviceAuthorization(input, options)
         http_method = "POST",
         http_path = "/device_authorization",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end

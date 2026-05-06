@@ -418,6 +418,7 @@ function Client:associateSoftwareToken(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -430,6 +431,7 @@ function Client:changePassword(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -442,6 +444,7 @@ function Client:completeWebAuthnRegistration(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -454,6 +457,7 @@ function Client:confirmDevice(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -466,6 +470,7 @@ function Client:confirmForgotPassword(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -478,6 +483,7 @@ function Client:confirmSignUp(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -672,6 +678,7 @@ function Client:deleteUser(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -684,6 +691,7 @@ function Client:deleteUserAttributes(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -748,6 +756,7 @@ function Client:deleteWebAuthnCredential(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -890,6 +899,7 @@ function Client:forgetDevice(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -902,6 +912,7 @@ function Client:forgotPassword(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -927,6 +938,7 @@ function Client:getDevice(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -991,6 +1003,7 @@ function Client:getTokensFromRefreshToken(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1016,6 +1029,7 @@ function Client:getUser(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1028,6 +1042,7 @@ function Client:getUserAttributeVerificationCode(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1040,6 +1055,7 @@ function Client:getUserAuthFactors(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1065,6 +1081,7 @@ function Client:globalSignOut(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1077,6 +1094,7 @@ function Client:initiateAuth(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1089,6 +1107,7 @@ function Client:listDevices(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1244,6 +1263,7 @@ function Client:listWebAuthnCredentials(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1256,6 +1276,7 @@ function Client:resendConfirmationCode(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1268,6 +1289,7 @@ function Client:respondToAuthChallenge(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1280,6 +1302,7 @@ function Client:revokeToken(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1331,6 +1354,7 @@ function Client:setUserMFAPreference(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1356,6 +1380,7 @@ function Client:setUserSettings(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1368,6 +1393,7 @@ function Client:signUp(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1393,6 +1419,7 @@ function Client:startWebAuthnRegistration(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1444,6 +1471,7 @@ function Client:updateAuthEventFeedback(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1456,6 +1484,7 @@ function Client:updateDeviceStatus(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1533,6 +1562,7 @@ function Client:updateUserAttributes(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1584,6 +1614,7 @@ function Client:verifySoftwareToken(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
@@ -1596,6 +1627,7 @@ function Client:verifyUserAttribute(input, options)
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
+            "smithy.api#noAuth",
         },
     }, options)
 end
