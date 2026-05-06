@@ -16,6 +16,7 @@
 --
 
 local s3 = require("s3.client")
+local logging = require("smithy.interceptor.logging")
 
 local bucket = arg[1]
 local key = arg[2]
@@ -26,7 +27,7 @@ if not bucket or not key then
     os.exit(1)
 end
 
-local client = s3.new({ region = region })
+local client = s3.new({ region = region, interceptors = { logging.new() } })
 
 local result, err = client:getObject({ Bucket = bucket, Key = key })
 if err then
