@@ -8699,95 +8699,95 @@ local record ThrottlingException
     message: string
 end
 
+local type ApplicationProtocol = "SECURE_MQTT" | "MQTT_WSS" | "HTTPS" | "DEFAULT"
+
+local type AuditFrequency = "DAILY" | "WEEKLY" | "BIWEEKLY" | "MONTHLY"
+
+local type AuditMitigationActionsExecutionStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED" | "CANCELED" | "SKIPPED" | "PENDING"
+
+local type AuditMitigationActionsTaskStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED" | "CANCELED"
+
+local type AuditTaskStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED" | "CANCELED"
+
+local type AuditTaskType = "ON_DEMAND_AUDIT_TASK" | "SCHEDULED_AUDIT_TASK"
+
+local type AuthenticationType = "CUSTOM_AUTH_X509" | "CUSTOM_AUTH" | "AWS_X509" | "AWS_SIGV4" | "DEFAULT"
+
+local type AuthorizerStatus = "ACTIVE" | "INACTIVE"
+
+local type AutoRegistrationStatus = "ENABLE" | "DISABLE"
+
+local type BehaviorCriteriaType = "STATIC" | "STATISTICAL" | "MACHINE_LEARNING"
+
+local type CACertificateStatus = "ACTIVE" | "INACTIVE"
+
+local type CertificateMode = "DEFAULT" | "SNI_ONLY"
+
+local type CertificateStatus = "ACTIVE" | "INACTIVE" | "REVOKED" | "PENDING_TRANSFER" | "REGISTER_INACTIVE" | "PENDING_ACTIVATION"
+
+local type CommandExecutionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "REJECTED" | "TIMED_OUT"
+
+local type CommandNamespace = "AWS-IoT" | "AWS-IoT-FleetWise"
+
+local type CustomMetricType = "string-list" | "ip-address-list" | "number-list" | "number"
+
+local type DayOfWeek = "SUN" | "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT"
+
 local type DimensionType = "TOPIC_FILTER"
 
 local type DimensionValueOperator = "IN" | "NOT_IN"
 
-local type AuditFrequency = "DAILY" | "WEEKLY" | "BIWEEKLY" | "MONTHLY"
-
-local type Status = "InProgress" | "Completed" | "Failed" | "Cancelled" | "Cancelling"
-
-local type ApplicationProtocol = "SECURE_MQTT" | "MQTT_WSS" | "HTTPS" | "DEFAULT"
-
-local type AuthenticationType = "CUSTOM_AUTH_X509" | "CUSTOM_AUTH" | "AWS_X509" | "AWS_SIGV4" | "DEFAULT"
-
-local type CommandExecutionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "REJECTED" | "TIMED_OUT"
-
-local type CertificateStatus = "ACTIVE" | "INACTIVE" | "REVOKED" | "PENDING_TRANSFER" | "REGISTER_INACTIVE" | "PENDING_ACTIVATION"
-
-local type AuditTaskStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED" | "CANCELED"
-
-local type EncryptionType = "CUSTOMER_MANAGED_KMS_KEY" | "AWS_OWNED_KMS_KEY"
-
-local type BehaviorCriteriaType = "STATIC" | "STATISTICAL" | "MACHINE_LEARNING"
-
-local type DomainType = "ENDPOINT" | "AWS_MANAGED" | "CUSTOMER_MANAGED"
-
-local type IndexStatus = "ACTIVE" | "BUILDING" | "REBUILDING"
-
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type AuditMitigationActionsTaskStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED" | "CANCELED"
-
-local type JobStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "DELETION_IN_PROGRESS" | "SCHEDULED"
-
-local type LogTargetType = "DEFAULT" | "THING_GROUP" | "CLIENT_ID" | "SOURCE_IP" | "PRINCIPAL_ID"
-
-local type LogLevel = "DEBUG" | "INFO" | "ERROR" | "WARN" | "DISABLED"
-
-local type MitigationActionType = "UPDATE_DEVICE_CERTIFICATE" | "UPDATE_CA_CERTIFICATE" | "ADD_THINGS_TO_THING_GROUP" | "REPLACE_DEFAULT_POLICY_VERSION" | "ENABLE_IOT_LOGGING" | "PUBLISH_FINDING_TO_SNS"
-
-local type TargetSelection = "CONTINUOUS" | "SNAPSHOT"
-
-local type AuditTaskType = "ON_DEMAND_AUDIT_TASK" | "SCHEDULED_AUDIT_TASK"
-
-local type ReportType = "ERRORS" | "RESULTS"
-
-local type CommandNamespace = "AWS-IoT" | "AWS-IoT-FleetWise"
-
-local type PackageVersionAction = "PUBLISH" | "DEPRECATE"
-
-local type ServiceType = "DATA" | "CREDENTIAL_PROVIDER" | "JOBS"
-
-local type FleetMetricUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
-
-local type AuditMitigationActionsExecutionStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED" | "CANCELED" | "SKIPPED" | "PENDING"
-
-local type PackageVersionStatus = "DRAFT" | "PUBLISHED" | "DEPRECATED"
-
-local type TopicRuleDestinationStatus = "ENABLED" | "IN_PROGRESS" | "DISABLED" | "ERROR" | "DELETING"
-
-local type AuthorizerStatus = "ACTIVE" | "INACTIVE"
-
-local type ThingPrincipalType = "EXCLUSIVE_THING" | "NON_EXCLUSIVE_THING"
-
-local type VerificationState = "FALSE_POSITIVE" | "BENIGN_POSITIVE" | "TRUE_POSITIVE" | "UNKNOWN"
-
-local type AutoRegistrationStatus = "ENABLE" | "DISABLE"
-
-local type OTAUpdateStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
-
 local type DisconnectReasonValue = "AUTH_ERROR" | "CLIENT_INITIATED_DISCONNECT" | "CLIENT_ERROR" | "CONNECTION_LOST" | "DUPLICATE_CLIENTID" | "FORBIDDEN_ACCESS" | "MQTT_KEEP_ALIVE_TIMEOUT" | "SERVER_ERROR" | "SERVER_INITIATED_DISCONNECT" | "THROTTLED" | "WEBSOCKET_TTL_EXPIRATION" | "CUSTOMAUTH_TTL_EXPIRATION" | "UNKNOWN" | "NONE"
-
-local type SbomValidationResult = "FAILED" | "SUCCEEDED"
-
-local type DayOfWeek = "SUN" | "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT"
-
-local type TemplateType = "FLEET_PROVISIONING" | "JITP"
 
 local type DomainConfigurationStatus = "ENABLED" | "DISABLED"
 
+local type DomainType = "ENDPOINT" | "AWS_MANAGED" | "CUSTOMER_MANAGED"
+
 local type DynamicGroupStatus = "ACTIVE" | "BUILDING" | "REBUILDING"
 
-local type CertificateMode = "DEFAULT" | "SNI_ONLY"
+local type EncryptionType = "CUSTOMER_MANAGED_KMS_KEY" | "AWS_OWNED_KMS_KEY"
+
+local type FleetMetricUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
+
+local type IndexStatus = "ACTIVE" | "BUILDING" | "REBUILDING"
+
+local type JobExecutionStatus = "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "REJECTED" | "REMOVED" | "CANCELED"
+
+local type JobStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "DELETION_IN_PROGRESS" | "SCHEDULED"
+
+local type LogLevel = "DEBUG" | "INFO" | "ERROR" | "WARN" | "DISABLED"
+
+local type LogTargetType = "DEFAULT" | "THING_GROUP" | "CLIENT_ID" | "SOURCE_IP" | "PRINCIPAL_ID"
+
+local type MitigationActionType = "UPDATE_DEVICE_CERTIFICATE" | "UPDATE_CA_CERTIFICATE" | "ADD_THINGS_TO_THING_GROUP" | "REPLACE_DEFAULT_POLICY_VERSION" | "ENABLE_IOT_LOGGING" | "PUBLISH_FINDING_TO_SNS"
+
+local type OTAUpdateStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+
+local type PackageVersionAction = "PUBLISH" | "DEPRECATE"
+
+local type PackageVersionStatus = "DRAFT" | "PUBLISHED" | "DEPRECATED"
+
+local type ReportType = "ERRORS" | "RESULTS"
+
+local type SbomValidationResult = "FAILED" | "SUCCEEDED"
 
 local type SbomValidationStatus = "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
 
-local type CACertificateStatus = "ACTIVE" | "INACTIVE"
+local type ServiceType = "DATA" | "CREDENTIAL_PROVIDER" | "JOBS"
 
-local type CustomMetricType = "string-list" | "ip-address-list" | "number-list" | "number"
+local type SortOrder = "ASCENDING" | "DESCENDING"
 
-local type JobExecutionStatus = "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "REJECTED" | "REMOVED" | "CANCELED"
+local type Status = "InProgress" | "Completed" | "Failed" | "Cancelled" | "Cancelling"
+
+local type TargetSelection = "CONTINUOUS" | "SNAPSHOT"
+
+local type TemplateType = "FLEET_PROVISIONING" | "JITP"
+
+local type ThingPrincipalType = "EXCLUSIVE_THING" | "NON_EXCLUSIVE_THING"
+
+local type TopicRuleDestinationStatus = "ENABLED" | "IN_PROGRESS" | "DISABLED" | "ERROR" | "DELETING"
+
+local type VerificationState = "FALSE_POSITIVE" | "BENIGN_POSITIVE" | "TRUE_POSITIVE" | "UNKNOWN"
 
 local record M
     AcceptCertificateTransferInput: AcceptCertificateTransferInput

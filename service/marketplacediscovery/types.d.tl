@@ -318,11 +318,11 @@ local record ValidationException
     reason: string
 end
 
+local type DeployedOnAwsStatus = "DEPLOYED" | "NOT_DEPLOYED" | "NOT_APPLICABLE"
+
 local type SearchListingsSortBy = "RELEVANCE" | "AVERAGE_CUSTOMER_RATING"
 
 local type SearchListingsSortOrder = "DESCENDING" | "ASCENDING"
-
-local type DeployedOnAwsStatus = "DEPLOYED" | "NOT_DEPLOYED" | "NOT_APPLICABLE"
 
 local record M
     GetListingInput: GetListingInput

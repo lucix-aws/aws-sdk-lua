@@ -1180,41 +1180,41 @@ local record ServiceQuotaExceededException
     Message: string
 end
 
-local type ErrorCode = "NO_USAGE_FOUND" | "INTERNAL_FAILURE" | "INVALID_SAVINGS_PLANS_TO_ADD" | "INVALID_SAVINGS_PLANS_TO_EXCLUDE" | "INVALID_ACCOUNT_ID"
-
-local type CostCategoryRuleVersion = "CostCategoryExpression.v1"
-
-local type GenerationStatus = "SUCCEEDED" | "PROCESSING" | "FAILED"
-
-local type Context = "COST_AND_USAGE" | "RESERVATIONS" | "SAVINGS_PLANS"
-
 local type AccountScope = "PAYER" | "LINKED"
-
-local type Metric = "BLENDED_COST" | "UNBLENDED_COST" | "AMORTIZED_COST" | "NET_UNBLENDED_COST" | "NET_AMORTIZED_COST" | "USAGE_QUANTITY" | "NORMALIZED_USAGE_AMOUNT"
-
-local type AnomalySubscriptionFrequency = "DAILY" | "IMMEDIATE" | "WEEKLY"
-
-local type SupportedSavingsPlansType = "COMPUTE_SP" | "EC2_INSTANCE_SP" | "SAGEMAKER_SP" | "DATABASE_SP"
-
-local type CostAllocationTagStatus = "Active" | "Inactive"
-
-local type Granularity = "DAILY" | "MONTHLY" | "HOURLY"
-
-local type PaymentOption = "NO_UPFRONT" | "PARTIAL_UPFRONT" | "ALL_UPFRONT" | "LIGHT_UTILIZATION" | "MEDIUM_UTILIZATION" | "HEAVY_UTILIZATION"
-
-local type CostAllocationTagType = "AWSGenerated" | "UserDefined"
-
-local type Dimension = "AZ" | "INSTANCE_TYPE" | "LINKED_ACCOUNT" | "PAYER_ACCOUNT" | "LINKED_ACCOUNT_NAME" | "OPERATION" | "PURCHASE_TYPE" | "REGION" | "SERVICE" | "SERVICE_CODE" | "USAGE_TYPE" | "USAGE_TYPE_GROUP" | "RECORD_TYPE" | "OPERATING_SYSTEM" | "TENANCY" | "SCOPE" | "PLATFORM" | "SUBSCRIPTION_ID" | "LEGAL_ENTITY_NAME" | "DEPLOYMENT_OPTION" | "DATABASE_ENGINE" | "CACHE_ENGINE" | "INSTANCE_TYPE_FAMILY" | "BILLING_ENTITY" | "RESERVATION_ID" | "RESOURCE_ID" | "RIGHTSIZING_TYPE" | "SAVINGS_PLANS_TYPE" | "SAVINGS_PLAN_ARN" | "PAYMENT_OPTION" | "AGREEMENT_END_DATE_TIME_AFTER" | "AGREEMENT_END_DATE_TIME_BEFORE" | "INVOICING_ENTITY" | "ANOMALY_TOTAL_IMPACT_ABSOLUTE" | "ANOMALY_TOTAL_IMPACT_PERCENTAGE"
-
-local type LookbackPeriodInDays = "SEVEN_DAYS" | "THIRTY_DAYS" | "SIXTY_DAYS"
-
-local type TermInYears = "ONE_YEAR" | "THREE_YEARS"
 
 local type AnalysisStatus = "SUCCEEDED" | "PROCESSING" | "FAILED"
 
 local type AnomalyFeedbackType = "YES" | "NO" | "PLANNED_ACTIVITY"
 
+local type AnomalySubscriptionFrequency = "DAILY" | "IMMEDIATE" | "WEEKLY"
+
 local type ApproximationDimension = "SERVICE" | "RESOURCE"
+
+local type Context = "COST_AND_USAGE" | "RESERVATIONS" | "SAVINGS_PLANS"
+
+local type CostAllocationTagStatus = "Active" | "Inactive"
+
+local type CostAllocationTagType = "AWSGenerated" | "UserDefined"
+
+local type CostCategoryRuleVersion = "CostCategoryExpression.v1"
+
+local type Dimension = "AZ" | "INSTANCE_TYPE" | "LINKED_ACCOUNT" | "PAYER_ACCOUNT" | "LINKED_ACCOUNT_NAME" | "OPERATION" | "PURCHASE_TYPE" | "REGION" | "SERVICE" | "SERVICE_CODE" | "USAGE_TYPE" | "USAGE_TYPE_GROUP" | "RECORD_TYPE" | "OPERATING_SYSTEM" | "TENANCY" | "SCOPE" | "PLATFORM" | "SUBSCRIPTION_ID" | "LEGAL_ENTITY_NAME" | "DEPLOYMENT_OPTION" | "DATABASE_ENGINE" | "CACHE_ENGINE" | "INSTANCE_TYPE_FAMILY" | "BILLING_ENTITY" | "RESERVATION_ID" | "RESOURCE_ID" | "RIGHTSIZING_TYPE" | "SAVINGS_PLANS_TYPE" | "SAVINGS_PLAN_ARN" | "PAYMENT_OPTION" | "AGREEMENT_END_DATE_TIME_AFTER" | "AGREEMENT_END_DATE_TIME_BEFORE" | "INVOICING_ENTITY" | "ANOMALY_TOTAL_IMPACT_ABSOLUTE" | "ANOMALY_TOTAL_IMPACT_PERCENTAGE"
+
+local type ErrorCode = "NO_USAGE_FOUND" | "INTERNAL_FAILURE" | "INVALID_SAVINGS_PLANS_TO_ADD" | "INVALID_SAVINGS_PLANS_TO_EXCLUDE" | "INVALID_ACCOUNT_ID"
+
+local type GenerationStatus = "SUCCEEDED" | "PROCESSING" | "FAILED"
+
+local type Granularity = "DAILY" | "MONTHLY" | "HOURLY"
+
+local type LookbackPeriodInDays = "SEVEN_DAYS" | "THIRTY_DAYS" | "SIXTY_DAYS"
+
+local type Metric = "BLENDED_COST" | "UNBLENDED_COST" | "AMORTIZED_COST" | "NET_UNBLENDED_COST" | "NET_AMORTIZED_COST" | "USAGE_QUANTITY" | "NORMALIZED_USAGE_AMOUNT"
+
+local type PaymentOption = "NO_UPFRONT" | "PARTIAL_UPFRONT" | "ALL_UPFRONT" | "LIGHT_UTILIZATION" | "MEDIUM_UTILIZATION" | "HEAVY_UTILIZATION"
+
+local type SupportedSavingsPlansType = "COMPUTE_SP" | "EC2_INSTANCE_SP" | "SAGEMAKER_SP" | "DATABASE_SP"
+
+local type TermInYears = "ONE_YEAR" | "THREE_YEARS"
 
 local record M
     CreateAnomalyMonitorInput: CreateAnomalyMonitorInput

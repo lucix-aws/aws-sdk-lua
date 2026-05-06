@@ -1267,9 +1267,9 @@ local type PreviewStatus = "WORK_IN_PROGRESS" | "COMPLETED"
 
 local type ReportFileFormat = "HTML" | "PDF"
 
-local type ReportType = "FINDING" | "FULL"
-
 local type ReportStatus = "WORK_IN_PROGRESS" | "FAILED" | "COMPLETED"
+
+local type ReportType = "FINDING" | "FULL"
 
 local type StopAction = "START_EVALUATION" | "SKIP_EVALUATION"
 

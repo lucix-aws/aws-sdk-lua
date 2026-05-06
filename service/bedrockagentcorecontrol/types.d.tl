@@ -4654,69 +4654,69 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type DescriptorType = "MCP" | "A2A" | "CUSTOM" | "AGENT_SKILLS"
-
-local type OnlineEvaluationConfigStatus = "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "ERROR"
-
-local type CredentialProviderVendorType = "GoogleOauth2" | "GithubOauth2" | "SlackOauth2" | "SalesforceOauth2" | "MicrosoftOauth2" | "CustomOauth2" | "AtlassianOauth2" | "LinkedinOauth2" | "XOauth2" | "OktaOauth2" | "OneLoginOauth2" | "PingOneOauth2" | "FacebookOauth2" | "YandexOauth2" | "RedditOauth2" | "ZoomOauth2" | "TwitchOauth2" | "SpotifyOauth2" | "DropboxOauth2" | "NotionOauth2" | "HubspotOauth2" | "CyberArkOauth2" | "FusionAuthOauth2" | "Auth0Oauth2" | "CognitoOauth2"
-
-local type BrowserStatus = "CREATING" | "CREATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED" | "DELETED"
-
-local type GatewayRuleStatus = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING"
-
-local type EvaluatorLevel = "TOOL_CALL" | "TRACE" | "SESSION"
-
-local type Status = "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED"
-
-local type PolicyEngineStatus = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
-
-local type BrowserProfileStatus = "READY" | "DELETING" | "DELETED" | "SAVING"
-
-local type RegistryStatus = "CREATING" | "READY" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED"
-
-local type PolicyStatus = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
-
-local type MemoryView = "full" | "without_decryption"
-
-local type CodeInterpreterStatus = "CREATING" | "CREATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED" | "DELETED"
-
-local type RegistryRecordStatus = "DRAFT" | "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "DEPRECATED" | "CREATING" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED"
-
-local type ConfigurationBundleStatus = "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED"
-
-local type ExceptionLevel = "DEBUG"
-
-local type ResourceType = "SYSTEM" | "CUSTOM"
-
 local type AgentRuntimeEndpointStatus = "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "READY" | "DELETING"
-
-local type RegistryAuthorizerType = "CUSTOM_JWT" | "AWS_IAM"
-
-local type MemoryStatus = "CREATING" | "ACTIVE" | "FAILED" | "DELETING"
-
-local type OnlineEvaluationExecutionStatus = "ENABLED" | "DISABLED"
-
-local type AuthorizerType = "CUSTOM_JWT" | "AWS_IAM" | "NONE" | "AUTHENTICATE_ONLY"
 
 local type AgentRuntimeStatus = "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "READY" | "DELETING"
 
-local type SynchronizationType = "URL"
+local type AuthorizerType = "CUSTOM_JWT" | "AWS_IAM" | "NONE" | "AUTHENTICATE_ONLY"
+
+local type BrowserProfileStatus = "READY" | "DELETING" | "DELETED" | "SAVING"
+
+local type BrowserStatus = "CREATING" | "CREATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED" | "DELETED"
+
+local type CodeInterpreterStatus = "CREATING" | "CREATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED" | "DELETED"
+
+local type ConfigurationBundleStatus = "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED"
+
+local type CredentialProviderVendorType = "GoogleOauth2" | "GithubOauth2" | "SlackOauth2" | "SalesforceOauth2" | "MicrosoftOauth2" | "CustomOauth2" | "AtlassianOauth2" | "LinkedinOauth2" | "XOauth2" | "OktaOauth2" | "OneLoginOauth2" | "PingOneOauth2" | "FacebookOauth2" | "YandexOauth2" | "RedditOauth2" | "ZoomOauth2" | "TwitchOauth2" | "SpotifyOauth2" | "DropboxOauth2" | "NotionOauth2" | "HubspotOauth2" | "CyberArkOauth2" | "FusionAuthOauth2" | "Auth0Oauth2" | "CognitoOauth2"
+
+local type DescriptorType = "MCP" | "A2A" | "CUSTOM" | "AGENT_SKILLS"
+
+local type EvaluatorLevel = "TOOL_CALL" | "TRACE" | "SESSION"
+
+local type EvaluatorStatus = "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING"
+
+local type ExceptionLevel = "DEBUG"
+
+local type GatewayProtocolType = "MCP"
+
+local type GatewayRuleStatus = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING"
 
 local type GatewayStatus = "CREATING" | "UPDATING" | "UPDATE_UNSUCCESSFUL" | "DELETING" | "READY" | "FAILED"
 
 local type IncludedData = "ALL_DATA" | "METADATA_ONLY"
 
+local type MemoryStatus = "CREATING" | "ACTIVE" | "FAILED" | "DELETING"
+
+local type MemoryView = "full" | "without_decryption"
+
+local type OnlineEvaluationConfigStatus = "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "ERROR"
+
+local type OnlineEvaluationExecutionStatus = "ENABLED" | "DISABLED"
+
+local type PolicyEngineStatus = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
+
+local type PolicyGenerationStatus = "GENERATING" | "GENERATED" | "GENERATE_FAILED" | "DELETE_FAILED"
+
+local type PolicyStatus = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
+
 local type PolicyValidationMode = "FAIL_ON_ANY_FINDINGS" | "IGNORE_ALL_FINDINGS"
 
-local type EvaluatorStatus = "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING"
+local type RegistryAuthorizerType = "CUSTOM_JWT" | "AWS_IAM"
+
+local type RegistryRecordStatus = "DRAFT" | "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "DEPRECATED" | "CREATING" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED"
+
+local type RegistryStatus = "CREATING" | "READY" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED"
+
+local type ResourceType = "SYSTEM" | "CUSTOM"
+
+local type Status = "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED"
+
+local type SynchronizationType = "URL"
 
 local type TargetProtocolType = "MCP" | "HTTP"
 
 local type TargetStatus = "CREATING" | "UPDATING" | "UPDATE_UNSUCCESSFUL" | "DELETING" | "READY" | "FAILED" | "SYNCHRONIZING" | "SYNCHRONIZE_UNSUCCESSFUL" | "CREATE_PENDING_AUTH" | "UPDATE_PENDING_AUTH" | "SYNCHRONIZE_PENDING_AUTH"
-
-local type PolicyGenerationStatus = "GENERATING" | "GENERATED" | "GENERATE_FAILED" | "DELETE_FAILED"
-
-local type GatewayProtocolType = "MCP"
 
 local record M
     CreateAgentRuntimeInput: CreateAgentRuntimeInput

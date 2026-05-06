@@ -990,17 +990,17 @@ end
 
 local type ConnectivityType = "DEFAULT" | "PUBLIC_INGRESS" | "PUBLIC_EGRESS" | "EXTERNAL_INBOUND"
 
-local type Protocol = "HTTP" | "HTTPS"
+local type GatewayType = "EXTERNAL" | "INTERNAL"
 
 local type LinkDirection = "RESPONSE" | "REQUEST"
 
 local type LinkStatus = "PENDING_CREATION" | "PENDING_REQUEST" | "REQUESTED" | "ACCEPTED" | "ACTIVE" | "REJECTED" | "FAILED" | "PENDING_DELETION" | "DELETED" | "PENDING_UPDATE" | "PENDING_ISOLATION" | "ISOLATED" | "PENDING_RESTORATION"
 
-local type GatewayType = "EXTERNAL" | "INTERNAL"
-
-local type ResponderGatewayStatus = "PENDING_CREATION" | "ACTIVE" | "PENDING_DELETION" | "DELETED" | "ERROR" | "PENDING_UPDATE" | "ISOLATED" | "PENDING_ISOLATION" | "PENDING_RESTORATION"
+local type Protocol = "HTTP" | "HTTPS"
 
 local type RequesterGatewayStatus = "PENDING_CREATION" | "ACTIVE" | "PENDING_DELETION" | "DELETED" | "ERROR" | "PENDING_UPDATE" | "ISOLATED" | "PENDING_ISOLATION" | "PENDING_RESTORATION"
+
+local type ResponderGatewayStatus = "PENDING_CREATION" | "ACTIVE" | "PENDING_DELETION" | "DELETED" | "ERROR" | "PENDING_UPDATE" | "ISOLATED" | "PENDING_ISOLATION" | "PENDING_RESTORATION"
 
 local record M
     AcceptLinkInput: AcceptLinkInput

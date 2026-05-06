@@ -247,13 +247,13 @@ local record ResourceNotFoundException
     ResourceIds: {string}
 end
 
-local type GettablePolicyStateValues = "ENABLED" | "DISABLED" | "ERROR"
+local type DefaultPoliciesTypeValues = "VOLUME" | "INSTANCE" | "ALL"
 
 local type DefaultPolicyTypeValues = "VOLUME" | "INSTANCE"
 
-local type SettablePolicyStateValues = "ENABLED" | "DISABLED"
+local type GettablePolicyStateValues = "ENABLED" | "DISABLED" | "ERROR"
 
-local type DefaultPoliciesTypeValues = "VOLUME" | "INSTANCE" | "ALL"
+local type SettablePolicyStateValues = "ENABLED" | "DISABLED"
 
 local record M
     CreateLifecyclePolicyInput: CreateLifecyclePolicyInput

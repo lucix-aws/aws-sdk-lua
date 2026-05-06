@@ -1136,9 +1136,9 @@ end
 
 local type BehaviorOnMXFailure = "UseDefaultValue" | "RejectMessage"
 
-local type NotificationType = "Bounce" | "Complaint" | "Delivery"
-
 local type IdentityType = "EmailAddress" | "Domain"
+
+local type NotificationType = "Bounce" | "Complaint" | "Delivery"
 
 local record M
     CloneReceiptRuleSetInput: CloneReceiptRuleSetInput

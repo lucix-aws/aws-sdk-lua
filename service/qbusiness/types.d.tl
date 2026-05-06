@@ -3488,41 +3488,41 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type IndexType = "ENTERPRISE" | "STARTER"
+local type ApplicationStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
-local type OutputFormat = "RAW" | "EXTRACTED"
+local type ChatMode = "RETRIEVAL_MODE" | "CREATOR_MODE" | "PLUGIN_MODE"
 
-local type RetrieverType = "NATIVE_INDEX" | "KENDRA_INDEX"
-
-local type IdentityType = "AWS_IAM_IDP_SAML" | "AWS_IAM_IDP_OIDC" | "AWS_IAM_IDC" | "AWS_QUICKSIGHT_IDP" | "ANONYMOUS"
-
-local type WebExperienceSamplePromptsControlMode = "ENABLED" | "DISABLED"
-
-local type ResponseScope = "ENTERPRISE_CONTENT_ONLY" | "EXTENDED_KNOWLEDGE_ENABLED"
-
-local type SubscriptionType = "Q_LITE" | "Q_BUSINESS"
+local type DataSourceStatus = "PENDING_CREATION" | "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
 local type DataSourceSyncJobStatus = "FAILED" | "SUCCEEDED" | "SYNCING" | "INCOMPLETE" | "STOPPING" | "ABORTED" | "SYNCING_INDEXING"
 
-local type ApplicationStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
+local type IdentityType = "AWS_IAM_IDP_SAML" | "AWS_IAM_IDP_OIDC" | "AWS_IAM_IDC" | "AWS_QUICKSIGHT_IDP" | "ANONYMOUS"
 
 local type IndexStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
-local type RetrieverStatus = "CREATING" | "ACTIVE" | "FAILED"
+local type IndexType = "ENTERPRISE" | "STARTER"
+
+local type MembershipType = "INDEX" | "DATASOURCE"
+
+local type OutputFormat = "RAW" | "EXTRACTED"
+
+local type PluginBuildStatus = "READY" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
 
 local type PluginState = "ENABLED" | "DISABLED"
 
 local type PluginType = "SERVICE_NOW" | "SALESFORCE" | "JIRA" | "ZENDESK" | "CUSTOM" | "QUICKSIGHT" | "SERVICENOW_NOW_PLATFORM" | "JIRA_CLOUD" | "SALESFORCE_CRM" | "ZENDESK_SUITE" | "ATLASSIAN_CONFLUENCE" | "GOOGLE_CALENDAR" | "MICROSOFT_TEAMS" | "MICROSOFT_EXCHANGE" | "PAGERDUTY_ADVANCE" | "SMARTSHEET" | "ASANA"
 
-local type MembershipType = "INDEX" | "DATASOURCE"
+local type ResponseScope = "ENTERPRISE_CONTENT_ONLY" | "EXTENDED_KNOWLEDGE_ENABLED"
 
-local type PluginBuildStatus = "READY" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+local type RetrieverStatus = "CREATING" | "ACTIVE" | "FAILED"
+
+local type RetrieverType = "NATIVE_INDEX" | "KENDRA_INDEX"
+
+local type SubscriptionType = "Q_LITE" | "Q_BUSINESS"
+
+local type WebExperienceSamplePromptsControlMode = "ENABLED" | "DISABLED"
 
 local type WebExperienceStatus = "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "PENDING_AUTH_CONFIG"
-
-local type DataSourceStatus = "PENDING_CREATION" | "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
-
-local type ChatMode = "RETRIEVAL_MODE" | "CREATOR_MODE" | "PLUGIN_MODE"
 
 local record M
     AssociatePermissionInput: AssociatePermissionInput

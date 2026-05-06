@@ -904,29 +904,29 @@ local record ServerException
     message: string
 end
 
-local type ServiceJobType = "SAGEMAKER_TRAINING"
+local type CEState = "ENABLED" | "DISABLED"
 
-local type JobDefinitionType = "container" | "multinode"
-
-local type JobStatus = "SUBMITTED" | "PENDING" | "RUNNABLE" | "STARTING" | "RUNNING" | "SUCCEEDED" | "FAILED"
+local type CEType = "MANAGED" | "UNMANAGED"
 
 local type JQState = "ENABLED" | "DISABLED"
 
-local type ServiceEnvironmentState = "ENABLED" | "DISABLED"
+local type JobDefinitionType = "container" | "multinode"
 
-local type ServiceEnvironmentType = "SAGEMAKER_TRAINING"
+local type JobQueueType = "EKS" | "ECS" | "ECS_FARGATE" | "SAGEMAKER_TRAINING"
 
-local type CEState = "ENABLED" | "DISABLED"
+local type JobStatus = "SUBMITTED" | "PENDING" | "RUNNABLE" | "STARTING" | "RUNNING" | "SUCCEEDED" | "FAILED"
 
 local type QuotaShareState = "ENABLED" | "DISABLED"
 
 local type QuotaShareStatus = "CREATING" | "VALID" | "INVALID" | "UPDATING" | "DELETING"
 
+local type ServiceEnvironmentState = "ENABLED" | "DISABLED"
+
+local type ServiceEnvironmentType = "SAGEMAKER_TRAINING"
+
 local type ServiceJobStatus = "SUBMITTED" | "PENDING" | "RUNNABLE" | "SCHEDULED" | "STARTING" | "RUNNING" | "SUCCEEDED" | "FAILED"
 
-local type CEType = "MANAGED" | "UNMANAGED"
-
-local type JobQueueType = "EKS" | "ECS" | "ECS_FARGATE" | "SAGEMAKER_TRAINING"
+local type ServiceJobType = "SAGEMAKER_TRAINING"
 
 local record M
     CancelJobInput: CancelJobInput

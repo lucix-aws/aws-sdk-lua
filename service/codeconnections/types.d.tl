@@ -723,9 +723,9 @@ local type PublishDeploymentStatus = "ENABLED" | "DISABLED"
 
 local type PullRequestComment = "ENABLED" | "DISABLED"
 
-local type TriggerResourceUpdateOn = "ANY_CHANGE" | "FILE_CHANGE"
-
 local type SyncConfigurationType = "CFN_STACK_SYNC"
+
+local type TriggerResourceUpdateOn = "ANY_CHANGE" | "FILE_CHANGE"
 
 local record M
     CreateConnectionInput: CreateConnectionInput

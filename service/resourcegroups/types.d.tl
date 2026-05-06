@@ -797,9 +797,9 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type TagSyncTaskStatus = "ACTIVE" | "ERROR"
-
 local type GroupLifecycleEventsDesiredStatus = "ACTIVE" | "INACTIVE"
+
+local type TagSyncTaskStatus = "ACTIVE" | "ERROR"
 
 local record M
     CancelTagSyncTaskInput: CancelTagSyncTaskInput

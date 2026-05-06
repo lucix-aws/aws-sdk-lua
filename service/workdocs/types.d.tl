@@ -1714,35 +1714,35 @@ local record UnauthorizedResourceAccessException
     Message: string
 end
 
-local type SubscriptionType = "ALL"
+local type BooleanEnumType = "TRUE" | "FALSE"
 
-local type UserType = "USER" | "ADMIN" | "POWERUSER" | "MINIMALUSER" | "WORKSPACESUSER"
+local type CommentVisibilityType = "PUBLIC" | "PRIVATE"
 
 local type DocumentVersionStatus = "ACTIVE"
 
-local type UserSortType = "USER_NAME" | "FULL_NAME" | "STORAGE_LIMIT" | "USER_STATUS" | "STORAGE_USED"
+local type FolderContentType = "ALL" | "DOCUMENT" | "FOLDER"
 
-local type UserFilterType = "ALL" | "ACTIVE_PENDING"
-
-local type SubscriptionProtocolType = "HTTPS" | "SQS"
-
-local type ResourceSortType = "DATE" | "NAME"
-
-local type BooleanEnumType = "TRUE" | "FALSE"
+local type LocaleType = "en" | "fr" | "ko" | "de" | "es" | "ja" | "ru" | "zh_CN" | "zh_TW" | "pt_BR" | "default"
 
 local type OrderType = "ASCENDING" | "DESCENDING"
 
 local type PrincipalType = "USER" | "GROUP" | "INVITE" | "ANONYMOUS" | "ORGANIZATION"
 
-local type ResourceStateType = "ACTIVE" | "RESTORING" | "RECYCLING" | "RECYCLED"
-
-local type LocaleType = "en" | "fr" | "ko" | "de" | "es" | "ja" | "ru" | "zh_CN" | "zh_TW" | "pt_BR" | "default"
-
-local type CommentVisibilityType = "PUBLIC" | "PRIVATE"
-
 local type ResourceCollectionType = "SHARED_WITH_ME"
 
-local type FolderContentType = "ALL" | "DOCUMENT" | "FOLDER"
+local type ResourceSortType = "DATE" | "NAME"
+
+local type ResourceStateType = "ACTIVE" | "RESTORING" | "RECYCLING" | "RECYCLED"
+
+local type SubscriptionProtocolType = "HTTPS" | "SQS"
+
+local type SubscriptionType = "ALL"
+
+local type UserFilterType = "ALL" | "ACTIVE_PENDING"
+
+local type UserSortType = "USER_NAME" | "FULL_NAME" | "STORAGE_LIMIT" | "USER_STATUS" | "STORAGE_USED"
+
+local type UserType = "USER" | "ADMIN" | "POWERUSER" | "MINIMALUSER" | "WORKSPACESUSER"
 
 local record M
     AbortDocumentVersionUploadInput: AbortDocumentVersionUploadInput

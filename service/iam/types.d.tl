@@ -4040,39 +4040,39 @@ local record UnrecognizedPublicKeyEncodingException
     message: string
 end
 
-local type policyScopeType = "All" | "AWS" | "Local"
-
-local type globalEndpointTokenVersion = "v1Token" | "v2Token"
-
-local type ReportStateType = "STARTED" | "INPROGRESS" | "COMPLETE"
+local type AccessAdvisorUsageGranularityType = "SERVICE_LEVEL" | "ACTION_LEVEL"
 
 local type DeletionTaskStatusType = "SUCCEEDED" | "IN_PROGRESS" | "FAILED" | "NOT_STARTED"
 
-local type PolicyUsageType = "PermissionsPolicy" | "PermissionsBoundary"
-
-local type summaryStateType = "AVAILABLE" | "NOT_AVAILABLE" | "NOT_SUPPORTED" | "FAILED"
-
-local type AccessAdvisorUsageGranularityType = "SERVICE_LEVEL" | "ACTION_LEVEL"
-
-local type statusType = "Active" | "Inactive" | "Expired"
-
-local type permissionCheckStatusType = "COMPLETE" | "IN_PROGRESS" | "FAILED"
-
-local type assertionEncryptionModeType = "Required" | "Allowed"
-
-local type sortKeyType = "SERVICE_NAMESPACE_ASCENDING" | "SERVICE_NAMESPACE_DESCENDING" | "LAST_AUTHENTICATED_TIME_ASCENDING" | "LAST_AUTHENTICATED_TIME_DESCENDING"
-
-local type assignmentStatusType = "Assigned" | "Unassigned" | "Any"
-
 local type EntityType = "User" | "Role" | "Group" | "LocalManagedPolicy" | "AWSManagedPolicy"
+
+local type PolicyUsageType = "PermissionsPolicy" | "PermissionsBoundary"
 
 local type ReportFormatType = "text/csv"
 
-local type jobStatusType = "IN_PROGRESS" | "COMPLETED" | "FAILED"
+local type ReportStateType = "STARTED" | "INPROGRESS" | "COMPLETE"
+
+local type assertionEncryptionModeType = "Required" | "Allowed"
+
+local type assignmentStatusType = "Assigned" | "Unassigned" | "Any"
 
 local type encodingType = "SSH" | "PEM"
 
+local type globalEndpointTokenVersion = "v1Token" | "v2Token"
+
+local type jobStatusType = "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
 local type permissionCheckResultType = "ALLOWED" | "DENIED" | "UNSURE"
+
+local type permissionCheckStatusType = "COMPLETE" | "IN_PROGRESS" | "FAILED"
+
+local type policyScopeType = "All" | "AWS" | "Local"
+
+local type sortKeyType = "SERVICE_NAMESPACE_ASCENDING" | "SERVICE_NAMESPACE_DESCENDING" | "LAST_AUTHENTICATED_TIME_ASCENDING" | "LAST_AUTHENTICATED_TIME_DESCENDING"
+
+local type statusType = "Active" | "Inactive" | "Expired"
+
+local type summaryStateType = "AVAILABLE" | "NOT_AVAILABLE" | "NOT_SUPPORTED" | "FAILED"
 
 local record M
     AcceptDelegationRequestInput: AcceptDelegationRequestInput

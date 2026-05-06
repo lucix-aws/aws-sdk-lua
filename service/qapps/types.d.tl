@@ -1641,11 +1641,11 @@ local record ValidationException
     message: string
 end
 
-local type ExecutionStatus = "IN_PROGRESS" | "WAITING" | "COMPLETED" | "ERROR"
+local type AppStatus = "PUBLISHED" | "DRAFT" | "DELETED"
 
 local type DocumentScope = "APPLICATION" | "SESSION"
 
-local type AppStatus = "PUBLISHED" | "DRAFT" | "DELETED"
+local type ExecutionStatus = "IN_PROGRESS" | "WAITING" | "COMPLETED" | "ERROR"
 
 local type LibraryItemStatus = "PUBLISHED" | "DISABLED"
 

@@ -5455,41 +5455,41 @@ local record InvalidDBInstanceStateFault
     message: string
 end
 
-local type SourceType = "db-instance" | "db-parameter-group" | "db-security-group" | "db-snapshot" | "db-cluster" | "db-cluster-snapshot" | "custom-engine-version" | "db-proxy" | "blue-green-deployment" | "db-shard-group" | "zero-etl"
-
-local type AuditPolicyState = "locked" | "unlocked"
-
-local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
-
-local type ClusterScalabilityType = "standard" | "limitless"
-
-local type TargetConnectionNetworkType = "IPV4" | "IPV6"
-
-local type DBProxyEndpointTargetRole = "READ_WRITE" | "READ_ONLY"
-
 local type ActivityStreamMode = "sync" | "async"
-
-local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
-
-local type MasterUserAuthenticationType = "password" | "iam-db-auth"
-
-local type AutomationMode = "full" | "all-paused"
-
-local type DatabaseInsightsMode = "standard" | "advanced"
-
-local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
-
-local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
-
-local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
 
 local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
 
+local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
+
+local type AuditPolicyState = "locked" | "unlocked"
+
+local type AutomationMode = "full" | "all-paused"
+
+local type ClusterScalabilityType = "standard" | "limitless"
+
 local type CustomEngineVersionStatus = "available" | "inactive" | "inactive-except-restore"
+
+local type DBProxyEndpointTargetRole = "READ_WRITE" | "READ_ONLY"
+
+local type DatabaseInsightsMode = "standard" | "advanced"
+
+local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
+
+local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
+
+local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
+
+local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
+
+local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
+
+local type MasterUserAuthenticationType = "password" | "iam-db-auth"
 
 local type ReplicaMode = "open-read-only" | "mounted"
 
-local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | "deleting" | "syncing" | "needs_attention"
+local type SourceType = "db-instance" | "db-parameter-group" | "db-security-group" | "db-snapshot" | "db-cluster" | "db-cluster-snapshot" | "custom-engine-version" | "db-proxy" | "blue-green-deployment" | "db-shard-group" | "zero-etl"
+
+local type TargetConnectionNetworkType = "IPV4" | "IPV6"
 
 local record M
     AddRoleToDBClusterInput: AddRoleToDBClusterInput

@@ -4365,45 +4365,45 @@ local record ThrottlingException
     Logref: string
 end
 
-local type DatasetType = "TRAIN" | "TEST"
-
-local type LabelDetectionAggregateBy = "TIMESTAMPS" | "SEGMENTS"
-
-local type FaceSearchSortBy = "INDEX" | "TIMESTAMP"
-
-local type MediaAnalysisJobStatus = "CREATED" | "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
-local type LabelDetectionSortBy = "NAME" | "TIMESTAMP"
-
-local type ProjectStatus = "CREATING" | "CREATED" | "DELETING"
-
-local type FaceAttributes = "DEFAULT" | "ALL"
-
-local type VideoJobStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
-local type CustomizationFeature = "CONTENT_MODERATION" | "CUSTOM_LABELS"
-
-local type UserStatus = "ACTIVE" | "UPDATING" | "CREATING" | "CREATED"
-
-local type LivenessSessionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "EXPIRED"
-
-local type ContentModerationSortBy = "NAME" | "TIMESTAMP"
+local type CelebrityRecognitionSortBy = "ID" | "TIMESTAMP"
 
 local type ContentModerationAggregateBy = "TIMESTAMPS" | "SEGMENTS"
 
-local type PersonTrackingSortBy = "INDEX" | "TIMESTAMP"
+local type ContentModerationSortBy = "NAME" | "TIMESTAMP"
 
-local type CelebrityRecognitionSortBy = "ID" | "TIMESTAMP"
+local type CustomizationFeature = "CONTENT_MODERATION" | "CUSTOM_LABELS"
 
-local type ProjectAutoUpdate = "ENABLED" | "DISABLED"
+local type DatasetType = "TRAIN" | "TEST"
 
-local type StreamProcessorStatus = "STOPPED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "UPDATING"
+local type FaceAttributes = "DEFAULT" | "ALL"
 
-local type QualityFilter = "NONE" | "AUTO" | "LOW" | "MEDIUM" | "HIGH"
+local type FaceSearchSortBy = "INDEX" | "TIMESTAMP"
+
+local type LabelDetectionAggregateBy = "TIMESTAMPS" | "SEGMENTS"
+
+local type LabelDetectionSortBy = "NAME" | "TIMESTAMP"
+
+local type LivenessSessionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "EXPIRED"
+
+local type MediaAnalysisJobStatus = "CREATED" | "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
 local type OrientationCorrection = "ROTATE_0" | "ROTATE_90" | "ROTATE_180" | "ROTATE_270"
 
+local type PersonTrackingSortBy = "INDEX" | "TIMESTAMP"
+
+local type ProjectAutoUpdate = "ENABLED" | "DISABLED"
+
+local type ProjectStatus = "CREATING" | "CREATED" | "DELETING"
+
 local type ProjectVersionStatus = "TRAINING_IN_PROGRESS" | "TRAINING_COMPLETED" | "TRAINING_FAILED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING" | "COPYING_IN_PROGRESS" | "COPYING_COMPLETED" | "COPYING_FAILED" | "DEPRECATED" | "EXPIRED"
+
+local type QualityFilter = "NONE" | "AUTO" | "LOW" | "MEDIUM" | "HIGH"
+
+local type StreamProcessorStatus = "STOPPED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "UPDATING"
+
+local type UserStatus = "ACTIVE" | "UPDATING" | "CREATING" | "CREATED"
+
+local type VideoJobStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
 local record M
     AssociateFacesInput: AssociateFacesInput

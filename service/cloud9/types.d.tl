@@ -613,11 +613,11 @@ end
 
 local type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM"
 
-local type MemberPermissions = "read-write" | "read-only"
+local type EnvironmentStatus = "error" | "creating" | "connecting" | "ready" | "stopping" | "stopped" | "deleting"
 
 local type ManagedCredentialsAction = "ENABLE" | "DISABLE"
 
-local type EnvironmentStatus = "error" | "creating" | "connecting" | "ready" | "stopping" | "stopped" | "deleting"
+local type MemberPermissions = "read-write" | "read-only"
 
 local record M
     CreateEnvironmentEC2Input: CreateEnvironmentEC2Input

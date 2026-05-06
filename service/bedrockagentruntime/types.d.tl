@@ -1295,17 +1295,17 @@ end
 
 local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
 
-local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
-
 local type FlowExecutionEventType = "Node" | "Flow"
-
-local type SessionStatus = "ACTIVE" | "EXPIRED" | "ENDED"
 
 local type FlowExecutionStatus = "Running" | "Succeeded" | "Failed" | "TimedOut" | "Aborted"
 
 local type GuadrailAction = "INTERVENED" | "NONE"
 
 local type MemoryType = "SESSION_SUMMARY"
+
+local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
+
+local type SessionStatus = "ACTIVE" | "EXPIRED" | "ENDED"
 
 local record M
     CreateInvocationInput: CreateInvocationInput

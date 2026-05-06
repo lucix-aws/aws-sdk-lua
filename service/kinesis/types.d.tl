@@ -1254,9 +1254,9 @@ local record ValidationException
     message: string
 end
 
-local type ScalingType = "UNIFORM_SCALING"
-
 local type EncryptionType = "NONE" | "KMS"
+
+local type ScalingType = "UNIFORM_SCALING"
 
 local type ShardIteratorType = "AT_SEQUENCE_NUMBER" | "AFTER_SEQUENCE_NUMBER" | "TRIM_HORIZON" | "LATEST" | "AT_TIMESTAMP"
 

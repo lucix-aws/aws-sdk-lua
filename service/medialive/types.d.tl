@@ -5255,79 +5255,79 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type CloudWatchAlarmTemplateTreatMissingData = "notBreaching" | "breaching" | "ignore" | "missing"
-
-local type NodeState = "CREATED" | "REGISTERING" | "READY_TO_ACTIVATE" | "REGISTRATION_FAILED" | "ACTIVATION_FAILED" | "ACTIVE" | "READY" | "IN_USE" | "DEREGISTERING" | "DRAINING" | "DEREGISTRATION_FAILED" | "DEREGISTERED"
-
-local type RebootInputDeviceForce = "NO" | "YES"
-
-local type InputSourceType = "STATIC" | "DYNAMIC"
-
-local type LogLevel = "ERROR" | "WARNING" | "INFO" | "DEBUG" | "DISABLED"
-
-local type CloudWatchAlarmTemplateComparisonOperator = "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold"
-
-local type InputNetworkLocation = "AWS" | "ON_PREMISES"
-
-local type UpdateNodeStateShape = "ACTIVE" | "DRAINING"
-
-local type ChannelPlacementGroupState = "UNASSIGNED" | "ASSIGNING" | "ASSIGNED" | "DELETING" | "DELETE_FAILED" | "DELETED" | "UNASSIGNING"
-
-local type EventBridgeRuleTemplateEventType = "MEDIALIVE_MULTIPLEX_ALERT" | "MEDIALIVE_MULTIPLEX_STATE_CHANGE" | "MEDIALIVE_CHANNEL_ALERT" | "MEDIALIVE_CHANNEL_INPUT_CHANGE" | "MEDIALIVE_CHANNEL_STATE_CHANGE" | "MEDIAPACKAGE_INPUT_NOTIFICATION" | "MEDIAPACKAGE_KEY_PROVIDER_NOTIFICATION" | "MEDIAPACKAGE_HARVEST_JOB_NOTIFICATION" | "SIGNAL_MAP_ACTIVE_ALARM" | "MEDIACONNECT_ALERT" | "MEDIACONNECT_SOURCE_HEALTH" | "MEDIACONNECT_OUTPUT_HEALTH" | "MEDIACONNECT_FLOW_STATUS_CHANGE"
-
-local type InputDeviceConnectionState = "DISCONNECTED" | "CONNECTED"
-
-local type CloudWatchAlarmTemplateTargetResourceType = "CLOUDFRONT_DISTRIBUTION" | "MEDIALIVE_MULTIPLEX" | "MEDIALIVE_CHANNEL" | "MEDIALIVE_INPUT_DEVICE" | "MEDIAPACKAGE_CHANNEL" | "MEDIAPACKAGE_ORIGIN_ENDPOINT" | "MEDIACONNECT_FLOW" | "S3_BUCKET" | "MEDIATAILOR_PLAYBACK_CONFIGURATION"
-
-local type OfferingDurationUnits = "MONTHS"
+local type AcceptHeader = "image/jpeg"
 
 local type ChannelClass = "STANDARD" | "SINGLE_PIPELINE"
 
-local type MultiplexState = "CREATING" | "CREATE_FAILED" | "IDLE" | "STARTING" | "RUNNING" | "RECOVERING" | "STOPPING" | "DELETING" | "DELETED"
-
-local type InputClass = "STANDARD" | "SINGLE_PIPELINE"
+local type ChannelPlacementGroupState = "UNASSIGNED" | "ASSIGNING" | "ASSIGNED" | "DELETING" | "DELETE_FAILED" | "DELETED" | "UNASSIGNING"
 
 local type ChannelState = "CREATING" | "CREATE_FAILED" | "IDLE" | "STARTING" | "RUNNING" | "RECOVERING" | "STOPPING" | "DELETING" | "DELETED" | "UPDATING" | "UPDATE_FAILED"
 
-local type SdiSourceType = "SINGLE" | "QUAD"
-
-local type DeviceSettingsSyncState = "SYNCED" | "SYNCING"
-
-local type InputState = "CREATING" | "DETACHED" | "ATTACHED" | "DELETING" | "DELETED"
-
-local type InputDeviceType = "HD" | "UHD"
-
-local type InputSecurityGroupState = "IDLE" | "IN_USE" | "UPDATING" | "DELETED"
-
-local type SdiSourceMode = "QUADRANT" | "INTERLEAVE"
-
-local type InputType = "UDP_PUSH" | "RTP_PUSH" | "RTMP_PUSH" | "RTMP_PULL" | "URL_PULL" | "MP4_FILE" | "MEDIACONNECT" | "INPUT_DEVICE" | "AWS_CDI" | "TS_FILE" | "SRT_CALLER" | "MULTICAST" | "SMPTE_2110_RECEIVER_GROUP" | "SDI" | "MEDIACONNECT_ROUTER" | "SRT_LISTENER"
-
-local type SignalMapStatus = "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_COMPLETE" | "UPDATE_REVERTED" | "UPDATE_FAILED" | "READY" | "NOT_READY"
-
-local type OfferingType = "NO_UPFRONT"
-
-local type NodeRole = "BACKUP" | "ACTIVE"
-
-local type NetworkState = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "IDLE" | "IN_USE" | "UPDATING" | "DELETE_FAILED" | "DELETED"
-
-local type ClusterType = "ON_PREMISES"
+local type CloudWatchAlarmTemplateComparisonOperator = "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold"
 
 local type CloudWatchAlarmTemplateStatistic = "SampleCount" | "Average" | "Sum" | "Minimum" | "Maximum"
 
-local type ReservationState = "ACTIVE" | "EXPIRED" | "CANCELED" | "DELETED"
+local type CloudWatchAlarmTemplateTargetResourceType = "CLOUDFRONT_DISTRIBUTION" | "MEDIALIVE_MULTIPLEX" | "MEDIALIVE_CHANNEL" | "MEDIALIVE_INPUT_DEVICE" | "MEDIAPACKAGE_CHANNEL" | "MEDIAPACKAGE_ORIGIN_ENDPOINT" | "MEDIACONNECT_FLOW" | "S3_BUCKET" | "MEDIATAILOR_PLAYBACK_CONFIGURATION"
 
-local type NodeConnectionState = "CONNECTED" | "DISCONNECTED"
+local type CloudWatchAlarmTemplateTreatMissingData = "notBreaching" | "breaching" | "ignore" | "missing"
 
-local type AcceptHeader = "image/jpeg"
+local type ClusterState = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETE_FAILED" | "DELETED"
+
+local type ClusterType = "ON_PREMISES"
 
 local type ContentType = "image/jpeg"
 
-local type InputDeviceOutputType = "NONE" | "MEDIALIVE_INPUT" | "MEDIACONNECT_FLOW"
+local type DeviceSettingsSyncState = "SYNCED" | "SYNCING"
 
 local type DeviceUpdateStatus = "UP_TO_DATE" | "NOT_UP_TO_DATE" | "UPDATING"
 
-local type ClusterState = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETE_FAILED" | "DELETED"
+local type EventBridgeRuleTemplateEventType = "MEDIALIVE_MULTIPLEX_ALERT" | "MEDIALIVE_MULTIPLEX_STATE_CHANGE" | "MEDIALIVE_CHANNEL_ALERT" | "MEDIALIVE_CHANNEL_INPUT_CHANGE" | "MEDIALIVE_CHANNEL_STATE_CHANGE" | "MEDIAPACKAGE_INPUT_NOTIFICATION" | "MEDIAPACKAGE_KEY_PROVIDER_NOTIFICATION" | "MEDIAPACKAGE_HARVEST_JOB_NOTIFICATION" | "SIGNAL_MAP_ACTIVE_ALARM" | "MEDIACONNECT_ALERT" | "MEDIACONNECT_SOURCE_HEALTH" | "MEDIACONNECT_OUTPUT_HEALTH" | "MEDIACONNECT_FLOW_STATUS_CHANGE"
+
+local type InputClass = "STANDARD" | "SINGLE_PIPELINE"
+
+local type InputDeviceConnectionState = "DISCONNECTED" | "CONNECTED"
+
+local type InputDeviceOutputType = "NONE" | "MEDIALIVE_INPUT" | "MEDIACONNECT_FLOW"
+
+local type InputDeviceType = "HD" | "UHD"
+
+local type InputNetworkLocation = "AWS" | "ON_PREMISES"
+
+local type InputSecurityGroupState = "IDLE" | "IN_USE" | "UPDATING" | "DELETED"
+
+local type InputSourceType = "STATIC" | "DYNAMIC"
+
+local type InputState = "CREATING" | "DETACHED" | "ATTACHED" | "DELETING" | "DELETED"
+
+local type InputType = "UDP_PUSH" | "RTP_PUSH" | "RTMP_PUSH" | "RTMP_PULL" | "URL_PULL" | "MP4_FILE" | "MEDIACONNECT" | "INPUT_DEVICE" | "AWS_CDI" | "TS_FILE" | "SRT_CALLER" | "MULTICAST" | "SMPTE_2110_RECEIVER_GROUP" | "SDI" | "MEDIACONNECT_ROUTER" | "SRT_LISTENER"
+
+local type LogLevel = "ERROR" | "WARNING" | "INFO" | "DEBUG" | "DISABLED"
+
+local type MultiplexState = "CREATING" | "CREATE_FAILED" | "IDLE" | "STARTING" | "RUNNING" | "RECOVERING" | "STOPPING" | "DELETING" | "DELETED"
+
+local type NetworkState = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "IDLE" | "IN_USE" | "UPDATING" | "DELETE_FAILED" | "DELETED"
+
+local type NodeConnectionState = "CONNECTED" | "DISCONNECTED"
+
+local type NodeRole = "BACKUP" | "ACTIVE"
+
+local type NodeState = "CREATED" | "REGISTERING" | "READY_TO_ACTIVATE" | "REGISTRATION_FAILED" | "ACTIVATION_FAILED" | "ACTIVE" | "READY" | "IN_USE" | "DEREGISTERING" | "DRAINING" | "DEREGISTRATION_FAILED" | "DEREGISTERED"
+
+local type OfferingDurationUnits = "MONTHS"
+
+local type OfferingType = "NO_UPFRONT"
+
+local type RebootInputDeviceForce = "NO" | "YES"
+
+local type ReservationState = "ACTIVE" | "EXPIRED" | "CANCELED" | "DELETED"
+
+local type SdiSourceMode = "QUADRANT" | "INTERLEAVE"
+
+local type SdiSourceType = "SINGLE" | "QUAD"
+
+local type SignalMapStatus = "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_COMPLETE" | "UPDATE_REVERTED" | "UPDATE_FAILED" | "READY" | "NOT_READY"
+
+local type UpdateNodeStateShape = "ACTIVE" | "DRAINING"
 
 local record M
     AcceptInputDeviceTransferInput: AcceptInputDeviceTransferInput

@@ -1036,9 +1036,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type IngestionType = "auditLog"
-
 local type AuthType = "oauth2" | "apiKey"
+
+local type IngestionType = "auditLog"
 
 local record M
     BatchGetUserAccessTasksInput: BatchGetUserAccessTasksInput

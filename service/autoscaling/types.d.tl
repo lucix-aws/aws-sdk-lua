@@ -1249,9 +1249,9 @@ local type DeletionProtection = "none" | "prevent-force-deletion" | "prevent-all
 
 local type RefreshStrategy = "Rolling" | "ReplaceRootVolume"
 
-local type WarmPoolState = "Stopped" | "Running" | "Hibernated"
-
 local type RetryStrategy = "retry-with-group-configuration" | "none"
+
+local type WarmPoolState = "Stopped" | "Running" | "Hibernated"
 
 local record M
     AttachInstancesInput: AttachInstancesInput

@@ -1535,13 +1535,13 @@ local record UserNotFoundFault
     message: string
 end
 
-local type UpdateStrategy = "coordinated" | "uncoordinated"
+local type IpDiscovery = "ipv4" | "ipv6"
 
 local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
 
-local type IpDiscovery = "ipv4" | "ipv6"
-
 local type SourceType = "node" | "parameter-group" | "subnet-group" | "cluster" | "user" | "acl"
+
+local type UpdateStrategy = "coordinated" | "uncoordinated"
 
 local record M
     BatchUpdateClusterInput: BatchUpdateClusterInput

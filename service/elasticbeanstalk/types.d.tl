@@ -850,17 +850,17 @@ local record TooManyBucketsException
     message: string
 end
 
-local type EnvironmentInfoType = "tail" | "bundle" | "analyze"
-
-local type EnvironmentHealth = "Green" | "Yellow" | "Red" | "Grey"
-
 local type ActionStatus = "Scheduled" | "Pending" | "Running" | "Unknown"
 
 local type ActionType = "InstanceRefresh" | "PlatformUpdate" | "Unknown"
 
+local type ConfigurationDeploymentStatus = "deployed" | "pending" | "failed"
+
+local type EnvironmentHealth = "Green" | "Yellow" | "Red" | "Grey"
+
 local type EnvironmentHealthStatus = "NoData" | "Unknown" | "Pending" | "Ok" | "Info" | "Warning" | "Degraded" | "Severe" | "Suspended"
 
-local type ConfigurationDeploymentStatus = "deployed" | "pending" | "failed"
+local type EnvironmentInfoType = "tail" | "bundle" | "analyze"
 
 local type EnvironmentStatus = "Aborting" | "Launching" | "Updating" | "LinkingFrom" | "LinkingTo" | "Ready" | "Terminating" | "Terminated"
 

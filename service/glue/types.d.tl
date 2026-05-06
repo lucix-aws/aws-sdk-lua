@@ -8783,59 +8783,59 @@ local record OperationTimeoutException
     Message: string
 end
 
-local type JobMode = "SCRIPT" | "VISUAL" | "NOTEBOOK"
-
-local type ViewUpdateAction = "ADD" | "REPLACE" | "ADD_OR_REPLACE" | "DROP"
-
-local type DataFormat = "AVRO" | "JSON" | "PROTOBUF"
+local type Compatibility = "NONE" | "DISABLED" | "BACKWARD" | "BACKWARD_ALL" | "FORWARD" | "FORWARD_ALL" | "FULL" | "FULL_ALL"
 
 local type ComputeEnvironment = "SPARK" | "ATHENA" | "PYTHON"
 
 local type ConnectionStatus = "READY" | "IN_PROGRESS" | "FAILED"
 
-local type Language = "PYTHON" | "SCALA"
-
-local type InclusionAnnotationValue = "INCLUDE" | "EXCLUDE"
-
-local type TriggerType = "SCHEDULED" | "CONDITIONAL" | "ON_DEMAND" | "EVENT"
-
-local type SchemaStatus = "AVAILABLE" | "PENDING" | "DELETING"
-
-local type ResourceShareType = "FOREIGN" | "ALL" | "FEDERATED"
-
-local type ExistCondition = "MUST_EXIST" | "NOT_EXIST" | "NONE"
-
-local type TaskStatusType = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
-
-local type IntegrationType = "REST"
-
-local type SourceControlProvider = "GITHUB" | "GITLAB" | "BITBUCKET" | "AWS_CODE_COMMIT"
-
-local type WorkerType = "Standard" | "G.1X" | "G.2X" | "G.025X" | "G.4X" | "G.8X" | "Z.2X"
-
-local type FunctionType = "REGULAR_FUNCTION" | "AGGREGATE_FUNCTION" | "STORED_PROCEDURE"
-
-local type SchemaDiffType = "SYNTAX_DIFF"
-
-local type TransformStatusType = "NOT_READY" | "READY" | "DELETING"
-
-local type Compatibility = "NONE" | "DISABLED" | "BACKWARD" | "BACKWARD_ALL" | "FORWARD" | "FORWARD_ALL" | "FULL" | "FULL_ALL"
-
-local type ExecutionClass = "FLEX" | "STANDARD"
+local type DataFormat = "AVRO" | "JSON" | "PROTOBUF"
 
 local type DataQualityModelStatus = "RUNNING" | "SUCCEEDED" | "FAILED"
 
 local type EnableHybridValues = "TRUE" | "FALSE"
 
+local type ExecutionClass = "FLEX" | "STANDARD"
+
+local type ExistCondition = "MUST_EXIST" | "NOT_EXIST" | "NONE"
+
+local type FunctionType = "REGULAR_FUNCTION" | "AGGREGATE_FUNCTION" | "STORED_PROCEDURE"
+
+local type InclusionAnnotationValue = "INCLUDE" | "EXCLUDE"
+
 local type IntegrationStatus = "CREATING" | "ACTIVE" | "MODIFYING" | "FAILED" | "DELETING" | "SYNCING" | "NEEDS_ATTENTION"
+
+local type IntegrationType = "REST"
+
+local type JobMode = "SCRIPT" | "VISUAL" | "NOTEBOOK"
+
+local type Language = "PYTHON" | "SCALA"
 
 local type RegistryStatus = "AVAILABLE" | "DELETING"
 
-local type TableOptimizerType = "compaction" | "retention" | "orphan_file_deletion"
+local type ResourceShareType = "FOREIGN" | "ALL" | "FEDERATED"
+
+local type SchemaDiffType = "SYNTAX_DIFF"
+
+local type SchemaStatus = "AVAILABLE" | "PENDING" | "DELETING"
 
 local type SchemaVersionStatus = "AVAILABLE" | "PENDING" | "FAILURE" | "DELETING"
 
 local type SourceControlAuthStrategy = "PERSONAL_ACCESS_TOKEN" | "AWS_SECRETS_MANAGER"
+
+local type SourceControlProvider = "GITHUB" | "GITLAB" | "BITBUCKET" | "AWS_CODE_COMMIT"
+
+local type TableOptimizerType = "compaction" | "retention" | "orphan_file_deletion"
+
+local type TaskStatusType = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
+
+local type TransformStatusType = "NOT_READY" | "READY" | "DELETING"
+
+local type TriggerType = "SCHEDULED" | "CONDITIONAL" | "ON_DEMAND" | "EVENT"
+
+local type ViewUpdateAction = "ADD" | "REPLACE" | "ADD_OR_REPLACE" | "DROP"
+
+local type WorkerType = "Standard" | "G.1X" | "G.2X" | "G.025X" | "G.4X" | "G.8X" | "Z.2X"
 
 local record M
     BatchCreatePartitionInput: BatchCreatePartitionInput

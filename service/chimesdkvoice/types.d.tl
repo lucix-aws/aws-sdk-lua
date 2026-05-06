@@ -4477,7 +4477,9 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type PhoneNumberAssociationName = "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
+local type CallLegType = "Caller" | "Callee"
+
+local type GeoMatchLevel = "Country" | "AreaCode"
 
 local type LanguageCode = "en-US"
 
@@ -4485,21 +4487,19 @@ local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
 
 local type NumberSelectionBehavior = "PreferSticky" | "AvoidSticky"
 
-local type VoiceConnectorAwsRegion = "us-east-1" | "us-west-2" | "ca-central-1" | "eu-central-1" | "eu-west-1" | "eu-west-2" | "ap-northeast-2" | "ap-northeast-1" | "ap-southeast-1" | "ap-southeast-2"
-
-local type VoiceConnectorIntegrationType = "CONNECT_CALL_TRANSFER_CONNECTOR" | "CONNECT_ANALYTICS_CONNECTOR"
-
-local type SipRuleTriggerType = "ToPhoneNumber" | "RequestUriHostname"
-
-local type GeoMatchLevel = "Country" | "AreaCode"
+local type PhoneNumberAssociationName = "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
 
 local type PhoneNumberProductType = "VoiceConnector" | "SipMediaApplicationDialIn"
 
+local type PhoneNumberType = "Local" | "TollFree"
+
 local type ProxySessionStatus = "Open" | "InProgress" | "Closed"
 
-local type CallLegType = "Caller" | "Callee"
+local type SipRuleTriggerType = "ToPhoneNumber" | "RequestUriHostname"
 
-local type PhoneNumberType = "Local" | "TollFree"
+local type VoiceConnectorAwsRegion = "us-east-1" | "us-west-2" | "ca-central-1" | "eu-central-1" | "eu-west-1" | "eu-west-2" | "ap-northeast-2" | "ap-northeast-1" | "ap-southeast-1" | "ap-southeast-2"
+
+local type VoiceConnectorIntegrationType = "CONNECT_CALL_TRANSFER_CONNECTOR" | "CONNECT_ANALYTICS_CONNECTOR"
 
 local record M
     AssociatePhoneNumbersWithVoiceConnectorInput: AssociatePhoneNumbersWithVoiceConnectorInput

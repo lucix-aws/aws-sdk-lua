@@ -2786,17 +2786,17 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type RoomMembershipRole = "Administrator" | "Member"
-
 local type License = "Basic" | "Plus" | "Pro" | "ProTrial"
+
+local type PhoneNumberAssociationName = "AccountId" | "UserId" | "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
+
+local type PhoneNumberProductType = "BusinessCalling" | "VoiceConnector" | "SipMediaApplicationDialIn"
 
 local type PhoneNumberStatus = "AcquireInProgress" | "AcquireFailed" | "Unassigned" | "Assigned" | "ReleaseInProgress" | "DeleteInProgress" | "ReleaseFailed" | "DeleteFailed"
 
 local type PhoneNumberType = "Local" | "TollFree"
 
-local type PhoneNumberProductType = "BusinessCalling" | "VoiceConnector" | "SipMediaApplicationDialIn"
-
-local type PhoneNumberAssociationName = "AccountId" | "UserId" | "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
+local type RoomMembershipRole = "Administrator" | "Member"
 
 local type UserType = "PrivateUser" | "SharedDevice"
 

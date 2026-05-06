@@ -917,27 +917,27 @@ end
 
 local type BlueprintOptimizationJobStatus = "Created" | "InProgress" | "Success" | "ServiceError" | "ClientError"
 
-local type EntityType = "VOCABULARY"
+local type BlueprintStage = "DEVELOPMENT" | "LIVE"
 
-local type DataAutomationProjectStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
+local type BlueprintStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
 
 local type DataAutomationLibraryStatus = "ACTIVE" | "DELETING"
 
 local type DataAutomationProjectStage = "DEVELOPMENT" | "LIVE"
 
-local type BlueprintStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
-
 local type DataAutomationProjectStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
 
-local type BlueprintStage = "DEVELOPMENT" | "LIVE"
+local type DataAutomationProjectStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
+
+local type DataAutomationProjectType = "ASYNC" | "SYNC"
+
+local type EntityType = "VOCABULARY"
 
 local type LibraryIngestionJobOperationType = "UPSERT" | "DELETE"
 
-local type Type = "DOCUMENT" | "IMAGE" | "AUDIO" | "VIDEO"
-
 local type ResourceOwner = "SERVICE" | "ACCOUNT"
 
-local type DataAutomationProjectType = "ASYNC" | "SYNC"
+local type Type = "DOCUMENT" | "IMAGE" | "AUDIO" | "VIDEO"
 
 local record M
     CopyBlueprintStageInput: CopyBlueprintStageInput

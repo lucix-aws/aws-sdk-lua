@@ -1812,45 +1812,45 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type InputCompressionType = "GZIP" | "ZSTD" | "NONE"
+local type BackupTypeFilter = "USER" | "SYSTEM" | "AWS_BACKUP" | "ALL"
 
-local type ExportFormat = "DYNAMODB_JSON" | "ION"
-
-local type DestinationStatus = "ENABLING" | "ACTIVE" | "DISABLING" | "DISABLED" | "ENABLE_FAILED" | "UPDATING"
+local type BillingMode = "PROVISIONED" | "PAY_PER_REQUEST"
 
 local type ConditionalOperator = "AND" | "OR"
 
+local type ContributorInsightsAction = "ENABLE" | "DISABLE"
+
 local type ContributorInsightsMode = "ACCESSED_AND_THROTTLED_KEYS" | "THROTTLED_KEYS"
+
+local type ContributorInsightsStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED" | "FAILED"
+
+local type DestinationStatus = "ENABLING" | "ACTIVE" | "DISABLING" | "DISABLED" | "ENABLE_FAILED" | "UPDATING"
+
+local type ExportFormat = "DYNAMODB_JSON" | "ION"
+
+local type ExportType = "FULL_EXPORT" | "INCREMENTAL_EXPORT"
+
+local type GlobalTableSettingsReplicationMode = "ENABLED" | "DISABLED" | "ENABLED_WITH_OVERRIDES"
+
+local type InputCompressionType = "GZIP" | "ZSTD" | "NONE"
+
+local type InputFormat = "DYNAMODB_JSON" | "ION" | "CSV"
+
+local type MultiRegionConsistency = "EVENTUAL" | "STRONG"
+
+local type ReturnConsumedCapacity = "INDEXES" | "TOTAL" | "NONE"
+
+local type ReturnItemCollectionMetrics = "SIZE" | "NONE"
+
+local type ReturnValue = "NONE" | "ALL_OLD" | "UPDATED_OLD" | "ALL_NEW" | "UPDATED_NEW"
+
+local type ReturnValuesOnConditionCheckFailure = "ALL_OLD" | "NONE"
+
+local type S3SseAlgorithm = "AES256" | "KMS"
 
 local type Select = "ALL_ATTRIBUTES" | "ALL_PROJECTED_ATTRIBUTES" | "SPECIFIC_ATTRIBUTES" | "COUNT"
 
 local type TableClass = "STANDARD" | "STANDARD_INFREQUENT_ACCESS"
-
-local type ContributorInsightsStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED" | "FAILED"
-
-local type MultiRegionConsistency = "EVENTUAL" | "STRONG"
-
-local type ContributorInsightsAction = "ENABLE" | "DISABLE"
-
-local type ReturnValuesOnConditionCheckFailure = "ALL_OLD" | "NONE"
-
-local type ReturnValue = "NONE" | "ALL_OLD" | "UPDATED_OLD" | "ALL_NEW" | "UPDATED_NEW"
-
-local type ExportType = "FULL_EXPORT" | "INCREMENTAL_EXPORT"
-
-local type InputFormat = "DYNAMODB_JSON" | "ION" | "CSV"
-
-local type ReturnConsumedCapacity = "INDEXES" | "TOTAL" | "NONE"
-
-local type BackupTypeFilter = "USER" | "SYSTEM" | "AWS_BACKUP" | "ALL"
-
-local type ReturnItemCollectionMetrics = "SIZE" | "NONE"
-
-local type BillingMode = "PROVISIONED" | "PAY_PER_REQUEST"
-
-local type GlobalTableSettingsReplicationMode = "ENABLED" | "DISABLED" | "ENABLED_WITH_OVERRIDES"
-
-local type S3SseAlgorithm = "AES256" | "KMS"
 
 local record M
     BatchExecuteStatementInput: BatchExecuteStatementInput

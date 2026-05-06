@@ -775,6 +775,8 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
+local type ChannelRole = "ASKER" | "EXPERT" | "MODERATOR" | "SUPPORTREQUESTOR"
+
 local type ChannelStatus = "CREATED" | "CREATING" | "CREATE_FAILED" | "DELETED" | "DELETING" | "DELETE_FAILED"
 
 local type ConfigurationStatus = "CONFIGURED" | "UNCONFIGURED"
@@ -784,8 +786,6 @@ local type Role = "EXPERT" | "MODERATOR" | "ADMINISTRATOR" | "SUPPORTREQUESTOR"
 local type TierLevel = "BASIC" | "STANDARD"
 
 local type VanityDomainStatus = "PENDING" | "APPROVED" | "UNAPPROVED"
-
-local type ChannelRole = "ASKER" | "EXPERT" | "MODERATOR" | "SUPPORTREQUESTOR"
 
 local record M
     BatchAddChannelRoleToAccessorsInput: BatchAddChannelRoleToAccessorsInput

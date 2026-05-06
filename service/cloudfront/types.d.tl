@@ -5859,17 +5859,17 @@ local record InvalidArgument
     Message: string
 end
 
+local type CachePolicyType = "managed" | "custom"
+
+local type ConnectionMode = "direct" | "tenant-only"
+
 local type FunctionStage = "DEVELOPMENT" | "LIVE"
 
-local type CachePolicyType = "managed" | "custom"
+local type IpAddressType = "ipv4" | "ipv6" | "dualstack"
 
 local type OriginRequestPolicyType = "managed" | "custom"
 
 local type ResponseHeadersPolicyType = "managed" | "custom"
-
-local type IpAddressType = "ipv4" | "ipv6" | "dualstack"
-
-local type ConnectionMode = "direct" | "tenant-only"
 
 local record M
     AssociateAliasInput: AssociateAliasInput

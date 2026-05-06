@@ -1520,17 +1520,17 @@ local record InvalidRequestException
     Message: string
 end
 
-local type SessionState = "CREATING" | "CREATED" | "IDLE" | "BUSY" | "TERMINATING" | "TERMINATED" | "DEGRADED" | "FAILED"
+local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNNING" | "CANCELING" | "CANCELED" | "COMPLETED" | "FAILED"
+
+local type DataCatalogType = "LAMBDA" | "GLUE" | "HIVE" | "FEDERATED"
+
+local type ExecutorState = "CREATING" | "CREATED" | "REGISTERED" | "TERMINATING" | "TERMINATED" | "FAILED"
 
 local type NotebookType = "IPYNB"
 
 local type QueryResultType = "DATA_MANIFEST" | "DATA_ROWS"
 
-local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNNING" | "CANCELING" | "CANCELED" | "COMPLETED" | "FAILED"
-
-local type ExecutorState = "CREATING" | "CREATED" | "REGISTERED" | "TERMINATING" | "TERMINATED" | "FAILED"
-
-local type DataCatalogType = "LAMBDA" | "GLUE" | "HIVE" | "FEDERATED"
+local type SessionState = "CREATING" | "CREATED" | "IDLE" | "BUSY" | "TERMINATING" | "TERMINATED" | "DEGRADED" | "FAILED"
 
 local type WorkGroupState = "ENABLED" | "DISABLED"
 

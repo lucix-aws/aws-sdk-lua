@@ -1570,17 +1570,17 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type IngestionMode = "BULK" | "PUT" | "ALL"
-
 local type BatchInferenceJobMode = "BATCH_INFERENCE" | "THEME_GENERATION"
-
-local type RecipeProvider = "SERVICE"
 
 local type Domain = "ECOMMERCE" | "VIDEO_ON_DEMAND"
 
-local type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN"
-
 local type ImportMode = "FULL" | "INCREMENTAL"
+
+local type IngestionMode = "BULK" | "PUT" | "ALL"
+
+local type RecipeProvider = "SERVICE"
+
+local type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN"
 
 local record M
     CreateBatchInferenceJobInput: CreateBatchInferenceJobInput

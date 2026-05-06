@@ -704,9 +704,9 @@ end
 
 local type CustomHealthStatus = "HEALTHY" | "UNHEALTHY"
 
-local type ServiceTypeOption = "HTTP"
-
 local type HealthStatusFilter = "HEALTHY" | "UNHEALTHY" | "ALL" | "HEALTHY_OR_ELSE_ALL"
+
+local type ServiceTypeOption = "HTTP"
 
 local record M
     CreateHttpNamespaceInput: CreateHttpNamespaceInput

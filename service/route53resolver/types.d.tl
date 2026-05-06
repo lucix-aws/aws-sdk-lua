@@ -2365,41 +2365,41 @@ local record ThrottlingException
     Message: string
 end
 
-local type DnsThreatProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
-
-local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
-
-local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
-
 local type Action = "ALLOW" | "BLOCK" | "ALERT"
 
-local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
-
-local type FirewallDomainImportOperation = "REPLACE"
-
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
-
-local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
-
-local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
-
-local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
-
-local type MutationProtectionStatus = "ENABLED" | "DISABLED"
-
-local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
-
-local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
+local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
 
 local type BlockOverrideDnsType = "CNAME"
 
-local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
+
+local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
+
+local type DnsThreatProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
+
+local type FirewallDomainImportOperation = "REPLACE"
+
+local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
+
+local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
 
 local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
 
-local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
+
+local type MutationProtectionStatus = "ENABLED" | "DISABLED"
+
+local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
+
+local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
+
+local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
+local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
 
 local record M
     AssociateFirewallRuleGroupInput: AssociateFirewallRuleGroupInput

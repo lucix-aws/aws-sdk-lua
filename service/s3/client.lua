@@ -1,6 +1,7 @@
 local base_client = require("smithy.client")
 local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
+local endpoint_auth_resolver = require("smithy.auth.endpoint_auth_resolver")
 local endpoint_rules = require("s3.endpoint_rules")
 local restxml_protocol = require("smithy.protocol.restxml")
 local schemas = require("s3.schemas")
@@ -42,6 +43,7 @@ function M.new(cfg)
     defaults.resolve_http_client(cfg)
     defaults.resolve_retry_strategy(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
+    cfg.auth_scheme_resolver = endpoint_auth_resolver.new(cfg)
     local self = setmetatable(base_client.new(cfg), Client)
     return self
 end
@@ -52,7 +54,7 @@ function Client:abortMultipartUpload(input, options)
         input_schema = schemas.AbortMultipartUploadInput,
         output_schema = schemas.AbortMultipartUploadOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}/{Key+}?x-id=AbortMultipartUpload",
+        http_path = "/{Key+}?x-id=AbortMultipartUpload",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -69,7 +71,7 @@ function Client:completeMultipartUpload(input, options)
         input_schema = schemas.CompleteMultipartUploadInput,
         output_schema = schemas.CompleteMultipartUploadOutput,
         http_method = "POST",
-        http_path = "/{Bucket}/{Key+}",
+        http_path = "/{Key+}",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -86,7 +88,7 @@ function Client:copyObject(input, options)
         input_schema = schemas.CopyObjectInput,
         output_schema = schemas.CopyObjectOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?x-id=CopyObject",
+        http_path = "/{Key+}?x-id=CopyObject",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -104,7 +106,7 @@ function Client:createBucket(input, options)
         input_schema = schemas.CreateBucketInput,
         output_schema = schemas.CreateBucketOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}",
+        http_path = "/",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -120,7 +122,7 @@ function Client:createBucketMetadataConfiguration(input, options)
         input_schema = schemas.CreateBucketMetadataConfigurationInput,
         output_schema = schemas.CreateBucketMetadataConfigurationOutput,
         http_method = "POST",
-        http_path = "/{Bucket}?metadataConfiguration",
+        http_path = "/?metadataConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -136,7 +138,7 @@ function Client:createBucketMetadataTableConfiguration(input, options)
         input_schema = schemas.CreateBucketMetadataTableConfigurationInput,
         output_schema = schemas.CreateBucketMetadataTableConfigurationOutput,
         http_method = "POST",
-        http_path = "/{Bucket}?metadataTable",
+        http_path = "/?metadataTable",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -152,7 +154,7 @@ function Client:createMultipartUpload(input, options)
         input_schema = schemas.CreateMultipartUploadInput,
         output_schema = schemas.CreateMultipartUploadOutput,
         http_method = "POST",
-        http_path = "/{Bucket}/{Key+}?uploads",
+        http_path = "/{Key+}?uploads",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -169,7 +171,7 @@ function Client:createSession(input, options)
         input_schema = schemas.CreateSessionInput,
         output_schema = schemas.CreateSessionOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?session",
+        http_path = "/?session",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -185,7 +187,7 @@ function Client:deleteBucket(input, options)
         input_schema = schemas.DeleteBucketInput,
         output_schema = schemas.DeleteBucketOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}",
+        http_path = "/",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -201,7 +203,7 @@ function Client:deleteBucketAnalyticsConfiguration(input, options)
         input_schema = schemas.DeleteBucketAnalyticsConfigurationInput,
         output_schema = schemas.DeleteBucketAnalyticsConfigurationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?analytics",
+        http_path = "/?analytics",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -217,7 +219,7 @@ function Client:deleteBucketCors(input, options)
         input_schema = schemas.DeleteBucketCorsInput,
         output_schema = schemas.DeleteBucketCorsOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?cors",
+        http_path = "/?cors",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -233,7 +235,7 @@ function Client:deleteBucketEncryption(input, options)
         input_schema = schemas.DeleteBucketEncryptionInput,
         output_schema = schemas.DeleteBucketEncryptionOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?encryption",
+        http_path = "/?encryption",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -249,7 +251,7 @@ function Client:deleteBucketIntelligentTieringConfiguration(input, options)
         input_schema = schemas.DeleteBucketIntelligentTieringConfigurationInput,
         output_schema = schemas.DeleteBucketIntelligentTieringConfigurationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?intelligent-tiering",
+        http_path = "/?intelligent-tiering",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -265,7 +267,7 @@ function Client:deleteBucketInventoryConfiguration(input, options)
         input_schema = schemas.DeleteBucketInventoryConfigurationInput,
         output_schema = schemas.DeleteBucketInventoryConfigurationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?inventory",
+        http_path = "/?inventory",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -281,7 +283,7 @@ function Client:deleteBucketLifecycle(input, options)
         input_schema = schemas.DeleteBucketLifecycleInput,
         output_schema = schemas.DeleteBucketLifecycleOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?lifecycle",
+        http_path = "/?lifecycle",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -297,7 +299,7 @@ function Client:deleteBucketMetadataConfiguration(input, options)
         input_schema = schemas.DeleteBucketMetadataConfigurationInput,
         output_schema = schemas.DeleteBucketMetadataConfigurationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?metadataConfiguration",
+        http_path = "/?metadataConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -313,7 +315,7 @@ function Client:deleteBucketMetadataTableConfiguration(input, options)
         input_schema = schemas.DeleteBucketMetadataTableConfigurationInput,
         output_schema = schemas.DeleteBucketMetadataTableConfigurationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?metadataTable",
+        http_path = "/?metadataTable",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -329,7 +331,7 @@ function Client:deleteBucketMetricsConfiguration(input, options)
         input_schema = schemas.DeleteBucketMetricsConfigurationInput,
         output_schema = schemas.DeleteBucketMetricsConfigurationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?metrics",
+        http_path = "/?metrics",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -345,7 +347,7 @@ function Client:deleteBucketOwnershipControls(input, options)
         input_schema = schemas.DeleteBucketOwnershipControlsInput,
         output_schema = schemas.DeleteBucketOwnershipControlsOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?ownershipControls",
+        http_path = "/?ownershipControls",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -361,7 +363,7 @@ function Client:deleteBucketPolicy(input, options)
         input_schema = schemas.DeleteBucketPolicyInput,
         output_schema = schemas.DeleteBucketPolicyOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?policy",
+        http_path = "/?policy",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -377,7 +379,7 @@ function Client:deleteBucketReplication(input, options)
         input_schema = schemas.DeleteBucketReplicationInput,
         output_schema = schemas.DeleteBucketReplicationOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?replication",
+        http_path = "/?replication",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -393,7 +395,7 @@ function Client:deleteBucketTagging(input, options)
         input_schema = schemas.DeleteBucketTaggingInput,
         output_schema = schemas.DeleteBucketTaggingOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?tagging",
+        http_path = "/?tagging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -409,7 +411,7 @@ function Client:deleteBucketWebsite(input, options)
         input_schema = schemas.DeleteBucketWebsiteInput,
         output_schema = schemas.DeleteBucketWebsiteOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?website",
+        http_path = "/?website",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -425,7 +427,7 @@ function Client:deleteObject(input, options)
         input_schema = schemas.DeleteObjectInput,
         output_schema = schemas.DeleteObjectOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}/{Key+}?x-id=DeleteObject",
+        http_path = "/{Key+}?x-id=DeleteObject",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -442,7 +444,7 @@ function Client:deleteObjects(input, options)
         input_schema = schemas.DeleteObjectsInput,
         output_schema = schemas.DeleteObjectsOutput,
         http_method = "POST",
-        http_path = "/{Bucket}?delete",
+        http_path = "/?delete",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -458,7 +460,7 @@ function Client:deleteObjectTagging(input, options)
         input_schema = schemas.DeleteObjectTaggingInput,
         output_schema = schemas.DeleteObjectTaggingOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}/{Key+}?tagging",
+        http_path = "/{Key+}?tagging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -474,7 +476,7 @@ function Client:deletePublicAccessBlock(input, options)
         input_schema = schemas.DeletePublicAccessBlockInput,
         output_schema = schemas.DeletePublicAccessBlockOutput,
         http_method = "DELETE",
-        http_path = "/{Bucket}?publicAccessBlock",
+        http_path = "/?publicAccessBlock",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -490,7 +492,7 @@ function Client:getBucketAbac(input, options)
         input_schema = schemas.GetBucketAbacInput,
         output_schema = schemas.GetBucketAbacOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?abac",
+        http_path = "/?abac",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -506,7 +508,7 @@ function Client:getBucketAccelerateConfiguration(input, options)
         input_schema = schemas.GetBucketAccelerateConfigurationInput,
         output_schema = schemas.GetBucketAccelerateConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?accelerate",
+        http_path = "/?accelerate",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -522,7 +524,7 @@ function Client:getBucketAcl(input, options)
         input_schema = schemas.GetBucketAclInput,
         output_schema = schemas.GetBucketAclOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?acl",
+        http_path = "/?acl",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -538,7 +540,7 @@ function Client:getBucketAnalyticsConfiguration(input, options)
         input_schema = schemas.GetBucketAnalyticsConfigurationInput,
         output_schema = schemas.GetBucketAnalyticsConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?analytics&x-id=GetBucketAnalyticsConfiguration",
+        http_path = "/?analytics&x-id=GetBucketAnalyticsConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -554,7 +556,7 @@ function Client:getBucketCors(input, options)
         input_schema = schemas.GetBucketCorsInput,
         output_schema = schemas.GetBucketCorsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?cors",
+        http_path = "/?cors",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -570,7 +572,7 @@ function Client:getBucketEncryption(input, options)
         input_schema = schemas.GetBucketEncryptionInput,
         output_schema = schemas.GetBucketEncryptionOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?encryption",
+        http_path = "/?encryption",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -586,7 +588,7 @@ function Client:getBucketIntelligentTieringConfiguration(input, options)
         input_schema = schemas.GetBucketIntelligentTieringConfigurationInput,
         output_schema = schemas.GetBucketIntelligentTieringConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?intelligent-tiering&x-id=GetBucketIntelligentTieringConfiguration",
+        http_path = "/?intelligent-tiering&x-id=GetBucketIntelligentTieringConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -602,7 +604,7 @@ function Client:getBucketInventoryConfiguration(input, options)
         input_schema = schemas.GetBucketInventoryConfigurationInput,
         output_schema = schemas.GetBucketInventoryConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?inventory&x-id=GetBucketInventoryConfiguration",
+        http_path = "/?inventory&x-id=GetBucketInventoryConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -618,7 +620,7 @@ function Client:getBucketLifecycleConfiguration(input, options)
         input_schema = schemas.GetBucketLifecycleConfigurationInput,
         output_schema = schemas.GetBucketLifecycleConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?lifecycle",
+        http_path = "/?lifecycle",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -634,7 +636,7 @@ function Client:getBucketLocation(input, options)
         input_schema = schemas.GetBucketLocationInput,
         output_schema = schemas.GetBucketLocationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?location",
+        http_path = "/?location",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -650,7 +652,7 @@ function Client:getBucketLogging(input, options)
         input_schema = schemas.GetBucketLoggingInput,
         output_schema = schemas.GetBucketLoggingOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?logging",
+        http_path = "/?logging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -666,7 +668,7 @@ function Client:getBucketMetadataConfiguration(input, options)
         input_schema = schemas.GetBucketMetadataConfigurationInput,
         output_schema = schemas.GetBucketMetadataConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?metadataConfiguration",
+        http_path = "/?metadataConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -682,7 +684,7 @@ function Client:getBucketMetadataTableConfiguration(input, options)
         input_schema = schemas.GetBucketMetadataTableConfigurationInput,
         output_schema = schemas.GetBucketMetadataTableConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?metadataTable",
+        http_path = "/?metadataTable",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -698,7 +700,7 @@ function Client:getBucketMetricsConfiguration(input, options)
         input_schema = schemas.GetBucketMetricsConfigurationInput,
         output_schema = schemas.GetBucketMetricsConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?metrics&x-id=GetBucketMetricsConfiguration",
+        http_path = "/?metrics&x-id=GetBucketMetricsConfiguration",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -714,7 +716,7 @@ function Client:getBucketNotificationConfiguration(input, options)
         input_schema = schemas.GetBucketNotificationConfigurationInput,
         output_schema = schemas.GetBucketNotificationConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?notification",
+        http_path = "/?notification",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -730,7 +732,7 @@ function Client:getBucketOwnershipControls(input, options)
         input_schema = schemas.GetBucketOwnershipControlsInput,
         output_schema = schemas.GetBucketOwnershipControlsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?ownershipControls",
+        http_path = "/?ownershipControls",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -746,7 +748,7 @@ function Client:getBucketPolicy(input, options)
         input_schema = schemas.GetBucketPolicyInput,
         output_schema = schemas.GetBucketPolicyOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?policy",
+        http_path = "/?policy",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -762,7 +764,7 @@ function Client:getBucketPolicyStatus(input, options)
         input_schema = schemas.GetBucketPolicyStatusInput,
         output_schema = schemas.GetBucketPolicyStatusOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?policyStatus",
+        http_path = "/?policyStatus",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -778,7 +780,7 @@ function Client:getBucketReplication(input, options)
         input_schema = schemas.GetBucketReplicationInput,
         output_schema = schemas.GetBucketReplicationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?replication",
+        http_path = "/?replication",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -794,7 +796,7 @@ function Client:getBucketRequestPayment(input, options)
         input_schema = schemas.GetBucketRequestPaymentInput,
         output_schema = schemas.GetBucketRequestPaymentOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?requestPayment",
+        http_path = "/?requestPayment",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -810,7 +812,7 @@ function Client:getBucketTagging(input, options)
         input_schema = schemas.GetBucketTaggingInput,
         output_schema = schemas.GetBucketTaggingOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?tagging",
+        http_path = "/?tagging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -826,7 +828,7 @@ function Client:getBucketVersioning(input, options)
         input_schema = schemas.GetBucketVersioningInput,
         output_schema = schemas.GetBucketVersioningOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?versioning",
+        http_path = "/?versioning",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -842,7 +844,7 @@ function Client:getBucketWebsite(input, options)
         input_schema = schemas.GetBucketWebsiteInput,
         output_schema = schemas.GetBucketWebsiteOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?website",
+        http_path = "/?website",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -858,7 +860,7 @@ function Client:getObject(input, options)
         input_schema = schemas.GetObjectInput,
         output_schema = schemas.GetObjectOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?x-id=GetObject",
+        http_path = "/{Key+}?x-id=GetObject",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -875,7 +877,7 @@ function Client:getObjectAcl(input, options)
         input_schema = schemas.GetObjectAclInput,
         output_schema = schemas.GetObjectAclOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?acl",
+        http_path = "/{Key+}?acl",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -892,7 +894,7 @@ function Client:getObjectAttributes(input, options)
         input_schema = schemas.GetObjectAttributesInput,
         output_schema = schemas.GetObjectAttributesOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?attributes",
+        http_path = "/{Key+}?attributes",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -908,7 +910,7 @@ function Client:getObjectLegalHold(input, options)
         input_schema = schemas.GetObjectLegalHoldInput,
         output_schema = schemas.GetObjectLegalHoldOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?legal-hold",
+        http_path = "/{Key+}?legal-hold",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -924,7 +926,7 @@ function Client:getObjectLockConfiguration(input, options)
         input_schema = schemas.GetObjectLockConfigurationInput,
         output_schema = schemas.GetObjectLockConfigurationOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?object-lock",
+        http_path = "/?object-lock",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -940,7 +942,7 @@ function Client:getObjectRetention(input, options)
         input_schema = schemas.GetObjectRetentionInput,
         output_schema = schemas.GetObjectRetentionOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?retention",
+        http_path = "/{Key+}?retention",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -956,7 +958,7 @@ function Client:getObjectTagging(input, options)
         input_schema = schemas.GetObjectTaggingInput,
         output_schema = schemas.GetObjectTaggingOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?tagging",
+        http_path = "/{Key+}?tagging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -972,7 +974,7 @@ function Client:getObjectTorrent(input, options)
         input_schema = schemas.GetObjectTorrentInput,
         output_schema = schemas.GetObjectTorrentOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?torrent",
+        http_path = "/{Key+}?torrent",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -988,7 +990,7 @@ function Client:getPublicAccessBlock(input, options)
         input_schema = schemas.GetPublicAccessBlockInput,
         output_schema = schemas.GetPublicAccessBlockOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?publicAccessBlock",
+        http_path = "/?publicAccessBlock",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1004,7 +1006,7 @@ function Client:headBucket(input, options)
         input_schema = schemas.HeadBucketInput,
         output_schema = schemas.HeadBucketOutput,
         http_method = "HEAD",
-        http_path = "/{Bucket}",
+        http_path = "/",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1020,7 +1022,7 @@ function Client:headObject(input, options)
         input_schema = schemas.HeadObjectInput,
         output_schema = schemas.HeadObjectOutput,
         http_method = "HEAD",
-        http_path = "/{Bucket}/{Key+}",
+        http_path = "/{Key+}",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1037,7 +1039,7 @@ function Client:listBucketAnalyticsConfigurations(input, options)
         input_schema = schemas.ListBucketAnalyticsConfigurationsInput,
         output_schema = schemas.ListBucketAnalyticsConfigurationsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?analytics&x-id=ListBucketAnalyticsConfigurations",
+        http_path = "/?analytics&x-id=ListBucketAnalyticsConfigurations",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1053,7 +1055,7 @@ function Client:listBucketIntelligentTieringConfigurations(input, options)
         input_schema = schemas.ListBucketIntelligentTieringConfigurationsInput,
         output_schema = schemas.ListBucketIntelligentTieringConfigurationsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?intelligent-tiering&x-id=ListBucketIntelligentTieringConfigurations",
+        http_path = "/?intelligent-tiering&x-id=ListBucketIntelligentTieringConfigurations",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1069,7 +1071,7 @@ function Client:listBucketInventoryConfigurations(input, options)
         input_schema = schemas.ListBucketInventoryConfigurationsInput,
         output_schema = schemas.ListBucketInventoryConfigurationsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?inventory&x-id=ListBucketInventoryConfigurations",
+        http_path = "/?inventory&x-id=ListBucketInventoryConfigurations",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1085,7 +1087,7 @@ function Client:listBucketMetricsConfigurations(input, options)
         input_schema = schemas.ListBucketMetricsConfigurationsInput,
         output_schema = schemas.ListBucketMetricsConfigurationsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?metrics&x-id=ListBucketMetricsConfigurations",
+        http_path = "/?metrics&x-id=ListBucketMetricsConfigurations",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1127,7 +1129,7 @@ function Client:listMultipartUploads(input, options)
         input_schema = schemas.ListMultipartUploadsInput,
         output_schema = schemas.ListMultipartUploadsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?uploads",
+        http_path = "/?uploads",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1144,7 +1146,7 @@ function Client:listObjects(input, options)
         input_schema = schemas.ListObjectsInput,
         output_schema = schemas.ListObjectsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}",
+        http_path = "/",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1161,7 +1163,7 @@ function Client:listObjectsV2(input, options)
         input_schema = schemas.ListObjectsV2Input,
         output_schema = schemas.ListObjectsV2Output,
         http_method = "GET",
-        http_path = "/{Bucket}?list-type=2",
+        http_path = "/?list-type=2",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1178,7 +1180,7 @@ function Client:listObjectVersions(input, options)
         input_schema = schemas.ListObjectVersionsInput,
         output_schema = schemas.ListObjectVersionsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}?versions",
+        http_path = "/?versions",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1195,7 +1197,7 @@ function Client:listParts(input, options)
         input_schema = schemas.ListPartsInput,
         output_schema = schemas.ListPartsOutput,
         http_method = "GET",
-        http_path = "/{Bucket}/{Key+}?x-id=ListParts",
+        http_path = "/{Key+}?x-id=ListParts",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1212,7 +1214,7 @@ function Client:putBucketAbac(input, options)
         input_schema = schemas.PutBucketAbacInput,
         output_schema = schemas.PutBucketAbacOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?abac",
+        http_path = "/?abac",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1228,7 +1230,7 @@ function Client:putBucketAccelerateConfiguration(input, options)
         input_schema = schemas.PutBucketAccelerateConfigurationInput,
         output_schema = schemas.PutBucketAccelerateConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?accelerate",
+        http_path = "/?accelerate",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1244,7 +1246,7 @@ function Client:putBucketAcl(input, options)
         input_schema = schemas.PutBucketAclInput,
         output_schema = schemas.PutBucketAclOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?acl",
+        http_path = "/?acl",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1260,7 +1262,7 @@ function Client:putBucketAnalyticsConfiguration(input, options)
         input_schema = schemas.PutBucketAnalyticsConfigurationInput,
         output_schema = schemas.PutBucketAnalyticsConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?analytics",
+        http_path = "/?analytics",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1276,7 +1278,7 @@ function Client:putBucketCors(input, options)
         input_schema = schemas.PutBucketCorsInput,
         output_schema = schemas.PutBucketCorsOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?cors",
+        http_path = "/?cors",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1292,7 +1294,7 @@ function Client:putBucketEncryption(input, options)
         input_schema = schemas.PutBucketEncryptionInput,
         output_schema = schemas.PutBucketEncryptionOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?encryption",
+        http_path = "/?encryption",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1308,7 +1310,7 @@ function Client:putBucketIntelligentTieringConfiguration(input, options)
         input_schema = schemas.PutBucketIntelligentTieringConfigurationInput,
         output_schema = schemas.PutBucketIntelligentTieringConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?intelligent-tiering",
+        http_path = "/?intelligent-tiering",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1324,7 +1326,7 @@ function Client:putBucketInventoryConfiguration(input, options)
         input_schema = schemas.PutBucketInventoryConfigurationInput,
         output_schema = schemas.PutBucketInventoryConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?inventory",
+        http_path = "/?inventory",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1340,7 +1342,7 @@ function Client:putBucketLifecycleConfiguration(input, options)
         input_schema = schemas.PutBucketLifecycleConfigurationInput,
         output_schema = schemas.PutBucketLifecycleConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?lifecycle",
+        http_path = "/?lifecycle",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1356,7 +1358,7 @@ function Client:putBucketLogging(input, options)
         input_schema = schemas.PutBucketLoggingInput,
         output_schema = schemas.PutBucketLoggingOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?logging",
+        http_path = "/?logging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1372,7 +1374,7 @@ function Client:putBucketMetricsConfiguration(input, options)
         input_schema = schemas.PutBucketMetricsConfigurationInput,
         output_schema = schemas.PutBucketMetricsConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?metrics",
+        http_path = "/?metrics",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1388,7 +1390,7 @@ function Client:putBucketNotificationConfiguration(input, options)
         input_schema = schemas.PutBucketNotificationConfigurationInput,
         output_schema = schemas.PutBucketNotificationConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?notification",
+        http_path = "/?notification",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1404,7 +1406,7 @@ function Client:putBucketOwnershipControls(input, options)
         input_schema = schemas.PutBucketOwnershipControlsInput,
         output_schema = schemas.PutBucketOwnershipControlsOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?ownershipControls",
+        http_path = "/?ownershipControls",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1420,7 +1422,7 @@ function Client:putBucketPolicy(input, options)
         input_schema = schemas.PutBucketPolicyInput,
         output_schema = schemas.PutBucketPolicyOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?policy",
+        http_path = "/?policy",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1436,7 +1438,7 @@ function Client:putBucketReplication(input, options)
         input_schema = schemas.PutBucketReplicationInput,
         output_schema = schemas.PutBucketReplicationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?replication",
+        http_path = "/?replication",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1452,7 +1454,7 @@ function Client:putBucketRequestPayment(input, options)
         input_schema = schemas.PutBucketRequestPaymentInput,
         output_schema = schemas.PutBucketRequestPaymentOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?requestPayment",
+        http_path = "/?requestPayment",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1468,7 +1470,7 @@ function Client:putBucketTagging(input, options)
         input_schema = schemas.PutBucketTaggingInput,
         output_schema = schemas.PutBucketTaggingOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?tagging",
+        http_path = "/?tagging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1484,7 +1486,7 @@ function Client:putBucketVersioning(input, options)
         input_schema = schemas.PutBucketVersioningInput,
         output_schema = schemas.PutBucketVersioningOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?versioning",
+        http_path = "/?versioning",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1500,7 +1502,7 @@ function Client:putBucketWebsite(input, options)
         input_schema = schemas.PutBucketWebsiteInput,
         output_schema = schemas.PutBucketWebsiteOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?website",
+        http_path = "/?website",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1516,7 +1518,7 @@ function Client:putObject(input, options)
         input_schema = schemas.PutObjectInput,
         output_schema = schemas.PutObjectOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?x-id=PutObject",
+        http_path = "/{Key+}?x-id=PutObject",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1533,7 +1535,7 @@ function Client:putObjectAcl(input, options)
         input_schema = schemas.PutObjectAclInput,
         output_schema = schemas.PutObjectAclOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?acl",
+        http_path = "/{Key+}?acl",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1550,7 +1552,7 @@ function Client:putObjectLegalHold(input, options)
         input_schema = schemas.PutObjectLegalHoldInput,
         output_schema = schemas.PutObjectLegalHoldOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?legal-hold",
+        http_path = "/{Key+}?legal-hold",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1566,7 +1568,7 @@ function Client:putObjectLockConfiguration(input, options)
         input_schema = schemas.PutObjectLockConfigurationInput,
         output_schema = schemas.PutObjectLockConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?object-lock",
+        http_path = "/?object-lock",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1582,7 +1584,7 @@ function Client:putObjectRetention(input, options)
         input_schema = schemas.PutObjectRetentionInput,
         output_schema = schemas.PutObjectRetentionOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?retention",
+        http_path = "/{Key+}?retention",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1598,7 +1600,7 @@ function Client:putObjectTagging(input, options)
         input_schema = schemas.PutObjectTaggingInput,
         output_schema = schemas.PutObjectTaggingOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?tagging",
+        http_path = "/{Key+}?tagging",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1614,7 +1616,7 @@ function Client:putPublicAccessBlock(input, options)
         input_schema = schemas.PutPublicAccessBlockInput,
         output_schema = schemas.PutPublicAccessBlockOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?publicAccessBlock",
+        http_path = "/?publicAccessBlock",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1630,7 +1632,7 @@ function Client:renameObject(input, options)
         input_schema = schemas.RenameObjectInput,
         output_schema = schemas.RenameObjectOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?renameObject",
+        http_path = "/{Key+}?renameObject",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1647,7 +1649,7 @@ function Client:restoreObject(input, options)
         input_schema = schemas.RestoreObjectInput,
         output_schema = schemas.RestoreObjectOutput,
         http_method = "POST",
-        http_path = "/{Bucket}/{Key+}?restore",
+        http_path = "/{Key+}?restore",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1663,7 +1665,7 @@ function Client:selectObjectContent(input, options)
         input_schema = schemas.SelectObjectContentInput,
         output_schema = schemas.SelectObjectContentOutput,
         http_method = "POST",
-        http_path = "/{Bucket}/{Key+}?select&select-type=2",
+        http_path = "/{Key+}?select&select-type=2",
         event_stream = schemas.SelectObjectContentEventStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
@@ -1680,7 +1682,7 @@ function Client:updateBucketMetadataInventoryTableConfiguration(input, options)
         input_schema = schemas.UpdateBucketMetadataInventoryTableConfigurationInput,
         output_schema = schemas.UpdateBucketMetadataInventoryTableConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?metadataInventoryTable",
+        http_path = "/?metadataInventoryTable",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1696,7 +1698,7 @@ function Client:updateBucketMetadataJournalTableConfiguration(input, options)
         input_schema = schemas.UpdateBucketMetadataJournalTableConfigurationInput,
         output_schema = schemas.UpdateBucketMetadataJournalTableConfigurationOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}?metadataJournalTable",
+        http_path = "/?metadataJournalTable",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1712,7 +1714,7 @@ function Client:updateObjectEncryption(input, options)
         input_schema = schemas.UpdateObjectEncryptionInput,
         output_schema = schemas.UpdateObjectEncryptionOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?encryption",
+        http_path = "/{Key+}?encryption",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1728,7 +1730,7 @@ function Client:uploadPart(input, options)
         input_schema = schemas.UploadPartInput,
         output_schema = schemas.UploadPartOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?x-id=UploadPart",
+        http_path = "/{Key+}?x-id=UploadPart",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1745,7 +1747,7 @@ function Client:uploadPartCopy(input, options)
         input_schema = schemas.UploadPartCopyInput,
         output_schema = schemas.UploadPartCopyOutput,
         http_method = "PUT",
-        http_path = "/{Bucket}/{Key+}?x-id=UploadPartCopy",
+        http_path = "/{Key+}?x-id=UploadPartCopy",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

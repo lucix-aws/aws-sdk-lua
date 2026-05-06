@@ -409,13 +409,13 @@ local record ValidationException
     Message: string
 end
 
+local type ChangeStatus = "PREPARING" | "APPLYING" | "SUCCEEDED" | "CANCELLED" | "FAILED"
+
 local type FailureCode = "CLIENT_ERROR" | "SERVER_FAULT"
 
 local type Intent = "VALIDATE" | "APPLY"
 
 local type OwnershipType = "SELF" | "SHARED"
-
-local type ChangeStatus = "PREPARING" | "APPLYING" | "SUCCEEDED" | "CANCELLED" | "FAILED"
 
 local record M
     BatchDescribeEntitiesInput: BatchDescribeEntitiesInput

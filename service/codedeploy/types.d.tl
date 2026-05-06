@@ -1813,25 +1813,25 @@ local record TriggerTargetsLimitExceededException
     message: string
 end
 
-local type SortOrder = "ascending" | "descending"
-
-local type RegistrationStatus = "Registered" | "Deregistered"
-
-local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
-
-local type StopStatus = "Pending" | "Succeeded"
-
 local type ApplicationRevisionSortBy = "registerTime" | "firstUsedTime" | "lastUsedTime"
 
 local type ComputePlatform = "Server" | "Lambda" | "ECS"
 
 local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
 
+local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
+
 local type LifecycleEventStatus = "Pending" | "InProgress" | "Succeeded" | "Failed" | "Skipped" | "Unknown"
+
+local type ListStateFilterAction = "include" | "exclude" | "ignore"
 
 local type OutdatedInstancesStrategy = "UPDATE" | "IGNORE"
 
-local type ListStateFilterAction = "include" | "exclude" | "ignore"
+local type RegistrationStatus = "Registered" | "Deregistered"
+
+local type SortOrder = "ascending" | "descending"
+
+local type StopStatus = "Pending" | "Succeeded"
 
 local record M
     AddTagsToOnPremisesInstancesInput: AddTagsToOnPremisesInstancesInput
